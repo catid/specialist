@@ -65,6 +65,23 @@ def answers_equivalent(left: str, right: str) -> bool:
             and containment(lt, rt) >= 0.75)
 
 
+def compact_answer_aliases(value: str) -> set[str]:
+    """Return long answer aliases insensitive to transliteration spacing.
+
+    Japanese terms are inconsistently rendered as, for example, ``ipponnawa``
+    and ``ippon nawa``.  Also inspect list members so ``A and Ipponnawa`` is
+    recognized as containing the held-out alias without treating arbitrary
+    one-word answers as equivalent.
+    """
+    pieces = re.split(r"\b(?:aka|and|or)\b|[,;/]", value, flags=re.IGNORECASE)
+    aliases = set()
+    for piece in [value, *pieces]:
+        compact = normalize_text(piece).replace(" ", "")
+        if len(compact) >= 8:
+            aliases.add(compact)
+    return aliases
+
+
 PROTOCOL_TOKENS = ("<|im_start|>", "<|im_end|>", "<think>", "</think>")
 
 _CHAT_QA = re.compile(
@@ -193,6 +210,10 @@ class EvalFact:
     def answer_tokens(self) -> frozenset[str]:
         return frozenset(tokens(self.answer))
 
+    @cached_property
+    def compact_answer_aliases(self) -> frozenset[str]:
+        return frozenset(compact_answer_aliases(self.answer))
+
 
 def _prepared_answers_equivalent(
     left_normalized: str,
@@ -219,6 +240,7 @@ def leakage_reason(question: str, answer: str,
     q_content = content_tokens(question)
     answer_norm = normalize_text(answer)
     answer_token_set = tokens(answer)
+    answer_aliases = compact_answer_aliases(answer)
     for fact in eval_facts:
         other_norm = fact.normalized_question
         other_tokens = fact.question_tokens
@@ -226,12 +248,19 @@ def leakage_reason(question: str, answer: str,
             return "exact_question"
         if jaccard(q_tokens, other_tokens) >= 0.60:
             return "near_duplicate_question"
-        if not _prepared_answers_equivalent(
+        # Treat long transliteration spacing/list variants as answer aliases,
+        # but still require the same relation/context test below. Sharing a
+        # person or technique name alone does not make two facts equivalent.
+        alias_match = (
+            answer_norm != fact.normalized_answer
+            and bool(answer_aliases & fact.compact_answer_aliases)
+        )
+        if not (alias_match or _prepared_answers_equivalent(
             answer_norm,
             answer_token_set,
             fact.normalized_answer,
             fact.answer_tokens,
-        ):
+        )):
             continue
         other_content = fact.question_content_tokens
         shared = q_content & other_content
@@ -239,7 +268,8 @@ def leakage_reason(question: str, answer: str,
         # collision even when surface wording is quite different.
         if (jaccard(q_content, other_content) >= 0.25 or
                 (len(shared) >= 2 and containment(q_content, other_content) >= 0.40)):
-            return "entity_answer_fact"
+            return ("distinctive_answer_alias" if alias_match
+                    else "entity_answer_fact")
     return None
 
 

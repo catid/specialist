@@ -36,6 +36,8 @@ projections scaled by ε=0.05. Each adds 6.27 GiB of BF16 weights and roughly
 - Paper-source clone: `es-fine-tuning-paper/`
 - Both clones resolve to commit `574a9d134da1ffce2a8bb812019899e5c96b588a`.
 - Consolidated experiment summary: `experiments/es_location/summary.json`
+- Curated-data smoke-screen summaries:
+  `experiments/es_curated/{summary,summary_final}.json`
 - Generation-20/30 FP32 exports and digest sidecars:
   `experiments/es_location/insert_back_seed1101_gen{20,30}_fp32_masters.*`
 
@@ -97,13 +99,16 @@ provenance.
 | Dataset | Input | Leak-free output | Main removals |
 |---|---:|---:|---|
 | `train_qa_verified` | 3,510 | 3,113 unique facts | 40 exact questions; 112 near questions; 140 entity-answer facts; 56 low-value/time-sensitive; 20 normalized QA duplicates; rendered duplicates/conflicts |
-| `train_qa_v3_clean` | 57,792 | **Invalidated**; 27,756 projected before manual review | Correct parsing collapses 28,896 paired raw/chat renderings, removes 984 entity-answer leaks, 154 near-question leaks, 804 rendered duplicates, 86 low-value/time-sensitive items, and conflicts |
+| `train_qa_v3_clean` | 57,792 | **Invalidated**; 27,756 structural projection / 27,729 alias-aware review candidates | Correct parsing collapses 28,896 paired raw/chat renderings; the strengthened gate also catches 27 unique spacing/transliteration aliases before manual review |
+| Manual pilot | 156 candidates across 9 documents | 81 evidence-carrying facts | 104 candidate IDs consolidated into 26 edits; 52 IDs dropped; 55 missing facts added by reviewers |
+| Curated v1 | 3,113 base + 81 manual + 29 directory + 38 resource-fact rows | 3,258 unique facts | Three additional distinctive-answer aliases removed from the base during the final merge |
 
 The first leakage-gate artifact contained 3,133 provenance rows; the ES loader
 collapsed those to 3,113 normalized question/answer pairs. The v2 builder now
 performs this fact-level deduplication itself and assigns source-independent
 fact IDs. The completed experiments used the byte-identified v1 artifact and
-record `items: 3113`; new runs default to the v2 artifact.
+record `items: 3113`; `es_train_acc.py` retains v2 as its legacy reproducibility
+default, while `sft_lora.py` now defaults to curated v1.
 
 The first large v2 build is invalid: a broad instruction regex ran before the
 ChatML grammar and leaked role/`<think>` delimiters into 28,017 metadata rows.
@@ -112,6 +117,31 @@ artifact is excluded from version control and must not be used for training.
 Structural, fail-loud parsing now projects 27,756 unique raw facts; those facts
 are undergoing source-document-level manual keep/edit/drop review before a
 replacement dataset is published.
+
+An alias-aware follow-up gate catches compact transliteration and title variants
+such as `Takatekote`/`Takate Kote`, `ipponnawa`/`Ippon nawa`, and punctuation or
+spacing variants embedded in short lists. A manual audit of all 27 newly removed
+unique candidates found direct evaluation collisions; the stricter future
+candidate pool is therefore 27,729 facts.
+
+The first three manual batches deliberately kept each reviewer to one complete
+document at a time. They exposed additional semantic leakage that lexical
+thresholds missed (including Somerville bowline, agura shibari,
+`Ipponnawa`/`Ippon nawa`, Demon Tie/`tengu shibari`, and bend/half-hitch
+function aliases), unsupported definition and authorship questions, duplicated
+paraphrases, and safety claims that needed explicit source attribution. The
+resulting 81-row pilot is suitable for inspecting the target quality schema,
+but is too small to replace the 3,113-fact training set.
+
+The published curated v1 artifact combines the 3,110 surviving base facts with
+those 81 manual facts, 29 owner-curated resource-directory answers, and 38
+independently reviewed resource facts. Its manifest preserves all 23 supplied
+resource URLs verbatim. Live collection was relevance-bounded rather than a
+site mirror: 165 useful public documents were retained, while robots/content
+signals, terms, access challenges, paid material, and thin client-rendered pages
+were recorded as exclusions. Resource recommendations are not treated as
+independent safety endorsements; vendor and manufacturer claims remain
+attributed, including Shibari Supply's explicit no-guarantee warning for bamboo.
 
 The old evaluator also used each candidate as its own judge. Among byte-identical
 candidate answers, pairwise judges disagreed on as many as 54 of 340 aligned
@@ -231,12 +261,46 @@ development-held split, not an untouched final test set.
 | 44-layer, middle insertion | 20–23 | 35 / 142,999,552 | 3 | .0257 → .0256 | .0296 → .0297 | +.0001 |
 | 44-layer, back insertion | 40–43 | 35 / 142,999,552 | 3 | .0190 → .0204 | .0287 → .0287 | .0000 |
 
-These screens used seed 1101, eight antithetic pairs, $\sigma=.01$, learning
-rate $.04$, rank-4 noise, rank shaping, and 32 QA items per population member.
-Only base-front moved development-held reward by more than .001; the other six
-were flat or negative. With one seed, no untreated continuation control, a
-contaminated development probe, and visible probe variability, this does not
-identify a winning layer location.
+The table above is the original seed-1101 screen. The four base-model targets
+were subsequently repeated with seeds 2202, 3303, and 4404 using the same eight
+antithetic pairs, $\sigma=.01$, learning rate $.04$, rank-4 noise, rank shaping,
+and 32 QA items per population member. Three zero-learning-rate runs exercised
+the same perturbation, fitness, probe, and commit paths while committing a zero
+update; they measure short-run probe drift, not the effect of an untreated
+learned continuation.
+
+| Base-model plan | Runs | Positive / negative | Mean held delta | Sample SD | Mean minus zero-LR drift |
+|---|---:|---:|---:|---:|---:|
+| Front | 4 | 3 / 1 | +.000825 | .000862 | +.000292 |
+| Matched middle | 4 | 3 / 1 | +.000425 | .000964 | −.000108 |
+| Back | 4 | 3 / 1 | +.000250 | .000661 | −.000283 |
+| Front + back | 4 | 2 / 2 | +.000250 | .000592 | −.000283 |
+| Zero-LR drift control | 3 | 3 / 0 | +.000533 | .000208 | — |
+
+Front has the largest raw mean, but its advantage over the zero-update drift
+baseline is only .000292—about one third of its across-seed sample standard
+deviation. All location effects are the same order as measurement drift, and
+the probe is contaminated development data. These experiments therefore do
+not support selecting front, back, middle, or front+back at this budget. They
+also do not falsify a front/back ensemble prior; they show that this particular
+three-commit screen is too weak to resolve it.
+
+### Curated-data smoke screens
+
+A one-seed screen on an intermediate 3,255-row curated build produced held
+deltas of +.0003 (front), .0000 (back), +.0011 (matched middle), and −.0001
+(front+back); its matched zero-update run drifted +.0002. Because the final
+manual audit changed the dataset hash, these runs are recorded separately and
+are not pooled with the base-data location sweep.
+
+The apparent middle signal was then checked on the final 3,258-row artifact
+(SHA-256 `4b6f6140ad2256f6c14b2fb182f1266490cb535ba963855ef93e0a1e70f54770`)
+for six commits with seed 6606. The learned run moved development-held reward
+from .0288 to .0296 (+.0008); an otherwise matched zero-learning-rate run moved
+from .0300 to the same .0296 (−.0004). The two fresh base probes differed by
+.0012 before any learned update, and both runs ended at the same score. This is
+direct evidence that probe variability is large enough to explain the apparent
+gain, not evidence for a middle-layer winner.
 
 The back-inserted checkpoint was then continued to 30 commits as a systems and
 stability test. A fresh post-commit probe moved from .0190/.0287 to
@@ -261,6 +325,12 @@ remained highly utilized, without claiming that every device was at 100% at
 every instant. `gpu_utilization_guard.py` now makes this a fail-loud check for
 future runs.
 
+The final curated-data learned/control pair also used all four replicas for
+every population and probe shard. Across their utilization traces, per-GPU
+mean utilization was 78.2–85.2% including request-turnover samples; every GPU
+reached 100%, and 87,434–87,888 MiB remained resident. All 12 commits recorded
+matching FP32-master and serving digests across all four replicas.
+
 ## Motif-insertion pre-screen
 
 Each inserted checkpoint has 44 layers. The destination-to-source map and
@@ -283,21 +353,24 @@ exact-match accuracy.
 
 ## Recommended experiment order
 
-1. Preserve the completed one-seed screens as exploratory baselines.
-2. Repeat front, back, and matched-middle targets across at least three seeds,
-   alongside an equally trained 40-layer continuation control.
+1. Preserve the completed four-seed location screens, curated-data smoke runs,
+   and matched zero-update controls as exploratory baselines; do not select a
+   winner from them.
+2. Build a separately sourced, expert-reviewed final test set, then repeat the
+   location comparison for longer budgets with a genuinely trained control.
 3. Compare 44-layer insertions only at equal training budgets; do not select a
    location from the single-seed back continuation.
 4. Unlock routed experts only after a location effect replicates.
 5. Sweep insertion damping (ε=0, 0.01, 0.05, 0.1) and test a learnable
    zero-initialized residual gate, which requires scalar-parameter perturbation
    support.
-6. Build a separately sourced, expert-reviewed final test set before making a
-   domain-quality claim.
+6. Evaluate the owner-curated resource/factual QA tranche separately from the
+   original 3,113-item training set so dataset changes are not confused with a
+   layer-location effect.
 
 ## Validation
 
-- 47 root regression tests and 6 SGLang ES-state tests pass.
+- 98 root regression tests and 6 SGLang ES-state tests pass.
 - Modified Python files compile; all top-level shell scripts pass `bash -n`;
   the SGLang diff passes `git diff --check`.
 - The paper transcription has 136 unique anchors, 50 resolving internal links,

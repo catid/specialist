@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Summarize schema-v2 ES journals and their human-readable probe logs."""
 import argparse
+import collections
 import json
 import re
+import statistics
 from pathlib import Path
 
 
@@ -65,6 +67,10 @@ def summarize(journal_path):
         "log": str(log_path.resolve()) if log_path.exists() else None,
         "generations": len(rows),
         "generation_range": [rows[0]["gen"], rows[-1]["gen"]],
+        "global_seed": rows[0].get("global_seed"),
+        "learning_rate": rows[0].get("hparams", {}).get("learning_rate"),
+        "data": rows[0].get("data"),
+        "probe_data": rows[0].get("probe_data"),
         "layer_plan": rows[0].get("layer_plan", {}).get("plan"),
         "layers": rows[0].get("layer_plan", {}).get("layers"),
         "num_planned_units": rows[0].get("layer_plan", {}).get("num_units"),
@@ -87,14 +93,78 @@ def summarize(journal_path):
     }
 
 
+def aggregate_layer_plans(experiments):
+    """Aggregate comparable base-model, three-generation seed screens."""
+    grouped = collections.defaultdict(list)
+    for experiment in experiments:
+        plan = experiment.get("layer_plan")
+        name = experiment.get("name", "")
+        delta = experiment.get("heldout_delta")
+        if (plan in {"front", "back", "front_back", "middle_matched"}
+                and experiment.get("generations") == 3
+                and not name.startswith("insert_")
+                and experiment.get("learning_rate", 1.0) != 0.0
+                and delta is not None):
+            grouped[plan].append(experiment)
+    aggregates = {}
+    for plan, runs in sorted(grouped.items()):
+        deltas = [run["heldout_delta"] for run in runs]
+        aggregates[plan] = {
+            "runs": [run["name"] for run in runs],
+            "num_runs": len(runs),
+            "heldout_deltas": deltas,
+            "mean_heldout_delta": statistics.fmean(deltas),
+            "sample_stddev_heldout_delta": (
+                statistics.stdev(deltas) if len(deltas) >= 2 else None),
+            "positive_runs": sum(delta > 0 for delta in deltas),
+            "negative_runs": sum(delta < 0 for delta in deltas),
+        }
+    return aggregates
+
+
+def aggregate_zero_lr_controls(experiments):
+    """Summarize the caller's zero-update control runs.
+
+    Callers should pass a comparable experiment set; unlike layer-plan screen
+    aggregation, a control may intentionally match a budget longer than three
+    generations.
+    """
+    runs = [
+        experiment for experiment in experiments
+        if experiment.get("learning_rate") == 0.0
+        and experiment.get("heldout_delta") is not None
+    ]
+    deltas = [run["heldout_delta"] for run in runs]
+    return {
+        "runs": [run["name"] for run in runs],
+        "num_runs": len(runs),
+        "heldout_deltas": deltas,
+        "mean_heldout_delta": statistics.fmean(deltas) if deltas else None,
+        "sample_stddev_heldout_delta": (
+            statistics.stdev(deltas) if len(deltas) >= 2 else None),
+        "positive_runs": sum(delta > 0 for delta in deltas),
+        "negative_runs": sum(delta < 0 for delta in deltas),
+    }
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("journals", nargs="+", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    experiments = [summarize(path) for path in args.journals]
+    plan_aggregates = aggregate_layer_plans(experiments)
+    zero_lr_control = aggregate_zero_lr_controls(experiments)
+    control_mean = zero_lr_control["mean_heldout_delta"]
+    if control_mean is not None:
+        for aggregate in plan_aggregates.values():
+            aggregate["mean_minus_zero_lr_control"] = (
+                aggregate["mean_heldout_delta"] - control_mean)
     report = {
         "schema": "es-experiment-summary-v1",
-        "experiments": [summarize(path) for path in args.journals],
+        "experiments": experiments,
+        "plan_aggregates": plan_aggregates,
+        "zero_lr_control": zero_lr_control,
     }
     rendered = json.dumps(report, indent=2, sort_keys=True)
     if args.output:

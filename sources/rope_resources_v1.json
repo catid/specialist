@@ -1,0 +1,395 @@
+{
+  "schema": "rope-resource-manifest-v1",
+  "description": "A relevance-scoped directory of rope-bondage resources supplied by the project owner on 2026-07-13.",
+  "selection_policy": {
+    "instructional_sites": "Collect public pages that materially help answer rope-bondage questions; do not mirror unrelated pages.",
+    "commerce_sites": "Collect only the supplied product or category page and narrowly relevant rope specifications, care, or ordering information.",
+    "event_sites": "Retain the resource identity and useful public event or education pages, but label schedules, prices, and availability as volatile.",
+    "content_signals": "Obey robots.txt and Content-Signal directives. A reference-only resource still belongs in recommendation QA, but its content must not be copied into training data.",
+    "videos": "Collect the public title, description, and creator-provided transcript or captions when available; never bypass login or payment controls."
+  },
+  "resources": [
+    {
+      "id": "rope365",
+      "name": "Rope 365",
+      "category": "learning",
+      "purpose": "101-level rope-bondage learning",
+      "supplied_url": "https://rope365.com/",
+      "canonical_url": "https://rope365.com/",
+      "recommendation_question": "Where can a beginner find a 101-level online rope-bondage learning resource?",
+      "collection": {
+        "mode": "relevant_public_pages",
+        "sitemaps": ["https://rope365.com/page-sitemap.xml"],
+        "max_pages": 197,
+        "exclude_url_patterns": ["/fr/", "/es/", "/shop", "/cart", "/checkout", "/my-account", "/events", "/reservations", "/about", "/contact", "/support", "/newsletter", "/partnership", "/performances", "/layout-test/", "/test/", "/sitemap/", "/author-and-collaborators/", "/cf-", "/cordespace", "/rendezvous", "/ebimcknotty"],
+        "content_use": "instructional_training_source"
+      }
+    },
+    {
+      "id": "theduchy",
+      "name": "The Duchy",
+      "category": "learning",
+      "purpose": "mixed-access intermediate floor-based rope tutorials",
+      "supplied_url": "https://www.theduchy.com/",
+      "canonical_url": "https://www.theduchy.com/",
+      "recommendation_question": "Where can someone find intermediate floor-based rope-bondage lessons online?",
+      "collection": {"mode": "reference_only", "reason": "robots.txt Content-Signal declares ai-train=no and use=reference"}
+    },
+    {
+      "id": "crash_restraint",
+      "name": "Crash Restraint",
+      "category": "learning",
+      "purpose": "introductory suspension learning",
+      "supplied_url": "https://crash-restraint.com/",
+      "canonical_url": "https://crash-restraint.com/",
+      "recommendation_question": "Where can someone find an introductory suspension-rope resource?",
+      "collection": {
+        "mode": "reference_only",
+        "reason": "site terms prohibit robots, automated or manual scraping, mining, monitoring, copying, and mirroring",
+        "policy_url": "https://crash-restraint.com/tou"
+      }
+    },
+    {
+      "id": "shibari_study",
+      "name": "Shibari Study",
+      "category": "learning",
+      "purpose": "a membership-based intermediate suspension course catalog",
+      "supplied_url": "https://shibaristudy.com/",
+      "canonical_url": "https://shibaristudy.com/",
+      "recommendation_question": "Where can someone browse Shibari Study's membership catalog for intermediate suspension courses?",
+      "collection": {
+        "mode": "public_catalog_and_descriptions",
+        "urls": ["https://shibaristudy.com/", "https://shibaristudy.com/pages/membership"],
+        "sitemaps": ["https://shibaristudy.com/sitemap.xml"],
+        "include_url_patterns": ["/programs/"],
+        "max_pages": 23,
+        "content_use": "resource_metadata_only",
+        "exclude": ["member-only lessons", "paid video content", "Uscreen content endpoints", "accounts", "checkout"]
+      }
+    },
+    {
+      "id": "deep_dive_single_columns",
+      "name": "Deep Dive into Single Columns",
+      "category": "video",
+      "purpose": "a detailed single-column tie lesson",
+      "supplied_url": "https://www.youtube.com/watch?v=vnDvjAaQU8g",
+      "canonical_url": "https://www.youtube.com/watch?v=vnDvjAaQU8g",
+      "recommendation_question": "Where can someone watch the recommended deep dive into single-column ties?",
+      "collection": {
+        "mode": "youtube_video",
+        "video_id": "vnDvjAaQU8g",
+        "content_use": "metadata_until_transcript_reviewed",
+        "verified_metadata": {"title": "Deep dive into Single Column Tie", "channel": "Tying with Friends", "duration_seconds": 3073, "caption_status": "English auto-generated transcript advertised by the UI but not retrievable in the current headless client"}
+      }
+    },
+    {
+      "id": "hip_harness_playlist",
+      "name": "Hip Harness Videos",
+      "category": "video",
+      "purpose": "a playlist of hip-harness lessons",
+      "supplied_url": "https://youtube.com/playlist?list=PLkrdRffh_Gg2S9QccbRyiLE5x4SIacgoM&si=sc4IL-BcjnOiQudM",
+      "canonical_url": "https://www.youtube.com/playlist?list=PLkrdRffh_Gg2S9QccbRyiLE5x4SIacgoM",
+      "recommendation_question": "Where can someone find the recommended playlist of rope hip-harness videos?",
+      "collection": {
+        "mode": "youtube_playlist",
+        "playlist_id": "PLkrdRffh_Gg2S9QccbRyiLE5x4SIacgoM",
+        "content_use": "discovery_only_pending_per_video_review",
+        "verified_metadata": {"title": "Hips and Peaches Ties References", "owner": "rope365", "reported_items": 109, "current_titled_items": 105, "hidden_or_unavailable_items": 4, "curator_disclaimer": "Compilation is not an endorsement; viewer discretion is advised."}
+      }
+    },
+    {
+      "id": "strugglers_knot_somerville_bowline",
+      "name": "Struggler's Knot and Somerville Bowline",
+      "category": "video",
+      "purpose": "a lesson on the Struggler's Knot and Somerville Bowline",
+      "supplied_url": "https://youtu.be/OsIcEtCoKHo?si=yrnv0JqPLchYRCM0",
+      "canonical_url": "https://www.youtube.com/watch?v=OsIcEtCoKHo",
+      "recommendation_question": "Where can someone watch the recommended Struggler's Knot and Somerville Bowline lesson?",
+      "collection": {
+        "mode": "youtube_video",
+        "video_id": "OsIcEtCoKHo",
+        "content_use": "metadata_only_age_gated",
+        "verified_metadata": {"title": "SHIBARI TUTORIAL: Struggler vs Somerville", "channel": "WykD Dave", "duration_seconds": 354, "access_status": "anonymous player requires sign-in to confirm age", "caption_status": "not accessible anonymously"}
+      }
+    },
+    {
+      "id": "house_of_bound_tutorials",
+      "name": "Lief Bound Tutorials",
+      "category": "video",
+      "purpose": "purchasable rope tutorials by Lief Bound",
+      "supplied_url": "https://www.houseofbound.com/tutorials",
+      "canonical_url": "https://www.houseofbound.com/tutorials",
+      "recommendation_question": "Where can someone purchase Lief Bound's rope-tutorial videos?",
+      "collection": {"mode": "exact_public_page", "urls": ["https://www.houseofbound.com/tutorials"], "content_use": "resource_metadata_only", "exclude": ["paid video content", "Etsy", "Vimeo"]}
+    },
+    {
+      "id": "emt_shears",
+      "name": "EMT Shears",
+      "category": "equipment",
+      "purpose": "the recommended emergency shears listing",
+      "supplied_url": "https://www.amazon.com/dp/B0195QI218",
+      "canonical_url": "https://www.amazon.com/dp/B0195QI218",
+      "recommendation_question": "What is the supplied link for the recommended EMT shears?",
+      "collection": {"mode": "exact_public_page", "urls": ["https://www.amazon.com/dp/B0195QI218"], "content_use": "product_identity_and_attributed_specs", "volatile": ["price", "stock", "seller", "shipping", "ratings", "reviews"]}
+    },
+    {
+      "id": "subspace_designs",
+      "name": "Subspace Designs",
+      "category": "equipment",
+      "purpose": "rigging plates",
+      "supplied_url": "https://www.subspacedesigns.shop/",
+      "canonical_url": "https://www.subspacedesigns.shop/",
+      "recommendation_question": "Where can someone find the recommended rigging plates?",
+      "collection": {
+        "mode": "relevant_product_pages",
+        "urls": ["https://www.subspacedesigns.shop/", "https://www.subspacedesigns.shop/category/suspension-rings", "https://www.subspacedesigns.shop/subspacecustomorders"],
+        "max_pages": 3,
+        "content_use": "vendor_attributed_material_and_dimensions",
+        "known_issues": ["The public engineering and safety page contained placeholder text; do not treat marketing load claims as verified."],
+        "volatile": ["price", "stock", "lead time"]
+      }
+    },
+    {
+      "id": "tetruss",
+      "name": "Tetruss",
+      "category": "equipment",
+      "purpose": "portable suspension frames",
+      "supplied_url": "https://tetruss.com/",
+      "canonical_url": "https://tetruss.com/",
+      "recommendation_question": "Where can someone find the recommended portable suspension frames?",
+      "collection": {
+        "mode": "relevant_product_pages",
+        "urls": ["https://tetruss.com/", "https://tetruss.com/specs/", "https://tetruss.com/product-category/shibari-suspension-bondage/", "https://tetruss.com/product/tetruss-suspension-bondage-rig/"],
+        "max_pages": 4,
+        "content_use": "vendor_attributed_specs",
+        "known_issues": ["Product pages contain inconsistent copied dimensions; prefer the dedicated specs page and retain vendor attribution."],
+        "volatile": ["price", "stock", "shipping", "warranty", "reviews"]
+      }
+    },
+    {
+      "id": "xpole_a_frame",
+      "name": "X-POLE A-FRAME",
+      "category": "equipment",
+      "purpose": "the X-POLE A-FRAME product page",
+      "supplied_url": "https://xpoleus.com/shop-all/aerial/a-frame/xpole-a-frame/",
+      "canonical_url": "https://xpoleus.com/shop-all/aerial/a-frame/xpole-a-frame/",
+      "recommendation_question": "What is the supplied link for the X-POLE A-FRAME?",
+      "collection": {
+        "mode": "exact_public_page",
+        "urls": ["https://xpoleus.com/shop-all/aerial/a-frame/xpole-a-frame/", "https://xpoleus.com/support/a-frame/"],
+        "max_pages": 2,
+        "content_use": "manufacturer_attributed_specs_and_public_manual_links",
+        "known_issues": ["Product and specification fields disagree by one pound; preserve model and document version when using manual or certificate values."],
+        "volatile": ["price", "stock", "shipping", "reviews"]
+      }
+    },
+    {
+      "id": "shibari_supply_bamboo",
+      "name": "Shibari Supply",
+      "category": "equipment",
+      "purpose": "bamboo sold for suspension use",
+      "supplied_url": "https://shibarisupply.com/",
+      "canonical_url": "https://shibarisupply.com/",
+      "recommendation_question": "Which owner-recommended supplier sells bamboo intended for suspension use?",
+      "collection": {
+        "mode": "relevant_product_pages",
+        "urls": ["https://shibarisupply.com/", "https://shibarisupply.com/collections/jute-rope", "https://shibarisupply.com/collections/nylon-rope", "https://shibarisupply.com/collections/rope-care", "https://shibarisupply.com/collections/cutting-tools", "https://shibarisupply.com/collections/safety-gear", "https://shibarisupply.com/collections/suspension-hardware", "https://shibarisupply.com/pages/custom-rope"],
+        "max_pages": 8,
+        "content_use": "retailer_attributed_material_dimensions_and_options",
+        "volatile": ["price", "stock", "shipping", "turnaround", "color availability"]
+      }
+    },
+    {
+      "id": "my_nawashi",
+      "name": "My Nawashi",
+      "category": "natural_fiber_rope",
+      "purpose": "natural-fiber bondage rope",
+      "supplied_url": "https://www.etsy.com/shop/MyNawashi",
+      "canonical_url": "https://www.etsy.com/shop/MyNawashi",
+      "recommendation_question": "Where can someone find the recommended My Nawashi natural-fiber rope shop?",
+      "collection": {"mode": "reference_only", "reason": "the supplied Etsy shop returned bot challenges and rate limits during the 2026-07-13 audit", "volatile": ["listings", "price", "stock", "shipping"]}
+    },
+    {
+      "id": "de_giotto_rope",
+      "name": "De Giotto Rope",
+      "category": "natural_fiber_rope",
+      "purpose": "natural-fiber bondage rope",
+      "supplied_url": "https://degiottorope.com/",
+      "canonical_url": "https://degiottorope.com/",
+      "recommendation_question": "Where can someone find the recommended De Giotto natural-fiber rope shop?",
+      "collection": {
+        "mode": "relevant_product_pages",
+        "urls": ["https://degiottorope.com/", "https://degiottorope.com/collections/jute-rope", "https://degiottorope.com/collections/hemp-rope", "https://degiottorope.com/collections/synthetic-rope", "https://degiottorope.com/collections/rope-care", "https://degiottorope.com/collections/rope-kits", "https://degiottorope.com/blogs/information/on-measuring-length-and-diameter-of-rope", "https://degiottorope.com/blogs/information/hemp-or-jute-which-should-i-choose", "https://degiottorope.com/blogs/information/care-and-maintenance-of-shibari-rope"],
+        "max_pages": 9,
+        "content_use": "vendor_attributed_material_and_care_facts",
+        "known_issues": ["Care instructions explicitly apply to deGiotto rope and must not be generalized; omit unsupported microbial and categorical lifetime claims."],
+        "volatile": ["price", "stock", "shipping", "lead time", "ratings", "reviews"]
+      }
+    },
+    {
+      "id": "rw_rope",
+      "name": "RW Rope",
+      "category": "synthetic_upline_rope",
+      "purpose": "synthetic upline rope",
+      "owner_note": "The supplied directory says custom orders are accepted; treat current availability as volatile and verify with the vendor.",
+      "supplied_url": "https://www.rwrope.com",
+      "canonical_url": "https://www.rwrope.com/",
+      "recommendation_question": "What is the supplied link for the recommended synthetic-upline rope supplier?",
+      "collection": {
+        "mode": "reference_plus_narrow_specs",
+        "urls": ["https://www.rwrope.com/shop/langman-posh-rope-21737", "https://www.rwrope.com/shop/langman-hemp-3-strand-rope-21733", "https://www.rwrope.com/shop/langman-hempex-rope-21736"],
+        "max_pages": 3,
+        "content_use": "product_specific_material_and_specs_not_bondage_instruction",
+        "volatile": ["custom-order availability", "price", "stock", "lead time", "shipping", "reviews"]
+      }
+    },
+    {
+      "id": "chromaknotz",
+      "name": "ChromaKnotz",
+      "category": "synthetic_rope",
+      "purpose": "synthetic bondage rope",
+      "supplied_url": "https://chromaknotz.square.site/",
+      "canonical_url": "https://chromaknotz.square.site/",
+      "recommendation_question": "Where can someone find the recommended ChromaKnotz synthetic rope shop?",
+      "collection": {
+        "mode": "relevant_product_pages",
+        "urls": ["https://chromaknotz.square.site/", "https://chromaknotz.square.site/shop/individual-rope-hanks-15-30-and-60-foot/8", "https://chromaknotz.square.site/shop/kits/6", "https://chromaknotz.square.site/product/basic-introductory-kit/44", "https://chromaknotz.square.site/questions-and-answers"],
+        "max_pages": 5,
+        "requires_javascript": true,
+        "content_use": "vendor_attributed_material_and_care_facts",
+        "known_issues": ["A breaking-point claim omits its unit; do not infer one."],
+        "volatile": ["price", "stock", "shipping", "catalog dates"]
+      }
+    },
+    {
+      "id": "knothead_nylon",
+      "name": "Knot Head Nylon",
+      "category": "synthetic_rope",
+      "purpose": "synthetic bondage rope",
+      "supplied_url": "https://knotheadnylon.net/",
+      "canonical_url": "https://knotheadnylon.net/",
+      "recommendation_question": "Where can someone find the recommended Knot Head Nylon synthetic rope shop?",
+      "collection": {
+        "mode": "relevant_product_pages",
+        "urls": ["https://knotheadnylon.net/", "https://knotheadnylon.net/shop/ropecollections", "https://knotheadnylon.net/rope-kits", "https://knotheadnylon.net/about-knothead-nylon", "https://knotheadnylon.net/shop-accessories/safety-shears-bwf5f"],
+        "max_pages": 5,
+        "content_use": "vendor_attributed_material_kit_and_custom_options",
+        "known_issues": ["Legacy routes, canonical redirects, and kit title/body mismatches require manual review."],
+        "volatile": ["price", "stock", "shipping", "color availability"]
+      }
+    },
+    {
+      "id": "tethered_together",
+      "name": "Tethered Together",
+      "category": "usa_convention",
+      "purpose": "a rope-focused convention in the United States",
+      "supplied_url": "https://tetheredtogether.net",
+      "canonical_url": "https://tetheredtogether.net/",
+      "recommendation_question": "Where can someone find information about the rope convention Tethered Together?",
+      "collection": {
+        "mode": "relevant_event_pages",
+        "urls": ["https://tetheredtogether.net/", "https://tetheredtogether.net/about-us/", "https://tetheredtogether.net/consent-policy/", "https://tetheredtogether.net/general-policy-information/", "https://tetheredtogether.net/accessibility/", "https://tetheredtogether.net/ropenspace/"],
+        "max_pages": 6,
+        "content_use": "durable_organization_metadata",
+        "known_conflicts": ["The home and FAQ currently publish different March 2027 dates."],
+        "volatile": ["dates", "venue", "teachers", "tickets", "prices"]
+      }
+    },
+    {
+      "id": "ropecraft",
+      "name": "ROPECRAFT",
+      "category": "usa_convention",
+      "purpose": "a rope-focused convention in the United States",
+      "supplied_url": "https://ropecraft.net",
+      "canonical_url": "https://ropecraft.net/",
+      "recommendation_question": "Where can someone find information about the rope convention ROPECRAFT?",
+      "collection": {
+        "mode": "reference_only",
+        "reason": "live DNS and robots policy could not be verified on 2026-07-13; the visible event date was stale",
+        "candidate_urls_after_policy_verification": ["https://ropecraft.net/", "https://ropecraft.net/what-is-ropecraft/", "https://ropecraft.net/consent-policy/", "https://ropecraft.net/firstcon/"],
+        "volatile": ["dates", "venue", "teachers", "tickets", "prices"]
+      }
+    },
+    {
+      "id": "atx_empty_space",
+      "name": "The Empty Space",
+      "category": "austin",
+      "purpose": "an Austin rope-community event calendar",
+      "supplied_url": "https://www.atxempty.space",
+      "canonical_url": "https://www.atxempty.space/",
+      "recommendation_question": "Where can someone check The Empty Space's public event calendar?",
+      "recommendation_url": "https://www.atxempty.space/space-schedule",
+      "collection": {
+        "mode": "relevant_event_pages",
+        "urls": ["https://www.atxempty.space/", "https://www.atxempty.space/aboutus", "https://www.atxempty.space/kim", "https://www.atxempty.space/scout", "https://www.atxempty.space/reclamationrope", "https://www.atxempty.space/space-schedule"],
+        "max_pages": 6,
+        "content_use": "durable_organization_metadata",
+        "dynamic_pages": ["https://www.atxempty.space/space-schedule"],
+        "volatile": ["dates", "times", "venue", "tickets", "prices"]
+      }
+    },
+    {
+      "id": "austin_rope_slingers",
+      "name": "Austin Rope Slingers",
+      "category": "austin",
+      "purpose": "an Austin rope group with regular meetings",
+      "supplied_url": "https://www.austinropeslingers.com",
+      "canonical_url": "https://www.austinropeslingers.com/",
+      "recommendation_question": "Where can someone find Austin Rope Slingers and check its published meeting information?",
+      "collection": {
+        "mode": "relevant_event_pages",
+        "urls": ["https://www.austinropeslingers.com/", "https://www.austinropeslingers.com/resources/", "https://www.austinropeslingers.com/faq/", "https://www.austinropeslingers.com/rope-101-resources/", "https://www.austinropeslingers.com/resources/rope-lab-rules/"],
+        "max_pages": 5,
+        "content_use": "attributed_organization_metadata",
+        "known_conflicts": ["The site claims weekly Monday labs, but its public calendar had no current 2026 recurrence when checked."],
+        "volatile": ["meeting day", "dates", "times", "venue", "prices"]
+      }
+    },
+    {
+      "id": "bight_bound",
+      "name": "BightBound",
+      "category": "austin",
+      "purpose": "Austin-area educators for intermediate and advanced rope topics",
+      "supplied_url": "https://www.bightbound.com",
+      "canonical_url": "https://www.bightbound.com/",
+      "recommendation_question": "Where can someone find Austin-area educators for intermediate and advanced rope topics?",
+      "collection": {
+        "mode": "relevant_public_pages",
+        "urls": ["https://www.bightbound.com/", "https://www.bightbound.com/about", "https://www.bightbound.com/faq", "https://www.bightbound.com/education", "https://www.bightbound.com/education/100", "https://www.bightbound.com/education/200", "https://www.bightbound.com/education/300", "https://www.bightbound.com/education/private-instruction"],
+        "max_pages": 8,
+        "requires_javascript": true,
+        "content_use": "durable_education_metadata",
+        "volatile": ["class dates", "availability", "prices"]
+      }
+    }
+  ],
+  "category_questions": [
+    {
+      "question": "Which online rope-learning resources are recommended by level?",
+      "include_purpose": true,
+      "resource_ids": ["rope365", "theduchy", "crash_restraint", "shibari_study"]
+    },
+    {
+      "question": "Which recommended resources cover single-column ties, hip harnesses, or the Struggler's Knot and Somerville Bowline?",
+      "resource_ids": ["deep_dive_single_columns", "hip_harness_playlist", "strugglers_knot_somerville_bowline"]
+    },
+    {
+      "question": "Which suppliers are recommended for natural-fiber bondage rope?",
+      "resource_ids": ["my_nawashi", "de_giotto_rope"]
+    },
+    {
+      "question": "Which suppliers are recommended for synthetic bondage rope?",
+      "include_purpose": true,
+      "resource_ids": ["rw_rope", "chromaknotz", "knothead_nylon"]
+    },
+    {
+      "question": "Which websites are recommended for U.S.-based rope conventions?",
+      "resource_ids": ["tethered_together", "ropecraft"]
+    },
+    {
+      "question": "Which online resources are recommended for the Austin rope community?",
+      "include_purpose": true,
+      "resource_ids": ["atx_empty_space", "austin_rope_slingers", "bight_bound"]
+    }
+  ]
+}

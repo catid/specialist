@@ -99,6 +99,29 @@ class LeakageTests(unittest.TestCase):
     def test_answer_aliases_allow_clarification(self):
         self.assertTrue(answers_equivalent("Akechi Denki", "Akechi Denki (Akechi)"))
 
+    def test_transliteration_spacing_alias_is_rejected(self):
+        eval_fact = EvalFact(
+            "What is the Japanese term for a single rope?", "Ippon nawa")
+        self.assertEqual(
+            leakage_reason(
+                "What Japanese term describes the one-rope technique?",
+                "Ipponnawa",
+                [eval_fact],
+            ),
+            "distinctive_answer_alias",
+        )
+
+    def test_list_member_answer_alone_is_not_a_fact_collision(self):
+        eval_fact = EvalFact(
+            "Which famous nawashi began in the post-war years?",
+            "Akechi Denki and Yukimura Haruki",
+        )
+        self.assertIsNone(leakage_reason(
+            "After whom is the slipped half hitch called the Yuki knot?",
+            "Yukimura Haruki",
+            [eval_fact],
+        ))
+
 
 class DatasetBuildTests(unittest.TestCase):
     def test_normalized_qa_duplicates_share_one_fact(self):

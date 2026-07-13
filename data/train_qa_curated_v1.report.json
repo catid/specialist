@@ -1,0 +1,82 @@
+{
+  "counts": {
+    "by_input": {
+      "data/rope_resource_factual_qa_v1.jsonl": 38,
+      "data/rope_resource_qa_v1.jsonl": 29,
+      "data/train_qa_manual_v1.jsonl": 81,
+      "data/train_qa_verified_leakfree_v2.jsonl": 3110
+    },
+    "by_kind": {
+      "qa_manual": 81,
+      "qa_resource_category": 6,
+      "qa_resource_direct": 23,
+      "qa_resource_manual_fact": 38,
+      "qa_verified": 3110
+    },
+    "by_source": {
+      "amazon": 1,
+      "anatomiestudio": 23,
+      "atx_empty_space": 3,
+      "austin_rope_slingers": 3,
+      "bight_bound": 3,
+      "chromaknotz": 2,
+      "degiotto_rope": 3,
+      "esinem": 763,
+      "house_of_bound": 1,
+      "kinbakutoday": 1248,
+      "owner_curated_rope_resource_directory": 29,
+      "rope365": 760,
+      "rw_rope": 2,
+      "shibari_study": 1,
+      "shibari_supply": 3,
+      "subspace_designs": 1,
+      "tethered_together": 3,
+      "tetruss": 3,
+      "wikipedia": 403,
+      "xpole_us": 3
+    },
+    "excluded": 3,
+    "exclusion_reasons": {
+      "distinctive_answer_alias": 3
+    },
+    "output": 3258,
+    "unique_fact_ids": 3258,
+    "unique_questions": 3258
+  },
+  "eval_fact_count": 505,
+  "exclusions": [
+    {
+      "fact_id": "fact-97f8a7457c6550efcee4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1436,
+      "reason": "distinctive_answer_alias"
+    },
+    {
+      "fact_id": "fact-f23ce5a3c26b9464ab46",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1739,
+      "reason": "distinctive_answer_alias"
+    },
+    {
+      "fact_id": "fact-277acee0597d6bc1bd8b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2978,
+      "reason": "distinctive_answer_alias"
+    }
+  ],
+  "input_sha256": {
+    "data/rope_resource_factual_qa_v1.jsonl": "52e5a08194ecd6f82128b420dafcbd04dea5a99cb7091a0b19ae82870d79b409",
+    "data/rope_resource_qa_v1.jsonl": "aefe1ed03d16024fbb40bfcdb5d0a4e37ecf63565e44c2e423abb38b079fa97f",
+    "data/train_qa_manual_v1.jsonl": "7c873f4103a579ea9b3975cf39a22a6943ecd993e2082e205ad4061dd18edccf",
+    "data/train_qa_verified_leakfree_v2.jsonl": "6829215a779caaab227e548c7df415998b29d08665a31f050084b2a5390f0aea"
+  },
+  "inputs": [
+    "data/train_qa_verified_leakfree_v2.jsonl",
+    "data/train_qa_manual_v1.jsonl",
+    "data/rope_resource_qa_v1.jsonl",
+    "data/rope_resource_factual_qa_v1.jsonl"
+  ],
+  "output": "data/train_qa_curated_v1.jsonl",
+  "output_sha256": "4b6f6140ad2256f6c14b2fb182f1266490cb535ba963855ef93e0a1e70f54770",
+  "schema": "curated-training-qa-report-v1"
+}

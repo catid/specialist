@@ -1,0 +1,48 @@
+{
+  "counts": {
+    "by_claim_type": {
+      "durable_org": 12,
+      "instructional": 6,
+      "manufacturer_attributed": 10,
+      "vendor_attributed": 10
+    },
+    "by_packet": {
+      "sources/manual_facts/resource_group_a.jsonl": 8,
+      "sources/manual_facts/resource_group_b.jsonl": 18,
+      "sources/manual_facts/resource_group_c.jsonl": 12
+    },
+    "by_resource": {
+      "atx_empty_space": 3,
+      "austin_rope_slingers": 3,
+      "bight_bound": 3,
+      "chromaknotz": 2,
+      "de_giotto_rope": 3,
+      "emt_shears": 1,
+      "house_of_bound_tutorials": 1,
+      "rope365": 6,
+      "rw_rope": 2,
+      "shibari_study": 1,
+      "shibari_supply_bamboo": 3,
+      "subspace_designs": 1,
+      "tethered_together": 3,
+      "tetruss": 3,
+      "xpole_a_frame": 3
+    },
+    "output": 38
+  },
+  "manifest": "sources/rope_resources_v1.json",
+  "manifest_sha256": "651ce27fece4b51c295ad5dc87b0b29ff051dbd34c9248efbbbe505ee8d25f25",
+  "output": "data/rope_resource_factual_qa_v1.jsonl",
+  "output_sha256": "52e5a08194ecd6f82128b420dafcbd04dea5a99cb7091a0b19ae82870d79b409",
+  "packet_sha256": {
+    "sources/manual_facts/resource_group_a.jsonl": "281bd54dbc594fcdc6f35fde28ef3472bf6e5b759336cd5fe6338c25af877963",
+    "sources/manual_facts/resource_group_b.jsonl": "0ca0e85e01d69689d3baf80ca4c1247d7fc75e87a78d3afe621862c99749ca10",
+    "sources/manual_facts/resource_group_c.jsonl": "cd6a6a38f3ee2744adf157937100bcd8a7056c42d8f18838321dab7812c5ccb7"
+  },
+  "packets": [
+    "sources/manual_facts/resource_group_a.jsonl",
+    "sources/manual_facts/resource_group_b.jsonl",
+    "sources/manual_facts/resource_group_c.jsonl"
+  ],
+  "schema": "manual-resource-fact-report-v1"
+}

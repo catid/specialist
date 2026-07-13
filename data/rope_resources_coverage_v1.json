@@ -1,0 +1,516 @@
+{
+  "counts": {
+    "outcomes": {
+      "blocked": 29,
+      "failed": 0,
+      "fetched": 165,
+      "skipped": 564
+    },
+    "resources": 23,
+    "statuses": {
+      "blocked": 11,
+      "complete": 9,
+      "empty": 3
+    }
+  },
+  "coverage_dir": "data/raw/rope_resources_v1_coverage",
+  "manifest": "sources/rope_resources_v1.json",
+  "manifest_sha256": "651ce27fece4b51c295ad5dc87b0b29ff051dbd34c9248efbbbe505ee8d25f25",
+  "resources": {
+    "atx_empty_space": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 5,
+        "skipped": 1
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/atx_empty_space.coverage.json",
+      "coverage_sha256": "f632924e4c3dee3cf3bba4fffee3259f038e3def4fd28b0f311efb36076675cf",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {
+          "document_saved": 5
+        },
+        "skipped": {
+          "insufficient_extracted_text": 1
+        }
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "complete"
+    },
+    "austin_rope_slingers": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 5,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/austin_rope_slingers.coverage.json",
+      "coverage_sha256": "56567fbf368380749e26934dfefcd1d0f3dae3afd594a905c5456970a99a6963",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {
+          "document_saved": 5
+        },
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "complete"
+    },
+    "bight_bound": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 8
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/bight_bound.coverage.json",
+      "coverage_sha256": "32d1771e680d21b1f2d6f1657d45e6101baec7e64edc236c51b77b512a89413b",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {},
+        "skipped": {
+          "insufficient_extracted_text": 8
+        }
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "empty"
+    },
+    "chromaknotz": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 5
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/chromaknotz.coverage.json",
+      "coverage_sha256": "bccfedb90209811b77e6208eb48f3bcf467c3cb8399b560efca2f80f025ad6f2",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {},
+        "skipped": {
+          "insufficient_extracted_text": 5
+        }
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "empty"
+    },
+    "crash_restraint": {
+      "counts": {
+        "blocked": 1,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/crash_restraint.coverage.json",
+      "coverage_sha256": "10adff41241b2d93ebd7bc98da294fb22e2d41f64080c0f818a8dc11f196324a",
+      "reason_counts": {
+        "blocked": {
+          "manifest_reference_only": 1
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "not_requested",
+      "status": "blocked"
+    },
+    "de_giotto_rope": {
+      "counts": {
+        "blocked": 9,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/de_giotto_rope.coverage.json",
+      "coverage_sha256": "a8e7434e97762d8a70be784f140ecff987e9ba884a135f7cfc40aee53cb13d5f",
+      "reason_counts": {
+        "blocked": {
+          "access_challenge": 9
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "blocked"
+    },
+    "deep_dive_single_columns": {
+      "counts": {
+        "blocked": 1,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/deep_dive_single_columns.coverage.json",
+      "coverage_sha256": "5edd9021050d02cba022636371924fd6cb854d962d886aeb40c72afdc2c65281",
+      "reason_counts": {
+        "blocked": {
+          "youtube_adapter_unavailable": 1
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "adapter_managed",
+      "status": "blocked"
+    },
+    "emt_shears": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 1
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/emt_shears.coverage.json",
+      "coverage_sha256": "507632b6d79c6cddb2fc3d93e7339097ad591230704a9378f4dd889b088aa171",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {},
+        "skipped": {
+          "insufficient_extracted_text": 1
+        }
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "empty"
+    },
+    "hip_harness_playlist": {
+      "counts": {
+        "blocked": 1,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/hip_harness_playlist.coverage.json",
+      "coverage_sha256": "4010ad872a189bace1f590896c21165c47638f8af9da1d7ae6358aef9943587d",
+      "reason_counts": {
+        "blocked": {
+          "youtube_adapter_unavailable": 1
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "adapter_managed",
+      "status": "blocked"
+    },
+    "house_of_bound_tutorials": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 1,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/house_of_bound_tutorials.coverage.json",
+      "coverage_sha256": "0198102c4d0ddbce28844ced9b001a44e63f5385aaacdce4828a03047143479c",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {
+          "document_saved": 1
+        },
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "complete"
+    },
+    "knothead_nylon": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 5,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/knothead_nylon.coverage.json",
+      "coverage_sha256": "aa0e79dbd905bb1c144a394c57128307e366bf658d3d1f3fb6d6a5e5be0c296a",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {
+          "document_saved": 5
+        },
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "complete"
+    },
+    "my_nawashi": {
+      "counts": {
+        "blocked": 1,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/my_nawashi.coverage.json",
+      "coverage_sha256": "6186c65839e6343cc16e168d9f5f5023bdcd363478219593f1fb8c0cd93b0e4b",
+      "reason_counts": {
+        "blocked": {
+          "manifest_reference_only": 1
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "not_requested",
+      "status": "blocked"
+    },
+    "rope365": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 136,
+        "skipped": 61
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/rope365.coverage.json",
+      "coverage_sha256": "2c3b0d1d784aa441415552ec97ea2de46faa00e26370f06d09b341774787cc04",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {
+          "document_saved": 136
+        },
+        "skipped": {
+          "insufficient_extracted_text": 2,
+          "manifest_exclude_pattern": 59
+        }
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "complete"
+    },
+    "ropecraft": {
+      "counts": {
+        "blocked": 1,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/ropecraft.coverage.json",
+      "coverage_sha256": "3c48c0911aee806a16afaff4c9101bf4c62e9839d2922c1e80b5aebe52563c1d",
+      "reason_counts": {
+        "blocked": {
+          "manifest_reference_only": 1
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "not_requested",
+      "status": "blocked"
+    },
+    "rw_rope": {
+      "counts": {
+        "blocked": 1,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/rw_rope.coverage.json",
+      "coverage_sha256": "3d92c3b90b10f7a32e2b1c97fdef1315071dc225158642e557b847a048e52fb3",
+      "reason_counts": {
+        "blocked": {
+          "robots_content_signal_ai_train_no": 1
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": true,
+      "robots_status": "ok",
+      "status": "blocked"
+    },
+    "shibari_study": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 2,
+        "skipped": 488
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/shibari_study.coverage.json",
+      "coverage_sha256": "455e73ed2a6996cbc67c4de1c656009762b260840431623d5f71c6c605fd3928",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {
+          "document_saved": 2
+        },
+        "skipped": {
+          "insufficient_extracted_text": 21,
+          "manifest_include_pattern_miss": 176,
+          "max_pages": 175,
+          "page_out_of_scope": 116
+        }
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "complete"
+    },
+    "shibari_supply_bamboo": {
+      "counts": {
+        "blocked": 8,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/shibari_supply_bamboo.coverage.json",
+      "coverage_sha256": "b2218b5e9badbee0eb546ad7271779f8dda6b162ed2c643363b63255e2990ae8",
+      "reason_counts": {
+        "blocked": {
+          "access_challenge": 8
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "blocked"
+    },
+    "strugglers_knot_somerville_bowline": {
+      "counts": {
+        "blocked": 1,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/strugglers_knot_somerville_bowline.coverage.json",
+      "coverage_sha256": "10d05c2453b13ed133f2968736c1ed308a629cc2261d69fb9b161d619812d360",
+      "reason_counts": {
+        "blocked": {
+          "youtube_adapter_unavailable": 1
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "adapter_managed",
+      "status": "blocked"
+    },
+    "subspace_designs": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 3,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/subspace_designs.coverage.json",
+      "coverage_sha256": "496ade13178be2fc09d592c109912a0a29700025dc19b92c56770a8470b4391b",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {
+          "document_saved": 3
+        },
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "complete"
+    },
+    "tethered_together": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 6,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/tethered_together.coverage.json",
+      "coverage_sha256": "3a6533f96b832496a7119b00a32493735f930285404ce2c279d8cd3538298422",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {
+          "document_saved": 6
+        },
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "complete"
+    },
+    "tetruss": {
+      "counts": {
+        "blocked": 4,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/tetruss.coverage.json",
+      "coverage_sha256": "7d098800c014887e662ef1f6ae86056bf78694aaa832b9e9fd3a6c2947d20f47",
+      "reason_counts": {
+        "blocked": {
+          "access_challenge": 4
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "blocked"
+    },
+    "theduchy": {
+      "counts": {
+        "blocked": 1,
+        "failed": 0,
+        "fetched": 0,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/theduchy.coverage.json",
+      "coverage_sha256": "71ba47f5b0eee05b5221e1db1bdab6d0d3054bacfc3beb4fe2295f72b589be0c",
+      "reason_counts": {
+        "blocked": {
+          "manifest_reference_only": 1
+        },
+        "failed": {},
+        "fetched": {},
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "not_requested",
+      "status": "blocked"
+    },
+    "xpole_a_frame": {
+      "counts": {
+        "blocked": 0,
+        "failed": 0,
+        "fetched": 2,
+        "skipped": 0
+      },
+      "coverage": "data/raw/rope_resources_v1_coverage/xpole_a_frame.coverage.json",
+      "coverage_sha256": "90c2881537e8ef42e20303e517f792e6fbbe27f39e3b945df9e5d245048b2729",
+      "reason_counts": {
+        "blocked": {},
+        "failed": {},
+        "fetched": {
+          "document_saved": 2
+        },
+        "skipped": {}
+      },
+      "robots_ai_train_no": false,
+      "robots_status": "ok",
+      "status": "complete"
+    }
+  },
+  "schema": "rope-resource-coverage-report-v1",
+  "source_run_completed_at": "2026-07-13T23:15:47+00:00"
+}

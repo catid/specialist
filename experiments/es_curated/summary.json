@@ -1,0 +1,328 @@
+{
+  "experiments": [
+    {
+      "all_verified_unit_counts": [
+        35
+      ],
+      "data": {
+        "bytes": 2190073,
+        "items": 3255,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "12194a4b3f59738c8ae714686ca53dcc38487d2c27268bb00c37d0a24ffef308"
+      },
+      "end_heldout_probe": 0.0295,
+      "end_probe_after_generations": 3,
+      "end_train_probe": 0.0307,
+      "generation_range": [
+        0,
+        2
+      ],
+      "generations": 3,
+      "global_seed": 5505,
+      "heldout_delta": 0.0002999999999999982,
+      "journal": "/home/catid/specialist/experiments/es_curated/front_seed5505.jsonl",
+      "layer_plan": "front",
+      "layers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_curated/front_seed5505.log",
+      "max_member_fitness_all": 0.0280918193590132,
+      "mean_member_fitness_last": 0.02343377457474491,
+      "name": "front_seed5505",
+      "num_planned_units": 35,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "start_heldout_probe": 0.0292,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0307,
+      "target_manifest_hashes": [
+        "e917f49b10e6871aaada4f794435b7c3c05301b740d635c6a940aae4f3baaa26"
+      ],
+      "verified_commits": 3
+    },
+    {
+      "all_verified_unit_counts": [
+        35
+      ],
+      "data": {
+        "bytes": 2190073,
+        "items": 3255,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "12194a4b3f59738c8ae714686ca53dcc38487d2c27268bb00c37d0a24ffef308"
+      },
+      "end_heldout_probe": 0.0293,
+      "end_probe_after_generations": 3,
+      "end_train_probe": 0.0305,
+      "generation_range": [
+        0,
+        2
+      ],
+      "generations": 3,
+      "global_seed": 5505,
+      "heldout_delta": 0.0,
+      "journal": "/home/catid/specialist/experiments/es_curated/back_seed5505.jsonl",
+      "layer_plan": "back",
+      "layers": [
+        36,
+        37,
+        38,
+        39
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_curated/back_seed5505.log",
+      "max_member_fitness_all": 0.028231302607903144,
+      "mean_member_fitness_last": 0.024637642602073673,
+      "name": "back_seed5505",
+      "num_planned_units": 35,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "start_heldout_probe": 0.0293,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0304,
+      "target_manifest_hashes": [
+        "fdfa56562c0df5626657b4810fc3d6beaced3d98e9b1756c7bdd5e281416b9bf"
+      ],
+      "verified_commits": 3
+    },
+    {
+      "all_verified_unit_counts": [
+        70
+      ],
+      "data": {
+        "bytes": 2190073,
+        "items": 3255,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "12194a4b3f59738c8ae714686ca53dcc38487d2c27268bb00c37d0a24ffef308"
+      },
+      "end_heldout_probe": 0.0306,
+      "end_probe_after_generations": 3,
+      "end_train_probe": 0.03,
+      "generation_range": [
+        0,
+        2
+      ],
+      "generations": 3,
+      "global_seed": 5505,
+      "heldout_delta": 0.0011000000000000003,
+      "journal": "/home/catid/specialist/experiments/es_curated/middle_matched_seed5505.jsonl",
+      "layer_plan": "middle_matched",
+      "layers": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_curated/middle_matched_seed5505.log",
+      "max_member_fitness_all": 0.03027082807559757,
+      "mean_member_fitness_last": 0.023289761922780573,
+      "name": "middle_matched_seed5505",
+      "num_planned_units": 70,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "start_heldout_probe": 0.0295,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.031,
+      "target_manifest_hashes": [
+        "bafd4afb30f1278378903c81929dc5d97f88b7ddc4d4e98a68ec02d097e2c7c1"
+      ],
+      "verified_commits": 3
+    },
+    {
+      "all_verified_unit_counts": [
+        70
+      ],
+      "data": {
+        "bytes": 2190073,
+        "items": 3255,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "12194a4b3f59738c8ae714686ca53dcc38487d2c27268bb00c37d0a24ffef308"
+      },
+      "end_heldout_probe": 0.0295,
+      "end_probe_after_generations": 3,
+      "end_train_probe": 0.0211,
+      "generation_range": [
+        0,
+        2
+      ],
+      "generations": 3,
+      "global_seed": 5505,
+      "heldout_delta": -0.00010000000000000286,
+      "journal": "/home/catid/specialist/experiments/es_curated/front_back_seed5505.jsonl",
+      "layer_plan": "front_back",
+      "layers": [
+        0,
+        1,
+        2,
+        3,
+        36,
+        37,
+        38,
+        39
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_curated/front_back_seed5505.log",
+      "max_member_fitness_all": 0.029047035734078935,
+      "mean_member_fitness_last": 0.022717343690524514,
+      "name": "front_back_seed5505",
+      "num_planned_units": 70,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "start_heldout_probe": 0.0296,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0306,
+      "target_manifest_hashes": [
+        "68246d5cdf590f14d8929e36892c428d51a0ba9b004b5dfbbe33d19e581fa408"
+      ],
+      "verified_commits": 3
+    },
+    {
+      "all_verified_unit_counts": [
+        70
+      ],
+      "data": {
+        "bytes": 2190073,
+        "items": 3255,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "12194a4b3f59738c8ae714686ca53dcc38487d2c27268bb00c37d0a24ffef308"
+      },
+      "end_heldout_probe": 0.0301,
+      "end_probe_after_generations": 3,
+      "end_train_probe": 0.0305,
+      "generation_range": [
+        0,
+        2
+      ],
+      "generations": 3,
+      "global_seed": 5505,
+      "heldout_delta": 0.0001999999999999988,
+      "journal": "/home/catid/specialist/experiments/es_curated/control_front_back_lr0_seed5505.jsonl",
+      "layer_plan": "front_back",
+      "layers": [
+        0,
+        1,
+        2,
+        3,
+        36,
+        37,
+        38,
+        39
+      ],
+      "learning_rate": 0.0,
+      "log": "/home/catid/specialist/experiments/es_curated/control_front_back_lr0_seed5505.log",
+      "max_member_fitness_all": 0.027311235858930076,
+      "mean_member_fitness_last": 0.024201815658110935,
+      "name": "control_front_back_lr0_seed5505",
+      "num_planned_units": 70,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "start_heldout_probe": 0.0299,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0306,
+      "target_manifest_hashes": [
+        "68246d5cdf590f14d8929e36892c428d51a0ba9b004b5dfbbe33d19e581fa408"
+      ],
+      "verified_commits": 3
+    }
+  ],
+  "plan_aggregates": {
+    "back": {
+      "heldout_deltas": [
+        0.0
+      ],
+      "mean_heldout_delta": 0.0,
+      "mean_minus_zero_lr_control": -0.0001999999999999988,
+      "negative_runs": 0,
+      "num_runs": 1,
+      "positive_runs": 0,
+      "runs": [
+        "back_seed5505"
+      ],
+      "sample_stddev_heldout_delta": null
+    },
+    "front": {
+      "heldout_deltas": [
+        0.0002999999999999982
+      ],
+      "mean_heldout_delta": 0.0002999999999999982,
+      "mean_minus_zero_lr_control": 9.99999999999994e-05,
+      "negative_runs": 0,
+      "num_runs": 1,
+      "positive_runs": 1,
+      "runs": [
+        "front_seed5505"
+      ],
+      "sample_stddev_heldout_delta": null
+    },
+    "front_back": {
+      "heldout_deltas": [
+        -0.00010000000000000286
+      ],
+      "mean_heldout_delta": -0.00010000000000000286,
+      "mean_minus_zero_lr_control": -0.00030000000000000165,
+      "negative_runs": 1,
+      "num_runs": 1,
+      "positive_runs": 0,
+      "runs": [
+        "front_back_seed5505"
+      ],
+      "sample_stddev_heldout_delta": null
+    },
+    "middle_matched": {
+      "heldout_deltas": [
+        0.0011000000000000003
+      ],
+      "mean_heldout_delta": 0.0011000000000000003,
+      "mean_minus_zero_lr_control": 0.0009000000000000015,
+      "negative_runs": 0,
+      "num_runs": 1,
+      "positive_runs": 1,
+      "runs": [
+        "middle_matched_seed5505"
+      ],
+      "sample_stddev_heldout_delta": null
+    }
+  },
+  "schema": "es-experiment-summary-v1",
+  "zero_lr_control": {
+    "heldout_deltas": [
+      0.0001999999999999988
+    ],
+    "mean_heldout_delta": 0.0001999999999999988,
+    "negative_runs": 0,
+    "num_runs": 1,
+    "positive_runs": 1,
+    "runs": [
+      "control_front_back_lr0_seed5505"
+    ],
+    "sample_stddev_heldout_delta": null
+  }
+}

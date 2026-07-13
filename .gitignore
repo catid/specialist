@@ -25,12 +25,23 @@ es-fine-tuning-paper/
 
 # Raw/downloaded corpora and generated large datasets
 data/raw/
+data/manual_review_packets/
 data/*.jsonl
 data/*.json
 !data/eval_qa.jsonl
 !data/eval_qa_v2.jsonl
 !data/train_qa_verified_leakfree_v2.jsonl
 !data/train_qa_verified_leakfree_v2.report.json
+!data/train_qa_manual_v1.jsonl
+!data/train_qa_manual_v1.report.json
+!data/manual_qa_candidates_v1.jsonl
+!data/rope_resource_qa_v1.jsonl
+!data/rope_resource_qa_v1.report.json
+!data/train_qa_curated_v1.jsonl
+!data/train_qa_curated_v1.report.json
+!data/rope_resource_factual_qa_v1.jsonl
+!data/rope_resource_factual_qa_v1.report.json
+!data/rope_resources_coverage_v1.json
 
 # Downloaded paper intermediates; retain the reviewed Markdown and figures
 references/papers/*-source/

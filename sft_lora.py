@@ -21,7 +21,7 @@ def main():
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", nargs="+",
-                    default=["/home/catid/specialist/data/train_qa_verified_leakfree_v2.jsonl"])
+                    default=["/home/catid/specialist/data/train_qa_curated_v1.jsonl"])
     ap.add_argument("--eval-data", nargs="+", default=[])
     ap.add_argument("--out", default="/home/catid/specialist/models/lora-rope-sft")
     ap.add_argument("--epochs", type=float, default=3)
