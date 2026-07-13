@@ -1,0 +1,52 @@
+{
+  "aligned_identical_candidates": 309,
+  "candidate_mismatches_excluded": 96,
+  "common_items": 405,
+  "inputs": [
+    "/home/catid/specialist/data/evalv2_q36_rope_chat.jsonl",
+    "/home/catid/specialist/data/evalv2_fixedjudge_rope_chat.jsonl",
+    "/home/catid/specialist/data/evalv2_judgepass2_rope_jropev2_chat.jsonl",
+    "/home/catid/specialist/data/evalv2_judgepass3_rope_jropesft_chat.jsonl"
+  ],
+  "majority_accuracy": 0.13268608414239483,
+  "pairwise": [
+    {
+      "agreement": 0.912621359223301,
+      "disagreements": 27,
+      "left": "/home/catid/specialist/data/evalv2_q36_rope_chat.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_fixedjudge_rope_chat.jsonl"
+    },
+    {
+      "agreement": 0.9838187702265372,
+      "disagreements": 5,
+      "left": "/home/catid/specialist/data/evalv2_q36_rope_chat.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass2_rope_jropev2_chat.jsonl"
+    },
+    {
+      "agreement": 0.919093851132686,
+      "disagreements": 25,
+      "left": "/home/catid/specialist/data/evalv2_q36_rope_chat.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass3_rope_jropesft_chat.jsonl"
+    },
+    {
+      "agreement": 0.9029126213592233,
+      "disagreements": 30,
+      "left": "/home/catid/specialist/data/evalv2_fixedjudge_rope_chat.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass2_rope_jropev2_chat.jsonl"
+    },
+    {
+      "agreement": 0.883495145631068,
+      "disagreements": 36,
+      "left": "/home/catid/specialist/data/evalv2_fixedjudge_rope_chat.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass3_rope_jropesft_chat.jsonl"
+    },
+    {
+      "agreement": 0.9223300970873787,
+      "disagreements": 24,
+      "left": "/home/catid/specialist/data/evalv2_judgepass2_rope_jropev2_chat.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass3_rope_jropesft_chat.jsonl"
+    }
+  ],
+  "schema": "multi-judge-aggregate-v1",
+  "unanimous_fraction": 0.8511326860841424
+}

@@ -1,0 +1,33 @@
+{
+  "aligned_identical_candidates": 386,
+  "candidate_mismatches_excluded": 19,
+  "common_items": 405,
+  "inputs": [
+    "/home/catid/specialist/data/evalv2_q36_sftv3_chat.jsonl",
+    "/home/catid/specialist/data/evalv2_judgepass2_sftv3_jropesft_chat.jsonl",
+    "/home/catid/specialist/data/evalv2_judgepass3_sftv3_jropev2_chat.jsonl"
+  ],
+  "majority_accuracy": 0.3626943005181347,
+  "pairwise": [
+    {
+      "agreement": 0.8886010362694301,
+      "disagreements": 43,
+      "left": "/home/catid/specialist/data/evalv2_q36_sftv3_chat.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass2_sftv3_jropesft_chat.jsonl"
+    },
+    {
+      "agreement": 0.8911917098445595,
+      "disagreements": 42,
+      "left": "/home/catid/specialist/data/evalv2_q36_sftv3_chat.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass3_sftv3_jropev2_chat.jsonl"
+    },
+    {
+      "agreement": 0.961139896373057,
+      "disagreements": 15,
+      "left": "/home/catid/specialist/data/evalv2_judgepass2_sftv3_jropesft_chat.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass3_sftv3_jropev2_chat.jsonl"
+    }
+  ],
+  "schema": "multi-judge-aggregate-v1",
+  "unanimous_fraction": 0.8704663212435233
+}

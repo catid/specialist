@@ -1,0 +1,21 @@
+{
+  "counts": {
+    "conflicting_answer": 14,
+    "duplicate_qa_pair": 20,
+    "duplicate_rendered_text": 15,
+    "entity_answer_fact": 140,
+    "exact_question": 40,
+    "input": 3510,
+    "low_value_or_time_sensitive": 56,
+    "near_duplicate_question": 112,
+    "output": 3113
+  },
+  "eval_facts": 505,
+  "eval_files": [
+    "/home/catid/specialist/data/eval_qa.jsonl",
+    "/home/catid/specialist/data/eval_qa_v2.jsonl"
+  ],
+  "input": "/home/catid/specialist/data/train_qa_verified.jsonl",
+  "output": "/home/catid/specialist/data/train_qa_verified_leakfree_v2.jsonl",
+  "schema": "leakfree-qa-report-v2"
+}

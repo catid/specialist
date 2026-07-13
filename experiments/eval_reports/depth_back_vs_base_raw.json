@@ -1,0 +1,18 @@
+{
+  "aligned_items": 405,
+  "bootstrap_samples": 10000,
+  "left": "/home/catid/specialist/data/evalv2_depth_base_common_raw.jsonl",
+  "left_accuracy": 0.12098765432098765,
+  "left_only_correct": 11,
+  "mcnemar_exact_two_sided_p": 1.0,
+  "paired_bootstrap_95_ci": [
+    -0.024691358024691357,
+    0.019753086419753086
+  ],
+  "right": "/home/catid/specialist/data/evalv2_depth_back_common_raw.jsonl",
+  "right_accuracy": 0.11851851851851852,
+  "right_minus_left": -0.0024691358024691358,
+  "right_only_correct": 10,
+  "schema": "paired-eval-comparison-v1",
+  "seed": 20260713
+}

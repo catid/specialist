@@ -1,0 +1,52 @@
+{
+  "aligned_identical_candidates": 357,
+  "candidate_mismatches_excluded": 48,
+  "common_items": 405,
+  "inputs": [
+    "/home/catid/specialist/data/evalv2_q36_rope_raw.jsonl",
+    "/home/catid/specialist/data/evalv2_fixedjudge_rope_raw.jsonl",
+    "/home/catid/specialist/data/evalv2_judgepass2_rope_jropev2_raw.jsonl",
+    "/home/catid/specialist/data/evalv2_judgepass3_rope_jropesft_raw.jsonl"
+  ],
+  "majority_accuracy": 0.1400560224089636,
+  "pairwise": [
+    {
+      "agreement": 0.876750700280112,
+      "disagreements": 44,
+      "left": "/home/catid/specialist/data/evalv2_q36_rope_raw.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_fixedjudge_rope_raw.jsonl"
+    },
+    {
+      "agreement": 0.9943977591036415,
+      "disagreements": 2,
+      "left": "/home/catid/specialist/data/evalv2_q36_rope_raw.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass2_rope_jropev2_raw.jsonl"
+    },
+    {
+      "agreement": 0.9439775910364145,
+      "disagreements": 20,
+      "left": "/home/catid/specialist/data/evalv2_q36_rope_raw.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass3_rope_jropesft_raw.jsonl"
+    },
+    {
+      "agreement": 0.876750700280112,
+      "disagreements": 44,
+      "left": "/home/catid/specialist/data/evalv2_fixedjudge_rope_raw.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass2_rope_jropev2_raw.jsonl"
+    },
+    {
+      "agreement": 0.8823529411764706,
+      "disagreements": 42,
+      "left": "/home/catid/specialist/data/evalv2_fixedjudge_rope_raw.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass3_rope_jropesft_raw.jsonl"
+    },
+    {
+      "agreement": 0.9439775910364145,
+      "disagreements": 20,
+      "left": "/home/catid/specialist/data/evalv2_judgepass2_rope_jropev2_raw.jsonl",
+      "right": "/home/catid/specialist/data/evalv2_judgepass3_rope_jropesft_raw.jsonl"
+    }
+  ],
+  "schema": "multi-judge-aggregate-v1",
+  "unanimous_fraction": 0.8487394957983193
+}

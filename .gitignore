@@ -1,0 +1,39 @@
+# Environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Runtime logs and profiler output
+*.log
+prof/
+sglang_storage/
+
+# Model weights and generated checkpoints
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+
+# External/nested repositories (the SGLang WIP is saved as a bundle in patches/)
+sglang/
+HyperscaleES/
+es-at-scale/
+es-fine-tuning-paper/
+
+# Raw/downloaded corpora and generated large datasets
+data/raw/
+data/*.jsonl
+data/*.json
+!data/eval_qa.jsonl
+!data/eval_qa_v2.jsonl
+!data/train_qa_verified_leakfree_v2.jsonl
+!data/train_qa_verified_leakfree_v2.report.json
+
+# Downloaded paper intermediates; retain the reviewed Markdown and figures
+references/papers/*-source/
+references/papers/*-src/
+references/papers/*.tar
+references/papers/*.tar.gz
