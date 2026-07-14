@@ -1,0 +1,99 @@
+{
+  "schema": "eggroll-es-s6-guarded-baseline-compact-v1",
+  "kind": "valid_pre_population_baseline_with_diagnostic_plan",
+  "model": "models/Qwen3.6-35B-A3B",
+  "seed": 42,
+  "checkpoint": null,
+  "heldout_evaluated": false,
+  "data": {
+    "train": {
+      "rows": 794,
+      "jsonl_sha256": "f7127c38c7b540eaf9cf4349d1a1b8076e171da7f8ea43c11068ad1c311bb776",
+      "jsonl_report_sha256": "f0e36cefe360cabd82527b054ed433c43fd0817c0d75166a3e841b3581e40fc2",
+      "arrow_sha256": "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6",
+      "fixed_batch_rows": 64,
+      "fixed_batch_sha256": "00e89d0770e4c333303ec25af3c42659b66fd44d4ca301e8715804ccfda99f48"
+    },
+    "evaluation_jsonl": {
+      "domain_rows": 59,
+      "domain_sha256": "ab9a391e249910e876826dfab9c8e2f8e17a7b8695e6f018a3e515e5aa69603b",
+      "ood_qa_rows": 24,
+      "ood_qa_sha256": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+      "ood_prose_rows": 16,
+      "ood_prose_sha256": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+      "build_report_sha256": "2b011982350bcedf6e6e247ecffa0caa990c66d380d3aa896e84372b9a8929dd"
+    },
+    "evaluation_arrow": {
+      "validation_rows": 41,
+      "validation_sha256": "19181b832e38ef6f97e3ba734362cd1af921f067e8edd249113c5129439443db",
+      "ood_qa_rows": 24,
+      "ood_qa_sha256": "b201123c6a358d306b7f874e400861068900bb764b1fda80eb663b82ca53dced",
+      "sealed_heldout_rows": 18,
+      "sealed_heldout_sha256": "df23a704d0f621bffd8b55fb4a0a296e06a79feaf79cfe1bd357d55bb4f07cf1",
+      "sealed_heldout_loaded_or_evaluated": false,
+      "manifest_sha256": "a48fba83ba41f3495f1c397f05576e66852d6ec7ef44edba725ed38753510435"
+    }
+  },
+  "baseline": {
+    "occurs_before_population_estimate": true,
+    "validation": {
+      "rows": 41,
+      "mean_reward": 0.08381010452961674,
+      "exact": 2,
+      "nonzero": 13,
+      "raw_sha256": "3992006242efa2c02196a91c9e2fc21e4584799a926a944d3ddf532cfd3e15ff"
+    },
+    "ood_qa": {
+      "rows": 24,
+      "mean_reward": 0.714128787878788,
+      "exact": 16,
+      "nonzero": 23,
+      "raw_sha256": "0901407539f1047a7956c47ceae5329b9d8ade1d306783f2bcde67e58b76c98d",
+      "strict_gate_passed": true
+    },
+    "ood_prose": {
+      "documents": 16,
+      "scored_tokens": 10926,
+      "mean_token_logprob": -1.2632580042542214,
+      "delta": 0.0,
+      "paired_document_bootstrap_95_ci": [0.0, 0.0],
+      "strict_gate_passed": true,
+      "raw_sha256": "38276f2dedaaf5062ca8e58aacb9990c3a33bb1b44e3c7172798334da5bfd239"
+    },
+    "valid": true
+  },
+  "post_baseline_coefficient_estimate": {
+    "status": "diagnostic_non_selectable",
+    "applied_alpha": 0.0,
+    "applications": 0,
+    "coefficient_sha256": "da462283bf364c33dd52ed99e6a038d0f62a8327df0532c3a4239c860998fe0e",
+    "plan_sha256": "d3b1983b1cfebcafeb61909edcf59e3d91cb18d2ba5879303e734f798da1af91",
+    "projection": {
+      "decision": "project_to_anchor_cone",
+      "domain_anchor_cosine_before": -0.28697151383752706,
+      "domain_anchor_cosine_after": 0.09999999999999995,
+      "projection_lambda": 0.38324857509726845,
+      "update_norm_ratio": 0.9627650364444048
+    },
+    "confounds": [
+      "native-precision perturb/additive restore is not bit-exact in BF16",
+      "combined domain-plus-anchor generation changes domain batching"
+    ],
+    "frozen_implementation": {
+      "anchor_trainer_sha256": "e429e2150859bb308f45efa6b6147edff5bd4207e45b902bffb03f58c827ce2a",
+      "driver_sha256": "0705184534949034e169f0d22d28b27008636719dfbc1590d38f876b0cb662cb",
+      "upstream_worker_sha256": "b5e99e4f050f6882529eae98d3b1cd9cb54894362fefcb2b7b802ce3f75a933a"
+    }
+  },
+  "gpu_utilization": {
+    "samples": 49,
+    "mean_percent_by_gpu": [11.142857, 9.816327, 9.857143, 12.877551],
+    "max_memory_mib_by_gpu": [87458, 86254, 86622, 86778],
+    "all_four_at_least_20_percent_samples": 3,
+    "all_four_at_100_percent_samples": 0
+  },
+  "raw_journal_sha256": "a5acf0ecf46770abe4af80d622cc5ce35ded49e578fe4e6f40b07970a368bcdf",
+  "journal_content_sha256_before_self_field": "57f2aae8a7dbf951e6e360ffbddfc3cc4e878bc3d4beab4de34497bc715d8de6",
+  "gpu_trace": "../../gpu_utilization_eggroll_es_s6_guarded_baseline_diagnostic_v1_seed42.jsonl",
+  "gpu_trace_sha256": "a4d2e3f91648aaf4aaec5474186781c467bc17795c882338acad675f0567f3fe"
+}

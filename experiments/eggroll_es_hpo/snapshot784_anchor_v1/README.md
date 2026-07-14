@@ -36,6 +36,12 @@ Their exact agreement with the legacy baseline is therefore unaffected. The
 nonzero rows remain useful only as diagnostics motivating a corrected
 experiment family; they must not support model or hyperparameter selection.
 
+An all-four-GPU BF16 reproduction sampled 2,147,483,648 synthetic model-scale
+weights at sigma 0.0003. The add/subtract sequence failed to restore
+69,238,296 values (3.2242%); the largest residue was 0.00048828125. The pinned
+diagnostic is `bf16_restore_gpu_diagnostic.json` (SHA-256
+`c86cd8d76f24c9ab433a4532aec90e1eb2550b5615a838528e075ea7b8ac8b14`).
+
 | Run | Steps | Anchors | Cosine floor | Validation | OOD QA | OOD prose delta (95% CI) | Selectable |
 |---|---:|---:|---:|---:|---:|---:|:---:|
 | selected baseline | 0 | — | — | 0.08381010 | 0.71412879 | 0 `[0, 0]` | yes |

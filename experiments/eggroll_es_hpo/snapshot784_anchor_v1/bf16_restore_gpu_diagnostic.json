@@ -1,0 +1,61 @@
+{
+  "environment": {
+    "cuda": "13.0",
+    "driver": "610.43.02",
+    "gpu_count": 4,
+    "gpu_model": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "torch": "2.11.0+cu130"
+  },
+  "method": {
+    "chunks_per_gpu": 128,
+    "elements_per_chunk": 4194304,
+    "elements_per_gpu": 536870912,
+    "initial_weight_distribution": "bfloat16(normal(0,1) * 0.02)",
+    "noise_distribution": "bfloat16(normal(0,1))",
+    "operation": "value.add_(sigma * noise); value.add_(-sigma * noise)",
+    "seed_by_gpu": "20260714 + gpu_index",
+    "sigma": 0.0003
+  },
+  "results": [
+    {
+      "gpu": 0,
+      "max_abs_residue": 0.00048828125,
+      "mean_abs_residue": 1.0439276660889618e-06,
+      "mismatch_fraction": 0.03223041258752346,
+      "mismatches": 17303571
+    },
+    {
+      "gpu": 1,
+      "max_abs_residue": 0.00048828125,
+      "mean_abs_residue": 1.0451818654999556e-06,
+      "mismatch_fraction": 0.032241880893707275,
+      "mismatches": 17309728
+    },
+    {
+      "gpu": 2,
+      "max_abs_residue": 0.00048828125,
+      "mean_abs_residue": 1.0442632953910902e-06,
+      "mismatch_fraction": 0.032254524528980255,
+      "mismatches": 17316516
+    },
+    {
+      "gpu": 3,
+      "max_abs_residue": 0.00048828125,
+      "mean_abs_residue": 1.0445507676593024e-06,
+      "mismatch_fraction": 0.032239558175206184,
+      "mismatches": 17308481
+    }
+  ],
+  "schema": "eggroll-es-bf16-add-sub-restore-diagnostic-v1",
+  "source_under_test": {
+    "path": "es-at-scale/es_at_scale/utils/worker_extension.py",
+    "restore_lines": "48-58",
+    "sha256": "b5e99e4f050f6882529eae98d3b1cd9cb54894362fefcb2b7b802ce3f75a933a"
+  },
+  "summary": {
+    "aggregate_elements": 2147483648,
+    "aggregate_mismatches": 69238296,
+    "conclusion": "Native-BF16 additive perturbation followed by additive inverse restoration is not bit-exact at the HPO sigma; exact snapshot restoration is required before candidate selection.",
+    "mean_mismatch_fraction": 0.032241594046354294
+  }
+}
