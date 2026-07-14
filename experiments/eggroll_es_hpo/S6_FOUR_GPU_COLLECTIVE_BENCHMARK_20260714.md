@@ -16,11 +16,12 @@ weights: 23 tensors, 142,999,552 total elements, with size-list SHA-256
 `7871fe2d020537cebb72053b8c3866b7b1d4296fee284833ac0b18c8c6a5c240`.
 Every successful run produced the expected checksum `235520.0` on every rank.
 
-Two 20-second default runs measured `10.5781` and `8.1990` algorithm GiB/s.
-One forced-Ring run measured `10.8721` GiB/s. The between-run default variance
-is much larger than the apparent Ring advantage, so this evidence rejects an
-NCCL algorithm override for the training recipe. At the slower default rate,
-the 572 MB update payload is about 65 ms; it is not the dominant runtime cost.
+Three 20-second default runs measured `10.5781`, `8.1990`, and `10.8347`
+algorithm GiB/s. One forced-Ring run measured `10.8721` GiB/s. The best default
+run is within `0.35%` of forced Ring, while between-run default variance is much
+larger, so this evidence rejects an NCCL algorithm override for the training
+recipe. At the slower default rate, the 572 MB update payload is about 65 ms;
+it is not the dominant runtime cost.
 
 ## Flat and bucket controls
 
