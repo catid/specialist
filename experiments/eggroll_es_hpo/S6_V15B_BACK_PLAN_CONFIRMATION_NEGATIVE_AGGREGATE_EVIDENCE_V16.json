@@ -1,0 +1,104 @@
+{
+  "aggregate_gate": {
+    "content_sha256": "e1dbfed2988ff1295d1dad6ba6eaf71ad5bfa83549b6cd770d80aa8f90b46a8e",
+    "eligible_for_model_update": false,
+    "eligible_for_separate_back_plan_train_update_preregistration": false,
+    "eligible_to_open_evaluation": false,
+    "failed_checks": [
+      "absolute_v13.aggregate_to_optimization_cosine.worst",
+      "absolute_v13.optimization_pairwise_cosine.median",
+      "paired_middle_late_control.aggregate_to_optimization_cosine.worst",
+      "paired_middle_late_control.optimization_pairwise_cosine.median",
+      "v15a_replication_stability.aggregate_to_optimization_cosine.worst",
+      "v15a_replication_stability.optimization_pairwise_cosine.median",
+      "v15a_replication_stability.optimization_pairwise_cosine.worst",
+      "v15a_replication_stability.train_screen_cosine.median",
+      "v15a_replication_stability.train_screen_sign_agreement.worst"
+    ]
+  },
+  "bindings": {
+    "launch_attempt": {
+      "content_sha256": "a2ad40b12c3c34a93afc6023ab0207e9ebdad3ce3805d004cc2ff1d6d961ee6d",
+      "file_sha256": "63af96edeb3b73cd7b9b61e4ae9d8300b250ee5ed2ff4a005e61176dd3dd9c2f",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.snapshot794_layer_v15b_back36_39_vs_middle_late20_23_paired_confirmation_v13_panels_alpha_zero_basis20260716.launch_attempt.json"
+    },
+    "preregistration": {
+      "content_sha256": "0a4efb1a8a07cd194876d0942e77b188e4463b86cd6076606bccfb92f054f720",
+      "file_sha256": "5b90f16961c94d3a04b72ae29860094f7f1e6e8bad793780967c27448e0ba57f",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_BACK_PLAN_FRESH_BASIS_CONFIRMATION_V15B_PREREGISTRATION.json"
+    },
+    "report": {
+      "content_sha256": "abbf15550e0f441616c383dadc0c19edd0cdd188fd76c87cddac37d8558bfd9b",
+      "file_sha256": "a48af8ae7435afe658305399984699a8ed639df4db1bc025ec643ef5b221082a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v15b_back36_39_vs_middle_late20_23_paired_confirmation_v13_panels_alpha_zero_basis20260716/paired_back_confirmation_v15b.json"
+    },
+    "v13_baseline": {
+      "content_sha256": "06f662574013345a6c777af8688a38f3941286d9e11a427ed3342de53451b1e3",
+      "file_sha256": "d367c9c4de1e1f3526ddb3dfba2f5bf24efc77cbccf951f7359eb1969fcd7b54"
+    },
+    "v15a_positive": {
+      "content_sha256": "c9ab854c8417c4f6c74e5fe54de29e2f6a8b222b4c7fc454b5f22b183c3b08b2",
+      "file_sha256": "1e14abee9e1514915bc241c8f6caacbe1bb7103e1c69a9afdde1f9ce13661ae1"
+    }
+  },
+  "contains_response_vectors_or_row_content": false,
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "5e96588eb9fcacebfac48211a63d6ee9a106033a696ee6d21afc6d07b231bd28",
+  "decision": {
+    "back_plan_nonzero_alpha_train_update_preregistration_authorized": false,
+    "evaluation_surface_opened_or_authorized": false,
+    "model_update_applied_or_authorized": false,
+    "reason": "v15b_failed_its_preregistered_conjunctive_confirmation_gate",
+    "sampler": "retain_v13_middle_late_layers_20_23"
+  },
+  "experiment_name": "snapshot794_layer_v15b_back36_39_vs_middle_late20_23_paired_confirmation_v13_panels_alpha_zero_basis20260716",
+  "integrity": {
+    "all_arm_integrity_audits_passed": true,
+    "all_nested_self_hashes_valid": true,
+    "all_panel_spreads_nonzero_both_arms": true,
+    "attempt_complete_and_report_bound": true,
+    "exact_arm_basis_panel_capacity_identities": true,
+    "model_update_applied": false,
+    "persisted_response_vectors_or_row_content": false,
+    "sealed_or_nontrain_surface_opened": false,
+    "source_git_head": "8722cfb0ac2a13a60001ab0ab4aee8a31f068cef",
+    "source_implementation_bundle_sha256": "0345e568efc06f3ced8defc8496720a2a6899617369bc995584f21d970c5e200",
+    "source_provenance_content_sha256": "f8a06b46c38dc9519c8d88e7bb0180ce9fc898a58325d0504f9c672e25d2ad16"
+  },
+  "passed": true,
+  "schema": "eggroll-es-v15b-back-plan-confirmation-negative-aggregate-evidence-v16",
+  "stability": {
+    "back": {
+      "aggregate_to_optimization_cosine": {"count": 3, "median": 0.8500374351265574, "worst": 0.7108058700804909},
+      "aggregate_to_optimization_sign_agreement": {"count": 3, "median": 0.84375, "worst": 0.8125},
+      "optimization_pairwise_cosine": {"count": 3, "median": 0.5124207384014667, "worst": 0.5098065619388656},
+      "optimization_pairwise_sign_agreement": {"count": 3, "median": 0.6875, "worst": 0.65625},
+      "train_screen_cosine": {"count": 2, "median": 0.5564059544336623, "worst": 0.5369632603491796},
+      "train_screen_sign_agreement": {"count": 2, "median": 0.765625, "worst": 0.71875}
+    },
+    "middle_late": {
+      "aggregate_to_optimization_cosine": {"count": 3, "median": 0.7841978953358134, "worst": 0.7496056035263492},
+      "aggregate_to_optimization_sign_agreement": {"count": 3, "median": 0.84375, "worst": 0.6875},
+      "optimization_pairwise_cosine": {"count": 3, "median": 0.48637978175267893, "worst": 0.4341215958927557},
+      "optimization_pairwise_sign_agreement": {"count": 3, "median": 0.5625, "worst": 0.53125},
+      "train_screen_cosine": {"count": 2, "median": 0.43415732971411375, "worst": 0.3945456708135561},
+      "train_screen_sign_agreement": {"count": 2, "median": 0.609375, "worst": 0.59375}
+    },
+    "v13_baseline": {
+      "aggregate_to_optimization_cosine": {"count": 3, "median": 0.7608236805612648, "worst": 0.7082628389768383},
+      "aggregate_to_optimization_sign_agreement": {"count": 3, "median": 0.8125, "worst": 0.75},
+      "optimization_pairwise_cosine": {"count": 3, "median": 0.47411088498906484, "worst": 0.3900621868364503},
+      "optimization_pairwise_sign_agreement": {"count": 3, "median": 0.59375, "worst": 0.5625},
+      "train_screen_cosine": {"count": 2, "median": 0.3936314430866483, "worst": 0.314941371734614},
+      "train_screen_sign_agreement": {"count": 2, "median": 0.65625, "worst": 0.53125}
+    },
+    "v15a_back": {
+      "aggregate_to_optimization_cosine": {"count": 3, "median": 0.8664406693775705, "worst": 0.7700556923128073},
+      "aggregate_to_optimization_sign_agreement": {"count": 3, "median": 0.84375, "worst": 0.8125},
+      "optimization_pairwise_cosine": {"count": 3, "median": 0.6297964118221036, "worst": 0.6148426939063694},
+      "optimization_pairwise_sign_agreement": {"count": 3, "median": 0.71875, "worst": 0.65625},
+      "train_screen_cosine": {"count": 2, "median": 0.6243638343711271, "worst": 0.5519746368204529},
+      "train_screen_sign_agreement": {"count": 2, "median": 0.796875, "worst": 0.78125}
+    }
+  }
+}
