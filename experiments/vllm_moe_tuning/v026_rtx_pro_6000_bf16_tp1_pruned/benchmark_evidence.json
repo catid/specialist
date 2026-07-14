@@ -1,0 +1,75 @@
+{
+  "schema": "specialist-vllm-fused-moe-pruned-benchmark-v1",
+  "status": "microbenchmark_only_not_training_enabled",
+  "created_at_utc": "2026-07-14T22:57:21Z",
+  "software": {
+    "vllm": "0.25.0",
+    "vllm_official_tag": "v0.25.0",
+    "vllm_official_commit": "702f4814fe54fabff350d43cb753ae3e47c0c276",
+    "torch": "2.11.0+cu130",
+    "cuda": "13.0",
+    "triton": "3.6.0"
+  },
+  "hardware": {
+    "device_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "compute_capability": [12, 0],
+    "gpu_count": 4,
+    "topology": "four independent TP=1 workers"
+  },
+  "moe_shape": {
+    "num_experts": 256,
+    "experts_per_token": 8,
+    "hidden_size": 2048,
+    "intermediate_size_after_silu_and_mul": 512,
+    "dtype": "bfloat16"
+  },
+  "method": {
+    "source": "official_vllm_benchmarks/kernels/benchmark_moe.py",
+    "candidate_policy": "generic default, official H100 BF16 tile, and one-field local neighbors",
+    "timing": "paired on the same physical GPU and benchmark process",
+    "selection": "lowest finite median among the bounded candidates",
+    "pathological_policy": "OutOfResources candidates recorded and excluded",
+    "warning": "Kernel microbenchmarks do not authorize use in a frozen training recipe"
+  },
+  "paired_results": {
+    "1": {"default_us": 26.167007938027382, "selected_us": 23.72400000691414, "speedup": 1.1029762236722833},
+    "16": {"default_us": 417.9737766981125, "selected_us": 409.2145119905472, "speedup": 1.0214050686153762},
+    "32": {"default_us": 663.4914712905884, "selected_us": 651.732223033905, "speedup": 1.0180430671387435},
+    "64": {"default_us": 889.3544597625732, "selected_us": 877.305917263031, "speedup": 1.0137335703116315},
+    "128": {"default_us": 1029.8305883407593, "selected_us": 998.3832311630249, "speedup": 1.0314982826194918},
+    "256": {"default_us": 1040.6316137313843, "selected_us": 1021.1880979537964, "speedup": 1.019040092434046},
+    "512": {"default_us": 1105.945888519287, "selected_us": 1053.348768234253, "speedup": 1.0499332432630113},
+    "1024": {"default_us": 1265.733983039856, "selected_us": 1150.1528024673462, "speedup": 1.1004920218640177},
+    "2048": {"default_us": 1330.8535957336426, "selected_us": 1330.8535957336426, "speedup": 1.0},
+    "4096": {"default_us": 1773.5492134094238, "selected_us": 1704.79896068573, "speedup": 1.040327483949216},
+    "8192": {"default_us": 3071.3005590438843, "selected_us": 2887.1672105789185, "speedup": 1.0637764753597505},
+    "16384": {"default_us": 5594.518871307373, "selected_us": 5228.637857437134, "speedup": 1.0699763540421556}
+  },
+  "numeric_equivalence": {
+    "seed": 20260714,
+    "batches": [1, 128, 1024, 4096],
+    "same_inputs_weights_gating_and_routes": true,
+    "finite_default_and_selected": true,
+    "exact_element_fraction": 1.0,
+    "max_absolute_difference": 0.0,
+    "minimum_reported_cosine": 0.9999999403953552
+  },
+  "loader_verification": {
+    "verified_at_utc": "2026-07-14T22:57:50Z",
+    "worker_count": 4,
+    "exact_device_specific_file_selected": true,
+    "selected_configs_equal_file_entries": true,
+    "kernel_time_us": {
+      "128": 994.30,
+      "256": 1020.34,
+      "512": 1042.82,
+      "1024": 1124.57
+    }
+  },
+  "activation_policy": {
+    "environment_variable": "VLLM_TUNED_CONFIG_FOLDER",
+    "default": "unset",
+    "frozen_v14b": "explicitly rejected",
+    "future_training": "requires separate loader, end-to-end throughput, and recipe preregistration checks"
+  }
+}
