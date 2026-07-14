@@ -1,0 +1,67 @@
+{
+  "cell_coefficient_sha256": {
+    "D43xA43": "72cc7196f6ac43c0ff2ded27e3b2c9b7516b35d2a0eb62941e7f4e309857c055",
+    "D43xA44": "72cc7196f6ac43c0ff2ded27e3b2c9b7516b35d2a0eb62941e7f4e309857c055",
+    "D44xA43": "002b44dcbc2544336c7d49bb9f7390f07aed03a17d55458c9774a6cbb213ae75",
+    "D44xA44": "002b44dcbc2544336c7d49bb9f7390f07aed03a17d55458c9774a6cbb213ae75"
+  },
+  "content_sha256_before_self_field": "1cbb920284e096e4ce744844aa098235f9c17dd85ac1e10a9bba19ae6db212a7",
+  "coverage": {
+    "actual_perturb_restore_cycle_count": 128,
+    "anchor_generation_seeds": [
+      43,
+      44
+    ],
+    "anchor_signed_response_count": 128,
+    "arm": "middle_late",
+    "base_direction_count": 32,
+    "data_seed": 43,
+    "domain_manifests": {
+      "D43": {
+        "rows": 64,
+        "seed": 43,
+        "sha256": "b864cfcc4ebcd987d8091f1067f631366c128d63d09fb7160a09561d10063a0f"
+      },
+      "D44": {
+        "rows": 64,
+        "seed": 44,
+        "sha256": "3574ff126f727a262957f34ab83fbefce6754ae9e4be790f810f42656e692bc2"
+      }
+    },
+    "domain_signed_score_count": 128,
+    "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "target_alphas": [
+      0.0
+    ],
+    "unique_signed_direction_count": 64
+  },
+  "cross_artifact_content_sha256": "e85cc13af630a6201c7e0f4777e439d6c5aab70fc69eb41a56d8337cb8d613b7",
+  "implementation": {
+    "reporter_v10": "784514dd2f26f423e79168d158cf10520f83965f6117505125cc7140aebf43e9",
+    "variance_driver_v10": "2f13efe147de9f8540a543e3e133120ce4bbf1058cd4d5edeed3df4b37f81381"
+  },
+  "implementation_bundle_sha256": "06090de57809ade221915f74c1b3ebe1ab1da80b7246b66023c2ffa9a4f6fd29",
+  "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v10_middle_late_antithetic_cross_d43d44_a43a44_basis20260714/alpha_line_search.json",
+  "journal_content_sha256": "3e68b1fb925378e31c9c4945de82d33c34f77c6abad585d0415ec456e78d71c7",
+  "journal_file_sha256": "2708b563034367479da9b25f3fcd8bd556b0c2133f533b3b561fcfd46d9af5ee",
+  "median_pairwise_coefficient_cosine": 0.7602117278588,
+  "metric": "four_cell_antithetic_coefficient_stability",
+  "minimum_pairwise_coefficient_cosine": 0.7602117278588,
+  "pairwise_cell_coefficient_cosines": {
+    "D43xA43__D43xA44": 1.0,
+    "D43xA43__D44xA43": 0.7602117278588,
+    "D43xA43__D44xA44": 0.7602117278588,
+    "D43xA44__D44xA43": 0.7602117278588,
+    "D43xA44__D44xA44": 0.7602117278588,
+    "D44xA43__D44xA44": 0.9999999999999999
+  },
+  "passed": true,
+  "raw_central_anchor_cosine": 1.0,
+  "raw_central_domain_cosine": 0.34415939658856237,
+  "schema": "eggroll-es-antithetic-crossed-report-v10",
+  "selection_policy": "crossed_train_anchor_response_only_no_validation_ood_holdout_selection",
+  "thresholds": {
+    "median_pairwise_coefficient_cosine": 0.7,
+    "minimum_pairwise_coefficient_cosine": 0.5
+  }
+}
