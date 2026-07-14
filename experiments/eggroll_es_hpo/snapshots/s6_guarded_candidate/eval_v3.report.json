@@ -1,0 +1,341 @@
+{
+  "candidate_training_sources": {
+    "normalized_source_urls": 328,
+    "source_url_fields": {
+      "canonical_resource_url": 15,
+      "canonical_url": 37,
+      "canonical_urls": 22,
+      "evidence_url": 59,
+      "original_ropetopia_url": 3,
+      "supplied_url": 38,
+      "supplied_urls": 22,
+      "title_evidence_url": 2,
+      "url": 323,
+      "url_evidence_url": 1,
+      "urls": 22
+    }
+  },
+  "disjointness": {
+    "collisions": {
+      "candidate_train_vs_domain": [],
+      "candidate_train_vs_ood_prose": [],
+      "domain_vs_ood_prose": [],
+      "validation_vs_heldout": []
+    },
+    "passed": true,
+    "source_identity_normalization": "scheme-insensitive web URL; normalized host/default port/path/tracking query; semantic query retained; YouTube aliases folded"
+  },
+  "historical_eval_audit": {
+    "by_legacy_split": {
+      "heldout": {
+        "documents": 69,
+        "overlap_with_candidate_train": {
+          "documents": 1,
+          "normalized_source_urls": [
+            "web://rope365.com/"
+          ],
+          "rows": 2
+        },
+        "rows": 169
+      },
+      "train": {
+        "documents": 96,
+        "overlap_with_candidate_train": {
+          "documents": 22,
+          "normalized_source_urls": [
+            "web://kinbakutoday.com/a-guide-for-rope-bottoms-and-bondage-models",
+            "web://kinbakutoday.com/bar-ubu-and-mitsu",
+            "web://kinbakutoday.com/bondage-models-an-essay-on-fumiyo-kinukawa",
+            "web://kinbakutoday.com/gallery-akechi-denkis-naoko-hayashiba-photos",
+            "web://kinbakutoday.com/interview-hige",
+            "web://kinbakutoday.com/interview-scott-haru-tsubaki",
+            "web://kinbakutoday.com/kasumi-hourai-interview",
+            "web://kinbakutoday.com/kinbaku-an-evolving-era-part-1",
+            "web://kinbakutoday.com/kinbaku-an-evolving-era-part-2",
+            "web://kinbakutoday.com/kinbaku-an-evolving-era-part-3",
+            "web://kinbakutoday.com/learning-from-the-past-showa-era-rope-and-the-future-of-kinbaku",
+            "web://kinbakutoday.com/on-the-cultural-differences-of-kinbaku-in-different-countries",
+            "web://kinbakutoday.com/rope-community-culture",
+            "web://kinbakutoday.com/rope-sin-an-interview",
+            "web://kinbakutoday.com/ryuzaki-asuka-interview",
+            "web://kinbakutoday.com/so-you-are-new-to-shibari-how-to-get-started",
+            "web://kinbakutoday.com/sugiura-norio-celebrating-45-years-bondage-photography",
+            "web://kinbakutoday.com/the-heart-of-kinbaku",
+            "web://kinbakutoday.com/the-quality-of-bondage-models-translation",
+            "web://kinbakutoday.com/whats-in-a-name-kinbaku-and-shibari",
+            "web://kinbakutoday.com/yamaguchi-tokikos-self-bondage-classroom-part-two-kitan-club-1973",
+            "web://rope365.com/rope-care"
+          ],
+          "rows": 48
+        },
+        "rows": 236
+      }
+    },
+    "heldout_documents_overlapping_candidate_train": [
+      "web://rope365.com/"
+    ]
+  },
+  "inputs": {
+    "candidate_train": {
+      "bytes": 650126,
+      "path": "/tmp/specialist-s6-candidate-guarded-ead1b21/train_qa_curated_v1.jsonl",
+      "rows": 794,
+      "sha256": "f7127c38c7b540eaf9cf4349d1a1b8076e171da7f8ea43c11068ad1c311bb776"
+    },
+    "heldout_docs": {
+      "bytes": 331762,
+      "path": "/home/catid/specialist/data/heldout_docs.jsonl",
+      "rows": 80,
+      "sha256": "5f81e5848b96004eafd1cfc6523023c9d234f7e5c1aa9c3bc01520a23b416b15"
+    },
+    "legacy_eval": {
+      "bytes": 1031980,
+      "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+      "rows": 405,
+      "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+    },
+    "manual_review": {
+      "bytes": 12340,
+      "path": "/home/catid/specialist/data/eval_qa_v3.review.json",
+      "rows": 167,
+      "sha256": "28639f4445fb593cc0c07fe03bab4e28b2dc96e84d1abb5282a33cb298158f6d"
+    },
+    "ood_prose": {
+      "bytes": 52206,
+      "path": "/home/catid/specialist/data/ood_prose.jsonl",
+      "rows": 16,
+      "sha256": "20eebf55490941cdbab5a7d4f51e8b9f9e50ea2ca9e3a2e519a24941a8ca5c1b"
+    },
+    "ood_qa": {
+      "bytes": 2053,
+      "path": "/home/catid/specialist/data/ood_qa.jsonl",
+      "rows": 24,
+      "sha256": "fa24ae255394b3010861cc795e1d6654f5dde8689900359f37c24fbe8a9817e1"
+    }
+  },
+  "limitations": [
+    "Source-URL disjointness cannot detect copied or paraphrased content hosted at a different URL.",
+    "Domain questions retain eval-v2's automated generation and two verifier gates; they are not a new human-authored gold set.",
+    "The fixed OOD QA items are repository-authored probes rather than source-cited questions.",
+    "The sealed heldout split must not be used for HPO, checkpoint selection, or early stopping."
+  ],
+  "manual_review": {
+    "candidate_set_sha256": "2369c5cd5ec985aa6442ca2b427deea5604dffa988cc4dd35eb1ad601502338e",
+    "dropped_rows": 108,
+    "kept_rows": 59,
+    "reason_counts": {
+      "contextless_or_low_value_trivia": 29,
+      "event_logistics_or_recency": 14,
+      "mixed_language_target": 5,
+      "not_domain_relevant": 16,
+      "semantic_duplicate": 1,
+      "source_misread_or_ambiguous": 9,
+      "unsafe_high_risk_without_context": 4,
+      "unsafe_or_unsupported_claim": 5,
+      "volatile_promotion_or_resource": 25
+    },
+    "reason_definitions": {
+      "contextless_or_low_value_trivia": "The question omits the entity or document needed to identify one answer, or tests incidental trivia rather than specialist knowledge.",
+      "event_logistics_or_recency": "The answer is a past or scheduled date, venue, attendance detail, recap count, or other event logistics.",
+      "mixed_language_target": "An English question expects an untranslated non-English phrase or sentence solely because the source page is translated.",
+      "not_domain_relevant": "The fact is incidental biography, commerce, travel, mythology, software, or generic trivia without useful rope-specialist content.",
+      "semantic_duplicate": "Another reviewed question tests the same fact more clearly.",
+      "source_misread_or_ambiguous": "The proposed answer is not actually asserted by the excerpt, or the question/answer mapping is ambiguous or malformed.",
+      "unsafe_high_risk_without_context": "The item rewards operational recall about a high-risk technique while omitting the safety context needed for a responsible answer.",
+      "unsafe_or_unsupported_claim": "The source does not adequately support the safety, medical, or cultural claim encoded by the proposed answer.",
+      "volatile_promotion_or_resource": "The item tests a coupon, price, subscription, product version, promotion, service detail, or other mutable commercial/resource claim."
+    },
+    "representative_rejections": [
+      {
+        "item_id": "evalv3-00869030aaa504bde4ad",
+        "question": "How many years had the person Nao met at a rope gathering been attending SM events?",
+        "reason_code": "contextless_or_low_value_trivia"
+      },
+      {
+        "item_id": "evalv3-02443df32cd51cda101b",
+        "question": "How many pages does the 2009 publication 'Aiko' contain?",
+        "reason_code": "contextless_or_low_value_trivia"
+      },
+      {
+        "item_id": "evalv3-1c66cceaf79a6e668297",
+        "question": "Into which language were some website pages translated?",
+        "reason_code": "event_logistics_or_recency"
+      },
+      {
+        "item_id": "evalv3-1d7c4f95dd1afe3ff0ca",
+        "question": "On what date was the update regarding the release of Part I posted?",
+        "reason_code": "event_logistics_or_recency"
+      },
+      {
+        "item_id": "evalv3-33ba9e92e5b00c205b21",
+        "question": "How many times should the rope be folded when performing the simple knot coiling method?",
+        "reason_code": "mixed_language_target"
+      },
+      {
+        "item_id": "evalv3-710b1fac7a8c83c908df",
+        "question": "What specific safety measure involves a person checking on you after a certain time?",
+        "reason_code": "mixed_language_target"
+      },
+      {
+        "item_id": "evalv3-025a0fa2710612269656",
+        "question": "Which goddess is described as the inexorable one who steadfastly cuts the thread of life with shiny shears?",
+        "reason_code": "not_domain_relevant"
+      },
+      {
+        "item_id": "evalv3-17d09d09e4cfaaf56a31",
+        "question": "What specific type of event is Camp Cyberia associated with?",
+        "reason_code": "not_domain_relevant"
+      },
+      {
+        "item_id": "evalv3-889f8bc07ba510232dec",
+        "question": "In what year were Miura Takumi and Akechi Denki founders of Bakuyukai?",
+        "reason_code": "semantic_duplicate"
+      },
+      {
+        "item_id": "evalv3-0488b4fe66c2c9ef3d7f",
+        "question": "What specific type of rope bondage elements are used to create the ties?",
+        "reason_code": "source_misread_or_ambiguous"
+      },
+      {
+        "item_id": "evalv3-106d6bcd8d655d0ba5be",
+        "question": "What specific knot is taught as the standard Hon Musubi during the practical learning phase?",
+        "reason_code": "source_misread_or_ambiguous"
+      },
+      {
+        "item_id": "evalv3-0964cd475ce6147b3f86",
+        "question": "Which historical document style is the Self-Choking Riffle Tie traced to?",
+        "reason_code": "unsafe_high_risk_without_context"
+      },
+      {
+        "item_id": "evalv3-518468225853db896a54",
+        "question": "How many suspension lines are applied to the legs to achieve a 'running-man' position?",
+        "reason_code": "unsafe_high_risk_without_context"
+      },
+      {
+        "item_id": "evalv3-154e6d4c257d874805e9",
+        "question": "What is the practice called when participants agree to abandon the use of safewords and the ability to withdraw consent?",
+        "reason_code": "unsafe_or_unsupported_claim"
+      },
+      {
+        "item_id": "evalv3-3adf8da066802fa596eb",
+        "question": "Which type of websites and channels were identified as the best resources for finding English terminology for bondage ties?",
+        "reason_code": "unsafe_or_unsupported_claim"
+      },
+      {
+        "item_id": "evalv3-1a580c375d7788135641",
+        "question": "How many years of combined teaching and performing experience do the instructors have?",
+        "reason_code": "volatile_promotion_or_resource"
+      },
+      {
+        "item_id": "evalv3-2cc5daac38f0d254761d",
+        "question": "What is the name of the new fetish internet TV channel featuring Tim Woodward?",
+        "reason_code": "volatile_promotion_or_resource"
+      }
+    ],
+    "reviewed_rows": 167,
+    "reviewer": "Codex manual source-document audit"
+  },
+  "metric_policy": {
+    "candidate_selection": {
+      "primary": "validation mean reward",
+      "secondary": [
+        "validation exact rate",
+        "validation nonzero rate"
+      ],
+      "strata": [
+        "source",
+        "quality_bucket"
+      ]
+    },
+    "ood_noninferiority_gate": {
+      "bootstrap": "paired document/item bootstrap, 20000 samples, fixed seed",
+      "general_knowledge_qa": {
+        "exact_count_delta_minimum": -1,
+        "mean_reward_delta_95_ci_lower_minimum": -0.02
+      },
+      "general_prose": {
+        "mean_token_logprob_delta_95_ci_lower_minimum": -0.02
+      },
+      "rule": "reject a candidate unless every OOD condition passes"
+    },
+    "sealed_holdout": {
+      "allowed_uses_per_frozen_cycle": 1,
+      "metrics": [
+        "mean reward",
+        "exact rate",
+        "nonzero rate"
+      ],
+      "selection_use": "prohibited",
+      "strata": [
+        "source",
+        "quality_bucket"
+      ]
+    }
+  },
+  "outputs": {
+    "domain_eval": {
+      "bytes": 172209,
+      "rows": 59,
+      "sha256": "ab9a391e249910e876826dfab9c8e2f8e17a7b8695e6f018a3e515e5aa69603b"
+    },
+    "ood_prose": {
+      "bytes": 56492,
+      "rows": 16,
+      "sha256": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57"
+    },
+    "ood_qa": {
+      "bytes": 8533,
+      "rows": 24,
+      "sha256": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d"
+    }
+  },
+  "parameters": {
+    "holdout_fraction_by_source_documents": 0.3333333333333333,
+    "split_seed": "specialist-eval-v3-s5-20260714"
+  },
+  "schema": "specialist-eval-v3-build-report-v1",
+  "strata": {
+    "heldout": {
+      "documents": 11,
+      "quality_bucket": {
+        "safety_relevant_grounded": 2,
+        "standard_grounded": 16
+      },
+      "rows": 18,
+      "source": {
+        "esinem": 3,
+        "kinbakutoday": 8,
+        "rope365": 6,
+        "wikipedia": 1
+      }
+    },
+    "ood_prose": {
+      "documents": 16,
+      "quality_bucket": {
+        "frozen_reference_prose": 16
+      },
+      "rows": 16
+    },
+    "ood_qa": {
+      "documents": 1,
+      "quality_bucket": {
+        "fixed_short_answer": 24
+      },
+      "rows": 24
+    },
+    "validation": {
+      "documents": 22,
+      "quality_bucket": {
+        "safety_relevant_grounded": 5,
+        "standard_grounded": 36
+      },
+      "rows": 41,
+      "source": {
+        "esinem": 8,
+        "kinbakutoday": 13,
+        "rope365": 18,
+        "wikipedia": 2
+      }
+    }
+  }
+}
