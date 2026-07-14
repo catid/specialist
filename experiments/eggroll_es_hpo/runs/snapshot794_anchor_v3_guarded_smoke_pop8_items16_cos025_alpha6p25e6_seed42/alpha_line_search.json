@@ -1,0 +1,888 @@
+{
+  "coefficient_plan": {
+    "applications": [
+      {
+        "alpha_increment": 6.25e-06,
+        "bf16_alpha_semantics": "path_dependent_monotonic_increment",
+        "coefficient_sha256": "1a95bfe768df2425005d17cf1d2d6e103d08c5afbb59b5b8eca52901f3b58f3e",
+        "commits": [
+          {
+            "accepted_alpha": 6.25e-06,
+            "committed": true,
+            "final_sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "rank": 0,
+            "reference_fresh_for_population": false,
+            "reference_generation": 1,
+            "schema": "eggroll-es-distributed-update-committed-v3",
+            "update_sequence": 1
+          },
+          {
+            "accepted_alpha": 6.25e-06,
+            "committed": true,
+            "final_sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "rank": 1,
+            "reference_fresh_for_population": false,
+            "reference_generation": 1,
+            "schema": "eggroll-es-distributed-update-committed-v3",
+            "update_sequence": 1
+          },
+          {
+            "accepted_alpha": 6.25e-06,
+            "committed": true,
+            "final_sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "rank": 2,
+            "reference_fresh_for_population": false,
+            "reference_generation": 1,
+            "schema": "eggroll-es-distributed-update-committed-v3",
+            "update_sequence": 1
+          },
+          {
+            "accepted_alpha": 6.25e-06,
+            "committed": true,
+            "final_sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "rank": 3,
+            "reference_fresh_for_population": false,
+            "reference_generation": 1,
+            "schema": "eggroll-es-distributed-update-committed-v3",
+            "update_sequence": 1
+          }
+        ],
+        "direct_alpha_confirmation_required": true,
+        "executed_collectives": [
+          {
+            "collective_dtype": "torch.float32",
+            "executed": true,
+            "final_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+              "total_bytes": 69321223296
+            },
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "parameter_count": 573,
+            "rank": 0,
+            "reduced_element_count": 34660610688,
+            "schema": "eggroll-es-distributed-update-executed-v3",
+            "world_size": 4
+          },
+          {
+            "collective_dtype": "torch.float32",
+            "executed": true,
+            "final_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+              "total_bytes": 69321223296
+            },
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "parameter_count": 573,
+            "rank": 1,
+            "reduced_element_count": 34660610688,
+            "schema": "eggroll-es-distributed-update-executed-v3",
+            "world_size": 4
+          },
+          {
+            "collective_dtype": "torch.float32",
+            "executed": true,
+            "final_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+              "total_bytes": 69321223296
+            },
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "parameter_count": 573,
+            "rank": 2,
+            "reduced_element_count": 34660610688,
+            "schema": "eggroll-es-distributed-update-executed-v3",
+            "world_size": 4
+          },
+          {
+            "collective_dtype": "torch.float32",
+            "executed": true,
+            "final_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+              "total_bytes": 69321223296
+            },
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "parameter_count": 573,
+            "rank": 3,
+            "reduced_element_count": 34660610688,
+            "schema": "eggroll-es-distributed-update-executed-v3",
+            "world_size": 4
+          }
+        ],
+        "final_identity": {
+          "parameter_count": 573,
+          "schema": "eggroll-es-weight-state-sha256-v2",
+          "sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+          "total_bytes": 69321223296
+        },
+        "manifest": {
+          "coefficient_sha256": "1a95bfe768df2425005d17cf1d2d6e103d08c5afbb59b5b8eca52901f3b58f3e",
+          "expected_base_sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+          "plan_id": "4cec6d6666c3b129ff541ed68f86cc1166a03c798e61e5c62d4dc993eb1970bf",
+          "population_size": 8,
+          "previous_alpha": 0.0,
+          "reference_generation": 1,
+          "schema": "eggroll-es-distributed-update-manifest-v3",
+          "target_alpha": 6.25e-06,
+          "update_sequence": 1,
+          "world_size": 4
+        },
+        "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+        "post_commit_states": [
+          {
+            "accepted_alpha": 6.25e-06,
+            "communicator": {
+              "available": true,
+              "disabled": false,
+              "rank": 0,
+              "tp_world_size": 1,
+              "world_size": 4
+            },
+            "current_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+              "total_bytes": 69321223296
+            },
+            "pending": false,
+            "reference_fresh_for_population": false,
+            "reference_generation": 1,
+            "reference_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "schema": "eggroll-es-distributed-worker-state-v3",
+            "update_sequence": 1,
+            "update_session": "4cec6d6666c3b129ff541ed68f86cc1166a03c798e61e5c62d4dc993eb1970bf"
+          },
+          {
+            "accepted_alpha": 6.25e-06,
+            "communicator": {
+              "available": true,
+              "disabled": false,
+              "rank": 1,
+              "tp_world_size": 1,
+              "world_size": 4
+            },
+            "current_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+              "total_bytes": 69321223296
+            },
+            "pending": false,
+            "reference_fresh_for_population": false,
+            "reference_generation": 1,
+            "reference_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "schema": "eggroll-es-distributed-worker-state-v3",
+            "update_sequence": 1,
+            "update_session": "4cec6d6666c3b129ff541ed68f86cc1166a03c798e61e5c62d4dc993eb1970bf"
+          },
+          {
+            "accepted_alpha": 6.25e-06,
+            "communicator": {
+              "available": true,
+              "disabled": false,
+              "rank": 2,
+              "tp_world_size": 1,
+              "world_size": 4
+            },
+            "current_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+              "total_bytes": 69321223296
+            },
+            "pending": false,
+            "reference_fresh_for_population": false,
+            "reference_generation": 1,
+            "reference_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "schema": "eggroll-es-distributed-worker-state-v3",
+            "update_sequence": 1,
+            "update_session": "4cec6d6666c3b129ff541ed68f86cc1166a03c798e61e5c62d4dc993eb1970bf"
+          },
+          {
+            "accepted_alpha": 6.25e-06,
+            "communicator": {
+              "available": true,
+              "disabled": false,
+              "rank": 3,
+              "tp_world_size": 1,
+              "world_size": 4
+            },
+            "current_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "6a44e5df36f6c79637c0263aa9ba7f71aa75ed88dba211fb0676fa128f801404",
+              "total_bytes": 69321223296
+            },
+            "pending": false,
+            "reference_fresh_for_population": false,
+            "reference_generation": 1,
+            "reference_identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "schema": "eggroll-es-distributed-worker-state-v3",
+            "update_sequence": 1,
+            "update_session": "4cec6d6666c3b129ff541ed68f86cc1166a03c798e61e5c62d4dc993eb1970bf"
+          }
+        ],
+        "prepared_shards": [
+          {
+            "allocation_preflight": {
+              "accumulator_dtype": "torch.float32",
+              "collectives_created": false,
+              "largest_parameter_name": "language_model.model.layers.9.mlp.experts.routed_experts.w13_weight",
+              "largest_parameter_shape": [
+                256,
+                1024,
+                2048
+              ],
+              "parameter_count": 573,
+              "parameter_dtype": "torch.bfloat16",
+              "passed": true,
+              "rng_consumed": false,
+              "schema": "eggroll-es-local-allocation-preflight-v3",
+              "scratch_freed_before_collectives": true,
+              "simulated_peak_temporary_bytes": 5368709120,
+              "weights_changed": false
+            },
+            "base_sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "prepared": true,
+            "rank": 0,
+            "reference_generation": 1,
+            "schema": "eggroll-es-distributed-update-prepared-v3",
+            "shard_indices": [
+              0,
+              4
+            ],
+            "shard_pair_sha256": "dd8858630d1b5753015c062ee2384eba667f5307f81690190b36107dd8bae21d",
+            "shard_seeds": [
+              95832482,
+              464946569
+            ],
+            "update_sequence": 1,
+            "world_size": 4
+          },
+          {
+            "allocation_preflight": {
+              "accumulator_dtype": "torch.float32",
+              "collectives_created": false,
+              "largest_parameter_name": "language_model.model.layers.9.mlp.experts.routed_experts.w13_weight",
+              "largest_parameter_shape": [
+                256,
+                1024,
+                2048
+              ],
+              "parameter_count": 573,
+              "parameter_dtype": "torch.bfloat16",
+              "passed": true,
+              "rng_consumed": false,
+              "schema": "eggroll-es-local-allocation-preflight-v3",
+              "scratch_freed_before_collectives": true,
+              "simulated_peak_temporary_bytes": 5368709120,
+              "weights_changed": false
+            },
+            "base_sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "prepared": true,
+            "rank": 1,
+            "reference_generation": 1,
+            "schema": "eggroll-es-distributed-update-prepared-v3",
+            "shard_indices": [
+              1,
+              5
+            ],
+            "shard_pair_sha256": "e01d021575bf854c34ca0f2627065787e2c9db25b5869f20da8820b2575467ec",
+            "shard_seeds": [
+              831028979,
+              921912496
+            ],
+            "update_sequence": 1,
+            "world_size": 4
+          },
+          {
+            "allocation_preflight": {
+              "accumulator_dtype": "torch.float32",
+              "collectives_created": false,
+              "largest_parameter_name": "language_model.model.layers.9.mlp.experts.routed_experts.w13_weight",
+              "largest_parameter_shape": [
+                256,
+                1024,
+                2048
+              ],
+              "parameter_count": 573,
+              "parameter_dtype": "torch.bfloat16",
+              "passed": true,
+              "rng_consumed": false,
+              "schema": "eggroll-es-local-allocation-preflight-v3",
+              "scratch_freed_before_collectives": true,
+              "simulated_peak_temporary_bytes": 5368709120,
+              "weights_changed": false
+            },
+            "base_sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "prepared": true,
+            "rank": 2,
+            "reference_generation": 1,
+            "schema": "eggroll-es-distributed-update-prepared-v3",
+            "shard_indices": [
+              2,
+              6
+            ],
+            "shard_pair_sha256": "ebf9d8add13ae35d896f4229e5f4ac83fa8cbe17603eaabc0d742aebd6f066a1",
+            "shard_seeds": [
+              702840816,
+              92283427
+            ],
+            "update_sequence": 1,
+            "world_size": 4
+          },
+          {
+            "allocation_preflight": {
+              "accumulator_dtype": "torch.float32",
+              "collectives_created": false,
+              "largest_parameter_name": "language_model.model.layers.9.mlp.experts.routed_experts.w13_weight",
+              "largest_parameter_shape": [
+                256,
+                1024,
+                2048
+              ],
+              "parameter_count": 573,
+              "parameter_dtype": "torch.bfloat16",
+              "passed": true,
+              "rng_consumed": false,
+              "schema": "eggroll-es-local-allocation-preflight-v3",
+              "scratch_freed_before_collectives": true,
+              "simulated_peak_temporary_bytes": 5368709120,
+              "weights_changed": false
+            },
+            "base_sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+            "manifest_sha256": "eff46db9518ea167cd231d536fe2d6390bdcecef1d8300fd98c5ef4a3db35453",
+            "prepared": true,
+            "rank": 3,
+            "reference_generation": 1,
+            "schema": "eggroll-es-distributed-update-prepared-v3",
+            "shard_indices": [
+              3,
+              7
+            ],
+            "shard_pair_sha256": "299a648af7b38b184c5c967f5b1e57c5e98cc081b996fb168e6fb91ade0ad448",
+            "shard_seeds": [
+              471242136,
+              748793219
+            ],
+            "update_sequence": 1,
+            "world_size": 4
+          }
+        ],
+        "reference_fresh_for_population": false,
+        "reference_recaptured": false,
+        "schema": "eggroll-es-distributed-alpha-application-v3",
+        "target_alpha": 6.25e-06,
+        "update_sequence": 1
+      }
+    ],
+    "coefficient_sha256": "1a95bfe768df2425005d17cf1d2d6e103d08c5afbb59b5b8eca52901f3b58f3e",
+    "coefficients": [
+      -0.5538392291312769,
+      0.8928006261683552,
+      -0.5717439482953277,
+      1.695824596148832,
+      -0.35606055999035957,
+      0.35980394137508154,
+      -0.3256100274235831,
+      -1.1411753988519515
+    ],
+    "distributed_update_v3": {
+      "collective_dtype": "torch.float32",
+      "engine_count": 4,
+      "plan_id": "4cec6d6666c3b129ff541ed68f86cc1166a03c798e61e5c62d4dc993eb1970bf",
+      "reference_generation": 1,
+      "reference_identity": {
+        "parameter_count": 573,
+        "schema": "eggroll-es-weight-state-sha256-v2",
+        "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+        "total_bytes": 69321223296
+      },
+      "reference_recapture_policy": "once_before_next_population_only",
+      "schema": "eggroll-es-distributed-seed-plan-v3",
+      "seed_sharding": "strided_by_inter_engine_rank",
+      "tp_per_engine": 1
+    },
+    "identity_audit": {
+      "iteration": 0,
+      "journal_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_anchor_v3_guarded_smoke_pop8_items16_cos025_alpha6p25e6_seed42/alpha-zero-identity-audit-iteration-1.json",
+      "passed": true,
+      "post_probe": {
+        "anchor_output_sha256": "2000f506fa1b711ff5913eee1510f8576daff7522e8c5bebe43b383f469195e9",
+        "anchor_requests": 16,
+        "dispatch": "strided_engine_shards_separate_calls",
+        "domain_output_sha256": "114e9c0a67adc711246ed03f3949a021f0bbc9f0d569d9cc2fb831e6e3d93cdc",
+        "domain_requests": 64,
+        "engine_coverage": {
+          "anchor_nonempty_engines": 4,
+          "anchor_uses_all_engines": true,
+          "configured_engines": 4,
+          "domain_nonempty_engines": 4,
+          "domain_uses_all_engines": true
+        },
+        "schema": "eggroll-es-train-only-identity-probe-v3"
+      },
+      "post_reference_checks": [
+        [
+          {
+            "current": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "passed": true,
+            "reference": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "reference_generation": 1,
+            "schema": "eggroll-es-exact-reference-check-v3"
+          }
+        ],
+        [
+          {
+            "current": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "passed": true,
+            "reference": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "reference_generation": 1,
+            "schema": "eggroll-es-exact-reference-check-v3"
+          }
+        ],
+        [
+          {
+            "current": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "passed": true,
+            "reference": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "reference_generation": 1,
+            "schema": "eggroll-es-exact-reference-check-v3"
+          }
+        ],
+        [
+          {
+            "current": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "passed": true,
+            "reference": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "reference_generation": 1,
+            "schema": "eggroll-es-exact-reference-check-v3"
+          }
+        ]
+      ],
+      "pre_probe": {
+        "anchor_output_sha256": "2000f506fa1b711ff5913eee1510f8576daff7522e8c5bebe43b383f469195e9",
+        "anchor_requests": 16,
+        "dispatch": "strided_engine_shards_separate_calls",
+        "domain_output_sha256": "114e9c0a67adc711246ed03f3949a021f0bbc9f0d569d9cc2fb831e6e3d93cdc",
+        "domain_requests": 64,
+        "engine_coverage": {
+          "anchor_nonempty_engines": 4,
+          "anchor_uses_all_engines": true,
+          "configured_engines": 4,
+          "domain_nonempty_engines": 4,
+          "domain_uses_all_engines": true
+        },
+        "schema": "eggroll-es-train-only-identity-probe-v3"
+      },
+      "reference_states": [
+        [
+          {
+            "fresh_for_population": true,
+            "identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "reference_generation": 1,
+            "schema": "eggroll-es-exact-reference-state-v3"
+          }
+        ],
+        [
+          {
+            "fresh_for_population": true,
+            "identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "reference_generation": 1,
+            "schema": "eggroll-es-exact-reference-state-v3"
+          }
+        ],
+        [
+          {
+            "fresh_for_population": true,
+            "identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "reference_generation": 1,
+            "schema": "eggroll-es-exact-reference-state-v3"
+          }
+        ],
+        [
+          {
+            "fresh_for_population": true,
+            "identity": {
+              "parameter_count": 573,
+              "schema": "eggroll-es-weight-state-sha256-v2",
+              "sha256": "39178d6fc25d8533d0a173c4aa5cc11bbde5a905f116ba3aee1b37dd16195008",
+              "total_bytes": 69321223296
+            },
+            "reference_generation": 1,
+            "schema": "eggroll-es-exact-reference-state-v3"
+          }
+        ]
+      ],
+      "schema": "eggroll-es-alpha-zero-identity-audit-v2",
+      "status": "passed",
+      "training_signal": "train_batch_and_train_only_anchor_only"
+    },
+    "journal_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_anchor_v3_guarded_smoke_pop8_items16_cos025_alpha6p25e6_seed42/anchor-plan-iteration-1.json",
+    "projection": {
+      "anchor_mean": -1.5887751009001656,
+      "anchor_std": 0.002932623473370727,
+      "decision": "project_to_anchor_cone",
+      "domain_anchor_cosine_after": 0.24999999999999992,
+      "domain_anchor_cosine_before": -0.5479619703769928,
+      "domain_mean": 0.10918928419958146,
+      "domain_std": 0.01123616605759309,
+      "min_anchor_cosine": 0.25,
+      "population_size": 8,
+      "projection_lambda": 0.7639481046165197,
+      "schema": "eggroll-es-anchor-projection-v1",
+      "update_norm_ratio": 0.8639368365927768
+    },
+    "seed_count": 8
+  },
+  "content_sha256_before_self_field": "f98b2969b0f9d2339094ac10c7e88019c439a2bc6ab9ed2e7804d265a6f831c8",
+  "in_progress": null,
+  "policy": {
+    "alpha_order": "zero_then_strictly_increasing",
+    "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
+    "branching": false,
+    "direct_alpha_confirmation_required": true,
+    "ood_prose_max_degradation": 0.0,
+    "ood_qa_max_degradation": 0.0,
+    "resume": false,
+    "rollback": false,
+    "selection_during_execution": false
+  },
+  "schema": "eggroll-es-anchor-alpha-line-search-v3",
+  "seeds": [
+    95832482,
+    831028979,
+    702840816,
+    471242136,
+    464946569,
+    921912496,
+    92283427,
+    748793219
+  ],
+  "snapshot": {
+    "anchor": {
+      "path": "/home/catid/specialist/data/general_prose_anchor_v1.jsonl",
+      "report": {
+        "path": "/home/catid/specialist/data/general_prose_anchor_v1.report.json",
+        "protected_artifact_count": 4,
+        "schema": "general-prose-anchor-build-v1",
+        "sha256": "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5"
+      },
+      "rows": 128,
+      "sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d"
+    },
+    "distributed_update_v3": {
+      "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
+      "collective_dtype": "torch.float32",
+      "direct_alpha_confirmation_required": true,
+      "engine_count": 4,
+      "final_hash_consensus_required": true,
+      "reference_recapture_policy": "once_before_next_population_only",
+      "seed_sharding": "strided_by_inter_engine_rank",
+      "tp_per_engine": 1,
+      "two_phase_commit": true
+    },
+    "evaluations": {
+      "ood_qa": {
+        "arrow_files": [
+          {
+            "path": "/tmp/specialist-s6-candidate-guarded-ead1b21/dataset/eval/ood_qa/data-00000-of-00001.arrow",
+            "sha256": "b201123c6a358d306b7f874e400861068900bb764b1fda80eb663b82ca53dced"
+          }
+        ],
+        "rows": 24
+      },
+      "validation": {
+        "arrow_files": [
+          {
+            "path": "/tmp/specialist-s6-candidate-guarded-ead1b21/dataset/eval/validation/data-00000-of-00001.arrow",
+            "sha256": "19181b832e38ef6f97e3ba734362cd1af921f067e8edd249113c5129439443db"
+          }
+        ],
+        "rows": 41
+      }
+    },
+    "fixed_train_batch": {
+      "rows": 64,
+      "sha256": "00e89d0770e4c333303ec25af3c42659b66fd44d4ca301e8715804ccfda99f48"
+    },
+    "implementation": {
+      "anchor_trainer": "f25fc796c7cff4fe86dab960a03c7a51463e6fdeecf6b9c11377d749990a3f51",
+      "base_trainer": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+      "distributed_driver_v3": "acc25f758d6bdc991ff9b26a91b5847ea9f19fabd8c641b1ec8ebf81e4e2b867",
+      "distributed_trainer_v3": "f25fc796c7cff4fe86dab960a03c7a51463e6fdeecf6b9c11377d749990a3f51",
+      "distributed_worker_v3": "636698c7ea8e8155ea08298e428b5c40c01141ff10db59290d74831db360e5b1",
+      "driver": "0705184534949034e169f0d22d28b27008636719dfbc1590d38f876b0cb662cb",
+      "projection": "a5e71ae4eebf36907e9a8da2d91e61fe46d0c581b5ef286a0668124feb02af52",
+      "upstream_trainer": "4f7044600af13b0a73f807aabb7c188610438d31501cc8a053d0f6efae14b42e",
+      "upstream_worker": "b5e99e4f050f6882529eae98d3b1cd9cb54894362fefcb2b7b802ce3f75a933a"
+    },
+    "recipe": {
+      "anchor_items_per_step": 16,
+      "batch_size": 64,
+      "checkpoint": null,
+      "max_tokens": 32,
+      "min_anchor_cosine": 0.25,
+      "mini_batch_size": 64,
+      "model_name": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+      "population_size": 8,
+      "seed": 42,
+      "sigma": 0.0003,
+      "target_alphas": [
+        0.0,
+        6.25e-06
+      ]
+    },
+    "schema": "eggroll-es-anchor-line-search-snapshot-v3",
+    "train": {
+      "arrow_files": [
+        {
+          "path": "/tmp/specialist-s6-candidate-guarded-ead1b21/dataset/train/train/data-00000-of-00001.arrow",
+          "sha256": "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6"
+        }
+      ],
+      "rows": 794
+    }
+  },
+  "states": [
+    {
+      "alpha_increment": 0.0,
+      "coefficient_sha256": "1a95bfe768df2425005d17cf1d2d6e103d08c5afbb59b5b8eca52901f3b58f3e",
+      "eval_iteration": 0,
+      "ood_prose": {
+        "item_count": 16,
+        "mean_token_logprob": -1.2632580042542214,
+        "results_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_anchor_v3_guarded_smoke_pop8_items16_cos025_alpha6p25e6_seed42/eval-output/ood_prose_alpha_0000.json",
+        "results_sha256": "38276f2dedaaf5062ca8e58aacb9990c3a33bb1b44e3c7172798334da5bfd239",
+        "scored_token_count": 10926
+      },
+      "ood_prose_gate": {
+        "baseline": -1.2632580042542214,
+        "bootstrap": {
+          "document_count": 16,
+          "percentiles": [
+            0.025,
+            0.975
+          ],
+          "samples": 20000,
+          "seed": 20260714,
+          "unit": "normalized_source_url"
+        },
+        "delta": 0.0,
+        "final": -1.2632580042542214,
+        "higher_is_better": true,
+        "max_degradation": 0.0,
+        "metric": "mean_token_logprob",
+        "paired_document_bootstrap_95_ci": [
+          0.0,
+          0.0
+        ],
+        "passed": true
+      },
+      "ood_qa_gate": {
+        "deltas": {
+          "exact": 0,
+          "mean_reward": 0.0,
+          "nonzero": 0
+        },
+        "max_exact_loss": 0,
+        "max_mean_reward_degradation": 0.0,
+        "max_nonzero_loss": 0,
+        "passed": true,
+        "schema": "eggroll-es-strict-qa-nondegradation-v1"
+      },
+      "qa": {
+        "ood_qa": {
+          "exact": 16,
+          "mean_reward": 0.714128787878788,
+          "nonzero": 23,
+          "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_anchor_v3_guarded_smoke_pop8_items16_cos025_alpha6p25e6_seed42/eval-output/model_eval_taskood_qa_iteration1.json",
+          "rows": 24,
+          "sha256": "0901407539f1047a7956c47ceae5329b9d8ade1d306783f2bcde67e58b76c98d"
+        },
+        "validation": {
+          "exact": 2,
+          "mean_reward": 0.08381010452961674,
+          "nonzero": 13,
+          "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_anchor_v3_guarded_smoke_pop8_items16_cos025_alpha6p25e6_seed42/eval-output/model_eval_taskvalidation_iteration1.json",
+          "rows": 41,
+          "sha256": "3992006242efa2c02196a91c9e2fc21e4584799a926a944d3ddf532cfd3e15ff"
+        }
+      },
+      "state_index": 0,
+      "strict_guards_passed": true,
+      "target_alpha": 0.0
+    },
+    {
+      "alpha_increment": 6.25e-06,
+      "coefficient_sha256": "1a95bfe768df2425005d17cf1d2d6e103d08c5afbb59b5b8eca52901f3b58f3e",
+      "eval_iteration": 1,
+      "ood_prose": {
+        "item_count": 16,
+        "mean_token_logprob": -1.2657495474262415,
+        "results_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_anchor_v3_guarded_smoke_pop8_items16_cos025_alpha6p25e6_seed42/eval-output/ood_prose_alpha_0001.json",
+        "results_sha256": "dda94d43dbb7715b82084ab6593634f241af174e09ccd509681c4a5464ae46a6",
+        "scored_token_count": 10926
+      },
+      "ood_prose_gate": {
+        "baseline": -1.2632580042542214,
+        "bootstrap": {
+          "document_count": 16,
+          "percentiles": [
+            0.025,
+            0.975
+          ],
+          "samples": 20000,
+          "seed": 20260714,
+          "unit": "normalized_source_url"
+        },
+        "delta": -0.00249154317202005,
+        "final": -1.2657495474262415,
+        "higher_is_better": true,
+        "max_degradation": 0.0,
+        "metric": "mean_token_logprob",
+        "paired_document_bootstrap_95_ci": [
+          -0.004954134740518329,
+          0.0003068238055387737
+        ],
+        "passed": false
+      },
+      "ood_qa_gate": {
+        "deltas": {
+          "exact": 0,
+          "mean_reward": 0.0,
+          "nonzero": 0
+        },
+        "max_exact_loss": 0,
+        "max_mean_reward_degradation": 0.0,
+        "max_nonzero_loss": 0,
+        "passed": true,
+        "schema": "eggroll-es-strict-qa-nondegradation-v1"
+      },
+      "qa": {
+        "ood_qa": {
+          "exact": 16,
+          "mean_reward": 0.714128787878788,
+          "nonzero": 23,
+          "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_anchor_v3_guarded_smoke_pop8_items16_cos025_alpha6p25e6_seed42/eval-output/model_eval_taskood_qa_iteration2.json",
+          "rows": 24,
+          "sha256": "0901407539f1047a7956c47ceae5329b9d8ade1d306783f2bcde67e58b76c98d"
+        },
+        "validation": {
+          "exact": 2,
+          "mean_reward": 0.08381010452961674,
+          "nonzero": 13,
+          "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_anchor_v3_guarded_smoke_pop8_items16_cos025_alpha6p25e6_seed42/eval-output/model_eval_taskvalidation_iteration2.json",
+          "rows": 41,
+          "sha256": "bdb384403554cf8db1d098bda86612982a33baa8e8700b403ec48ef181c0c47a"
+        }
+      },
+      "state_index": 1,
+      "strict_guards_passed": false,
+      "target_alpha": 6.25e-06
+    }
+  ],
+  "status": "complete",
+  "targets": [
+    0.0,
+    6.25e-06
+  ],
+  "trainer_configuration": {
+    "anchor_items_per_step": 16,
+    "batch_size": 64,
+    "global_seed": 42,
+    "max_tokens": 32,
+    "min_anchor_cosine": 0.25,
+    "mini_batch_size": 64,
+    "model_name": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "population_size": 8,
+    "sigma": 0.0003
+  }
+}
