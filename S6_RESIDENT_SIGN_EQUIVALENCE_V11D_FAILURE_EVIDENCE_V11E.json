@@ -1,0 +1,53 @@
+{
+  "algorithm_or_data_changed_from_v11c": false,
+  "argv_sha256": "a3ec2d5cfb637e54e20947fc2d23b7216e5e452c7712474e1fa6eb6ad61dfcdd",
+  "content_sha256_before_self_field": "4f21152b42bd91b507327936fdfd16365022c22a057f48e3b546f1875ce6d1f3",
+  "diagnostic_environment": {
+    "NCCL_DEBUG": "INFO",
+    "NCCL_DEBUG_SUBSYS": "INIT,NET",
+    "RAY_DEDUP_LOGS": "0",
+    "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1"
+  },
+  "experiment_name": "snapshot794_layer_v11d_middle_late_resident_sign_exact_v10_durable_launch_d43d44_a43a44_basis20260714",
+  "failure": {
+    "message": "v5 requires every frozen anchor document",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_eggroll_es_anchor_equivalence_v11d.py\", line 299, in run_exact_retry_v11d\n    result = driver_v11c.main(list(argv))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_eggroll_es_anchor_equivalence_v11c.py\", line 479, in main\n    driver_v1.main()\n  File \"/home/catid/specialist/run_eggroll_es_anchor_line_search.py\", line 648, in main\n    trainer.configure_anchor(\n  File \"/home/catid/specialist/train_eggroll_es_specialist_anchor_v10.py\", line 339, in configure_anchor\n    result = super().configure_anchor(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/train_eggroll_es_specialist_anchor_v8.py\", line 118, in configure_anchor\n    return super().configure_anchor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/train_eggroll_es_specialist_anchor_v7.py\", line 119, in configure_anchor\n    return super().configure_anchor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/train_eggroll_es_specialist_anchor_v6.py\", line 261, in configure_anchor\n    return super().configure_anchor(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/train_eggroll_es_specialist_anchor_v5.py\", line 241, in configure_anchor\n    raise ValueError(\"v5 requires every frozen anchor document\")\nValueError: v5 requires every frozen anchor document\n",
+    "type": "ValueError"
+  },
+  "model_update_applied": false,
+  "phase": "inside_v11c_driver_main",
+  "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v11d_middle_late_resident_sign_exact_v10_durable_launch_d43d44_a43a44_basis20260714",
+  "run_directory_absent_before_attempt": true,
+  "run_directory_exists_after_attempt": true,
+  "schema": "eggroll-es-durable-launch-attempt-v11d",
+  "sealed_data_opened_or_scored": false,
+  "source_provenance": {
+    "committed_blob_sha256": "76862beb9957965eaf43f6629a6b5fa640e2ad8930a26eb3a51ce5c45741b675",
+    "driver_file_sha256": "76862beb9957965eaf43f6629a6b5fa640e2ad8930a26eb3a51ce5c45741b675",
+    "git_head": "25b9b2c9818f8d0ce6624f70aa39c11a7ec2666e",
+    "relative_path": "run_eggroll_es_anchor_equivalence_v11d.py",
+    "repository_root": "/home/catid/specialist",
+    "schema": "eggroll-es-v11d-committed-source-provenance"
+  },
+  "status": "failed",
+  "target_alpha_zero_only": true,
+  "v11c_failure_evidence": {
+    "binding_sha256": "830389383c2177b6c858d98d37fa322c252e99321cd056c12be1c5a63d3882b8",
+    "commit": "320298650d871102122c663d3115123bf4940271",
+    "failure_phase": "post_engine_load_pre_journal_unknown",
+    "file_sha256": "49c79c4a982c5c37ab56b71b141771846edeabb267a13c255856acccd023b88c",
+    "journal_created": false,
+    "model_loaded_on_all_four_gpus": true,
+    "model_update_applied": false,
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_RESIDENT_SIGN_EQUIVALENCE_V11C_FAILURE.md",
+    "schema": "eggroll-es-v11c-post-engine-failure-evidence-v11d",
+    "sealed_data_opened_or_scored": false,
+    "v11c_implementation": {
+      "driver": "5bd650f727e3e32a0be530316c82043b012a623428fab47498f4d80f5ac48e76",
+      "trainer": "c663b62f9d7990a2c59d8b46ad6258209b590bb29aa48946755a7d263a3d0799",
+      "worker": "d75951483058de340185fc81f6ed050deeac1551107c0357349a1f311cdb2c22"
+    }
+  },
+  "v11c_journal_exists_after_attempt": false,
+  "v11c_recipe_sha256": "3e91bc82ef50f528cbae4925931e5f2aee5b9c63e470c489dd11814b5df9f6a8"
+}
