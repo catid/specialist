@@ -123,7 +123,7 @@ def snapshot(seed, targets, schema_version=2):
             "exact_worker",
         )
     }
-    return {
+    value = {
         "schema": f"eggroll-es-anchor-line-search-snapshot-v{schema_version}",
         "train": {
             "rows": 794,
@@ -178,6 +178,190 @@ def snapshot(seed, targets, schema_version=2):
             "target_alphas": list(targets),
         },
     }
+    if schema_version == 3:
+        value["implementation"].update({
+            key: digest(key)
+            for key in (
+                "distributed_driver_v3",
+                "distributed_trainer_v3",
+                "distributed_worker_v3",
+            )
+        })
+        value["distributed_update_v3"] = {
+            "engine_count": 4,
+            "tp_per_engine": 1,
+            "seed_sharding": "strided_by_inter_engine_rank",
+            "collective_dtype": "torch.float32",
+            "two_phase_commit": True,
+            "final_hash_consensus_required": True,
+            "reference_recapture_policy": "once_before_next_population_only",
+            "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
+            "direct_alpha_confirmation_required": True,
+        }
+    return value
+
+
+def attach_v3_provenance(journal):
+    coefficient_plan = journal["coefficient_plan"]
+    population_size = journal["trainer_configuration"]["population_size"]
+    seeds = list(journal["seeds"])
+    coefficients = [
+        (index - population_size / 2.0) / population_size
+        for index in range(population_size)
+    ]
+    coefficient_sha = canonical_sha256({
+        "seeds": seeds,
+        "coefficients": coefficients,
+    })
+    coefficient_plan["coefficient_sha256"] = coefficient_sha
+    coefficient_plan["coefficients"] = coefficients
+    for state in journal["states"]:
+        state["coefficient_sha256"] = coefficient_sha
+    reference_identity = copy.deepcopy(
+        coefficient_plan["identity_audit"]["reference_states"][0][0]
+    )
+    reference_generation = 1
+    plan_id = canonical_sha256({
+        "schema": "eggroll-es-distributed-plan-id-v3",
+        "iteration": 0,
+        "coefficient_sha256": coefficient_sha,
+        "reference_generation": reference_generation,
+        "reference_sha256": reference_identity["sha256"],
+    })
+    coefficient_plan["distributed_update_v3"] = {
+        "schema": "eggroll-es-distributed-seed-plan-v3",
+        "plan_id": plan_id,
+        "engine_count": 4,
+        "tp_per_engine": 1,
+        "reference_generation": reference_generation,
+        "reference_identity": reference_identity,
+        "seed_sharding": "strided_by_inter_engine_rank",
+        "collective_dtype": "torch.float32",
+        "reference_recapture_policy": "once_before_next_population_only",
+    }
+    applications = []
+    previous_alpha = 0.0
+    expected_base_sha = reference_identity["sha256"]
+    for sequence, target_alpha in enumerate(journal["targets"][1:], 1):
+        manifest = {
+            "schema": "eggroll-es-distributed-update-manifest-v3",
+            "coefficient_sha256": coefficient_sha,
+            "population_size": population_size,
+            "world_size": 4,
+            "reference_generation": reference_generation,
+            "plan_id": plan_id,
+            "update_sequence": sequence,
+            "previous_alpha": previous_alpha,
+            "target_alpha": target_alpha,
+            "expected_base_sha256": expected_base_sha,
+        }
+        manifest_sha = canonical_sha256(manifest)
+        final_identity = {
+            "schema": "eggroll-es-weight-state-sha256-v2",
+            "sha256": digest(
+                f"v3-final-{journal['trainer_configuration']['global_seed']}-{sequence}"
+            ),
+            "parameter_count": reference_identity["parameter_count"],
+            "total_bytes": reference_identity["total_bytes"],
+        }
+        prepared = []
+        executed = []
+        commits = []
+        post_states = []
+        for rank in range(4):
+            indices = list(range(rank, population_size, 4))
+            prepared.append({
+                "schema": "eggroll-es-distributed-update-prepared-v3",
+                "prepared": True,
+                "manifest_sha256": manifest_sha,
+                "rank": rank,
+                "world_size": 4,
+                "shard_indices": indices,
+                "shard_seeds": [seeds[index] for index in indices],
+                "shard_pair_sha256": canonical_sha256({
+                    "seeds": [seeds[index] for index in indices],
+                    "coefficients": [
+                        coefficients[index] for index in indices
+                    ],
+                }),
+                "base_sha256": expected_base_sha,
+                "reference_generation": reference_generation,
+                "update_sequence": sequence,
+                "allocation_preflight": {
+                    "schema": "eggroll-es-local-allocation-preflight-v3",
+                    "passed": True,
+                    "parameter_count": 100,
+                    "largest_parameter_name": "model.weight",
+                    "largest_parameter_shape": [100],
+                    "parameter_dtype": "torch.bfloat16",
+                    "accumulator_dtype": "torch.float32",
+                    "simulated_peak_temporary_bytes": 600,
+                    "scratch_freed_before_collectives": True,
+                    "collectives_created": False,
+                    "rng_consumed": False,
+                    "weights_changed": False,
+                },
+            })
+            executed.append({
+                "schema": "eggroll-es-distributed-update-executed-v3",
+                "executed": True,
+                "manifest_sha256": manifest_sha,
+                "rank": rank,
+                "world_size": 4,
+                "parameter_count": 100,
+                "reduced_element_count": 1000,
+                "collective_dtype": "torch.float32",
+                "final_identity": copy.deepcopy(final_identity),
+            })
+            commits.append({
+                "schema": "eggroll-es-distributed-update-committed-v3",
+                "committed": True,
+                "manifest_sha256": manifest_sha,
+                "rank": rank,
+                "final_sha256": final_identity["sha256"],
+                "reference_generation": reference_generation,
+                "reference_fresh_for_population": False,
+                "update_sequence": sequence,
+                "accepted_alpha": target_alpha,
+            })
+            post_states.append({
+                "schema": "eggroll-es-distributed-worker-state-v3",
+                "communicator": {
+                    "rank": rank,
+                    "world_size": 4,
+                    "tp_world_size": 1,
+                    "available": True,
+                    "disabled": False,
+                },
+                "reference_generation": reference_generation,
+                "reference_fresh_for_population": False,
+                "reference_identity": copy.deepcopy(reference_identity),
+                "current_identity": copy.deepcopy(final_identity),
+                "update_session": plan_id,
+                "update_sequence": sequence,
+                "accepted_alpha": target_alpha,
+                "pending": False,
+            })
+        applications.append({
+            "schema": "eggroll-es-distributed-alpha-application-v3",
+            "target_alpha": target_alpha,
+            "alpha_increment": target_alpha - previous_alpha,
+            "update_sequence": sequence,
+            "manifest_sha256": manifest_sha,
+            "coefficient_sha256": coefficient_sha,
+            "prepared_shards": prepared,
+            "executed_collectives": executed,
+            "commits": commits,
+            "post_commit_states": post_states,
+            "final_identity": final_identity,
+            "reference_recaptured": False,
+            "reference_fresh_for_population": False,
+            "bf16_alpha_semantics": "path_dependent_monotonic_increment",
+            "direct_alpha_confirmation_required": True,
+        })
+        expected_base_sha = final_identity["sha256"]
+        previous_alpha = target_alpha
+    coefficient_plan["applications"] = applications
 
 
 def make_journal(
@@ -269,7 +453,14 @@ def make_journal(
         },
         "in_progress": None,
         "states": states,
+        "seeds": [seed * 100 + index for index in range(8)],
     }
+    if schema_version == 3:
+        journal["policy"].update({
+            "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
+            "direct_alpha_confirmation_required": True,
+        })
+        attach_v3_provenance(journal)
     journal["content_sha256_before_self_field"] = canonical_sha256(journal)
     return journal
 
@@ -290,6 +481,9 @@ def five_journals(deltas=None, **kwargs):
 
 
 def test_five_direct_confirmations_pass_all_predeclared_rules():
+    assert "distributed_update_v3" not in validate_journal(
+        make_journal(42)
+    )
     report = aggregate_direct_confirmations(
         five_journals(), candidate_name="items16-cos025",
     )
@@ -447,3 +641,143 @@ def test_corrected_v3_journals_are_supported_as_a_separate_family():
     ]
     report = aggregate_direct_confirmations(journals, candidate_name="v3")
     assert report["eligible"] is True
+    validated = validate_journal(journals[0])
+    assert validated["distributed_update_v3"] == {
+        "plan_id": journals[0]["coefficient_plan"]["distributed_update_v3"][
+            "plan_id"
+        ],
+        "reference_generation": 1,
+        "application_count": 1,
+        "final_identity_sha256": journals[0]["coefficient_plan"][
+            "applications"
+        ][0]["final_identity"]["sha256"],
+    }
+
+
+def test_v3_monotonic_application_chain_binds_each_prior_final_hash():
+    journal = make_journal(
+        42,
+        schema_version=3,
+        targets=(0.0, 0.00000625, 0.0000125),
+    )
+    validated = validate_journal(journal)
+    assert validated["distributed_update_v3"]["application_count"] == 2
+    applications = journal["coefficient_plan"]["applications"]
+    assert applications[1]["prepared_shards"][0]["base_sha256"] == (
+        applications[0]["final_identity"]["sha256"]
+    )
+
+    applications[1]["prepared_shards"][0]["base_sha256"] = (
+        journal["coefficient_plan"]["distributed_update_v3"][
+            "reference_identity"
+        ]["sha256"]
+    )
+    reseal(journal)
+    with pytest.raises(JournalValidationError, match="prepared metadata"):
+        validate_journal(journal)
+
+
+def test_merely_relabelled_v2_journal_cannot_masquerade_as_v3():
+    journal = make_journal(42)
+    journal["schema"] = "eggroll-es-anchor-alpha-line-search-v3"
+    journal["snapshot"]["schema"] = (
+        "eggroll-es-anchor-line-search-snapshot-v3"
+    )
+    journal["policy"].update({
+        "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
+        "direct_alpha_confirmation_required": True,
+    })
+    reseal(journal)
+    with pytest.raises(
+        JournalValidationError, match="v3 implementation identity",
+    ):
+        validate_journal(journal)
+
+
+@pytest.mark.parametrize(
+    "mutation,match",
+    [
+        ("snapshot_worker", "implementation distributed_worker_v3"),
+        ("snapshot_policy", "v3 snapshot distributed policy"),
+        ("journal_policy", "v3 journal policy"),
+        ("applications", "application count"),
+        ("sequence", "sequence changed"),
+        ("alpha", "alpha transition"),
+        ("coefficient", "coefficient identity"),
+        ("coefficient_values", "canonical coefficient values"),
+        ("manifest", "manifest does not match"),
+        ("prepared_ranks", "prepared reports ranks"),
+        ("prepared_shard", "seed shard changed"),
+        ("shard_pair", "seed/coefficient shard SHA-256"),
+        ("preflight", "allocation preflight"),
+        ("executed_dtype", "collective metadata"),
+        ("executed_identity", "final identity differs"),
+        ("commit_ranks", "commit reports ranks"),
+        ("post_ranks", "post-commit states ranks"),
+        ("post_identity", "current identity differs"),
+        ("recapture", "recaptured"),
+        ("direct_confirmation", "direct-confirmation policy"),
+    ],
+)
+def test_v3_distributed_provenance_tampering_is_rejected(mutation, match):
+    journal = make_journal(42, schema_version=3)
+    snapshot_value = journal["snapshot"]
+    policy = journal["policy"]
+    plan = journal["coefficient_plan"]
+    application = plan["applications"][0]
+    if mutation == "snapshot_worker":
+        snapshot_value["implementation"]["distributed_worker_v3"] = "bad"
+    elif mutation == "snapshot_policy":
+        snapshot_value["distributed_update_v3"]["two_phase_commit"] = False
+    elif mutation == "journal_policy":
+        policy["direct_alpha_confirmation_required"] = False
+    elif mutation == "applications":
+        plan["applications"] = []
+    elif mutation == "sequence":
+        application["update_sequence"] = 2
+    elif mutation == "alpha":
+        application["alpha_increment"] *= 2
+    elif mutation == "coefficient":
+        application["coefficient_sha256"] = digest("other-coefficient")
+    elif mutation == "coefficient_values":
+        plan["coefficients"][0] += 0.5
+    elif mutation == "manifest":
+        application["manifest_sha256"] = digest("other-manifest")
+        for section in ("prepared_shards", "executed_collectives", "commits"):
+            for report in application[section]:
+                report["manifest_sha256"] = application["manifest_sha256"]
+    elif mutation == "prepared_ranks":
+        application["prepared_shards"][3]["rank"] = 2
+    elif mutation == "prepared_shard":
+        application["prepared_shards"][0]["shard_seeds"][0] += 1
+    elif mutation == "shard_pair":
+        application["prepared_shards"][0]["shard_pair_sha256"] = digest(
+            "other-shard-pair"
+        )
+    elif mutation == "preflight":
+        application["prepared_shards"][0]["allocation_preflight"][
+            "collectives_created"
+        ] = True
+    elif mutation == "executed_dtype":
+        application["executed_collectives"][0]["collective_dtype"] = (
+            "torch.bfloat16"
+        )
+    elif mutation == "executed_identity":
+        application["executed_collectives"][0]["final_identity"]["sha256"] = (
+            digest("drifted-final")
+        )
+    elif mutation == "commit_ranks":
+        application["commits"][3]["rank"] = 2
+    elif mutation == "post_ranks":
+        application["post_commit_states"][3]["communicator"]["rank"] = 2
+    elif mutation == "post_identity":
+        application["post_commit_states"][0]["current_identity"]["sha256"] = (
+            digest("drifted-current")
+        )
+    elif mutation == "recapture":
+        application["reference_recaptured"] = True
+    else:
+        application["direct_alpha_confirmation_required"] = False
+    reseal(journal)
+    with pytest.raises(JournalValidationError, match=match):
+        validate_journal(journal)

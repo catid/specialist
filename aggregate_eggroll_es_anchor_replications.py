@@ -29,6 +29,23 @@ RISK_PENALTY = 0.5
 MIN_POSITIVE_SEEDS = 4
 HASH_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 FLOAT_TOLERANCE = 1e-12
+V3_ENGINE_COUNT = 4
+V3_SNAPSHOT_IMPLEMENTATION_KEYS = {
+    "distributed_driver_v3",
+    "distributed_trainer_v3",
+    "distributed_worker_v3",
+}
+V3_DISTRIBUTED_POLICY = {
+    "engine_count": V3_ENGINE_COUNT,
+    "tp_per_engine": 1,
+    "seed_sharding": "strided_by_inter_engine_rank",
+    "collective_dtype": "torch.float32",
+    "two_phase_commit": True,
+    "final_hash_consensus_required": True,
+    "reference_recapture_policy": "once_before_next_population_only",
+    "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
+    "direct_alpha_confirmation_required": True,
+}
 
 
 class JournalValidationError(ValueError):
@@ -93,6 +110,36 @@ def _same_float(left, right):
             left, right, rel_tol=0.0, abs_tol=FLOAT_TOLERANCE,
         )
     )
+
+
+def _require_exact_fields(value, expected, label):
+    _require(isinstance(value, dict), f"{label} is missing")
+    for key, expected_value in expected.items():
+        actual = value.get(key)
+        _require(
+            actual == expected_value
+            and type(actual) is type(expected_value),
+            f"{label} {key} changed",
+        )
+
+
+def _validate_weight_identity(identity, label):
+    _require(isinstance(identity, dict), f"{label} is missing")
+    _require(
+        identity.get("schema") == "eggroll-es-weight-state-sha256-v2",
+        f"{label} schema changed",
+    )
+    return {
+        "schema": identity["schema"],
+        "sha256": _sha256(identity.get("sha256"), f"{label} SHA-256"),
+        "parameter_count": _integer(
+            identity.get("parameter_count"),
+            f"{label} parameter count", minimum=1,
+        ),
+        "total_bytes": _integer(
+            identity.get("total_bytes"), f"{label} byte count", minimum=1,
+        ),
+    }
 
 
 def _assert_no_heldout(value, trail="journal"):
@@ -244,6 +291,18 @@ def _validate_snapshot(snapshot):
     normalized_implementation = copy.deepcopy(implementation)
     for key in required_implementation:
         _sha256(implementation.get(key), f"implementation {key}")
+    if schema == "eggroll-es-anchor-line-search-snapshot-v3":
+        _require(
+            V3_SNAPSHOT_IMPLEMENTATION_KEYS.issubset(implementation),
+            "v3 implementation identity is incomplete",
+        )
+        for key in V3_SNAPSHOT_IMPLEMENTATION_KEYS:
+            _sha256(implementation.get(key), f"implementation {key}")
+        _require_exact_fields(
+            snapshot.get("distributed_update_v3"),
+            V3_DISTRIBUTED_POLICY,
+            "v3 snapshot distributed policy",
+        )
 
     recipe = snapshot.get("recipe")
     _require(isinstance(recipe, dict), "recipe identity is missing")
@@ -283,6 +342,11 @@ def _validate_snapshot(snapshot):
 
     normalized_recipe = copy.deepcopy(recipe)
     normalized_recipe["target_alphas"] = targets
+    if schema == "eggroll-es-anchor-line-search-snapshot-v3":
+        _require(
+            recipe["population_size"] % V3_ENGINE_COUNT == 0,
+            "v3 population size is not divisible by four engines",
+        )
     return {
         "schema": schema,
         "train": train,
@@ -500,11 +564,438 @@ def _validate_identity_audit(audit):
                 _sha256(leaf[side].get("sha256"), f"weight check {side} SHA-256")
 
 
+def _validate_v3_preflight(preflight, label):
+    _require(isinstance(preflight, dict), f"{label} is missing")
+    _require(
+        preflight.get("schema") == "eggroll-es-local-allocation-preflight-v3",
+        f"{label} schema changed",
+    )
+    _require(preflight.get("passed") is True, f"{label} did not pass")
+    _require(
+        preflight.get("collectives_created") is False
+        and preflight.get("rng_consumed") is False
+        and preflight.get("weights_changed") is False,
+        f"{label} was not local and side-effect free",
+    )
+    _require(
+        preflight.get("scratch_freed_before_collectives") is True,
+        f"{label} retained scratch before collectives",
+    )
+    _require(
+        preflight.get("accumulator_dtype") == "torch.float32",
+        f"{label} accumulator was not FP32",
+    )
+    _integer(
+        preflight.get("simulated_peak_temporary_bytes"),
+        f"{label} simulated temporary bytes", minimum=1,
+    )
+    _integer(
+        preflight.get("parameter_count"),
+        f"{label} parameter count", minimum=1,
+    )
+    _require(
+        isinstance(preflight.get("largest_parameter_name"), str)
+        and bool(preflight["largest_parameter_name"]),
+        f"{label} largest parameter name is missing",
+    )
+    _require(
+        isinstance(preflight.get("largest_parameter_shape"), list),
+        f"{label} largest parameter shape is missing",
+    )
+    _require(
+        isinstance(preflight.get("parameter_dtype"), str)
+        and bool(preflight["parameter_dtype"]),
+        f"{label} parameter dtype is missing",
+    )
+
+
+def _v3_update_manifest(
+    *, coefficient_sha256, population_size, reference_generation, plan_id,
+    update_sequence, previous_alpha, target_alpha, expected_base_sha256,
+):
+    return {
+        "schema": "eggroll-es-distributed-update-manifest-v3",
+        "coefficient_sha256": coefficient_sha256,
+        "population_size": population_size,
+        "world_size": V3_ENGINE_COUNT,
+        "reference_generation": reference_generation,
+        "plan_id": plan_id,
+        "update_sequence": update_sequence,
+        "previous_alpha": previous_alpha,
+        "target_alpha": target_alpha,
+        "expected_base_sha256": expected_base_sha256,
+    }
+
+
+def _validate_v3_rank_set(reports, label, *, communicator_rank=False):
+    _require(
+        isinstance(reports, list) and len(reports) == V3_ENGINE_COUNT,
+        f"{label} must contain four engine reports",
+    )
+    _require(
+        all(isinstance(report, dict) for report in reports),
+        f"{label} contains a non-object report",
+    )
+    ranks = [
+        (
+            report.get("communicator", {}).get("rank")
+            if communicator_rank and isinstance(report.get("communicator"), dict)
+            else report.get("rank")
+        )
+        for report in reports
+    ]
+    _require(
+        all(not isinstance(rank, bool) and isinstance(rank, int) for rank in ranks)
+        and sorted(ranks) == list(range(V3_ENGINE_COUNT)),
+        f"{label} ranks are not exactly 0,1,2,3",
+    )
+    return {rank: report for rank, report in zip(ranks, reports)}
+
+
+def _validate_v3_distributed_provenance(
+    coefficient_plan, *, coefficient_sha, targets, snapshot, journal_seeds,
+):
+    population_size = snapshot["recipe"]["population_size"]
+    _require(
+        isinstance(journal_seeds, list)
+        and len(journal_seeds) == population_size,
+        "v3 journal population seeds are incomplete",
+    )
+    for seed in journal_seeds:
+        _integer(seed, "v3 population seed", minimum=0)
+    _require(
+        len(set(journal_seeds)) == population_size,
+        "v3 population seeds are not unique",
+    )
+    raw_coefficients = coefficient_plan.get("coefficients")
+    _require(
+        isinstance(raw_coefficients, list)
+        and len(raw_coefficients) == population_size,
+        "v3 canonical coefficient values are incomplete",
+    )
+    coefficients = [
+        _finite_float(value, "v3 canonical coefficient")
+        for value in raw_coefficients
+    ]
+    _require(
+        canonical_sha256({
+            "seeds": journal_seeds,
+            "coefficients": coefficients,
+        }) == coefficient_sha,
+        "v3 canonical coefficient values do not match their SHA-256",
+    )
+
+    metadata = coefficient_plan.get("distributed_update_v3")
+    _require(isinstance(metadata, dict), "v3 distributed seed plan is missing")
+    _require(
+        metadata.get("schema") == "eggroll-es-distributed-seed-plan-v3",
+        "v3 distributed seed plan schema changed",
+    )
+    _require_exact_fields(
+        metadata,
+        {
+            "engine_count": V3_ENGINE_COUNT,
+            "tp_per_engine": 1,
+            "seed_sharding": "strided_by_inter_engine_rank",
+            "collective_dtype": "torch.float32",
+            "reference_recapture_policy": "once_before_next_population_only",
+        },
+        "v3 distributed seed plan",
+    )
+    plan_id = _sha256(metadata.get("plan_id"), "v3 plan ID")
+    reference_generation = _integer(
+        metadata.get("reference_generation"),
+        "v3 reference generation", minimum=1,
+    )
+    reference_identity = _validate_weight_identity(
+        metadata.get("reference_identity"), "v3 reference identity",
+    )
+    audit = coefficient_plan["identity_audit"]
+    expected_plan_id = canonical_sha256({
+        "schema": "eggroll-es-distributed-plan-id-v3",
+        "iteration": _integer(
+            audit.get("iteration"), "v3 identity audit iteration", minimum=0,
+        ),
+        "coefficient_sha256": coefficient_sha,
+        "reference_generation": reference_generation,
+        "reference_sha256": reference_identity["sha256"],
+    })
+    _require(plan_id == expected_plan_id, "v3 plan ID does not match its inputs")
+
+    applications = coefficient_plan.get("applications")
+    expected_count = sum(target > 0.0 for target in targets)
+    _require(
+        isinstance(applications, list) and len(applications) == expected_count,
+        "v3 application count does not match nonzero targets",
+    )
+    previous_alpha = 0.0
+    expected_base_sha = reference_identity["sha256"]
+    for sequence, (target_alpha, application) in enumerate(
+        zip(targets[1:], applications), 1,
+    ):
+        label = f"v3 application {sequence}"
+        _require(isinstance(application, dict), f"{label} is invalid")
+        _require(
+            application.get("schema")
+            == "eggroll-es-distributed-alpha-application-v3",
+            f"{label} schema changed",
+        )
+        _require(
+            _integer(
+                application.get("update_sequence"),
+                f"{label} sequence", minimum=1,
+            ) == sequence,
+            f"{label} sequence changed",
+        )
+        recorded_target_alpha = _finite_float(
+            application.get("target_alpha"), f"{label} target alpha",
+        )
+        recorded_increment = _finite_float(
+            application.get("alpha_increment"), f"{label} alpha increment",
+        )
+        _require(
+            _same_float(recorded_target_alpha, target_alpha)
+            and _same_float(recorded_increment, target_alpha - previous_alpha),
+            f"{label} alpha transition changed",
+        )
+        _require(
+            application.get("coefficient_sha256") == coefficient_sha,
+            f"{label} coefficient identity changed",
+        )
+        manifest_sha = _sha256(
+            application.get("manifest_sha256"), f"{label} manifest SHA-256",
+        )
+        expected_manifest = _v3_update_manifest(
+            coefficient_sha256=coefficient_sha,
+            population_size=population_size,
+            reference_generation=reference_generation,
+            plan_id=plan_id,
+            update_sequence=sequence,
+            previous_alpha=previous_alpha,
+            target_alpha=target_alpha,
+            expected_base_sha256=expected_base_sha,
+        )
+        _require(
+            manifest_sha == canonical_sha256(expected_manifest),
+            f"{label} manifest does not match the committed transition",
+        )
+
+        prepared = _validate_v3_rank_set(
+            application.get("prepared_shards"), f"{label} prepared reports",
+        )
+        for rank, report in prepared.items():
+            _require(
+                report.get("schema")
+                == "eggroll-es-distributed-update-prepared-v3"
+                and report.get("prepared") is True,
+                f"{label} rank {rank} was not prepared",
+            )
+            prepared_generation = _integer(
+                report.get("reference_generation"),
+                f"{label} rank {rank} prepared reference generation",
+                minimum=1,
+            )
+            prepared_sequence = _integer(
+                report.get("update_sequence"),
+                f"{label} rank {rank} prepared sequence", minimum=1,
+            )
+            _require(
+                report.get("manifest_sha256") == manifest_sha
+                and report.get("world_size") == V3_ENGINE_COUNT
+                and prepared_generation == reference_generation
+                and prepared_sequence == sequence
+                and report.get("base_sha256") == expected_base_sha,
+                f"{label} rank {rank} prepared metadata differs",
+            )
+            expected_indices = list(range(rank, population_size, V3_ENGINE_COUNT))
+            _require(
+                isinstance(report.get("shard_indices"), list)
+                and all(
+                    not isinstance(index, bool) and isinstance(index, int)
+                    for index in report["shard_indices"]
+                )
+                and report.get("shard_indices") == expected_indices
+                and report.get("shard_seeds")
+                == [journal_seeds[index] for index in expected_indices],
+                f"{label} rank {rank} seed shard changed",
+            )
+            expected_shard_pair_sha = canonical_sha256({
+                "seeds": [journal_seeds[index] for index in expected_indices],
+                "coefficients": [
+                    coefficients[index] for index in expected_indices
+                ],
+            })
+            _require(
+                report.get("shard_pair_sha256") == expected_shard_pair_sha,
+                f"{label} rank {rank} seed/coefficient shard SHA-256 differs",
+            )
+            _validate_v3_preflight(
+                report.get("allocation_preflight"),
+                f"{label} rank {rank} allocation preflight",
+            )
+
+        final_identity = _validate_weight_identity(
+            application.get("final_identity"), f"{label} final identity",
+        )
+        executed = _validate_v3_rank_set(
+            application.get("executed_collectives"),
+            f"{label} executed reports",
+        )
+        executed_parameter_counts = set()
+        executed_element_counts = set()
+        for rank, report in executed.items():
+            _require(
+                report.get("schema")
+                == "eggroll-es-distributed-update-executed-v3"
+                and report.get("executed") is True,
+                f"{label} rank {rank} did not execute",
+            )
+            _require(
+                report.get("manifest_sha256") == manifest_sha
+                and report.get("world_size") == V3_ENGINE_COUNT
+                and report.get("collective_dtype") == "torch.float32",
+                f"{label} rank {rank} collective metadata differs",
+            )
+            parameter_count = _integer(
+                report.get("parameter_count"),
+                f"{label} rank {rank} parameter count", minimum=1,
+            )
+            element_count = _integer(
+                report.get("reduced_element_count"),
+                f"{label} rank {rank} reduced elements", minimum=1,
+            )
+            executed_parameter_counts.add(parameter_count)
+            executed_element_counts.add(element_count)
+            _require(
+                _validate_weight_identity(
+                    report.get("final_identity"),
+                    f"{label} rank {rank} final identity",
+                ) == final_identity,
+                f"{label} rank {rank} final identity differs",
+            )
+        _require(
+            executed_parameter_counts == {final_identity["parameter_count"]},
+            f"{label} executed parameter counts differ",
+        )
+        _require(
+            len(executed_element_counts) == 1,
+            f"{label} executed element counts differ",
+        )
+
+        commits = _validate_v3_rank_set(
+            application.get("commits"), f"{label} commit reports",
+        )
+        for rank, report in commits.items():
+            _require(
+                report.get("schema")
+                == "eggroll-es-distributed-update-committed-v3"
+                and report.get("committed") is True,
+                f"{label} rank {rank} did not commit",
+            )
+            commit_generation = _integer(
+                report.get("reference_generation"),
+                f"{label} rank {rank} commit reference generation",
+                minimum=1,
+            )
+            commit_sequence = _integer(
+                report.get("update_sequence"),
+                f"{label} rank {rank} commit sequence", minimum=1,
+            )
+            commit_alpha = _finite_float(
+                report.get("accepted_alpha"),
+                f"{label} rank {rank} committed alpha",
+            )
+            _require(
+                report.get("manifest_sha256") == manifest_sha
+                and report.get("final_sha256") == final_identity["sha256"]
+                and commit_generation == reference_generation
+                and report.get("reference_fresh_for_population") is False
+                and commit_sequence == sequence
+                and _same_float(commit_alpha, target_alpha),
+                f"{label} rank {rank} commit metadata differs",
+            )
+
+        post_states = _validate_v3_rank_set(
+            application.get("post_commit_states"),
+            f"{label} post-commit states",
+            communicator_rank=True,
+        )
+        for rank, state in post_states.items():
+            communicator = state.get("communicator")
+            _require(
+                state.get("schema") == "eggroll-es-distributed-worker-state-v3"
+                and state.get("pending") is False
+                and isinstance(communicator, dict)
+                and communicator.get("rank") == rank
+                and communicator.get("world_size") == V3_ENGINE_COUNT
+                and communicator.get("tp_world_size") == 1
+                and communicator.get("available") is True
+                and communicator.get("disabled") is False,
+                f"{label} rank {rank} post-commit communicator differs",
+            )
+            state_generation = _integer(
+                state.get("reference_generation"),
+                f"{label} rank {rank} state reference generation", minimum=1,
+            )
+            state_sequence = _integer(
+                state.get("update_sequence"),
+                f"{label} rank {rank} state sequence", minimum=1,
+            )
+            state_alpha = _finite_float(
+                state.get("accepted_alpha"),
+                f"{label} rank {rank} state accepted alpha",
+            )
+            _require(
+                state_generation == reference_generation
+                and state.get("reference_fresh_for_population") is False
+                and state.get("update_session") == plan_id
+                and state_sequence == sequence
+                and _same_float(state_alpha, target_alpha),
+                f"{label} rank {rank} post-commit state differs",
+            )
+            _require(
+                _validate_weight_identity(
+                    state.get("reference_identity"),
+                    f"{label} rank {rank} retained reference",
+                ) == reference_identity,
+                f"{label} rank {rank} retained reference changed",
+            )
+            _require(
+                _validate_weight_identity(
+                    state.get("current_identity"),
+                    f"{label} rank {rank} current identity",
+                ) == final_identity,
+                f"{label} rank {rank} current identity differs",
+            )
+
+        _require(
+            application.get("reference_recaptured") is False
+            and application.get("reference_fresh_for_population") is False,
+            f"{label} improperly recaptured the population reference",
+        )
+        _require(
+            application.get("bf16_alpha_semantics")
+            == "path_dependent_monotonic_increment"
+            and application.get("direct_alpha_confirmation_required") is True,
+            f"{label} direct-confirmation policy changed",
+        )
+        previous_alpha = target_alpha
+        expected_base_sha = final_identity["sha256"]
+
+    return {
+        "plan_id": plan_id,
+        "reference_generation": reference_generation,
+        "application_count": len(applications),
+        "final_identity_sha256": expected_base_sha,
+    }
+
+
 def validate_journal(journal):
     _require(isinstance(journal, dict), "journal root must be an object")
     _assert_no_heldout(journal)
     _verify_content_hash(journal)
-    _require(journal.get("schema") in ALLOWED_SCHEMAS, "journal is not corrected v2/v3")
+    journal_schema = journal.get("schema")
+    _require(journal_schema in ALLOWED_SCHEMAS, "journal is not corrected v2/v3")
     _require(journal.get("status") == "complete", "journal is incomplete or failed")
     _require(journal.get("in_progress") is None, "journal still has in-progress work")
     policy = journal.get("policy")
@@ -524,6 +1015,24 @@ def validate_journal(journal):
     )
 
     snapshot = _validate_snapshot(journal.get("snapshot"))
+    expected_snapshot_schema = (
+        "eggroll-es-anchor-line-search-snapshot-v3"
+        if journal_schema == "eggroll-es-anchor-alpha-line-search-v3"
+        else "eggroll-es-anchor-line-search-snapshot-v2"
+    )
+    _require(
+        snapshot["schema"] == expected_snapshot_schema,
+        "journal and snapshot corrected-version schemas differ",
+    )
+    if journal_schema == "eggroll-es-anchor-alpha-line-search-v3":
+        _require_exact_fields(
+            policy,
+            {
+                "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
+                "direct_alpha_confirmation_required": True,
+            },
+            "v3 journal policy",
+        )
     targets = journal.get("targets")
     _require(isinstance(targets, list), "journal targets are missing")
     targets = [_finite_float(value, "journal target alpha") for value in targets]
@@ -560,6 +1069,15 @@ def validate_journal(journal):
         "coefficient seed count differs from population size",
     )
     _validate_identity_audit(coefficient_plan.get("identity_audit"))
+    distributed_v3 = None
+    if journal_schema == "eggroll-es-anchor-alpha-line-search-v3":
+        distributed_v3 = _validate_v3_distributed_provenance(
+            coefficient_plan,
+            coefficient_sha=coefficient_sha,
+            targets=targets,
+            snapshot=snapshot,
+            journal_seeds=journal.get("seeds"),
+        )
 
     baseline = None
     normalized_states = []
@@ -640,8 +1158,8 @@ def validate_journal(journal):
     family_snapshot["recipe"].pop("seed", None)
     family_configuration = copy.deepcopy(configuration)
     family_configuration.pop("global_seed", None)
-    return {
-        "schema": journal["schema"],
+    validated = {
+        "schema": journal_schema,
         "seed": snapshot["seed"],
         "targets": targets,
         "states": normalized_states,
@@ -651,6 +1169,9 @@ def validate_journal(journal):
         "coefficient_sha256": coefficient_sha,
         "content_sha256": journal["content_sha256_before_self_field"],
     }
+    if distributed_v3 is not None:
+        validated["distributed_update_v3"] = distributed_v3
+    return validated
 
 
 def summarize_pilot(journal, source_path=None):
