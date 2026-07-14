@@ -15,6 +15,12 @@ import run_eggroll_es_anchor_equivalence_v11d as retry_v11d
 def build_report(journal_path, launch_attempt_path):
     journal_path = Path(journal_path).resolve()
     launch_attempt_path = Path(launch_attempt_path).resolve()
+    runtime = retry_v11d._runtime_cli_v11d(
+        list(retry_v11d.FROZEN_REAL_ARGV_V11D)
+    )
+    expected_attempt = retry_v11d._attempt_path_v11d(runtime).resolve()
+    if launch_attempt_path != expected_attempt:
+        raise RuntimeError("v11d reporter launch-attempt path changed")
     offline = retry_v11d.driver_v11c.driver_v11b.driver_v11.driver_v8.offline_audit
     offline._assert_no_heldout(str(journal_path), "v11d equivalence journal")
     offline._assert_no_heldout(
@@ -22,8 +28,16 @@ def build_report(journal_path, launch_attempt_path):
     )
     journal = json.loads(journal_path.read_text())
     launch_attempt = json.loads(launch_attempt_path.read_text())
+    # Journal policy includes explicit ``...heldout...: false`` sentinels and
+    # is checked by the inherited schema-aware validator.  The V11d-specific
+    # launch evidence has no such legacy fields and remains recursively scanned.
+    offline._assert_no_heldout(
+        launch_attempt, "v11d loaded launch-attempt object",
+    )
     audit = retry_v11d.validate_completed_journal_v11d(journal)
-    launch_audit = retry_v11d.validate_launch_attempt_v11d(launch_attempt)
+    launch_audit = retry_v11d.validate_launch_attempt_v11d(
+        launch_attempt, journal_path,
+    )
 
     prior = retry_v11d._patch_v11c_retry_globals_v11d()
     try:

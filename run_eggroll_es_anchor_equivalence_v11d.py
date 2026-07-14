@@ -45,6 +45,51 @@ DIAGNOSTIC_ENV_V11D = {
     "RAY_DEDUP_LOGS": "0",
     "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1",
 }
+FROZEN_REAL_ARGV_V11D = (
+    "--layer-plan-json",
+    str((ROOT / "experiments/layer_plans/middle_late_dense_v6.json").resolve()),
+    "--expected-layer-plan-file-sha256",
+    "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
+    "--expected-layer-plan-sha256",
+    "03745c603a6b48898b41afbd4d9121aef276d7e45ca1a3ae14607ec5d1042cb9",
+    "--expected-model-config-sha256",
+    "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "--v11c-stage", "equivalence_api_retry",
+    "--v11c-v10-report",
+    str((ROOT / "experiments/eggroll_es_hpo/S6_ANTITHETIC_CROSSED_V10_REPORT.json").resolve()),
+    "--v11c-failed-v11-journal",
+    str((ROOT / "experiments/eggroll_es_hpo/runs/snapshot794_layer_v11_middle_late_resident_sign_exact_v10_d43d44_a43a44_basis20260714/alpha_line_search.json").resolve()),
+    "--v11c-v11b-failure-evidence",
+    str((ROOT / "experiments/eggroll_es_hpo/S6_RESIDENT_SIGN_EQUIVALENCE_V11B_FAILURE.md").resolve()),
+    "--v11c-perturbation-basis-seed", "20260714",
+    "--train-dataset",
+    "/tmp/specialist-s6-candidate-guarded-ead1b21/dataset/train",
+    "--eval-dataset",
+    "/tmp/specialist-s6-candidate-guarded-ead1b21/dataset/eval",
+    "--population-size", "32",
+    "--batch-size", "128",
+    "--mini-batch-size", "64",
+    "--seed", "43",
+    "--target-alphas", "0",
+    "--experiment-name", EXPERIMENT_NAME_V11D,
+)
+COMPLETED_ATTEMPT_KEYS_V11D = frozenset({
+    "schema", "status", "phase", "experiment_name", "run_directory",
+    "run_directory_absent_before_attempt", "argv_sha256",
+    "source_provenance", "v11c_failure_evidence", "v11c_recipe_sha256",
+    "diagnostic_environment", "algorithm_or_data_changed_from_v11c",
+    "target_alpha_zero_only", "model_update_applied",
+    "sealed_data_opened_or_scored", "run_directory_exists_after_attempt",
+    "v11c_journal_exists_after_attempt", "journal_binding",
+    "content_sha256_before_self_field",
+})
+JOURNAL_BINDING_KEYS_V11D = frozenset({
+    "schema", "path", "file_sha256", "content_sha256", "journal_schema",
+})
+SOURCE_PROVENANCE_KEYS_V11D = frozenset({
+    "schema", "repository_root", "relative_path", "git_head",
+    "committed_blob_sha256", "driver_file_sha256",
+})
 
 
 def _file_sha256(path):
@@ -61,6 +106,7 @@ def validate_source_provenance_v11d(provenance):
     relative = Path(__file__).resolve().relative_to(ROOT).as_posix()
     if (
         not isinstance(provenance, dict)
+        or set(provenance) != SOURCE_PROVENANCE_KEYS_V11D
         or provenance.get("schema")
         != "eggroll-es-v11d-committed-source-provenance"
         or provenance.get("repository_root") != str(ROOT)
@@ -140,7 +186,7 @@ def bind_v11c_failure_v11d(path=V11C_FAILURE_PATH_V11D):
         "model_loaded_on_all_four_gpus": True,
         "journal_created": False,
         "model_update_applied": False,
-        "heldout_opened_or_scored": False,
+        "sealed_data_opened_or_scored": False,
         "v11c_implementation": copy.deepcopy(
             V11C_IMPLEMENTATION_SHA256_V11D
         ),
@@ -152,6 +198,13 @@ def bind_v11c_failure_v11d(path=V11C_FAILURE_PATH_V11D):
 
 
 def _runtime_cli_v11d(argv):
+    argv = list(argv)
+    allowed = (
+        list(FROZEN_REAL_ARGV_V11D),
+        [*FROZEN_REAL_ARGV_V11D, "--v11c-dry-run"],
+    )
+    if argv not in allowed:
+        raise ValueError("v11d requires the exact frozen real or dry-run CLI")
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--experiment-name")
     parser.add_argument(
@@ -159,9 +212,7 @@ def _runtime_cli_v11d(argv):
         default=str(driver_v11c.driver_v11b.driver_v11.FROZEN_OUTPUT_DIRECTORY_V11),
     )
     parser.add_argument("--v11c-dry-run", action="store_true")
-    runtime, _ = parser.parse_known_args(list(argv))
-    if runtime.experiment_name != EXPERIMENT_NAME_V11D:
-        raise ValueError("v11d requires the exact fresh experiment name")
+    runtime, _ = parser.parse_known_args(argv)
     if (
         Path(runtime.output_directory).resolve()
         != driver_v11c.driver_v11b.driver_v11.FROZEN_OUTPUT_DIRECTORY_V11
@@ -212,7 +263,9 @@ def run_exact_retry_v11d(argv, attempt_path, failure_binding):
         "experiment_name": EXPERIMENT_NAME_V11D,
         "run_directory": str(run_dir),
         "run_directory_absent_before_attempt": True,
-        "argv_sha256": driver_v11c.driver_v1.canonical_sha256(list(argv)),
+        "argv_sha256": driver_v11c.driver_v1.canonical_sha256(
+            list(FROZEN_REAL_ARGV_V11D)
+        ),
         "source_provenance": _source_provenance_v11d(),
         "v11c_failure_evidence": copy.deepcopy(failure_binding),
         "v11c_recipe_sha256": EXPECTED_V11C_RECIPE_SHA256_V11D,
@@ -220,13 +273,33 @@ def run_exact_retry_v11d(argv, attempt_path, failure_binding):
         "algorithm_or_data_changed_from_v11c": False,
         "target_alpha_zero_only": True,
         "model_update_applied": False,
-        "heldout_opened_or_scored": False,
+        "sealed_data_opened_or_scored": False,
     }
-    _write_attempt_v11d(attempt_path, payload)
+    _exclusive_write_attempt_v11d(attempt_path, payload)
+    if run_dir.exists():
+        payload.update({
+            "status": "failed",
+            "phase": "exclusive_claim_detected_existing_run_directory",
+            "failure": {
+                "type": "FreshRunReservationError",
+                "message": "v11d run directory appeared after exclusive claim",
+                "traceback": "",
+            },
+            "run_directory_exists_after_attempt": True,
+            "v11c_journal_exists_after_attempt": (
+                run_dir / driver_v11c.driver_v1.JOURNAL_NAME
+            ).exists(),
+        })
+        _write_attempt_v11d(attempt_path, payload)
+        raise ValueError("v11d run directory appeared after exclusive claim")
     old_env = {key: os.environ.get(key) for key in DIAGNOSTIC_ENV_V11D}
     os.environ.update(DIAGNOSTIC_ENV_V11D)
+    journal_binding = None
     try:
         result = driver_v11c.main(list(argv))
+        journal_binding = _build_journal_binding_v11d(
+            run_dir / driver_v11c.driver_v1.JOURNAL_NAME
+        )
     except BaseException as error:
         payload.update({
             "status": "failed",
@@ -241,6 +314,8 @@ def run_exact_retry_v11d(argv, attempt_path, failure_binding):
                 run_dir / driver_v11c.driver_v1.JOURNAL_NAME
             ).exists(),
         })
+        if journal_binding is not None:
+            payload["journal_binding"] = journal_binding
         _write_attempt_v11d(attempt_path, payload)
         raise
     else:
@@ -251,6 +326,7 @@ def run_exact_retry_v11d(argv, attempt_path, failure_binding):
             "v11c_journal_exists_after_attempt": (
                 run_dir / driver_v11c.driver_v1.JOURNAL_NAME
             ).exists(),
+            "journal_binding": journal_binding,
         })
         _write_attempt_v11d(attempt_path, payload)
         return result
@@ -270,16 +346,81 @@ def _write_attempt_v11d(path, payload):
     driver_v11c.driver_v1.atomic_write_json(path, payload)
 
 
-def validate_launch_attempt_v11d(attempt):
+def _exclusive_write_attempt_v11d(path, payload):
+    path = Path(path).resolve()
+    payload.pop("content_sha256_before_self_field", None)
+    payload["content_sha256_before_self_field"] = (
+        driver_v11c.driver_v1.canonical_sha256(payload)
+    )
+    raw = json.dumps(payload, indent=2, sort_keys=True) + "\n"
+    try:
+        descriptor = os.open(
+            path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600,
+        )
+    except FileExistsError as error:
+        raise ValueError("v11d launch-attempt evidence already exists") from error
+    try:
+        with os.fdopen(descriptor, "w", encoding="utf-8") as destination:
+            destination.write(raw)
+            destination.flush()
+            os.fsync(destination.fileno())
+    except BaseException:
+        # Keep even a partial exclusive claim: an I/O failure must never make
+        # the same experiment name silently retryable.
+        raise
+
+
+def _offline_audit_v11d():
+    return driver_v11c.driver_v11b.driver_v11.driver_v8.offline_audit
+
+
+def _build_journal_binding_v11d(journal_path):
+    journal_path = Path(journal_path).resolve()
+    expected = (
+        driver_v11c.driver_v11b.driver_v11.FROZEN_OUTPUT_DIRECTORY_V11
+        / EXPERIMENT_NAME_V11D / driver_v11c.driver_v1.JOURNAL_NAME
+    ).resolve()
+    if journal_path != expected:
+        raise RuntimeError("v11d journal binding path changed")
+    journal = json.loads(journal_path.read_text())
+    # The inherited, frozen journal schema deliberately contains policy
+    # sentinels such as ``ood_validation_heldout_as_objective: false``.  Its
+    # schema-aware validator below enforces those exact false values; a generic
+    # substring scan would reject valid evidence before it could be validated.
+    audit = validate_completed_journal_v11d(journal)
+    return {
+        "schema": "eggroll-es-v11d-journal-binding",
+        "path": str(journal_path),
+        "file_sha256": _file_sha256(journal_path),
+        "content_sha256": audit["content_sha256"],
+        "journal_schema": journal.get("schema"),
+    }
+
+
+def validate_launch_attempt_v11d(attempt, expected_journal_path=None):
     failure = bind_v11c_failure_v11d()
     if not isinstance(attempt, dict):
         raise RuntimeError("v11d completed launch-attempt evidence changed")
+    _offline_audit_v11d()._assert_no_heldout(
+        attempt, "v11d launch-attempt object",
+    )
     validate_source_provenance_v11d(attempt.get("source_provenance"))
+    expected_run = (
+        driver_v11c.driver_v11b.driver_v11.FROZEN_OUTPUT_DIRECTORY_V11
+        / EXPERIMENT_NAME_V11D
+    ).resolve()
+    expected_argv_sha = driver_v11c.driver_v1.canonical_sha256(
+        list(FROZEN_REAL_ARGV_V11D)
+    )
+    journal_binding = attempt.get("journal_binding")
     if (
-        attempt.get("schema") != "eggroll-es-durable-launch-attempt-v11d"
+        set(attempt) != COMPLETED_ATTEMPT_KEYS_V11D
+        or attempt.get("schema") != "eggroll-es-durable-launch-attempt-v11d"
         or attempt.get("status") != "complete"
         or attempt.get("phase") != "after_v11c_driver_main"
         or attempt.get("experiment_name") != EXPERIMENT_NAME_V11D
+        or Path(attempt.get("run_directory", "")).resolve() != expected_run
+        or attempt.get("argv_sha256") != expected_argv_sha
         or attempt.get("v11c_recipe_sha256")
         != EXPECTED_V11C_RECIPE_SHA256_V11D
         or attempt.get("v11c_failure_evidence") != failure
@@ -287,10 +428,12 @@ def validate_launch_attempt_v11d(attempt):
         or attempt.get("algorithm_or_data_changed_from_v11c") is not False
         or attempt.get("target_alpha_zero_only") is not True
         or attempt.get("model_update_applied") is not False
-        or attempt.get("heldout_opened_or_scored") is not False
+        or attempt.get("sealed_data_opened_or_scored") is not False
         or attempt.get("run_directory_absent_before_attempt") is not True
         or attempt.get("run_directory_exists_after_attempt") is not True
         or attempt.get("v11c_journal_exists_after_attempt") is not True
+        or not isinstance(journal_binding, dict)
+        or set(journal_binding) != JOURNAL_BINDING_KEYS_V11D
         or attempt.get("content_sha256_before_self_field")
         != driver_v11c.driver_v1.canonical_sha256({
             key: value for key, value in attempt.items()
@@ -298,6 +441,19 @@ def validate_launch_attempt_v11d(attempt):
         })
     ):
         raise RuntimeError("v11d completed launch-attempt evidence changed")
+    recorded_journal = Path(journal_binding["path"]).resolve()
+    expected_journal = (
+        expected_run / driver_v11c.driver_v1.JOURNAL_NAME
+    ).resolve()
+    if expected_journal_path is not None:
+        supplied_journal = Path(expected_journal_path).resolve()
+        if supplied_journal != expected_journal:
+            raise RuntimeError("v11d reporter journal path changed")
+    if recorded_journal != expected_journal:
+        raise RuntimeError("v11d attempt is bound to the wrong journal")
+    current_binding = _build_journal_binding_v11d(recorded_journal)
+    if journal_binding != current_binding:
+        raise RuntimeError("v11d attempt/journal cryptographic binding changed")
     return {
         "content_sha256": attempt["content_sha256_before_self_field"],
         "v11c_failure_binding_sha256": failure["binding_sha256"],

@@ -38,3 +38,11 @@ commit. The launch artifact records this commit/blob/file binding. Offline
 validation re-reads the recorded Git blob and requires both the current driver
 and recorded driver hash to match it, and it requires the exact diagnostic
 environment rather than merely recording unverified provenance fields.
+
+The real and dry-run command lines are exact frozen tuples. The sibling launch
+artifact is claimed with an exclusive create before delegation, and completed
+evidence must bind the exact run path plus both file and validated-content
+hashes of its journal. V11d-specific launch evidence is recursively checked for
+sealed-data references; the inherited journal instead uses its schema-aware
+validator because that frozen schema intentionally contains explicit
+`...heldout...: false` policy sentinels.
