@@ -368,6 +368,11 @@ def test_selected_only_reference_perturb_restore_and_partition_audit(monkeypatch
     initial_unselected = named_parameters(worker)["unselected"].detach().clone()
     reference = worker.save_self_exact_reference(chunk_bytes=2)
     assert set(worker.exact_reference_weights) == RUNTIME_SELECTED
+    # The inherited coordinator compares complete reference reports across
+    # engines.  Per-engine communicator fields belong in the subsequent state
+    # inspection, not in this consensus object.
+    assert "rank" not in reference
+    assert "world_size" not in reference
     assert reference["identity"]["unselected"] == (
         worker._v4_unselected_origin_identity
     )

@@ -887,14 +887,11 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         # Later captures perform a fresh complement audit above.
         self._v4_last_full_audit_identity = dict(identity)
         self._v4_last_full_audit_phase = "exact_reference"
-        communicator = self._communicator_state_v3(REQUIRED_ENGINE_COUNT)
         return {
             "schema": "eggroll-es-selected-exact-reference-state-v4",
             "reference_generation": generation,
             "fresh_for_population": True,
             "identity": dict(identity),
-            "rank": communicator["rank"],
-            "world_size": communicator["world_size"],
             **self._binding_fields_v4(),
         }
 
