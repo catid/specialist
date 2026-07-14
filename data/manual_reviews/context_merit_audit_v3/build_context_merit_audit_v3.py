@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import collections
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -37,6 +38,11 @@ CONTEXT_MERIT_V2_CURATION = (
     DATA / "manual_reviews" / "context_merit_audit_v2" /
     "pending_curation_context_merit_v2.jsonl"
 )
+# V3's historical selection may consume V1 and V2, but no context-merit
+# tranche created at or after V3.
+PRIOR_CONTEXT_MERIT_DIRS = frozenset({
+    "context_merit_audit_v1", "context_merit_audit_v2",
+})
 
 file_sha256 = common.file_sha256
 text_sha256 = common.text_sha256
@@ -380,8 +386,13 @@ ISOLATED_PROJECTION = {
 
 def reviewed_fact_ids() -> set[str]:
     reviewed = set()
-    for path in sorted((DATA / "manual_reviews").rglob("*.jsonl")):
+    manual_root = DATA / "manual_reviews"
+    for path in sorted(manual_root.rglob("*.jsonl")):
         if OUT_DIR in path.parents:
+            continue
+        review_dir = path.relative_to(manual_root).parts[0]
+        if (re.fullmatch(r"context_merit_audit_v\d+", review_dir) and
+                review_dir not in PRIOR_CONTEXT_MERIT_DIRS):
             continue
         for row in read_jsonl(path):
             for field in common.ID_FIELDS:
