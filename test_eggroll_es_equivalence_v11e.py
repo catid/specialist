@@ -131,6 +131,7 @@ def test_v11e_failure_telemetry_is_atomic_full_and_reraised(
     tmp_path, monkeypatch, effective_audit,
 ):
     attempt = tmp_path / "attempt.json"
+    failure_binding = driver_v11e.bind_v11d_failure_v11e()
 
     def fail(_argv):
         raise RuntimeError("synthetic V11e post-claim failure")
@@ -139,9 +140,14 @@ def test_v11e_failure_telemetry_is_atomic_full_and_reraised(
     monkeypatch.setattr(driver_v11e, "_source_provenance_v11e", lambda: {
         "schema": "synthetic-source-provenance",
     })
+    monkeypatch.setattr(
+        driver_v11c.driver_v11b.driver_v11,
+        "FROZEN_OUTPUT_DIRECTORY_V11",
+        tmp_path,
+    )
     with pytest.raises(RuntimeError, match="synthetic V11e post-claim failure"):
         driver_v11e.run_exact_retry_v11e(
-            cli(dry=False), attempt, driver_v11e.bind_v11d_failure_v11e(),
+            cli(dry=False), attempt, failure_binding,
             effective_audit,
         )
     payload = json.loads(attempt.read_text())
