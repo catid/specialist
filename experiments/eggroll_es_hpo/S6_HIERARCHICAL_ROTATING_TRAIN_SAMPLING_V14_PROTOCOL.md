@@ -14,6 +14,12 @@ This targets the equal-document mean of within-document row means. A page with
 27 generated Q&As no longer receives 27 times the weight of a page with one
 Q&A, but its useful rows can still rotate into later training steps.
 
+The imbalance is large enough to matter: under uniform row sampling, the 794
+rows induce an effective document sample size of only `139.7243` across 310
+documents, and the ten largest documents receive `18.64%` of all row-sampling
+probability. Uniform document sampling restores the document-level target ESS
+to 310 before the fixed per-iteration quotas are applied.
+
 ## Frozen policy
 
 The policy accepts only V13's content-addressed 794-row train source. It groups
