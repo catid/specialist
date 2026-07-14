@@ -63,21 +63,32 @@ fixed configuration is:
   "source_split": "anchor_prose",
   "reference": "exact_alpha_zero_selected_plan_weights",
   "document_unit": "document_id",
-  "within_document": "sum_selected_token_logprob_and_token_count",
+  "within_document": "sum_selected_token_logprob_and_scored_token_count",
+  "document_identity_in_provenance": "sha256_utf8",
   "bootstrap_document_sampling": "uniform_with_replacement",
   "bootstrap_samples": 20000,
   "bootstrap_seed": 20260715,
+  "bootstrap_prng": "python_random_mt19937_randrange_v1",
   "common_resamples_across_population": true,
   "percentile": 0.025,
   "percentile_interpolation": "linear",
   "fitness": "paired_document_bootstrap_lower_bound",
-  "higher_is_better": true
+  "higher_is_better": true,
+  "population_standardization": {
+    "method": "population_zscore",
+    "epsilon": 1e-8,
+    "zero_spread": "return_all_zero_coefficients"
+  }
 }
 ```
 
+The canonical configuration SHA-256 is
+`da49dd210bf5375cc8c96220744695e5f772546fc55c997efa239053c6498cae`.
+
 Document identities/counts must align exactly across reference and every
-population member.  Duplicate, missing, reordered-without-canonicalization,
-non-finite, or token-count-drifted summaries fail closed.  Zero robust-score
+population member.  Input rows are canonically ordered by hashed document
+identity; persisted rows in any other order, or duplicate, missing,
+non-finite, or token-count-drifted summaries, fail closed.  Zero robust-score
 spread produces a zero update.  The reference summaries, population matrix,
 common resampling plan, robust scores, objective configuration, projection,
 coefficients, and their canonical hashes are bound into the persisted v5
