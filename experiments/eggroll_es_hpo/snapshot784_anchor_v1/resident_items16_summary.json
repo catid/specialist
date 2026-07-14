@@ -1,0 +1,99 @@
+{
+  "schema": "eggroll-es-s5-anchor-resident-line-search-compact-v1",
+  "kind": "anchored_resident_alpha_line_search",
+  "model": "models/Qwen3.6-35B-A3B",
+  "seed": 42,
+  "sigma": 0.0003,
+  "population_size": 8,
+  "batch_size": 64,
+  "checkpoint": null,
+  "heldout_evaluated": false,
+  "anchor": {
+    "dataset_rows": 128,
+    "dataset_sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+    "report_sha256": "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5",
+    "items_per_step": 16,
+    "max_input_tokens": 512,
+    "min_anchor_cosine": 0.25,
+    "coefficient_sha256": "f44228d99ee6854b84ea1fc871006d1badce08e5293aadc7140281ecb1e4d698",
+    "projection": {
+      "decision": "project_to_anchor_cone",
+      "domain_anchor_cosine_before": 0.0557441806201261,
+      "domain_anchor_cosine_after": 0.25000000000000006,
+      "projection_lambda": 0.20205403425388035,
+      "update_norm_ratio": 1.0
+    },
+    "raw_plan_sha256": "f72b544092783f8818b10f3258fd450f7e3d9fba4aa15de84e93c354552b0aed"
+  },
+  "states": [
+    {
+      "target_alpha": 0.0,
+      "validation": 0.08381010452961674,
+      "validation_exact": 2,
+      "validation_nonzero": 13,
+      "ood_qa": 0.714128787878788,
+      "ood_qa_exact": 16,
+      "ood_qa_nonzero": 23,
+      "ood_prose_delta": 0.0,
+      "ood_prose_95_ci": [0.0, 0.0],
+      "strict_guards_passed": true,
+      "ood_prose_raw_sha256": "38276f2dedaaf5062ca8e58aacb9990c3a33bb1b44e3c7172798334da5bfd239"
+    },
+    {
+      "target_alpha": 0.00000625,
+      "validation": 0.08164472325129801,
+      "validation_exact": 2,
+      "validation_nonzero": 13,
+      "ood_qa": 0.714128787878788,
+      "ood_qa_exact": 16,
+      "ood_qa_nonzero": 23,
+      "ood_prose_delta": -0.0030837641949414962,
+      "ood_prose_95_ci": [-0.005676272486182038, -0.00031921210601279504],
+      "strict_guards_passed": false,
+      "ood_prose_raw_sha256": "a44d824040822ca7c547c6897ece79c79129401f14b3e4d87263673a84a03d41",
+      "validation_comparison_sha256": "e0b106be0791cd9a11658a2f09c8d6db9a24ad05ced75de9193d0a62afe57865",
+      "ood_qa_comparison_sha256": "be7f737f697d6356aadae6774a2497a014199ea158bdcdf514aa2eb702ca736b"
+    },
+    {
+      "target_alpha": 0.0000125,
+      "validation": 0.0848875170428723,
+      "validation_exact": 2,
+      "validation_nonzero": 13,
+      "ood_qa": 0.714128787878788,
+      "ood_qa_exact": 16,
+      "ood_qa_nonzero": 23,
+      "ood_prose_delta": -0.001981960063980104,
+      "ood_prose_95_ci": [-0.0043025053379807, 0.0004884761668311493],
+      "strict_guards_passed": false,
+      "ood_prose_raw_sha256": "e90180274d05264bae972fc25c5043bae17cf1827de5a6808d5e68eab01de9bf",
+      "validation_comparison_sha256": "b41c93267226e29570386912192318085ef0298281f8fee3ce4032aed15ce05b",
+      "ood_qa_comparison_sha256": "1aa52d338213d536afd2bbe6e358797def5cfec832fe2a7c742800c66570407c"
+    },
+    {
+      "target_alpha": 0.000025,
+      "validation": 0.08464361460384791,
+      "validation_exact": 2,
+      "validation_nonzero": 13,
+      "ood_qa": 0.7153787878787878,
+      "ood_qa_exact": 16,
+      "ood_qa_nonzero": 23,
+      "ood_prose_delta": -0.002044020539043734,
+      "ood_prose_95_ci": [-0.0044424932690297295, 0.0005012789468195572],
+      "strict_guards_passed": false,
+      "ood_prose_raw_sha256": "f07948a019d5516a6556ced488e9fa8c2b7ed7713855e0e65c3b999233080b37",
+      "validation_comparison_sha256": "4a8f94739c1d94925640f400ea0cbc4a6afebd128cc3a6412cf37a82a17e63b3",
+      "ood_qa_comparison_sha256": "5669105fbe8a8004ea82eb3cba74e2519a53f024fe0cceba157095afd6fd3ffb"
+    }
+  ],
+  "gpu_utilization": {
+    "samples": 82,
+    "mean_percent_by_gpu": [45.439024, 25.402439, 22.804878, 25.707317],
+    "max_memory_mib_by_gpu": [96078, 85156, 85000, 84948],
+    "all_four_at_least_20_percent_samples": 19,
+    "all_four_at_100_percent_samples": 11
+  },
+  "raw_journal_sha256": "9e692266c090c35794d66edfd1146998d3f884808ab12a80bb5f1d735ef75c15",
+  "journal_content_sha256_before_self_field": "f6510d1829795bdcbd553502397c52d65ed55b620cc82136b5659db981cd20cc",
+  "gpu_trace": "../../gpu_utilization_eggroll_es_s5_anchor_v1_resident_items16_cos025_seed42.jsonl",
+  "gpu_trace_sha256": "91495993c4983952680ebf33ea687b6abf4a89d9fb6f6d7fd636b403470e3a08"
+}

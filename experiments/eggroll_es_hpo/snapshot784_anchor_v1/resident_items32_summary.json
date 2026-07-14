@@ -1,0 +1,99 @@
+{
+  "schema": "eggroll-es-s5-anchor-resident-line-search-compact-v1",
+  "kind": "anchored_resident_alpha_line_search",
+  "model": "models/Qwen3.6-35B-A3B",
+  "seed": 42,
+  "sigma": 0.0003,
+  "population_size": 8,
+  "batch_size": 64,
+  "checkpoint": null,
+  "heldout_evaluated": false,
+  "anchor": {
+    "dataset_rows": 128,
+    "dataset_sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+    "report_sha256": "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5",
+    "items_per_step": 32,
+    "max_input_tokens": 512,
+    "min_anchor_cosine": 0.5,
+    "coefficient_sha256": "cf2c8d8a0c165648b8423c20baccbfa61a849d05e477880d5166561b9ae7a791",
+    "projection": {
+      "decision": "project_to_anchor_cone",
+      "domain_anchor_cosine_before": -0.4343371975651885,
+      "domain_anchor_cosine_after": 0.5,
+      "projection_lambda": 0.9543883369699049,
+      "update_norm_ratio": 1.0
+    },
+    "raw_plan_sha256": "d5ef5445eb8e98e4d5ec0dc788be544f61c5eb808a6bd5b9f9c825e68390feb6"
+  },
+  "states": [
+    {
+      "target_alpha": 0.0,
+      "validation": 0.08381010452961674,
+      "validation_exact": 2,
+      "validation_nonzero": 13,
+      "ood_qa": 0.714128787878788,
+      "ood_qa_exact": 16,
+      "ood_qa_nonzero": 23,
+      "ood_prose_delta": 0.0,
+      "ood_prose_95_ci": [0.0, 0.0],
+      "strict_guards_passed": true,
+      "ood_prose_raw_sha256": "38276f2dedaaf5062ca8e58aacb9990c3a33bb1b44e3c7172798334da5bfd239"
+    },
+    {
+      "target_alpha": 0.000003125,
+      "validation": 0.08202961672473869,
+      "validation_exact": 2,
+      "validation_nonzero": 12,
+      "ood_qa": 0.714128787878788,
+      "ood_qa_exact": 16,
+      "ood_qa_nonzero": 23,
+      "ood_prose_delta": -0.002823012311009787,
+      "ood_prose_95_ci": [-0.005379262676849589, -0.0002699374213610771],
+      "strict_guards_passed": false,
+      "ood_prose_raw_sha256": "7b637e0704caafb3965da8dbdae82559776e21f981d72eac75aa71167686336c",
+      "validation_comparison_sha256": "cec1f94e42dcb41d59078b628a6b045821f922beaad7d935020de41b21c87586",
+      "ood_qa_comparison_sha256": "ae5958fe9016ba2fe8de06232af74742908e65be5ccda080ba9fb84903c9fd89"
+    },
+    {
+      "target_alpha": 0.00000625,
+      "validation": 0.059521663384335705,
+      "validation_exact": 1,
+      "validation_nonzero": 12,
+      "ood_qa": 0.714128787878788,
+      "ood_qa_exact": 16,
+      "ood_qa_nonzero": 23,
+      "ood_prose_delta": -0.003028977854618642,
+      "ood_prose_95_ci": [-0.00527258771221849, -0.0005548518942039416],
+      "strict_guards_passed": false,
+      "ood_prose_raw_sha256": "05232685871188e37c260bf4fe9d8fb64a77acc43c9f80b115f6a9defaab9f15",
+      "validation_comparison_sha256": "af82d6222698a5c2529733c12c22e6c5a913ab8f83a12b532a2b2bff9035c6dc",
+      "ood_qa_comparison_sha256": "209c8d11c6e31ecf466696ce9de48404be4d92152b7ef7b8acf9dca957757192"
+    },
+    {
+      "target_alpha": 0.0000125,
+      "validation": 0.08381010452961674,
+      "validation_exact": 2,
+      "validation_nonzero": 13,
+      "ood_qa": 0.714128787878788,
+      "ood_qa_exact": 16,
+      "ood_qa_nonzero": 23,
+      "ood_prose_delta": -0.00047429889805239434,
+      "ood_prose_95_ci": [-0.0024614980999721316, 0.0015853822825534194],
+      "strict_guards_passed": false,
+      "ood_prose_raw_sha256": "5eccab4194f83d020341ccc68aa9ee1bc85c395e04b5f999469d27831f00d149",
+      "validation_comparison_sha256": "ffd69f4863c1c49c47266e224524138204304753ed7be391d8c2561c65403184",
+      "ood_qa_comparison_sha256": "45d7c43fe3f88dcbb3779ab82edfc78676fabae8c1336f0895012ac42a2aadc6"
+    }
+  ],
+  "gpu_utilization": {
+    "samples": 83,
+    "mean_percent_by_gpu": [44.156627, 21.253012, 21.73494, 22.325301],
+    "max_memory_mib_by_gpu": [96078, 85580, 85580, 85580],
+    "all_four_at_least_20_percent_samples": 17,
+    "all_four_at_100_percent_samples": 11
+  },
+  "raw_journal_sha256": "454dbb2e2f0032b6e69f54dcb1910c065214f3adb198db306ecc89a37852a23f",
+  "journal_content_sha256_before_self_field": "888755783eab68cf3a7dacc04f1295ba57cbe0ae7bc61ae6241bc75a8dfe9207",
+  "gpu_trace": "../../gpu_utilization_eggroll_es_s5_anchor_v1_resident_items32_cos05_seed42.jsonl",
+  "gpu_trace_sha256": "b140f32145579358b3d4fbb429326934888494bd96780fb71a56a97df1e5d685"
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "eggroll-es-s5-final-compact-run-v1",
+  "kind": "treatment",
+  "model": "models/Qwen3.6-35B-A3B",
+  "seed": 42,
+  "steps": 3,
+  "sigma": 0.001,
+  "alpha": 0.00025,
+  "population_size": 8,
+  "batch_size": 64,
+  "mini_batch_size": 64,
+  "max_tokens": 32,
+  "checkpoint": null,
+  "validation": 0.08457317073170732,
+  "ood_qa": 0.714128787878788,
+  "ood_prose": {
+    "item_count": 16,
+    "scored_token_count": 10926,
+    "baseline_mean_token_logprob": -1.2632580042542214,
+    "final_mean_token_logprob": -1.267732569495745,
+    "delta": -0.004474565241523676,
+    "paired_document_bootstrap_95_ci": [-0.007306816199314275, -0.0011696019914851264],
+    "max_degradation": 0.02,
+    "passed": true,
+    "dataset_sha256": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+    "raw_baseline_sha256": "38276f2dedaaf5062ca8e58aacb9990c3a33bb1b44e3c7172798334da5bfd239",
+    "raw_final_sha256": "bbccfab173f5f62427d43766c7dc739fc8ff0b947d8e28397ad5c73c1dc0301b"
+  },
+  "raw_run_summary_sha256": "7c4f30ba63b63346c4aca1c1d71dad0d8cc6f18157e11768a3ee2c9eef4efa61",
+  "gpu_trace": "../../gpu_utilization_eggroll_es_s5_final_sigma001_alpha00025_seed42.jsonl",
+  "gpu_trace_sha256": "893afd66d97aa1d23055e328ff845cfcd4e1bf71cc29f0ab3976989ab04acae1"
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "eggroll-es-s5-anchor-compact-run-v1",
+  "kind": "anchored_strict_treatment",
+  "model": "models/Qwen3.6-35B-A3B",
+  "seed": 42,
+  "steps": 1,
+  "sigma": 0.0003,
+  "alpha": 0.00005,
+  "checkpoint": null,
+  "heldout_evaluated": false,
+  "validation": 0.05683560342096928,
+  "ood_qa": 0.714128787878788,
+  "ood_prose": {
+    "baseline_mean_token_logprob": -1.2632580042542214,
+    "final_mean_token_logprob": -1.2673842356441378,
+    "delta": -0.004126231389916413,
+    "paired_document_bootstrap_95_ci": [
+      -0.0060120649889864215,
+      -0.0020488021811691424
+    ],
+    "passed": false,
+    "raw_baseline_sha256": "38276f2dedaaf5062ca8e58aacb9990c3a33bb1b44e3c7172798334da5bfd239",
+    "raw_final_sha256": "9ee896a162df472733d6b3b0b3bfc057a4bedda74138045044d928a102da272a"
+  },
+  "anchor": {
+    "dataset_rows": 128,
+    "dataset_sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+    "report_sha256": "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5",
+    "items_per_step": 2,
+    "max_input_tokens": 512,
+    "min_anchor_cosine": 0.25,
+    "selected_item_ids": [
+      "anchor-v1-5e2a0cc362a7cba07c1a",
+      "anchor-v1-1dcd37e2d0fd021f8319"
+    ],
+    "coefficient_sha256": "995b0e1cd7c0deb8be45aad9fc2d1450aa40c9919e137eec12f239ca401c9ddc",
+    "projection": {
+      "decision": "project_to_anchor_cone",
+      "domain_anchor_cosine_before": -0.18894338998538784,
+      "domain_anchor_cosine_after": 0.25000000000000006,
+      "projection_lambda": 0.44249216317420254,
+      "update_norm_ratio": 1.0
+    },
+    "raw_plan_sha256": "51feb09aea16a933380a48e8ef8349772c5519059f660b64b114bdebb325b2c2"
+  },
+  "comparisons": {
+    "validation_sha256": "c19ab1e0ff1cfb97ced88a3e1eeb6613b72f78c299341f806e380bee37e32c84",
+    "ood_qa_sha256": "37e90c47f805d808d5e117624dab28ae5cb717a1cb5359175e73bf66aba12f91"
+  },
+  "raw_run_summary_sha256": "c33cdd7665fe5cf6e56981339656b1a30e472078eed0bfd08f5d93fa5e774e8d",
+  "gpu_trace": "../../gpu_utilization_eggroll_es_s5_anchor_v1_sigma0003_alpha00005_cos025_seed42.jsonl",
+  "gpu_trace_sha256": "3fd1de8df6a450bfd835eda5c6983f2f46904b64cbfd0dfaa413338fc55e6ddc"
+}
