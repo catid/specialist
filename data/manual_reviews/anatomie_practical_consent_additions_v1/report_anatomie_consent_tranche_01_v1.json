@@ -1,0 +1,138 @@
+{
+  "active_baseline": {
+    "curation": [
+      {
+        "path": "data/train_qa_curated_v1.curation.jsonl",
+        "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb"
+      },
+      {
+        "path": "data/train_qa_kinbakutoday.curation.jsonl",
+        "sha256": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+      }
+    ],
+    "report": {
+      "path": "data/train_qa_curated_v1.report.json",
+      "sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a"
+    }
+  },
+  "comparison_corpus": {
+    "active": {
+      "path": "data/train_qa_curated_v1.jsonl",
+      "rows": 784,
+      "sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507"
+    },
+    "candidate_collisions": 0,
+    "facts_compared": 812,
+    "prior_pending": [
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v1/pending_additions_safety_tranche_01_v1.jsonl",
+        "rows": 10,
+        "sha256": "b294c1ea1712f523d65621a37f5996211a4470da4111f9e8be23024cdf2e3515"
+      },
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v2/pending_additions_safety_care_tranche_02_v1.jsonl",
+        "rows": 10,
+        "sha256": "e4fa43995c177df75dc061828e11be369c67474da757e842b4c097ac0a59b0c4"
+      },
+      {
+        "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_additions_ropetopia_practical_tranche_01_v1.jsonl",
+        "rows": 8,
+        "sha256": "a572bf973bc3ce2790de4bd001002bf39465d9deb15e5d80b26b75a52d602f75"
+      }
+    ]
+  },
+  "isolated_build_projection": {
+    "anatomiestudio_rows": 33,
+    "build_script": "build_curated_qa.py",
+    "new_pending_fact_ids_added": 10,
+    "output_rows": 822,
+    "output_sha256": "3408384f9f9a6cabf3528b66ad39befaa47cb08af21bb4dac76cd6497cc1f238",
+    "prior_pending_fact_ids_preserved": 28,
+    "repeat_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612,
+    "tasuki_manual_paraphrase_added": true,
+    "unchanged_active_fact_ids_preserved": 783,
+    "unexpected_fact_ids": 0,
+    "validated_runs": 2
+  },
+  "method": {
+    "answer_support": "exact_substring_of_exact_stored_evidence",
+    "authoring": "manual_question_answer_and_evidence_selection",
+    "evidence_support": "exact_substring_of_hash_pinned_stored_document",
+    "excluded_classes": [
+      "volatile or promotional claims",
+      "unsupported medical claims",
+      "source-specific event logistics",
+      "active or pending semantic duplicates"
+    ],
+    "selection": "durable practical consent and safety behaviors missing from active plus all prior pending additions"
+  },
+  "output": {
+    "by_document": {
+      "new_partner_safety": 5,
+      "safewords": 5
+    },
+    "by_topic": {
+      "boundary_uncertainty": 1,
+      "new_partner_checkins": 1,
+      "nonverbal_checkin_responsibility": 1,
+      "ongoing_consent": 1,
+      "positive_action_for_consent": 1,
+      "power_imbalance_mitigation": 1,
+      "precise_safeword_communication": 1,
+      "risk_management": 1,
+      "safeword_negotiation": 1,
+      "stop_signal_practice": 1
+    },
+    "path": "data/manual_reviews/anatomie_practical_consent_additions_v1/pending_additions_anatomie_consent_tranche_01_v1.jsonl",
+    "rows": 10,
+    "sha256": "689d7699fb1a5de92bdd568bd5d05ea8df93fbba5a1477053ebd14ca4a8c1a7a",
+    "unique_fact_ids": 10,
+    "unique_questions": 10
+  },
+  "pending_curations_in_projection": [
+    {
+      "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_curation_ropetopia_practical_tranche_01_v1.jsonl",
+      "sha256": "cf82b5eb8a6d23caa4a6003887b031929db021874d5c9270f42324ea5adb9da2"
+    }
+  ],
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-anatomie-practical-consent-additions",
+  "schema": "manual-anatomie-practical-consent-additions-report-v1",
+  "sealed_evaluation_policy": {
+    "collision_check": "evaluation artifacts are passed by path only to existing build_curated_qa.py tooling during isolated projection",
+    "generator_opens_eval_or_heldout_content": false,
+    "manual_review_opened_eval_or_heldout_content": false
+  },
+  "source_selection": {
+    "anatomiestudio_additions": 10,
+    "crash_restraint_additions": 0,
+    "crash_restraint_coverage": {
+      "path": "data/raw/rope_resources_v1_coverage/crash_restraint.coverage.json",
+      "sha256": "10adff41241b2d93ebd7bc98da294fb22e2d41f64080c0f818a8dc11f196324a"
+    },
+    "crash_restraint_reason": "reference_only; no stored permissible source body for new evidence-pinned authoring"
+  },
+  "sources": {
+    "new_partner_safety": {
+      "document_sha256": "eaac58687fd1bfcf451ebbcb6f43bb3dad6f28edc39596b5bdfc54b9773c59b4",
+      "file_sha256": "5572a9e872549927462b7314d0ae28ee4f12a18e43b4f225e2cf5c0cfb0662c3",
+      "path": "data/raw/anatomiestudio_451ac66001188a42.json",
+      "url": "https://www.anatomiestudio.com/blog/tying-with-someone-new-feeling-safe-enough-to-explore"
+    },
+    "safewords": {
+      "document_sha256": "396e550c0110696f10dbdd4ccad5750d0c2b4fa46baf84a4095d550588dd8b3a",
+      "file_sha256": "2ce0036f18ab2fbb48a91470e56fa9105557b89744b329509898b7315cf9812d",
+      "path": "data/raw/anatomiestudio_9749de0eb1ff4ef3.json",
+      "url": "https://www.anatomiestudio.com/blog/should-we-use-safe-words-in-shibari"
+    }
+  },
+  "status": "segregated_pending_not_promoted",
+  "validation": {
+    "tests": [
+      "data/manual_reviews/anatomie_practical_consent_additions_v1/test_anatomie_practical_consent_additions.py",
+      "test_build_curated_qa.py"
+    ],
+    "tests_passed": 16
+  }
+}
