@@ -1,0 +1,72 @@
+{
+  "content_sha256_before_self_field": "ae5c861705268ceadc9254c0ee8ddd367f6a2971ba45f35d495426b077a8c438",
+  "coverage": {
+    "arm": "middle_late",
+    "data_bootstrap_seeds": [
+      43,
+      44
+    ],
+    "perturbation_basis_seed": 20260714,
+    "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "population_size": 32,
+    "target_alphas": [
+      0.0
+    ]
+  },
+  "implementation": {
+    "reporter_v8": "e14005e7d5e390a84b0925c75238aeb0ccd45e9667b901e669d7a8ef56c4fc36",
+    "stability_driver_v8": "e025a439f9a25a98dc08ef99e1c4d7a6598a1eee7d67535836d6ab3f4305be9a"
+  },
+  "implementation_bundle_sha256": "5f2e8b8ceb0c58b670873f5dfc3289555407a4a7ce761372b02acd715dd45645",
+  "metric": "same_perturbation_basis_coefficient_cosine",
+  "metric_interpretation": "coefficient response-shape reproducibility across data/bootstrap seeds on one identical 32-perturbation basis",
+  "passed": false,
+  "preregistered_threshold": 0.5,
+  "runs": [
+    {
+      "arm": "middle_late",
+      "coefficient_sha256": "8c73a49ed5092aff908914a9c596995eac67043ccac724ef4a56a1e4ee71e8e6",
+      "content_sha256": "98f14ba7525d2d33839421868b4c95a287f8334276a018c3a12dd76d20f54760",
+      "data_bootstrap_seed": 43,
+      "geometry": {
+        "anchor_mean": -0.0016074954100733668,
+        "anchor_std": 0.0004032641065262413,
+        "domain_mean": -4.500089162537317,
+        "domain_std": 0.009225005186061518,
+        "projected_anchor_cosine": 0.8,
+        "projected_vs_raw_domain_cosine": 0.6863197525738457,
+        "projection_lambda": 1.212195305211691,
+        "raw_domain_anchor_cosine": 0.11267584032651583,
+        "update_norm_ratio": 1.0
+      },
+      "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v8_middle_late_stability_data43_basis20260714/alpha_line_search.json",
+      "journal_file_sha256": "defd16591cbb137db09816a82c050716e24ec54ef90cb023339673df608e3da4",
+      "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+      "robust_plan_sha256": "d32e92a71e3d13679e08fccc75ae6d56e1f4f5419e0b562615a4754ad88cec8e"
+    },
+    {
+      "arm": "middle_late",
+      "coefficient_sha256": "c63bf1e2081245a36b45704ac416675943bf2311b018f3489511d0ac231241a3",
+      "content_sha256": "f00f8f4d34c9885ed9904ad59d895bcb787d0fe1292977d7be8bf93841d68aa4",
+      "data_bootstrap_seed": 44,
+      "geometry": {
+        "anchor_mean": -0.0019299948544514716,
+        "anchor_std": 0.00041454720060604976,
+        "domain_mean": -4.307791896412799,
+        "domain_std": 0.010019143965529925,
+        "projected_anchor_cosine": 0.7999999999999999,
+        "projected_vs_raw_domain_cosine": 0.5162887619385981,
+        "projection_lambda": 1.4273906223563773,
+        "raw_domain_anchor_cosine": -0.10081773195436969,
+        "update_norm_ratio": 1.0000000000000002
+      },
+      "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v8_middle_late_stability_data44_basis20260714/alpha_line_search.json",
+      "journal_file_sha256": "3f317ec14c47cd8fccea63dc09401e85416e8d4f0c2dfbb1d5e6d8f26385a30d",
+      "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+      "robust_plan_sha256": "66867658644c5ff406e72033eea61b5eb4aa007f67d5080e0da298d28f001c78"
+    }
+  ],
+  "same_basis_coefficient_cosine": 0.4276943787514416,
+  "schema": "eggroll-es-same-basis-direction-stability-report-v8",
+  "selection_policy": "coefficient_and_train_anchor_geometry_only_no_benchmark_selection"
+}
