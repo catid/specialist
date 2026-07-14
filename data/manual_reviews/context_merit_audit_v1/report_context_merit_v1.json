@@ -1,0 +1,172 @@
+{
+  "active_baseline": {
+    "curation": [
+      {
+        "path": "data/train_qa_curated_v1.curation.jsonl",
+        "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb"
+      },
+      {
+        "path": "data/train_qa_kinbakutoday.curation.jsonl",
+        "sha256": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+      }
+    ],
+    "dataset": {
+      "path": "data/train_qa_curated_v1.jsonl",
+      "rows": 784,
+      "sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507"
+    },
+    "report": {
+      "path": "data/train_qa_curated_v1.report.json",
+      "sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a"
+    }
+  },
+  "audit": {
+    "by_decision": {
+      "drop": 5,
+      "edit": 3,
+      "keep": 17
+    },
+    "by_reason": {
+      "add_durable_historical_context": 1,
+      "consent_framework_history_context_complete": 1,
+      "contextless_or_low_value": 2,
+      "critical_history_concept_context_complete": 1,
+      "historical_source_term_context_complete": 1,
+      "out_of_domain_or_personal_trivia": 1,
+      "owner_requested_resource_directory": 1,
+      "restore_full_name_and_historical_context": 1,
+      "restore_subjective_attribution_and_context": 1,
+      "restraint_history_context_complete": 1,
+      "rope_care_test_result_context_complete": 1,
+      "rope_history_lineage_context_complete": 2,
+      "rope_media_history_context_complete": 2,
+      "rope_performance_history_context_complete": 1,
+      "safety_term_context_complete": 1,
+      "technical_history_term_context_complete": 2,
+      "technique_design_lineage_context_complete": 1,
+      "useful_named_resource": 2,
+      "volatile_or_promotional_person_trivia": 2
+    },
+    "path": "data/manual_reviews/context_merit_audit_v1/context_merit_audit_v1.jsonl",
+    "rows": 25,
+    "sha256": "547beb94ebb06b92fa57e63e1c6386c098b5c00381e0c8c4a73195aa9159439a"
+  },
+  "isolated_build_projection": {
+    "active_after_canonical_quality_merit_drops": 762,
+    "active_after_this_tranche": 757,
+    "build_script": "build_curated_qa.py",
+    "new_drops_applied": 5,
+    "new_edits_applied": 3,
+    "output_rows": 795,
+    "output_sha256": "298376bb14ee4187b93d0d5f9bd16ef3053c1d20a6b03914abf3db7aa64d4779",
+    "prior_pending_addition_fact_ids_preserved": 38,
+    "repeat_dataset_byte_identical": true,
+    "reviewed_keep_fact_ids_preserved": 17,
+    "sealed_eval_fact_count_reported_by_tooling": 612,
+    "tasuki_edit_applied": true,
+    "unexpected_fact_ids": 0,
+    "validated_runs": 2
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "drop": 5,
+      "edit": 3
+    },
+    "decisions": 8,
+    "path": "data/manual_reviews/context_merit_audit_v1/pending_curation_context_merit_v1.jsonl",
+    "sha256": "f8da448f3cd5c691f58dcee58cd4349843a0ae427c5ccda743d8e6d544619248"
+  },
+  "prior_pending": {
+    "additions": [
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v1/pending_additions_safety_tranche_01_v1.jsonl",
+        "rows": 10,
+        "sha256": "b294c1ea1712f523d65621a37f5996211a4470da4111f9e8be23024cdf2e3515"
+      },
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v2/pending_additions_safety_care_tranche_02_v1.jsonl",
+        "rows": 10,
+        "sha256": "e4fa43995c177df75dc061828e11be369c67474da757e842b4c097ac0a59b0c4"
+      },
+      {
+        "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_additions_ropetopia_practical_tranche_01_v1.jsonl",
+        "rows": 8,
+        "sha256": "a572bf973bc3ce2790de4bd001002bf39465d9deb15e5d80b26b75a52d602f75"
+      },
+      {
+        "path": "data/manual_reviews/anatomie_practical_consent_additions_v1/pending_additions_anatomie_consent_tranche_01_v1.jsonl",
+        "rows": 10,
+        "sha256": "689d7699fb1a5de92bdd568bd5d05ea8df93fbba5a1477053ebd14ca4a8c1a7a"
+      }
+    ],
+    "curations": [
+      {
+        "path": "data/manual_reviews/kinbakutoday_third_pass/overlap_quality_merit_reaudit_v1/pending_curation_quality_merit_v1.jsonl",
+        "rows": 22,
+        "sha256": "ac81ee03c6a738460c6020a4861e676592a5c63b18b76ab453b460faef45c558"
+      },
+      {
+        "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_curation_ropetopia_practical_tranche_01_v1.jsonl",
+        "rows": 1,
+        "sha256": "cf82b5eb8a6d23caa4a6003887b031929db021874d5c9270f42324ea5adb9da2"
+      }
+    ]
+  },
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-context-merit-audit",
+  "schema": "context-merit-audit-report-v1",
+  "sealed_evaluation_policy": {
+    "collision_check": "sealed evaluation paths are handled only by existing build_curated_qa.py during isolated projection",
+    "generator_opens_eval_or_heldout_content": false,
+    "manual_review_opened_eval_or_heldout_content": false
+  },
+  "selection": {
+    "active_rows": 784,
+    "eligible_unreviewed_rows": 515,
+    "excluded_active_review_or_curation_provenance": 161,
+    "excluded_ledger_fact_ids": 1045,
+    "fact_ids_in_rank_order": [
+      "fact-1149b6fa977f50a6331c",
+      "fact-e4fdcf1c671cd7be49ce",
+      "fact-f29a8c4521af38a94e7b",
+      "fact-d6315222649f19a9aeb9",
+      "fact-d51f978bc64b51b4c65e",
+      "fact-0a49ad482749ece6643a",
+      "fact-e41fdaf9f974e31e9179",
+      "fact-789b90e4c19cf97de3a7",
+      "fact-45ad14e9dd7ee2526c24",
+      "fact-bf1a51903fec57e72a27",
+      "fact-a771b06601588485ef2b",
+      "fact-e96b48731c29761bc94d",
+      "fact-9fbbb47c1dabbf7b10f2",
+      "fact-7f44ac0d2f1de5926b66",
+      "fact-98221d2915fb3a6f8637",
+      "fact-ae00d3e5d00d8fe80feb",
+      "fact-61797044f6aa991a119a",
+      "fact-7be09ff3273023906b25",
+      "fact-c06bbd52eab400cf8bf0",
+      "fact-77971e5d6be6742d6b54",
+      "fact-c5329b6b0c847b0ee1bc",
+      "fact-1f47985bc9f137f5cb02",
+      "fact-109571ca967c263f9444",
+      "fact-019df482b79d13db9a0f",
+      "fact-426bc3d2c6101548619f"
+    ],
+    "ranking": {
+      "bare_answer_points": "6 for <=1 token, 5 for 2, 2 for 3-4",
+      "named_person_trivia_points": "6 for who/whom/whose/when/where plus a likely proper name",
+      "score": "short_question_points + 3*pronoun_count + bare_answer_points + named_person_trivia_points",
+      "short_question_points": "max(0, 10-question_tokens) for questions of at most 9 tokens",
+      "tie_break": "risk_score descending, question tokens ascending, answer tokens ascending, fact_id ascending"
+    },
+    "rows_selected": 25
+  },
+  "status": "segregated_pending_not_promoted",
+  "validation": {
+    "combined_tests_expected": 17,
+    "test_paths": [
+      "data/manual_reviews/context_merit_audit_v1/test_context_merit_audit.py",
+      "test_build_curated_qa.py"
+    ]
+  }
+}
