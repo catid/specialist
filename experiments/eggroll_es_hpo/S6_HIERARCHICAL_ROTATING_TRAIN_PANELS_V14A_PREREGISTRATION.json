@@ -1,0 +1,213 @@
+{
+  "analysis": {
+    "alternate_row_draw_confirmation": "separate later alpha-zero run using row_draw_iteration=1",
+    "central_response": "(plus-minus)/2",
+    "crossfit_screen_response": "each 56-document screen compared with a separately standardized response from its 254-document complement",
+    "full_frame_is_primary_estimator": true,
+    "full_frame_response": "unweighted mean of all 310 documents",
+    "matched56_optimization_panels": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2"
+    ],
+    "matched56_response": "stratum-weighted equal-document Horvitz-Thompson mean",
+    "matched56_train_screens": [
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "per_panel_standardization_epsilon": 1e-08,
+    "screens_excluded_from_their_complement": true
+  },
+  "architecture_roadmap_after_estimator_confirmation": {
+    "alpha_zero_same_basis_order": [
+      "back_layers_36_39",
+      "front_0_3_plus_back_36_39",
+      "middle_late_control"
+    ],
+    "layer_insertion_or_nonzero_update_before_comparison": false,
+    "not_part_of_v14a": true,
+    "prior_result": "front_only_failed_slot_cosine_0.0687"
+  },
+  "contains_validation_ood_or_heldout_content": false,
+  "content_sha256_before_self_field": "e610c4bd83449b6b9cb3a0055f8e099ebae32ff6827aa64c6521d74705bda59d",
+  "experiment_name": "snapshot794_layer_v14a_full_frame_matched56_crossfit_alpha_zero_resident_sign_basis20260714",
+  "firewall": {
+    "allowed": [
+      "frozen train source",
+      "aggregate V13b train evidence",
+      "aggregate V12 closed-preseal evidence"
+    ],
+    "forbidden": [
+      "validation",
+      "OOD",
+      "heldout",
+      "benchmark outcomes",
+      "V11f relaunch",
+      "adaptive hard replay"
+    ],
+    "v11f_status": "immutable_failed_superseded_by_completed_v11g",
+    "v12_candidate_status": "closed_no_eligible_alpha_no_confirmation_no_release"
+  },
+  "full_frame": {
+    "content_sha256": "f91b3388226e2d6cfec60e4f62c2cc5e2b28161b8fd5071d89a5700540a587b2",
+    "estimand": "equal_weight_mean_of_310_document_row_draws",
+    "ordered_row_identity_sha256": "2f2de46c2e4c35ba03aedba93a7ce58426aa17e5028263f1035d7199e650c798",
+    "row_draw_iteration": 0,
+    "rows": 310
+  },
+  "matched56_subpanels": {
+    "optimization_0": {
+      "content_sha256": "5e0c16a68a2c64a5b1ee9ce95786bb2a1bcd229d4bc5ed0878c723337256898b",
+      "is_subset_of_full_frame_generation": true,
+      "iteration": 0,
+      "ordered_row_identity_sha256": "97444de398399cf4f5875258b9c853629bb9d3afdaec858c664f3dab611ad1d1",
+      "role": "optimization",
+      "rows": 56
+    },
+    "optimization_1": {
+      "content_sha256": "8109e6a9c5d1de68e41a260bcb863316a415ef5623dff93e1d73502586991b94",
+      "is_subset_of_full_frame_generation": true,
+      "iteration": 1,
+      "ordered_row_identity_sha256": "c7c700cca6202a35381df596b994f018da0dfab0cfb45832ede2f1486a8cbad8",
+      "role": "optimization",
+      "rows": 56
+    },
+    "optimization_2": {
+      "content_sha256": "8ef3b4f774dc64720fa6dc05104b86c1bea78e4b6a30c991365e16baf26ec685",
+      "is_subset_of_full_frame_generation": true,
+      "iteration": 2,
+      "ordered_row_identity_sha256": "0d67a589670532dcd9ee5b447036e38da222101ce196b381ff5c44b8c23a5403",
+      "role": "optimization",
+      "rows": 56
+    },
+    "train_screen_0": {
+      "content_sha256": "7c7e01ec15bf4e438341bed25763c5f00e4f7eef58d1550da944a1c5952e1a4b",
+      "is_subset_of_full_frame_generation": true,
+      "iteration": 3,
+      "ordered_row_identity_sha256": "9855bd37e99eea106a3c53d72f5e8d2153d3f17c7bb1f973006e0d0e0d75f3c9",
+      "role": "train_only_screen",
+      "rows": 56
+    },
+    "train_screen_1": {
+      "content_sha256": "47cd836f4a0acf995ff07ba5aa67e1f2bb84ec8f97051c39db399518532e3688",
+      "is_subset_of_full_frame_generation": true,
+      "iteration": 4,
+      "ordered_row_identity_sha256": "0b3c066f684186fd9ce7025a114088c973009034fb5ff78f6c3766baffad81f6",
+      "role": "train_only_screen",
+      "rows": 56
+    }
+  },
+  "promotion_gate": {
+    "baseline": {
+      "crossfit_complement_to_screen_cosine": {
+        "count": 2,
+        "median": 0.3936314430866483,
+        "worst": 0.314941371734614
+      },
+      "crossfit_complement_to_screen_sign_agreement": {
+        "count": 2,
+        "median": 0.65625,
+        "worst": 0.53125
+      },
+      "full_to_matched56_optimization_cosine": {
+        "count": 3,
+        "median": 0.7608236805612648,
+        "worst": 0.7082628389768383
+      },
+      "full_to_matched56_optimization_sign_agreement": {
+        "count": 3,
+        "median": 0.8125,
+        "worst": 0.75
+      },
+      "matched56_pairwise_cosine": {
+        "count": 3,
+        "median": 0.47411088498906484,
+        "worst": 0.3900621868364503
+      },
+      "matched56_pairwise_sign_agreement": {
+        "count": 3,
+        "median": 0.59375,
+        "worst": 0.5625
+      }
+    },
+    "failure_decision": "retain_v13_sampler_and_do_not_open_eval_surfaces",
+    "pass_decision": "run_a_separate_alpha_zero_row_draw_iteration_1_confirmation; still do not open evaluation surfaces or apply an update",
+    "rules": {
+      "all_panel_spreads_nonzero": true,
+      "all_rules_required": true,
+      "crossfit_complement_to_screen_cosine": "median_and_worst_strictly_greater",
+      "crossfit_complement_to_screen_sign_agreement": "median_and_worst_not_lower",
+      "full_to_matched56_optimization_cosine": "median_and_worst_not_lower",
+      "full_to_matched56_optimization_sign_agreement": "median_and_worst_not_lower",
+      "matched56_pairwise_cosine": "median_and_worst_strictly_greater",
+      "matched56_pairwise_sign_agreement": "median_and_worst_not_lower"
+    },
+    "scope": "sampler_adoption_only_not_model_update"
+  },
+  "required_runtime_adapter": {
+    "inherit_update_disabled_worker": "eggroll_es_worker_v13.py",
+    "real_launch_requires_fresh_committed_implementation_bundle": true,
+    "required_files": [
+      "train_eggroll_es_specialist_anchor_v14a.py",
+      "run_eggroll_es_hierarchical_train_panels_v14a.py",
+      "test_eggroll_es_hierarchical_train_panels_v14a.py"
+    ],
+    "status": "not_yet_implemented"
+  },
+  "runtime": {
+    "alpha": 0.0,
+    "complete_four_direction_waves_required": true,
+    "engine_count": 4,
+    "exact_restore_after_every_sign": true,
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "matched56_responses_derived_without_extra_generation": true,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "model_update_allowed": false,
+    "one_full_frame_order_reused_across_every_direction_and_sign": true,
+    "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "population_size": 32,
+    "sign_order": [
+      "plus",
+      "minus"
+    ],
+    "tp_per_engine": 1
+  },
+  "sampling": {
+    "frame_sha256": "ce50531881f4b7044bf82fc3e8fd52d603ba53041fccc4b934aa307840862d6c",
+    "full_frame_document_selection_variance": 0.0,
+    "full_frame_documents": 310,
+    "generation_prompt_count_per_direction_and_sign": 310,
+    "hard_replay_fraction": 0.0,
+    "matched_subpanel_size": 56,
+    "policy_content_sha256": "b4c8d038da0c670f2cc8602b822e249de427b124e80fd2d65d69b6c48d980ebc",
+    "relative_prompt_increase_over_v13b": 0.1071428571428572,
+    "row_draw_iteration": 0,
+    "sampler_file_sha256": "6981a746d6e0fc0904603abaf584ab71b9cc8a777a9abc00f4d305a98ebd186a",
+    "sampler_path": "/home/catid/specialist/eggroll_es_hierarchical_train_sampler_v14.py",
+    "source_arrow_sha256": "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6",
+    "source_sha256": "f7127c38c7b540eaf9cf4349d1a1b8076e171da7f8ea43c11068ad1c311bb776",
+    "unique_documents_across_five_matched_subpanels": 280,
+    "v13b_generation_prompt_count_per_direction_and_sign": 280
+  },
+  "schema": "eggroll-es-full-frame-matched56-preregistration-v14a",
+  "selection_surface": "frozen_train_panels_only",
+  "status": "preregistered_not_launch_authorized",
+  "v12_preseal_negative_evidence": {
+    "content_sha256": "ce259d30481d8de85089116a215ac710db791e27ffd1592f846c5c9a1e56bb59",
+    "decision": "close_v12_candidate_without_confirmation_or_release",
+    "file_sha256": "4fec87ad1f41e40ba2ebc97dd46b58f4f7bf345e78d364a0ff2e98b9969a6512",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V12_PRESEAL_NEGATIVE_AGGREGATE_EVIDENCE_V14A.json",
+    "report_content_sha256": "001eac316bb74eb6b2949acade7167d9a6efedb1035f2767c5aedf254ecad831"
+  },
+  "v13b_aggregate_evidence": {
+    "content_sha256": "06f662574013345a6c777af8688a38f3941286d9e11a427ed3342de53451b1e3",
+    "file_sha256": "d367c9c4de1e1f3526ddb3dfba2f5bf24efc77cbccf951f7359eb1969fcd7b54",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V13B_TRAIN_PANEL_AGGREGATE_EVIDENCE_V14A.json",
+    "v13b_report_content_sha256": "dfa8c73fae35d0b915dcb1f7c5ef2bca91415a551a178cc90ab534a0646939da"
+  }
+}

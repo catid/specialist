@@ -1,0 +1,84 @@
+{
+  "aggregate_failure": {
+    "all_positive_anchor_lcbs_negative": true,
+    "all_positive_screen_lcbs_negative": true,
+    "benchmark_content_opened_before_candidate_seal": false,
+    "candidate_seal_written": false,
+    "eligible_positive_alpha_count": 0,
+    "heldout_opened": false,
+    "positive_alpha_count": 2
+  },
+  "consensus_coefficient_sha256": "1a85502564020048f634b0a8ced3952343f135f67ffd1faad1aaa697aebea8a8",
+  "contains_response_documents_or_row_content": false,
+  "contains_validation_ood_or_heldout_content": false,
+  "content_sha256_before_self_field": "ce259d30481d8de85089116a215ac710db791e27ffd1592f846c5c9a1e56bb59",
+  "decision": "close_v12_candidate_without_confirmation_or_release",
+  "next_step_constraint": "do_not_reuse_the_v12_consensus_candidate_or_alpha_grid; continue_only_with_a_fresh_train_only_direction_estimator",
+  "passed": true,
+  "report": {
+    "content_sha256": "001eac316bb74eb6b2949acade7167d9a6efedb1035f2767c5aedf254ecad831",
+    "file_sha256": "1cc6c07a251fcbee61150a3a688940bf1a765934db2cdb1822f37b5339477c4e",
+    "implementation_bundle_sha256": "65fd391ea76e94d3945906b8e94a8dfc5027d2dced7736b7def0ea78af0d69e1",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v12_middle_late_consensus_preseal_c45c46/preseal_screen.json",
+    "v11_evidence_content_sha256": "b6212a4bdafaf234f8445b11c18ef96e15526d450f89d366542c63fae2d15e8f"
+  },
+  "runtime_integrity": {
+    "identity_audit_passed": true,
+    "population_boundary_audit_sha256": "88796b4dff895a2cf22d6f4615b85ac5501449b7b86402f40651b07ae2403867",
+    "population_exact_restore_passed": true
+  },
+  "schema": "eggroll-es-v12-preseal-negative-aggregate-evidence-v14a",
+  "selection_surface": "train_screens_and_prose_anchors_only",
+  "states": [
+    {
+      "alpha": 0.0,
+      "anchor_lcb": {
+        "A43": 0.0,
+        "A44": 0.0
+      },
+      "application": null,
+      "eligible": false,
+      "gate_content_sha256": "9b1687ba0b57e4509cd86c790e54535f2ca86cdc1759433a6b2b2619074252bb",
+      "screen_lcb": {
+        "C45": 0.0,
+        "C46": 0.0
+      }
+    },
+    {
+      "alpha": 7.8125e-07,
+      "anchor_lcb": {
+        "A43": -0.0011999529296769951,
+        "A44": -0.0011999529296769951
+      },
+      "application": {
+        "coefficient_sha256": "1a85502564020048f634b0a8ced3952343f135f67ffd1faad1aaa697aebea8a8",
+        "manifest_sha256": "8d9a13f49f1a57f398f265a15aa3377599d8e2ac2e1591a8f0aecc53bfeb1bee",
+        "target_alpha": 7.8125e-07
+      },
+      "eligible": false,
+      "gate_content_sha256": "58fe36cd58a61481f5773d4f7c027ca65a862c0ff2455210cc2ed1bbec40eb82",
+      "screen_lcb": {
+        "C45": -0.01086679840057968,
+        "C46": -0.009550050765337348
+      }
+    },
+    {
+      "alpha": 1.5625e-06,
+      "anchor_lcb": {
+        "A43": -0.0011139036040389238,
+        "A44": -0.0011139036040389238
+      },
+      "application": {
+        "coefficient_sha256": "1a85502564020048f634b0a8ced3952343f135f67ffd1faad1aaa697aebea8a8",
+        "manifest_sha256": "25410805a303197bf982f58f251c881700350d174a62ef4c0e9e622c1740a159",
+        "target_alpha": 1.5625e-06
+      },
+      "eligible": false,
+      "gate_content_sha256": "ccdbba61877579d5e17abbb4d0092eb9783371b67298bc0751f8eefa55cfc11f",
+      "screen_lcb": {
+        "C45": -0.011870990199265874,
+        "C46": -0.013314592469007036
+      }
+    }
+  ]
+}

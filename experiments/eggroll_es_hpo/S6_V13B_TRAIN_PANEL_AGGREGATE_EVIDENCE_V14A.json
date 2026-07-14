@@ -1,0 +1,67 @@
+{
+  "contains_response_vectors_or_row_content": false,
+  "contains_validation_ood_or_heldout_content": false,
+  "content_sha256_before_self_field": "06f662574013345a6c777af8688a38f3941286d9e11a427ed3342de53451b1e3",
+  "passed": true,
+  "runtime_integrity": {
+    "alpha": 0.0,
+    "identity_audit_passed": true,
+    "model_update_applied": false,
+    "panel_bundle_content_sha256": "cc176a9b86c6447dcde8a11fd28d68c837d2119715126c57a3f37293fb0d492b",
+    "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "population_boundary_audit_sha256": "88796b4dff895a2cf22d6f4615b85ac5501449b7b86402f40651b07ae2403867"
+  },
+  "schema": "eggroll-es-v13b-train-panel-aggregate-evidence-v14a",
+  "selection_surface": "frozen_train_panels_only",
+  "stability": {
+    "aggregate_to_optimization_cosine": {
+      "count": 3,
+      "median": 0.7608236805612648,
+      "worst": 0.7082628389768383
+    },
+    "aggregate_to_optimization_sign_agreement": {
+      "count": 3,
+      "median": 0.8125,
+      "worst": 0.75
+    },
+    "all_panel_spreads_nonzero": true,
+    "optimization_pairwise_cosine": {
+      "count": 3,
+      "median": 0.47411088498906484,
+      "worst": 0.3900621868364503
+    },
+    "optimization_pairwise_sign_agreement": {
+      "count": 3,
+      "median": 0.59375,
+      "worst": 0.5625
+    },
+    "robust_aggregate": {
+      "coefficient_sha256": "9610b67262227360380d72bf957fb4cb9d6624ea7bb3ad3d613912ccd7e270af",
+      "l2_norm": 4.903904218736408,
+      "nonzero_coordinate_count": 32
+    },
+    "train_screen_cosine": {
+      "count": 2,
+      "median": 0.3936314430866483,
+      "worst": 0.314941371734614
+    },
+    "train_screen_sign_agreement": {
+      "count": 2,
+      "median": 0.65625,
+      "worst": 0.53125
+    }
+  },
+  "v13b_attempt": {
+    "content_sha256": "188c972e97d531d9ace9e3ae3ca17dee943e449795c6731552b8039cf04285c4",
+    "file_sha256": "00513c2e32d839c895a2cac5d4d00717be88b89bccfc9f841265c8cff9be6b6c",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.snapshot794_layer_v13b_document_balanced_five_panel_alpha_zero_runtime_forwarded_resident_sign_basis20260714.launch_attempt.json",
+    "source_commit": "9b05db2c4afc544ac3a20f32bd5ab3cad6666d85"
+  },
+  "v13b_report": {
+    "content_sha256": "dfa8c73fae35d0b915dcb1f7c5ef2bca91415a551a178cc90ab534a0646939da",
+    "file_sha256": "d53832ab9d021aa4692cef038058014ca84501a772ee935195bf8dfeba85e753",
+    "implementation_bundle_sha256": "21bdbab4f22c3cb75f273266dc7caba1ffd3590148dfb204745eaf9f5a45a35b",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v13b_document_balanced_five_panel_alpha_zero_runtime_forwarded_resident_sign_basis20260714/train_panel_diagnostic_v13.json",
+    "recipe_content_sha256": "92c6b62bffa73fce094cd6e4aedf0eed29638b84ecdf3637c5a50e47aee401c9"
+  }
+}
