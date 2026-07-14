@@ -53,14 +53,14 @@ class PrunedMoeConfigContractTests(unittest.TestCase):
         )
         self.assertEqual(
             self.evidence["status"],
-            "microbenchmark_only_not_training_enabled",
+            "end_to_end_verified_not_training_enabled",
         )
         self.assertEqual(
             self.evidence["activation_policy"]["default"], "unset"
         )
         self.assertEqual(
             self.evidence["activation_policy"]["future_training"],
-            "requires separate loader, end-to-end throughput, and recipe preregistration checks",
+            "requires separate recipe preregistration and task-level timing checks",
         )
 
     def test_paired_results_are_nonregressive_and_equivalence_is_exact(self):
@@ -80,6 +80,24 @@ class PrunedMoeConfigContractTests(unittest.TestCase):
         self.assertTrue(loader["selected_configs_equal_file_entries"])
         self.assertEqual(
             set(loader["kernel_time_us"]), {"128", "256", "512", "1024"}
+        )
+
+    def test_end_to_end_generation_is_exact_and_faster_on_every_gpu(self):
+        result = self.evidence["end_to_end_triton_generation"]
+        self.assertEqual(result["backend"], "triton")
+        self.assertEqual(result["prompt_source"], "256 fixed synthetic non-dataset prompts")
+        self.assertTrue(result["exact_generated_text_and_token_identity"])
+        self.assertEqual(len(result["per_gpu"]), 4)
+        for gpu, row in result["per_gpu"].items():
+            with self.subTest(gpu=gpu):
+                self.assertGreater(row["speedup"], 1.0)
+                self.assertLess(row["tuned_seconds"], row["default_seconds"])
+                self.assertGreater(
+                    row["tuned_tokens_per_second"],
+                    row["default_tokens_per_second"],
+                )
+        self.assertGreater(
+            result["aggregate"]["worst_per_gpu_speedup"], 1.16
         )
 
 

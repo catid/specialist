@@ -1,6 +1,6 @@
 {
   "schema": "specialist-vllm-fused-moe-pruned-benchmark-v1",
-  "status": "microbenchmark_only_not_training_enabled",
+  "status": "end_to_end_verified_not_training_enabled",
   "created_at_utc": "2026-07-14T22:57:21Z",
   "software": {
     "vllm": "0.25.0",
@@ -66,10 +66,72 @@
       "1024": 1124.57
     }
   },
+  "end_to_end_triton_generation": {
+    "completed_at_utc": "2026-07-14T23:04:26Z",
+    "backend": "triton",
+    "prompt_source": "256 fixed synthetic non-dataset prompts",
+    "prompt_count_per_gpu": 256,
+    "sampling": {
+      "temperature": 0.0,
+      "max_tokens": 32,
+      "seed": 20260714
+    },
+    "engine": {
+      "tensor_parallel_size": 1,
+      "gpu_memory_utilization": 0.82,
+      "max_model_len": 2048,
+      "max_num_batched_tokens": 16384,
+      "max_num_seqs": 256
+    },
+    "output_tokens_per_gpu": 8192,
+    "payload_sha256_all_default_and_tuned": "cbc93310d7d2022f78b637965acc12e608858576b0d5c598b5b7688517d5533e",
+    "exact_generated_text_and_token_identity": true,
+    "per_gpu": {
+      "0": {
+        "default_seconds": 2.4608581780048553,
+        "tuned_seconds": 2.104116164991865,
+        "default_tokens_per_second": 3328.919997592741,
+        "tuned_tokens_per_second": 3893.321165579122,
+        "speedup": 1.1695448278704563
+      },
+      "1": {
+        "default_seconds": 2.419463244994404,
+        "tuned_seconds": 2.039306229009526,
+        "default_tokens_per_second": 3385.874952615347,
+        "tuned_tokens_per_second": 4017.0524090336285,
+        "speedup": 1.1864148751065784
+      },
+      "2": {
+        "default_seconds": 2.468134529000963,
+        "tuned_seconds": 2.119146772995009,
+        "default_tokens_per_second": 3319.105949753845,
+        "tuned_tokens_per_second": 3865.706757263525,
+        "speedup": 1.1646831453362367
+      },
+      "3": {
+        "default_seconds": 2.4885086370049976,
+        "tuned_seconds": 2.106914001997211,
+        "default_tokens_per_second": 3291.931511983556,
+        "tuned_tokens_per_second": 3888.1511026242847,
+        "speedup": 1.181115429792607
+      }
+    },
+    "aggregate": {
+      "median_default_seconds": 2.464496353502909,
+      "median_tuned_seconds": 2.105515083494538,
+      "median_default_tokens_per_second": 3324.012973673293,
+      "median_tuned_tokens_per_second": 3890.736134101703,
+      "median_time_speedup": 1.1704957009439074,
+      "worst_per_gpu_speedup": 1.1646831453362367
+    },
+    "timing_boundary": "generation call only; model load, compile, warmup, and graph capture excluded",
+    "order": "default then tuned on each physical GPU",
+    "caveat": "A future frozen recipe must bind the config hash and recheck task-level timing; this synthetic throughput result does not authorize activation by itself."
+  },
   "activation_policy": {
     "environment_variable": "VLLM_TUNED_CONFIG_FOLDER",
     "default": "unset",
     "frozen_v14b": "explicitly rejected",
-    "future_training": "requires separate loader, end-to-end throughput, and recipe preregistration checks"
+    "future_training": "requires separate recipe preregistration and task-level timing checks"
   }
 }
