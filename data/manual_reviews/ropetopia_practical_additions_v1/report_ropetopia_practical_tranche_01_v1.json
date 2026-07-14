@@ -1,0 +1,157 @@
+{
+  "active_baseline": {
+    "curation": [
+      {
+        "path": "data/train_qa_curated_v1.curation.jsonl",
+        "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb"
+      },
+      {
+        "path": "data/train_qa_kinbakutoday.curation.jsonl",
+        "sha256": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+      }
+    ],
+    "report": {
+      "path": "data/train_qa_curated_v1.report.json",
+      "sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a"
+    }
+  },
+  "comparison_corpus": {
+    "active": {
+      "path": "data/train_qa_curated_v1.jsonl",
+      "rows": 784,
+      "sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507"
+    },
+    "candidate_collisions": 0,
+    "facts_compared": 804,
+    "prior_pending": [
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v1/pending_additions_safety_tranche_01_v1.jsonl",
+        "rows": 10,
+        "sha256": "b294c1ea1712f523d65621a37f5996211a4470da4111f9e8be23024cdf2e3515"
+      },
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v2/pending_additions_safety_care_tranche_02_v1.jsonl",
+        "rows": 10,
+        "sha256": "e4fa43995c177df75dc061828e11be369c67474da757e842b4c097ac0a59b0c4"
+      }
+    ]
+  },
+  "isolated_build_projection": {
+    "build_script": "build_curated_qa.py",
+    "edited_fact_id_added": true,
+    "new_pending_fact_ids_added": 8,
+    "original_edited_fact_id_removed": true,
+    "output_rows": 812,
+    "output_sha256": "3d80b0ca574e3e8f550d483829b8897db8f53458e70ef282f9686393dc7eec5e",
+    "prior_pending_fact_ids_preserved": 20,
+    "repeat_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612,
+    "unchanged_active_fact_ids_preserved": 783,
+    "unexpected_fact_ids": 0,
+    "validated_runs": 2,
+    "wykd_successor_rows": 8
+  },
+  "method": {
+    "answer_support": "exact_substring_of_exact_stored_evidence",
+    "authoring": "manual_question_answer_and_evidence_selection",
+    "evidence_support": "exact_substring_of_hash_pinned_stored_document",
+    "excluded_classes": [
+      "volatile or promotional claims",
+      "contextless personal trivia",
+      "unsupported medical claims",
+      "active or pending semantic duplicates"
+    ],
+    "selection": "durable practical, safety, consent, and terminology facts missing from active plus both prior pending tranches"
+  },
+  "output": {
+    "by_document": {
+      "ichinawa": 3,
+      "injury_accountability": 2,
+      "newcomer_consent": 3
+    },
+    "by_topic": {
+      "dominant_consent": 1,
+      "event_consent": 1,
+      "ichinawa_technique": 1,
+      "japanese_rope_terminology": 1,
+      "recurring_injury_accountability": 1,
+      "recurring_injury_response": 1,
+      "submissive_consent": 1,
+      "terminology_variation": 1
+    },
+    "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_additions_ropetopia_practical_tranche_01_v1.jsonl",
+    "rows": 8,
+    "sha256": "a572bf973bc3ce2790de4bd001002bf39465d9deb15e5d80b26b75a52d602f75",
+    "unique_fact_ids": 8,
+    "unique_questions": 8
+  },
+  "pending_curation": {
+    "decisions": 1,
+    "edited_answer": "an X on the back",
+    "edited_fact_id": "fact-b97b252cc6fc305c9196",
+    "merit_verdict": "edit warranted; staged a concise grammatical manual paraphrase with an explicit meaning-preservation rationale",
+    "original_answer": "X",
+    "original_fact_id": "fact-aa8ca266f2b3c713cbb1",
+    "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_curation_ropetopia_practical_tranche_01_v1.jsonl",
+    "sha256": "cf82b5eb8a6d23caa4a6003887b031929db021874d5c9270f42324ea5adb9da2",
+    "source": {
+      "document_sha256": "86e7633af6f52f59fa1aff78bc590977607c79c662889ec3ffa253f702fd9755",
+      "file_sha256": "e02d9e6db4f5620e9736a24aa1f28a32049ce1f682f992d957559c2f2655eda7",
+      "path": "data/raw/rope_resources_v1/rope365__7c520e466d199159381f.json",
+      "url": "https://rope365.com/box-tie-chest/"
+    },
+    "support_type": "manual_paraphrase"
+  },
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-ropetopia-practical-additions",
+  "ropetopia_manifest": {
+    "path": "sources/rope_topia_manual_v1.json",
+    "sha256": "cc45b3dda9d264a181e7b3a51ca06eb9ed1de3b8e1ebf264ae461196065ffa92"
+  },
+  "schema": "manual-ropetopia-practical-additions-report-v1",
+  "sealed_evaluation_policy": {
+    "collision_check": "evaluation artifacts are passed by path only to existing build_curated_qa.py tooling during isolated projection",
+    "generator_opens_eval_or_heldout_content": false,
+    "manual_review_opened_eval_or_heldout_content": false
+  },
+  "source_scope": {
+    "reason": "The recovered RopeTopia host is a limited demo without the former article bodies.",
+    "recovered_ropetopia_article_bodies_used": false,
+    "relationship": "Stored public WykD successor articles corresponding to manually indexed RopeTopia resources",
+    "successor_documents_used": 3
+  },
+  "sources": {
+    "ichinawa": {
+      "document_sha256": "ca4af3374c7b1554a16f969a19a55d3e8acd8ff776f675eaec19b1779ec32511",
+      "file_sha256": "91fc248bcbee1123883003e54d1e0eced40dcedace26cf7f6ac7e3538c0e503f",
+      "manifest_resource_id": "ichinawa_ippon_me_no_nawa_one_rope",
+      "original_ropetopia_url": "https://rope-topia.com/2012/10/ichinawa-ippon-me-no-nawa-and-one-rope/",
+      "path": "data/raw/wykd_a74fec63b0114fff.json",
+      "successor_url": "https://wykd.com/shibari-kinbaku-bondage-teaching/2012/10/14/ichinawa-ippon-me-no-nawa-and-one-rope/"
+    },
+    "injury_accountability": {
+      "document_sha256": "5aa46db70e83e88c8d2fc9b0fb6a0e28e3339ce8d061e2a1ed04073dac5bdc98",
+      "file_sha256": "0014ef6d8f97070601e19654be7fff70df9cd5941c66407d776c7bf35f0867b4",
+      "manifest_resource_id": "luck_self_awareness_responsibility_injuries",
+      "original_ropetopia_url": "https://rope-topia.com/2013/11/luck-self-awareness-responsibility-rope-bondage-injuries/",
+      "path": "data/raw/wykd_19d6a26116e26c70.json",
+      "successor_url": "https://wykd.com/random/2013/11/30/self-awareness-luck-and-responsibility-in-rope-bondage-injuries/"
+    },
+    "newcomer_consent": {
+      "document_sha256": "03bb1af918ad3ed44208dc4805e48e40718f47d3ffc8994d47a54035e70140d2",
+      "file_sha256": "5d495bf93380ad381f23068c4e51ffab4d519822f32c9db8f33aa07d1d8d2add",
+      "manifest_resource_id": "out_into_kink_community",
+      "original_ropetopia_url": "https://rope-topia.com/newcomers-information/out-into-the-kink-community/",
+      "path": "data/raw/wykd_944e4e6d621a97c9.json",
+      "successor_url": "https://wykd.com/learning/2012/11/03/newness-and-getting-out-into-the-kink-community/"
+    }
+  },
+  "status": "segregated_pending_not_promoted",
+  "validation": {
+    "tests": [
+      "data/manual_reviews/ropetopia_practical_additions_v1/test_ropetopia_practical_additions.py",
+      "test_build_curated_qa.py"
+    ],
+    "tests_passed": 16
+  }
+}

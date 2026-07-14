@@ -172,6 +172,55 @@ class CuratedQABuildTests(unittest.TestCase):
                 merge([source], root / "out.jsonl", root / "report.json", [],
                       curation)
 
+    def test_manual_paraphrase_requires_explicit_support_and_rationale(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "input.jsonl"
+            item = record("What shape is described?", "X")
+            write_jsonl(source, [item])
+            base_decision = {
+                "action": "edit",
+                "answer": "an X shape",
+                "evidence": "The pattern creates a X in the back.",
+                "evidence_url": item["url"],
+                "expected_answer": item["answer"],
+                "expected_question": item["question"],
+                "fact_id": item["fact_id"],
+                "question": item["question"],
+                "reason": "Repairs a bare answer and source grammar.",
+                "reason_code": "answer_too_bare",
+                "reviewed_at": "2026-07-14",
+                "reviewer": "fixture-reviewer",
+            }
+            curation = root / "curation.jsonl"
+            write_jsonl(curation, [base_decision])
+            with self.assertRaisesRegex(ValueError, "must be extractive"):
+                merge([source], root / "out.jsonl", root / "report.json", [],
+                      curation)
+
+            paraphrase = dict(base_decision)
+            paraphrase["support_type"] = "manual_paraphrase"
+            write_jsonl(curation, [paraphrase])
+            with self.assertRaisesRegex(ValueError, "paraphrase_rationale"):
+                merge([source], root / "out.jsonl", root / "report.json", [],
+                      curation)
+
+            paraphrase["paraphrase_rationale"] = (
+                "Changes only the article and noun while preserving X."
+            )
+            write_jsonl(curation, [paraphrase])
+            output = root / "out.jsonl"
+            report = merge(
+                [source], output, root / "report.json", [], curation)
+            row = json.loads(output.read_text())
+            self.assertEqual(row["answer"], "an X shape")
+            self.assertEqual(
+                row["curation"]["support_type"], "manual_paraphrase")
+            self.assertEqual(
+                report["curation"]["edit_support_types"],
+                {"manual_paraphrase": 1},
+            )
+
     def test_multiple_curation_ledgers_are_applied_and_attributed(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

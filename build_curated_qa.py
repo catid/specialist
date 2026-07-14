@@ -32,6 +32,7 @@ DEFAULT_CURATIONS = [
 ]
 DEFAULT_EVAL = [DATA / "eval_qa.jsonl", DATA / "eval_qa_v2.jsonl"]
 CURATION_ACTIONS = {"drop", "edit"}
+EDIT_SUPPORT_TYPES = {"extractive", "manual_paraphrase"}
 
 
 def file_sha256(path: Path) -> str:
@@ -95,6 +96,12 @@ def load_curation(
                     answer = require_text(item, "answer", location)
                     evidence = require_text(item, "evidence", location)
                     require_text(item, "evidence_url", location)
+                    support_type = item.get("support_type", "extractive")
+                    if support_type not in EDIT_SUPPORT_TYPES:
+                        raise ValueError(
+                            f"{location}: unsupported edit support_type "
+                            f"{support_type!r}"
+                        )
                     if not question.endswith("?"):
                         raise ValueError(
                             f"{location}: edited question must end with '?'")
@@ -105,11 +112,15 @@ def load_curation(
                             question) or has_protocol_tokens(answer):
                         raise ValueError(
                             f"{location}: protocol token in edited QA")
-                    if normalize_text(answer) not in normalize_text(evidence):
+                    if (support_type == "extractive" and
+                            normalize_text(answer) not in
+                            normalize_text(evidence)):
                         raise ValueError(
                             f"{location}: edited answer must be extractive "
                             "from evidence"
                         )
+                    if support_type == "manual_paraphrase":
+                        require_text(item, "paraphrase_rationale", location)
                     rendered = f"Question: {question}\nAnswer: {answer}"
                     if parse_qa(rendered) != (question, answer):
                         raise ValueError(
@@ -184,18 +195,25 @@ def merge(input_paths: list[Path], output_path: Path, report_path: Path,
                     question = decision["question"].strip()
                     answer = decision["answer"].strip()
                     item = dict(item)
+                    curation_metadata = {
+                        "action": "edit",
+                        "decision_file": portable_path(
+                            decision_sources[original_fact_id]),
+                        "original_fact_id": original_fact_id,
+                        "reason": decision["reason"],
+                        "reason_code": reason_code,
+                        "reviewed_at": decision["reviewed_at"],
+                        "reviewer": decision["reviewer"],
+                    }
+                    if "support_type" in decision:
+                        curation_metadata["support_type"] = decision[
+                            "support_type"]
+                    if "paraphrase_rationale" in decision:
+                        curation_metadata["paraphrase_rationale"] = decision[
+                            "paraphrase_rationale"]
                     item.update({
                         "answer": answer,
-                        "curation": {
-                            "action": "edit",
-                            "decision_file": portable_path(
-                                decision_sources[original_fact_id]),
-                            "original_fact_id": original_fact_id,
-                            "reason": decision["reason"],
-                            "reason_code": reason_code,
-                            "reviewed_at": decision["reviewed_at"],
-                            "reviewer": decision["reviewer"],
-                        },
+                        "curation": curation_metadata,
                         "evidence": decision["evidence"].strip(),
                         "evidence_url": decision["evidence_url"].strip(),
                         "fact_id": stable_fact_id(question, answer),
@@ -297,6 +315,10 @@ def merge(input_paths: list[Path], output_path: Path, report_path: Path,
             "by_reason": dict(sorted(collections.Counter(
                 decision["reason_code"]
                 for decision in decisions.values()).items())),
+            "edit_support_types": dict(sorted(collections.Counter(
+                decision.get("support_type", "extractive")
+                for decision in decisions.values()
+                if decision["action"] == "edit").items())),
             "decisions": len(decisions),
         },
         "exclusions": exclusions,
