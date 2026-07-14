@@ -1,0 +1,200 @@
+{
+  "active_baseline": {
+    "curation": [
+      {
+        "path": "data/train_qa_curated_v1.curation.jsonl",
+        "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb"
+      },
+      {
+        "path": "data/train_qa_kinbakutoday.curation.jsonl",
+        "sha256": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+      }
+    ],
+    "dataset": {
+      "path": "data/train_qa_curated_v1.jsonl",
+      "rows": 784,
+      "sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507"
+    },
+    "report": {
+      "path": "data/train_qa_curated_v1.report.json",
+      "sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a"
+    }
+  },
+  "audit": {
+    "by_decision": {
+      "drop": 11,
+      "edit": 2,
+      "keep": 12
+    },
+    "by_reason": {
+      "contextless_or_low_value": 2,
+      "historical_restraint_context_complete": 1,
+      "knot_alias_context_complete": 1,
+      "knot_reference_context_complete": 1,
+      "material_safety_context_complete": 1,
+      "out_of_domain_or_personal_trivia": 5,
+      "postwar_media_term_context_complete": 1,
+      "replace_adoption_decade_with_framework_definition": 1,
+      "replace_name_lookup_with_contribution": 1,
+      "restraint_history_context_complete": 1,
+      "rope_community_activity_context_complete": 1,
+      "rope_measurement_context_complete": 1,
+      "rope_media_history_context_complete": 1,
+      "semantic_duplicate": 3,
+      "single_column_knot_context_complete": 1,
+      "source_attributed_material_comparison": 1,
+      "suspension_term_context_complete": 1,
+      "unsafe_or_medically_unsupported": 1
+    },
+    "path": "data/manual_reviews/context_merit_audit_v9/context_merit_audit_v9.jsonl",
+    "rows": 25,
+    "sha256": "02b3b89d2232fc16867fc00f61e459f4a8367430e4a3122065f66249637c4ae8"
+  },
+  "isolated_build_projection": {
+    "active_after_context_merit_v8": 710,
+    "active_after_this_tranche": 699,
+    "build_script": "build_curated_qa.py",
+    "new_drops_applied": 11,
+    "new_edits_applied": 2,
+    "output_rows": 737,
+    "output_sha256": "e5767343cba5907abd3abb907f227c382abc65277a3b845afcbd9447d969a0a3",
+    "prior_pending_addition_fact_ids_preserved": 38,
+    "repeat_dataset_byte_identical": true,
+    "reviewed_keep_fact_ids_preserved": 12,
+    "sealed_eval_fact_count_reported_by_tooling": 612,
+    "unexpected_fact_ids": 0,
+    "validated_runs": 2
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "drop": 11,
+      "edit": 2
+    },
+    "decisions": 13,
+    "path": "data/manual_reviews/context_merit_audit_v9/pending_curation_context_merit_v9.jsonl",
+    "sha256": "baa827fc31da73d40cfe71feb0f9c0fe74266f310317b17dabada85635d7341a"
+  },
+  "prior_pending": {
+    "additions": [
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v1/pending_additions_safety_tranche_01_v1.jsonl",
+        "rows": 10,
+        "sha256": "b294c1ea1712f523d65621a37f5996211a4470da4111f9e8be23024cdf2e3515"
+      },
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v2/pending_additions_safety_care_tranche_02_v1.jsonl",
+        "rows": 10,
+        "sha256": "e4fa43995c177df75dc061828e11be369c67474da757e842b4c097ac0a59b0c4"
+      },
+      {
+        "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_additions_ropetopia_practical_tranche_01_v1.jsonl",
+        "rows": 8,
+        "sha256": "a572bf973bc3ce2790de4bd001002bf39465d9deb15e5d80b26b75a52d602f75"
+      },
+      {
+        "path": "data/manual_reviews/anatomie_practical_consent_additions_v1/pending_additions_anatomie_consent_tranche_01_v1.jsonl",
+        "rows": 10,
+        "sha256": "689d7699fb1a5de92bdd568bd5d05ea8df93fbba5a1477053ebd14ca4a8c1a7a"
+      }
+    ],
+    "curations": [
+      {
+        "path": "data/manual_reviews/kinbakutoday_third_pass/overlap_quality_merit_reaudit_v1/pending_curation_quality_merit_v1.jsonl",
+        "rows": 22,
+        "sha256": "ac81ee03c6a738460c6020a4861e676592a5c63b18b76ab453b460faef45c558"
+      },
+      {
+        "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_curation_ropetopia_practical_tranche_01_v1.jsonl",
+        "rows": 1,
+        "sha256": "cf82b5eb8a6d23caa4a6003887b031929db021874d5c9270f42324ea5adb9da2"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v1/pending_curation_context_merit_v1.jsonl",
+        "rows": 8,
+        "sha256": "f8da448f3cd5c691f58dcee58cd4349843a0ae427c5ccda743d8e6d544619248"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v2/pending_curation_context_merit_v2.jsonl",
+        "rows": 7,
+        "sha256": "7d51643fb58bac0e0128af1239eee05608d721d7b0d0aef7b7acb9640b9700de"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v3/pending_curation_context_merit_v3.jsonl",
+        "rows": 7,
+        "sha256": "49cf31caddf6cca9831040761ccdeb8969536d6b1ed1b56647edadf7d70aed9e"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v4/pending_curation_context_merit_v4.jsonl",
+        "rows": 10,
+        "sha256": "02c5518ca28fd1a1b58448e920b26ed187594f5fbfb428ac62e2ceb61dc94925"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v5/pending_curation_context_merit_v5.jsonl",
+        "rows": 10,
+        "sha256": "25623c88524911b00d8af0f703098562abfae40b534e48445f250685c9734bae"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v6/pending_curation_context_merit_v6.jsonl",
+        "rows": 13,
+        "sha256": "d01493ec8cbb8461dabb3af9582dc2d70d8c0349f119a7d2861f7213046bcbf3"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v7/pending_curation_context_merit_v7.jsonl",
+        "rows": 12,
+        "sha256": "7f576a8baaf4ebf48881db148eabfa9a6fc8863e9acfc565e2c553671fc2864f"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v8/pending_curation_context_merit_v8.jsonl",
+        "rows": 12,
+        "sha256": "ecd55102a9572671866164cd4541f3a6e728bcd4343e2478ed7698dac248445c"
+      }
+    ]
+  },
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-context-merit-audit-v9",
+  "schema": "context-merit-audit-report-v9",
+  "sealed_evaluation_policy": {
+    "collision_check": "sealed evaluation paths are handled only by build_curated_qa.py during isolated projection",
+    "generator_opens_eval_or_heldout_content": false,
+    "manual_review_opened_eval_or_heldout_content": false
+  },
+  "selection": {
+    "active_rows": 784,
+    "eligible_unreviewed_rows": 305,
+    "excluded_active_review_provenance": 171,
+    "excluded_ledger_fact_ids": 1245,
+    "fact_ids_in_rank_order": [
+      "fact-a8f9b828a68537fb8bd8",
+      "fact-e18190210c4bd73d6008",
+      "fact-fa3c992a1748e50fc62c",
+      "fact-fcf827073a98f75fd9a5",
+      "fact-186a05e6675e4b4d7355",
+      "fact-099b416b74b5f9d328cb",
+      "fact-224434e4450cb9a39363",
+      "fact-4fad27c6ab983ca6849d",
+      "fact-854abc7d9f7b294521d3",
+      "fact-8b91fe6ef801b39b61f6",
+      "fact-b0325d750b296af187c6",
+      "fact-b94b186f58ec4c0bf40a",
+      "fact-bcc7840caa09e7ca9afb",
+      "fact-c7f97d425dddd7aecbb5",
+      "fact-c81b3c9e157104beadc0",
+      "fact-e7d2fc133a984af988a7",
+      "fact-f11b8cd79977beb93ed4",
+      "fact-f6e16a9975395e3c7ec0",
+      "fact-fb0119c5862636f2e7d7",
+      "fact-fcc8539f59ea2b810265",
+      "fact-fdbdb2cba818b0315af6",
+      "fact-7062996ff78795383f5a",
+      "fact-1718144091206df00ebb",
+      "fact-18ad3b9fe7fd13d65cec",
+      "fact-28d15f24f196d7ea55c6"
+    ],
+    "ranking": {
+      "score": "short_question_points + 3*pronoun_count + bare_answer_points + named_person_trivia_points",
+      "tie_break": "risk_score descending, question tokens ascending, answer tokens ascending, fact_id ascending"
+    },
+    "rows_selected": 25
+  },
+  "status": "segregated_pending_not_promoted"
+}

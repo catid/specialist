@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Focused regression tests for context-merit audit tranche v8."""
+"""Focused regression tests for context-merit audit tranche v9."""
 
 from __future__ import annotations
 
@@ -12,24 +12,24 @@ from unittest import mock
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-import build_context_merit_audit_v8 as builder
+import build_context_merit_audit_v9 as builder
 from qa_quality import normalize_text
 
 
-class ContextMeritAuditV8Test(unittest.TestCase):
+class ContextMeritAuditV9Test(unittest.TestCase):
     def setUp(self) -> None:
         frozen_paths = (builder.AUDIT, builder.CURATION, builder.REPORT)
         frozen_bytes = {path: path.read_bytes() for path in frozen_paths}
         self.addCleanup(self._assert_frozen_outputs_unchanged, frozen_bytes)
 
         temporary = tempfile.TemporaryDirectory(
-            prefix=".test-context-merit-v8-", dir=HERE)
+            prefix=".test-context-merit-v9-", dir=HERE)
         self.addCleanup(temporary.cleanup)
         output_dir = Path(temporary.name)
         for attribute, filename in (
-            ("AUDIT", "context_merit_audit_v8.jsonl"),
-            ("CURATION", "pending_curation_context_merit_v8.jsonl"),
-            ("REPORT", "report_context_merit_v8.json"),
+            ("AUDIT", "context_merit_audit_v9.jsonl"),
+            ("CURATION", "pending_curation_context_merit_v9.jsonl"),
+            ("REPORT", "report_context_merit_v9.json"),
         ):
             patcher = mock.patch.object(
                 builder, attribute, output_dir / filename)
@@ -50,7 +50,7 @@ class ContextMeritAuditV8Test(unittest.TestCase):
         ranked, _, _ = builder.ranked_unreviewed(builder.read_jsonl(builder.ACTIVE_DATASET))
         self.assertEqual(tuple(x["row"]["fact_id"] for x in ranked[:25]), builder.EXPECTED_SELECTION)
         prior = set()
-        for version in range(1, 8):
+        for version in range(1, 9):
             path = builder.DATA / "manual_reviews" / f"context_merit_audit_v{version}" / f"context_merit_audit_v{version}.jsonl"
             prior.update(row["fact_id"] for row in builder.read_jsonl(path))
         self.assertFalse(prior & set(builder.EXPECTED_SELECTION))
@@ -66,10 +66,10 @@ class ContextMeritAuditV8Test(unittest.TestCase):
     def test_decisions_and_curation(self) -> None:
         self.assertEqual(len(self.audit), 25)
         self.assertEqual({d: sum(r["decision"] == d for r in self.audit) for d in ("keep", "drop", "edit")},
-                         {"keep": 13, "drop": 8, "edit": 4})
-        self.assertEqual(len(self.curation), 12)
+                         {"keep": 12, "drop": 11, "edit": 2})
+        self.assertEqual(len(self.curation), 13)
         self.assertEqual({a: sum(r["action"] == a for r in self.curation) for a in ("drop", "edit")},
-                         {"drop": 8, "edit": 4})
+                         {"drop": 11, "edit": 2})
         for row in self.curation:
             if row["action"] == "edit":
                 self.assertEqual(row["support_type"], "extractive")
@@ -83,10 +83,10 @@ class ContextMeritAuditV8Test(unittest.TestCase):
 
     def test_report_projection_and_sealed_policy(self) -> None:
         report = json.loads(builder.REPORT.read_text())
-        self.assertEqual(report["audit"]["by_decision"], {"drop": 8, "edit": 4, "keep": 13})
+        self.assertEqual(report["audit"]["by_decision"], {"drop": 11, "edit": 2, "keep": 12})
         projection = report["isolated_build_projection"]
-        self.assertEqual(projection["output_rows"], 748)
-        self.assertEqual(projection["reviewed_keep_fact_ids_preserved"], 13)
+        self.assertEqual(projection["output_rows"], 737)
+        self.assertEqual(projection["reviewed_keep_fact_ids_preserved"], 12)
         self.assertEqual(projection["unexpected_fact_ids"], 0)
         self.assertTrue(projection["repeat_dataset_byte_identical"])
         self.assertFalse(report["sealed_evaluation_policy"]["manual_review_opened_eval_or_heldout_content"])
@@ -94,7 +94,7 @@ class ContextMeritAuditV8Test(unittest.TestCase):
     def test_generator_is_deterministic_and_prior_is_frozen(self) -> None:
         outputs = (builder.AUDIT, builder.CURATION, builder.REPORT)
         first = tuple(builder.file_sha256(path) for path in outputs)
-        prior_files = tuple(path for v in range(1, 8)
+        prior_files = tuple(path for v in range(1, 9)
                             for path in sorted((builder.DATA / "manual_reviews" / f"context_merit_audit_v{v}").glob("*"))
                             if path.is_file())
         before = tuple(builder.file_sha256(path) for path in prior_files)
