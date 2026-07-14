@@ -1,0 +1,502 @@
+{
+  "schema": "specialist-s6-layer-partition-v4-seed42-results-v1",
+  "created_utc": "2026-07-14",
+  "scope": {
+    "family": "closed_original_s6_v4",
+    "model": "Qwen3.6-35B-A3B",
+    "seed": 42,
+    "included_runs": 4,
+    "excluded": [
+      "rescue runs",
+      "per-example evaluation content",
+      "heldout evaluation"
+    ]
+  },
+  "conclusion": {
+    "nonzero_candidates_tested": 10,
+    "nonzero_candidates_passing_strict_guards": 0,
+    "candidate_selected": false,
+    "direct_confirmation_started": false,
+    "heldout_opened": false,
+    "heldout_scored": false,
+    "reason": "Every nonzero state failed the strict OOD prose nondegradation gate; no nonzero state was eligible for selection."
+  },
+  "protocol": {
+    "path": "experiments/eggroll_es_hpo/S6_LAYER_PARTITION_V4_PROTOCOL.md",
+    "sha256": "3b6f4683ea4ce91078df1e5d47c4d65d787925c1eb98720dbfa4144055160aa1",
+    "line_search_schema": "eggroll-es-anchor-alpha-line-search-v4",
+    "ood_qa_max_degradation": 0.0,
+    "ood_prose_max_degradation": 0.0,
+    "prose_gate": {
+      "bootstrap_unit": "normalized_source_url",
+      "document_count": 16,
+      "samples": 20000,
+      "seed": 20260714,
+      "percentiles": [
+        0.025,
+        0.975
+      ]
+    }
+  },
+  "frozen_inputs": {
+    "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "dense_reward_sha256": "4941f2e94091b1f8e7ab7b5294ebc6520b80aba1326b7dc6ccea5140a3da5da2",
+    "train": {
+      "rows": 794,
+      "arrow_sha256": "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6"
+    },
+    "validation": {
+      "rows": 41,
+      "arrow_sha256": "19181b832e38ef6f97e3ba734362cd1af921f067e8edd249113c5129439443db"
+    },
+    "ood_qa": {
+      "rows": 24,
+      "arrow_sha256": "b201123c6a358d306b7f874e400861068900bb764b1fda80eb663b82ca53dced"
+    },
+    "ood_prose": {
+      "documents": 16,
+      "scored_tokens": 10926
+    },
+    "anchor": {
+      "rows": 128,
+      "sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d"
+    }
+  },
+  "plans": {
+    "front_back": {
+      "path": "experiments/layer_plans/front_back_dense.json",
+      "file_sha256": "8e855cbd0d6130278e87b1af348e39dd0f683b8575d9abcb9260f3fe7b29d824",
+      "semantic_sha256": "6af34ef41187d8b08f53b9dab1e40102744b954c80146c130bd2c053fc3f52cb",
+      "source_units": 70,
+      "runtime_parameters": 46,
+      "selected_bf16_elements": 285999104
+    },
+    "middle_matched": {
+      "path": "experiments/layer_plans/middle_matched_dense.json",
+      "file_sha256": "f2b38054e3cdaf41619cce579d3ba2e030fa3cfa87fd42b50543f655ff5f6dc0",
+      "semantic_sha256": "b5e4e162116695e5d2544e24c2e0cdfb49ca8783aa6f9d707ef41d6f725ca5e0",
+      "source_units": 70,
+      "runtime_parameters": 46,
+      "selected_bf16_elements": 285999104
+    }
+  },
+  "baseline": {
+    "validation": {
+      "mean_reward": 0.08381010452961674,
+      "exact": 2,
+      "nonzero": 13,
+      "rows": 41
+    },
+    "ood_qa": {
+      "mean_reward": 0.714128787878788,
+      "exact": 16,
+      "nonzero": 23,
+      "rows": 24
+    },
+    "ood_prose_mean_token_logprob": -1.2632580042542214
+  },
+  "runs": [
+    {
+      "name": "snapshot794_layer_v4_frontback_smoke_hardened_retry2_seed42",
+      "kind": "smoke",
+      "plan": "front_back",
+      "status": "complete",
+      "recipe": {
+        "sigma": 0.0003,
+        "population_size": 4,
+        "batch_size": 8,
+        "mini_batch_size": 64,
+        "anchor_items_per_step": 4,
+        "min_anchor_cosine": 0.5,
+        "max_tokens": 32,
+        "target_alphas": [
+          0.0,
+          0.00000625
+        ]
+      },
+      "projection": {
+        "domain_anchor_cosine_before": -0.4970264765400157,
+        "domain_anchor_cosine_after": 0.5000000000000001,
+        "projection_lambda": 0.9980170328959915
+      },
+      "journal": {
+        "path": "experiments/eggroll_es_hpo/runs/snapshot794_layer_v4_frontback_smoke_hardened_retry2_seed42/alpha_line_search.json",
+        "sha256": "7d93fae521db162385e65efc7a71d05c87bf6cbc2a3c8c735320d2fa487a48c9",
+        "bytes": 147120
+      },
+      "gpu_trace": {
+        "path": "experiments/gpu_utilization_eggroll_es_s6_layer_v4_frontback_smoke_hardened_retry2_seed42.jsonl",
+        "sha256": "cfb48ebc69792f5cd02246803107d74f2d9190c8827c744c501b83a46b7a4517",
+        "bytes": 71666,
+        "records": 109,
+        "gpu_indices": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "states": [
+        {
+          "alpha": 0.0,
+          "validation_mean_reward": 0.08381010452961674,
+          "validation_delta": 0.0,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2632580042542214,
+          "ood_prose_delta": 0.0,
+          "ood_prose_bootstrap_95_ci": [
+            0.0,
+            0.0
+          ],
+          "ood_prose_gate": true,
+          "strict_guards_passed": true
+        },
+        {
+          "alpha": 0.00000625,
+          "validation_mean_reward": 0.08381010452961674,
+          "validation_delta": 0.0,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2646142209458766,
+          "ood_prose_delta": -0.0013562166916551988,
+          "ood_prose_bootstrap_95_ci": [
+            -0.003645899525199858,
+            0.001014845865186292
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        }
+      ]
+    },
+    {
+      "name": "snapshot794_layer_v4_middle_smoke_hardened_seed42",
+      "kind": "smoke",
+      "plan": "middle_matched",
+      "status": "complete",
+      "recipe": {
+        "sigma": 0.0003,
+        "population_size": 4,
+        "batch_size": 8,
+        "mini_batch_size": 64,
+        "anchor_items_per_step": 4,
+        "min_anchor_cosine": 0.5,
+        "max_tokens": 32,
+        "target_alphas": [
+          0.0,
+          0.00000625
+        ]
+      },
+      "projection": {
+        "domain_anchor_cosine_before": -0.16982487925740342,
+        "domain_anchor_cosine_after": 0.5,
+        "projection_lambda": 0.7387915056800718
+      },
+      "journal": {
+        "path": "experiments/eggroll_es_hpo/runs/snapshot794_layer_v4_middle_smoke_hardened_seed42/alpha_line_search.json",
+        "sha256": "2babd6fd0645aa827c8014e49cb3a7f2642079376d43d8a5a5875f6f1c34de5d",
+        "bytes": 147047
+      },
+      "gpu_trace": {
+        "path": "experiments/gpu_utilization_eggroll_es_s6_layer_v4_middle_smoke_hardened_seed42.jsonl",
+        "sha256": "e0ccfc03bf45a8b06636236a6f9dc3350d1e73f11565f61211fc6f7643c01c3d",
+        "bytes": 74254,
+        "records": 113,
+        "gpu_indices": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "states": [
+        {
+          "alpha": 0.0,
+          "validation_mean_reward": 0.08381010452961674,
+          "validation_delta": 0.0,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2632580042542214,
+          "ood_prose_delta": 0.0,
+          "ood_prose_bootstrap_95_ci": [
+            0.0,
+            0.0
+          ],
+          "ood_prose_gate": true,
+          "strict_guards_passed": true
+        },
+        {
+          "alpha": 0.00000625,
+          "validation_mean_reward": 0.08381010452961674,
+          "validation_delta": 0.0,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2631884464481091,
+          "ood_prose_delta": 0.0000695578061122859,
+          "ood_prose_bootstrap_95_ci": [
+            -0.001482260032563959,
+            0.0017812659742646284
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        }
+      ]
+    },
+    {
+      "name": "snapshot794_layer_v4_frontback_pilot_pop16_seed42",
+      "kind": "pilot",
+      "plan": "front_back",
+      "status": "complete",
+      "recipe": {
+        "sigma": 0.0003,
+        "population_size": 16,
+        "batch_size": 64,
+        "mini_batch_size": 64,
+        "anchor_items_per_step": 32,
+        "min_anchor_cosine": 0.5,
+        "max_tokens": 32,
+        "target_alphas": [
+          0.0,
+          0.00000625,
+          0.0000125,
+          0.000025,
+          0.00005
+        ]
+      },
+      "projection": {
+        "domain_anchor_cosine_before": -0.08264420197016782,
+        "domain_anchor_cosine_after": 0.49999999999999994,
+        "projection_lambda": 0.6580260274481059
+      },
+      "journal": {
+        "path": "experiments/eggroll_es_hpo/runs/snapshot794_layer_v4_frontback_pilot_pop16_seed42/alpha_line_search.json",
+        "sha256": "098d47a5a555a72d60577f4c897a1eb4a7676287d53a09c39589203bd704cf35",
+        "bytes": 375358
+      },
+      "gpu_trace": {
+        "path": "experiments/gpu_utilization_eggroll_es_s6_layer_v4_frontback_pilot_pop16_seed42.jsonl",
+        "sha256": "1e738c7f7c703b253fed732ca67fb7f9cca14a99ae36b30284bd422b6cb6ab25",
+        "bytes": 113299,
+        "records": 172,
+        "gpu_indices": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "states": [
+        {
+          "alpha": 0.0,
+          "validation_mean_reward": 0.08381010452961674,
+          "validation_delta": 0.0,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2632580042542214,
+          "ood_prose_delta": 0.0,
+          "ood_prose_bootstrap_95_ci": [
+            0.0,
+            0.0
+          ],
+          "ood_prose_gate": true,
+          "strict_guards_passed": true
+        },
+        {
+          "alpha": 0.00000625,
+          "validation_mean_reward": 0.08454181184668991,
+          "validation_delta": 0.0007317073170731714,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.266583774441124,
+          "ood_prose_delta": -0.003325770186902499,
+          "ood_prose_bootstrap_95_ci": [
+            -0.005465899153831232,
+            -0.0008649941150006951
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        },
+        {
+          "alpha": 0.0000125,
+          "validation_mean_reward": 0.08359756097560976,
+          "validation_delta": -0.00021254355400697478,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2649080476753192,
+          "ood_prose_delta": -0.0016500434210977577,
+          "ood_prose_bootstrap_95_ci": [
+            -0.0037326298099798314,
+            0.0003888335975289081
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        },
+        {
+          "alpha": 0.000025,
+          "validation_mean_reward": 0.08446864111498258,
+          "validation_delta": 0.0006585365853658404,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.266021785468977,
+          "ood_prose_delta": -0.002763781214755623,
+          "ood_prose_bootstrap_95_ci": [
+            -0.005019774728133131,
+            -0.0003520534298162226
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        },
+        {
+          "alpha": 0.00005,
+          "validation_mean_reward": 0.0829390243902439,
+          "validation_delta": -0.000871080139372829,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2663496419400222,
+          "ood_prose_delta": -0.0030916376858007855,
+          "ood_prose_bootstrap_95_ci": [
+            -0.004790009069047258,
+            -0.001345247799710659
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        }
+      ]
+    },
+    {
+      "name": "snapshot794_layer_v4_middle_pilot_pop16_seed42",
+      "kind": "pilot",
+      "plan": "middle_matched",
+      "status": "complete",
+      "recipe": {
+        "sigma": 0.0003,
+        "population_size": 16,
+        "batch_size": 64,
+        "mini_batch_size": 64,
+        "anchor_items_per_step": 32,
+        "min_anchor_cosine": 0.5,
+        "max_tokens": 32,
+        "target_alphas": [
+          0.0,
+          0.00000625,
+          0.0000125,
+          0.000025,
+          0.00005
+        ]
+      },
+      "projection": {
+        "domain_anchor_cosine_before": -0.6474611065553795,
+        "domain_anchor_cosine_after": 0.5000000000000001,
+        "projection_lambda": 1.0874719322168656
+      },
+      "journal": {
+        "path": "experiments/eggroll_es_hpo/runs/snapshot794_layer_v4_middle_pilot_pop16_seed42/alpha_line_search.json",
+        "sha256": "796d4d5aa5df31943aa632caf184a7a06df0c064ff429fd1d901ac5a57de874d",
+        "bytes": 375317
+      },
+      "gpu_trace": {
+        "path": "experiments/gpu_utilization_eggroll_es_s6_layer_v4_middle_pilot_pop16_seed42.jsonl",
+        "sha256": "c7d4bb185d91126b975e34b8a83c5b19abdb4885dfb18bf1e780eb27c6119cf9",
+        "bytes": 112661,
+        "records": 171,
+        "gpu_indices": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "states": [
+        {
+          "alpha": 0.0,
+          "validation_mean_reward": 0.08381010452961674,
+          "validation_delta": 0.0,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2632580042542214,
+          "ood_prose_delta": 0.0,
+          "ood_prose_bootstrap_95_ci": [
+            0.0,
+            0.0
+          ],
+          "ood_prose_gate": true,
+          "strict_guards_passed": true
+        },
+        {
+          "alpha": 0.00000625,
+          "validation_mean_reward": 0.08385888501742161,
+          "validation_delta": 0.00004878048780487809,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2621158263349923,
+          "ood_prose_delta": 0.0011421779192291037,
+          "ood_prose_bootstrap_95_ci": [
+            -0.0006753152389219585,
+            0.0031093444001601706
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        },
+        {
+          "alpha": 0.0000125,
+          "validation_mean_reward": 0.08171951219512195,
+          "validation_delta": -0.0020905923344947813,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2635045754191456,
+          "ood_prose_delta": -0.00024657116492421416,
+          "ood_prose_bootstrap_95_ci": [
+            -0.0017264090560666246,
+            0.001205654532998122
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        },
+        {
+          "alpha": 0.000025,
+          "validation_mean_reward": 0.08381010452961674,
+          "validation_delta": 0.0,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2626990333758141,
+          "ood_prose_delta": 0.0005589708784072833,
+          "ood_prose_bootstrap_95_ci": [
+            -0.0011852344635805145,
+            0.0022810683651331405
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        },
+        {
+          "alpha": 0.00005,
+          "validation_mean_reward": 0.08381010452961674,
+          "validation_delta": 0.0,
+          "ood_qa_mean_reward": 0.714128787878788,
+          "ood_qa_delta": 0.0,
+          "ood_qa_gate": true,
+          "ood_prose_mean_token_logprob": -1.2632192877103725,
+          "ood_prose_delta": 0.00003871654384890455,
+          "ood_prose_bootstrap_95_ci": [
+            -0.0013003681069623076,
+            0.0016168090807149513
+          ],
+          "ood_prose_gate": false,
+          "strict_guards_passed": false
+        }
+      ]
+    }
+  ]
+}
