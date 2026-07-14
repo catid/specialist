@@ -1,0 +1,118 @@
+{
+  "append_ledgers": [
+    {
+      "path": "data/manual_reviews/rope365/pending_curation_rows_0001_0150_v1.jsonl",
+      "sha256": "f5990ac041a826fccb957683952286ad41c3344d4ecfaf84a16af02f87cfe62f"
+    },
+    {
+      "path": "data/manual_reviews/rope365/pending_curation_rows_0151_0300_v1.jsonl",
+      "sha256": "95feaac5c3d558744967100a969e8f4dfd2b2ddd7e174a5a29b06384609cf1ff"
+    },
+    {
+      "path": "data/manual_reviews/rope365/pending_curation_rows_0301_0450_v1.jsonl",
+      "sha256": "d9a8501fd67370bd102caa44afbffcc38904ceb92710ad9e70b53992f0f7b821"
+    },
+    {
+      "path": "data/manual_reviews/rope365/pending_curation_rows_0451_0600_v1.jsonl",
+      "sha256": "d32c8cd99b178e970e60e0fc1233c4695c4bfb5bd709399b6ff20a8df7c83952"
+    },
+    {
+      "path": "data/manual_reviews/rope365/pending_curation_rows_0601_0601_v1.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/esinem_second_pass/pending_curation_rows_0001_0150_v1.jsonl",
+      "sha256": "053a5ac289e3308fe1426f2ebfaa5d8ccb28e33b58348e9709cb0eacbc566c07"
+    },
+    {
+      "path": "data/manual_reviews/wikipedia_second_pass/pending_curation_rows_0001_0075_v1.jsonl",
+      "sha256": "591f5058a3d371868216dc868562b9f14fd73c525959f9e508c08aac648ae893"
+    },
+    {
+      "path": "data/manual_reviews/wikipedia_second_pass/pending_curation_rows_0076_0150_v1.jsonl",
+      "sha256": "793e28b49e6d607f2bf2310a48bfac02657906e36218839160f4dc681aeaf82e"
+    },
+    {
+      "path": "data/manual_reviews/wikipedia_second_pass/pending_curation_rows_0151_0204_v1.jsonl",
+      "sha256": "f63b460e38b8dea33bf709b39df5ca66b9c5e6b415c9bc5e98a201c671a9162e"
+    },
+    {
+      "path": "data/manual_reviews/anatomiestudio_second_pass/pending_curation_rows_0001_0023_v1.jsonl",
+      "sha256": "88040218192db3bdca3dd8a8d8f8584ec2cc13851735ebf13aea9d4c76bdb09c"
+    },
+    {
+      "path": "data/manual_reviews/resource_second_pass/pending_curation_tranche_01_directory_ropetopia_v1.jsonl",
+      "sha256": "57305b564d6bcac501ceb7c873e10a3a213d29b4d3e24541cc0a3e9d36730825"
+    },
+    {
+      "path": "data/manual_reviews/resource_second_pass/pending_curation_tranche_02_manual_facts_v1.jsonl",
+      "sha256": "d360c64ed3935ef477200148b96ae69a5af80aedf98e62bf5b4ec1f6ce6322f1"
+    }
+  ],
+  "appended_rows": 602,
+  "base": {
+    "path": "experiments/eggroll_es_hpo/snapshots/s4_final/train_qa_curated_v1.curation.jsonl",
+    "rows": 1076,
+    "sha256": "3fc033f3a58638567c709f1bba8b94a5eda93d59c36d4d544c2f8c874b9d18ec"
+  },
+  "duplicate_confirmations": {
+    "append": [
+      "fact-67886a2b0e6fd1731f4e",
+      "fact-eb2fa4eec534fd292483"
+    ],
+    "replacement": []
+  },
+  "output": {
+    "path": "data/train_qa_curated_v1.curation.jsonl",
+    "rows": 1678,
+    "sha256": "5c83bc4f72be9ddf171744e879a4c19df054926971eecacf76d4421614399b40"
+  },
+  "output_by_action": {
+    "drop": 1625,
+    "edit": 53
+  },
+  "replacement_ledgers": [
+    {
+      "path": "data/manual_reviews/rope365/pending_replacements_rows_0001_0150_v1.jsonl",
+      "sha256": "8c114f0bd31b8695df4296a988ac5bc14a56f027bfd080c74274311bc196472c"
+    },
+    {
+      "path": "data/manual_reviews/rope365/pending_replacements_rows_0301_0450_v1.jsonl",
+      "sha256": "fd3a05b2d5f95ece9c27e431587839c808faa81bb32a3d8e0c94c63749338cc9"
+    },
+    {
+      "path": "data/manual_reviews/rope365/pending_replacements_rows_0451_0600_v1.jsonl",
+      "sha256": "a26ec782976c8f4cb25125778707f1d8cca467fe3a772cfda61732361733dfad"
+    },
+    {
+      "path": "data/manual_reviews/esinem_second_pass/pending_replacements_rows_0001_0150_v1.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/wikipedia_second_pass/pending_replacements_rows_0001_0075_v1.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/wikipedia_second_pass/pending_replacements_rows_0076_0150_v1.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/wikipedia_second_pass/pending_replacements_rows_0151_0204_v1.jsonl",
+      "sha256": "7ea77d64dc01648b6908af5ef7f1c402c84c289ec074fbfc6bad0d0965302172"
+    },
+    {
+      "path": "data/manual_reviews/anatomiestudio_second_pass/pending_replacements_rows_0001_0023_v1.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/resource_second_pass/pending_replacements_tranche_01_directory_ropetopia_v1.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/resource_second_pass/pending_replacements_tranche_02_manual_facts_v1.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "replacement_rows": 7,
+  "schema": "curation-ledger-promotion-v1"
+}

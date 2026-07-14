@@ -1,0 +1,200 @@
+{
+  "schema": "manual-curation-promotion-manifest-v1",
+  "scope": "kinbakutoday_third_pass_quality_only",
+  "created_at": "2026-07-14",
+  "reviewer": "codex-kinbakutoday-third-pass",
+  "status": "ready_for_promotion",
+  "baseline": {
+    "data/train_qa_curated_v1.jsonl": {
+      "rows": 908,
+      "sha256": "ef2f39e95c73c69041517e03d04c6cf48a2c25a2198a9e6d05a56258c1875591"
+    },
+    "data/train_qa_curated_v1.report.json": {
+      "sha256": "5be2fcada1b6b8e8c10a00becd4b9b550eb2380bc8118c634d3c49274d59b178"
+    },
+    "data/train_qa_curated_v1.curation.jsonl": {
+      "rows": 1678,
+      "sha256": "5c83bc4f72be9ddf171744e879a4c19df054926971eecacf76d4421614399b40"
+    },
+    "data/train_qa_kinbakutoday.curation.jsonl": {
+      "rows": 751,
+      "sha256": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    },
+    "active_kinbakutoday_rows": 423,
+    "active_kinbakutoday_existing_edits": 12
+  },
+  "quality_scope": {
+    "included_tranches": [3, 4, 5, 6, 7, 8],
+    "reviewed_rows": 316,
+    "unique_source_documents": 125,
+    "retain_unchanged": 192,
+    "drop": 124,
+    "append_safe_drop_decisions": 119,
+    "replacement_drop_decisions": 5,
+    "reason_counts": {
+      "contextless_or_low_value": 57,
+      "out_of_domain_or_personal_trivia": 22,
+      "semantic_duplicate": 11,
+      "source_error_or_misread": 8,
+      "unsafe_or_medically_unsupported": 11,
+      "volatile_or_promotional": 15
+    }
+  },
+  "append_safe_ledgers": [
+    {
+      "tranche": 3,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_03_quality_a_v1.jsonl",
+      "rows": 21,
+      "sha256": "f2446ee0e9afafe332a98aab2409bc411d582f6bb0e7c22cc731e6ba5c1572fc"
+    },
+    {
+      "tranche": 4,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_04_quality_b_v1.jsonl",
+      "rows": 25,
+      "sha256": "5b97513a5c81c5d565e31d499ea079f5461493f47df59006ef703a88fd5562f4"
+    },
+    {
+      "tranche": 5,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_05_quality_c_v1.jsonl",
+      "rows": 21,
+      "sha256": "c90abd709f5f6b02bc6149a9c8d1c5185381676f6061f2193417ef465c97fb75"
+    },
+    {
+      "tranche": 6,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_06_quality_d_v1.jsonl",
+      "rows": 26,
+      "sha256": "c806dfdb81a9ec49a2966b05e4b0309825ec216179d60c198a45753c62b18494"
+    },
+    {
+      "tranche": 7,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_07_quality_e_v1.jsonl",
+      "rows": 20,
+      "sha256": "fdcc533d307609822aa001a615f92fcfca80f6bf1c83cddccc19b2c04a2ded89"
+    },
+    {
+      "tranche": 8,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_08_quality_f_v1.jsonl",
+      "rows": 6,
+      "sha256": "6a2207945ab9431e41e9927bbd9ded0e2b681e8851822608244a89573c57732b"
+    }
+  ],
+  "replacement_ledgers": [
+    {
+      "tranche": 3,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_03_quality_a_v1.jsonl",
+      "rows": 1,
+      "sha256": "fc9b25fd36741b6f3bc50aeab20ef1fca6f32519ac60dc478221e77371c7d5d9"
+    },
+    {
+      "tranche": 4,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_04_quality_b_v1.jsonl",
+      "rows": 1,
+      "sha256": "2b8a68f1cbed716eb8420d765e968574bb0759ba076f3fce7f55193223f3cc14"
+    },
+    {
+      "tranche": 5,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_05_quality_c_v1.jsonl",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "tranche": 6,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_06_quality_d_v1.jsonl",
+      "rows": 1,
+      "sha256": "678e3943d27e87d98c59ffa158c479fdb915fbaf9ef5584101d99f4dc1418578"
+    },
+    {
+      "tranche": 7,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_07_quality_e_v1.jsonl",
+      "rows": 2,
+      "sha256": "1ab8f3643a2271a168d08ad8c23312e14cfbf686788620ecb679e00421cc0734"
+    },
+    {
+      "tranche": 8,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_08_quality_f_v1.jsonl",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "replacement_prerequisites": {
+    "replace_existing_decisions_in_place_for_fact_ids": [
+      "fact-67683b0794f49b02bb31",
+      "fact-ed8254eeb9f011b5ebdd",
+      "fact-919fa35570a92c0824b7",
+      "fact-4a63b65b052f99c85bd4",
+      "fact-544f3dbd9fb594206f22"
+    ],
+    "count": 5,
+    "reason": "Each listed original fact already has an active edit decision. Apply the replacement decision at the existing fact_id position; do not remove it and append a second copy."
+  },
+  "projected_general_curation_ledger": {
+    "path": "data/train_qa_curated_v1.curation.jsonl",
+    "rows": 1797,
+    "drop_decisions": 1749,
+    "edit_decisions": 48,
+    "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb",
+    "ordering": "promote_curation_ledgers.py replacement-in-place order: preserve all 1678 base positions, replace the five listed fact_ids at their original positions, then append the 119 unique append-safe rows in ascending tranche order (3 through 8) and ledger order; serialize every row with sorted JSON keys",
+    "promotion_helper": "promote_curation_ledgers.py"
+  },
+  "promotion_procedure": [
+    "Verify every baseline and pending-artifact SHA-256 before changing active files.",
+    "Run promote_curation_ledgers.py against data/train_qa_curated_v1.curation.jsonl with all six append ledgers in ascending tranche order and all six replacement ledgers in ascending tranche order.",
+    "Require five replacements in place, 119 appended decisions, 1797 output rows, and the projected_general_curation_ledger SHA-256; the tranche 5 and 8 replacement ledgers are intentionally empty.",
+    "Do not append any artifact from overlap tranches 1 or 2.",
+    "Rebuild the curated dataset deterministically and require the quality_only_projection values below."
+  ],
+  "quality_only_projection": {
+    "output_rows": 784,
+    "kinbakutoday_rows": 299,
+    "curation_decisions": 2548,
+    "excluded_rows": 2502,
+    "output_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
+    "report_sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a",
+    "repeat_build_byte_identical": true,
+    "note": "The 299 projected Kinbaku Today rows are 192 retained quality-scope rows plus 107 overlap rows deliberately left untouched by this quality-only promotion. The hashes are normalized to the final active ledger/output paths because build_curated_qa.py embeds curation.decision_file and output paths in generated artifacts."
+  },
+  "excluded_overlap_artifacts": {
+    "promotion_allowed": false,
+    "excluded_tranches": [1, 2],
+    "reviewed_rows": 107,
+    "unique_source_documents": 30,
+    "append_safe_drop_decisions": 105,
+    "replacement_drop_decisions": 2,
+    "reason_counts": {
+      "heldout_document_overlap": 107
+    },
+    "note": "These rows overlap evaluation documents and remain segregated by instruction. They are audit evidence, not quality-promotion inputs.",
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_01_overlap_a_v1.jsonl",
+        "rows": 56,
+        "sha256": "e621cab40b06739dc13753bfcd6f941e512dde54f46ba93490501eb86a4f7ca4"
+      },
+      {
+        "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_01_overlap_a_v1.jsonl",
+        "rows": 1,
+        "sha256": "73a145a8e0d0115595e16fa073e59b527798ef2d33ad21603ce87fb54285de2f"
+      },
+      {
+        "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_02_overlap_b_v1.jsonl",
+        "rows": 49,
+        "sha256": "84489f323db629f568117d8556b0d09fc1c175823d905d9e09600a750d733022"
+      },
+      {
+        "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_02_overlap_b_v1.jsonl",
+        "rows": 1,
+        "sha256": "7b58da7d18a31e35378846251c4c9dd61418b1048f8f7302c9b1142f766fbb3a"
+      }
+    ]
+  },
+  "all_pending_diagnostic": {
+    "promotion_scope": false,
+    "output_rows": 677,
+    "kinbakutoday_rows": 192,
+    "curation_decisions": 2653,
+    "excluded_rows": 2609,
+    "output_sha256": "e269da4a27634032d68d7ff95503e5f6c1d45f80f0bcb8f7a7f536574cf77f8c",
+    "repeat_build_byte_identical": true,
+    "note": "Diagnostic only: this combines overlap and quality decisions and must not be used for the quality-only promotion."
+  }
+}

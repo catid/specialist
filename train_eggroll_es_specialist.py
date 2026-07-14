@@ -23,6 +23,9 @@ from es_train_acc import answer_score
 ROOT = Path(__file__).resolve().parent
 UPSTREAM = ROOT / "es-at-scale"
 COMPAT = ROOT / "eggroll_es_compat"
+OOD_PROSE_BOOTSTRAP_SAMPLES = 20000
+OOD_PROSE_BOOTSTRAP_SEED = 20260714
+OOD_PROSE_DEFAULT_MAX_DEGRADATION = 0.02
 
 
 def specialist_collate(batch):
@@ -272,12 +275,43 @@ def summarize_ood_prose(items, outputs):
     }
 
 
-def compare_ood_prose(baseline, final, max_degradation):
-    """Require aligned items and apply a higher-is-better logprob gate."""
+def linear_percentile(values, probability):
+    """Linearly interpolate a percentile, matching paired QA reports."""
+    if not values:
+        raise ValueError("cannot take a percentile of no values")
+    if not 0.0 <= probability <= 1.0:
+        raise ValueError("percentile probability must be in [0, 1]")
+    ordered = sorted(values)
+    position = probability * (len(ordered) - 1)
+    lower = int(position)
+    upper = min(lower + 1, len(ordered) - 1)
+    fraction = position - lower
+    if ordered[lower] == ordered[upper]:
+        return ordered[lower]
+    return ordered[lower] * (1.0 - fraction) + ordered[upper] * fraction
+
+
+def compare_ood_prose(
+    baseline,
+    final,
+    max_degradation=OOD_PROSE_DEFAULT_MAX_DEGRADATION,
+    bootstrap_samples=OOD_PROSE_BOOTSTRAP_SAMPLES,
+    bootstrap_seed=OOD_PROSE_BOOTSTRAP_SEED,
+):
+    """Apply a paired source-document bootstrap non-inferiority gate."""
     if not math.isfinite(max_degradation) or max_degradation < 0.0:
         raise ValueError("maximum OOD prose degradation must be non-negative")
+    if (
+        isinstance(bootstrap_samples, bool)
+        or not isinstance(bootstrap_samples, int)
+        or bootstrap_samples <= 0
+    ):
+        raise ValueError("OOD prose bootstrap samples must be positive")
+    if isinstance(bootstrap_seed, bool) or not isinstance(bootstrap_seed, int):
+        raise ValueError("OOD prose bootstrap seed must be an integer")
     alignment_fields = (
-        "item_id", "text_sha256", "token_ids_sha256",
+        "item_id", "normalized_source_url", "text_sha256",
+        "token_ids_sha256",
         "prompt_token_count", "scored_token_count",
     )
     baseline_alignment = [
@@ -290,9 +324,79 @@ def compare_ood_prose(baseline, final, max_degradation):
     ]
     if baseline_alignment != final_alignment:
         raise ValueError("baseline/final OOD prose items are not aligned")
-    baseline_mean = float(baseline["mean_token_logprob"])
-    final_mean = float(final["mean_token_logprob"])
+
+    documents = {}
+    for baseline_item, final_item in zip(
+        baseline["items"], final["items"],
+    ):
+        document_id = baseline_item["normalized_source_url"]
+        if not isinstance(document_id, str) or not document_id:
+            raise ValueError("OOD prose item has no source-document identity")
+        scored_tokens = baseline_item["scored_token_count"]
+        if (
+            isinstance(scored_tokens, bool)
+            or not isinstance(scored_tokens, int)
+            or scored_tokens <= 0
+        ):
+            raise ValueError("OOD prose scored token count must be positive")
+        baseline_sum = float(baseline_item["sum_token_logprob"])
+        final_sum = float(final_item["sum_token_logprob"])
+        if not math.isfinite(baseline_sum) or not math.isfinite(final_sum):
+            raise ValueError("OOD prose item has a non-finite logprob sum")
+        document = documents.setdefault(document_id, {
+            "baseline_sums": [],
+            "final_sums": [],
+            "scored_token_count": 0,
+        })
+        document["baseline_sums"].append(baseline_sum)
+        document["final_sums"].append(final_sum)
+        document["scored_token_count"] += scored_tokens
+
+    document_rows = [
+        {
+            "baseline_sum": math.fsum(document["baseline_sums"]),
+            "final_sum": math.fsum(document["final_sums"]),
+            "scored_token_count": document["scored_token_count"],
+        }
+        for document in documents.values()
+    ]
+    total_tokens = sum(
+        document["scored_token_count"] for document in document_rows
+    )
+    baseline_mean = (
+        math.fsum(document["baseline_sum"] for document in document_rows)
+        / total_tokens
+    )
+    final_mean = (
+        math.fsum(document["final_sum"] for document in document_rows)
+        / total_tokens
+    )
     delta = final_mean - baseline_mean
+
+    rng = random.Random(bootstrap_seed)
+    document_count = len(document_rows)
+    bootstrap_deltas = []
+    for _ in range(bootstrap_samples):
+        sample = [
+            document_rows[rng.randrange(document_count)]
+            for _ in range(document_count)
+        ]
+        sample_tokens = sum(
+            document["scored_token_count"] for document in sample
+        )
+        sample_baseline = (
+            math.fsum(document["baseline_sum"] for document in sample)
+            / sample_tokens
+        )
+        sample_final = (
+            math.fsum(document["final_sum"] for document in sample)
+            / sample_tokens
+        )
+        bootstrap_deltas.append(sample_final - sample_baseline)
+    confidence_interval = [
+        linear_percentile(bootstrap_deltas, 0.025),
+        linear_percentile(bootstrap_deltas, 0.975),
+    ]
     return {
         "metric": "mean_token_logprob",
         "higher_is_better": True,
@@ -300,7 +404,15 @@ def compare_ood_prose(baseline, final, max_degradation):
         "final": final_mean,
         "delta": delta,
         "max_degradation": max_degradation,
-        "passed": delta >= -max_degradation,
+        "paired_document_bootstrap_95_ci": confidence_interval,
+        "bootstrap": {
+            "unit": "normalized_source_url",
+            "document_count": document_count,
+            "samples": bootstrap_samples,
+            "seed": bootstrap_seed,
+            "percentiles": [0.025, 0.975],
+        },
+        "passed": confidence_interval[0] >= -max_degradation,
     }
 
 
@@ -474,7 +586,8 @@ def parse_args():
         ),
     )
     parser.add_argument(
-        "--max-ood-prose-degradation", type=float, default=0.0,
+        "--max-ood-prose-degradation", type=float,
+        default=OOD_PROSE_DEFAULT_MAX_DEGRADATION,
         help=(
             "Allowed decrease in final mean token logprob versus baseline"
         ),
@@ -609,7 +722,7 @@ def run_exact_steps(trainer, steps, skip_baseline_eval=False,
         }
         if ood_prose is not None:
             summary["ood_prose"] = {
-                "schema": "eggroll-es-ood-prose-logprob-v1",
+                "schema": "eggroll-es-ood-prose-logprob-v2",
                 "dataset": {
                     "path": ood_prose["path"],
                     "sha256": ood_prose["sha256"],

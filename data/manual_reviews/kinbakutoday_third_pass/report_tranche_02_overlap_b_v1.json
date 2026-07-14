@@ -1,0 +1,219 @@
+{
+  "artifacts": {
+    "pending_append_safe": {
+      "drop": 49,
+      "edit": 0,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_02_overlap_b_v1.jsonl",
+      "rows": 49,
+      "sha256": "84489f323db629f568117d8556b0d09fc1c175823d905d9e09600a750d733022"
+    },
+    "pending_replacements": {
+      "drop": 1,
+      "edit": 0,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_02_overlap_b_v1.jsonl",
+      "rows": 1,
+      "sha256": "7b58da7d18a31e35378846251c4c9dd61418b1048f8f7302c9b1142f766fbb3a"
+    }
+  },
+  "cumulative_third_pass": {
+    "drop": 107,
+    "edit": 0,
+    "overlapping_source_documents": 30,
+    "replacement_drop": 2,
+    "retain_unchanged": 0,
+    "reviewed_rows": 107,
+    "tranches_completed": 2
+  },
+  "existing_curation": {
+    "edited_rows_in_tranche": [
+      {
+        "active_audit_index": 383,
+        "active_fact_id": "fact-37238c006bd201ca4a59",
+        "original_fact_id": "fact-8dbbd54ad40d9410125d",
+        "prior_decision_file": "data/train_qa_curated_v1.curation.jsonl",
+        "prior_decision_line": 213,
+        "prior_reason_code": "category_error",
+        "replacement_action": "drop"
+      }
+    ],
+    "existing_edits_retained": [],
+    "replacement_required": [
+      "fact-8dbbd54ad40d9410125d"
+    ]
+  },
+  "heldout_audit": {
+    "artifact_sha256": {
+      "data/eggroll_es_specialist/eval/heldout/data-00000-of-00001.arrow": "cebab5c761d04fa78acfcd8c3cae49734cd3d8208dd6b4ce626e381e6c613c5d",
+      "data/eggroll_es_specialist/eval/train/data-00000-of-00001.arrow": "3b8b980f4be5060ade3671a53dde03a975382c63ab1e44f0133a19cd741d06cb",
+      "data/eggroll_es_specialist/manifest.json": "8e41b1b4c239035d098ca245735457898da97a768269fadb3733cda3c5c11360",
+      "data/eval_qa.jsonl": "c84442651265aa8a51ce8af1d524390dd8a98760c40c780afa9eed7a2ba146b5",
+      "data/eval_qa_v2.jsonl": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7",
+      "data/heldout_docs.jsonl": "5f81e5848b96004eafd1cfc6523023c9d234f7e5c1aa9c3bc01520a23b416b15",
+      "data/ood_prose.jsonl": "20eebf55490941cdbab5a7d4f51e8b9f9e50ea2ca9e3a2e519a24941a8ca5c1b",
+      "data/ood_qa.jsonl": "fa24ae255394b3010861cc795e1d6654f5dde8689900359f37c24fbe8a9817e1"
+    },
+    "artifact_overlap": {
+      "data/eval_qa.jsonl": {
+        "overlapping_documents": 6,
+        "questions_on_overlapping_documents": 7,
+        "training_rows_excluded": 25
+      },
+      "data/eval_qa_v2.jsonl": {
+        "overlapping_documents": 13,
+        "questions_on_overlapping_documents": 23,
+        "training_rows_excluded": 35
+      },
+      "data/heldout_docs.jsonl": {
+        "overlapping_documents": 0,
+        "training_rows_excluded": 0
+      },
+      "data/ood_prose.jsonl": {
+        "exact_question_answer_collisions": 0,
+        "overlapping_documents": 0
+      },
+      "data/ood_qa.jsonl": {
+        "exact_question_answer_collisions": 0,
+        "overlapping_documents": 0
+      }
+    },
+    "cumulative_artifact_overlap": {
+      "data/eval_qa.jsonl": {
+        "overlapping_documents": 11,
+        "questions_on_overlapping_documents": 13,
+        "training_rows_excluded": 47
+      },
+      "data/eval_qa_v2.jsonl": {
+        "overlapping_documents": 22,
+        "questions_on_overlapping_documents": 47,
+        "training_rows_excluded": 78
+      },
+      "data/heldout_docs.jsonl": {
+        "overlapping_documents": 0,
+        "training_rows_excluded": 0
+      }
+    },
+    "exact_normalized_question_answer_collisions": 0,
+    "exact_normalized_question_collisions": 0,
+    "note": "The Eggroll-ES Arrow validation artifacts are generated from data/eval_qa_v2.jsonl as pinned by their manifest, so their document provenance is represented by the eval_qa_v2 URL audit rather than counted a second time.",
+    "overlapping_training_rows": 50,
+    "overlapping_unique_source_urls": 17,
+    "policy": "Exclude every training row from a normalized source URL that occurs in any evaluation, validation, or held-out source artifact. OOD artifacts have no URL fields and are checked for normalized Q&A collisions.",
+    "url_overlap_counts_are_non_additive": true
+  },
+  "manual_outcome": {
+    "drop": 50,
+    "drop_indices": [
+      15,
+      22,
+      24,
+      30,
+      38,
+      45,
+      62,
+      70,
+      88,
+      99,
+      105,
+      111,
+      122,
+      124,
+      147,
+      177,
+      179,
+      182,
+      190,
+      193,
+      202,
+      217,
+      221,
+      225,
+      227,
+      231,
+      235,
+      239,
+      242,
+      263,
+      269,
+      279,
+      294,
+      295,
+      301,
+      303,
+      306,
+      307,
+      326,
+      339,
+      342,
+      356,
+      363,
+      380,
+      383,
+      394,
+      397,
+      399,
+      409,
+      411
+    ],
+    "edit": 0,
+    "reason_counts": {
+      "heldout_document_overlap": 50
+    },
+    "retain_unchanged": 0,
+    "replacement_drop": 1
+  },
+  "pass": "strict_third_pass",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-kinbakutoday-third-pass",
+  "schema": "manual-source-audit-report-v1",
+  "source_verification": {
+    "method": "All 50 active Q&A rows were read manually in complete-document groups. Because each of the 17 source pages crosses the document-level evaluation boundary, every row is rejected before any otherwise supportable claim can be retained. This categorical separation supersedes row-level factual quality; no unsupported claim is promoted or rewritten in this tranche.",
+    "rows_manually_read": 50,
+    "source_documents_checked": 17
+  },
+  "tranche": {
+    "fact_id_sequence_sha256": "46138cb11d6d511d2cf205a82f4ff5d939f54930b575379df660c4531c360580",
+    "ordering": "complete Kinbaku Today documents in lexicographic normalized-URL order; active audit indices refer to source-filtered order at audit time",
+    "reviewed_rows": 50,
+    "source_urls": [
+      "https://www.kinbakutoday.com/kinbaku-an-evolving-era-part-3/",
+      "https://www.kinbakutoday.com/kinbaku-shashuu/",
+      "https://www.kinbakutoday.com/learning-from-the-past-showa-era-rope-and-the-future-of-kinbaku/",
+      "https://www.kinbakutoday.com/learning-kinbaku-east-and-west/",
+      "https://www.kinbakutoday.com/on-the-cultural-differences-of-kinbaku-in-different-countries/",
+      "https://www.kinbakutoday.com/rope-community-culture/",
+      "https://www.kinbakutoday.com/rope-sin-an-interview/",
+      "https://www.kinbakutoday.com/ryuzaki-asuka-interview/",
+      "https://www.kinbakutoday.com/so-you-are-new-to-shibari-how-to-get-started/",
+      "https://www.kinbakutoday.com/sugiura-norio-celebrating-45-years-bondage-photography/",
+      "https://www.kinbakutoday.com/the-heart-of-kinbaku/",
+      "https://www.kinbakutoday.com/the-quality-of-bondage-models-translation/",
+      "https://www.kinbakutoday.com/the-randa-mai-%e4%b9%b1%e7%94%b0%e8%88%9e-interview/",
+      "https://www.kinbakutoday.com/uramado-west-meets-east-in-fetish-art/",
+      "https://www.kinbakutoday.com/whats-in-a-name-kinbaku-and-shibari/",
+      "https://www.kinbakutoday.com/when-does-the-sex-start-a-personal-approach-regarding-sexuality-in-rope-bondage/",
+      "https://www.kinbakutoday.com/yamaguchi-tokikos-self-bondage-classroom-part-two-kitan-club-1973/"
+    ],
+    "tranche_id": 2,
+    "unique_source_urls": 17,
+    "unique_stored_document_sha256": 17
+  },
+  "validation": {
+    "active_artifacts_observed_at_report_write": {
+      "data/train_qa_curated_v1.curation.jsonl": "5c83bc4f72be9ddf171744e879a4c19df054926971eecacf76d4421614399b40",
+      "data/train_qa_curated_v1.jsonl": "ef2f39e95c73c69041517e03d04c6cf48a2c25a2198a9e6d05a56258c1875591",
+      "data/train_qa_curated_v1.report.json": "5be2fcada1b6b8e8c10a00becd4b9b550eb2380bc8118c634d3c49274d59b178",
+      "data/train_qa_kinbakutoday.curation.jsonl": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    },
+    "active_files_mutated_by_this_audit": false,
+    "replacement_aware_cumulative_temporary_build": {
+      "baseline_active_rows": 908,
+      "curation_decisions": 2534,
+      "excluded_rows": 2485,
+      "kinbakutoday_rows": 316,
+      "output_rows": 801,
+      "output_sha256": "7ac81ca26b335d333e8bd3ba1e04d64ec62e607010f2c55019afe78d43f94d09",
+      "repeat_build_byte_identical": true,
+      "status": "passed"
+    }
+  }
+}

@@ -68,7 +68,7 @@ def parse_args():
         help="Optional frozen prose artifact scored before and after each run",
     )
     parser.add_argument(
-        "--max-ood-prose-degradation", type=float, default=0.0,
+        "--max-ood-prose-degradation", type=float, default=0.02,
         help="Maximum mean-token-logprob loss allowed by the prose gate",
     )
     parser.add_argument("--n-vllm-engines", type=int, default=4)

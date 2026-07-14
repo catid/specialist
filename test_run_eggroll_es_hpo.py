@@ -38,7 +38,7 @@ def make_args(tmp_path, trials=None, force=False):
         max_guard_degradation=0.0,
         max_guard_exact_loss=0,
         ood_prose_jsonl=None,
-        max_ood_prose_degradation=0.0,
+        max_ood_prose_degradation=0.02,
         n_vllm_engines=4,
         n_gpu_per_vllm_engine=1,
         use_gpus="0,1,2,3",

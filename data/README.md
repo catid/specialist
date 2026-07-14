@@ -4,23 +4,23 @@
 
 [`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) is the current curated
 training set. Its
-[`deterministic build report`](train_qa_curated_v1.report.json) verifies 908
+[`deterministic build report`](train_qa_curated_v1.report.json) verifies 784
 unique questions and fact IDs:
 
 | Validated tranche | Accepted rows | Artifact and audit |
 | --- | ---: | --- |
-| Leakage-gated and manually audited base | 753 | [`train_qa_verified_leakfree_v2.jsonl`](train_qa_verified_leakfree_v2.jsonl) supplied 3,113 rows; the active ledgers make every exclusion explicit. |
-| Source-document manual QA | 73 | [`train_qa_manual_v1.jsonl`](train_qa_manual_v1.jsonl), with provenance in its [`report`](train_qa_manual_v1.report.json) |
+| Leakage-gated and manually audited base | 630 | [`train_qa_verified_leakfree_v2.jsonl`](train_qa_verified_leakfree_v2.jsonl) supplied 3,113 rows; the active ledgers make every exclusion explicit. |
+| Source-document manual QA | 72 | [`train_qa_manual_v1.jsonl`](train_qa_manual_v1.jsonl), with provenance in its [`report`](train_qa_manual_v1.report.json) |
 | Owner-curated resource directory | 27 | [`rope_resource_qa_v1.jsonl`](rope_resource_qa_v1.jsonl): direct and category resource answers; see its [`report`](rope_resource_qa_v1.report.json) |
 | Manually reviewed resource facts | 30 | [`rope_resource_factual_qa_v1.jsonl`](rope_resource_factual_qa_v1.jsonl), with evidence and reviewer provenance summarized in its [`report`](rope_resource_factual_qa_v1.report.json) |
 | Additional manually reviewed resource facts | 10 | [`rope_resource_manual_v1.jsonl`](rope_resource_manual_v1.jsonl), audited against live Crash Restraint, Knot Head Nylon, and Shibari Study evidence in [`manual_reviews/resources/additions_audit_v1.jsonl`](manual_reviews/resources/additions_audit_v1.jsonl) |
 | Rope-topia resource index | 15 | [`rope_topia_manual_v1.jsonl`](rope_topia_manual_v1.jsonl) contains manually reviewed title-to-canonical-URL mappings only because the live article bodies are demo-gated; see its [`report`](rope_topia_manual_v1.report.json). |
-| **Curated v1 total** | **908** | [`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) and [`report`](train_qa_curated_v1.report.json) |
+| **Curated v1 total** | **784** | [`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) and [`report`](train_qa_curated_v1.report.json) |
 
 The fact-ID-keyed general
 [`curation decisions`](train_qa_curated_v1.curation.jsonl) and complete
-[`Kinbaku Today audit`](train_qa_kinbakutoday.curation.jsonl) contain 2,429
-reviewed actions: 2,376 drops and 53 evidence-backed edits. The source-grouped
+[`Kinbaku Today audit`](train_qa_kinbakutoday.curation.jsonl) contain 2,548
+reviewed actions: 2,500 drops and 48 evidence-backed edits. The source-grouped
 review covered every one of the 1,240 Kinbaku Today, 707 Rope365, 716 Esinem,
 and 325 Wikipedia base records; a stricter second Kinbaku pass then reviewed
 all 1,174 formerly retained Kinbaku rows and retained 423. It removes
@@ -43,8 +43,13 @@ second passes are promoted in the current artifact. The deterministic
 [`S5 promotion manifest`](train_qa_curated_v1.promotion_s5.json) records 602
 unique appended decisions, seven replacements, and two identical cross-ledger
 confirmations. The result retains 278 Rope365, 77 Esinem, 29 Wikipedia, 23
-Anatomie Studio, and 82 resource-derived rows. A third Kinbaku quality pass is
-being written to pending ledgers and is not part of this 908-row boundary.
+Anatomie Studio, and 82 resource-derived rows. The subsequent strict Kinbaku
+quality pass manually reviewed 316 rows from 125 documents and removed 124,
+leaving 299 Kinbaku rows and 784 rows overall. Its production promotion is
+pinned in
+[`train_qa_curated_v1.promotion_s5_quality.json`](train_qa_curated_v1.promotion_s5_quality.json).
+Another 107 rows were flagged only because they overlap the obsolete S4
+development benchmark; they were deliberately not removed for that reason.
 
 The user's malformed, contextless Anatomie Studio “What material...?” / `jute`
 example has zero matches in the active curated dataset. The second-pass report

@@ -1,0 +1,127 @@
+{
+  "schema": "manual-source-audit-summary-v1",
+  "pass": "kinbakutoday_strict_third_pass",
+  "reviewed_at": "2026-07-14",
+  "status": "complete",
+  "active_files_mutated_by_audit": false,
+  "coverage": {
+    "active_kinbakutoday_rows": 423,
+    "quality_only_rows": 316,
+    "quality_only_source_documents": 125,
+    "overlap_only_rows": 107,
+    "overlap_source_documents": 30,
+    "rows_manually_adjudicated": 423
+  },
+  "quality_only_outcome": {
+    "retain_unchanged": 192,
+    "drop": 124,
+    "append_safe_drop": 119,
+    "replacement_drop": 5,
+    "reason_counts": {
+      "contextless_or_low_value": 57,
+      "out_of_domain_or_personal_trivia": 22,
+      "semantic_duplicate": 11,
+      "source_error_or_misread": 8,
+      "unsafe_or_medically_unsupported": 11,
+      "volatile_or_promotional": 15
+    }
+  },
+  "quality_tranches": [
+    {
+      "tranche": 3,
+      "reviewed": 57,
+      "source_documents": 26,
+      "retain": 35,
+      "drop": 22,
+      "append_safe_drop": 21,
+      "replacement_drop": 1,
+      "report": "data/manual_reviews/kinbakutoday_third_pass/report_tranche_03_quality_a_v1.json",
+      "report_sha256": "0cfee9b38e9eaf7f7df1c00a186915e3dc546cd31e0e3f06b2ef9d193d0f8365"
+    },
+    {
+      "tranche": 4,
+      "reviewed": 59,
+      "source_documents": 18,
+      "retain": 33,
+      "drop": 26,
+      "append_safe_drop": 25,
+      "replacement_drop": 1,
+      "report": "data/manual_reviews/kinbakutoday_third_pass/report_tranche_04_quality_b_v1.json",
+      "report_sha256": "93714dbf6af872c14f719f5c8a68d44e54b909e3812057cf0f0827e5a1155e00"
+    },
+    {
+      "tranche": 5,
+      "reviewed": 59,
+      "source_documents": 25,
+      "retain": 38,
+      "drop": 21,
+      "append_safe_drop": 21,
+      "replacement_drop": 0,
+      "report": "data/manual_reviews/kinbakutoday_third_pass/report_tranche_05_quality_c_v1.json",
+      "report_sha256": "35652488e6514173fb49ce240f150fc7d61e80b7fa591f541c9e5a7f539b9cfe"
+    },
+    {
+      "tranche": 6,
+      "reviewed": 60,
+      "source_documents": 24,
+      "retain": 33,
+      "drop": 27,
+      "append_safe_drop": 26,
+      "replacement_drop": 1,
+      "report": "data/manual_reviews/kinbakutoday_third_pass/report_tranche_06_quality_d_v1.json",
+      "report_sha256": "5100ca645253e81d1d2d8cead90db93929fd15b30bb75bddaa306ef8a8ca10a5"
+    },
+    {
+      "tranche": 7,
+      "reviewed": 60,
+      "source_documents": 22,
+      "retain": 38,
+      "drop": 22,
+      "append_safe_drop": 20,
+      "replacement_drop": 2,
+      "report": "data/manual_reviews/kinbakutoday_third_pass/report_tranche_07_quality_e_v1.json",
+      "report_sha256": "84f5d45c07dce19de52d2c8ab56e1b6a0530d49393f0ba24119d12e763229739"
+    },
+    {
+      "tranche": 8,
+      "reviewed": 21,
+      "source_documents": 10,
+      "retain": 15,
+      "drop": 6,
+      "append_safe_drop": 6,
+      "replacement_drop": 0,
+      "report": "data/manual_reviews/kinbakutoday_third_pass/report_tranche_08_quality_f_v1.json",
+      "report_sha256": "c45f27c96ebd2df8a6a80deb9ccd548c0c64bff38e8f1ae86eefbaea56b2f76e"
+    }
+  ],
+  "overlap_audit": {
+    "promotion_allowed": false,
+    "tranches": [1, 2],
+    "rows": 107,
+    "source_documents": 30,
+    "evaluation_document_overlap_rows": 107,
+    "heldout_document_overlap_rows": 0,
+    "ood_exact_normalized_question_answer_collisions": 0,
+    "append_safe_drop": 105,
+    "replacement_drop": 2,
+    "report_1": {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/report_tranche_01_overlap_a_v1.json",
+      "sha256": "af1089be08bbac9cfbeb1989cc45d9d119cc1e551773dfa529d8723c956e886a"
+    },
+    "report_2": {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/report_tranche_02_overlap_b_v1.json",
+      "sha256": "fea7e32d0280ebf9f1f83b827271ca99e7573e12f93392c6942f817d6b6012a6"
+    }
+  },
+  "promotion": {
+    "manifest": "data/manual_reviews/kinbakutoday_third_pass/quality_only_promotion_manifest_v1.json",
+    "scope": "quality_tranches_3_through_8_only",
+    "projected_general_curation_rows": 1797,
+    "projected_general_curation_sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb",
+    "projected_output_rows": 784,
+    "projected_kinbakutoday_rows": 299,
+    "projected_output_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
+    "projected_report_sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a",
+    "deterministic_repeat_build": true
+  }
+}

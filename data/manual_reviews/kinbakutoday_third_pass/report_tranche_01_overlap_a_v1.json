@@ -1,0 +1,197 @@
+{
+  "artifacts": {
+    "pending_append_safe": {
+      "drop": 56,
+      "edit": 0,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_01_overlap_a_v1.jsonl",
+      "rows": 56,
+      "sha256": "e621cab40b06739dc13753bfcd6f941e512dde54f46ba93490501eb86a4f7ca4"
+    },
+    "pending_replacements": {
+      "drop": 1,
+      "edit": 0,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_01_overlap_a_v1.jsonl",
+      "rows": 1,
+      "sha256": "73a145a8e0d0115595e16fa073e59b527798ef2d33ad21603ce87fb54285de2f"
+    }
+  },
+  "existing_curation": {
+    "edited_rows_in_tranche": [
+      {
+        "active_audit_index": 348,
+        "active_fact_id": "fact-4a501478eb535da28f2a",
+        "original_fact_id": "fact-aff84cf200ba95716418",
+        "prior_decision_file": "data/train_qa_curated_v1.curation.jsonl",
+        "prior_decision_line": 269,
+        "prior_reason_code": "source_misread",
+        "replacement_action": "drop"
+      }
+    ],
+    "existing_edits_retained": [],
+    "replacement_required": [
+      "fact-aff84cf200ba95716418"
+    ]
+  },
+  "heldout_audit": {
+    "artifact_sha256": {
+      "data/eggroll_es_specialist/eval/heldout/data-00000-of-00001.arrow": "cebab5c761d04fa78acfcd8c3cae49734cd3d8208dd6b4ce626e381e6c613c5d",
+      "data/eggroll_es_specialist/eval/train/data-00000-of-00001.arrow": "3b8b980f4be5060ade3671a53dde03a975382c63ab1e44f0133a19cd741d06cb",
+      "data/eggroll_es_specialist/manifest.json": "8e41b1b4c239035d098ca245735457898da97a768269fadb3733cda3c5c11360",
+      "data/eval_qa.jsonl": "c84442651265aa8a51ce8af1d524390dd8a98760c40c780afa9eed7a2ba146b5",
+      "data/eval_qa_v2.jsonl": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7",
+      "data/heldout_docs.jsonl": "5f81e5848b96004eafd1cfc6523023c9d234f7e5c1aa9c3bc01520a23b416b15",
+      "data/ood_prose.jsonl": "20eebf55490941cdbab5a7d4f51e8b9f9e50ea2ca9e3a2e519a24941a8ca5c1b",
+      "data/ood_qa.jsonl": "fa24ae255394b3010861cc795e1d6654f5dde8689900359f37c24fbe8a9817e1"
+    },
+    "artifact_overlap": {
+      "data/eval_qa.jsonl": {
+        "overlapping_documents": 5,
+        "questions_on_overlapping_documents": 6,
+        "training_rows_excluded": 22
+      },
+      "data/eval_qa_v2.jsonl": {
+        "overlapping_documents": 9,
+        "questions_on_overlapping_documents": 24,
+        "training_rows_excluded": 43
+      },
+      "data/heldout_docs.jsonl": {
+        "overlapping_documents": 0,
+        "training_rows_excluded": 0
+      },
+      "data/ood_prose.jsonl": {
+        "exact_question_answer_collisions": 0,
+        "overlapping_documents": 0
+      },
+      "data/ood_qa.jsonl": {
+        "exact_question_answer_collisions": 0,
+        "overlapping_documents": 0
+      }
+    },
+    "exact_normalized_question_answer_collisions": 0,
+    "exact_normalized_question_collisions": 0,
+    "note": "The Eggroll-ES Arrow validation artifacts are generated from data/eval_qa_v2.jsonl as pinned by their manifest, so their document provenance is represented by the eval_qa_v2 URL audit rather than counted a second time.",
+    "overlapping_training_rows": 57,
+    "overlapping_unique_source_urls": 13,
+    "policy": "Exclude every training row from a normalized source URL that occurs in any evaluation, validation, or held-out source artifact. OOD artifacts have no URL fields and are checked for normalized Q&A collisions.",
+    "url_overlap_counts_are_non_additive": true
+  },
+  "manual_outcome": {
+    "drop": 57,
+    "drop_indices": [
+      5,
+      6,
+      17,
+      18,
+      34,
+      51,
+      64,
+      65,
+      69,
+      72,
+      76,
+      81,
+      85,
+      89,
+      90,
+      94,
+      112,
+      117,
+      121,
+      150,
+      165,
+      167,
+      168,
+      173,
+      205,
+      216,
+      244,
+      246,
+      247,
+      250,
+      251,
+      268,
+      274,
+      278,
+      282,
+      283,
+      290,
+      296,
+      297,
+      309,
+      311,
+      313,
+      317,
+      319,
+      334,
+      341,
+      347,
+      348,
+      349,
+      352,
+      365,
+      375,
+      384,
+      393,
+      400,
+      412,
+      414
+    ],
+    "edit": 0,
+    "reason_counts": {
+      "heldout_document_overlap": 57
+    },
+    "retain_unchanged": 0,
+    "replacement_drop": 1
+  },
+  "pass": "strict_third_pass",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-kinbakutoday-third-pass",
+  "schema": "manual-source-audit-report-v1",
+  "source_verification": {
+    "method": "All 57 active Q&A rows were read manually in complete-document groups. Because each of the 13 source pages crosses the document-level evaluation boundary, every row is rejected before any otherwise supportable claim can be retained. This categorical separation supersedes row-level factual quality; no unsupported claim is promoted or rewritten in this tranche.",
+    "rows_manually_read": 57,
+    "source_documents_checked": 13
+  },
+  "tranche": {
+    "fact_id_sequence_sha256": "a1b48bc740f055498d8882c9f196ca1edcc2ea15bcd9af08e189b101ea7a9b51",
+    "ordering": "complete Kinbaku Today documents in lexicographic normalized-URL order; active audit indices refer to source-filtered order at audit time",
+    "reviewed_rows": 57,
+    "source_urls": [
+      "https://www.kinbakutoday.com/a-guide-for-rope-bottoms-and-bondage-models/",
+      "https://www.kinbakutoday.com/a-time-to-reflect/",
+      "https://www.kinbakutoday.com/bar-ubu-and-mitsu/",
+      "https://www.kinbakutoday.com/bondage-models-an-essay-on-fumiyo-kinukawa/",
+      "https://www.kinbakutoday.com/gallery-akechi-denkis-naoko-hayashiba-photos/",
+      "https://www.kinbakutoday.com/interview-hige/",
+      "https://www.kinbakutoday.com/interview-scott-haru-tsubaki/",
+      "https://www.kinbakutoday.com/interview-the-ascent-of-milla-reika-part-two/",
+      "https://www.kinbakutoday.com/interview-with-maestrobd/",
+      "https://www.kinbakutoday.com/kamui-jyubei-san-mystery-matsui-kenji/",
+      "https://www.kinbakutoday.com/kasumi-hourai-interview/",
+      "https://www.kinbakutoday.com/kinbaku-an-evolving-era-part-1/",
+      "https://www.kinbakutoday.com/kinbaku-an-evolving-era-part-2/"
+    ],
+    "tranche_id": 1,
+    "unique_source_urls": 13,
+    "unique_stored_document_sha256": 13
+  },
+  "validation": {
+    "active_artifacts_observed_at_report_write": {
+      "data/train_qa_curated_v1.curation.jsonl": "5c83bc4f72be9ddf171744e879a4c19df054926971eecacf76d4421614399b40",
+      "data/train_qa_curated_v1.jsonl": "ef2f39e95c73c69041517e03d04c6cf48a2c25a2198a9e6d05a56258c1875591",
+      "data/train_qa_curated_v1.report.json": "5be2fcada1b6b8e8c10a00becd4b9b550eb2380bc8118c634d3c49274d59b178",
+      "data/train_qa_kinbakutoday.curation.jsonl": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    },
+    "active_files_mutated_by_this_audit": false,
+    "replacement_aware_temporary_build": {
+      "baseline_active_rows": 908,
+      "curation_decisions": 2485,
+      "excluded_rows": 2435,
+      "kinbakutoday_rows": 366,
+      "output_rows": 851,
+      "output_sha256": "ebc35e29f95a03b12bb4875aa37fa12c710ec95b4b05fe0e9e747d634c9fe1e8",
+      "repeat_build_byte_identical": true,
+      "status": "passed"
+    }
+  }
+}

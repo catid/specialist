@@ -32,13 +32,13 @@ can be recovered without vendoring the full upstream repository.
 
 [`data/train_qa_curated_v1.jsonl`](data/train_qa_curated_v1.jsonl) is the current
 training dataset. Its
-[`build report`](data/train_qa_curated_v1.report.json) verifies 908 unique
-facts: 753 accepted base facts, 73 source-document manual facts, 27
+[`build report`](data/train_qa_curated_v1.report.json) verifies 784 unique
+facts: 630 accepted base facts, 72 source-document manual facts, 27
 owner-curated resource-directory facts, 40 manually reviewed resource facts,
 and 15 manually reviewed Rope-topia resource-index facts. The merge applies
-2,429 fact-ID-keyed decisions from the general
+2,548 fact-ID-keyed decisions from the general
 [`curation ledger`](data/train_qa_curated_v1.curation.jsonl) and the complete
-[`Kinbaku audit`](data/train_qa_kinbakutoday.curation.jsonl)—2,376 drops and 53
+[`Kinbaku audit`](data/train_qa_kinbakutoday.curation.jsonl)—2,500 drops and 48
 source-evidenced edits—and excludes two additional
 distinctive-answer aliases from the 3,113-row
 [`train_qa_verified_leakfree_v2.jsonl`](data/train_qa_verified_leakfree_v2.jsonl)
@@ -57,8 +57,13 @@ Foreground experiments promote newer curation only between comparisons, then
 hash-pin one Arrow snapshot for both arms.
 
 The current S5 candidate promotes the completed Rope365, Esinem, Wikipedia,
-Anatomie Studio, and resource second passes. Its promotion manifest is
-[`train_qa_curated_v1.promotion_s5.json`](data/train_qa_curated_v1.promotion_s5.json).
+Anatomie Studio, resource, and quality-only third Kinbaku passes. Its promotion
+manifests are
+[`train_qa_curated_v1.promotion_s5.json`](data/train_qa_curated_v1.promotion_s5.json)
+and
+[`train_qa_curated_v1.promotion_s5_quality.json`](data/train_qa_curated_v1.promotion_s5_quality.json).
+The immutable 784-row snapshot is under
+[`experiments/eggroll_es_hpo/snapshots/s5/`](experiments/eggroll_es_hpo/snapshots/s5/).
 The new document-disjoint evaluation protocol, 59-question manual domain audit,
 and fixed OOD probes are documented in
 [`EVAL_V3_PROTOCOL.md`](EVAL_V3_PROTOCOL.md). Its sealed 18-question holdout is

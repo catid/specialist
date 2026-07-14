@@ -105,7 +105,8 @@ runs.
 | S2 | 2,349 | `ca9403139d0094116bb1c86391f7fab8c85bf1fbd8eefe128d55638c22814c63` | Same inherited setting: 0.094837 at 3 steps, 0.098036 at 6 steps. |
 | S3 (completed A/B) | 2,228 | `bb60372725825f2fc81b46b681899ed8b4ba1af79d10ab1e6905bae5fb660f6f` | Fresh grid selected sigma 0.002 / alpha 0.001 at 3 steps: 0.099614. |
 | S4 (completed A/B) | 1,487 | `ff1b07297f404249adca6000acf8360000017cb2a75412b49f6e234a8082cc7c` | Fresh grid selected sigma 0.001 / alpha 0.00025; six-step final validation 0.104408 and holdout 0.074038. |
-| S5 candidate | 908 | `05ad1e523032026d59bf2da953b5c15bfd8f6ea738067685b4eb947b012b86b2` | Cleaner promoted data and document-disjoint eval-v3; provisional transfer testing in progress, with sealed holdout unopened. |
+| S5 audited probe | 908 | `05ad1e523032026d59bf2da953b5c15bfd8f6ea738067685b4eb947b012b86b2` | Three provisional candidates on document-disjoint eval-v3; sigma 0.0005 / alpha 0.00025 led at +0.003796 with OOD QA unchanged. |
+| S5 frozen candidate | 784 | `c4935458da6e887064ed181e9ec8ee490752cca2b6a1d33ecb7aa58c201c851f` | Adds the strict quality-only Kinbaku pass; guarded final HPO uses this snapshot and keeps the sealed holdout unopened. |
 
 The compact run summaries for the S1 one-/six-step and S2 three-/six-step
 probes are retained in [`probes/`](probes/). The complete immutable S3 source

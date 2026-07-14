@@ -1,0 +1,229 @@
+{
+  "artifacts": {
+    "pending_append_safe": {
+      "drop": 21,
+      "edit": 0,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_03_quality_a_v1.jsonl",
+      "rows": 21,
+      "sha256": "f2446ee0e9afafe332a98aab2409bc411d582f6bb0e7c22cc731e6ba5c1572fc"
+    },
+    "pending_replacements": {
+      "drop": 1,
+      "edit": 0,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_03_quality_a_v1.jsonl",
+      "rows": 1,
+      "sha256": "fc9b25fd36741b6f3bc50aeab20ef1fca6f32519ac60dc478221e77371c7d5d9"
+    }
+  },
+  "cumulative_third_pass": {
+    "drop": 129,
+    "edit": 0,
+    "replacement_drop": 3,
+    "retain_unchanged": 35,
+    "reviewed_rows": 164,
+    "tranches_completed": 3
+  },
+  "existing_curation": {
+    "edited_rows_in_tranche": [
+      {
+        "active_audit_index": 33,
+        "active_fact_id": "fact-b28d2a2a7c2c7ec5d025",
+        "disposition": "retain_existing_edit",
+        "original_fact_id": "fact-1139e70cf164c4af67fa",
+        "prior_reason_code": "incomplete_answer"
+      },
+      {
+        "active_audit_index": 381,
+        "active_fact_id": "fact-51d38caea19832bc7329",
+        "disposition": "replacement_drop",
+        "original_fact_id": "fact-67683b0794f49b02bb31",
+        "prior_decision_line": 152,
+        "prior_reason_code": "category_error"
+      }
+    ],
+    "existing_edits_retained": [
+      "fact-1139e70cf164c4af67fa"
+    ],
+    "replacement_required": [
+      "fact-67683b0794f49b02bb31"
+    ]
+  },
+  "heldout_audit": {
+    "document_overlap_rows": 0,
+    "document_overlap_urls": 0,
+    "exact_normalized_question_answer_collisions": 0,
+    "exact_normalized_question_collisions": 0,
+    "policy": "These 26 complete source documents have no normalized URL overlap with data/eval_qa.jsonl, data/eval_qa_v2.jsonl, data/heldout_docs.jsonl, or the validation Arrow provenance pinned by data/eggroll_es_specialist/manifest.json. OOD artifacts have no URLs and were checked for normalized Q&A collisions."
+  },
+  "manual_outcome": {
+    "drop": 22,
+    "drop_indices": [
+      2,
+      3,
+      39,
+      78,
+      106,
+      135,
+      158,
+      174,
+      187,
+      195,
+      219,
+      220,
+      228,
+      234,
+      254,
+      305,
+      310,
+      323,
+      324,
+      381,
+      385,
+      401
+    ],
+    "edit": 0,
+    "reason_counts": {
+      "contextless_or_low_value": 13,
+      "out_of_domain_or_personal_trivia": 3,
+      "semantic_duplicate": 1,
+      "unsafe_or_medically_unsupported": 2,
+      "volatile_or_promotional": 3
+    },
+    "retain_unchanged": 35,
+    "retain_unchanged_indices": [
+      9,
+      10,
+      33,
+      47,
+      52,
+      63,
+      67,
+      84,
+      116,
+      125,
+      126,
+      133,
+      138,
+      148,
+      152,
+      161,
+      163,
+      169,
+      183,
+      201,
+      204,
+      212,
+      218,
+      252,
+      275,
+      299,
+      330,
+      346,
+      351,
+      367,
+      369,
+      371,
+      403,
+      404,
+      418
+    ],
+    "replacement_drop": 1
+  },
+  "pass": "strict_third_pass",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-kinbakutoday-third-pass",
+  "schema": "manual-source-audit-report-v1",
+  "source_verification": {
+    "answer_not_extractively_supported": 0,
+    "method": "All 57 rows were read manually by complete source document. Every answer was normalized-extractive from the corresponding stored data/raw/kinbakutoday document. Retention then required a self-contained, durable rope-practice, terminology, or history fact; shallow safety claims, volatile promotion, peripheral art trivia, subjective fragments, product minutiae, and a semantic duplicate were rejected.",
+    "rows_manually_read": 57,
+    "source_documents_checked": 26,
+    "stored_source_documents_found": 26
+  },
+  "tranche": {
+    "fact_id_sequence_sha256": "76d8fa4eee383abfa484a135aef472c91964a3381b4c2a874c6e6a356b47c791",
+    "ordering": "complete non-overlap Kinbaku Today documents in lexicographic normalized-URL order; active audit indices refer to source-filtered order at audit time",
+    "reviewed_active_indices": [
+      2,
+      3,
+      9,
+      10,
+      33,
+      39,
+      47,
+      52,
+      63,
+      67,
+      78,
+      84,
+      106,
+      116,
+      125,
+      126,
+      133,
+      135,
+      138,
+      148,
+      152,
+      158,
+      161,
+      163,
+      169,
+      174,
+      183,
+      187,
+      195,
+      201,
+      204,
+      212,
+      218,
+      219,
+      220,
+      228,
+      234,
+      252,
+      254,
+      275,
+      299,
+      305,
+      310,
+      323,
+      324,
+      330,
+      346,
+      351,
+      367,
+      369,
+      371,
+      381,
+      385,
+      401,
+      403,
+      404,
+      418
+    ],
+    "reviewed_rows": 57,
+    "tranche_id": 3,
+    "unique_source_urls": 26,
+    "unique_stored_document_sha256": 26
+  },
+  "validation": {
+    "active_artifacts_observed_at_report_write": {
+      "data/train_qa_curated_v1.curation.jsonl": "5c83bc4f72be9ddf171744e879a4c19df054926971eecacf76d4421614399b40",
+      "data/train_qa_curated_v1.jsonl": "ef2f39e95c73c69041517e03d04c6cf48a2c25a2198a9e6d05a56258c1875591",
+      "data/train_qa_curated_v1.report.json": "5be2fcada1b6b8e8c10a00becd4b9b550eb2380bc8118c634d3c49274d59b178",
+      "data/train_qa_kinbakutoday.curation.jsonl": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    },
+    "active_files_mutated_by_this_audit": false,
+    "replacement_aware_cumulative_temporary_build": {
+      "baseline_active_rows": 908,
+      "curation_decisions": 2555,
+      "excluded_rows": 2507,
+      "kinbakutoday_rows": 294,
+      "output_rows": 779,
+      "output_sha256": "7bbc27990f4a31d83e711134fa4c729b581b2a1539116f84b59000da79b38f2b",
+      "repeat_build_byte_identical": true,
+      "status": "passed"
+    }
+  }
+}

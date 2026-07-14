@@ -30,6 +30,13 @@ experiments/gpu_utilization_eggroll_es_*.jsonl
 !experiments/gpu_utilization_eggroll_es_s5_audited_eval_baseline.jsonl
 !experiments/gpu_utilization_eggroll_es_s5_audited_eval_sigma0005_alpha00025_seed42.jsonl
 !experiments/gpu_utilization_eggroll_es_s5_audited_eval_sigma001_alpha00025_seed42.jsonl
+!experiments/gpu_utilization_eggroll_es_s5_audited_eval_sigma0003_alpha00015_seed42.jsonl
+!experiments/gpu_utilization_eggroll_es_s5_audited_eval_sigma0005_alpha00035_seed42.jsonl
+!experiments/gpu_utilization_eggroll_es_s5_final_baseline_seed42.jsonl
+!experiments/gpu_utilization_eggroll_es_s5_final_sigma0005_alpha00025_seed42.jsonl
+
+# Deterministic review reports are tracked; temporary projected rebuilds are not.
+data/manual_reviews/**/.validation*/
 
 # Model weights and generated checkpoints
 models/
@@ -58,6 +65,7 @@ data/*.json
 !data/ood_prose_v3.jsonl
 !data/ood_qa_v3.jsonl
 !data/train_qa_curated_v1.promotion_s5.json
+!data/train_qa_curated_v1.promotion_s5_quality.json
 !data/train_qa_verified_leakfree_v2.jsonl
 !data/train_qa_verified_leakfree_v2.report.json
 !data/train_qa_manual_v1.jsonl

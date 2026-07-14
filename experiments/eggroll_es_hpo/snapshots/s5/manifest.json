@@ -1,0 +1,29 @@
+{
+  "eval_inputs": [
+    {
+      "path": "/home/catid/specialist/data/eval_qa_v3.jsonl",
+      "sha256": "ab9a391e249910e876826dfab9c8e2f8e17a7b8695e6f018a3e515e5aa69603b"
+    },
+    {
+      "path": "/home/catid/specialist/data/ood_qa_v3.jsonl",
+      "sha256": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d"
+    }
+  ],
+  "eval_jsonl": [
+    "/home/catid/specialist/data/eval_qa_v3.jsonl",
+    "/home/catid/specialist/data/ood_qa_v3.jsonl"
+  ],
+  "eval_jsonl_sha256": [
+    "ab9a391e249910e876826dfab9c8e2f8e17a7b8695e6f018a3e515e5aa69603b",
+    "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d"
+  ],
+  "eval_splits": {
+    "heldout": 18,
+    "ood_qa": 24,
+    "validation": 41
+  },
+  "schema": "eggroll-es-specialist-dataset-v1",
+  "train_jsonl": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+  "train_jsonl_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
+  "train_rows": 784
+}

@@ -1,0 +1,75 @@
+{
+  "append_ledgers": [
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_03_quality_a_v1.jsonl",
+      "sha256": "f2446ee0e9afafe332a98aab2409bc411d582f6bb0e7c22cc731e6ba5c1572fc"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_04_quality_b_v1.jsonl",
+      "sha256": "5b97513a5c81c5d565e31d499ea079f5461493f47df59006ef703a88fd5562f4"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_05_quality_c_v1.jsonl",
+      "sha256": "c90abd709f5f6b02bc6149a9c8d1c5185381676f6061f2193417ef465c97fb75"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_06_quality_d_v1.jsonl",
+      "sha256": "c806dfdb81a9ec49a2966b05e4b0309825ec216179d60c198a45753c62b18494"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_07_quality_e_v1.jsonl",
+      "sha256": "fdcc533d307609822aa001a615f92fcfca80f6bf1c83cddccc19b2c04a2ded89"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_08_quality_f_v1.jsonl",
+      "sha256": "6a2207945ab9431e41e9927bbd9ded0e2b681e8851822608244a89573c57732b"
+    }
+  ],
+  "appended_rows": 119,
+  "base": {
+    "path": "data/train_qa_curated_v1.curation.jsonl",
+    "rows": 1678,
+    "sha256": "5c83bc4f72be9ddf171744e879a4c19df054926971eecacf76d4421614399b40"
+  },
+  "duplicate_confirmations": {
+    "append": [],
+    "replacement": []
+  },
+  "output": {
+    "path": "data/train_qa_curated_v1.curation.jsonl",
+    "rows": 1797,
+    "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb"
+  },
+  "output_by_action": {
+    "drop": 1749,
+    "edit": 48
+  },
+  "replacement_ledgers": [
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_03_quality_a_v1.jsonl",
+      "sha256": "fc9b25fd36741b6f3bc50aeab20ef1fca6f32519ac60dc478221e77371c7d5d9"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_04_quality_b_v1.jsonl",
+      "sha256": "2b8a68f1cbed716eb8420d765e968574bb0759ba076f3fce7f55193223f3cc14"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_05_quality_c_v1.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_06_quality_d_v1.jsonl",
+      "sha256": "678e3943d27e87d98c59ffa158c479fdb915fbaf9ef5584101d99f4dc1418578"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_07_quality_e_v1.jsonl",
+      "sha256": "1ab8f3643a2271a168d08ad8c23312e14cfbf686788620ecb679e00421cc0734"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_08_quality_f_v1.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "replacement_rows": 5,
+  "schema": "curation-ledger-promotion-v1"
+}

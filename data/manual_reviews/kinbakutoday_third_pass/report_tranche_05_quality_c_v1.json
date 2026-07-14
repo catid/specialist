@@ -1,0 +1,153 @@
+{
+  "artifacts": {
+    "pending_append_safe": {
+      "drop": 21,
+      "edit": 0,
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_05_quality_c_v1.jsonl",
+      "rows": 21,
+      "sha256": "c90abd709f5f6b02bc6149a9c8d1c5185381676f6061f2193417ef465c97fb75"
+    },
+    "pending_replacements": {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_05_quality_c_v1.jsonl",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "cumulative_quality_only": {
+    "drop": 69,
+    "replacement_drop": 2,
+    "retain_unchanged": 106,
+    "reviewed_rows": 175,
+    "tranches_completed": 3
+  },
+  "cumulative_third_pass_diagnostic": {
+    "drop": 176,
+    "replacement_drop": 4,
+    "retain_unchanged": 106,
+    "reviewed_rows": 282,
+    "tranches_completed": 5
+  },
+  "existing_curation": {
+    "existing_edits_retained": [
+      "fact-dd5922109806af12ac36"
+    ],
+    "replacement_required": []
+  },
+  "heldout_audit": {
+    "document_overlap_rows": 0,
+    "document_overlap_urls": 0,
+    "exact_normalized_question_answer_collisions": 0,
+    "historical_overlap_tranches_included_in_promotion_scope": false
+  },
+  "manual_outcome": {
+    "drop": 21,
+    "drop_indices": [
+      1,
+      19,
+      43,
+      110,
+      130,
+      137,
+      151,
+      155,
+      185,
+      191,
+      196,
+      199,
+      203,
+      255,
+      267,
+      271,
+      273,
+      287,
+      292,
+      344,
+      368
+    ],
+    "reason_counts": {
+      "contextless_or_low_value": 7,
+      "out_of_domain_or_personal_trivia": 6,
+      "source_error_or_misread": 2,
+      "volatile_or_promotional": 6
+    },
+    "retain_unchanged": 38,
+    "retain_unchanged_indices": [
+      4,
+      46,
+      57,
+      58,
+      66,
+      79,
+      87,
+      108,
+      119,
+      127,
+      128,
+      136,
+      142,
+      143,
+      149,
+      153,
+      159,
+      171,
+      180,
+      181,
+      194,
+      198,
+      233,
+      265,
+      272,
+      284,
+      322,
+      336,
+      360,
+      362,
+      366,
+      377,
+      379,
+      390,
+      405,
+      408,
+      417,
+      422
+    ]
+  },
+  "pass": "strict_third_pass",
+  "promotion_scope": "quality_only_candidate",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-kinbakutoday-third-pass",
+  "schema": "manual-source-audit-report-v1",
+  "source_verification": {
+    "answer_not_extractively_supported": 0,
+    "method": "All 59 rows were manually read in 25 complete-document groups and checked against stored source text. Retained rows are self-contained terminology, archival history, or specialist references; art/clothing trivia, event and publication promotion, anecdotal fragments, subjective superlatives, and misleading dictionary generalizations were rejected.",
+    "rows_manually_read": 59,
+    "source_documents_checked": 25,
+    "stored_source_documents_found": 25
+  },
+  "tranche": {
+    "fact_id_sequence_sha256": "f414c929c8bcb7a33c2686c793cb9a35432671e746f5ca80534a9fd7c15979fd",
+    "ordering": "complete non-overlap Kinbaku Today documents in lexicographic normalized-URL order",
+    "reviewed_rows": 59,
+    "tranche_id": 5,
+    "unique_source_urls": 25,
+    "unique_stored_document_sha256": 25
+  },
+  "validation": {
+    "active_artifacts_observed_at_report_write": {
+      "data/train_qa_curated_v1.curation.jsonl": "5c83bc4f72be9ddf171744e879a4c19df054926971eecacf76d4421614399b40",
+      "data/train_qa_curated_v1.jsonl": "ef2f39e95c73c69041517e03d04c6cf48a2c25a2198a9e6d05a56258c1875591",
+      "data/train_qa_curated_v1.report.json": "5be2fcada1b6b8e8c10a00becd4b9b550eb2380bc8118c634d3c49274d59b178",
+      "data/train_qa_kinbakutoday.curation.jsonl": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    },
+    "active_files_mutated_by_this_audit": false,
+    "replacement_aware_all_pending_diagnostic": {
+      "curation_decisions": 2601,
+      "excluded_rows": 2554,
+      "kinbakutoday_rows": 247,
+      "output_rows": 732,
+      "output_sha256": "09a4443dc4f504f80793a9085ea52a7d5a734ba23cc0f457e737c48ad09e6738",
+      "repeat_build_byte_identical": true,
+      "status": "passed"
+    }
+  }
+}
