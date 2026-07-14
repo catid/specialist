@@ -13,6 +13,13 @@ inter-engine NCCL communicator completed initialization. The driver then raised
 `DocumentLCBAnchoredMixinV5.configure_anchor`, before journal creation or any
 perturbation.
 
+The failing V5 check runs only after its complete `super().configure_anchor`
+chain returns. That chain had already installed the frozen layer plan by RPC,
+saved the exact reference on every engine, and inspected and validated the
+distributed state. The run therefore passed rendezvous and initial cross-engine
+RPCs. It failed in a coordinator-side effective-command invariant before any
+anchor or domain scoring, coefficient construction, or update preparation.
+
 The durable launch-attempt artifact is:
 
 `experiments/eggroll_es_hpo/runs/.snapshot794_layer_v11d_middle_late_resident_sign_exact_v10_durable_launch_d43d44_a43a44_basis20260714.launch_attempt.json`
