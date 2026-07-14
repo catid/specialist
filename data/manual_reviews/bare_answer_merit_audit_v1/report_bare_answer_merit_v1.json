@@ -1,0 +1,113 @@
+{
+  "active_baseline": {
+    "curation": [
+      {
+        "path": "data/train_qa_curated_v1.curation.jsonl",
+        "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb"
+      },
+      {
+        "path": "data/train_qa_kinbakutoday.curation.jsonl",
+        "sha256": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+      }
+    ],
+    "dataset": {
+      "path": "data/train_qa_curated_v1.jsonl",
+      "rows": 784,
+      "sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507"
+    },
+    "report": {
+      "path": "data/train_qa_curated_v1.report.json",
+      "sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a"
+    }
+  },
+  "audit": {
+    "by_decision": {
+      "drop_already_pending": 1,
+      "keep": 4
+    },
+    "by_reason": {
+      "concise_answer_context_complete": 1,
+      "contextless_or_low_value": 1,
+      "technical_term_context_complete": 3
+    },
+    "path": "data/manual_reviews/bare_answer_merit_audit_v1/bare_answer_merit_audit_v1.jsonl",
+    "rows": 5,
+    "sha256": "ab66535393897f7e922931cde3d9dcd1e489da14d1ffc36288d66fd8fc0c90dc"
+  },
+  "isolated_build_projection": {
+    "active_after_quality_merit_drops": 762,
+    "build_script": "build_curated_qa.py",
+    "output_rows": 800,
+    "output_sha256": "bade85c91d1f6ad7891ebcd58078c3dd93af46592cd1360b4a206ec83075237e",
+    "prior_pending_addition_fact_ids_preserved": 38,
+    "repeat_byte_identical": true,
+    "reviewed_already_pending_drop_applied": true,
+    "reviewed_keep_fact_ids_preserved": 4,
+    "sealed_eval_fact_count_reported_by_tooling": 612,
+    "unexpected_fact_ids": 0,
+    "validated_runs": 2
+  },
+  "method": {
+    "heldout_content_opened": false,
+    "principle": "Judge standalone clarity in the context of the complete question; do not lengthen correct technical terms merely because their answers are short.",
+    "source_support": "Every answer and evidence span verified against a stored, document-hash-pinned source."
+  },
+  "new_pending_curation": {
+    "decisions": 0,
+    "path": "data/manual_reviews/bare_answer_merit_audit_v1/pending_curation_bare_answer_merit_v1.jsonl",
+    "reason": "Four reviewed facts merit keeping; the sole merit drop is already append-safely staged in a prior pending ledger.",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prior_pending": {
+    "additions": [
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v1/pending_additions_safety_tranche_01_v1.jsonl",
+        "rows": 10,
+        "sha256": "b294c1ea1712f523d65621a37f5996211a4470da4111f9e8be23024cdf2e3515"
+      },
+      {
+        "path": "data/manual_reviews/resource_safety_additions_v2/pending_additions_safety_care_tranche_02_v1.jsonl",
+        "rows": 10,
+        "sha256": "e4fa43995c177df75dc061828e11be369c67474da757e842b4c097ac0a59b0c4"
+      },
+      {
+        "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_additions_ropetopia_practical_tranche_01_v1.jsonl",
+        "rows": 8,
+        "sha256": "a572bf973bc3ce2790de4bd001002bf39465d9deb15e5d80b26b75a52d602f75"
+      },
+      {
+        "path": "data/manual_reviews/anatomie_practical_consent_additions_v1/pending_additions_anatomie_consent_tranche_01_v1.jsonl",
+        "rows": 10,
+        "sha256": "689d7699fb1a5de92bdd568bd5d05ea8df93fbba5a1477053ebd14ca4a8c1a7a"
+      }
+    ],
+    "curations": [
+      {
+        "path": "data/manual_reviews/kinbakutoday_third_pass/overlap_quality_merit_reaudit_v1/pending_curation_quality_merit_v1.jsonl",
+        "rows": 22,
+        "sha256": "ac81ee03c6a738460c6020a4861e676592a5c63b18b76ab453b460faef45c558"
+      },
+      {
+        "path": "data/manual_reviews/ropetopia_practical_additions_v1/pending_curation_ropetopia_practical_tranche_01_v1.jsonl",
+        "rows": 1,
+        "sha256": "cf82b5eb8a6d23caa4a6003887b031929db021874d5c9270f42324ea5adb9da2"
+      }
+    ]
+  },
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-bare-answer-merit-audit",
+  "schema": "bare-answer-merit-audit-report-v1",
+  "sealed_evaluation_policy": {
+    "collision_check": "sealed evaluation paths are handled only by existing build_curated_qa.py during isolated projection",
+    "generator_opens_eval_or_heldout_content": false,
+    "manual_review_opened_eval_or_heldout_content": false
+  },
+  "status": "segregated_pending_not_promoted",
+  "validation": {
+    "combined_tests_passed": 16,
+    "test_paths": [
+      "data/manual_reviews/bare_answer_merit_audit_v1/test_bare_answer_merit_audit.py",
+      "test_build_curated_qa.py"
+    ]
+  }
+}
