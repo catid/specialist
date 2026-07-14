@@ -1,0 +1,52 @@
+{
+  "schema": "eggroll-es-s6-full-model-direction-diagnostic-v1",
+  "status": "complete",
+  "purpose": "direction_variance_only_not_hpo_or_model_selection",
+  "frozen_recipe": {
+    "model": "Qwen3.6-35B-A3B",
+    "snapshot": "S6",
+    "population_size": 16,
+    "fixed_train_items": 64,
+    "anchor_items": 32,
+    "sigma": 0.0003,
+    "minimum_anchor_cosine": 0.5,
+    "target_alpha": 0.0,
+    "engines": 4,
+    "tensor_parallel_per_engine": 1,
+    "gpus": [0, 1, 2, 3]
+  },
+  "baseline_reproduction": {
+    "validation_mean_reward": 0.08381010452961674,
+    "ood_qa_mean_reward": 0.714128787878788,
+    "ood_prose_mean_token_logprob": -1.2632580042542214,
+    "all_runs_exact_alpha_zero": true,
+    "all_strict_guards_passed": true
+  },
+  "aggregate": {
+    "seed_count": 10,
+    "mean_raw_domain_anchor_cosine": 0.003682322524786319,
+    "sample_standard_deviation": 0.2465980547681705,
+    "standard_error": 0.0779811519634364,
+    "median": 0.0016409993676824441,
+    "two_sided_95_percent_t_interval": [-0.17272329895691535, 0.18008794400648798],
+    "positive_count": 5,
+    "negative_count": 5,
+    "minimum": -0.48157067769861983,
+    "maximum": 0.2822306682237592,
+    "projection_count": 10,
+    "mean_projection_lambda": 0.5573006788956852
+  },
+  "runs": [
+    {"seed": 42, "raw_cosine": -0.2214816373580427, "projected_cosine": 0.5000000000000001, "projection_lambda": 0.7844962443926973, "journal_sha256": "040355e9cbe0fab760e01e3c8b641c977cfa99db844554ea6308bf6b3063f7bd", "anchor_plan_sha256": "ea67d21b947d92ee75c7d601c43a5f826678062a2f22a5f894586b76ab7b5488", "gpu_trace_sha256": "71c70ffeacbd0fda561a031bd1e87a8210b26c72795c5f46af846f22106e766e"},
+    {"seed": 43, "raw_cosine": -0.48157067769861983, "projected_cosine": 0.5000000000000001, "projection_lambda": 0.9875680728145271, "journal_sha256": "a050fcbaf9496dd75216257c82b8b894c939728365f435dd06262e047f3081b0", "anchor_plan_sha256": "1ca38b7cd65a7bcda9669fdadf9aadffce42a95379f3b5ae8630ed1a7e4cb11e", "gpu_trace_sha256": "ce0f071100a19f56c1f53153c9c2d5e023bfa3389f39f7bc5ad54b7caf6b7bdd"},
+    {"seed": 44, "raw_cosine": 0.2822306682237592, "projected_cosine": 0.49999999999999994, "projection_lambda": 0.2716488995017307, "journal_sha256": "e17f7397cd97063795952f114c75befc2931488eac40d2c58712cfcd138d731e", "anchor_plan_sha256": "8e7de08e0e81e28e24537453d0f359ceb37e7adab9882cdf6d94840753ccfa9d", "gpu_trace_sha256": "31078178c039dbaa0c8cdddad33701df18af5316518b3ba89697fd5419bde30b"},
+    {"seed": 45, "raw_cosine": -0.07779394049489918, "projected_cosine": 0.5000000000000001, "projection_lambda": 0.6533972524286158, "journal_sha256": "b802d88c44e29a6b0d080761d55f8ac20298384f865022177af16ead00af577e", "anchor_plan_sha256": "7382a6635d09d47707aaec5c885ff56cd6bc75aedde8f402b29aedc31f54d077", "gpu_trace_sha256": "d309704d122c7fb68ee958f88f1f6aa3b566fcb164503f8ce931fe90ecc96cf1"},
+    {"seed": 46, "raw_cosine": 0.21222510515245965, "projected_cosine": 0.5000000000000001, "projection_lambda": 0.35197441972805793, "journal_sha256": "742ab12b65dddf6835c41bedba83202b5262e5ca621f6203504b5e2083fcbeb8", "anchor_plan_sha256": "c815b7b2bdb01aca5eb4e104ea118eb9ab83fd9e5cd09c2ad1f25992788a1c3b", "gpu_trace_sha256": "e30bf9bc40b217631d16328cd7995d6d40fa2772d4a658846bfabc48bbce8c2b"},
+    {"seed": 47, "raw_cosine": 0.08107593923026407, "projected_cosine": 0.5, "projection_lambda": 0.494373990283241, "journal_sha256": "af7e1c6b76a5cc9461c87158e8f5f53bfb6e5a8ec1415a6f5aebd205f27f93e2", "anchor_plan_sha256": "17e6d9b1504f7e007a32395f94fc6766e183a505c87dd73650a427db0f1a87b5", "gpu_trace_sha256": "71aa97d897611b2de27e25bcf99fa61d79b087a3bd832d28e7c7d22e0219ba09"},
+    {"seed": 48, "raw_cosine": 0.218919757825948, "projected_cosine": 0.5000000000000001, "projection_lambda": 0.3444269497843522, "journal_sha256": "c9c45b6726f5416ab686d9aef532f088517a968a39681ada352e6f148b995cb2", "anchor_plan_sha256": "cf04738b0b3a3c32cb935e225a7e0f1b47b9c40d6815b03f6d69795b1967fbf7", "gpu_trace_sha256": "a377fa90d9fb4f6889459981bb296a120d3183739cbc5bc569c00d9116d972f6"},
+    {"seed": 49, "raw_cosine": 0.24010394703156132, "projected_cosine": 0.5, "projection_lambda": 0.32035831874421267, "journal_sha256": "2529c4265cad3c918276a82bf9d7658034041959065141ba97b0e42f5d3a3de2", "anchor_plan_sha256": "d8627e1fc269a429f508e307e7446de877baf67e567f770e358e13e74d0a133d", "gpu_trace_sha256": "52c764eda96cb14d8d130ee2781c6342b7f4283c05d983bd5d8a48c1e67396a9"},
+    {"seed": 50, "raw_cosine": -0.11355160190365599, "projected_cosine": 0.5000000000000001, "projection_lambda": 0.6871655843010079, "journal_sha256": "cafbafa911d100e26fddd27e2eb24704ff55748b020ee138a641e7bdbee1e944", "anchor_plan_sha256": "cd017d13e8a3110058edc60580544f8bf4be1dc1db0cd7ff770f393ae1dccd8d", "gpu_trace_sha256": "b21726d60e38210db04812297dd6901b8942ff19db09e8126e37757f4ba8e0c9"},
+    {"seed": 51, "raw_cosine": -0.10333433476091136, "projected_cosine": 0.4999999999999999, "projection_lambda": 0.6775970569784099, "journal_sha256": "4a61114f46953657f440d35c6b74369f897d8b50b4d5093b472221f52b9f7b63", "anchor_plan_sha256": "50715e64e026d1e9f0b4829799916bbceeafca4c8d413667f197170bf8ffec36", "gpu_trace_sha256": "7a52af476c99ca5c858f10477c14e985bee793edb1bbb83023130c6da2c58b6d"}
+  ],
+  "conclusion": "raw alignment is centered near zero with high seed variance; all directions require projection; no full-model alpha selection is justified"
+}
