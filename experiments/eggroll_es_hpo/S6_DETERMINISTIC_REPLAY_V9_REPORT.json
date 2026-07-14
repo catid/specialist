@@ -1,0 +1,67 @@
+{
+  "all_cosines_pass": true,
+  "all_exact_identities_match": true,
+  "content_sha256_before_self_field": "7871c2d959e9b70f9d0912a1af5571767da155fd3ffc5a3588ab6e8cbdb7a50f",
+  "cosines": {
+    "coefficient": 1.0,
+    "standardized_anchor_score": 1.0,
+    "standardized_domain_score": 1.0
+  },
+  "coverage": {
+    "arm": "middle_late",
+    "data_seed": 43,
+    "perturbation_basis_seed": 20260714,
+    "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "population_size": 32,
+    "roles": [
+      "original",
+      "replay"
+    ],
+    "target_alphas": [
+      0.0
+    ]
+  },
+  "exact_identities": {
+    "anchor_scores_sha256": true,
+    "coefficient_sha256": true,
+    "domain_scores_sha256": true
+  },
+  "implementation": {
+    "replay_driver_v9": "0f92bb4264961f2d690ce2dbe3cad6767014f740a80fd4bb2b37f4c0e04a71dc",
+    "reporter_v9": "67e389eae7d0db3b61ce44a08bd827d4b5fb50e02e4e540b5a9ced5c8e8b1d4b"
+  },
+  "implementation_bundle_sha256": "e8d1f83e92ea425b766c3c0f9b2b75d68ecbf3f744601c05c448e3af9f2891e4",
+  "metric": "exact_data43_replay_identity_and_cosine",
+  "metric_interpretation": "same data/batch/reference/basis response reproducibility; standardized raw-score cosines remove irrelevant score offsets",
+  "passed": true,
+  "preregistered_cosine_threshold": 0.99,
+  "runs": [
+    {
+      "anchor_scores_sha256": "3d62a59801991887a9441d860cd1530d1514a126ba4c8345e0e9290e6e6b2731",
+      "coefficient_sha256": "8c73a49ed5092aff908914a9c596995eac67043ccac724ef4a56a1e4ee71e8e6",
+      "content_sha256": "98f14ba7525d2d33839421868b4c95a287f8334276a018c3a12dd76d20f54760",
+      "data_seed": 43,
+      "domain_scores_sha256": "2b63c83df943f304b556d014ea8faaccb5fa7240534dba439f5149b352cf6fce",
+      "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v8_middle_late_stability_data43_basis20260714/alpha_line_search.json",
+      "journal_file_sha256": "defd16591cbb137db09816a82c050716e24ec54ef90cb023339673df608e3da4",
+      "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+      "robust_plan_sha256": "d32e92a71e3d13679e08fccc75ae6d56e1f4f5419e0b562615a4754ad88cec8e",
+      "role": "original"
+    },
+    {
+      "anchor_scores_sha256": "3d62a59801991887a9441d860cd1530d1514a126ba4c8345e0e9290e6e6b2731",
+      "coefficient_sha256": "8c73a49ed5092aff908914a9c596995eac67043ccac724ef4a56a1e4ee71e8e6",
+      "content_sha256": "960d638695094e2432eebbfd08ab5af51e96eaf7effb2c2d8069da6255b91c56",
+      "data_seed": 43,
+      "domain_scores_sha256": "2b63c83df943f304b556d014ea8faaccb5fa7240534dba439f5149b352cf6fce",
+      "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v9_middle_late_exact_replay_data43_basis20260714_retry1/alpha_line_search.json",
+      "journal_file_sha256": "a246c0e6d1400955bcc06907d55353093b199ce36b9e83f8c49603a6cc0645f8",
+      "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+      "robust_plan_sha256": "d32e92a71e3d13679e08fccc75ae6d56e1f4f5419e0b562615a4754ad88cec8e",
+      "role": "replay"
+    }
+  ],
+  "schema": "eggroll-es-deterministic-replay-report-v9",
+  "selection_policy": "coefficient_and_raw_train_anchor_identity_only_no_validation_ood_holdout_selection",
+  "v8_failed_evidence_binding_sha256": "7e5df754210699fdb46dfc4ede80c885ae38f0326649cf394519eddd54bb0e55"
+}
