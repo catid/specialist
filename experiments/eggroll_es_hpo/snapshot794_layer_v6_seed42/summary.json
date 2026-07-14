@@ -1,0 +1,100 @@
+{
+  "schema": "eggroll-es-edge-split-pilot-family-summary-v6",
+  "status": "complete_no_eligible_nonzero_candidate",
+  "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+  "dataset_snapshot": "/tmp/specialist-s6-candidate-guarded-ead1b21/dataset",
+  "seed": 42,
+  "population_size": 16,
+  "batch_size": 64,
+  "sigma": 0.0003,
+  "target_alphas": [
+    0.0,
+    7.8125e-07,
+    1.5625e-06,
+    3.125e-06,
+    6.25e-06
+  ],
+  "baseline": {
+    "validation_mean_reward": 0.08381010452961674,
+    "validation_exact": 2,
+    "validation_nonzero": 13,
+    "ood_qa_mean_reward": 0.714128787878788,
+    "ood_prose_mean_token_logprob": -1.2632580042542214
+  },
+  "release_binding": {
+    "implementation_bundle_sha256": "05fb5721cc46f03ee48d8da19b2d77260b5f8514d095e4ced3ec7fb8b2f5d22f",
+    "smoke_gate_file_sha256": "9669b75fc7e70965f8552ae15ffd6c471a2555eb855a831839d5334cb0474ea3",
+    "smoke_gate_binding_sha256": "3bdc4723fbfe069614138005afc42875ed0f0754cdea2197bd13f1e2d31fd6ee"
+  },
+  "eligibility_rule": {
+    "validation": "nonzero alpha must strictly improve mean reward",
+    "ood_qa": "exact, nonzero, and mean reward must not degrade",
+    "ood_prose": "point delta and paired document-bootstrap 95% CI lower bound must both be nonnegative",
+    "heldout_opened": false
+  },
+  "arms": [
+    {
+      "arm": "front",
+      "layers": [0, 1, 2, 3],
+      "journal_sha256": "01412f68035abad19c38dc47594b394db112d18d06a1e593ba035e6486e35c3a",
+      "content_sha256": "4dd8811ba86eaf0df85d4ffdcd6066414e52a3a859cdadeb5d8576988620cba4",
+      "coefficient_sha256": "d8e360b8a496b6d92324137cacd88b19deede9ef15565b9f64e3c7fe2812b5e8",
+      "raw_domain_anchor_cosine": 0.36180262043601497,
+      "best_validation_alpha": 6.25e-06,
+      "best_validation_delta": 0.0013902439024390256,
+      "best_alpha_ood_qa_delta": 0.0,
+      "best_alpha_prose_delta": -0.0018996096699417375,
+      "best_alpha_prose_ci95": [-0.004520087983467185, 0.0007396147465042965],
+      "eligible": false
+    },
+    {
+      "arm": "middle_early",
+      "layers": [16, 17, 18, 19],
+      "journal_sha256": "39aa1007557469554819faddd6e371c93db3e0a1e26a8adc38a92c965abd67fc",
+      "content_sha256": "d4a53e8e81d11bca8e1d86414e0d2faf62499437396374832280c35599d00f1e",
+      "coefficient_sha256": "35e0fba3a6d440cc67a78d513c951a5c6447f9488ad4a9c2e371a488d70123dc",
+      "raw_domain_anchor_cosine": 0.10278591190114343,
+      "best_validation_alpha": 0.0,
+      "best_validation_delta": 0.0,
+      "eligible": false
+    },
+    {
+      "arm": "middle_late",
+      "layers": [20, 21, 22, 23],
+      "journal_sha256": "17d0fd12f8672bd0fd436c1c8cdf237219bf479809379b9ebdb529dcd97b85e7",
+      "content_sha256": "ffe0f862d5ddd0e2e480bc966b24449f02b28923491b49bdb27c87a0918da247",
+      "coefficient_sha256": "f3fec334b70267f54a57b4ba60ef7ba289caf21c88dfdc3008851dec96d64df5",
+      "raw_domain_anchor_cosine": 0.6920967765,
+      "best_validation_alpha": 3.125e-06,
+      "best_validation_delta": 0.00010180275715800102,
+      "best_alpha_ood_qa_delta": 0.0,
+      "best_alpha_prose_delta": 0.0008651448728451694,
+      "best_alpha_prose_ci95": [-0.00035910468973620046, 0.002099547500393167],
+      "eligible": false
+    },
+    {
+      "arm": "back",
+      "layers": [36, 37, 38, 39],
+      "journal_sha256": "db248d2043e6602560ff65dc541a78d90547f7b7e53b498d05e3ec88d0159424",
+      "content_sha256": "2987235495e7737bb89286344a36fd66618d229fdc0bca4bec6c35e41d733ec2",
+      "coefficient_sha256": "a1666b2e92d87c6fded098962ecf8631b1073fe7e7a7416ba3ba76fe9d813271",
+      "raw_domain_anchor_cosine": 0.24633731735086747,
+      "best_validation_alpha": 0.0,
+      "best_validation_delta": 0.0,
+      "eligible": false
+    }
+  ],
+  "selection": {
+    "alpha": 0.0,
+    "reason": "No nonzero state passed the preregistered validation, OOD-QA, and document-bootstrap prose gates.",
+    "direct_replication_required": false,
+    "heldout_remains_sealed": true
+  },
+  "next_experiment": {
+    "protocol": "v7_direction_stability",
+    "arms": ["front", "middle_late"],
+    "seeds": [43, 44],
+    "cross_seed_coefficient_cosine_threshold": 0.5,
+    "benchmark_selection_during_stability": false
+  }
+}
