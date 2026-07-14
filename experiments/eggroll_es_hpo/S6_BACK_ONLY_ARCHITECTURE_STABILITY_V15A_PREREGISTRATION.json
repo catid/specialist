@@ -1,0 +1,339 @@
+{
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "dda0f49e470cf5bb550f80d27a2389d069c8d064975c18b581261054462bb7c7",
+  "evidence": {
+    "retained_v13_baseline": {
+      "content_sha256": "06f662574013345a6c777af8688a38f3941286d9e11a427ed3342de53451b1e3",
+      "decision": "retain_as_absolute_stability_floor",
+      "file_sha256": "d367c9c4de1e1f3526ddb3dfba2f5bf24efc77cbccf951f7359eb1969fcd7b54",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V13B_TRAIN_PANEL_AGGREGATE_EVIDENCE_V14A.json",
+      "report_content_sha256": "dfa8c73fae35d0b915dcb1f7c5ef2bca91415a551a178cc90ab534a0646939da"
+    },
+    "v14a_negative": {
+      "content_sha256": "ee4ded3d974dfd0becaedb1007f96888e133db51e62130d2844ab9c25e2ccf2b",
+      "decision": {
+        "evaluation_surface_opened": false,
+        "model_update_authorized": false,
+        "reason": "v14a_failed_its_preregistered_conjunctive_gate",
+        "row_draw_iteration_1_confirmation_authorized": false,
+        "sampler": "retain_v13"
+      },
+      "file_sha256": "9329c09fec5d76e209cff36ac80ffbbec69f53fe7bae9edcc069421d626cc9e9",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V14A_FULL_FRAME_NEGATIVE_AGGREGATE_EVIDENCE_V14B.json"
+    },
+    "v14b_negative": {
+      "content_sha256": "440504e6c81673ea8de89f336d587a0c57408ea21d3a925ed73b73ecfbeaa7b8",
+      "decision": {
+        "evaluation_surface_opened_or_authorized": false,
+        "fresh_basis_k2_confirmation_authorized": false,
+        "model_update_applied_or_authorized": false,
+        "reason": "v14b_failed_its_preregistered_conjunctive_gate",
+        "sampler": "retain_v13"
+      },
+      "file_sha256": "735ad52b6395700feb4e8a3dccab165f9b79e620a53918d96e0a26979f58224c",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V14B_K2_DISTINCT_ROW_NEGATIVE_AGGREGATE_EVIDENCE_V15.json"
+    }
+  },
+  "experiment_name": "snapshot794_layer_v15a_back36_39_vs_middle_late20_23_paired_v13_panels_alpha_zero_basis20260715",
+  "firewall": {
+    "allowed": [
+      "exact frozen snapshot794 V13 train source and panels",
+      "compact V13 aggregate baseline evidence",
+      "compact V14a and V14b negative aggregate evidence"
+    ],
+    "current_retained_recipe": "V13 middle-late layers 20-23",
+    "forbidden": [
+      "validation",
+      "OOD",
+      "heldout",
+      "benchmark outcomes",
+      "model update",
+      "layer insertion",
+      "adaptive architecture fallback",
+      "front plus back result selection"
+    ],
+    "v14a_status": "closed_failed_gate_no_confirmation",
+    "v14b_status": "closed_failed_gate_no_confirmation"
+  },
+  "hypothesis": "at matched selected capacity, moving the dense ES partition from middle-late layers 20-23 to back layers 36-39 improves the exact V13 train-panel direction-stability endpoints",
+  "hypothesis_count": 1,
+  "integrity": {
+    "all_four_engines_must_participate_in_every_signed_wave": true,
+    "committed_source_bundle_required": true,
+    "dense_result_hash_per_direction_sign_required": true,
+    "exact_reference_restoration_after_every_sign": true,
+    "fresh_o_excl_attempt_and_run_required": true,
+    "partial_wave_allowed": false,
+    "persist_response_vectors_or_row_content": false,
+    "population_boundary_audit_required_per_arm": true,
+    "pre_and_post_population_base_probe_must_match_exactly": true,
+    "report_and_attempt_self_hashes_required": true,
+    "restore_in_finally_after_every_sign_required": true
+  },
+  "paired_architecture": {
+    "arm_order": [
+      "middle_late",
+      "back"
+    ],
+    "arms": {
+      "back": {
+        "capacity": {
+          "runtime_selected_parameter_count": 23,
+          "selected_byte_count": 285999104,
+          "selected_element_count": 142999552,
+          "source_unit_count": 35
+        },
+        "file_sha256": "73bfc82ba057908c0071d3c5e190581fecf6147cc398f06a994231f31908187e",
+        "layers": [
+          36,
+          37,
+          38,
+          39
+        ],
+        "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+        "path": "/home/catid/specialist/experiments/layer_plans/back_dense.json",
+        "plan_sha256": "6da92a4db760676acda1bcbcaec4a925a6dd7b641c250a58a3fe4837d97ac93a",
+        "role": "single_candidate"
+      },
+      "middle_late": {
+        "capacity": {
+          "runtime_selected_parameter_count": 23,
+          "selected_byte_count": 285999104,
+          "selected_element_count": 142999552,
+          "source_unit_count": 35
+        },
+        "file_sha256": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
+        "layers": [
+          20,
+          21,
+          22,
+          23
+        ],
+        "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+        "path": "/home/catid/specialist/experiments/layer_plans/middle_late_dense_v6.json",
+        "plan_sha256": "03745c603a6b48898b41afbd4d9121aef276d7e45ca1a3ae14607ec5d1042cb9",
+        "role": "retained_v13_contemporaneous_control"
+      }
+    },
+    "only_intended_difference": "selected_dense_layer_location",
+    "same_fresh_basis_both_arms": true,
+    "same_panels_generation_and_objective_both_arms": true
+  },
+  "promotion_gate": {
+    "absolute_v13_rules": {
+      "cosine_median_and_worst": "at_least_v13_plus_0.05_for_every_cosine_family",
+      "sign_median_and_worst": "not_lower_than_v13_for_every_sign_family"
+    },
+    "all_integrity_audits_required": true,
+    "all_panel_spreads_nonzero_both_arms": true,
+    "all_rules_conjunctive": true,
+    "all_twelve_endpoint_summaries_must_not_regress": true,
+    "contemporaneous_control_rules": {
+      "cosine_median_and_worst": "back_at_least_middle_late_plus_0.05_for_every_cosine_family",
+      "sign_median_and_worst": "back_not_lower_than_middle_late_for_every_sign_family"
+    },
+    "cosine_minimum_improvement": 0.05,
+    "failure_decision": "retain_v13_middle_late_and_keep_all_eval_surfaces_closed",
+    "historical_v13_baseline": {
+      "aggregate_to_optimization_cosine": {
+        "count": 3,
+        "median": 0.7608236805612648,
+        "worst": 0.7082628389768383
+      },
+      "aggregate_to_optimization_sign_agreement": {
+        "count": 3,
+        "median": 0.8125,
+        "worst": 0.75
+      },
+      "optimization_pairwise_cosine": {
+        "count": 3,
+        "median": 0.47411088498906484,
+        "worst": 0.3900621868364503
+      },
+      "optimization_pairwise_sign_agreement": {
+        "count": 3,
+        "median": 0.59375,
+        "worst": 0.5625
+      },
+      "train_screen_cosine": {
+        "count": 2,
+        "median": 0.3936314430866483,
+        "worst": 0.314941371734614
+      },
+      "train_screen_sign_agreement": {
+        "count": 2,
+        "median": 0.65625,
+        "worst": 0.53125
+      }
+    },
+    "metric_counts": {
+      "aggregate_to_optimization_cosine": 3,
+      "aggregate_to_optimization_sign_agreement": 3,
+      "optimization_pairwise_cosine": 3,
+      "optimization_pairwise_sign_agreement": 3,
+      "train_screen_cosine": 2,
+      "train_screen_sign_agreement": 2
+    },
+    "multiplicity_control": "one hypothesis; all six cosine median/worst margins and all six sign nonregression checks are conjunctive against both the historical floor and contemporaneous control",
+    "pass_decision": "authorize_only_a_separately_preregistered_back_plan_alpha_zero_confirmation_on_another_fresh_32_direction_basis",
+    "pass_does_not_authorize_model_update_or_evaluation": true,
+    "scope": "train_only_back_plan_stability_confirmation_only"
+  },
+  "required_runtime_adapter": {
+    "real_launch_requires_fresh_committed_implementation_bundle": true,
+    "required_files": [
+      "train_eggroll_es_specialist_anchor_v15a.py",
+      "run_eggroll_es_back_plan_stability_v15a.py",
+      "test_eggroll_es_back_plan_stability_v15a.py"
+    ],
+    "runtime_not_authorized_by_this_preregistration_commit": true,
+    "status": "not_yet_implemented"
+  },
+  "runtime": {
+    "all_four_engines_required_every_signed_wave": true,
+    "alpha": 0.0,
+    "arm_execution_order": [
+      "middle_late",
+      "back"
+    ],
+    "complete_four_direction_waves_required": true,
+    "engine_count": 4,
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "greedy_generation_seed": 43,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "model_update_allowed": false,
+    "objective_and_generation_identical_to_v13": true,
+    "perturbation_basis": {
+      "basis_seed": 20260715,
+      "population_size": 32,
+      "schema": "eggroll-es-paired-architecture-perturbation-basis-v15a",
+      "seeds": [
+        781155634,
+        166511697,
+        553997177,
+        29327742,
+        528373473,
+        598596232,
+        971738046,
+        413904000,
+        254562666,
+        669724709,
+        740139907,
+        159170652,
+        403976347,
+        671566993,
+        933764233,
+        368638977,
+        467611975,
+        969075605,
+        711629688,
+        635576630,
+        929490240,
+        1064578919,
+        442972541,
+        115403656,
+        881242302,
+        173904944,
+        30426680,
+        530098843,
+        1006569494,
+        388812159,
+        329373152,
+        772045351
+      ]
+    },
+    "perturbation_basis_sha256": "6c358060c5f9a0a7b00e953bd230b18f915950f0233f38321e0e048a67ea05e7",
+    "population_waves_per_arm": 8,
+    "previous_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "same_order_every_direction_sign_and_arm": true,
+    "same_seed_algorithm_as_v8_v13": "numpy.default_rng(basis_seed).integers(0,2**30,size=32,dtype=int64)",
+    "sign_order": [
+      "plus",
+      "minus"
+    ],
+    "signed_waves_per_arm": 16,
+    "tp_per_engine": 1
+  },
+  "schema": "eggroll-es-back-plan-stability-preregistration-v15a",
+  "selection_surface": "exact_frozen_v13_train_panels_only",
+  "separate_future_hypothesis": {
+    "front_plus_back_authorized_on_v15a_failure": false,
+    "front_plus_back_authorized_on_v15a_pass": false,
+    "front_plus_back_is_part_of_v15a": false,
+    "requirement": "a separate preregistration, basis, implementation, and gate before any front-plus-back experiment"
+  },
+  "status": "preregistered_not_launch_authorized",
+  "v13_estimator": {
+    "central_response": "(plus-minus)/2",
+    "estimand": "equal_weight_document_semantic_conflict_unit_mean",
+    "generation_prompts_per_direction_and_sign_per_arm": 280,
+    "implementation": {
+      "sampler": {
+        "file_sha256": "81ca63c230995d44dfdb739a78b4a1a0f85d09724ba5915860ae36f78ccc3da9",
+        "path": "/home/catid/specialist/eggroll_es_train_panel_sampler_v13.py"
+      },
+      "trainer": {
+        "file_sha256": "1a8a4145a85c183bb6121914357b7e6bce916b4f76a0693887ac41fa3a8c4c6e",
+        "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v13.py"
+      },
+      "worker": {
+        "file_sha256": "5596bff9174e5e94e812181a51f8cc9f9b2a73f3a4cb58c45d5346147c8d6367",
+        "path": "/home/catid/specialist/eggroll_es_worker_v13.py"
+      }
+    },
+    "manifest": {
+      "content_sha256": "46cc98b694c98c1ee1c5456b855fb3b1db4534b3df2dcda69fc690a2d8a61bf5",
+      "file_sha256": "e555d9d6746cde6297cd3ab523b16dd7d78d81e2674447ee46d754ebfac52da7",
+      "frame_sha256": "5de666fc13d385cc8f4f5bc9248e66cea806603a85aee6da1a247a2a91a24a06",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/train_panel_sampling_v13/document_balanced_train_panels_v13.json"
+    },
+    "native_endpoints_only": [
+      "optimization_pairwise_cosine",
+      "optimization_pairwise_sign_agreement",
+      "aggregate_to_optimization_cosine",
+      "aggregate_to_optimization_sign_agreement",
+      "train_screen_cosine",
+      "train_screen_sign_agreement"
+    ],
+    "no_full_frame_or_disjoint_crossfit_claim": true,
+    "optimization_panels": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2"
+    ],
+    "optimization_response": "stratum-weighted Horvitz-Thompson mean",
+    "ordered_panel_identities": {
+      "optimization_0": "680f93cde737ba1a18539d5dd58c756ff6f3436bdffa247cb05174926f944c1d",
+      "optimization_1": "84adafc1bcf9ac55fd465c1d85f344349ba2b12d22b2d1c3515a7ec3f59a55f7",
+      "optimization_2": "d54b92cf9102276ad80345f2d182267c18664a86fda24dc8e159396b2460b230",
+      "train_screen_0": "b0fda37f28f3f3d0d2a043ba5ad94e32326e1a35167cf5839a269dd910325473",
+      "train_screen_1": "9ee454ef6a13968c7476f6af9c1847a1b5cb7f50d0cc67388372a8f71c8e3c33"
+    },
+    "panel_bundle_content_sha256": "cc176a9b86c6447dcde8a11fd28d68c837d2119715126c57a3f37293fb0d492b",
+    "panel_names": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "panel_size": 56,
+    "per_panel_standardization_epsilon": 1e-08,
+    "robust_aggregate": "coordinatewise median of the three independently standardized optimization-panel coefficient vectors",
+    "source": {
+      "arrow_sha256": "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6",
+      "file_sha256": "f7127c38c7b540eaf9cf4349d1a1b8076e171da7f8ea43c11068ad1c311bb776",
+      "path": "/tmp/specialist-s6-candidate-guarded-ead1b21/train_qa_curated_v1.jsonl",
+      "rows": 794
+    },
+    "train_screens": [
+      "train_screen_0",
+      "train_screen_1"
+    ]
+  }
+}
