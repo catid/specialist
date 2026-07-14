@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 HERE = Path(__file__).resolve().parent
@@ -18,9 +20,33 @@ from qa_quality import normalize_text
 
 class ContextMeritAuditV4Test(unittest.TestCase):
     def setUp(self) -> None:
+        frozen_paths = (builder.AUDIT, builder.CURATION, builder.REPORT)
+        frozen_bytes = {path: path.read_bytes() for path in frozen_paths}
+        self.addCleanup(self._assert_frozen_outputs_unchanged, frozen_bytes)
+
+        temporary = tempfile.TemporaryDirectory(
+            prefix=".test-context-merit-v4-", dir=HERE)
+        self.addCleanup(temporary.cleanup)
+        output_dir = Path(temporary.name)
+        for attribute, filename in (
+            ("AUDIT", "context_merit_audit_v4.jsonl"),
+            ("CURATION", "pending_curation_context_merit_v4.jsonl"),
+            ("REPORT", "report_context_merit_v4.json"),
+        ):
+            patcher = mock.patch.object(
+                builder, attribute, output_dir / filename)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+
         builder.main()
         self.audit = builder.read_jsonl(builder.AUDIT)
         self.curation = builder.read_jsonl(builder.CURATION)
+
+    def _assert_frozen_outputs_unchanged(
+            self, frozen_bytes: dict[Path, bytes]) -> None:
+        for path, expected in frozen_bytes.items():
+            self.assertEqual(path.read_bytes(), expected,
+                             f"test mutated frozen artifact: {path}")
 
     def test_selection_is_next_nonoverlapping_ranked_25(self) -> None:
         active = builder.read_jsonl(builder.ACTIVE_DATASET)
