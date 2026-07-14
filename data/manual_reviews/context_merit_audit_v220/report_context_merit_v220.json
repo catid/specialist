@@ -1,0 +1,2728 @@
+{
+  "active_baseline": {
+    "curation": [
+      {
+        "path": "data/train_qa_curated_v1.curation.jsonl",
+        "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb"
+      },
+      {
+        "path": "data/train_qa_kinbakutoday.curation.jsonl",
+        "sha256": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+      }
+    ],
+    "dataset": {
+      "path": "data/train_qa_curated_v1.jsonl",
+      "rows": 784,
+      "sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507"
+    },
+    "report": {
+      "path": "data/train_qa_curated_v1.report.json",
+      "sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a"
+    }
+  },
+  "audit": {
+    "by_decision": {
+      "drop": 0,
+      "edit": 1,
+      "keep": 0
+    },
+    "by_reason": {
+      "connect_emt_shears_link_to_readiness_check": 1
+    },
+    "path": "data/manual_reviews/context_merit_audit_v220/context_merit_audit_v220.jsonl",
+    "rows": 1,
+    "sha256": "fdf2cbebe27a141efe2f5713e219486ecb1bca89e49822d363a703f1c7c538fb"
+  },
+  "frozen_prior_decision_artifacts": [
+    {
+      "path": "data/manual_reviews/context_merit_audit_v1/context_merit_audit_v1.jsonl",
+      "sha256": "547beb94ebb06b92fa57e63e1c6386c098b5c00381e0c8c4a73195aa9159439a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v1/pending_curation_context_merit_v1.jsonl",
+      "sha256": "f8da448f3cd5c691f58dcee58cd4349843a0ae427c5ccda743d8e6d544619248"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v1/report_context_merit_v1.json",
+      "sha256": "f66aa99af4907a5ba9fee9d838f90716f64f5955a583ee693e57c414e45d3f14"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v2/context_merit_audit_v2.jsonl",
+      "sha256": "964569e3b429ba9b8de6f85a1d4610ec037cddd0bc23b9a02cb2df96ad0af88e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v2/pending_curation_context_merit_v2.jsonl",
+      "sha256": "7d51643fb58bac0e0128af1239eee05608d721d7b0d0aef7b7acb9640b9700de"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v2/report_context_merit_v2.json",
+      "sha256": "ff71f4ebfd064d9c0847e274256e641b4468ff1a0cf39ee4f520b8d71266d116"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v3/context_merit_audit_v3.jsonl",
+      "sha256": "44e1ea47c8e1bae94b5208ff299efe6dd0bc90f010c70b39b6c4c76214231c53"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v3/pending_curation_context_merit_v3.jsonl",
+      "sha256": "49cf31caddf6cca9831040761ccdeb8969536d6b1ed1b56647edadf7d70aed9e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v3/report_context_merit_v3.json",
+      "sha256": "9cd12be81ef4d297696ef6a27c76128c173045fb6f3a49b13b2593db7169a127"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v4/context_merit_audit_v4.jsonl",
+      "sha256": "2ca590865e050ef4d5f9bc32b1cd1426cd86bcf9a00674bd56b65edaffbe94d6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v4/pending_curation_context_merit_v4.jsonl",
+      "sha256": "02c5518ca28fd1a1b58448e920b26ed187594f5fbfb428ac62e2ceb61dc94925"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v4/report_context_merit_v4.json",
+      "sha256": "77df419516fbbc4dac522fb41a4c7a7a89cd250d2fb0f07162ddb0fd376b48bf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v5/context_merit_audit_v5.jsonl",
+      "sha256": "f4f306930439155adf89483773225f0f8d10bf43aa695fd79e74cbb443e321d4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v5/pending_curation_context_merit_v5.jsonl",
+      "sha256": "25623c88524911b00d8af0f703098562abfae40b534e48445f250685c9734bae"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v5/report_context_merit_v5.json",
+      "sha256": "8faf91d616b7c8af70dd060a816df69b7e6be4429fa67178732b3182c017c0ae"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v6/context_merit_audit_v6.jsonl",
+      "sha256": "280a2047898888445b85eabc21662db1cc02d1f76a91173cda46fc57852c9eae"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v6/pending_curation_context_merit_v6.jsonl",
+      "sha256": "d01493ec8cbb8461dabb3af9582dc2d70d8c0349f119a7d2861f7213046bcbf3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v6/report_context_merit_v6.json",
+      "sha256": "b1ddf74191fee3b6709f385d4dcf78a4f29834c34726953efb7014a6bd8a5c51"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v7/context_merit_audit_v7.jsonl",
+      "sha256": "17130345cd53bb1db8e786c9781e0e809dd4ed1daa35a5bb315f180b9ecaea47"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v7/pending_curation_context_merit_v7.jsonl",
+      "sha256": "7f576a8baaf4ebf48881db148eabfa9a6fc8863e9acfc565e2c553671fc2864f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v7/report_context_merit_v7.json",
+      "sha256": "7c94d8edc873ef152b1930b4c8c037b90f74c8c6f079dd2f8edff2c3ef18c490"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v8/context_merit_audit_v8.jsonl",
+      "sha256": "bbcc5eaf09e5bc00af3a3a2044970a5271cfe9bf13d07b04894b4efc5e12eadf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v8/pending_curation_context_merit_v8.jsonl",
+      "sha256": "ecd55102a9572671866164cd4541f3a6e728bcd4343e2478ed7698dac248445c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v8/report_context_merit_v8.json",
+      "sha256": "94df2b4880e080eb67732486d9c821e1e4ec2b334d28719dc37a8830fd2fdee4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v9/context_merit_audit_v9.jsonl",
+      "sha256": "02b3b89d2232fc16867fc00f61e459f4a8367430e4a3122065f66249637c4ae8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v9/pending_curation_context_merit_v9.jsonl",
+      "sha256": "baa827fc31da73d40cfe71feb0f9c0fe74266f310317b17dabada85635d7341a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v9/report_context_merit_v9.json",
+      "sha256": "f9b3da51b2443195e472b74d5e8e6256c4fe8650fe3236e08c452ba7bfef919c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v10/context_merit_audit_v10.jsonl",
+      "sha256": "1699f631e33ab20ccb1ba7265841126108685d888812558f182612acfbaec451"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v10/pending_curation_context_merit_v10.jsonl",
+      "sha256": "88650b3e0013e94bc10971c38ca9febb5fb99edd56b329a65bcbc58fcd554789"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v10/report_context_merit_v10.json",
+      "sha256": "2c80b6a89886cf603dff15873be4d37ece8d632a60bfee4ec5ba50f68673130b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v11/context_merit_audit_v11.jsonl",
+      "sha256": "0f535c4f4d10b67800c2236d7afad15dc2317b761089cc56dcec81a4e7c8a20f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v11/pending_curation_context_merit_v11.jsonl",
+      "sha256": "9217ec91b7de21234b9fff46a869743de0f182fb6ad85096b81d25a9eb368c6a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v11/report_context_merit_v11.json",
+      "sha256": "2a55b9e67c4aaf4b3ee329ed9e22cd970267f960bad10a88dc9748b20c002bbd"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v12/context_merit_audit_v12.jsonl",
+      "sha256": "d3380bab8dc2ea1474053a49681f74237b977033d35dbb982737969614439df9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v12/pending_curation_context_merit_v12.jsonl",
+      "sha256": "baf8c7db21131519467a84a0f732fdf3f87833242abdf12d768e4ae8a9b533b6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v12/report_context_merit_v12.json",
+      "sha256": "930f16dff4460976fa29b8e8d83985180c5e0d04132c87fd7dabc32aa2ec2053"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v13/context_merit_audit_v13.jsonl",
+      "sha256": "0e253b1445d1bce0d1608516383ddd21c70c92794a68d1b28f6bea1f5ecc04e0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v13/pending_curation_context_merit_v13.jsonl",
+      "sha256": "87bc739a326d1cb43afd0101329ae81d4df02cda2feeede9c385f973b22166da"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v13/report_context_merit_v13.json",
+      "sha256": "855bd6998a553872ec58241024476d2d21052ae1fdeb863e1a1c92e29996961c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v14/context_merit_audit_v14.jsonl",
+      "sha256": "a1074ba11508e3bcac482430f027a038b95e336bfb82069459ed454d95d100d5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v14/pending_curation_context_merit_v14.jsonl",
+      "sha256": "80d0e7f796d781d2c7ee54c58909799f07cd3bdc369a34f433179aff26bd07c0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v14/report_context_merit_v14.json",
+      "sha256": "3981317d0a9955bae34bca035aaeb332fa7c5af2726ab70c357df5dd032d2c67"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v15/context_merit_audit_v15.jsonl",
+      "sha256": "d2a991b604d229481d467b99d240cf5814ded33d5ed604492105b618f8c06270"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v15/pending_curation_context_merit_v15.jsonl",
+      "sha256": "8ea89097f18506f3f3c5f3151ccf27c7cfa5323961d7335e5a5ea4fd0a5c3242"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v15/report_context_merit_v15.json",
+      "sha256": "aa8060362fc10814f012dad15ad9580b463456aee4c3b7d505eee9cdb4558ec6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v16/context_merit_audit_v16.jsonl",
+      "sha256": "5b6c71868c8fed049f239c6aaba780ae6750fa1daac3dd4b5b7e61f97bc86b89"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v16/pending_curation_context_merit_v16.jsonl",
+      "sha256": "a6aa20e3eeccafd88472b935cf2f345971e3e5c88452f0e5b9ada0951210cd18"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v16/report_context_merit_v16.json",
+      "sha256": "a9ef9fbc858ed483fe884488d9933297e4207465069e73f8de83a986974b3093"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v17/context_merit_audit_v17.jsonl",
+      "sha256": "4d4fbe2ad209ed6cc927099977de7e88cab3cfb6579baa9512004e1b8b4f49bf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v17/pending_curation_context_merit_v17.jsonl",
+      "sha256": "e91b4f8aa3a2381eab49836df51ab6ce226e650754684ea09a635a774036f5bf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v17/report_context_merit_v17.json",
+      "sha256": "665b3dc545b919abf8a17a0e3b2f74ac6e625c48052dfeed9cef73d5cee922af"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v18/context_merit_audit_v18.jsonl",
+      "sha256": "8017b8fac5894878bb1f3395a882672a4d592ddced5fd1e6839bf47f5508bf42"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v18/pending_curation_context_merit_v18.jsonl",
+      "sha256": "e9b391553e675c191e212f17557c2bbcbf57ace68511940d652bf2548377a175"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v18/report_context_merit_v18.json",
+      "sha256": "4db5e30fef887ff1c2d86a96c58f2c1c11d60bb715955bb7ed0bf12be5789763"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v19/context_merit_audit_v19.jsonl",
+      "sha256": "1af5099d59e3d4575d83196ad2ae01bb24a2b0bc313017eb3da8fa5ec656f16a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v19/pending_curation_context_merit_v19.jsonl",
+      "sha256": "11ee7bad3ca04f09da09627c0fe5dfc3165e6af351f66ca0a1a13daf6334f8f0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v19/report_context_merit_v19.json",
+      "sha256": "64c62f86c008ba2a4c1ff0c8a5192b3a23f5201dac663a2e01e8bbf2ae5c1a5e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v20/context_merit_audit_v20.jsonl",
+      "sha256": "ba935d157893ce8034176ee9bae9a69ca227b802a791c8abea4a458824f0b8bf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v20/pending_curation_context_merit_v20.jsonl",
+      "sha256": "477a7f5e2c86274c98a97626f03b8727559b41f3cc42241c63ad2a4127819cb3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v20/report_context_merit_v20.json",
+      "sha256": "0d9696d54d375da928655ec32204704219875d521b9fbd8c20cda3110d252b78"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v21/context_merit_audit_v21.jsonl",
+      "sha256": "1b66f9e03eb99579fa99cb0ef47cbe4bb846f61d48f772e50875c8cb2e63fcbb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v21/pending_curation_context_merit_v21.jsonl",
+      "sha256": "125db2b6a85f0bc8e2d52013a00907e585bd030b6e634ea4a2c32b9a50db1a11"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v21/report_context_merit_v21.json",
+      "sha256": "bb60aa5149dfef8b2c78031a8e5345f12d1623fc73ea5955bb00affd3b154b12"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v22/context_merit_audit_v22.jsonl",
+      "sha256": "6c87ce9d0c27fb82c7ba0f41cbea9884c27aa57c8b5279a853bcd17f3f512499"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v22/pending_curation_context_merit_v22.jsonl",
+      "sha256": "eac9edbbfb03909b3cbc05c3141c50da519a20a7fcd50d099de99cca2cbb4ac3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v22/report_context_merit_v22.json",
+      "sha256": "d0afc2c6f0dd0d3ad394f5773b984528c8c5f9ee7773c8e21d57c3a7c38cf4cf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v23/context_merit_audit_v23.jsonl",
+      "sha256": "267ef6bca74346fb3668f484e5b4e285564affa2e6b08f34bcaf17dc41045cd6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v23/pending_curation_context_merit_v23.jsonl",
+      "sha256": "c157d7683bbdf5be47330838e85daac50d365c9a736e30afdecb5f4fbb268db2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v23/report_context_merit_v23.json",
+      "sha256": "1072c812e3f6a227524adee08a3aa2c0d769f76ca1ce6afc69f57b751322829e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v24/context_merit_audit_v24.jsonl",
+      "sha256": "956a58e6d72e9be03dbc2538e9810b6dea14c08ee9aa29662c98d7f83924af20"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v24/pending_curation_context_merit_v24.jsonl",
+      "sha256": "40eb94195b38361555fa0f0213db96e915662d04a6ddc7675b3b013ca526d65d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v24/report_context_merit_v24.json",
+      "sha256": "01b2c6a9873c55d2df74e5e084b5a547efa91251043ab8ef8b6853d1216d9a4d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v25/context_merit_audit_v25.jsonl",
+      "sha256": "85e55d861a6a1434d4632e420ff53cc0fb08ef0de2d0b5ec953da167e7625ba0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v25/pending_curation_context_merit_v25.jsonl",
+      "sha256": "0f24f6af8a9aa8be628fabe59090d54d2404219bdaed20b7156cf609bf40ac8d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v25/report_context_merit_v25.json",
+      "sha256": "48019c32d066b4b7e2c5bab13f31fca1b25d9bc3115be24f685870e370a94091"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v26/context_merit_audit_v26.jsonl",
+      "sha256": "a8d6e1d6f0506567b102aee178f7d64a39cbade029748564d1227f101767bf49"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v26/pending_curation_context_merit_v26.jsonl",
+      "sha256": "6d91009571f608442117ffd9f3ac27ab2edfc4b0686cc5dd587743f7f5b0e3e1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v26/report_context_merit_v26.json",
+      "sha256": "633e7733b837cfd058e07cb6c6c295e99bff4c963e0e6af07e4aae83c91fcfb3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v27/context_merit_audit_v27.jsonl",
+      "sha256": "dc25c8d0e3cb9e3c5f6b1ad70790ac0b319c8d0320b898a4c6607b2657f6acd4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v27/pending_curation_context_merit_v27.jsonl",
+      "sha256": "9c3bb735460741f6f246211fa442c463b1c4fecdfbc531cec8aa638298e10d47"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v27/report_context_merit_v27.json",
+      "sha256": "46bd76c7d047745285e5e5ab29588256fde2f289d7875303a6d5facdc7728bd0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v28/context_merit_audit_v28.jsonl",
+      "sha256": "b712c707cea656f779d13951a90560858041ffed39d25aedf08bf86df345035a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v28/pending_curation_context_merit_v28.jsonl",
+      "sha256": "a45cff5893ca8cc6a6637721298e24d3064f89dd684ef6af30870086538334c8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v28/report_context_merit_v28.json",
+      "sha256": "269df296da8dd5dcb308ad4df66fde20f57ba40adc5b5672baaef7fcf243abcc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v29/context_merit_audit_v29.jsonl",
+      "sha256": "89d350fabb6fa100c38dc52f1a34357602268fedd54715a9bd439ef59896bbdd"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v29/pending_curation_context_merit_v29.jsonl",
+      "sha256": "7f33a6d7d860f35be18c7568292eb48a174c3c32116908de7b973b937ed43964"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v29/report_context_merit_v29.json",
+      "sha256": "efc9109a73de14dc14d716aa33214d83ebdf34f1f81e42ac4fbb8da19ccfee2c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v30/context_merit_audit_v30.jsonl",
+      "sha256": "56b9056faf6739dc3c85ce8d5c8437a727b6bbb0849855c1e39708e89b9d570d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v30/pending_curation_context_merit_v30.jsonl",
+      "sha256": "863091dc472eb020b9d5b0a162b1f35c092daeef1609f12a16afb6e6c629a661"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v30/report_context_merit_v30.json",
+      "sha256": "c7a62c6998ae86b06953ed56ef134199f575050513c8831ac45cc60bedee2265"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v31/context_merit_audit_v31.jsonl",
+      "sha256": "04d1ee8738380c7f41951868e4ea4ff3e146d7290ed24da5d178e33cce1f93f2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v31/pending_curation_context_merit_v31.jsonl",
+      "sha256": "bef9c547f888a8b427408c65875c1b7dad2ce2e3dd3241c3172ed1093efbf4ed"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v31/report_context_merit_v31.json",
+      "sha256": "b29cab5a00e1b009e6792c04cad2250bcad865e4901c8e35f731d9851e38b616"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v32/context_merit_audit_v32.jsonl",
+      "sha256": "41c0e16eab2f9d7d7bf1474407b83f96673f9e89eb24b0df2240bbcc91e0525b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v32/pending_curation_context_merit_v32.jsonl",
+      "sha256": "1486b7c3a2ea24bef6dd2bcc4e996b21e23efbb0c1961f03c23931590e3e60db"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v32/report_context_merit_v32.json",
+      "sha256": "548f4523da145dda1878a6544f91fcb352479e4f3899fe9e2e81edbab6c308f2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v33/context_merit_audit_v33.jsonl",
+      "sha256": "8b911317f8cb7ddb0e0b4786a664ca10958ea8c6651206818c2bc731c47bb305"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v33/pending_curation_context_merit_v33.jsonl",
+      "sha256": "d7ce5a454bdc513d08ff74ea5e25a121f16c234ba666133cdc3d505d7737d413"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v33/report_context_merit_v33.json",
+      "sha256": "03f5020c19d1dcb1a0d7eaf8ece810200404e4380e5f63c73643d5dc28ea928c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v34/context_merit_audit_v34.jsonl",
+      "sha256": "5e7e31242bf0411182eee86c0484c6b1a3368c6d3510e1db325275ac151dce8d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v34/pending_curation_context_merit_v34.jsonl",
+      "sha256": "d49a88e580d652dc986d1d9fdb2d7e9294eb467fe44a3da7a187d10eedf27118"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v34/report_context_merit_v34.json",
+      "sha256": "e23be8cfce274ac1f8d167c82a061d74c7e462da8e86bc178e19c1549bbcadf8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v35/context_merit_audit_v35.jsonl",
+      "sha256": "f752c56f30f4d960f68606c12828844d0308665f9d2d03d706f8e7003468cc9a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v35/pending_curation_context_merit_v35.jsonl",
+      "sha256": "d89a5941a50189c29b78922a816cdaab3df0c0601916845dfda9b1e351a7375b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v35/report_context_merit_v35.json",
+      "sha256": "cb3d90988f7c93dcf3dc6b5e88eb31e80a9dc87c1b246a7777494cb8c25b3776"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v36/context_merit_audit_v36.jsonl",
+      "sha256": "f312ee502c1bb95f9e5e41df07146235f0f683882822227457da506eebedf5d7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v36/pending_curation_context_merit_v36.jsonl",
+      "sha256": "6c04eb3bd4951be83658edfb7915f4828ebeb9938e52d7f2a939dd563a5a4c55"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v36/report_context_merit_v36.json",
+      "sha256": "547ce907e211ea7621cff53eda20aa67e96711b97e9a86e8e64cf8dba55c6add"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v37/context_merit_audit_v37.jsonl",
+      "sha256": "2f45aaae8a20b4fe0d3d28446cd0a3d14e19230a4d61676402b2bb633f589a2a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v37/pending_curation_context_merit_v37.jsonl",
+      "sha256": "994e5edd11ff2ff9def493726ce0fceda2a15d34e070e0aa8993c1ae6d950d54"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v37/report_context_merit_v37.json",
+      "sha256": "ad2561b963bc2b4250de634ea1876b8e2f20fbba6fdffdf4ccb56c66f3d3bfa2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v38/context_merit_audit_v38.jsonl",
+      "sha256": "c8548c4ce25e26b38200a7b5b18006f734671a61011250569375b71c9975d526"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v38/pending_curation_context_merit_v38.jsonl",
+      "sha256": "2c01c6e5f637f6aeaf805ee5b3e75bfd89ebde95dd21ae07e315d1002006e910"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v38/report_context_merit_v38.json",
+      "sha256": "8d39c798b627113599011c70c872ab982a7227adc2ab5bb029e7c11185b897ce"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v39/context_merit_audit_v39.jsonl",
+      "sha256": "3a6c2c6e0b550e9020514ddf3260fadeadffb922b93b4a8235566624d194ecdb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v39/pending_curation_context_merit_v39.jsonl",
+      "sha256": "e6b1fccc0f30a7dd036a4b036299e5237740850e2244d9264db6f44e8c72f617"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v39/report_context_merit_v39.json",
+      "sha256": "7a448908d52e42fc3e9b788fed21fde5939f7418688d990ec6b3b866a3424fd8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v40/context_merit_audit_v40.jsonl",
+      "sha256": "1b85f5319c2b05445db9f866cd0ce75af18a533da10d7d43589f65283a1100b9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v40/pending_curation_context_merit_v40.jsonl",
+      "sha256": "8661a69ad6c76abc7368c2b9f8e379ad00ddbf8a76dda73f795c42e2ab752fe5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v40/report_context_merit_v40.json",
+      "sha256": "01be34b5df7a114fdfa11863cabe57be29b3218e8cfdf5d99b33fbf8cfa55735"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v41/context_merit_audit_v41.jsonl",
+      "sha256": "68d5cf7a1cf00d5d72f961fdc17c648554b08754c861b9082e213184f45298cf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v41/pending_curation_context_merit_v41.jsonl",
+      "sha256": "072adc8c7ca1c16521236aa85bec7f0af78bf0ff3db60c1d01d8452c11911760"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v41/report_context_merit_v41.json",
+      "sha256": "05d8bd8edc2b434fac47de8cd5d2c4d019dde5c32d50932a49c478db32d29e0e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v42/context_merit_audit_v42.jsonl",
+      "sha256": "fd25a9979a87f2bfcae768fd67e955b3d04b1aa660ea91520730331e5eeb2ffd"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v42/pending_curation_context_merit_v42.jsonl",
+      "sha256": "c03db1b426fd9b5e5c72a7fedd5402176f23ee5ac1aaddcb172324313527538b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v42/report_context_merit_v42.json",
+      "sha256": "29ef15596bbeabc706d2da476fe9fdcf22e148896f521a7b22b17834ec0fce89"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v43/context_merit_audit_v43.jsonl",
+      "sha256": "9a888cc099a970d8ba31de493903c3948ba871b07d0c72d6b23b26133242510d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v43/pending_curation_context_merit_v43.jsonl",
+      "sha256": "07a4d1750a2ecd773d5a68fae1b226fc98eabdff2226d6b75cbb7fe552ba2c9a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v43/report_context_merit_v43.json",
+      "sha256": "d4d7ace54d8f1278ade7374fe38bbc75f7b9a811fdc5c8bede36fef9bd7471ea"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v44/context_merit_audit_v44.jsonl",
+      "sha256": "3e8a699507fb7dcbba959e0ede8305376a2e736af9562792e978e67b2ab4495d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v44/pending_curation_context_merit_v44.jsonl",
+      "sha256": "09f95a3daff273844f8af8fc41e02769b1ee0e1139fe51e5f023bb06513c356a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v44/report_context_merit_v44.json",
+      "sha256": "0b1a3a15c922f65d8950fbe27076f7c89d1921cea0a10be355f130be6e6a57ff"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v45/context_merit_audit_v45.jsonl",
+      "sha256": "153141201f52f8190684bf031a067e4cd4e238bc9eb2f7281068d80118a1eba1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v45/pending_curation_context_merit_v45.jsonl",
+      "sha256": "fa698f5d585bd1f685b7a2a76074747bebe75e6a9aeac34a023f71decf2fe828"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v45/report_context_merit_v45.json",
+      "sha256": "7ac9a2c600f17bf5bf15ddbb372b5cda020ad4360085b4ec3cdcfa6ea4b78102"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v46/context_merit_audit_v46.jsonl",
+      "sha256": "1dc5ee99c24cc4f71bd62efd1a71c7f1bb0e09663e2e3d377dfccc97c52e9d97"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v46/pending_curation_context_merit_v46.jsonl",
+      "sha256": "61c4a65ee726ffab1f5c8eeb7ebd55a32b7575eb01dbe626e08b9d899a34c739"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v46/report_context_merit_v46.json",
+      "sha256": "bfef20f07973e3cdc7f22ff9d11d2b153ff38d3532d97ed54b5d178454311d16"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v47/context_merit_audit_v47.jsonl",
+      "sha256": "1a62f920415c40b62ef244cbfd46960bb8b4bd018fc31ad8e9d8648d73843ad8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v47/pending_curation_context_merit_v47.jsonl",
+      "sha256": "94db7b2eb96908498c7f51d49baeeccab23402fd7169dfb6c57aeef2c0b05775"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v47/report_context_merit_v47.json",
+      "sha256": "fc6262bd30d5a653db741cfb0d4ae1fe1dad29b8dada29858ece88a718d7e660"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v48/context_merit_audit_v48.jsonl",
+      "sha256": "541e41997459484c3d479b62ca5efda573a997f614ade463789267e61ffab78e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v48/pending_curation_context_merit_v48.jsonl",
+      "sha256": "1b8c935f1e8f4f98070f3fe75f6700b2142a197511a4881bbb14d838165f9987"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v48/report_context_merit_v48.json",
+      "sha256": "5d6bd1116c36bed7bcfc3fc4df81bcdaeee5bbcc84c7297c84f025661ec23563"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v49/context_merit_audit_v49.jsonl",
+      "sha256": "b1d48b195954afc8f0dbab8558b1b72e536227fb13dbb4d2fe7f642d699a1eea"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v49/pending_curation_context_merit_v49.jsonl",
+      "sha256": "3acf85fe46bba113149a03afebcde72b6b70efdcedbdd538f4f473447e431fa2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v49/report_context_merit_v49.json",
+      "sha256": "3a47d508fcd2c6ce23ab329ad598c30be2e7624d8c3bf56ec09f6697b245818d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v50/context_merit_audit_v50.jsonl",
+      "sha256": "d422048e02a85a40aeac0bb90d62d5656bba97a8e5c1b61cb0cd3d44093f79be"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v50/pending_curation_context_merit_v50.jsonl",
+      "sha256": "6492d458fee1a29072b5a7ed8c3a1774c5895b0985cf83ddbd90b96854e469e9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v50/report_context_merit_v50.json",
+      "sha256": "6c93a2bfbdb8bd0e14a6e92e3e5e9a7fe2c819a06c9f778a2a0df092e0c9ec34"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v51/context_merit_audit_v51.jsonl",
+      "sha256": "f5609c016fb1994768948e9d2434a0f9780b4ed5961fbbbddf49480536dea388"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v51/pending_curation_context_merit_v51.jsonl",
+      "sha256": "4c2856216854972f74d469314efe36a015da0af4057667c2b8206d2fa66add05"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v51/report_context_merit_v51.json",
+      "sha256": "04121aef7f3f693184202d4c9230f8cc1271afdb6b0faa5fa5311ccfd362385c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v52/context_merit_audit_v52.jsonl",
+      "sha256": "6bfdbdac682eb1297be1e04efd50f9b4059b5803fff2b902f9e22231680f8b2e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v52/pending_curation_context_merit_v52.jsonl",
+      "sha256": "56bfabdbdb1134f9f357fcd07d34d35bfff9337648559ac7ea6f7e8025c10bc7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v52/report_context_merit_v52.json",
+      "sha256": "c3120da48eca66218248e626cda5b1278c86c8c6bbaa7e7a801fa7c2f47e92c6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v53/context_merit_audit_v53.jsonl",
+      "sha256": "23a499676dfe59d341a23805e870beed4b3926e98da74cc41e350f6386444cf4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v53/pending_curation_context_merit_v53.jsonl",
+      "sha256": "cd1921f7794a8579169d220cf954110e1f5c2bbe55fd0c8fa6883e235cbdc0ab"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v53/report_context_merit_v53.json",
+      "sha256": "ace6a5cda4b05510cb59136369aa474a3b0c73b7304a9eac23e98c6dd26c9ecc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v54/context_merit_audit_v54.jsonl",
+      "sha256": "a2f2fdfc6524c92b150f80d60fa1d4a82997726541cd3884ba40aedf229dd762"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v54/pending_curation_context_merit_v54.jsonl",
+      "sha256": "cb92675b7039f989c68c5c5e9a62c994530b678cf42b52297899cbe05940cd99"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v54/report_context_merit_v54.json",
+      "sha256": "d20aaf088a1bca659d177d37f2e20e2cae28a34b17d82f7eed8023136286dce7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v55/context_merit_audit_v55.jsonl",
+      "sha256": "41e09909bfb821493c4df04493c73cdd77b1fd0e72290e88373a735243ef6652"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v55/pending_curation_context_merit_v55.jsonl",
+      "sha256": "5d89517105fe4f74890fc975886ace686998dd15225cf78d46bfc2bf8a7fa961"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v55/report_context_merit_v55.json",
+      "sha256": "ba5b4ccd8dbaa411d749605be9418c3b2ebad1813744c4ff4d749290393b1795"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v56/context_merit_audit_v56.jsonl",
+      "sha256": "8ad462dd777f3887165e3fa37e1d59d89fda65f325644b5bebd20dea0ac43449"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v56/pending_curation_context_merit_v56.jsonl",
+      "sha256": "c67c4c956d7cb05514627e94e430042de167d3ce137c29dd7c25bb3a70d73576"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v56/report_context_merit_v56.json",
+      "sha256": "f1a4026cbb4ac7d528fb415d59e40d692362cc224765796b544777ec0e9c7e77"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v57/context_merit_audit_v57.jsonl",
+      "sha256": "ea194c4a804c47b65a3102b61365006309b4d92cae8bbde4eeb015de94104c38"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v57/pending_curation_context_merit_v57.jsonl",
+      "sha256": "787c0128caa885fa1d5982c7463ab76cd3170452dbdaf013c14e86dfee1de1aa"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v57/report_context_merit_v57.json",
+      "sha256": "d543d1790c068d10aecd70b74c6454c07b6ef53d4ea8ee0e48e3c7321481802f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v58/context_merit_audit_v58.jsonl",
+      "sha256": "92ca1be7b40ca33807ca785657cfd48d76a0a4041f624955eb0e3fe7a4499980"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v58/pending_curation_context_merit_v58.jsonl",
+      "sha256": "b3d4d62dc34782df87dd5d5ea83816bec9645dad71a50634f0793c2b220b3024"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v58/report_context_merit_v58.json",
+      "sha256": "7cc42259417518f4fa6312e2e81afbce5611ce8a7136ce8781a6b78a6527d2af"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v59/context_merit_audit_v59.jsonl",
+      "sha256": "6e60b5801620395aa09a33dab53003bd731cb4ebad747fe99d09c3bcd73ff55f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v59/pending_curation_context_merit_v59.jsonl",
+      "sha256": "339c540efc9ad9126c4d2437147fd9ce39d36d370eb10567f364a8577b31f3e6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v59/report_context_merit_v59.json",
+      "sha256": "3c5d406f7e83acb07cb7a877bd458677066c642900b33097e7eba84dd9f111df"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v60/context_merit_audit_v60.jsonl",
+      "sha256": "fc8cddc0c8f276e1f3fcd12e82a022f74d6f435ddc708d3c8ced604b1d6c1ae4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v60/pending_curation_context_merit_v60.jsonl",
+      "sha256": "d500977c566c13e3b33840eebf5aaf202b76fee6b275e8f4e3f381cae4691244"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v60/report_context_merit_v60.json",
+      "sha256": "3636524b3e8b19d5ac0b1fcc2bd6b324dce22d662cd984edc18f5cdc77a57aab"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v61/context_merit_audit_v61.jsonl",
+      "sha256": "f7376339fc2adb6f53406766243ac46b0e5a89c2c84cab565eff51058118a69d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v61/pending_curation_context_merit_v61.jsonl",
+      "sha256": "65bd1daf26ed35fd6edb754411f1ac1f1e24990dfb12118e37d766c149e093cc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v61/report_context_merit_v61.json",
+      "sha256": "1518228a4215cb24222bbc297afdc525551d5e5ba63fe6dee6f17b19bddee4e9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v62/context_merit_audit_v62.jsonl",
+      "sha256": "6c0aa1412275ae28a8b3c274953832a4314a920ce619cb4fa808624485dec0f6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v62/pending_curation_context_merit_v62.jsonl",
+      "sha256": "2e51aea5c183e9886251a84e56e715dee1f6d4f790681252ec71eb2df336e1f3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v62/report_context_merit_v62.json",
+      "sha256": "395f666a8379d61285ffa88108b4c1e241fe2f6d10a93e99467c59f2bd662aa9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v63/context_merit_audit_v63.jsonl",
+      "sha256": "08e89eeacc95f36cd65f9091a3627f75bcf597104c9be961fe0291275743b394"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v63/pending_curation_context_merit_v63.jsonl",
+      "sha256": "8b2ec89ea30cd07827e8b689ecbae23b0fa0efee228fa036130fe5b0882dbc3e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v63/report_context_merit_v63.json",
+      "sha256": "ec490db49c88d405ead9d3a488514b1c2375928dee68c9a0718bfdc4713ab82f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v64/context_merit_audit_v64.jsonl",
+      "sha256": "b8db307085818f21b99bd0d86d2a2d5c86889de22d2c239031b16eb4a18cf826"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v64/pending_curation_context_merit_v64.jsonl",
+      "sha256": "927cf7fbe93e3524c62c2efc6a034bac8651088ca825801c64c6b7f7c8653cd9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v64/report_context_merit_v64.json",
+      "sha256": "353639758aad444a44a5a3bbf5fb0a94e79434f07df7525c741f327c64834e3b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v65/context_merit_audit_v65.jsonl",
+      "sha256": "462c9beea3f5e6ad6b6538f54fbef2d25a7b78e62882cd532452981d31d20dae"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v65/pending_curation_context_merit_v65.jsonl",
+      "sha256": "ca2162f7129500f962e3f2a12559a9d37f980d7af9c99200869eb9e192ba7b66"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v65/report_context_merit_v65.json",
+      "sha256": "6bbdb2453bdcaa861a27bfc5f2adecbf340e997067a3d5e69e6c383197ebf465"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v66/context_merit_audit_v66.jsonl",
+      "sha256": "657fb8a27529e49968193c564d0ead06c9c50aa7564ef1bd645c9014081746d8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v66/pending_curation_context_merit_v66.jsonl",
+      "sha256": "261abc98d7edd6f89272be0b6f31102ca3ab60703be8ff01c97a80b868bc0cbc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v66/report_context_merit_v66.json",
+      "sha256": "0b58c8bc4ddc595bedb51869d9ebc072a22d88974d917b62bc656cc26a030d7b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v67/context_merit_audit_v67.jsonl",
+      "sha256": "faa35d0f4d1dc7d9f675675890ed1c8d41412bcf396d6780c518054bae86fe4e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v67/pending_curation_context_merit_v67.jsonl",
+      "sha256": "efc3d6c47cd59131c492eb260d415bdc8e7edf542bd5ffd25f5938bc43e4026e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v67/report_context_merit_v67.json",
+      "sha256": "e19fece1644ea5718bd2dbf836f669e98f4249e17f4d77cd55969f67bc5ce465"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v68/context_merit_audit_v68.jsonl",
+      "sha256": "47e2ae82c5b3f7771a554a18ba8d85488ac672859b03715e5fc326c2b09e922b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v68/pending_curation_context_merit_v68.jsonl",
+      "sha256": "da057176bda4a55e7ea237053a292b2576a9c5e9b8f5879ebfb72aec758dbc3b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v68/report_context_merit_v68.json",
+      "sha256": "7d89ad311e92864b8cf216ceb14420e42e81971314d37ecdd3dd8f0c020247be"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v69/context_merit_audit_v69.jsonl",
+      "sha256": "d4affbbc94031b18112b6947e68f727c6189a79da9fbc449dd26368ab6b5fdfb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v69/pending_curation_context_merit_v69.jsonl",
+      "sha256": "4347a88d99c98b8ed2fc32dbf64b127a79b30b1bf2529f9844fcdc4282761955"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v69/report_context_merit_v69.json",
+      "sha256": "2cc3fee44de5974a1e87d4e57430e4b7612d9d00fb4fc3fa1758b42821c9817e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v70/context_merit_audit_v70.jsonl",
+      "sha256": "874e69aa38c211e4f6bab06cdc3a64338e7b0c85dc3824090fcc7865eb6f2af7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v70/pending_curation_context_merit_v70.jsonl",
+      "sha256": "9f8a442d53c69038dd24af091f19050cdedad21d9502c5de754259a1d5ce9351"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v70/report_context_merit_v70.json",
+      "sha256": "3f22c585777f829ddca87c044aba799a6ef07a266bd8fab104f3ba0ed1e53959"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v71/context_merit_audit_v71.jsonl",
+      "sha256": "2456b7a62be68fe949abaeb6222688939489004cbb7e88d5816ab2ca9838ee9f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v71/pending_curation_context_merit_v71.jsonl",
+      "sha256": "c8bbbb14fbaf029aea85cf522cd9a9ee7963b07961af09543b66032233f409bd"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v71/report_context_merit_v71.json",
+      "sha256": "3dd4682cfa2f3319ac8514d0eb0956480bbe6abdfbbf23dbc3d66645b2e3b1b8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v72/context_merit_audit_v72.jsonl",
+      "sha256": "b902ed6ed1cd29b7dc961164f838cbdbdb7403b2c07fd2c2c3e0a57873e91f49"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v72/pending_curation_context_merit_v72.jsonl",
+      "sha256": "58a19fc84c478a24bcb10ed4def64ad1b0a58ba5333da23ef8030bb41c8b4da1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v72/report_context_merit_v72.json",
+      "sha256": "4784d931db55e769ace6747041e5824a9fa7b2801af108bef26e3aadcc659891"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v73/context_merit_audit_v73.jsonl",
+      "sha256": "3df2631cbf8a9bb9fae6ab2c25c1add45c2f4090aad0c7cdbd43bc1c0af22d17"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v73/pending_curation_context_merit_v73.jsonl",
+      "sha256": "14ad4e9470e01d2905c7b591e5019d3e6e1cb2adb1e71a7fbcae14afddc2755a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v73/report_context_merit_v73.json",
+      "sha256": "61f9580ce1ecdf8027532fdf0c724263c76c1276fb990e566f89f34f471b322b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v74/context_merit_audit_v74.jsonl",
+      "sha256": "c4399604e2cc781e92c0bec91524888abda8ee81b07cc7c316ee3b94a633289b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v74/pending_curation_context_merit_v74.jsonl",
+      "sha256": "4c24ff0e67110975c952cabd1ed9fd8b5fb0688a15ba3ef25a2e17318ab754a7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v74/report_context_merit_v74.json",
+      "sha256": "12ebe0b6b3cb1658b1ea1cc230c2d4fa03977093d412c6a1ad7dc23083ff0438"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v75/context_merit_audit_v75.jsonl",
+      "sha256": "cd7cc89813eb37e3072a1020c7de14b84863362bdd1b96f036d77598b87b894d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v75/pending_curation_context_merit_v75.jsonl",
+      "sha256": "3649920527f3d56e60adde78edc596635846be4770de16b130aabece53b3f03d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v75/report_context_merit_v75.json",
+      "sha256": "20f9076a12b2318a966f7e16a291dc40ddaccd51320e25a817ad81dfb1767bc7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v76/context_merit_audit_v76.jsonl",
+      "sha256": "38859620c1f22fb2b503907848ff5c4ae6d3120ff92fc669a656292e9f54165d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v76/pending_curation_context_merit_v76.jsonl",
+      "sha256": "3bed7f991772cf8f4684ec248bdfc76c49b8354d71c817dc4290c93e50314f9e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v76/report_context_merit_v76.json",
+      "sha256": "e5bfa8803ee7a97fd1f32c89969736b7a44deb8b311343528b1d5a3cb32e6a99"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v77/context_merit_audit_v77.jsonl",
+      "sha256": "88060e87567e3ff3e4c487173556ac53208775492c951fad2789d0330699a9e8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v77/pending_curation_context_merit_v77.jsonl",
+      "sha256": "95040acb55a65c21bbe7bcd993e9689305b8f01d55aaa846645ca14124d891dd"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v77/report_context_merit_v77.json",
+      "sha256": "5f0b4828aec89188c18880070d24dd06fc5c726585c5fd53817ec9c53f5224fd"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v78/context_merit_audit_v78.jsonl",
+      "sha256": "d2170808f2da54e819da9b9ca0506146486da1eaa182bc672f54e0c368e22cef"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v78/pending_curation_context_merit_v78.jsonl",
+      "sha256": "1046d84958ff8c835b92080dccaf64ddb7f68e7771462bb9ebbebea6210f1fb0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v78/report_context_merit_v78.json",
+      "sha256": "ad8227e4a3bdaf96834cf14600247fdddc39c057e3d214d47eb8ae383594fd8b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v79/context_merit_audit_v79.jsonl",
+      "sha256": "de8e1d725cc47a9c0dcc848f332f2751384ca53272463d1cb19c7a44f2d8d475"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v79/pending_curation_context_merit_v79.jsonl",
+      "sha256": "b72a5d3f11c7bfd97502e14830a1e04939c481baf892da4cdd4caf71629c370d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v79/report_context_merit_v79.json",
+      "sha256": "3f1ab75f532bdd494749b2bb9b1f851db1960048298507533367323c05c57fb6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v80/context_merit_audit_v80.jsonl",
+      "sha256": "4a42ef82b17111dde32bfdd6b7c3d98b95e153d5d125987df364269dea4259ec"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v80/pending_curation_context_merit_v80.jsonl",
+      "sha256": "39e70989c7d9b6dbe564df32bf8ab4e3d8f7b855ff702db91ca431dde3acad0e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v80/report_context_merit_v80.json",
+      "sha256": "0a144c48bece0ce4e3076a45a984498d2b4f17c844d3de775099f740eac0cd4f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v81/context_merit_audit_v81.jsonl",
+      "sha256": "b7b68c3f8ff2eef170c7bfa0372c272cd6cbefccec8963d317129fab54e4b38e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v81/pending_curation_context_merit_v81.jsonl",
+      "sha256": "f7a300a28f15cd0cab621c9b2db7682ec151c3bd083c7ddec8a30aaa68fc778a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v81/report_context_merit_v81.json",
+      "sha256": "93be70b45c18eea36df66aef176c44877e1f5feadfc94094dbed46d96dfc2ad9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v82/context_merit_audit_v82.jsonl",
+      "sha256": "5db1df399b51e47a2f801f21b6b8f24e46688f88991ef912c81c1be89aa2d33a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v82/pending_curation_context_merit_v82.jsonl",
+      "sha256": "4d7463ad1a3b7521e02e15703cdb2a6e4f5b84c852b5ef7fe8720730b014e758"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v82/report_context_merit_v82.json",
+      "sha256": "dbb3d52eb50e7870db48a58031f87e15e48b8fb52dfc1c59ee4f8c5ee34617bc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v83/context_merit_audit_v83.jsonl",
+      "sha256": "23111e9f631da33239cf81ef65c60953bcbe0ac5b6a877ab04ee70b8e1934da8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v83/pending_curation_context_merit_v83.jsonl",
+      "sha256": "517bf8d92d5baf3b0bee2eb4b1587167d875ba8c316f77ad4bf15d2e6e1ef0dc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v83/report_context_merit_v83.json",
+      "sha256": "bbb98d662b88857ff65ac4293f6caa8d5f355cd9363904ca576f3fd8371d5fd7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v84/context_merit_audit_v84.jsonl",
+      "sha256": "c1b9af5da4f47f20354214873beb2e706ed1f3e145cd095e408da785a2d0cae0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v84/pending_curation_context_merit_v84.jsonl",
+      "sha256": "27fa85dd0d40e6744f4cc5df89d3b2ebbcec45ee526601ccfb6c6e0ecaaff3bb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v84/report_context_merit_v84.json",
+      "sha256": "e0969ef8af5853f0cc0bf4d113406fa7b4a294ea21fc4f5aa72f375fa6f855c8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v85/context_merit_audit_v85.jsonl",
+      "sha256": "dbeedfcebb8bed461926caa525374da966a0d505267e11763049829f8f2bad85"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v85/pending_curation_context_merit_v85.jsonl",
+      "sha256": "79220c93d976df4eb49ecea1f5525c2735a692c8f9be4445abfedb4fc4812782"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v85/report_context_merit_v85.json",
+      "sha256": "e7e43f63fd459245e8b7df7e16fc3949e9ffaa2a95b39c906cbc91a059b8d010"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v86/context_merit_audit_v86.jsonl",
+      "sha256": "58578556bae897f8b79b6fb13ab094a3ea0e29d4bc4cb7ca64346fd9fdd9c900"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v86/pending_curation_context_merit_v86.jsonl",
+      "sha256": "7b608796e34a0c84d1bd1ef54418873fce580d2deed48d349401a35de8cb2b0b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v86/report_context_merit_v86.json",
+      "sha256": "377ae9c26c748ce0679e1e158e6cfe8e22f4c07c238faead30d83d20300408ec"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v87/context_merit_audit_v87.jsonl",
+      "sha256": "8a450dad5888ee5429f719b36f8d30e437b47176a9d73816302682defb799588"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v87/pending_curation_context_merit_v87.jsonl",
+      "sha256": "7a9b00e4b860cfdc21b96351a5e9167cc2282bd773adc2bf8c59f0a0d0e2331b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v87/report_context_merit_v87.json",
+      "sha256": "25326b9a240b256c76499b42fa2cd69f59bb1a0680b12bb6830c9e62fa7c37c1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v88/context_merit_audit_v88.jsonl",
+      "sha256": "13bc07d6e36a1ea08679c90e7c87effbd88f27712327c74a9eab334d51819c6e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v88/pending_curation_context_merit_v88.jsonl",
+      "sha256": "cd3628178b8e252fadf590263c812efcb42f333685a42b61521f8465d243bf2d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v88/report_context_merit_v88.json",
+      "sha256": "cac073e1d2e80576c803e18a1587bcc52fc6e104d293aae0a1083b5ce9d2fe63"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v89/context_merit_audit_v89.jsonl",
+      "sha256": "5ecccccf5543b1922317681a55b4fc8181dc642cc80b6aa35b52e1cfabc39ff5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v89/pending_curation_context_merit_v89.jsonl",
+      "sha256": "1812847a4fb4e34d6d0fc533d0aea68336b3cfac0452a59101e8a14856e0334e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v89/report_context_merit_v89.json",
+      "sha256": "c0396f107e6e68bb8aa521e7cafc64cd034f1938b6386b5e0d1d7e4d71f20037"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v90/context_merit_audit_v90.jsonl",
+      "sha256": "bcafb69187da556e8166725db615032f0feff1027bac2f156cb3d0d630f08b65"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v90/pending_curation_context_merit_v90.jsonl",
+      "sha256": "461b96e42c9a611ceb1ddec89de247bebb3a5ae0e16a94e7fb53c107bbe78f33"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v90/report_context_merit_v90.json",
+      "sha256": "5fa44c3b897a39d18fbc7f74a4a322de4d18f32bb3738f7065fc97984ec1bd28"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v91/context_merit_audit_v91.jsonl",
+      "sha256": "0819357bd5fe266fa86a27057b1ef6a2cc7375a399b19f4f6400296628f6543b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v91/pending_curation_context_merit_v91.jsonl",
+      "sha256": "63fe6ee0ff76cfd004070af063c3dffb0f0fb6911ac78847cbc32b5445a07128"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v91/report_context_merit_v91.json",
+      "sha256": "11b956f8ddda8babe1aa8b4b0007132f4a1f6bbd96e3720e97d26c913a7cab21"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v92/context_merit_audit_v92.jsonl",
+      "sha256": "deebe072d4daf549a1da565e7b4507a9120e59c0d1600605c18c705a01816e6a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v92/pending_curation_context_merit_v92.jsonl",
+      "sha256": "c3294fbc9ecbb524d2253d404ec100ed76eb7a62ccc3e2a6bb262442b714d1b8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v92/report_context_merit_v92.json",
+      "sha256": "49610e6ecf4706b8368dfe7655ad11125a63f09fa43df8ad1d42271ddfecca14"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v93/context_merit_audit_v93.jsonl",
+      "sha256": "8f74fc7bf6e81b6c5197e472cd08baff18a6b3b0684f7d7b85a964d1c894d265"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v93/pending_curation_context_merit_v93.jsonl",
+      "sha256": "c1c244a1eaa39353426cbe360fff7d65748b3a7cdba983360289997104f85207"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v93/report_context_merit_v93.json",
+      "sha256": "6131ab15612abca37ae004833926155824b72e737761649885523bf8e9e649d0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v94/context_merit_audit_v94.jsonl",
+      "sha256": "449208b135710fce1d5b3610470c22524bcb7b4c0c183b44ff46c9abaf74b63f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v94/pending_curation_context_merit_v94.jsonl",
+      "sha256": "79ab30b9eadbb65ce25335a3eef33e0cb6e5520a5072ad9866d928561fc2c5ed"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v94/report_context_merit_v94.json",
+      "sha256": "3ffe5823d033cef469a054ebbb8d986cb74cd175755ad0ddae26ba7b82b56714"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v95/context_merit_audit_v95.jsonl",
+      "sha256": "9e4dfd08dc7d98d1e9a2e5d756c6d603a9a731bc385f62bf703cc47ccd4a7453"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v95/pending_curation_context_merit_v95.jsonl",
+      "sha256": "73fe9cc3978df6175ea5b74dbf354d4cd92da00edfc34b5ac824065efe5bb226"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v95/report_context_merit_v95.json",
+      "sha256": "9ed396f0c68c391232d1f941f1ddfae95fdb82ced975432da3c1449b476b86b0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v96/context_merit_audit_v96.jsonl",
+      "sha256": "7b9e80827e31df56ec101b2af08cb3dc15cd322957cc8eec5f813df5262642eb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v96/pending_curation_context_merit_v96.jsonl",
+      "sha256": "376ed1c959744d4668a78239238c1f61d5dd535921eda0dcc587e32d6f0dabf2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v96/report_context_merit_v96.json",
+      "sha256": "ac7ac66f0fb643a59c02b445ea570973d0babe78206621c686a5c95e15392fda"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v97/context_merit_audit_v97.jsonl",
+      "sha256": "5a3e2692a73eede0112eececc97688d4be4e050cde1145373201ac626efcd36e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v97/pending_curation_context_merit_v97.jsonl",
+      "sha256": "4917d4928bfef75c336080385e60f79ec048330c5bfc44c4d29461ba272e30a6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v97/report_context_merit_v97.json",
+      "sha256": "decd2ccd29b23c765a4fd5e6d7796523a1c22b3e4047be30a6dcdc86823590e5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v98/context_merit_audit_v98.jsonl",
+      "sha256": "a77f16beae1667738bc22b269e0c114b1e7f34026fec377753eb79428494d986"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v98/pending_curation_context_merit_v98.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v98/report_context_merit_v98.json",
+      "sha256": "3128d16f1a8d71c327f78e4db4435bbf3f30bc60ef63fcf9b42c7b45b5065e3a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v99/context_merit_audit_v99.jsonl",
+      "sha256": "ff78b822e96c4e8f0a472e01a604e7b88e7365320db47ea2db58410b5ca60ebf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v99/pending_curation_context_merit_v99.jsonl",
+      "sha256": "455583fb9e8f2ef35165875e4dd4863b4614fe5f65ce68263c09aa29a680adc9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v99/report_context_merit_v99.json",
+      "sha256": "83dce3524e21a4aabbcc1692f517d9115b5b1e875158669a68592ef150338dec"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v100/context_merit_audit_v100.jsonl",
+      "sha256": "74586ceff00df886073c599f8c87962abb715ea53993ce73b3f33c2391c2b6c6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v100/pending_curation_context_merit_v100.jsonl",
+      "sha256": "0e53b71910f79026f8061bbf5adec365c7211abd104c9ac6a7a7323d71a1b548"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v100/report_context_merit_v100.json",
+      "sha256": "58d9e67fe6e36884e9bf421489df8e30788c3fa48c5fe777bb084d1fabdce217"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v101/context_merit_audit_v101.jsonl",
+      "sha256": "8920285b69bde548535fc6afb9c534e147a3225460284e131895dea0e01bb41e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v101/pending_curation_context_merit_v101.jsonl",
+      "sha256": "515b193690367c282c6c3a469f95e458dd0989599a2987c3357dd8d30cc63f78"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v101/report_context_merit_v101.json",
+      "sha256": "1c5865579b29b66d9a7ff257230e66d6e573fb22fbd6b45bb8924b8de9203ccd"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v102/context_merit_audit_v102.jsonl",
+      "sha256": "7cab6d52f3675c42d5d1cfe13b3f7eca4a466bedce616f22b8bf336b9103dd2f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v102/pending_curation_context_merit_v102.jsonl",
+      "sha256": "c1f8d5ed9d4904282398f14b0daae787938f3c6b95287c353869d47588ce2316"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v102/report_context_merit_v102.json",
+      "sha256": "b04ed87e1a77f884bf4fbccb3c006ec2fa80fea3d2fa60cca7da617cec9c8fa6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v103/context_merit_audit_v103.jsonl",
+      "sha256": "54c83ccf6cad53a8dd201b49c8d229a8c263c0fcb983526a3950cf5b6d12fceb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v103/pending_curation_context_merit_v103.jsonl",
+      "sha256": "1a7b56a4ddf82f25a9eb91dd02100fdbe7afc0eda4d60be351e5d71957e79e38"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v103/report_context_merit_v103.json",
+      "sha256": "c6e3342d8dc64d0ce2ba9e95b2ff3dba3564bdd82037062b4631f9dea8c9556f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v104/context_merit_audit_v104.jsonl",
+      "sha256": "38ed9a03170df8a78b643e75e545c002e52cabd3f0f8deb039dda6d8409f8749"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v104/pending_curation_context_merit_v104.jsonl",
+      "sha256": "81965e8bf110cd5f24ef794681789860f91237451d474013b8acfbed8f572014"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v104/report_context_merit_v104.json",
+      "sha256": "df201c96f3674d57e813fcbd4ddb09b34daf1262d4a7359abbfeea437b00b895"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v105/context_merit_audit_v105.jsonl",
+      "sha256": "ebb785ed5577cda09b5b023ca45afc48ef580de6862211aeea546444bb3389c7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v105/pending_curation_context_merit_v105.jsonl",
+      "sha256": "6de781840746f8f18430fbe3beb390df4301ce0d0abedcc7d0acef5f8cc861d7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v105/report_context_merit_v105.json",
+      "sha256": "577bb847c14662e0389c1a5a9381cf68fa833031e42c83f67d029d37b33fa3af"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v106/context_merit_audit_v106.jsonl",
+      "sha256": "2bf100c81113f107e97f867299aefdc21ad7f9e32bb438aced703d6fe66b4696"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v106/pending_curation_context_merit_v106.jsonl",
+      "sha256": "92c5f2f651ec961b5c8ffcc08e90da8800b11240271cbd72b545e12121b9cd77"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v106/report_context_merit_v106.json",
+      "sha256": "00601f9c098e5dc1603c09dca085871f429c0147edeb1fc6f8fa9a406863778d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v107/context_merit_audit_v107.jsonl",
+      "sha256": "cf5f338eae35f0a5a6f42829ef17b6b42d6d745702e15b51cfb728731013ff44"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v107/pending_curation_context_merit_v107.jsonl",
+      "sha256": "a3a81e0ddb5f4030d6fc7d94abf79f837ecd10ef841631c1be33ee101dc7b9ec"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v107/report_context_merit_v107.json",
+      "sha256": "517d57b34ce729d354da092f5d6e160858ed3959f680fba7b823db7bde63d8d3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v108/context_merit_audit_v108.jsonl",
+      "sha256": "f0dc645e129540570e1509d64045dfa7eba414b0c4c28175c341923d9d763fd7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v108/pending_curation_context_merit_v108.jsonl",
+      "sha256": "d57ee520b18b1c261e77b6d3e831ac289c084ef3925ef9e5e782a0b612176f9a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v108/report_context_merit_v108.json",
+      "sha256": "476ff1701b5d3676a0c59bbbe21395fdb96f41d3c7afd22e2d49cba1304a6190"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v109/context_merit_audit_v109.jsonl",
+      "sha256": "909600460a258bdfd7919989d13ef1fcd3ab308710e26d2f6374dc9f4f70bf17"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v109/pending_curation_context_merit_v109.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v109/report_context_merit_v109.json",
+      "sha256": "f5db753ceacb8589061b1187f40b2ab778e6e43c55e96df08a71402ac9c1cae9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v110/context_merit_audit_v110.jsonl",
+      "sha256": "42b5837cda5c0c20adc1fd8fca58ab246d469eecbea798e47324aeaee51589d5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v110/pending_curation_context_merit_v110.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v110/report_context_merit_v110.json",
+      "sha256": "eaa47746858c8d91724be424b3db3e9dd1613aee923b539c860addf857065803"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v111/context_merit_audit_v111.jsonl",
+      "sha256": "738db264f25ed30202e2d4712a44aec38e88b7419e25f1bd3a05e3f8658f44a3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v111/pending_curation_context_merit_v111.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v111/report_context_merit_v111.json",
+      "sha256": "31f3ac6a852241fcb3fd2637ab031cc861c3ca205ba7325e5e017c01040e5d36"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v112/context_merit_audit_v112.jsonl",
+      "sha256": "661898a102f5660241cb823161fae0c95641c298bf2f26fad00658d8ecb4372f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v112/pending_curation_context_merit_v112.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v112/report_context_merit_v112.json",
+      "sha256": "3ce75eaa186628ce61960d5bfe2277bde1f5f0e1673f59f61b5f7389da3ded5a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v113/context_merit_audit_v113.jsonl",
+      "sha256": "10942e164bda224b3a2ca7a83705515359b0c8783c5cee964b89909a27c30768"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v113/pending_curation_context_merit_v113.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v113/report_context_merit_v113.json",
+      "sha256": "79a3cc248399c99a05a8b65ae84333224b444e20d4060c41190a3306290dc461"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v114/context_merit_audit_v114.jsonl",
+      "sha256": "ae3c8b8ba954f6ba74fa1e94945dbeb298abb66087ed26c4a75320498d3af6d0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v114/pending_curation_context_merit_v114.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v114/report_context_merit_v114.json",
+      "sha256": "0763f8770261ffb6862ee103df84865b8d494d86766b2f6155d084f73186bcb1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v115/context_merit_audit_v115.jsonl",
+      "sha256": "b0a4267b7acb674ef4fb8822856cdd7770450ce170a453c6f4997cc32a681f61"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v115/pending_curation_context_merit_v115.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v115/report_context_merit_v115.json",
+      "sha256": "3af4e2bd2ba362754fc203f3ad2aa8726add822b11f688b697d264f38ec1f92b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v116/context_merit_audit_v116.jsonl",
+      "sha256": "ce7f95ac9c535d10e44b9202ece89346ec6498d3c3667f7e900e56533eb418c3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v116/pending_curation_context_merit_v116.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v116/report_context_merit_v116.json",
+      "sha256": "6c2276f1b6e4f8b31c442ea4aed33568575419e93f2e5b01b64f9dd32b0cb646"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v117/context_merit_audit_v117.jsonl",
+      "sha256": "dc0b394f13fb3300358038ac8456acaedfd09c43b90ca0fab53628ce74112df2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v117/pending_curation_context_merit_v117.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v117/report_context_merit_v117.json",
+      "sha256": "f6be3804c98a349cb391094df074f8bfa40a2583e65a7034d7e2bdd9bc0b2bc9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v118/context_merit_audit_v118.jsonl",
+      "sha256": "8d6f828644d4ce075117a32b43a2095403349f7c6cadfd89b3c42ce9cf72eb68"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v118/pending_curation_context_merit_v118.jsonl",
+      "sha256": "a58925f595d2e73b1eadf53931625f4739add346fa567e9818183dd7cfe611b2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v118/report_context_merit_v118.json",
+      "sha256": "b85538b8e300ee81e3f4a1c194d929de728b7b8f9fc3a2f8c4317099e985b5b9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v119/context_merit_audit_v119.jsonl",
+      "sha256": "d034025ce1737dbcf74f9cc7e12268edcc00c7f33c50b64da45089956bba4cb2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v119/pending_curation_context_merit_v119.jsonl",
+      "sha256": "d0a7028dd0717cbf3fb1cfa678eda9e58d0a73eaa3cc2f68f3b22e2ca8949d4b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v119/report_context_merit_v119.json",
+      "sha256": "fc69da598bad3213e8df663e02b51a849a4222efcdf0abf1076f6f01f25b7c3b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v120/context_merit_audit_v120.jsonl",
+      "sha256": "42a6df5dd6b60e0710202afe1ece07eab9b531cfd923963e67b09f9c221ac751"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v120/pending_curation_context_merit_v120.jsonl",
+      "sha256": "9a4b20d6112e8d419eabeb4edc3c0d1af17b7924618f5deced49aae7fa58b6cb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v120/report_context_merit_v120.json",
+      "sha256": "4456d3fc08511040edbf7f218303e2a42024c2b151b453dcf9c930c493d20c1c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v121/context_merit_audit_v121.jsonl",
+      "sha256": "c3b5113deac41d4f2936d3451409e9bc3ad79032ed210b1399b4f80c4f8d17e8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v121/pending_curation_context_merit_v121.jsonl",
+      "sha256": "90eda1d1b251275a30ce0018e74a8272e090a8e30ab015d106af73619cd1fc71"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v121/report_context_merit_v121.json",
+      "sha256": "a8bc75819bae317da5066a397c75bf996294ce28618fe7c34e71d1aecc8e6a96"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v122/context_merit_audit_v122.jsonl",
+      "sha256": "2c04ce078956a883509ed40236ffb92edbe2fbe3c9d08536c10df18544ff3fb1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v122/pending_curation_context_merit_v122.jsonl",
+      "sha256": "5792cf8235904019d67dc79968485dc0a93ab9f725d74709a2c36e2615e83ec6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v122/report_context_merit_v122.json",
+      "sha256": "15352dcda4067ce7d4a3ce59f1916d922ea952456e1de7d383fc3e442e13cfcd"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v123/context_merit_audit_v123.jsonl",
+      "sha256": "007987d390164f769e9882e7151d3510ac6f35b06d8df32abcb98dd7deccab7e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v123/pending_curation_context_merit_v123.jsonl",
+      "sha256": "eb0225a92b665634981a776b8fa4e4e4a1c010108db16296a0bcccf4dc27a63a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v123/report_context_merit_v123.json",
+      "sha256": "934910a5cb895f398c3a9229a8fa9346658c1a20ea24729bca1d17148f461961"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v124/context_merit_audit_v124.jsonl",
+      "sha256": "ef98d2455242b9c8a35ee4260e56fc6e0f42399c86143711ae1e566ec22f10a1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v124/pending_curation_context_merit_v124.jsonl",
+      "sha256": "62b1c76ff4a32d0d314815af89b0ef05fd3a327dc33bd38f285015ce03140da1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v124/report_context_merit_v124.json",
+      "sha256": "c92abf09ac879b5c5f3889b0351a43c96e93f7577eb1818f51fbfdbf5d361340"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v125/context_merit_audit_v125.jsonl",
+      "sha256": "72ba15cca22d148d030243099775fbee1655ce2286f55e18c4fb3146fb652619"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v125/pending_curation_context_merit_v125.jsonl",
+      "sha256": "54ccd8be96697703f2b4bd12883a389b614b86a3d80304a839fd087ad48b7669"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v125/report_context_merit_v125.json",
+      "sha256": "be0c90defffbc1e8606f7923f6f3e46a53f0ea7f0da63ab6a5a9e5a023c9d55b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v126/context_merit_audit_v126.jsonl",
+      "sha256": "6ffbebbfffb8f726a5953fdc0dc1f10baa34ece8bbe8b85273a77fc5d7d57a6f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v126/pending_curation_context_merit_v126.jsonl",
+      "sha256": "a1862575aa2920643ac59f1cd0364712b88dcee063b79419ca6523071954f5c0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v126/report_context_merit_v126.json",
+      "sha256": "bd43f614929fff71f7cce5fb2d5ba308a22a3f958b16be0ac6604a50b32187eb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v127/context_merit_audit_v127.jsonl",
+      "sha256": "c13fb8f1b4233554877b7d48228bf4bf917ce75e944c1a42bb6d31ccc7197703"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v127/pending_curation_context_merit_v127.jsonl",
+      "sha256": "fd36f12c39b5c90e1cf76c8ac0d32a5cfeb8401a576184bce684ecdcbe23b719"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v127/report_context_merit_v127.json",
+      "sha256": "f15889b186b3190d5b9c082d18962a511341f692eae110595fbb2df561d1d833"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v128/context_merit_audit_v128.jsonl",
+      "sha256": "415875be8a9e71080934d8e231e67b55cb69e56ed1f39f101ee1379245d054e0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v128/pending_curation_context_merit_v128.jsonl",
+      "sha256": "d4b2b855e2d3d1213f66eccaa84210cc1acf1694af9af283f30e08deb22baf5b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v128/report_context_merit_v128.json",
+      "sha256": "4ec7a5e659443780df676aec61bd78303c0f54a23772257becfc5227c998d184"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v129/context_merit_audit_v129.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v129/pending_curation_context_merit_v129.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v129/report_context_merit_v129.json",
+      "sha256": "f36cffde1a9affe93abfee0cd9044881f2f0abd17aa533ffcd97d52fe771a502"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v130/context_merit_audit_v130.jsonl",
+      "sha256": "7ed1486fd21358854a74d81ab9abd4afbd3b58e06d1b98701568c68285d0c343"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v130/pending_curation_context_merit_v130.jsonl",
+      "sha256": "89d486f1eb29d0b05bf3deb56283f38901972b4b7930ff99a9e4a69b97d1e0b0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v130/report_context_merit_v130.json",
+      "sha256": "8869c10d5249d487418af4a6f74099fe6872e4adea0114f55ad94d9d8caa1365"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v131/context_merit_audit_v131.jsonl",
+      "sha256": "e651dcc99ce7435867e02549276ba094ca9dd008abb8e4d5c43f70dc8a4449c2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v131/pending_curation_context_merit_v131.jsonl",
+      "sha256": "8605448380e15ef5597dec9ae9094279ae6f1c330f80904317464d9d2e811728"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v131/report_context_merit_v131.json",
+      "sha256": "f339c283a3c6380e2863c6a32f3b7ad2bc6637ab3e00e5a977f1b1aafa3cd019"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v132/context_merit_audit_v132.jsonl",
+      "sha256": "8230dfd6ae32780802d7b167e6b2a292726c2e51b043c904c500d1f8a157dfb3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v132/pending_curation_context_merit_v132.jsonl",
+      "sha256": "bf910485e4b414d9bec59675fc2ff5d27a502183e24b673d4e74138d44ad869d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v132/report_context_merit_v132.json",
+      "sha256": "0069dfb6590599ab2e25a9f8b800cc73ebd7e2c104620a06a22240c57b643602"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v133/context_merit_audit_v133.jsonl",
+      "sha256": "4642dd851f1ebf0a759d559d719c8ab0100d70264ff12d91da6b91f3bbd983bb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v133/pending_curation_context_merit_v133.jsonl",
+      "sha256": "8f7f4f1a44da96ea950b69be23b5df4a2c24d3cc60d2286d68c37d13d0b11568"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v133/report_context_merit_v133.json",
+      "sha256": "aa5c12956c1009db3ab8e723ff5c489c93df8c86b56f99600b09c7bdc2a84bd5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v134/context_merit_audit_v134.jsonl",
+      "sha256": "bec0c0a12f8b4d6166d2f858c0d6b2be7175fbaa3b4f9b3f7515eca2faee8fbc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v134/pending_curation_context_merit_v134.jsonl",
+      "sha256": "542d64b53839e1e6a870700505954eacd9f63cda0e2ea7da1c892bad30919cfa"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v134/report_context_merit_v134.json",
+      "sha256": "cd63e91a804a46401ae155d3d059b1148bd6f2763b55e0cd1bc3b05cf9945462"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v135/context_merit_audit_v135.jsonl",
+      "sha256": "68f1dbd27c74cd700af97e0d29740d082a32e627c40e21b105bf3481f3e1120e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v135/pending_curation_context_merit_v135.jsonl",
+      "sha256": "3a0cad1fddeb9a8f20a627b4880bb598ace9f6ea71727e3c89c6a469857f4271"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v135/report_context_merit_v135.json",
+      "sha256": "9cd8d814ed0ec1cd94c88208f9aa405997ba254a791dcec0b70221f6fba6630d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v136/context_merit_audit_v136.jsonl",
+      "sha256": "a8de26a2237e024b542813b5d873250a1a478d18142c5e199c60ff116a757bb0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v136/pending_curation_context_merit_v136.jsonl",
+      "sha256": "2684c15ccd4b8ce8a50494eab3ebae02a2a42f40fcc5add37d09128227cff6a3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v136/report_context_merit_v136.json",
+      "sha256": "17e2a2383a57731b74d70267a056e3ec4b9fb9ebfa71b3f816279683103c9919"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v137/context_merit_audit_v137.jsonl",
+      "sha256": "f57f9c426b7ade0d8c0f4239a8e6d00a734194acf316cc16d56c45a73b9bcf02"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v137/pending_curation_context_merit_v137.jsonl",
+      "sha256": "7d7105913aa45aef15920bb399c313f302aa6449d50a6847e90fb04aa9be1151"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v137/report_context_merit_v137.json",
+      "sha256": "4853560a9690a7fc4e568b1d801688c1c9362ccb6e3698da0f63ffc4ff78874a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v138/context_merit_audit_v138.jsonl",
+      "sha256": "4320c715afc68727b67e1d26a040505609aaa2e63c18776b055ff12cf04057d7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v138/pending_curation_context_merit_v138.jsonl",
+      "sha256": "2e773984a2b8ce1407a7b821208a86cf775c36b469d8cd302ea30595c8e91a2f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v138/report_context_merit_v138.json",
+      "sha256": "cc62faa18104ad3c1e926f6a26799c0136f2ff6041a4c48abe707f2f10158e1d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v139/context_merit_audit_v139.jsonl",
+      "sha256": "fade5346326fb272b6af42f0601635bf71fea3317dd0481178e2db29aa60b51e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v139/pending_curation_context_merit_v139.jsonl",
+      "sha256": "7c8d978324a607e6f6f23ed5a154967c75ddf2c809a98bffef47a81304bddef7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v139/report_context_merit_v139.json",
+      "sha256": "05a6300bb17828a73cdf154beee78641f3ebf1f049ea647603c3c0cdb1b88c78"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v140/context_merit_audit_v140.jsonl",
+      "sha256": "e1e632c02e5ae04ea80019c0392a6ba8ee891024befe0d47fd8d8767ef5205aa"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v140/pending_curation_context_merit_v140.jsonl",
+      "sha256": "20ed60ba33b0c3ad6b2fc600770819170cea7c00ecb4747e7333e5dd795b0a27"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v140/report_context_merit_v140.json",
+      "sha256": "13c41e70ffced3fd52f877e70e60ba44dc0891140aa792821eb840e96fa73fd8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v141/context_merit_audit_v141.jsonl",
+      "sha256": "defed55d3577393077a61736b299f5682f3c42a8f838bd25a95846eedea02075"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v141/pending_curation_context_merit_v141.jsonl",
+      "sha256": "62a66292d7dc74e39ad3e3bd7fa4de99ebdacf3cccff5b1c0cd935f3ecc78901"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v141/report_context_merit_v141.json",
+      "sha256": "3262245fa50aacd880fdbbad5aeec7ad309064c26ceffcb1e948a537a0f0d83b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v142/context_merit_audit_v142.jsonl",
+      "sha256": "f4b1efda159c83b35110c5255d9ba180c3ca87293918cc9cb509f5694ece5a6a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v142/pending_curation_context_merit_v142.jsonl",
+      "sha256": "27249fe9dd04334cabda2d90274c10fc61d0e82037039ad9b7f42d98cb37f930"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v142/report_context_merit_v142.json",
+      "sha256": "15205336f9640e327b8fea96fd2dc78ed26a182791f3b0522db0c416152b32e9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v143/context_merit_audit_v143.jsonl",
+      "sha256": "9a9cfa293e17853879378f494d6d475827f04120bc5ff627ec35e75e637d2367"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v143/pending_curation_context_merit_v143.jsonl",
+      "sha256": "2bd3ebdcfadf5ffe9ac811efea26ce1de2b1020d9ba84c7063b3fe6824e884d1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v143/report_context_merit_v143.json",
+      "sha256": "4858fe82a191052ac9b3e69fe1b85b45f0990d61df4384406d95f2ba5986a8d5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v144/context_merit_audit_v144.jsonl",
+      "sha256": "1ae27bd1e46d0d6ec67b19c1bfd7e52d700b1b5c97bd7b534df7f734d974a43d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v144/pending_curation_context_merit_v144.jsonl",
+      "sha256": "9802feed6b3a58d802af8b13a686420023724b1449f633101c5dcd96ad25d02a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v144/report_context_merit_v144.json",
+      "sha256": "0f62022505d242f1f40ecf89f8977c7e359b5dc1120b14dc61316d1cce7142a0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v145/context_merit_audit_v145.jsonl",
+      "sha256": "9118c4a265601e967e79cfaea03895aa25febbac488164c4ab97ef728d025948"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v145/pending_curation_context_merit_v145.jsonl",
+      "sha256": "f099a6c0d4497dc2b123173af31122d7744d2f1aba1ac05bd449e8c5ca600e90"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v145/report_context_merit_v145.json",
+      "sha256": "c8ac7ce815513615f3b8b94e4f0a7f6606b887c26d84dc9e9fde9848466ce673"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v146/context_merit_audit_v146.jsonl",
+      "sha256": "684dd8e3f65ea6683d23bcd919b078c850f53f6c9f5cf885719cf48385a415ca"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v146/pending_curation_context_merit_v146.jsonl",
+      "sha256": "747a9ebf5a957b2ddd67ccf4acf2adcf7f674e8756d50902d7ffea4bcdbd9ba1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v146/report_context_merit_v146.json",
+      "sha256": "2b2faed7758a9e90b24a4f9b28d5660b8011f33f6f250d62339cd19e215deeca"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v147/context_merit_audit_v147.jsonl",
+      "sha256": "aeec9e02da331accf0aebbfcf0f08f70612c67dc38b0dc43c6da516fda0c9d14"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v147/pending_curation_context_merit_v147.jsonl",
+      "sha256": "c07ba7ede86d2386693722ccaa53cf7bfc99221316b931f0342aa697edd16656"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v147/report_context_merit_v147.json",
+      "sha256": "b5109376dea90dfdb62ab498b1ce9321775de93a5df85431398c512a077883e3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v148/context_merit_audit_v148.jsonl",
+      "sha256": "d001153504219421d30f3a16a280d5907150d448f05b3cd9bbabe2a2cbd509b2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v148/pending_curation_context_merit_v148.jsonl",
+      "sha256": "18796a5147c72d046cfd62f9e481a0ee3ddb90eef5fea19bad04f2dec20bf00b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v148/report_context_merit_v148.json",
+      "sha256": "03d09c1ae8297a6611c669f83236f3bdf6e3b83574fd5a5964cd89af02d84dcc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v149/context_merit_audit_v149.jsonl",
+      "sha256": "304fd862f0f45d7c9b2a3011ca5319997a806736c9165336a66a75cc498b82e3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v149/pending_curation_context_merit_v149.jsonl",
+      "sha256": "10fea8b0535bca7eb7c61bf021e2b26bb5840268e5f4ad540621cb127c9647a5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v149/report_context_merit_v149.json",
+      "sha256": "5a456507d14ea777580e4ce7690354709d579bbbfb4ec3903c63d984ee7b1e93"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v150/context_merit_audit_v150.jsonl",
+      "sha256": "da4fda1fcd018c7c9d6bce271046072375c2a840f8f3e300be9196d0767ecd79"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v150/pending_curation_context_merit_v150.jsonl",
+      "sha256": "b98183446ff2abe5bafbb9b91c77d76095163a34726debdf13e0f38b6bbcf6bc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v150/report_context_merit_v150.json",
+      "sha256": "7021b2cf5f7292dc4df1e928cc648aea79079a0dd38df150f2487b080b407eb4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v151/context_merit_audit_v151.jsonl",
+      "sha256": "01ad94efc98adadebbd019c43ce9c19010595543b0959c8742e9d9efb638e189"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v151/pending_curation_context_merit_v151.jsonl",
+      "sha256": "4a7d9a37676206ab684f0579f79334029a74a42c5b9c3cb49d8d4e3251af7033"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v151/report_context_merit_v151.json",
+      "sha256": "516d66d931b4b958b6446ca991f1545d4fcd39e9553d87a95f04a8f62c2bd724"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v152/context_merit_audit_v152.jsonl",
+      "sha256": "5a9abe28b8ad99e296abf7c57405777651c8dd60a59aadd3f818aa02702ece79"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v152/pending_curation_context_merit_v152.jsonl",
+      "sha256": "4c0a1acabfb1a19609bec54beabb36749b3820c48990bb1227e407a1df765750"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v152/report_context_merit_v152.json",
+      "sha256": "2279016761b5018849a1553888cb1467e507f0f5152c55640a0d0bbdb22bbae6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v153/context_merit_audit_v153.jsonl",
+      "sha256": "754cdbe59cb4af5bdd4b540ab16e75a41fc1a5bd1d0866575b86620e552a3a99"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v153/pending_curation_context_merit_v153.jsonl",
+      "sha256": "c852deef8b23033a59eb0cf72590555b63f6e35a1c9cdacced2865684aef9a55"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v153/report_context_merit_v153.json",
+      "sha256": "340a63a0eab459d6f74bd91ff521854291a17ee78551bdcde6e6731f9561566b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v154/context_merit_audit_v154.jsonl",
+      "sha256": "fa792e9536acce0e5d6950bfd0a8971e964dbea9a9b4bebedb2105523b939959"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v154/pending_curation_context_merit_v154.jsonl",
+      "sha256": "237daa2a857caacda4a2156ed11396879cb3bc63dc2077a9cabe587585bfa69c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v154/report_context_merit_v154.json",
+      "sha256": "2d367d22d1fcb7c06898bbac7b006f08cb9cd49a41da799641afbb4c0c5c88d1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v155/context_merit_audit_v155.jsonl",
+      "sha256": "b117e5cd31cc726180581867fc520a38d782e1f292b9d65193d7128a6bbea99a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v155/pending_curation_context_merit_v155.jsonl",
+      "sha256": "1c108eb0b536023decb04d996801492fd0a4f49125773b8bbf440da07430ac72"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v155/report_context_merit_v155.json",
+      "sha256": "c9a2a1b747c4fb6451309b97b5a5367abd453885504152012504fd9df88d6156"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v156/context_merit_audit_v156.jsonl",
+      "sha256": "b6e22f68cafa3005dc67c8d5cec95925656f8e8328fe7f0ecdc5d0445c5a6ac9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v156/pending_curation_context_merit_v156.jsonl",
+      "sha256": "938c5ac70582ad833b3ec750e2cb8f78158010e9cbd3568c93445099f62436d7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v156/report_context_merit_v156.json",
+      "sha256": "1d4eea89b81117fbcd329ad5bb1c86ec131c45bf66c7c1bbbe09cc9e6ddc8b68"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v157/context_merit_audit_v157.jsonl",
+      "sha256": "2418aad20a4586b3512932b6e9710a577a7692e9fd5e1a073c335b64a069d109"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v157/pending_curation_context_merit_v157.jsonl",
+      "sha256": "9b70e92d201e5dbb864333b7a2a913305951c5ab099c26dcf4b60b09b86e572c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v157/report_context_merit_v157.json",
+      "sha256": "a3c5ba6f1267dd3ec0af2d2b9041658aaf551fba8a6180fc90d9c3c0aa2cd75e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v158/context_merit_audit_v158.jsonl",
+      "sha256": "ead7ec6f59f2b6fde7c990054ed734b442e8b4af8c88233525ea7ddff32bad67"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v158/pending_curation_context_merit_v158.jsonl",
+      "sha256": "49a75ad94d794e4f6c424a2bdff182faa6b46a37229edf7f75b1d089fcb8b89c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v158/report_context_merit_v158.json",
+      "sha256": "f2cbbcb82e257f60e17930b408f7d714dff8f45807c99f49e7c37bf56750651a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v159/context_merit_audit_v159.jsonl",
+      "sha256": "d6e23310f2bce16fac4e360887c82bf815ccf4d773a236825f857edcd1ee50b4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v159/pending_curation_context_merit_v159.jsonl",
+      "sha256": "c7be54c4893a51ab0c6cba6e053b3d89687fcf473b4a0b56005a17abbc489d4d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v159/report_context_merit_v159.json",
+      "sha256": "85a67aefa3ef0f33549a089ab45f29e2ba79ec38451a59d53cbc241facb95cb9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v160/context_merit_audit_v160.jsonl",
+      "sha256": "508a5a001b1339e46eb1db11215831e759e02ea3bad96d2c2591ea6ae30a675d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v160/pending_curation_context_merit_v160.jsonl",
+      "sha256": "25ad8501085fd496ab45fc063f66b9ad68bb6e8ae68db9ef158a4cdb886fd692"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v160/report_context_merit_v160.json",
+      "sha256": "344f2156634b820c8c415882ec281bf6259e4fab782d73dbb649be399ea3f84a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v161/context_merit_audit_v161.jsonl",
+      "sha256": "4c1a78170b2897235b4e65d7996a420227517bc1e9e687eb30eec9fbc55fb04c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v161/pending_curation_context_merit_v161.jsonl",
+      "sha256": "637d6b5b792171a62d1debd4cc1d57b32518ba2231020cdaa85e9aa8932cfe86"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v161/report_context_merit_v161.json",
+      "sha256": "904a592e6f041f30356918a21b7660ef2f1973c5c5f5a23f3b089837cfbc1576"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v162/context_merit_audit_v162.jsonl",
+      "sha256": "af532b9c965e2bb7612d18b239ce5104b1e50fc196f3fac11ac7e66c89e30724"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v162/pending_curation_context_merit_v162.jsonl",
+      "sha256": "9dc27743b33c057db85ca7ccf680118154ef84d28958dcd326b4e184c1017db0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v162/report_context_merit_v162.json",
+      "sha256": "f7690b75431c590dc96892b025a26df49188c95651451172ac5f11c46b3a1ca8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v163/context_merit_audit_v163.jsonl",
+      "sha256": "faf846cdb230ec7fa6fd48075e92b1df21a56d5956b0f7b8e1b75c08a9793c66"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v163/pending_curation_context_merit_v163.jsonl",
+      "sha256": "91e66a73b41a378c9f6122dfcf5f5ef23eec5eaa3396c4393720806a431950b5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v163/report_context_merit_v163.json",
+      "sha256": "5a47f0f76356692ddfa400cbb0347cdb1eefce97a50da8d06715f614cff681e1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v164/context_merit_audit_v164.jsonl",
+      "sha256": "3e0afcd542cb154a090341d77926ce6fc92f4b91856fbc0289e9644f9a8d85cf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v164/pending_curation_context_merit_v164.jsonl",
+      "sha256": "cb82c5183f595bff8d2aa316c734b6480788f3215e9cc0e6d2ee5a04491132d7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v164/report_context_merit_v164.json",
+      "sha256": "455faab48f4efa4f5641aaf94c67deac9bcbaceb008c3fa5a34c5538d79b91ce"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v165/context_merit_audit_v165.jsonl",
+      "sha256": "dfbbadbf5d7299e366e4a2baa42ef90fd28a1d9a4f38c55d4a7e12d01f26a687"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v165/pending_curation_context_merit_v165.jsonl",
+      "sha256": "bac3a0ecde53185788bcf95866e3deccebba9c98faff0a08394fae6d184a79e4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v165/report_context_merit_v165.json",
+      "sha256": "f84b0d98a7b0f6afcf0a82f999338cc6f57604f871a4d7229613f2e940a1bbef"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v166/context_merit_audit_v166.jsonl",
+      "sha256": "a7d469b26fb8ecc1ebd86d7b49edc458aacdda22b5581a14ad501ebb83635175"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v166/pending_curation_context_merit_v166.jsonl",
+      "sha256": "e7877325874f4ff40e7cc195b44a62fae00a5ce444963f7f653c10ba6ee7fc00"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v166/report_context_merit_v166.json",
+      "sha256": "529573ae9c0e87b6560825b00180baa4412ec5ace7a6236174f73684df4a3c67"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v167/context_merit_audit_v167.jsonl",
+      "sha256": "02dcea4e73be508ba4306c14900ad64757f147d06edd3eea98bd42340d0686f7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v167/pending_curation_context_merit_v167.jsonl",
+      "sha256": "d0f073b657bd8d496c1d83c0ad5b15b746c1f0282e40f58d0b60ed21a1f91e7e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v167/report_context_merit_v167.json",
+      "sha256": "b93d45229f30c0ebcb32b62b070e72ab1a705eef3fb1d88c3e5d632cf06646d4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v168/context_merit_audit_v168.jsonl",
+      "sha256": "cb91755269ca4ab026483d159265e29fa2bd46b117f83a330a27dce3c75d623c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v168/pending_curation_context_merit_v168.jsonl",
+      "sha256": "2b75f2e9051f1c3863ed425f52ade3aaed5c04aa82328334105bae930361da85"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v168/report_context_merit_v168.json",
+      "sha256": "c8d8d937ab5633243aeba19d93b48fba469bc6ac0b231a72f128ecb16ad0271b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v169/context_merit_audit_v169.jsonl",
+      "sha256": "722fb1405c599a3ea8c95d3e2a3c0df410ae2b40ce660771605659e7eafcc36d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v169/pending_curation_context_merit_v169.jsonl",
+      "sha256": "f5019a40db0b6754b7276d80a0a2a55f40e453e5a5162a0392f617b458147526"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v169/report_context_merit_v169.json",
+      "sha256": "e3cc8907c60e313ad4e6ff775d35b7d31f5c71003bda2d96204871ca7f02f47b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v170/context_merit_audit_v170.jsonl",
+      "sha256": "15475d593d7f61e9cc432eb3cba45ab90f4aad86f8b4a74ec590a8ac0fc6dbd5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v170/pending_curation_context_merit_v170.jsonl",
+      "sha256": "f4778f3a4944417ba725645ec2d3934d12350de616404f8a01fc8f757414e74b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v170/report_context_merit_v170.json",
+      "sha256": "1c50fcea23c222533dc75644bd2673667e21edd7a43d266624c9612eb18b32e6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v171/context_merit_audit_v171.jsonl",
+      "sha256": "00dc2b12424f5553714a4bac5a5868b5ffef6b5391213aed9acb930ee595d211"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v171/pending_curation_context_merit_v171.jsonl",
+      "sha256": "cafa35c44cc71d264803458aae8c0b9078859824db7ba8fbd5e7c63683b7ba4d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v171/report_context_merit_v171.json",
+      "sha256": "b1ab4f322a428a34f793e68d4f3f0a571fddba264814d75255e8daa9f41de4bc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v172/context_merit_audit_v172.jsonl",
+      "sha256": "3e15fc60017e7fa18c156729809c674331ffc61decd3fffa3fa12bf8f0d97be4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v172/pending_curation_context_merit_v172.jsonl",
+      "sha256": "528d557f78224444592b5a322dea319a2a11a975d7057542ead289ae7c24f01d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v172/report_context_merit_v172.json",
+      "sha256": "54fd81424ca89e621af2b974910cbaddfd7bdc5ed0c073627d595cb15497c53f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v173/context_merit_audit_v173.jsonl",
+      "sha256": "6756c05282f16b975f509fe169e3c8182816f44d5135cfa618ee3609b7cd97d0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v173/pending_curation_context_merit_v173.jsonl",
+      "sha256": "bb57a026ede3412cdaf63377bdc379a2ede2a1fd9a1912fd673cf91b6e813e54"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v173/report_context_merit_v173.json",
+      "sha256": "11d5a2ae275db76ce18f48acbe349fd310043e18de5511bc548d500b82495435"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v174/context_merit_audit_v174.jsonl",
+      "sha256": "2527e359a764e48bf32b4280f577c9104cd5aa5f804a4ab221274d9035dcdc2b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v174/pending_curation_context_merit_v174.jsonl",
+      "sha256": "d1a742dd50e896fa7c17a1c48da6aa99b50b313ac4ffba1af7299ed38a991f45"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v174/report_context_merit_v174.json",
+      "sha256": "31a98460bc3f546ccbcdfd126eb3d6f1dc1ac5861b76a65da2ba65a6fe3be296"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v175/context_merit_audit_v175.jsonl",
+      "sha256": "ee0b403331039892578a54102c19a4ffc02ae77e9fec8854766777cfeb26c224"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v175/pending_curation_context_merit_v175.jsonl",
+      "sha256": "f6d0531467c55491cfe816379b8c09d24e1b8c7e419a9f5c2c2d353f31a47346"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v175/report_context_merit_v175.json",
+      "sha256": "d4603b5fc44609b027766be251da858a27bc74b7c0caa0e61d98d83e7c4e61a4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v176/context_merit_audit_v176.jsonl",
+      "sha256": "0958a4f176ab863c9b589a1ffa7056b8a7998e15ad4291a3f1f3972d7002cf91"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v176/pending_curation_context_merit_v176.jsonl",
+      "sha256": "f1062bd781284099f6cc1f647ec3dba97ee55e0ee7705b3bd20beac828cc82fb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v176/report_context_merit_v176.json",
+      "sha256": "a2bb3d2a76ac6ef21425b8243856571d78107a540543bc196a05982905affc42"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v177/context_merit_audit_v177.jsonl",
+      "sha256": "f8f24a5e10764734449cfddfbbbd674620aa53970e6db6c33fa57fc7604c6990"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v177/pending_curation_context_merit_v177.jsonl",
+      "sha256": "9b1ea1d696014d7ca0f4abb10d6cea4906ded0892de28b7fe66ccb7d8db66c51"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v177/report_context_merit_v177.json",
+      "sha256": "86cebfed1b5fc090e74ece24f605d5d9fdf5cdad93807a0f97effe768415f2c1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v178/context_merit_audit_v178.jsonl",
+      "sha256": "090700831a2377480c0ba9cbaef9e62502e5667cbdf4825e6f22b1d42a5c18c9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v178/pending_curation_context_merit_v178.jsonl",
+      "sha256": "2456d37d6f862ef5eda08beedbaea46b1eb258dd6dddb902387a6c507cd83a22"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v178/report_context_merit_v178.json",
+      "sha256": "110a0839fe3e5a1430477c3122156332490f6456f1bc5200dee7b83b21ae6d2f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v179/context_merit_audit_v179.jsonl",
+      "sha256": "ae55d1543c99867298d6aba96f250b983286f4904dd287df695fbb3948b9f4b3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v179/pending_curation_context_merit_v179.jsonl",
+      "sha256": "1ea92bd8e795c492332f062be8a2196778bb985e05cb0243ecd089d0a15461f5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v179/report_context_merit_v179.json",
+      "sha256": "532c2ebed1bb5219d51fc6f68eb820008c5f2e03a402d49cb207c4f2dc27ff8b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v180/context_merit_audit_v180.jsonl",
+      "sha256": "2b0877c660982a42eeb2801434f4a6610c8b84e232439d7e72ad3b0f83f645c6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v180/pending_curation_context_merit_v180.jsonl",
+      "sha256": "c6612e63099c1ebd1a2247a364fd1d0a88e53ce6201c469b7a1dffb45d7e8dbe"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v180/report_context_merit_v180.json",
+      "sha256": "8bc2af366f5d9c040612437110f366886690e1b4c045930fe3e57a990179bc64"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v181/context_merit_audit_v181.jsonl",
+      "sha256": "87d58491791733e48c414012acea10e5f9b1a01cb3a688c89ed66eb5e1509700"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v181/pending_curation_context_merit_v181.jsonl",
+      "sha256": "05ab2a9eb0e13ab18ab1c47e332f1be06cb6cb7bc0398b324a981f9c952814a8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v181/report_context_merit_v181.json",
+      "sha256": "8fc31c2acf25f6a06ecb95e4c7936b9698a4e32f5a2851e2306dc33493ada08d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v182/context_merit_audit_v182.jsonl",
+      "sha256": "35a96cec033fa1637809e78ef6a2cb8abd3a1ebfa0038ccb0054c7855071c9b9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v182/pending_curation_context_merit_v182.jsonl",
+      "sha256": "c4f322b66760afc8473e501f5d07d2dc17f6f02ae4cd1547d4bebbd734048086"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v182/report_context_merit_v182.json",
+      "sha256": "b8d80e152544c5d94e4d219cb9e1de0554a3e3418cf6018c269e65e7cd4d16f7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v183/context_merit_audit_v183.jsonl",
+      "sha256": "0695f1b2f5a0054cce71bedb90feb28e24db69b9ed2f429e1d9f41681b4db5da"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v183/pending_curation_context_merit_v183.jsonl",
+      "sha256": "25b484e4f93d6cdd718ed913257766260000071e2b099b20373699dc70fdd3dc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v183/report_context_merit_v183.json",
+      "sha256": "813a6edc6a946ecef0c7d6d1a95bdc8daedc638d0ce203cf213df7259aa40cc6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v184/context_merit_audit_v184.jsonl",
+      "sha256": "cc85dd3cbbb578ee74fa68ad27e018e24677d1a34d306f2029ac036bba818b5d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v184/pending_curation_context_merit_v184.jsonl",
+      "sha256": "02207c88ed1d050e691a605a0b13b8f8e262226dc82a27257f807cd70736b315"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v184/report_context_merit_v184.json",
+      "sha256": "d51a840af87af5bae3535c54c063b4a41c2fdd5d76933ea094965626d7078db8"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v185/context_merit_audit_v185.jsonl",
+      "sha256": "fea9674659ba6339abb830491052206c8b6d56fcd08b2d2009d56a380cbe1258"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v185/pending_curation_context_merit_v185.jsonl",
+      "sha256": "5f5c1599f2ea0593a306cc794592671d7dab1f80a2810ee80b3ebb41a536954c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v185/report_context_merit_v185.json",
+      "sha256": "b3d61fc09ee667d6a93321a609369de7874176ab9085c028504c617aa9fb1318"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v186/context_merit_audit_v186.jsonl",
+      "sha256": "27f1e318dd3339d30f1129fb80d7cca448b738be71d28b6c6665c477b7b5d51f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v186/pending_curation_context_merit_v186.jsonl",
+      "sha256": "d6a3874b57d2952369aca67cbecd5c7df48c43048b843cfebce978b2591d7a6b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v186/report_context_merit_v186.json",
+      "sha256": "8b876977655effcdd89165ec12eff8bb776d8d66271e97f35f61b555b7ee9815"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v187/context_merit_audit_v187.jsonl",
+      "sha256": "cb6cb52c0702baf89dadbb7ea66ff6e65a2a006a0c850125729f5f914d9e44a3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v187/pending_curation_context_merit_v187.jsonl",
+      "sha256": "3de98235472e18078e2b757f49f3f6402eaee0ca9382d35051da4c0fb4f0d07d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v187/report_context_merit_v187.json",
+      "sha256": "7472549bae2b4eb3f154a0ec64b6639fbd344dabe1fc92edc04be6c785137e1e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v188/context_merit_audit_v188.jsonl",
+      "sha256": "b373095fa8a9407006f9a70055c6b5270cc353818c6180db49b10bf05f79cb65"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v188/pending_curation_context_merit_v188.jsonl",
+      "sha256": "bd6f85203213e7ebdf4f9084121bfd619715129895b8000f2d9930eb4a15c62e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v188/report_context_merit_v188.json",
+      "sha256": "3c520b12fc068678f749d01ea193f1af51baef5340d7b3f415a3669481f3ec96"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v189/context_merit_audit_v189.jsonl",
+      "sha256": "66a40e7ac8f02d6ce5eac7d7ad52d3d9ded3534229900a81a2021099f86897bf"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v189/pending_curation_context_merit_v189.jsonl",
+      "sha256": "c2ce57cb3b88648f895afd073b62b5c52404b27843680459f4748f31ede074ce"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v189/report_context_merit_v189.json",
+      "sha256": "879a19729505abf4dbab623a3acece8c93ab8729a69d2ce1c962660cd2c9d524"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v190/context_merit_audit_v190.jsonl",
+      "sha256": "a312cc4c0212e77efca505cced22550c56aad22ea13822aad379aa6e427aba3f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v190/pending_curation_context_merit_v190.jsonl",
+      "sha256": "e9df19230e46df728a503bf1330e01b2c5db2d68ff9fdc3c83d8b6405926ee46"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v190/report_context_merit_v190.json",
+      "sha256": "34f2668fcf14951f79582abdc468aa90d98bc9b51700c781358abb913a9d075b"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v191/context_merit_audit_v191.jsonl",
+      "sha256": "e5ad26e3f1aa4c47e64deb6172f52e652152a44ca70b0d6201c7c7cef0366fbb"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v191/pending_curation_context_merit_v191.jsonl",
+      "sha256": "737948bd6750303d448b2d3bfd51c362eb8abfc23717ffe42dec0d20685688c7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v191/report_context_merit_v191.json",
+      "sha256": "27c8bcadac655c250ecfca3a90b03bac70d71d6aebcbdbf493b150ffab8c16de"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v192/context_merit_audit_v192.jsonl",
+      "sha256": "2920b23286b214090047f0df39667e58d306f7c9712155cd9129537b4807b160"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v192/pending_curation_context_merit_v192.jsonl",
+      "sha256": "32435c593d749519971b0b01a56623f2b3e96eb4b8a90541f4a4b44859378bf7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v192/report_context_merit_v192.json",
+      "sha256": "91de6e2e65c95fa8bbac8263a55c922227da3266e1b6d9bf945df5b16d83b8df"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v193/context_merit_audit_v193.jsonl",
+      "sha256": "2b92ca6427388c3bab280f4ed7c7be005a6334c775dbce6a8fc2811ba7c8aac7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v193/pending_curation_context_merit_v193.jsonl",
+      "sha256": "78d323b178a0168a404032893bb7c5407b90ab54a6152a97875ccaca8e341979"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v193/report_context_merit_v193.json",
+      "sha256": "605c7e920ba5eda83b7edf6ce394f30f064f388cb698c4ea82a8d5d2d2d2ca77"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v194/context_merit_audit_v194.jsonl",
+      "sha256": "648cd0f0fba019bcf2cf6afcde362aa27d8a588ede6cd5b6dc43f5548ad4bf26"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v194/pending_curation_context_merit_v194.jsonl",
+      "sha256": "84990a58800562e68ba29fb1198e8d2f556a08715f349d0bf4a4d1d96660ef52"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v194/report_context_merit_v194.json",
+      "sha256": "b0b9ec5a44fe31ad0f5509f73580c75dd23d62acb30f36a32d0f59db92ca6551"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v195/context_merit_audit_v195.jsonl",
+      "sha256": "a26f0a6229c90ce5f07ef79dac87284d2fb7dc00f944a43803ab650f241b752e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v195/pending_curation_context_merit_v195.jsonl",
+      "sha256": "89edf5e089090d18d561832b626c98f096d43cfe76998a17b6bbbea5d56c9a1d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v195/report_context_merit_v195.json",
+      "sha256": "1475f98b918623bc65fead9860259c94cf9e9f4a60c6954c3c71ed7a9abeb9d1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v196/context_merit_audit_v196.jsonl",
+      "sha256": "d59e2336f6035f62f89774f4e60481eec33004a977a5934f1696852ef3d0bc25"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v196/pending_curation_context_merit_v196.jsonl",
+      "sha256": "c1ad98bda7cf8cc68ae15d68ce28a3b0fdb668ca045d0b7a4f5b532ee65d033e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v196/report_context_merit_v196.json",
+      "sha256": "ea714cadae206516b9b96128d1a393041503013a69386bcecaa9849f6107cb1d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v197/context_merit_audit_v197.jsonl",
+      "sha256": "50ae49a753e5a28af7614d953436e2de841a9cf1e36de292977e80959dd0cb77"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v197/pending_curation_context_merit_v197.jsonl",
+      "sha256": "248875f077c92823e83349bca9ea5d6031cf3fba94a2e467ca005b24e7e9d189"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v197/report_context_merit_v197.json",
+      "sha256": "1cf5da102ce192700cd76090d5e30c3e601e3f9cb2e14f35ee931b7604370120"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v198/context_merit_audit_v198.jsonl",
+      "sha256": "4ffe206080b354ae59e79136277fa1e1a1201198e619d80f1ffcb8105573b5b3"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v198/pending_curation_context_merit_v198.jsonl",
+      "sha256": "f8aed12f4ff598efebbf8043c989862b44cd71b7dddfb247367a39e4f70aef8a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v198/report_context_merit_v198.json",
+      "sha256": "cd6217662445b4af549ec7dc880e7124f471fcf02f2a952b3ad430e1fd17e077"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v199/context_merit_audit_v199.jsonl",
+      "sha256": "6f05a21edc049d17277807d1f34b7f35617bb85d1efaf54e2bdc8818421ea96f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v199/pending_curation_context_merit_v199.jsonl",
+      "sha256": "1ef977c4d7c6285d00b85f20b44dfb87b223cd76d7c732204670bad2b1864015"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v199/report_context_merit_v199.json",
+      "sha256": "09c54465e992ca12ff4d2fe260eb8f69a823c1f8ec60f6636285f701e3b2ea77"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v200/context_merit_audit_v200.jsonl",
+      "sha256": "06f399e5389fddd1fb8a5f930bcd2f0ccbd6f07507e22add6917d171d80677c4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v200/pending_curation_context_merit_v200.jsonl",
+      "sha256": "0cb0fc2fb0aec443493e5253aada389a805746cc3eab34220a328197acb8e5c9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v200/report_context_merit_v200.json",
+      "sha256": "3657a37530a09f4af305877cc7c3cb0b7a1ae6110ed9a944717c52aed1c6374d"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v201/context_merit_audit_v201.jsonl",
+      "sha256": "78386fd15cd50fc530f8eef8c1e5188e9faef98db7a9bae6f0251640933b88af"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v201/pending_curation_context_merit_v201.jsonl",
+      "sha256": "39ef3b6ec87681daa4b3c54a8df0ecb276809438c466826e6bafa2616d1e9c3e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v201/report_context_merit_v201.json",
+      "sha256": "b2e9e1df9901bd623dc1fb2da2519025a4a1e58a0ed3e3d1bc414607e1e4f14e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v202/context_merit_audit_v202.jsonl",
+      "sha256": "96ff9a452fb7a095cec6240550db649fe8d739ea6165a0b9adea9d5059777fc7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v202/pending_curation_context_merit_v202.jsonl",
+      "sha256": "4a3be83f4a8c2aa278a6d80cf309a8229d824173cd3f38dd97bae74e56b3384a"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v202/report_context_merit_v202.json",
+      "sha256": "b63032dfc4b2af1689b4cc2e66fccd6ea873d76364952bff6a3372dc3a5b3645"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v203/context_merit_audit_v203.jsonl",
+      "sha256": "8284aca3b3a392866940d033724d3ebad4198535e3bb747e0b96a012060b7947"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v203/pending_curation_context_merit_v203.jsonl",
+      "sha256": "062ffb1c1cba480aa4c53619443f64f86d79d620a207b7208b9e28e27a75fd70"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v203/report_context_merit_v203.json",
+      "sha256": "588ce4451359a427937e04f1f33597ba96d5c14b657f56978cd6067d20fd23d4"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v204/context_merit_audit_v204.jsonl",
+      "sha256": "93d0024056948e9c3bc4d50dae3d4bbf95c861d08d464430771bb3ef23317fbc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v204/pending_curation_context_merit_v204.jsonl",
+      "sha256": "ffdd0e2d191f59c18f11765bf6eedd8af8252bf34544e9d6ceeb0820545570ae"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v204/report_context_merit_v204.json",
+      "sha256": "c611b5ae25e3c190e56de03f2f172b566a58e7f748ba11536f045973e7037bf7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v205/context_merit_audit_v205.jsonl",
+      "sha256": "63dd1a7de0dd8af053ff8afabff3839734c5c63d8f19f178dc043ce5bd762913"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v205/pending_curation_context_merit_v205.jsonl",
+      "sha256": "0133712710c0ab11728e8062f8476d4243ad99e94b9576b12e7e3b817bc0c729"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v205/report_context_merit_v205.json",
+      "sha256": "417deaa31449773ebf710944bc4b59d4530d6a85403062704a49bba6ab517d00"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v206/context_merit_audit_v206.jsonl",
+      "sha256": "78a0b56c5957581a20c6d5b87f35de4a2c72a0c0e79c314cb56a04d66290b81f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v206/pending_curation_context_merit_v206.jsonl",
+      "sha256": "75137770b2b3213d4e1cb792750c25be8b8fc784c7b52968722e590d006f378e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v206/report_context_merit_v206.json",
+      "sha256": "6db547c5193b3a1fdefac1761b5a5a603eb40cee3633f040d3561b8e4fc7f9ce"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v207/context_merit_audit_v207.jsonl",
+      "sha256": "7936966010860935e0a8acccf1dd282b504c0e545f2a972e0615bcbf90d215c0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v207/pending_curation_context_merit_v207.jsonl",
+      "sha256": "166b7ba5849c92dd3e5fcfea88a660321a37e41caf91297809253a784fdfb180"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v207/report_context_merit_v207.json",
+      "sha256": "8339601ecc7805dc495ae23ca7f53f8de9b41819481c661699acc3bd1fd58736"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v208/context_merit_audit_v208.jsonl",
+      "sha256": "9099183973fdc27110eeb51d8d9e5ce7319d20a42e28d19d3090ccdfa49ddbf9"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v208/pending_curation_context_merit_v208.jsonl",
+      "sha256": "3dea3e218321cf029f96ee5e9f574fec1c900a80b9099f45985e2db4ea30c2af"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v208/report_context_merit_v208.json",
+      "sha256": "94b3558f6841b4fff7c29a454b0676dca32636d1d323d5c132f8585b8a21346f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v209/context_merit_audit_v209.jsonl",
+      "sha256": "3a6f05dd8288e03047168689e54267abaa70659f4b9dfdca2cb5bb9f4fe15144"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v209/pending_curation_context_merit_v209.jsonl",
+      "sha256": "a0a920ca25ad91da650f916555e808c059d6d91676a6eeb6fdd3302d906fe2dc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v209/report_context_merit_v209.json",
+      "sha256": "c64140052e5ba0f4319abbb787b90e69a1cf8acd88926e6fb3e709e38910f266"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v210/context_merit_audit_v210.jsonl",
+      "sha256": "50dfa5d06e8dc523c98e0cb1e067b0cf706de354e352517e6e260b799aaeda55"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v210/pending_curation_context_merit_v210.jsonl",
+      "sha256": "de9c6cd209bccfda6556cd425fa7866c44badb1d71adde51b5a483edc41962d2"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v210/report_context_merit_v210.json",
+      "sha256": "40870a5a8b150b1483a1282f97231a70f2393c3009846a5c66f1fbb010b7c4a5"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v211/context_merit_audit_v211.jsonl",
+      "sha256": "c504ee2f740f53aaeaa499a1a268efab91f869336444eca82da16eb596b785ff"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v211/pending_curation_context_merit_v211.jsonl",
+      "sha256": "e9b28f7d646ff66b9807c1169e483e4b61b05329f18d194b0f24c907c28f2029"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v211/report_context_merit_v211.json",
+      "sha256": "f9ecf8fccf815fa7821340e2447547857e1925d578a6fcc9e58370b935b5a6be"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v212/context_merit_audit_v212.jsonl",
+      "sha256": "2130af866d258b134bf1e10099bb2b6d13d0f8bfc094951ce35840f01f33813c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v212/pending_curation_context_merit_v212.jsonl",
+      "sha256": "80ec5a36aa6f5940737c91783e8523fee1f8a976a46216083f5ec93835447581"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v212/report_context_merit_v212.json",
+      "sha256": "1c57f5db66ed4821ffdce479e450d38d2435a3b8699d2f71e6b80a7851fc1c07"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v213/context_merit_audit_v213.jsonl",
+      "sha256": "4afb7596165d0d8a493f36ab0629d07ec3add25c05bc6121b477bf5993c52193"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v213/pending_curation_context_merit_v213.jsonl",
+      "sha256": "9cfcfc85098347b97d9b03b2bb2326f4c71816279e815826425615c6546800b1"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v213/report_context_merit_v213.json",
+      "sha256": "306806a17176de798afb6457f6e3e2c52f8efd87927cd771c91a4e4dfc56f11e"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v214/context_merit_audit_v214.jsonl",
+      "sha256": "68670ccd1f4f44c918e9005ffe88f515153806d72f7241ead3e36dc51564d432"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v214/pending_curation_context_merit_v214.jsonl",
+      "sha256": "e03425b4a3c21aadd294179d0689503ef6c446cd8df76599f678b439ceced5e0"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v214/report_context_merit_v214.json",
+      "sha256": "fb1bad8c6200b1490347ca70ce6f1f9cdd3217391b4ce42b4284d9ec8e2f019f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v215/context_merit_audit_v215.jsonl",
+      "sha256": "781941bf703022b81de16b555ef5b95ed26408b0a542eb684b8d35f5e3e8875c"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v215/pending_curation_context_merit_v215.jsonl",
+      "sha256": "e44abd713c8541e472e51ef7bc9215091cd01646675cde75d2990b258ca1f341"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v215/report_context_merit_v215.json",
+      "sha256": "f49425c22d5b0eef4c4ba9314f93d973de7523693d3d100c8acd908bb2981139"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v216/context_merit_audit_v216.jsonl",
+      "sha256": "58f045b39d855c5c23296c480961c9927c24d262458233e40336362e3ea7b96f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v216/pending_curation_context_merit_v216.jsonl",
+      "sha256": "4bdc7bca1408a6a2b7d7a61ee03b7c3812761747f7a1342044facfc5e7e379e7"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v216/report_context_merit_v216.json",
+      "sha256": "f18ac061901954b3a77ee232780039a75a9fc715f268a7cce717814cb1e830ae"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v217/context_merit_audit_v217.jsonl",
+      "sha256": "04236b2f015200f41e70f1e7e5b864390270ba3b4c8811b232e1f35aae3fa094"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v217/pending_curation_context_merit_v217.jsonl",
+      "sha256": "77eb1a24d0243e76a348cea6cc009bf9737cefe4af0246fe57af97f820d4e58f"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v217/report_context_merit_v217.json",
+      "sha256": "253233cf9a6ecff92fe7840f96708ef45247b573f8ead2ec390169880970ceca"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v218/context_merit_audit_v218.jsonl",
+      "sha256": "e8297a3689528f2d14d2441e29694136ab687e5641edcb5e6b8c134d049f42bc"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v218/pending_curation_context_merit_v218.jsonl",
+      "sha256": "850d5faa79aa0e80d16a0e113cb7dada1a50fa0965805b96d0925896a8ae1304"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v218/report_context_merit_v218.json",
+      "sha256": "26e3a55b4131a6b69a2dd9ed4963b267b97f8b317d60a62c3798a891432ce6c6"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v219/context_merit_audit_v219.jsonl",
+      "sha256": "07ddc2140a2a360846994554fe910672368ca546744e01d52d6a695986bfee81"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v219/pending_curation_context_merit_v219.jsonl",
+      "sha256": "875eec142b838ee84af5408a9440736307554ec4a49730fcff2432fd6aedb173"
+    },
+    {
+      "path": "data/manual_reviews/context_merit_audit_v219/report_context_merit_v219.json",
+      "sha256": "1d267a723080364cbf4fe643192a477886a4a0ec3a4f5da800ebb43581cd7677"
+    }
+  ],
+  "isolated_build_projection": {
+    "active_after_context_merit_v219": 467,
+    "active_after_this_tranche": 467,
+    "automated_projection_runs": 2,
+    "build_script": "build_curated_qa.py",
+    "determinism_comparison_scope": "identical inputs, curation chain, and output/report paths",
+    "new_drops_applied": 0,
+    "new_edits_applied": 1,
+    "output_rows": 505,
+    "output_sha256": "b23ae773dcc7b13ae7b8b8478677855bdff6a8e7c467c86ce262d16a8621d579",
+    "prior_pending_addition_fact_ids_preserved": 35,
+    "projection_report_normalized_sha256": "70659be2df121eb2ffa97145e4af30de71cf5240cfeaa17be86c3a8fa221076f",
+    "projection_strategy": "delegate to the hermetic v219 second-stage projection and append this tranche's decisions",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "reviewed_keep_fact_ids_preserved": 0,
+    "sealed_eval_fact_count_reported_by_tooling": 612,
+    "unexpected_fact_ids": 0
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "edit": 1
+    },
+    "decisions": 1,
+    "edit_support_types": {
+      "extractive": 0,
+      "manual_paraphrase": 1
+    },
+    "path": "data/manual_reviews/context_merit_audit_v220/pending_curation_context_merit_v220.jsonl",
+    "sha256": "7dd962ab07a71d0272991bc4499806603fa48aff193320c79218fe3cd2980711"
+  },
+  "projected_baseline": {
+    "description": "isolated corrected training projection through context-merit v219",
+    "direct_rows_without_prior_curation": 24,
+    "emt_shears_readiness_rows_selected": 1,
+    "rows": 505,
+    "sha256": "ebed69627ae665c0f0044194bf2eab18fbfb3b09d404ee97c55d6a9305864e1d"
+  },
+  "schema": "context-merit-audit-report-v220",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool": "build_curated_qa.py",
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-id collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  },
+  "selection": {
+    "active_rows": 505,
+    "projected_baseline": {
+      "description": "isolated corrected training projection through context-merit v219",
+      "direct_rows_without_prior_curation": 24,
+      "emt_shears_readiness_rows_selected": 1,
+      "rows": 505,
+      "sha256": "ebed69627ae665c0f0044194bf2eab18fbfb3b09d404ee97c55d6a9305864e1d"
+    },
+    "ranking": {
+      "candidate_rule": "the isolated owner-recommended EMT shears link row that lacked a cutter-readiness check",
+      "score": "owner-source support, emergency-readiness usefulness, safety context, and URL preservation",
+      "tie_break": "active projection order"
+    },
+    "rows_selected": 1
+  }
+}
