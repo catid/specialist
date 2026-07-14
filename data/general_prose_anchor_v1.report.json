@@ -1,0 +1,93 @@
+{
+  "candidate_rows": 135,
+  "collision_rejections": {
+    "document_hash": 1,
+    "document_identity": 0,
+    "protected_content_shingle": 0
+  },
+  "evaluation_manifests": [
+    {
+      "eval_inputs": [
+        {
+          "path": "eval_qa_v3.jsonl"
+        },
+        {
+          "path": "ood_qa_v3.jsonl"
+        }
+      ],
+      "eval_splits": {
+        "heldout": 18,
+        "ood_qa": 24,
+        "validation": 41
+      },
+      "identity_projection_sha256": "a25043d62bf2180c47bca7eca1d1d14036f78dc68d5299ac97cdb998accdc079",
+      "path": "experiments/eggroll_es_hpo/snapshots/s5/manifest.json",
+      "schema": "eggroll-es-specialist-dataset-v1"
+    }
+  ],
+  "extraction_rejections": {
+    "duplicate_document": 1,
+    "non_search": 110,
+    "short": 155
+  },
+  "output_rows": 128,
+  "output_sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+  "policy": {
+    "copied_fields": [
+      "observation"
+    ],
+    "excluded_sensitive_fields": [
+      "answer",
+      "target",
+      "thought",
+      "question",
+      "model_output"
+    ],
+    "max_rows": 128,
+    "minimum_words": 80,
+    "shingle_width_words": 20
+  },
+  "protected_artifacts": [
+    {
+      "identity_and_safe_content_projection_sha256": "762bf2a99bb40209893752ef074ea25020266d6ebb1b6e6d5349927a8a415e83",
+      "path": "data/eval_qa_v3.jsonl",
+      "rows": 59,
+      "safe_text_fields_indexed": 82,
+      "sealed_identity_only_rows": 18
+    },
+    {
+      "identity_and_safe_content_projection_sha256": "ecb3fa07116346850fb11b02c42ffd073027e4158407471adbe81a249b651279",
+      "path": "data/heldout_docs.jsonl",
+      "rows": 80,
+      "safe_text_fields_indexed": 0,
+      "sealed_identity_only_rows": 80
+    },
+    {
+      "identity_and_safe_content_projection_sha256": "77b79d50ce5c92c74d751c534e515e01ba0081a0579c313d7bc722ef5c95e240",
+      "path": "data/ood_qa_v3.jsonl",
+      "rows": 24,
+      "safe_text_fields_indexed": 24,
+      "sealed_identity_only_rows": 0
+    },
+    {
+      "identity_and_safe_content_projection_sha256": "6494ab2a43d54d89c9806c6700daf7fbcbe9eaed980fbc8ff670a0f066bfbb4d",
+      "path": "data/ood_prose_v3.jsonl",
+      "rows": 16,
+      "safe_text_fields_indexed": 32,
+      "sealed_identity_only_rows": 0
+    }
+  ],
+  "protected_index": {
+    "document_hashes": 152,
+    "labels": 104,
+    "normalized_urls": 97,
+    "shingles": 15589
+  },
+  "schema": "general-prose-anchor-build-v1",
+  "source": {
+    "path": "sglang/benchmark/react/hotpotqa_100.jsonl",
+    "sha256": "41d0a75d73dd207a3fa3adb1440441d5a41442ed94eb19b2e38c3a00cc4519e9"
+  },
+  "unique_documents": 128,
+  "unique_texts": 128
+}
