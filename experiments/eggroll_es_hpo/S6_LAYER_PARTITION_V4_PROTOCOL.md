@@ -21,6 +21,16 @@ The frozen plan identities are:
   plan SHA-256 `b5e4e162116695e5d2544e24c2e0cdfb49ca8783aa6f9d707ef41d6f725ca5e0`
 - model config SHA-256:
   `93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99`
+- front/back checkpoint-to-runtime mapping SHA-256:
+  `0a1b84e8ed53ef56c174e7fcac728a4820293505647ab6b9ea02bc86a012b3b1`,
+  with runtime-name SHA-256
+  `417b3867ba9a56f909d01b1e7bb0b8bb04f903c3ec49438a6675239a7bab270f`
+- middle-control checkpoint-to-runtime mapping SHA-256:
+  `d6f43de81bb5c41318a38f077b8a3e6272676801752ff68d4772977ac72182f7`,
+  with runtime-name SHA-256
+  `a7df9257f81c05a3fb3e858209486bd930aad0ddb94d7398e1644b779fb8b70d`
+- dense gold-answer reward configuration SHA-256:
+  `4941f2e94091b1f8e7ab7b5294ebc6520b80aba1326b7dc6ccea5140a3da5da2`
 
 Each checkpoint plan contains 70 HF tensor units and 285,999,104 parameters.
 VLLM losslessly packs each plan into 46 runtime parameters: six selected
