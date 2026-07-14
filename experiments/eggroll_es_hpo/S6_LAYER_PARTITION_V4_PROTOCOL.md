@@ -11,10 +11,14 @@ candidate survives replication and every strict guard.
 
 The frozen plan identities are:
 
-- front/back: `experiments/layer_plans/front_back_dense.json`, plan SHA-256
+- front/back: `experiments/layer_plans/front_back_dense.json`, file SHA-256
+  `8e855cbd0d6130278e87b1af348e39dd0f683b8575d9abcb9260f3fe7b29d824`,
+  plan SHA-256
   `6af34ef41187d8b08f53b9dab1e40102744b954c80146c130bd2c053fc3f52cb`
-- middle control: `experiments/layer_plans/middle_matched_dense.json`, plan
-  SHA-256 `b5e4e162116695e5d2544e24c2e0cdfb49ca8783aa6f9d707ef41d6f725ca5e0`
+- middle control: `experiments/layer_plans/middle_matched_dense.json`, file
+  SHA-256
+  `f2b38054e3cdaf41619cce579d3ba2e030fa3cfa87fd42b50543f655ff5f6dc0`,
+  plan SHA-256 `b5e4e162116695e5d2544e24c2e0cdfb49ca8783aa6f9d707ef41d6f725ca5e0`
 - model config SHA-256:
   `93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99`
 
