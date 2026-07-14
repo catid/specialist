@@ -88,6 +88,10 @@ four GPUs are used concurrently for population rollouts, but the exact upstream
 design does not keep all four compute-active during evaluation, the centralized
 update, or checkpoint serialization.
 
-The completed validation-only grid and one-time holdout evaluation on the
-frozen 2,228-row S3 dataset snapshot are recorded in
+The latest completed grid, horizon selection, exact final retrain, and S4 final
+holdout evaluation use the frozen 1,487-row S4 snapshot. Validation reward rose
+from `0.0976728523` to `0.1044079066`; holdout rose from `0.0674359708` to
+`0.0740375985`, although the holdout paired interval includes zero. The prior
+2,228-row S3 result, both immutable cohorts, and a seed-43 validation replicate
+that did not reproduce the seed-42 gain are recorded in
 [`experiments/eggroll_es_hpo/README.md`](experiments/eggroll_es_hpo/README.md).

@@ -1,0 +1,121 @@
+{
+  "artifacts": {
+    "pending_append_safe": {
+      "drop": 0,
+      "edit": 0,
+      "path": "data/manual_reviews/rope365/pending_curation_rows_0601_0601_v1.jsonl",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "retained_manifest": {
+      "path": "data/manual_reviews/rope365/retained_manifest_rows_0601_0601_v1.jsonl",
+      "rows": 1,
+      "sha256": "5a4b4258327246c375d3909d755a76bc649f0835cda00436c0adf13b80c42fdc"
+    }
+  },
+  "cumulative_rows_0001_0601": {
+    "drop": 323,
+    "edit": 21,
+    "heldout_document_overlap_rows": 137,
+    "replacement_decisions": 6,
+    "retain_unchanged": 257,
+    "retained_after_edits": 278,
+    "reviewed_rows": 601,
+    "source_unique_stored_document_sha256": 152,
+    "source_unique_urls": 146
+  },
+  "existing_curation": {
+    "edited_rows_in_tranche": [],
+    "existing_edits_retained": [],
+    "replacement_required": []
+  },
+  "heldout_audit": {
+    "eval_artifacts": {
+      "data/eval_qa.jsonl": {
+        "questions_on_overlapping_pages": 0,
+        "rope365_rows": 29,
+        "sha256": "c84442651265aa8a51ce8af1d524390dd8a98760c40c780afa9eed7a2ba146b5"
+      },
+      "data/eval_qa_v2.jsonl": {
+        "questions_on_overlapping_pages": 0,
+        "rope365_rows": 135,
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      }
+    },
+    "exact_normalized_question_answer_collisions": 0,
+    "heldout_questions_on_overlapping_pages": 0,
+    "high_similarity_question_answer_collisions": 0,
+    "overlapping_training_indices": [],
+    "overlapping_training_rows": 0,
+    "overlapping_unique_source_urls": 0,
+    "policy": "Exclude a training row when its normalized source URL appears anywhere in the held-out files, even when the exact Q&A differs.",
+    "rope365_eval_rows": 164,
+    "rope365_eval_unique_urls": 64
+  },
+  "manual_outcome": {
+    "drop": 0,
+    "drop_indices": [],
+    "edit": 0,
+    "edit_indices": [],
+    "reason_counts": {},
+    "retain_unchanged": 1,
+    "retain_unchanged_indices": [
+      601
+    ],
+    "retained_after_edits": 1
+  },
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-rope365-manual-audit",
+  "schema": "manual-source-audit-report-v1",
+  "source": "rope365",
+  "source_verification": {
+    "live_fetch_failures": 0,
+    "live_urls_checked": 1,
+    "method": "The Q&A was read manually and checked against text fetched from its live Rope365 source URL; the retained manifest records the exact evidence and source lineage."
+  },
+  "tranche": {
+    "end_index": 601,
+    "fact_id_sequence_sha256": "115cac481ac7c6f6db16ef365f3913ab804c6685be23fc1bb43203672cfb3255",
+    "ordering": "source-filtered order in data/train_qa_curated_v1.jsonl at audit time",
+    "reviewed_rows": 1,
+    "start_index": 601,
+    "unique_source_urls": 1,
+    "unique_stored_document_sha256": 1
+  },
+  "validation": {
+    "active_artifacts_observed_at_report_write": {
+      "data/train_qa_curated_v1.curation.jsonl": "3fc033f3a58638567c709f1bba8b94a5eda93d59c36d4d544c2f8c874b9d18ec",
+      "data/train_qa_curated_v1.jsonl": "d9ec2b0fe0a438067b74cb1a168172e0a658d78c17627d4d6e29c1f02dbfef6d",
+      "data/train_qa_curated_v1.report.json": "3382e6bfef22d8690d7cb697f570db611e8a01696533eb60ec0502181ab60d82"
+    },
+    "active_files_mutated_by_this_audit": false,
+    "active_kinbaku_ledger_combined_projection": {
+      "curation_decisions_after_replacements": 2165,
+      "excluded_rows": 2122,
+      "output_rows": 1164,
+      "rope365_rows": 278
+    },
+    "combined_append_safe_tranches_0001_0601": {
+      "curation_decisions": 1414,
+      "excluded_rows": 1365,
+      "output_rows": 1921,
+      "output_sha256": "b80c61449e33d1381416b3825f17f6f638abae80ad41b5c90b0e9c67e7df29b9",
+      "rope365_rows": 284,
+      "status": "passed"
+    },
+    "projected_combined_after_replacements": {
+      "excluded_rows": 1371,
+      "output_rows": 1915,
+      "replacement_rows": [
+        19,
+        390,
+        416,
+        417,
+        463,
+        472
+      ],
+      "rope365_rows": 278
+    },
+    "temporary_build_scope_note": "The audit-time temporary builds retained above applied the general and pending Rope365 ledgers but omitted the separate 751-decision Kinbaku ledger. Their validation status is useful, but their row/decision totals are not projections of the active two-ledger build; use active_kinbaku_ledger_combined_projection for current totals."
+  }
+}

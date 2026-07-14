@@ -1,0 +1,213 @@
+{
+  "artifacts": {
+    "pending_append_safe": {
+      "drop": 50,
+      "edit": 0,
+      "path": "data/manual_reviews/wikipedia_second_pass/pending_curation_rows_0151_0204_v1.jsonl",
+      "rows": 50,
+      "sha256": "f63b460e38b8dea33bf709b39df5ca66b9c5e6b415c9bc5e98a201c671a9162e"
+    },
+    "pending_replacement": {
+      "drop": 1,
+      "edit": 0,
+      "path": "data/manual_reviews/wikipedia_second_pass/pending_replacements_rows_0151_0204_v1.jsonl",
+      "rows": 1,
+      "sha256": "7ea77d64dc01648b6908af5ef7f1c402c84c289ec074fbfc6bad0d0965302172"
+    }
+  },
+  "cumulative_rows_0001_0204": {
+    "drop": 175,
+    "edit": 2,
+    "heldout_document_overlap_rows": 90,
+    "replacement_decisions": 1,
+    "retain_unchanged": 27,
+    "retained_after_edits": 29,
+    "reviewed_rows": 204,
+    "source_unique_stored_document_sha256": 31,
+    "source_unique_urls": 31
+  },
+  "existing_curation": {
+    "edited_rows_in_tranche": [
+      176
+    ],
+    "existing_edits_retained": [],
+    "replacement_note": "Row 176 targets original fact fact-5d273e64bd9dcd91bf93. Its existing context rewrite must be replaced by the pending out-of-domain drop; appending both would create duplicate decisions.",
+    "replacement_required": [
+      176
+    ]
+  },
+  "heldout_audit": {
+    "eval_artifacts": {
+      "data/eval_qa.jsonl": {
+        "questions_on_overlapping_pages": 3,
+        "sha256": "c84442651265aa8a51ce8af1d524390dd8a98760c40c780afa9eed7a2ba146b5",
+        "unique_wikipedia_urls": 5,
+        "wikipedia_rows": 5
+      },
+      "data/eval_qa_v2.jsonl": {
+        "questions_on_overlapping_pages": 14,
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7",
+        "unique_wikipedia_urls": 9,
+        "wikipedia_rows": 22
+      }
+    },
+    "exact_normalized_question_answer_collisions": 0,
+    "heldout_docs_overlap_rows": 0,
+    "heldout_questions_on_overlapping_pages": 17,
+    "high_similarity_question_answer_collisions": 0,
+    "overlapping_training_indices": [
+      161,
+      163,
+      164,
+      165,
+      170,
+      171,
+      172,
+      173,
+      174,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      188,
+      192,
+      193,
+      197,
+      200,
+      202,
+      204
+    ],
+    "overlapping_training_rows": 22,
+    "overlapping_unique_source_urls": 7,
+    "policy": "Exclude a training row when its normalized source URL appears anywhere in either evaluation artifact or data/heldout_docs.jsonl, even when the exact Q&A differs.",
+    "similarity_method": "Exact normalized Q&A comparison plus the repository qa_quality.leakage_reason check; document-level URL overlap is enforced separately and more strictly."
+  },
+  "manual_outcome": {
+    "drop": 51,
+    "drop_indices": [
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183,
+      184,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      196,
+      197,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204
+    ],
+    "edit": 0,
+    "edit_indices": [],
+    "reason_counts": {
+      "heldout_document_overlap": 22,
+      "out_of_domain_or_personal_trivia": 17,
+      "semantic_duplicate": 3,
+      "source_error_or_misread": 1,
+      "unsafe_or_medically_unsupported": 8
+    },
+    "retain_unchanged": 3,
+    "retain_unchanged_indices": [
+      185,
+      195,
+      198
+    ],
+    "retained_after_edits": 3
+  },
+  "pass": "strict_second_pass",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-wikipedia-second-pass",
+  "schema": "manual-source-audit-report-v1",
+  "source": "wikipedia",
+  "source_verification": {
+    "method": "Every Q&A was read manually and checked against the corresponding stored Wikipedia source text in data/train_chunks.jsonl. The stored source is used because it is the evidence snapshot from which these Q&A rows were generated.",
+    "source_match_failures": 0,
+    "source_pages_checked": 18
+  },
+  "tranche": {
+    "end_index": 204,
+    "fact_id_sequence_sha256": "aea0541387ec5240ff448ae227192ad229a295784da3d049ecaacf199a639463",
+    "ordering": "source-filtered order in data/train_qa_curated_v1.jsonl at audit time",
+    "reviewed_rows": 54,
+    "start_index": 151,
+    "unique_source_urls": 18,
+    "unique_stored_document_sha256": 18
+  },
+  "validation": {
+    "active_artifacts_observed_at_report_write": {
+      "data/train_qa_curated_v1.curation.jsonl": "3fc033f3a58638567c709f1bba8b94a5eda93d59c36d4d544c2f8c874b9d18ec",
+      "data/train_qa_curated_v1.jsonl": "d9ec2b0fe0a438067b74cb1a168172e0a658d78c17627d4d6e29c1f02dbfef6d",
+      "data/train_qa_curated_v1.report.json": "3382e6bfef22d8690d7cb697f570db611e8a01696533eb60ec0502181ab60d82",
+      "data/train_qa_kinbakutoday.curation.jsonl": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    },
+    "active_files_mutated_by_this_audit": false,
+    "combined_append_safe_tranches_0001_0204": {
+      "curation_decisions": 2003,
+      "excluded_rows": 1973,
+      "output_rows": 1313,
+      "output_sha256": "119682fe13ab6db92ad54e1ccfbe401f8b42d9e39b7e39e3a84f1ae09db13140",
+      "status": "passed",
+      "wikipedia_rows": 30
+    },
+    "projected_after_replacing_existing_edit": {
+      "curation_decisions": 2003,
+      "excluded_rows": 1974,
+      "output_rows": 1312,
+      "output_sha256": "db13e99b43570e38a10cdd89b123692f0294a321651e856e30bc34f59013dd34",
+      "repeat_build_byte_identical": true,
+      "replacement_rows": [
+        176
+      ],
+      "status": "passed",
+      "temporary_active_curation_without_replaced_edit_sha256": "56da4f887bda9b14cd19ba838d116c4124a937d940dd6de7bdd81dbcabf9b0c1",
+      "wikipedia_rows": 29
+    },
+    "projected_tranche_after_pending_decisions": {
+      "dropped_wikipedia_rows": 51,
+      "edited_wikipedia_rows": 0,
+      "retained_wikipedia_rows": 3
+    }
+  }
+}

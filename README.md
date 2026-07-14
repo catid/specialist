@@ -16,6 +16,12 @@ adapter, and four-GPU launch recipe are documented in
 The cleaned-dataset HPO, final checkpoint recipe, holdout comparison, and GPU
 telemetry are in
 [`experiments/eggroll_es_hpo/README.md`](experiments/eggroll_es_hpo/README.md).
+On the frozen 1,487-row S4 snapshot, the selected six-update EGGROLL treatment
+raised validation reward from 0.097673 to 0.104408 and S4 holdout reward
+from 0.067436 to 0.074038. The holdout interval still includes zero, so this is
+an encouraging one-seed result rather than a conclusive improvement. A later
+seed-43 validation replicate scored below baseline and also crossed zero,
+showing that the short recipe is seed-sensitive.
 
 Large model files, generated checkpoints, raw source corpora, and server logs
 are intentionally excluded. Compact deterministic experiment logs are retained
@@ -46,6 +52,8 @@ curated dataset. New ES runs can select it with
 
 The completed 2,228-row S3 EGGROLL A/B cohort remains frozen under
 [`experiments/eggroll_es_hpo/snapshots/s3/`](experiments/eggroll_es_hpo/snapshots/s3/).
+The completed 1,487-row S4 cohort is likewise frozen under
+[`experiments/eggroll_es_hpo/snapshots/s4_final/`](experiments/eggroll_es_hpo/snapshots/s4_final/).
 Foreground experiments promote newer curation only between comparisons, then
 hash-pin one Arrow snapshot for both arms.
 

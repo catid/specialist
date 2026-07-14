@@ -1,0 +1,19 @@
+{
+  "alpha": 0.00025,
+  "batch_size": 64,
+  "checkpoint": "experiments/eggroll_es_hpo/runs/final_s4_selected/checkpoint-es_exact_steps_6/pytorch_model.pth",
+  "evaluations": {
+    "final": {
+      "heldout": 0.07403759849859043,
+      "train": 0.10440790658436463
+    }
+  },
+  "max_tokens": 32,
+  "mini_batch_size": 64,
+  "model": "models/Qwen3.6-35B-A3B",
+  "population_size": 8,
+  "schema": "eggroll-es-exact-run-v1",
+  "seed": 42,
+  "sigma": 0.001,
+  "steps": 6
+}
