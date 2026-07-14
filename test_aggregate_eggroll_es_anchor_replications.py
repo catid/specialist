@@ -253,6 +253,21 @@ def snapshot(seed, targets, schema_version=2):
             "direct_alpha_confirmation_required": True,
         }
     if schema_version == 4:
+        value["train"]["arrow_files"][0]["sha256"] = (
+            "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6"
+        )
+        value["evaluations"]["validation"]["arrow_files"][0]["sha256"] = (
+            "19181b832e38ef6f97e3ba734362cd1af921f067e8edd249113c5129439443db"
+        )
+        value["evaluations"]["ood_qa"]["arrow_files"][0]["sha256"] = (
+            "b201123c6a358d306b7f874e400861068900bb764b1fda80eb663b82ca53dced"
+        )
+        value["anchor"]["sha256"] = (
+            "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d"
+        )
+        value["anchor"]["report"]["sha256"] = (
+            "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5"
+        )
         value["implementation"].update({
             key: digest(key)
             for key in (
@@ -794,11 +809,24 @@ def make_journal(
     targets=(0.0, 0.0000125),
     schema_version=2,
 ):
-    baseline_validation = qa_summary(
-        f"validation-base-{seed}", 0.08, 2, 13, 41,
+    baseline_validation_mean = (
+        0.08381010452961674 if schema_version == 4 else 0.08
     )
-    baseline_ood = qa_summary(f"ood-base-{seed}", 0.7, 16, 23, 24)
-    baseline_prose = prose_summary(f"prose-base-{seed}", -1.26)
+    baseline_ood_mean = (
+        0.714128787878788 if schema_version == 4 else 0.7
+    )
+    baseline_prose_mean = (
+        -1.2632580042542214 if schema_version == 4 else -1.26
+    )
+    baseline_validation = qa_summary(
+        f"validation-base-{seed}", baseline_validation_mean, 2, 13, 41,
+    )
+    baseline_ood = qa_summary(
+        f"ood-base-{seed}", baseline_ood_mean, 16, 23, 24,
+    )
+    baseline_prose = prose_summary(
+        f"prose-base-{seed}", baseline_prose_mean,
+    )
     coefficient_hash = digest(f"coefficients-{seed}")
     states = []
     previous = 0.0
@@ -1262,6 +1290,35 @@ def test_v4_accepts_only_both_predeclared_parameter_matched_runtime_plans():
     middle["layer_plan_file_sha256"] = V4_PLAN_FILE_SHA
     with pytest.raises(JournalValidationError, match="file/plan identity pair"):
         _validate_v4_bindings(middle, "mismatched")
+
+
+@pytest.mark.parametrize(
+    "mutation,match",
+    [
+        ("train", "train artifact differs from frozen S6"),
+        ("validation", "validation artifact differs from frozen S6"),
+        ("eval_batch", "frozen recipe changed"),
+        ("baseline", "alpha-zero validation did not reproduce frozen S6"),
+    ],
+)
+def test_v4_rejects_s6_snapshot_recipe_or_baseline_drift(mutation, match):
+    journal = make_journal(42, schema_version=4)
+    if mutation == "train":
+        journal["snapshot"]["train"]["arrow_files"][0]["sha256"] = digest(
+            "different-train",
+        )
+    elif mutation == "validation":
+        journal["snapshot"]["evaluations"]["validation"][
+            "arrow_files"
+        ][0]["sha256"] = digest("different-validation")
+    elif mutation == "eval_batch":
+        journal["snapshot"]["recipe"]["mini_batch_size"] = 8
+        journal["trainer_configuration"]["mini_batch_size"] = 8
+    else:
+        journal["states"][0]["qa"]["validation"]["mean_reward"] += 0.001
+    reseal(journal)
+    with pytest.raises(JournalValidationError, match=match):
+        validate_journal(journal)
 
 
 def test_v4_monotonic_application_chain_binds_prior_partition_identity():

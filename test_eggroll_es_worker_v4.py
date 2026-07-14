@@ -393,6 +393,45 @@ def test_selected_only_reference_perturb_restore_and_partition_audit(monkeypatch
     assert check["current"] == check["reference"]
 
 
+def test_parallel_partition_digest_is_worker_and_chunk_invariant(monkeypatch):
+    worker, _, _ = install_worker(monkeypatch)
+    _, selected = worker._validated_parameters_v4()
+    monkeypatch.setattr(worker_v4, "PARTITION_HASH_WORKERS_V4", 1)
+    serial = worker._partition_identity_v4("selected", selected, 1)
+    monkeypatch.setattr(worker_v4, "PARTITION_HASH_WORKERS_V4", 4)
+    parallel = worker._partition_identity_v4("selected", selected, 3)
+    assert parallel == serial
+
+
+def test_first_reference_reuses_install_complement_audit_only(monkeypatch):
+    worker, _, _ = install_worker(monkeypatch)
+
+    def reject_unselected_rehash(*args, **kwargs):
+        raise AssertionError("first reference redundantly re-hashed complement")
+
+    monkeypatch.setattr(
+        worker, "_verify_unselected_origin_v4", reject_unselected_rehash,
+    )
+    reference = worker.save_self_exact_reference(chunk_bytes=2)
+    assert reference["identity"] == worker._v3_reference_identity
+    with pytest.raises(AssertionError, match="redundantly"):
+        worker.save_self_exact_reference(chunk_bytes=2)
+
+
+def test_cached_state_requires_the_exact_preceding_full_audit_phase(monkeypatch):
+    worker, _, _ = install_worker(monkeypatch)
+    worker.save_self_exact_reference(chunk_bytes=2)
+    state = worker.inspect_cached_distributed_update_state_v4(
+        4, "exact_reference",
+    )
+    assert state["current_identity"] == worker._v3_reference_identity
+    worker.perturb_self_weights(123, 0.1)
+    with pytest.raises(RuntimeError, match="required full audit phase"):
+        worker.inspect_cached_distributed_update_state_v4(
+            4, "exact_reference",
+        )
+
+
 def test_unselected_origin_is_immutable_and_never_restored(monkeypatch):
     worker, _, _ = install_worker(monkeypatch)
     worker.save_self_exact_reference(chunk_bytes=2)

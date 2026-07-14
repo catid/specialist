@@ -15,6 +15,8 @@ import hashlib
 import json
 import math
 import re
+from collections import deque
+from concurrent.futures import ThreadPoolExecutor
 
 import torch
 
@@ -63,6 +65,14 @@ FROZEN_LAYER_PLANS_V4 = {
         ),
     },
 }
+
+# Each engine owns a full 35B checkpoint.  A serial SHA-256 pass leaves its
+# GPU waiting on one CPU core for minutes.  Hash independent parameter records
+# in parallel, then SHA-256 their ordered record digests into the partition
+# root.  The construction is deterministic across worker counts and retains a
+# cryptographic byte commitment for every tensor while bounding host staging.
+PARTITION_HASH_WORKERS_V4 = 8
+PARTITION_HASH_MAX_INFLIGHT_V4 = 16
 
 
 def _require_sha256_v4(name, value):
@@ -410,6 +420,9 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         chunk_bytes = int(chunk_bytes)
         if chunk_bytes <= 0:
             raise ValueError("digest chunk size must be positive")
+        named_tensors = list(named_tensors)
+        if not named_tensors:
+            raise RuntimeError(f"v4 {partition} partition is empty")
         digest = hashlib.sha256()
         prefix = json.dumps(
             self._partition_prefix_v4(partition),
@@ -420,20 +433,48 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         ).encode("ascii")
         digest.update(len(prefix).to_bytes(8, "little"))
         digest.update(prefix)
+        digest.update(len(named_tensors).to_bytes(8, "little"))
         total_bytes = 0
-        total_elements = 0
-        parameter_count = 0
-        for name, tensor in named_tensors:
-            total_bytes += self._update_tensor_hash(
-                digest, name, tensor.detach(), chunk_bytes,
+        total_elements = sum(int(tensor.numel()) for _, tensor in named_tensors)
+
+        def tensor_record(name, cpu_tensor):
+            record = hashlib.sha256()
+            byte_count = self._update_tensor_hash(
+                record, name, cpu_tensor, chunk_bytes,
             )
-            total_elements += int(tensor.numel())
-            parameter_count += 1
+            return record.digest(), byte_count
+
+        worker_count = min(PARTITION_HASH_WORKERS_V4, len(named_tensors))
+        inflight_limit = max(
+            worker_count, min(PARTITION_HASH_MAX_INFLIGHT_V4,
+                              len(named_tensors)),
+        )
+        pending = deque()
+
+        def consume_oldest():
+            nonlocal total_bytes
+            record_digest, byte_count = pending.popleft().result()
+            digest.update(len(record_digest).to_bytes(8, "little"))
+            digest.update(record_digest)
+            total_bytes += byte_count
+
+        with ThreadPoolExecutor(max_workers=worker_count) as executor:
+            for name, tensor in named_tensors:
+                # D2H copies remain ordered and bounded, while OpenSSL SHA-256
+                # runs on earlier CPU copies in parallel with later transfers.
+                cpu_tensor = tensor.detach().to(device="cpu", copy=True)
+                pending.append(executor.submit(
+                    tensor_record, name, cpu_tensor,
+                ))
+                if len(pending) >= inflight_limit:
+                    consume_oldest()
+            while pending:
+                consume_oldest()
         return {
             "schema": "eggroll-es-parameter-partition-sha256-v4",
             "partition": partition,
             "sha256": digest.hexdigest(),
-            "parameter_count": parameter_count,
+            "parameter_count": len(named_tensors),
             "total_elements": total_elements,
             "total_bytes": total_bytes,
             "layer_plan_file_sha256": self._v4_layer_plan_file_sha256,
@@ -488,6 +529,36 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
             "selected": selected,
             "unselected": unselected,
         }
+
+    def _record_full_audit_v4(self, identity, phase):
+        if (
+            not isinstance(identity, dict)
+            or identity.get("schema")
+            != "eggroll-es-partitioned-weight-state-v4"
+            or not isinstance(phase, str)
+            or not phase
+        ):
+            raise RuntimeError("v4 full-audit cache input is invalid")
+        self._v4_last_full_audit_identity = dict(identity)
+        self._v4_last_full_audit_phase = phase
+        return identity
+
+    def _require_full_audit_v4(self, phase):
+        identity = getattr(self, "_v4_last_full_audit_identity", None)
+        current = getattr(self, "_v3_current_identity", None)
+        if (
+            getattr(self, "_v4_last_full_audit_phase", None) != phase
+            or not isinstance(identity, dict)
+            or (
+                current is None
+                and phase != "layer_plan_install"
+            )
+            or (current is not None and identity != current)
+        ):
+            raise RuntimeError(
+                f"v4 cached state lacks required full audit phase {phase!r}"
+            )
+        return dict(identity)
 
     def _partitioned_weight_state_v4(
         self, chunk_bytes=64 * 1024 * 1024, require_unselected_origin=True,
@@ -738,17 +809,15 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
                 chunk_bytes=chunk_bytes, require_unselected_origin=False,
             )
             self._v4_unselected_origin_identity = dict(initial["unselected"])
-            # Rebuild after origin installation so all subsequent paths
-            # exercise the immutable-origin comparison.
-            initial = self._partitioned_weight_state_v4(
-                chunk_bytes=chunk_bytes, require_unselected_origin=True,
-            )
             self._v4_installed_identity = dict(initial)
+            self._record_full_audit_v4(initial, "layer_plan_install")
         except Exception:
             for name in (
                 *installed_attributes,
                 "_v4_unselected_origin_identity",
                 "_v4_installed_identity",
+                "_v4_last_full_audit_identity",
+                "_v4_last_full_audit_phase",
             ):
                 if hasattr(self, name):
                     delattr(self, name)
@@ -773,9 +842,16 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         """Capture selected tensors only; never recapture unselected origin."""
         self._require_layer_plan_v4()
         self._require_no_pending_update_v3()
-        unselected_current = self._verify_unselected_origin_v4(
-            "before exact reference capture", chunk_bytes=chunk_bytes,
-        )
+        first_capture = int(getattr(self, "_v3_reference_generation", 0)) == 0
+        if first_capture:
+            installed = self._require_full_audit_v4("layer_plan_install")
+            if installed != self._v4_installed_identity:
+                raise RuntimeError("v4 installed identity changed before capture")
+            unselected_current = dict(self._v4_unselected_origin_identity)
+        else:
+            unselected_current = self._verify_unselected_origin_v4(
+                "before exact reference capture", chunk_bytes=chunk_bytes,
+            )
         _, selected = self._validated_parameters_v4()
         references = {
             name: parameter.detach().to(device="cpu", copy=True)
@@ -784,6 +860,13 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         selected_reference = self._partition_identity_v4(
             "selected", list(references.items()), chunk_bytes,
         )
+        if (
+            first_capture
+            and selected_reference != self._v4_installed_identity["selected"]
+        ):
+            raise RuntimeError(
+                "selected weights changed between install and first capture"
+            )
         identity = self._combined_identity_v4(
             selected_reference, unselected_current,
         )
@@ -799,11 +882,19 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         self._v3_update_sequence = 0
         self._v3_accepted_alpha = 0.0
         self._v3_pending_update = None
+        # The first capture reuses the immediately preceding full install
+        # audit after independently re-hashing all selected CPU references.
+        # Later captures perform a fresh complement audit above.
+        self._v4_last_full_audit_identity = dict(identity)
+        self._v4_last_full_audit_phase = "exact_reference"
+        communicator = self._communicator_state_v3(REQUIRED_ENGINE_COUNT)
         return {
             "schema": "eggroll-es-selected-exact-reference-state-v4",
             "reference_generation": generation,
             "fresh_for_population": True,
             "identity": dict(identity),
+            "rank": communicator["rank"],
+            "world_size": communicator["world_size"],
             **self._binding_fields_v4(),
         }
 
@@ -847,6 +938,8 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         self._require_no_pending_update_v3()
         self._require_fresh_population_reference_v3()
         self._restore_selected_reference_v4(verify_partitions=False)
+        self._v4_last_full_audit_identity = None
+        self._v4_last_full_audit_phase = "population_restore_pending_audit"
         return True
 
     def verify_self_exact_reference(self, chunk_bytes=64 * 1024 * 1024):
@@ -870,9 +963,10 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         }
 
     def weight_state_sha256(self, chunk_bytes=64 * 1024 * 1024):
-        return self._partitioned_weight_state_v4(
+        current = self._partitioned_weight_state_v4(
             chunk_bytes=chunk_bytes, require_unselected_origin=True,
         )
+        return self._record_full_audit_v4(current, "explicit_weight_state")
 
     def perturb_self_weights(self, seed, noise_scale, negate=False):
         """Apply v3-compatible seeded noise to selected parameters only."""
@@ -883,6 +977,8 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
             raise ValueError("perturbation scale must be finite")
         sign = -1.0 if negate else 1.0
         self._set_seed(int(seed))
+        self._v4_last_full_audit_identity = None
+        self._v4_last_full_audit_phase = "population_perturbed"
         _, selected = self._validated_parameters_v4()
         with torch.no_grad():
             for _, parameter in selected:
@@ -957,6 +1053,10 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         )
         if current != self._v3_current_identity:
             raise RuntimeError("v4 current selected identity changed unexpectedly")
+        self._record_full_audit_v4(current, "explicit_state_inspection")
+        return self._worker_state_report_v4(communicator, current)
+
+    def _worker_state_report_v4(self, communicator, current):
         return {
             "schema": "eggroll-es-layer-restricted-worker-state-v4",
             "communicator": communicator,
@@ -970,6 +1070,15 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
             "pending": self._v3_pending_update is not None,
             **self._binding_fields_v4(),
         }
+
+    def inspect_cached_distributed_update_state_v4(
+        self, expected_world_size, required_full_audit_phase,
+    ):
+        """Report a just-audited state without immediately hashing 68GB again."""
+        self._require_no_pending_update_v3()
+        communicator = self._communicator_state_v3(expected_world_size)
+        current = self._require_full_audit_v4(required_full_audit_phase)
+        return self._worker_state_report_v4(communicator, current)
 
     def audit_population_completion_v4(
         self,
@@ -999,6 +1108,7 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
                 "partitioned weights differ from post-population reference"
             )
         self._v3_current_identity = dict(current)
+        self._record_full_audit_v4(current, "population_completion")
         return {
             "schema": "eggroll-es-post-population-audit-v4",
             "passed": True,
@@ -1102,6 +1212,7 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         expected_base_sha256 = str(expected_base_sha256)
         if current["sha256"] != expected_base_sha256:
             raise RuntimeError("v4 distributed update base hash changed")
+        self._record_full_audit_v4(current, "update_prepare")
         update_sequence = int(update_sequence)
         if update_sequence != int(self._v3_update_sequence) + 1:
             raise RuntimeError("v4 update sequence is stale or skipped")
@@ -1207,9 +1318,7 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
             - float(manifest["previous_alpha"])
         ) / float(manifest["population_size"])
         try:
-            base_identity = self._partitioned_weight_state_v4(
-                require_unselected_origin=True,
-            )
+            base_identity = self._require_full_audit_v4("update_prepare")
             if (
                 base_identity != self._v3_current_identity
                 or base_identity["sha256"] != manifest["expected_base_sha256"]
@@ -1256,6 +1365,9 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
                 torch.cuda.synchronize()
             final_identity = self._partitioned_weight_state_v4(
                 require_unselected_origin=True,
+            )
+            self._record_full_audit_v4(
+                final_identity, f"update_execute:{manifest_sha256}",
             )
         except Exception as error:
             self._v3_pending_update = None
@@ -1311,6 +1423,9 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         )
         if current != final_identity:
             raise RuntimeError("v4 weights changed between execute and commit")
+        self._record_full_audit_v4(
+            current, f"update_commit:{manifest_sha256}",
+        )
         manifest = pending["manifest"]
         self._v3_current_identity = dict(final_identity)
         self._v3_update_session = manifest["plan_id"]
@@ -1352,6 +1467,7 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
         restored = self._restore_selected_reference_v4(
             verify_partitions=True,
         )
+        self._record_full_audit_v4(restored, "distributed_abort")
         self._v3_current_identity = dict(restored)
         self._v3_reference_fresh = True
         self._v3_update_session = None

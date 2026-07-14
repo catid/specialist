@@ -262,6 +262,7 @@ def execute_line_search(
     eval_splits=ALLOWED_EVAL_SPLITS,
     prose_scorer=None,
     prose_comparator=None,
+    baseline_validator=None,
 ):
     """Evaluate a monotonic path and journal every completed state."""
     journal_path = Path(journal_path)
@@ -283,6 +284,8 @@ def execute_line_search(
         raise ValueError(
             "prose scorer and comparator must be enabled together"
         )
+    if baseline_validator is not None and not callable(baseline_validator):
+        raise ValueError("baseline validator must be callable")
 
     journal = {
         "schema": "eggroll-es-anchor-alpha-line-search-v1",
@@ -372,6 +375,8 @@ def execute_line_search(
                 )
             ),
         }
+        if baseline_validator is not None:
+            baseline_validator(state, snapshot)
         journal["states"].append(state)
         journal["in_progress"] = {
             "state_index": 0,

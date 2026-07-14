@@ -271,7 +271,8 @@ def test_layer_plan_is_installed_before_inherited_reference_capture(
             if method == "install_layer_plan_v4":
                 assert isinstance(args[0], bytes)
                 return install_reports(bundle)
-            if method == "inspect_distributed_update_state_v4":
+            if method == "inspect_cached_distributed_update_state_v4":
+                assert args == (4, "exact_reference")
                 return [{"placeholder": True}] * 4
             raise AssertionError(method)
 
@@ -290,7 +291,7 @@ def test_layer_plan_is_installed_before_inherited_reference_capture(
     assert events == [
         "install_layer_plan_v4",
         "inherited_reference_capture",
-        "inspect_distributed_update_state_v4",
+        "inspect_cached_distributed_update_state_v4",
     ]
 
 
@@ -309,7 +310,10 @@ def test_v4_snapshot_inherits_v2_and_v3_implementation_identities(
     monkeypatch.setattr(
         line_search_v4.driver_v3,
         "build_snapshot",
-        lambda *args, **kwargs: {"implementation": dict(inherited)},
+        lambda *args, **kwargs: {
+            **frozen_s6_snapshot_v4(),
+            "implementation": dict(inherited),
+        },
     )
     snapshot = line_search_v4.build_snapshot()
     assert snapshot["schema"] == "eggroll-es-anchor-line-search-snapshot-v4"
@@ -333,6 +337,66 @@ def test_v4_wrapper_exposes_effective_adapter_api():
         "load_trainer",
         "load_frozen_layer_plan_v4",
     )
+
+
+def frozen_s6_snapshot_v4():
+    split = lambda name: {
+        "rows": line_search_v4.FROZEN_S6_V4[name]["rows"],
+        "arrow_files": [{
+            "path": f"/safe/{name}.arrow",
+            "sha256": line_search_v4.FROZEN_S6_V4[name]["arrow_sha256"],
+        }],
+    }
+    anchor = line_search_v4.FROZEN_S6_V4["anchor"]
+    return {
+        "train": split("train"),
+        "evaluations": {
+            "validation": split("validation"),
+            "ood_qa": split("ood_qa"),
+        },
+        "anchor": {
+            "rows": anchor["rows"],
+            "sha256": anchor["sha256"],
+            "report": {"sha256": anchor["report_sha256"]},
+        },
+    }
+
+
+def test_v4_cli_freezes_eval_batch_model_sigma_engines_and_splits():
+    contract = line_search_v4.validate_frozen_execution_cli_v4([])
+    assert contract["mini_batch_size"] == 64
+    assert contract["gpu_ids"] == [0, 1, 2, 3]
+    with pytest.raises(ValueError, match="evaluation batch size"):
+        line_search_v4.validate_frozen_execution_cli_v4([
+            "--mini-batch-size", "8",
+        ])
+    with pytest.raises(ValueError, match="four TP=1 engines"):
+        line_search_v4.validate_frozen_execution_cli_v4([
+            "--use-gpus", "0,1",
+        ])
+
+
+def test_v4_snapshot_and_alpha_zero_baseline_are_frozen_before_population():
+    snapshot_value = frozen_s6_snapshot_v4()
+    assert line_search_v4.validate_frozen_s6_snapshot_v4(snapshot_value)
+    baseline = line_search_v4.FROZEN_S6_BASELINE_V4
+    state = {
+        "target_alpha": 0.0,
+        "qa": {
+            split: dict(baseline[split])
+            for split in ("validation", "ood_qa")
+        },
+        "ood_prose": dict(baseline["ood_prose"]),
+    }
+    assert line_search_v4.validate_frozen_s6_baseline_v4(
+        state, snapshot_value,
+    )
+    drifted = json.loads(json.dumps(state))
+    drifted["qa"]["validation"]["mean_reward"] += 0.001
+    with pytest.raises(RuntimeError, match="did not reproduce frozen S6"):
+        line_search_v4.validate_frozen_s6_baseline_v4(
+            drifted, snapshot_value,
+        )
 
 
 def test_v4_update_manifest_binds_mapping_and_dense_reward():

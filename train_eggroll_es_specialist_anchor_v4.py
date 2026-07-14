@@ -636,7 +636,8 @@ class FrozenLayerDenseRewardMixinV4(
             .configure_anchor(self, *args, **kwargs)
         )
         states = self._rpc_all_engines_v4(
-            "inspect_distributed_update_state_v4", (REQUIRED_ENGINE_COUNT,),
+            "inspect_cached_distributed_update_state_v4",
+            (REQUIRED_ENGINE_COUNT, "exact_reference"),
         )
         summary = self._validate_worker_states_v4(
             states, require_fresh=True,
@@ -659,7 +660,8 @@ class FrozenLayerDenseRewardMixinV4(
         if len({canonical_sha256(item) for item in states}) != 1:
             raise RuntimeError("v4 workers captured different exact references")
         inspected = self._rpc_all_engines_v4(
-            "inspect_distributed_update_state_v4", (REQUIRED_ENGINE_COUNT,),
+            "inspect_cached_distributed_update_state_v4",
+            (REQUIRED_ENGINE_COUNT, "exact_reference"),
         )
         summary = self._validate_worker_states_v4(
             inspected, require_fresh=True,
@@ -1160,8 +1162,11 @@ class FrozenLayerDenseRewardMixinV4(
             ):
                 raise RuntimeError("v4 distributed commit was not unanimous")
             post_states = self._rpc_all_engines_v4(
-                "inspect_distributed_update_state_v4",
-                (REQUIRED_ENGINE_COUNT,),
+                "inspect_cached_distributed_update_state_v4",
+                (
+                    REQUIRED_ENGINE_COUNT,
+                    f"update_commit:{manifest_sha}",
+                ),
             )
             post = self._validate_worker_states_v4(
                 post_states, require_fresh=False,

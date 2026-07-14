@@ -119,6 +119,49 @@ V4_DENSE_REWARD_CONFIG = {
 V4_DENSE_REWARD_SHA256 = (
     "4941f2e94091b1f8e7ab7b5294ebc6520b80aba1326b7dc6ccea5140a3da5da2"
 )
+V4_FROZEN_EVAL_BATCH_SIZE = 64
+V4_FROZEN_S6_SPLITS = {
+    "train": {
+        "rows": 794,
+        "sha256": (
+            "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6"
+        ),
+    },
+    "validation": {
+        "rows": 41,
+        "sha256": (
+            "19181b832e38ef6f97e3ba734362cd1af921f067e8edd249113c5129439443db"
+        ),
+    },
+    "ood_qa": {
+        "rows": 24,
+        "sha256": (
+            "b201123c6a358d306b7f874e400861068900bb764b1fda80eb663b82ca53dced"
+        ),
+    },
+}
+V4_FROZEN_S6_ANCHOR = {
+    "rows": 128,
+    "sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+    "report_sha256": (
+        "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5"
+    ),
+}
+V4_FROZEN_S6_BASELINE = {
+    "validation": {
+        "rows": 41, "exact": 2, "nonzero": 13,
+        "mean_reward": 0.08381010452961674,
+    },
+    "ood_qa": {
+        "rows": 24, "exact": 16, "nonzero": 23,
+        "mean_reward": 0.714128787878788,
+    },
+    "ood_prose": {
+        "item_count": 16,
+        "scored_token_count": 10926,
+        "mean_token_logprob": -1.2632580042542214,
+    },
+}
 
 
 class JournalValidationError(ValueError):
@@ -514,6 +557,27 @@ def _validate_snapshot(snapshot):
             },
             "v4 snapshot distributed policy",
         )
+        for split_name, split_identity in (
+            ("train", train),
+            ("validation", normalized_evaluations["validation"]),
+            ("ood_qa", normalized_evaluations["ood_qa"]),
+        ):
+            frozen = V4_FROZEN_S6_SPLITS[split_name]
+            _require(
+                split_identity["rows"] == frozen["rows"]
+                and len(split_identity["arrow_files"]) == 1
+                and split_identity["arrow_files"][0]["sha256"]
+                == frozen["sha256"],
+                f"v4 {split_name} artifact differs from frozen S6",
+            )
+        _require(
+            normalized_anchor["rows"] == V4_FROZEN_S6_ANCHOR["rows"]
+            and normalized_anchor["sha256"]
+            == V4_FROZEN_S6_ANCHOR["sha256"]
+            and normalized_anchor["report"]["sha256"]
+            == V4_FROZEN_S6_ANCHOR["report_sha256"],
+            "v4 prose anchor differs from frozen S6",
+        )
 
     recipe = snapshot.get("recipe")
     _require(isinstance(recipe, dict), "recipe identity is missing")
@@ -560,6 +624,21 @@ def _validate_snapshot(snapshot):
         _require(
             recipe["population_size"] % V3_ENGINE_COUNT == 0,
             "v3 population size is not divisible by four engines",
+        )
+    if schema == "eggroll-es-anchor-line-search-snapshot-v4":
+        _require(
+            recipe["checkpoint"] is None,
+            "v4 S6 family has an unfrozen input checkpoint",
+        )
+        _require(
+            Path(recipe["model_name"]).name == "Qwen3.6-35B-A3B",
+            "v4 S6 family model changed",
+        )
+        _require(
+            recipe["sigma"] == 0.0003
+            and recipe["mini_batch_size"] == V4_FROZEN_EVAL_BATCH_SIZE
+            and recipe["max_tokens"] == 32,
+            "v4 S6 frozen recipe changed",
         )
     normalized = {
         "schema": schema,
@@ -2072,6 +2151,30 @@ def validate_journal(journal):
         prose = _validate_prose_summary(state.get("ood_prose"), f"state {index}")
         if index == 0:
             baseline = {"qa": normalized_qa, "prose": prose}
+            if journal_schema == "eggroll-es-anchor-alpha-line-search-v4":
+                for split in ("validation", "ood_qa"):
+                    expected = V4_FROZEN_S6_BASELINE[split]
+                    actual = normalized_qa[split]
+                    _require(
+                        actual["rows"] == expected["rows"]
+                        and actual["exact"] == expected["exact"]
+                        and actual["nonzero"] == expected["nonzero"]
+                        and _same_float(
+                            actual["mean_reward"], expected["mean_reward"],
+                        ),
+                        f"v4 alpha-zero {split} did not reproduce frozen S6",
+                    )
+                expected_prose = V4_FROZEN_S6_BASELINE["ood_prose"]
+                _require(
+                    prose["item_count"] == expected_prose["item_count"]
+                    and prose["scored_token_count"]
+                    == expected_prose["scored_token_count"]
+                    and _same_float(
+                        prose["mean_token_logprob"],
+                        expected_prose["mean_token_logprob"],
+                    ),
+                    "v4 alpha-zero OOD prose did not reproduce frozen S6",
+                )
         _require(
             normalized_qa["validation"]["rows"]
             == baseline["qa"]["validation"]["rows"],
