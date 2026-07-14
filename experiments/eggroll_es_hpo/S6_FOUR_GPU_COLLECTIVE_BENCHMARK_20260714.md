@@ -23,6 +23,14 @@ larger, so this evidence rejects an NCCL algorithm override for the training
 recipe. At the slower default rate, the 572 MB update payload is about 65 ms;
 it is not the dominant runtime cost.
 
+Long-duration repetitions strengthen that conclusion. Four 300-second default
+runs measured `7.0289`, `8.0087`, `7.6790`, and `8.4345` algorithm GiB/s (mean
+`7.7878`). Forced Ring measured `7.5630` over 240 seconds and `7.8773` and
+`7.9403` over 300 seconds (mean `7.7935`). The long-run means differ by less
+than `0.1%`, much less than run-to-run variance. The final default run completed
+4,750 synchronized iterations on every rank with checksum `235520.0`; all four
+GPUs were sampled at 100% utilization throughout.
+
 ## Flat and bucket controls
 
 - A synchronized flat 142,999,552-element default run measured `5.7163`
