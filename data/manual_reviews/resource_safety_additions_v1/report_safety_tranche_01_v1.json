@@ -1,0 +1,116 @@
+{
+  "active_baseline": {
+    "curation": [
+      {
+        "path": "data/train_qa_curated_v1.curation.jsonl",
+        "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb"
+      },
+      {
+        "path": "data/train_qa_kinbakutoday.curation.jsonl",
+        "sha256": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+      }
+    ],
+    "dataset": {
+      "path": "data/train_qa_curated_v1.jsonl",
+      "rows": 784,
+      "sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507"
+    },
+    "report": {
+      "path": "data/train_qa_curated_v1.report.json",
+      "sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a"
+    }
+  },
+  "crash_restraint": {
+    "additions": 0,
+    "coverage_artifact": "data/raw/rope_resources_v1_coverage/crash_restraint.coverage.json",
+    "coverage_sha256": "10adff41241b2d93ebd7bc98da294fb22e2d41f64080c0f818a8dc11f196324a",
+    "reason": "reference_only; no stored source text is available for new evidence-pinned authoring"
+  },
+  "isolated_build_projection": {
+    "active_fact_ids_preserved": 784,
+    "active_fact_ids_removed": 0,
+    "build_script": "build_curated_qa.py",
+    "eval_fact_count": 612,
+    "output_rows": 794,
+    "output_sha256": "00d7b07ae95cefb6b406db02705914ee9d9be17bf9295c62f570d49fbed50630",
+    "pending_fact_ids_added": 10,
+    "repeat_byte_identical": true,
+    "rope365_rows": 288,
+    "validated_runs": 2
+  },
+  "leakage_checks": {
+    "active_facts_compared": 784,
+    "candidate_collisions": 0,
+    "heldout_document_artifacts": [
+      "data/heldout_docs.jsonl",
+      "data/ood_prose.jsonl",
+      "data/ood_prose_v3.jsonl"
+    ],
+    "heldout_facts_compared": 612,
+    "heldout_qa_artifacts": [
+      "data/eval_qa.jsonl",
+      "data/eval_qa_v2.jsonl",
+      "data/eval_qa_v3.jsonl",
+      "data/ood_qa.jsonl",
+      "data/ood_qa_v3.jsonl"
+    ],
+    "source_url_matches": 0
+  },
+  "method": {
+    "answer_support": "exact_substring_of_exact_stored_evidence",
+    "authoring": "manual_question_answer_and_evidence_selection",
+    "evidence_support": "exact_substring_of_hash_pinned_stored_document",
+    "excluded_classes": [
+      "volatile promotions",
+      "unsupported medical claims",
+      "active semantic duplicates",
+      "held-out fact or document overlap"
+    ],
+    "selection": "durable standalone safety and communication facts absent from the active dataset"
+  },
+  "output": {
+    "by_document": {
+      "communication": 5,
+      "safety": 5
+    },
+    "by_topic": {
+      "aftercare": 1,
+      "emergency_preparation": 1,
+      "fall_prevention": 1,
+      "incident_preparation": 1,
+      "negotiation": 1,
+      "partner_monitoring": 1,
+      "partner_vetting": 1,
+      "self_assessment": 1,
+      "supervision": 1,
+      "technique_risk_assessment": 1
+    },
+    "path": "data/manual_reviews/resource_safety_additions_v1/pending_additions_safety_tranche_01_v1.jsonl",
+    "rows": 10,
+    "sha256": "b294c1ea1712f523d65621a37f5996211a4470da4111f9e8be23024cdf2e3515",
+    "unique_fact_ids": 10,
+    "unique_questions": 10
+  },
+  "provenance": {
+    "data/rope_resources_coverage_v1.json": "d87e2b92f4a871200a2642c5d8ee7f4402f2fdc585c30fb4202d7e79ba57bb3d",
+    "sources/rope_resources_v1.json": "651ce27fece4b51c295ad5dc87b0b29ff051dbd34c9248efbbbe505ee8d25f25"
+  },
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-resource-safety-additions",
+  "schema": "manual-resource-safety-additions-report-v1",
+  "sources": {
+    "communication": {
+      "document_sha256": "ba41f96db0578f593930a21a579f6a30f3658b100da8390fea2edbdf5b4abb3d",
+      "file_sha256": "1fc5d27338c2dde3484df8566863c6dc6f855905a5915882b642b02faaa4620d",
+      "path": "data/raw/rope_resources_v1/rope365__b602b6493b5eb6f55206.json",
+      "url": "https://rope365.com/communication/"
+    },
+    "safety": {
+      "document_sha256": "f83771d810b2b197ec3a0fb58660ac529b996951413e58fa87ff48e37f52a6d7",
+      "file_sha256": "52bd91ac138ed002c3c46ccde4233dc586c1f59297e77ff254cefeda6f779018",
+      "path": "data/raw/rope_resources_v1/rope365__7b5d548036392d65fec7.json",
+      "url": "https://rope365.com/safety/"
+    }
+  },
+  "status": "segregated_pending_not_promoted"
+}

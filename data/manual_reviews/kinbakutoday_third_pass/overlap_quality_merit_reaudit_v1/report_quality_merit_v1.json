@@ -1,0 +1,126 @@
+{
+  "active_artifacts_observed": {
+    "data/train_qa_curated_v1.curation.jsonl": {
+      "rows": 1797,
+      "sha256": "ee28db85bea4a74b0114b4312f52129bc8699a2b4b74c02b755f363e8198edeb"
+    },
+    "data/train_qa_curated_v1.jsonl": {
+      "rows": 784,
+      "sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507"
+    },
+    "data/train_qa_curated_v1.report.json": {
+      "sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a"
+    },
+    "data/train_qa_kinbakutoday.curation.jsonl": {
+      "rows": 751,
+      "sha256": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    }
+  },
+  "active_files_mutated": false,
+  "artifacts": {
+    "explicit_audit": {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/overlap_quality_merit_reaudit_v1/quality_merit_audit_v1.jsonl",
+      "rows": 107,
+      "sha256": "ca6fa549674d27ccbc22117ede5eac1c2d4ee976ffa9aaafc8798b3bf95b60bc"
+    },
+    "pending_append_safe": {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/overlap_quality_merit_reaudit_v1/pending_curation_quality_merit_v1.jsonl",
+      "rows": 22,
+      "sha256": "ac81ee03c6a738460c6020a4861e676592a5c63b18b76ab453b460faef45c558"
+    },
+    "pending_replacements": {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/overlap_quality_merit_reaudit_v1/pending_replacements_quality_merit_v1.jsonl",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "historical_overlap_reason_used_for_quality_decisions": false,
+  "inputs": [
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_01_overlap_a_v1.jsonl",
+      "rows": 56,
+      "sha256": "e621cab40b06739dc13753bfcd6f941e512dde54f46ba93490501eb86a4f7ca4"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_01_overlap_a_v1.jsonl",
+      "rows": 1,
+      "sha256": "73a145a8e0d0115595e16fa073e59b527798ef2d33ad21603ce87fb54285de2f"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_curation_tranche_02_overlap_b_v1.jsonl",
+      "rows": 49,
+      "sha256": "84489f323db629f568117d8556b0d09fc1c175823d905d9e09600a750d733022"
+    },
+    {
+      "path": "data/manual_reviews/kinbakutoday_third_pass/pending_replacements_tranche_02_overlap_b_v1.jsonl",
+      "rows": 1,
+      "sha256": "7b58da7d18a31e35378846251c4c9dd61418b1048f8f7302c9b1142f766fbb3a"
+    }
+  ],
+  "manual_outcome": {
+    "drop": 22,
+    "keep": 85,
+    "prior_edit_keep": 2,
+    "reason_counts": {
+      "contextless_or_low_value": 10,
+      "out_of_domain_or_personal_trivia": 4,
+      "semantic_duplicate": 4,
+      "source_error_or_misread": 1,
+      "volatile_or_promotional": 3
+    },
+    "reviewed_rows": 107
+  },
+  "prior_edits_retained": [
+    "fact-8dbbd54ad40d9410125d",
+    "fact-aff84cf200ba95716418"
+  ],
+  "promotion_scope": "segregated_quality_merit_candidate; no active promotion was performed by this audit",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-kinbakutoday-overlap-quality-merit",
+  "schema": "manual-source-audit-report-v1",
+  "source_verification": {
+    "manual_paraphrase_rows": [
+      "fact-450cc6ca8581da4c2681"
+    ],
+    "raw_document_hash_matches": 107,
+    "rows_manually_read": 107,
+    "source_documents_checked": 30,
+    "support_counts": {
+      "manual_paraphrase": 1,
+      "normalized_extractive": 106
+    }
+  },
+  "tranches": {
+    "1": {
+      "drop": 8,
+      "keep": 49,
+      "reviewed": 57
+    },
+    "2": {
+      "drop": 14,
+      "keep": 36,
+      "reviewed": 50
+    }
+  },
+  "validated_projection": {
+    "curated_output": {
+      "curation_decisions": 2570,
+      "excluded_rows": 2524,
+      "kinbakutoday_rows": 277,
+      "output_rows": 762,
+      "output_sha256": "54880739de80ba751ce0e7b476d6bfc02e29bed6851db558a2ac5e1043536e74",
+      "report_sha256": "8b2c0ce78d5d3785b505861ab69da33d3c831a91905694fb9bbf0b11dd8ccf27"
+    },
+    "method": "promote_curation_ledgers.py appended the pending merit ledger to an isolated copy of the active general ledger; build_curated_qa.py then produced byte-identical outputs twice. Embedded provenance paths were normalized to their final active paths for the projected production hashes.",
+    "promoted_general_curation": {
+      "appended_rows": 22,
+      "drop_decisions": 1771,
+      "edit_decisions": 48,
+      "replacement_rows": 0,
+      "rows": 1819,
+      "sha256": "e1b73252e966fa343b611982900209c7900f6373508cfed2c5782309ac1e65c6"
+    },
+    "repeat_build_byte_identical": true,
+    "status": "passed"
+  }
+}
