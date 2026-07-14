@@ -1,4 +1,4 @@
-# S6 V11c inter-engine-rendezvous failure
+# S6 V11c post-engine/pre-journal launch failure
 
 V11c was launched once on 2026-07-14 with the committed complete-runtime-API
 implementation at commit `7ab2daa79299f6800db31ff3bafa5a358cbd4ef3` and the fresh experiment name
@@ -6,21 +6,25 @@ implementation at commit `7ab2daa79299f6800db31ff3bafa5a358cbd4ef3` and the fres
 
 The launch passed the V11c API preflight and created four Ray/vLLM actors, one
 on each of GPUs 0--3. All four actors loaded Qwen3.6-35B-A3B successfully at
-approximately 64.69 GiB per GPU. Construction then failed during the inherited
-`EvolutionStrategiesTrainer.__init__` call to
-`collective_rpc("init_inter_engine_group", ...)`: only PID 3546921 logged the
-start of the PyNCCL/NCCL rendezvous, while the other three actors recorded no
-rendezvous completion or worker exception. At 18:03:10 UTC the driver cleanup
-killed all four actors and called `ray.shutdown()`.
+approximately 64.69 GiB per GPU. PID 3546921 then logged the start of PyNCCL,
+and at 18:03:10 UTC driver cleanup killed all four actors and called
+`ray.shutdown()`.
+
+That single-rank PyNCCL log does **not** localize the failure to rendezvous:
+successful V10 has the same rank-zero-only logging pattern and begins inference
+roughly 22 seconds later, matching V11c's quiet interval. The durable boundary
+is therefore only after all four engine/model loads and before initial journal
+creation. The available evidence cannot distinguish inter-engine group
+initialization, the remaining trainer-constructor/eval-cache work,
+`configure_anchor`, or an external coordinator-side interruption.
 
 The exact foreground exception was not durably captured: the unified terminal
 chunk was truncated and the Ray logs contain no Python traceback. The durable
-evidence therefore localizes the boundary to inter-engine group initialization,
-but does not justify a narrower root-cause claim (for example, transport failure
-versus a coordinator-side interruption).
+evidence therefore does not justify a narrower root-cause claim.
 
-The failure preceded `configure_anchor`, coefficient construction, any
-perturbation, and journal creation. The run directory contains only empty
+The failure preceded `execute_line_search`, coefficient construction, any
+perturbation, and journal creation. It may or may not have entered
+`configure_anchor`. The run directory contains only empty
 `checkpoints/` and `eval-output/` directories. No parameter update was prepared
 or applied, and validation, OOD, and sealed-heldout content were not scored or
 opened.
@@ -48,4 +52,6 @@ The corresponding stderr SHA-256 values are:
 - `8d84ae80f7feabb5d295558f9131c6f2ed5fd972576ac7f6768d1a48da45096a`
 
 V11c and its failed run directory are immutable evidence. Any retry must use a
-new version, a new experiment name, and durable foreground logging.
+new version, a new experiment name, and durable foreground logging. Later
+forensics must retain the broad post-engine/pre-journal boundary unless new
+durable evidence narrows it.
