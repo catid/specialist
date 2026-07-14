@@ -42,6 +42,24 @@ class ContextMeritAuditV17Test(unittest.TestCase):
             self.assertEqual(path.read_bytes(), expected,
                              f"test mutated frozen artifact: {path}")
 
+    def test_future_context_tranches_are_not_historical_inputs(self) -> None:
+        manual_root = builder.DATA / "manual_reviews"
+        prior = manual_root / "context_merit_audit_v16" / "synthetic.jsonl"
+        future = manual_root / "context_merit_audit_v999" / "synthetic.jsonl"
+        scanner = builder
+        while not hasattr(scanner, "reviewed_fact_ids"):
+            scanner = scanner.previous
+        reader = mock.Mock(return_value=[{"fact_id": "fact-synthetic-prior"}])
+        with mock.patch.object(Path, "rglob", return_value=[prior, future]), \
+                mock.patch.object(scanner, "read_jsonl", reader):
+            result = builder.ranked_unreviewed([])
+        self.assertEqual(
+            builder.PRIOR_CONTEXT_MERIT_DIRS,
+            frozenset(f"context_merit_audit_v{i}" for i in range(1, 17)),
+        )
+        self.assertEqual(result, ([], 1, 0))
+        self.assertEqual(reader.call_args_list, [mock.call(prior)])
+
     def test_selection_is_exact_and_nonoverlapping(self) -> None:
         ranked, _, _ = builder.ranked_unreviewed(
             builder.read_jsonl(builder.ACTIVE_DATASET))
