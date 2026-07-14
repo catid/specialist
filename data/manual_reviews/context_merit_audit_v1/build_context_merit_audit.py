@@ -67,6 +67,10 @@ PERSON_INTERROGATIVES = frozenset({"who", "whom", "whose", "when", "where"})
 ID_FIELDS = frozenset({
     "fact_id", "original_fact_id", "audited_fact_id", "active_fact_id",
 })
+# This tranche predates every context-merit ledger.  Keep its replay isolated
+# from later context_merit_audit_v* siblings while retaining the contemporaneous
+# non-context review ledgers that formed the original exclusion set.
+PRIOR_CONTEXT_MERIT_DIRS = frozenset()
 
 
 def raw(name: str) -> Path:
@@ -447,6 +451,10 @@ def reviewed_fact_ids() -> set[str]:
     manual_root = DATA / "manual_reviews"
     for path in sorted(manual_root.rglob("*.jsonl")):
         if OUT_DIR in path.parents:
+            continue
+        review_dir = path.relative_to(manual_root).parts[0]
+        if (re.fullmatch(r"context_merit_audit_v\d+", review_dir) and
+                review_dir not in PRIOR_CONTEXT_MERIT_DIRS):
             continue
         for row in read_jsonl(path):
             for field in ID_FIELDS:

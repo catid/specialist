@@ -67,6 +67,10 @@ ID_FIELDS = frozenset({
 ACTIVE_REVIEW_FIELDS = frozenset({
     "review", "curation", "reviewer", "verified_at",
 })
+# V2 may consume V1, but no later context-merit tranche.  Freezing this ancestry
+# prevents future context_merit_audit_v* siblings from changing historical
+# selection while preserving all other contemporaneous review ledgers.
+PRIOR_CONTEXT_MERIT_DIRS = frozenset({"context_merit_audit_v1"})
 
 
 def raw(name: str) -> Path:
@@ -426,8 +430,13 @@ def tokens(text: str) -> list[str]:
 
 def reviewed_fact_ids() -> set[str]:
     reviewed = set()
-    for path in sorted((DATA / "manual_reviews").rglob("*.jsonl")):
+    manual_root = DATA / "manual_reviews"
+    for path in sorted(manual_root.rglob("*.jsonl")):
         if OUT_DIR in path.parents:
+            continue
+        review_dir = path.relative_to(manual_root).parts[0]
+        if (re.fullmatch(r"context_merit_audit_v\d+", review_dir) and
+                review_dir not in PRIOR_CONTEXT_MERIT_DIRS):
             continue
         for row in read_jsonl(path):
             for field in ID_FIELDS:
