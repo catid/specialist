@@ -1,0 +1,43 @@
+{
+  "schema": "eggroll-es-v6-four-pilot-family-evidence-v7",
+  "smoke_gate": {
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v6_smoke_gate_seed42.json",
+    "file_sha256": "9669b75fc7e70965f8552ae15ffd6c471a2555eb855a831839d5334cb0474ea3",
+    "binding_sha256": "3bdc4723fbfe069614138005afc42875ed0f0754cdea2197bd13f1e2d31fd6ee"
+  },
+  "pilots": [
+    {
+      "arm": "back",
+      "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v6_back_pilot_seed42/alpha_line_search.json",
+      "file_sha256": "db248d2043e6602560ff65dc541a78d90547f7b7e53b498d05e3ec88d0159424",
+      "content_sha256": "2987235495e7737bb89286344a36fd66618d229fdc0bca4bec6c35e41d733ec2",
+      "coefficient_sha256": "a1666b2e92d87c6fded098962ecf8631b1073fe7e7a7416ba3ba76fe9d813271",
+      "robust_plan_sha256": "bdac2ddffbd85cdef8d31ecf0451e8d5be7ce1633714bb008490b1e47f04461b"
+    },
+    {
+      "arm": "front",
+      "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v6_front_pilot_seed42/alpha_line_search.json",
+      "file_sha256": "01412f68035abad19c38dc47594b394db112d18d06a1e593ba035e6486e35c3a",
+      "content_sha256": "4dd8811ba86eaf0df85d4ffdcd6066414e52a3a859cdadeb5d8576988620cba4",
+      "coefficient_sha256": "d8e360b8a496b6d92324137cacd88b19deede9ef15565b9f64e3c7fe2812b5e8",
+      "robust_plan_sha256": "62ef890151f029c5b6cc046358b8e986be84aa76514dd2ee8fef554c8918e884"
+    },
+    {
+      "arm": "middle_early",
+      "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v6_middle_early_pilot_seed42/alpha_line_search.json",
+      "file_sha256": "39aa1007557469554819faddd6e371c93db3e0a1e26a8adc38a92c965abd67fc",
+      "content_sha256": "d4a53e8e81d11bca8e1d86414e0d2faf62499437396374832280c35599d00f1e",
+      "coefficient_sha256": "35e0fba3a6d440cc67a78d513c951a5c6447f9488ad4a9c2e371a488d70123dc",
+      "robust_plan_sha256": "2d6ed67b095227c34fb82761ea2ed9dc9721fe91810fbd022335f4f83be65790"
+    },
+    {
+      "arm": "middle_late",
+      "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v6_middle_late_pilot_seed42/alpha_line_search.json",
+      "file_sha256": "17d0fd12f8672bd0fd436c1c8cdf237219bf479809379b9ebdb529dcd97b85e7",
+      "content_sha256": "ffe0f862d5ddd0e2e480bc966b24449f02b28923491b49bdb27c87a0918da247",
+      "coefficient_sha256": "f3fec334b70267f54a57b4ba60ef7ba289caf21c88dfdc3008851dec96d64df5",
+      "robust_plan_sha256": "e76ee5a62879548fb95c3c0a6628e19b4adb1a8fba8d30615931cb3dc173bf2e"
+    }
+  ],
+  "content_sha256_before_self_field": "3064e8878b9fd237aaa2b3d775b962b1292b44eda0cee061338be0efb24a35db"
+}

@@ -1,0 +1,89 @@
+{
+  "all_arms_passed": false,
+  "arms": [
+    {
+      "arm": "front",
+      "passed": false,
+      "runs": [
+        {
+          "arm": "front",
+          "coefficient_sha256": "28cb2c1e2feca945e974fce8b466986bfd72e9c0ac3f2f60b2fe753c5e2ea5a4",
+          "content_sha256": "67d003b4b9344e7ad8f7fe89819f4c6a021aaa01d3cd9b6085d631846e0b7c20",
+          "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v7_front_stability_seed43/alpha_line_search.json",
+          "journal_file_sha256": "e81f0d2bee2fc663f9251bf47c97cec805a50866a7125cd65cae83a814ccda72",
+          "robust_plan_sha256": "88d29245987de69a9e36fe2aeab17d3fd153653f0bb3476a11e1c15177d6c389",
+          "seed": 43
+        },
+        {
+          "arm": "front",
+          "coefficient_sha256": "6f92356751cc5a8280d741db76051dab9673ac5e6fb54dca75a980eb4888c865",
+          "content_sha256": "933390b8a46c61ce141f36231c0891060826f44b3f7abba88cfc8de481703f2a",
+          "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v7_front_stability_seed44/alpha_line_search.json",
+          "journal_file_sha256": "39402b74752c1021e2704a21170498678a8c76b22b8f0c893e4689bbf7259bbb",
+          "robust_plan_sha256": "799ba69c854287b40e408f7af0252454c3bcb95686a48b37fea47f9c447e1274",
+          "seed": 44
+        }
+      ],
+      "seed_slot_coefficient_cosine": 0.06870231114244911,
+      "seeds": [
+        43,
+        44
+      ],
+      "threshold": 0.5
+    },
+    {
+      "arm": "middle_late",
+      "passed": true,
+      "runs": [
+        {
+          "arm": "middle_late",
+          "coefficient_sha256": "208aee1867852e01400f7535c3e18674f19d4bd6f5032154c8e792bf5e9ac126",
+          "content_sha256": "b088446fa51f8094d804eab23b4c3055f07d9e5524b71de0dc6d63bc11c244de",
+          "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v7_middle_late_stability_seed43/alpha_line_search.json",
+          "journal_file_sha256": "f77d359ec0b831873593af6fb43a3e8155779ba336283cc07273dc555314464e",
+          "robust_plan_sha256": "372e0af00ab9c026fb9832b414030564fd6968ab4e63a87ef1105459724cc1ab",
+          "seed": 43
+        },
+        {
+          "arm": "middle_late",
+          "coefficient_sha256": "9e70662cbce6e4aee9d23f7d758d86195572bee1314d3a6987888214b5feb60d",
+          "content_sha256": "73419485d207c3ba4b17a83fa8636f0c781c379da271b13535cbd28502a50e55",
+          "journal": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v7_middle_late_stability_seed44/alpha_line_search.json",
+          "journal_file_sha256": "356f5374f180b7a74610fac1f77e540be83a19d4ee9e5f8b033ba02990d1e55d",
+          "robust_plan_sha256": "5f66d4b406be3c0b98149b6408d9ea487bb57c857434c2de5114db2766fbad3e",
+          "seed": 44
+        }
+      ],
+      "seed_slot_coefficient_cosine": 0.5019011191439507,
+      "seeds": [
+        43,
+        44
+      ],
+      "threshold": 0.5
+    }
+  ],
+  "content_sha256_before_self_field": "3ff4031fde91ac1725868fb02932ad5551ba41f2bb114fd1945ca5c00cb5e941",
+  "coverage": {
+    "arms": [
+      "front",
+      "middle_late"
+    ],
+    "seeds": [
+      43,
+      44
+    ],
+    "target_alphas": [
+      0.0
+    ]
+  },
+  "implementation": {
+    "reporter_v7": "43772c1c0596296e92f34219e2c74e6ef838784010b9e5a97049caacb893e005",
+    "stability_driver_v7": "86fa5406106fbaeace256659218773ab1e3adb5a54b50ca579b57dba792c31c5"
+  },
+  "implementation_bundle_sha256": "42667c422421f434d0b0c4c39e17a7036015dae0eb40d20d7b313dab7a16a36f",
+  "metric": "seed_slot_coefficient_cosine",
+  "metric_interpretation": "cosine of projected ES coefficient vectors in population-slot order; this is a response-shape stability screen, not a parameter-space update cosine across different perturbation seeds",
+  "preregistered_threshold": 0.5,
+  "schema": "eggroll-es-direction-stability-report-v7",
+  "selection_policy": "coefficient_only_no_validation_ood_or_holdout_metrics_in_report"
+}
