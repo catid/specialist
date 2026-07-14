@@ -1,5 +1,6 @@
 import copy
 import json
+import sys
 from types import SimpleNamespace
 
 import pytest
@@ -38,7 +39,7 @@ def make_args(tmp_path, trials=None, force=False):
         max_guard_degradation=0.0,
         max_guard_exact_loss=0,
         ood_prose_jsonl=None,
-        max_ood_prose_degradation=0.02,
+        max_ood_prose_degradation=0.0,
         n_vllm_engines=4,
         n_gpu_per_vllm_engine=1,
         use_gpus="0,1,2,3",
@@ -54,6 +55,12 @@ def make_summary(args, sigma, alpha, steps, score=0.5):
         **hpo.expected_summary(args, sigma, alpha, steps),
         "evaluations": {"final": {"train": score}},
     }
+
+
+def test_cli_defaults_to_strict_ood_prose_policy(monkeypatch):
+    monkeypatch.setattr(sys, "argv", ["run_eggroll_es_hpo.py"])
+
+    assert hpo.parse_args().max_ood_prose_degradation == 0.0
 
 
 def write_cache(args, name, sigma, alpha, steps, dataset, model, summary=None):
@@ -214,17 +221,74 @@ def test_summary_requires_matching_ood_prose_gate(tmp_path):
             summary, hpo.expected_summary(args, 0.0, 0.0, 0),
             tmp_path / "summary.json", ["train"],
             dataset["ood_prose_jsonl"],
+            args.max_ood_prose_degradation,
         )
 
     summary["ood_prose"] = {
         "dataset": {"sha256": dataset["ood_prose_jsonl"]["sha256"]},
-        "gate": {"passed": True},
+        "gate": {
+            "delta": 0.0,
+            "max_degradation": 0.0,
+            "paired_document_bootstrap_95_ci": [0.0, 0.0],
+            "passed": True,
+        },
     }
     hpo.validate_summary(
         summary, hpo.expected_summary(args, 0.0, 0.0, 0),
         tmp_path / "summary.json", ["train"],
         dataset["ood_prose_jsonl"],
+        args.max_ood_prose_degradation,
     )
+
+
+def test_summary_rejects_true_prose_gate_from_looser_policy(tmp_path):
+    args = make_args(tmp_path)
+    args.ood_prose_jsonl = tmp_path / "ood.jsonl"
+    args.ood_prose_jsonl.write_text('{"text":"frozen"}\n')
+    dataset = hpo.dataset_snapshot(args)
+    summary = make_summary(args, 0.001, 0.00025, 3)
+    summary["ood_prose"] = {
+        "dataset": {"sha256": dataset["ood_prose_jsonl"]["sha256"]},
+        "gate": {
+            "delta": -0.004,
+            "max_degradation": 0.02,
+            "paired_document_bootstrap_95_ci": [-0.007, -0.001],
+            "passed": True,
+        },
+    }
+
+    with pytest.raises(RuntimeError, match="requested threshold"):
+        hpo.validate_summary(
+            summary, hpo.expected_summary(args, 0.001, 0.00025, 3),
+            tmp_path / "summary.json", ["train"],
+            dataset["ood_prose_jsonl"], 0.0,
+        )
+
+
+def test_guarded_selection_recomputes_strict_prose_policy():
+    baseline = {
+        "evaluations": {"final": {"train": 0.5, "ood": 0.4}}
+    }
+    results = [{
+        "name": "treatment",
+        "validation_score": 0.6,
+        "evaluation_scores": {"train": 0.6, "ood": 0.4},
+        "ood_prose_guard_passed": True,
+        "ood_prose_gate": {
+            "delta": -0.004,
+            "max_degradation": 0.02,
+            "paired_document_bootstrap_95_ci": [-0.007, -0.001],
+            "passed": True,
+        },
+    }]
+
+    _, _, best_guarded, selected = hpo.select_best_guarded(
+        baseline, results, "train", ["ood"], 0.0, 0, 0.0,
+    )
+
+    assert best_guarded is None
+    assert selected["name"] == "baseline"
+    assert results[0]["ood_prose_gate_inspection"]["valid"] is False
 
 
 def test_evaluation_details_pin_exact_nonzero_and_raw_hash(tmp_path):

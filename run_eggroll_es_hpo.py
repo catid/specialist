@@ -4,6 +4,7 @@
 import argparse
 import hashlib
 import json
+import math
 import subprocess
 from pathlib import Path
 
@@ -68,7 +69,7 @@ def parse_args():
         help="Optional frozen prose artifact scored before and after each run",
     )
     parser.add_argument(
-        "--max-ood-prose-degradation", type=float, default=0.02,
+        "--max-ood-prose-degradation", type=float, default=0.0,
         help="Maximum mean-token-logprob loss allowed by the prose gate",
     )
     parser.add_argument("--n-vllm-engines", type=int, default=4)
@@ -270,8 +271,133 @@ def evaluation_details(run_dir, scores, steps):
     return details
 
 
+def inspect_ood_prose_gate(gate, expected_max_degradation):
+    """Validate a prose gate and independently apply the requested policy.
+
+    The trainer's recorded boolean is provenance, not an authority.  In
+    particular, a true decision made with a 0.02 margin must not become
+    admissible when a later consumer asks for the strict 0.0 policy.
+    """
+    issues = []
+    if (
+        isinstance(expected_max_degradation, bool)
+        or not isinstance(expected_max_degradation, (int, float))
+        or not math.isfinite(expected_max_degradation)
+        or expected_max_degradation < 0
+    ):
+        raise ValueError(
+            "expected OOD prose degradation must be a finite nonnegative "
+            "number"
+        )
+    expected_max_degradation = float(expected_max_degradation)
+    if not isinstance(gate, dict):
+        return {
+            "valid": False,
+            "policy_passed": False,
+            "issues": ["gate is not an object"],
+        }
+
+    def finite_number(field):
+        value = gate.get(field)
+        if (
+            isinstance(value, bool)
+            or not isinstance(value, (int, float))
+            or not math.isfinite(value)
+        ):
+            issues.append(f"{field} is not a finite number")
+            return None
+        return float(value)
+
+    recorded_max = finite_number("max_degradation")
+    delta = finite_number("delta")
+    interval = gate.get("paired_document_bootstrap_95_ci")
+    if not isinstance(interval, list) or len(interval) != 2:
+        issues.append("paired_document_bootstrap_95_ci is not a pair")
+        lower = upper = None
+    else:
+        bounds = []
+        for value in interval:
+            if (
+                isinstance(value, bool)
+                or not isinstance(value, (int, float))
+                or not math.isfinite(value)
+            ):
+                issues.append(
+                    "paired_document_bootstrap_95_ci has a non-finite bound"
+                )
+                bounds = []
+                break
+            bounds.append(float(value))
+        if bounds:
+            lower, upper = bounds
+            if lower > upper:
+                issues.append(
+                    "paired_document_bootstrap_95_ci is not ordered"
+                )
+        else:
+            lower = upper = None
+    recorded_passed = gate.get("passed")
+    if not isinstance(recorded_passed, bool):
+        issues.append("passed is not boolean")
+
+    if recorded_max is not None:
+        if recorded_max < 0:
+            issues.append("max_degradation is negative")
+        if recorded_max != expected_max_degradation:
+            issues.append(
+                "max_degradation does not match the requested policy"
+            )
+    if (
+        lower is not None
+        and recorded_max is not None
+        and isinstance(recorded_passed, bool)
+        and recorded_passed != (lower >= -recorded_max)
+    ):
+        issues.append("passed disagrees with the recorded threshold and CI")
+
+    baseline = gate.get("baseline")
+    final = gate.get("final")
+    if baseline is not None or final is not None:
+        if (
+            isinstance(baseline, bool)
+            or not isinstance(baseline, (int, float))
+            or not math.isfinite(baseline)
+            or isinstance(final, bool)
+            or not isinstance(final, (int, float))
+            or not math.isfinite(final)
+        ):
+            issues.append("baseline/final are not finite numbers")
+        elif delta is not None and not math.isclose(
+            float(final) - float(baseline), delta,
+            rel_tol=1e-12, abs_tol=1e-12,
+        ):
+            issues.append("delta disagrees with baseline and final")
+
+    valid = not issues
+    policy_passed = (
+        valid
+        and recorded_passed is True
+        and delta is not None
+        and delta >= -expected_max_degradation
+        and lower is not None
+        and lower >= -expected_max_degradation
+    )
+    return {
+        "valid": valid,
+        "policy_passed": policy_passed,
+        "issues": issues,
+        "expected_max_degradation": expected_max_degradation,
+        "recorded_max_degradation": recorded_max,
+        "recorded_passed": recorded_passed,
+        "delta": delta,
+        "ci_lower": lower,
+        "ci_upper": upper,
+    }
+
+
 def validate_summary(summary, expected, summary_path, eval_splits=("train",),
-                     ood_prose_snapshot=None):
+                     ood_prose_snapshot=None,
+                     ood_prose_max_degradation=None):
     if not isinstance(summary, dict):
         raise RuntimeError(f"invalid cached run summary: {summary_path}")
     mismatches = {
@@ -296,11 +422,23 @@ def validate_summary(summary, expected, summary_path, eval_splits=("train",),
                 "expected": ood_prose_snapshot["sha256"],
                 "recorded": dataset.get("sha256"),
             }
-        if not isinstance(gate.get("passed"), bool):
-            mismatches["ood_prose.gate.passed"] = {
-                "expected": "boolean gate decision",
-                "recorded": gate.get("passed"),
+        if ood_prose_max_degradation is None:
+            mismatches["ood_prose.gate.max_degradation"] = {
+                "expected": "explicit requested threshold",
+                "recorded": gate.get("max_degradation"),
             }
+        else:
+            inspection = inspect_ood_prose_gate(
+                gate, ood_prose_max_degradation,
+            )
+            if not inspection["valid"]:
+                mismatches["ood_prose.gate"] = {
+                    "expected": (
+                        "well-formed gate evaluated at requested threshold"
+                    ),
+                    "recorded": gate,
+                    "issues": inspection["issues"],
+                }
     if mismatches:
         raise RuntimeError(
             f"cached run summary does not match requested run at "
@@ -321,7 +459,8 @@ def run_request(command, frozen_dataset, frozen_model, trainer_sha256=None):
 
 
 def load_cached_run(run_dir, command, request, expected, eval_splits,
-                    ood_prose_snapshot=None):
+                    ood_prose_snapshot=None,
+                    ood_prose_max_degradation=None):
     summary_path = run_dir / "run_summary.json"
     command_path = run_dir / "command.json"
     request_path = run_dir / "run_request.json"
@@ -343,7 +482,9 @@ def load_cached_run(run_dir, command, request, expected, eval_splits,
         )
     summary = json.loads(summary_path.read_text())
     validate_summary(
-        summary, expected, summary_path, eval_splits, ood_prose_snapshot)
+        summary, expected, summary_path, eval_splits, ood_prose_snapshot,
+        ood_prose_max_degradation,
+    )
     return summary
 
 
@@ -361,7 +502,10 @@ def run_one(args, name, sigma, alpha, steps, frozen_dataset, frozen_model,
     if summary_path.exists() and not force:
         return load_cached_run(
             run_dir, command, request, expected, eval_splits,
-            ood_prose_snapshot)
+            ood_prose_snapshot,
+            (args.max_ood_prose_degradation
+             if ood_prose_snapshot is not None else None),
+        )
 
     run_dir.mkdir(parents=True, exist_ok=True)
     # A failed forced rerun must never leave a stale summary that looks fresh.
@@ -381,7 +525,10 @@ def run_one(args, name, sigma, alpha, steps, frozen_dataset, frozen_model,
         raise RuntimeError(f"training did not write summary: {summary_path}")
     summary = json.loads(summary_path.read_text())
     validate_summary(
-        summary, expected, summary_path, eval_splits, ood_prose_snapshot)
+        summary, expected, summary_path, eval_splits, ood_prose_snapshot,
+        (args.max_ood_prose_degradation
+         if ood_prose_snapshot is not None else None),
+    )
     return summary
 
 
@@ -406,7 +553,8 @@ def select_best(baseline_score, baseline_summary, results):
 
 def select_best_guarded(baseline_summary, results, selection_split,
                         guard_splits, max_guard_degradation,
-                        max_guard_exact_loss=None):
+                        max_guard_exact_loss=None,
+                        max_ood_prose_degradation=None):
     baseline_scores = baseline_summary["evaluations"]["final"]
     baseline_details = baseline_summary.get("evaluation_details", {})
     baseline = {
@@ -441,10 +589,25 @@ def select_best_guarded(baseline_summary, results, selection_split,
                 )
                 for split in guard_splits
             )
+        if max_ood_prose_degradation is None:
+            prose_guard_passed = result.get(
+                "ood_prose_guard_passed", True,
+            ) is True
+        else:
+            prose_inspection = inspect_ood_prose_gate(
+                result.get("ood_prose_gate"),
+                max_ood_prose_degradation,
+            )
+            result["ood_prose_gate_inspection"] = prose_inspection
+            prose_guard_passed = (
+                prose_inspection["policy_passed"]
+                and result.get("ood_prose_guard_passed") is True
+            )
+        result["ood_prose_guard_passed"] = prose_guard_passed
         result["guard_passed"] = (
             result["split_guards_passed"]
             and result["exact_guards_passed"]
-            and result.get("ood_prose_guard_passed", True)
+            and prose_guard_passed
         )
         if result["guard_passed"]:
             eligible.append(result)
@@ -567,6 +730,12 @@ def main():
             summary["ood_prose"]["gate"]
             if args.ood_prose_jsonl is not None else None
         )
+        ood_prose_inspection = (
+            inspect_ood_prose_gate(
+                ood_prose_gate, args.max_ood_prose_degradation,
+            )
+            if ood_prose_gate is not None else None
+        )
         results.append({
             **trial,
             "steps": args.steps,
@@ -574,9 +743,11 @@ def main():
             "evaluation_scores": evaluation_scores,
             "evaluation_details": treatment_details,
             "ood_prose_guard_passed": (
-                ood_prose_gate["passed"] if ood_prose_gate else True
+                ood_prose_inspection["policy_passed"]
+                if ood_prose_inspection else True
             ),
             "ood_prose_gate": ood_prose_gate,
+            "ood_prose_gate_inspection": ood_prose_inspection,
             "run_summary": str(
                 args.output / "runs" / trial["name"] / "run_summary.json"
             ),
@@ -588,6 +759,8 @@ def main():
             baseline, results, args.selection_split, guard_splits,
             args.max_guard_degradation,
             args.max_guard_exact_loss,
+            (args.max_ood_prose_degradation
+             if args.ood_prose_jsonl is not None else None),
         )
         journal = {
             "schema": "eggroll-es-hpo-v1",

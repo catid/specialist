@@ -25,6 +25,23 @@ def journal(seed, train_delta, ood_delta, name="candidate"):
     }
 
 
+def add_prose_gate(item, delta=0.0, lower=0.0, upper=0.0,
+                   threshold=0.0, declared_passed=None):
+    item["ood_prose_guard_enabled"] = True
+    item["max_ood_prose_degradation"] = threshold
+    gate_passed = lower >= -threshold
+    item["results"][0]["ood_prose_gate"] = {
+        "delta": delta,
+        "max_degradation": threshold,
+        "paired_document_bootstrap_95_ci": [lower, upper],
+        "passed": gate_passed,
+    }
+    item["results"][0]["ood_prose_guard_passed"] = (
+        gate_passed if declared_passed is None else declared_passed
+    )
+    return item
+
+
 def test_selects_positive_stable_candidate_with_ood_guard():
     result = aggregate(
         [journal(1, 0.02, 0.0), journal(2, 0.01, 0.01)],
@@ -133,3 +150,91 @@ def test_required_ood_prose_gate_is_fail_closed():
     )
 
     assert result["selected"] == "baseline"
+
+
+def test_strict_ood_prose_gate_accepts_only_recomputed_passes():
+    journals = [
+        add_prose_gate(journal(1, 0.1, 0.0)),
+        add_prose_gate(journal(2, 0.1, 0.0)),
+    ]
+
+    result = aggregate(
+        journals, "validation", ["ood_qa"],
+        require_ood_prose_guard=True,
+        expected_ood_prose_max_degradation=0.0,
+    )
+
+    assert result["selected"] == "candidate"
+    assert all(
+        seed["ood_prose_gate"]["policy_passed"]
+        for seed in result["candidates"][0]["per_seed"]
+    )
+
+
+def test_loose_point02_prose_runs_are_ineligible_under_strict_zero():
+    journals = [
+        add_prose_gate(
+            journal(1, 0.1, 0.0), delta=-0.004,
+            lower=-0.007, upper=-0.001, threshold=0.02,
+        ),
+        add_prose_gate(
+            journal(2, 0.1, 0.0), delta=-0.004,
+            lower=-0.007, upper=-0.001, threshold=0.02,
+        ),
+    ]
+
+    result = aggregate(
+        journals, "validation", ["ood_qa"],
+        require_ood_prose_guard=True,
+        expected_ood_prose_max_degradation=0.0,
+    )
+
+    assert result["selected"] == "baseline"
+    seed = result["candidates"][0]["per_seed"][0]
+    assert seed["ood_prose_journal_policy"]["valid"] is False
+    assert seed["ood_prose_gate"]["valid"] is False
+
+
+def test_strict_aggregate_does_not_trust_true_boolean_over_delta():
+    journals = [
+        add_prose_gate(
+            journal(1, 0.1, 0.0), delta=-0.001,
+            lower=0.001, upper=0.002, threshold=0.0,
+            declared_passed=True,
+        ),
+        add_prose_gate(journal(2, 0.1, 0.0)),
+    ]
+
+    result = aggregate(
+        journals, "validation", ["ood_qa"],
+        require_ood_prose_guard=True,
+    )
+
+    assert result["selected"] == "baseline"
+    gate = result["candidates"][0]["per_seed"][0]["ood_prose_gate"]
+    assert gate["valid"] is True
+    assert gate["recorded_passed"] is True
+    assert gate["policy_passed"] is False
+
+
+def test_strict_aggregate_validates_recorded_pass_against_ci():
+    journals = [
+        add_prose_gate(
+            journal(1, 0.1, 0.0), delta=0.001,
+            lower=-0.001, upper=0.002, threshold=0.0,
+            declared_passed=True,
+        ),
+        add_prose_gate(journal(2, 0.1, 0.0)),
+    ]
+    # Simulate a forged/stale true decision despite a negative lower bound.
+    journals[0]["results"][0]["ood_prose_gate"]["passed"] = True
+
+    result = aggregate(
+        journals, "validation", ["ood_qa"],
+        require_ood_prose_guard=True,
+    )
+
+    assert result["selected"] == "baseline"
+    gate = result["candidates"][0]["per_seed"][0]["ood_prose_gate"]
+    assert gate["valid"] is False
+    assert any("disagrees" in issue for issue in gate["issues"])

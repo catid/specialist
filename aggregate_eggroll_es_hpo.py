@@ -3,8 +3,11 @@
 import argparse
 import hashlib
 import json
+import math
 import statistics
 from pathlib import Path
+
+from run_eggroll_es_hpo import inspect_ood_prose_gate
 
 
 def scores(item, selection_split):
@@ -38,10 +41,40 @@ def candidate_identity(item):
     }
 
 
+def inspect_journal_ood_prose_policy(journal, expected_max_degradation):
+    """Require the seed journal itself to pin the requested prose policy."""
+    issues = []
+    if journal.get("ood_prose_guard_enabled") is not True:
+        issues.append("ood_prose_guard_enabled is not true")
+    recorded = journal.get("max_ood_prose_degradation")
+    if (
+        isinstance(recorded, bool)
+        or not isinstance(recorded, (int, float))
+        or not math.isfinite(recorded)
+    ):
+        issues.append("max_ood_prose_degradation is not a finite number")
+        recorded = None
+    else:
+        recorded = float(recorded)
+        if recorded < 0:
+            issues.append("max_ood_prose_degradation is negative")
+        if recorded != expected_max_degradation:
+            issues.append(
+                "max_ood_prose_degradation does not match expected policy"
+            )
+    return {
+        "valid": not issues,
+        "issues": issues,
+        "expected_max_degradation": expected_max_degradation,
+        "recorded_max_degradation": recorded,
+    }
+
+
 def aggregate(journals, selection_split, guard_splits,
               max_guard_degradation=0.0, min_positive_seed_fraction=0.6,
               risk_penalty=0.5, max_guard_exact_loss=None,
-              require_ood_prose_guard=False):
+              require_ood_prose_guard=False,
+              expected_ood_prose_max_degradation=0.0):
     if not journals:
         raise ValueError("at least one seed journal is required")
     if not 0 <= min_positive_seed_fraction <= 1:
@@ -51,6 +84,21 @@ def aggregate(journals, selection_split, guard_splits,
             "guard degradation and risk penalty must be nonnegative")
     if max_guard_exact_loss is not None and max_guard_exact_loss < 0:
         raise ValueError("max guard exact loss must be nonnegative")
+    if (
+        isinstance(expected_ood_prose_max_degradation, bool)
+        or not isinstance(
+            expected_ood_prose_max_degradation, (int, float)
+        )
+        or not math.isfinite(expected_ood_prose_max_degradation)
+        or expected_ood_prose_max_degradation < 0
+    ):
+        raise ValueError(
+            "expected OOD prose max degradation must be a finite "
+            "nonnegative number"
+        )
+    expected_ood_prose_max_degradation = float(
+        expected_ood_prose_max_degradation
+    )
     if len(set(guard_splits)) != len(guard_splits):
         raise ValueError("guard_splits contains duplicates")
     if selection_split in guard_splits:
@@ -119,10 +167,34 @@ def aggregate(journals, selection_split, guard_splits,
                     )
                     for split in guard_splits
                 )
-            prose_guard_passed = (
-                result.get("ood_prose_guard_passed") is True
-                if require_ood_prose_guard else True
-            )
+            if require_ood_prose_guard:
+                journal_prose_policy = inspect_journal_ood_prose_policy(
+                    journal, expected_ood_prose_max_degradation,
+                )
+                prose_gate = inspect_ood_prose_gate(
+                    result.get("ood_prose_gate"),
+                    expected_ood_prose_max_degradation,
+                )
+                declared_prose_pass = result.get(
+                    "ood_prose_guard_passed"
+                )
+                declared_prose_valid = (
+                    isinstance(declared_prose_pass, bool)
+                    and declared_prose_pass == prose_gate["policy_passed"]
+                )
+                prose_guard_passed = (
+                    journal_prose_policy["valid"]
+                    and prose_gate["policy_passed"]
+                    and declared_prose_valid
+                )
+            else:
+                journal_prose_policy = None
+                prose_gate = None
+                declared_prose_pass = result.get(
+                    "ood_prose_guard_passed"
+                )
+                declared_prose_valid = None
+                prose_guard_passed = True
             per_seed.append({
                 "seed": journal["seed"],
                 "baseline_scores": baseline_scores,
@@ -131,6 +203,10 @@ def aggregate(journals, selection_split, guard_splits,
                 "mean_guards_passed": mean_guards_passed,
                 "exact_guards_passed": exact_guards_passed,
                 "ood_prose_guard_passed": prose_guard_passed,
+                "ood_prose_declared_passed": declared_prose_pass,
+                "ood_prose_declared_pass_valid": declared_prose_valid,
+                "ood_prose_journal_policy": journal_prose_policy,
+                "ood_prose_gate": prose_gate,
                 "guard_passed": (
                     mean_guards_passed
                     and exact_guards_passed
@@ -176,6 +252,9 @@ def aggregate(journals, selection_split, guard_splits,
         "max_guard_degradation": max_guard_degradation,
         "max_guard_exact_loss": max_guard_exact_loss,
         "require_ood_prose_guard": require_ood_prose_guard,
+        "expected_ood_prose_max_degradation": (
+            expected_ood_prose_max_degradation
+        ),
         "min_positive_seed_fraction": min_positive_seed_fraction,
         "risk_penalty": risk_penalty,
         "seeds": seeds,
@@ -197,6 +276,13 @@ def main():
     parser.add_argument("--max-guard-degradation", type=float, default=0.0)
     parser.add_argument("--max-guard-exact-loss", type=int, default=0)
     parser.add_argument("--require-ood-prose-guard", action="store_true")
+    parser.add_argument(
+        "--expected-ood-prose-max-degradation", type=float, default=0.0,
+        help=(
+            "Required per-run OOD prose gate margin; runs recorded with a "
+            "different margin are ineligible"
+        ),
+    )
     parser.add_argument("--min-positive-seed-fraction", type=float,
                         default=0.6)
     parser.add_argument("--risk-penalty", type=float, default=0.5)
@@ -210,6 +296,7 @@ def main():
         args.max_guard_degradation, args.min_positive_seed_fraction,
         args.risk_penalty, args.max_guard_exact_loss,
         args.require_ood_prose_guard,
+        args.expected_ood_prose_max_degradation,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
