@@ -1,0 +1,184 @@
+{
+  "aggregate_gate": {
+    "all_eight_spreads_nonzero": true,
+    "baseline": {
+      "crossfit_complement_to_screen_cosine": {
+        "count": 2,
+        "median": 0.3936314430866483,
+        "worst": 0.314941371734614
+      },
+      "crossfit_complement_to_screen_sign_agreement": {
+        "count": 2,
+        "median": 0.65625,
+        "worst": 0.53125
+      },
+      "full_to_matched56_optimization_cosine": {
+        "count": 3,
+        "median": 0.7608236805612648,
+        "worst": 0.7082628389768383
+      },
+      "full_to_matched56_optimization_sign_agreement": {
+        "count": 3,
+        "median": 0.8125,
+        "worst": 0.75
+      },
+      "matched56_pairwise_cosine": {
+        "count": 3,
+        "median": 0.47411088498906484,
+        "worst": 0.3900621868364503
+      },
+      "matched56_pairwise_sign_agreement": {
+        "count": 3,
+        "median": 0.59375,
+        "worst": 0.5625
+      }
+    },
+    "candidate_content_sha256": "9c27b5c4ad4b54ce8cbd151474e7ec1c393936c76a28225dc32375817fc49e39",
+    "conditions": {
+      "all_integrity_audits_passed": {
+        "passed": true
+      },
+      "all_panel_spreads_nonzero": {
+        "passed": true
+      },
+      "crossfit_complement_to_screen_cosine": {
+        "comparison": "strictly_greater",
+        "median_passed": true,
+        "worst_passed": true
+      },
+      "crossfit_complement_to_screen_sign_agreement": {
+        "comparison": "not_lower",
+        "median_passed": true,
+        "worst_passed": true
+      },
+      "full_to_matched56_optimization_cosine": {
+        "comparison": "not_lower",
+        "median_passed": false,
+        "worst_passed": false
+      },
+      "full_to_matched56_optimization_sign_agreement": {
+        "comparison": "not_lower",
+        "median_passed": true,
+        "worst_passed": false
+      },
+      "matched56_pairwise_cosine": {
+        "comparison": "strictly_greater",
+        "median_passed": true,
+        "worst_passed": false
+      },
+      "matched56_pairwise_sign_agreement": {
+        "comparison": "not_lower",
+        "median_passed": true,
+        "worst_passed": true
+      }
+    },
+    "eligible_for_fresh_basis_confirmation": false,
+    "eligible_for_model_update": false,
+    "eligible_to_open_evaluation": false,
+    "failed_rules": [
+      "matched56_pairwise_cosine.worst_passed",
+      "full_to_matched56_optimization_cosine.median_passed",
+      "full_to_matched56_optimization_cosine.worst_passed",
+      "full_to_matched56_optimization_sign_agreement.worst_passed"
+    ],
+    "robust_aggregate": {
+      "coefficient_sha256": "72d6ffe4031a3e4dbdf4a01753054e2effdccb00f67f33de7cd7e2849d6a61e3",
+      "l2_norm": 5.656842955434759,
+      "nonzero_coordinate_count": 32
+    },
+    "stability": {
+      "crossfit_complement_to_screen_cosine": {
+        "count": 2,
+        "median": 0.4896964998727882,
+        "worst": 0.4829485162505813
+      },
+      "crossfit_complement_to_screen_sign_agreement": {
+        "count": 2,
+        "median": 0.796875,
+        "worst": 0.78125
+      },
+      "full_to_matched56_optimization_cosine": {
+        "count": 3,
+        "median": 0.7526394756957133,
+        "worst": 0.7040159025964595
+      },
+      "full_to_matched56_optimization_sign_agreement": {
+        "count": 3,
+        "median": 0.8125,
+        "worst": 0.71875
+      },
+      "matched56_pairwise_cosine": {
+        "count": 3,
+        "median": 0.59336490603814,
+        "worst": 0.3282531198822195
+      },
+      "matched56_pairwise_sign_agreement": {
+        "count": 3,
+        "median": 0.6875,
+        "worst": 0.59375
+      }
+    }
+  },
+  "contains_response_vectors_or_dense_result_hashes": false,
+  "contains_source_rows_questions_answers_or_document_content": false,
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "440504e6c81673ea8de89f336d587a0c57408ea21d3a925ed73b73ecfbeaa7b8",
+  "decision": {
+    "evaluation_surface_opened_or_authorized": false,
+    "fresh_basis_k2_confirmation_authorized": false,
+    "model_update_applied_or_authorized": false,
+    "reason": "v14b_failed_its_preregistered_conjunctive_gate",
+    "sampler": "retain_v13"
+  },
+  "next_step_constraint": "V14b authorizes no follow-up experiment; any later train-only estimator requires a separate preregistration and cannot reuse this failed candidate as authority for confirmation, evaluation, or a model update",
+  "passed": true,
+  "runtime_integrity": {
+    "all_integrity_audits_passed": true,
+    "alpha": 0.0,
+    "application_count": 0,
+    "generation": {
+      "document_means_before_equal_document_aggregation": true,
+      "generation_calls_per_engine_per_sign": 1,
+      "matched_and_crossfit_derived_without_generation": true,
+      "prompts_per_engine_per_sign": 481
+    },
+    "hardware": {
+      "all_engines_generate_every_signed_wave": true,
+      "engine_count": 4,
+      "gpu_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "partial_waves": 0,
+      "population_waves": 8,
+      "signed_waves": 16,
+      "tp_per_engine": 1
+    },
+    "integrity_content_sha256": "011cdf23c24d5aabc8c77c704c4be7ae3078ddf56446848cb16ed71f31c83101",
+    "model_update_applied": false,
+    "moe_backend": "triton",
+    "panel_bundle_content_sha256": "0c224167e1bf200dc39e0f451b4af505408bf21a1b3c4f42d8288db27844b567",
+    "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "population_boundary_audit_sha256": "88796b4dff895a2cf22d6f4615b85ac5501449b7b86402f40651b07ae2403867",
+    "tuned_config_folder": null
+  },
+  "schema": "eggroll-es-v14b-k2-negative-aggregate-evidence-v15",
+  "selection_surface": "frozen_train_aggregate_outputs_only",
+  "v14b_attempt": {
+    "content_sha256": "9bd36a4fbd0e3626593265885f6734ea91639d65d4db5a61c1b305da6463957c",
+    "file_sha256": "7c0a795442c277d51c8600c3c09eb7945bf26f70e476001b194e4650a927eaae",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.snapshot794_layer_v14b_k2_distinct_row_document_mean_matched56_crossfit_alpha_zero_resident_sign_basis20260714.launch_attempt.json",
+    "source_bundle_content_sha256": "0e77bf89098f0a80608c8225cb9316b2b6c6fde2515ef34b3138e8be2381a134",
+    "source_commit": "564fb3008a5b6402b38d4c18a0264d0a105f31a4"
+  },
+  "v14b_report": {
+    "content_sha256": "b29886238418ccf35e9bc8b84dd8d25a2ebd1eab6e91319c72c02d22f092a5b5",
+    "diagnostic_content_sha256": "2b9faabd62d89367e2456b553fe237c0f59b75dddfae18c9ceeb6ac9a221361c",
+    "file_sha256": "fef74086c0d1494593372e29325af688afa1f315c7f6ee1e2cb0a59150c84b9c",
+    "implementation_bundle_sha256": "86db8454d08201c8cffa3b602c16058ea769409d4c9e4164b4c2321f5a6aa9ff",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v14b_k2_distinct_row_document_mean_matched56_crossfit_alpha_zero_resident_sign_basis20260714/paired_distinct_row_diagnostic_v14b.json",
+    "recipe_content_sha256": "41a56112ca6796a58240f41befde96a132c03930fa7fce83930bc99f2995554f"
+  }
+}
