@@ -1,0 +1,15 @@
+# ES-at-Scale pins vLLM 0.11/Transformers 4.57, which predate the local
+# Qwen3.6 checkpoint architecture. Install the upstream package with --no-deps
+# after installing this tested compatibility set.
+vllm==0.25.0
+transformers==5.13.1
+torch==2.11.0
+ray==2.56.0
+datasets==5.0.0
+accelerate>=0.20.0
+matplotlib>=3.5.0
+psutil
+futures
+black==22.8.0
+flake8==5.0.4
+pytest>=8.0

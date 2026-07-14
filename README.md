@@ -10,6 +10,9 @@ paper transcription is in
 [`references/papers/2509.24372.md`](references/papers/2509.24372.md).
 The latest reproducible layer-location artifacts and exact recipe are in
 [`experiments/es_deterministic/README.md`](experiments/es_deterministic/README.md).
+The direct EGGROLL/ES-at-Scale replication, pinned upstream submodule, Qwen3.6
+adapter, and four-GPU launch recipe are documented in
+[`EGGROLL_ES_REPLICATION.md`](EGGROLL_ES_REPLICATION.md).
 
 Large model files, generated checkpoints, raw source corpora, and server logs
 are intentionally excluded. Compact deterministic experiment logs are retained

@@ -9,6 +9,9 @@ __pycache__/
 !experiments/es_deterministic/*.log
 prof/
 sglang_storage/
+experiments/eggroll_es/
+experiments/gpu_utilization_eggroll_es_*.jsonl
+!experiments/gpu_utilization_eggroll_es_train_smoke.jsonl
 
 # Model weights and generated checkpoints
 models/
@@ -21,12 +24,12 @@ models/
 # External/nested repositories (the SGLang WIP is saved as a bundle in patches/)
 sglang/
 HyperscaleES/
-es-at-scale/
 es-fine-tuning-paper/
 
 # Raw/downloaded corpora and generated large datasets
 data/raw/
 data/manual_review_packets/
+data/eggroll_es_specialist/
 data/*.jsonl
 data/*.json
 !data/eval_qa.jsonl
