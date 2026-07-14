@@ -1,0 +1,99 @@
+{
+  "schema": "eggroll-es-s5-provisional-transfer-v1",
+  "status": "provisional_manual_audit_pending",
+  "model": "Qwen3.6-35B-A3B",
+  "dataset": {
+    "train_rows": 908,
+    "validation_rows": 109,
+    "heldout_rows": 58,
+    "ood_qa_rows": 24,
+    "train_jsonl_sha256": "ef2f39e95c73c69041517e03d04c6cf48a2c25a2198a9e6d05a56258c1875591",
+    "eval_domain_jsonl_sha256": "7d32642156e469bfeecae5ec718f76b724b9494aebc7026495d22c532714f65c",
+    "ood_qa_jsonl_sha256": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+    "train_arrow_sha256": "05ad1e523032026d59bf2da953b5c15bfd8f6ea738067685b4eb947b012b86b2",
+    "validation_arrow_sha256": "a3fa929f2af3b78ca2bf983ee136161820a8dedb623f4ce3cfdd40a04450c922",
+    "ood_qa_arrow_sha256": "b201123c6a358d306b7f874e400861068900bb764b1fda80eb663b82ca53dced",
+    "manifest_sha256": "eb36933b3a906b8cf2e8b2a26d01c5a7260be2b1287407ca91715bb44730bcfc"
+  },
+  "setting": {
+    "sigma": 0.001,
+    "alpha": 0.00025,
+    "population_size": 8,
+    "batch_size": 64,
+    "mini_batch_size": 64,
+    "max_tokens": 32,
+    "steps": 6
+  },
+  "baseline": {
+    "validation": 0.07444071920563926,
+    "ood_qa": 0.714128787878788,
+    "run_summary": "baseline_run_summary.json",
+    "run_summary_sha256": "590470c8b34b3acb9dd9c67be4317af7cb459d476994b24e9439acbcd8658383"
+  },
+  "treatments": [
+    {
+      "seed": 42,
+      "validation": {
+        "score": 0.06663939462653952,
+        "delta": -0.00780132457909975,
+        "relative_change": -0.10479915646098095,
+        "exact_change": -1,
+        "nonzero_change": -2,
+        "paired_bootstrap_95_ci": [-0.023562427334013956, 0.0006563515036261935],
+        "comparison": "seed42_validation_comparison.json",
+        "comparison_sha256": "c3fc9958648806aebd7d34851b01ca4495ca301a45a1c47f8a98fa56af353022"
+      },
+      "ood_qa": {
+        "score": 0.7129383116883118,
+        "delta": -0.0011904761904761886,
+        "exact_change": 0,
+        "nonzero_change": 0,
+        "paired_bootstrap_95_ci": [-0.0035714285714285657, 0.0],
+        "comparison": "seed42_ood_qa_comparison.json",
+        "comparison_sha256": "e860bea36189f4967073020087a5c39e493e506f43af1f261e5de9de0b536c0d"
+      },
+      "run_summary": "seed42_run_summary.json",
+      "run_summary_sha256": "67d7392853cfe39260a4ac43e83b646782da317d614a8a31456c4d4937d47d0f",
+      "gpu_trace": "../../gpu_utilization_eggroll_es_s5_provisional_transfer.jsonl",
+      "gpu_trace_sha256": "d453870b03a019e856930614a4580278f215755c86f46bf8961b4cacf84a0552"
+    },
+    {
+      "seed": 43,
+      "validation": {
+        "score": 0.08432897406756218,
+        "delta": 0.009888254861922912,
+        "relative_change": 0.13283395119554187,
+        "exact_change": 1,
+        "nonzero_change": 1,
+        "paired_bootstrap_95_ci": [0.00002890259091758989, 0.028921739815537386],
+        "comparison": "seed43_validation_comparison.json",
+        "comparison_sha256": "e436a1c16e7594f2045fd4b33b1aec4c0843bfe38addf0b361b34604b6ecf637"
+      },
+      "ood_qa": {
+        "score": 0.714128787878788,
+        "delta": 0.0,
+        "exact_change": 0,
+        "nonzero_change": 0,
+        "paired_bootstrap_95_ci": [0.0, 0.0],
+        "comparison": "seed43_ood_qa_comparison.json",
+        "comparison_sha256": "61a47fd5a94a62ad215010d9165c0968dcd4de5c113992b8c3342b5bfadacbc5"
+      },
+      "run_summary": "seed43_run_summary.json",
+      "run_summary_sha256": "5d02523f807bb8eee4455a4c5cab948e3508dd1c67d07f2794a73a26a715ef94",
+      "gpu_trace": "../../gpu_utilization_eggroll_es_s5_provisional_transfer_seed43.jsonl",
+      "gpu_trace_sha256": "185f8755129e39947aeaca6cb59e5f9455b81d99308174f65107d8b97b9b1170"
+    }
+  ],
+  "baseline_gpu_trace": {
+    "path": "../../gpu_utilization_eggroll_es_s5_provisional_baseline.jsonl",
+    "sha256": "6a5fd12391dc1d5cf8032e70f87306f1d35e0e060ee1fb7a25413c4e53e038a9"
+  },
+  "training_script_sha256": "9c5ca268d74808e6d67b8b11f4e2e53ff45e60abfef99400c5ae24d0d0b419b6",
+  "heldout_evaluated": false,
+  "checkpoint_saved": false,
+  "limitations": [
+    "The domain evaluation artifact was still awaiting its final manual audit and has been superseded by eval_qa_v3.jsonl.",
+    "The two treatment seeds disagree in sign on validation, so this transfer result is seed-sensitive.",
+    "OOD QA has only 24 examples and cannot establish broad distributional robustness."
+  ]
+}

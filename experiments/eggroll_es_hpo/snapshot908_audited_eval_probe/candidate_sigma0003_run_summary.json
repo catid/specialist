@@ -1,0 +1,19 @@
+{
+  "alpha": 0.00015,
+  "batch_size": 64,
+  "checkpoint": null,
+  "evaluations": {
+    "final": {
+      "ood_qa": 0.714128787878788,
+      "validation": 0.08391190728677474
+    }
+  },
+  "max_tokens": 32,
+  "mini_batch_size": 64,
+  "model": "models/Qwen3.6-35B-A3B",
+  "population_size": 8,
+  "schema": "eggroll-es-exact-run-v1",
+  "seed": 42,
+  "sigma": 0.0003,
+  "steps": 3
+}
