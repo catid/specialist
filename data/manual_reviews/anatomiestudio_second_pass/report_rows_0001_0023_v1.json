@@ -1,0 +1,136 @@
+{
+  "artifacts": {
+    "pending_append_safe": {
+      "drop": 0,
+      "edit": 3,
+      "path": "data/manual_reviews/anatomiestudio_second_pass/pending_curation_rows_0001_0023_v1.jsonl",
+      "rows": 3,
+      "sha256": "88040218192db3bdca3dd8a8d8f8584ec2cc13851735ebf13aea9d4c76bdb09c"
+    },
+    "pending_replacement": {
+      "path": "data/manual_reviews/anatomiestudio_second_pass/pending_replacements_rows_0001_0023_v1.jsonl",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "existing_curation": {
+    "edited_rows_in_tranche": [],
+    "existing_edits_retained": [],
+    "replacement_required": []
+  },
+  "heldout_audit": {
+    "anatomiestudio_eval_rows": 0,
+    "anatomiestudio_eval_unique_urls": 0,
+    "eval_artifacts": {
+      "data/eval_qa.jsonl": {
+        "anatomiestudio_rows": 0,
+        "questions_on_overlapping_pages": 0,
+        "sha256": "c84442651265aa8a51ce8af1d524390dd8a98760c40c780afa9eed7a2ba146b5"
+      },
+      "data/eval_qa_v2.jsonl": {
+        "anatomiestudio_rows": 0,
+        "questions_on_overlapping_pages": 0,
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      }
+    },
+    "exact_normalized_question_answer_collisions": 0,
+    "heldout_docs_overlap_rows": 0,
+    "heldout_questions_on_overlapping_pages": 0,
+    "high_similarity_question_answer_collisions": 0,
+    "overlapping_training_indices": [],
+    "overlapping_training_rows": 0,
+    "overlapping_unique_source_urls": 0,
+    "policy": "Exclude a training row when its normalized source URL appears anywhere in either evaluation artifact or data/heldout_docs.jsonl, even when the exact Q&A differs.",
+    "similarity_method": "Exact normalized Q&A comparison plus the repository qa_quality.leakage_reason check; document-level URL overlap is enforced separately and more strictly."
+  },
+  "legacy_bad_example_audit": {
+    "active_curated_matches": 0,
+    "disposition": "The malformed and contextless example is absent from data/train_qa_curated_v1.jsonl and is not reintroduced. It remains only in legacy intermediate files, so no active-row curation decision is required.",
+    "legacy_fact_id": "fact-fedc3b67455329eaeb93",
+    "legacy_locations": [
+      "data/train_qa_v3.jsonl",
+      "data/train_qa_v3_clean.jsonl",
+      "data/train_qa_v3_clean_leakfree.jsonl",
+      "data/train_qa_v3_clean_leakfree_v2.jsonl"
+    ],
+    "question": "What material are the ropes described as being made of in the context of hygiene concerns?"
+  },
+  "manual_outcome": {
+    "drop": 0,
+    "drop_indices": [],
+    "edit": 3,
+    "edit_indices": [
+      1,
+      2,
+      15
+    ],
+    "reason_counts": {
+      "incomplete_answer": 3
+    },
+    "retain_unchanged": 20,
+    "retain_unchanged_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "retained_after_edits": 23
+  },
+  "pass": "strict_second_pass",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-anatomiestudio-second-pass",
+  "schema": "manual-source-audit-report-v1",
+  "source": "anatomiestudio",
+  "source_verification": {
+    "full_source_documents_checked": 2,
+    "method": "Every Q&A and its supplied evidence were read manually against the complete corresponding raw article snapshot. All retained facts are directly supported by those articles.",
+    "source_match_failures": 0,
+    "source_snapshots": {
+      "data/raw/anatomiestudio_144932682af9c846.json": "3e77a59322805eb277e5cc7e86fb5592e71b889b3c95197c2c401d2533d2c1c8",
+      "data/raw/anatomiestudio_27ecdd4d7c9a5560.json": "1f968e0d0b2428eab259dfd3c291f58483c5384b6eebca1fa2505ce9b39f23af"
+    }
+  },
+  "tranche": {
+    "end_index": 23,
+    "fact_id_sequence_sha256": "d6e9c1651bbda942c928fa6e2da005c3ee18e87c3a9c8ba70ce63d3353ae793b",
+    "ordering": "source-filtered order in data/train_qa_curated_v1.jsonl at audit time",
+    "reviewed_rows": 23,
+    "start_index": 1,
+    "unique_source_urls": 2,
+    "unique_stored_document_sha256": 2
+  },
+  "validation": {
+    "active_artifacts_observed_at_report_write": {
+      "data/train_qa_curated_v1.curation.jsonl": "3fc033f3a58638567c709f1bba8b94a5eda93d59c36d4d544c2f8c874b9d18ec",
+      "data/train_qa_curated_v1.jsonl": "d9ec2b0fe0a438067b74cb1a168172e0a658d78c17627d4d6e29c1f02dbfef6d",
+      "data/train_qa_curated_v1.report.json": "3382e6bfef22d8690d7cb697f570db611e8a01696533eb60ec0502181ab60d82",
+      "data/train_qa_kinbakutoday.curation.jsonl": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    },
+    "active_files_mutated_by_this_audit": false,
+    "append_safe_temporary_build": {
+      "anatomiestudio_rows": 23,
+      "curation_decisions": 1830,
+      "excluded_rows": 1799,
+      "output_rows": 1487,
+      "output_sha256": "5a4060ca745278e0275050bb46e6164757194dd6a55fd7ef56df44852be1d6d5",
+      "repeat_build_byte_identical": true,
+      "status": "passed"
+    }
+  }
+}

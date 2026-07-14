@@ -70,3 +70,7 @@ and build commands.
 The previous large leak-free artifact remains invalid: a parser-order bug
 polluted 28,017 ChatML metadata rows and allowed 270 leakage collisions to
 bypass filtering. The structural parser fix and regression tests are included.
+The specific malformed Anatomie Studio “What material...?” / `jute` example
+has zero matches in the active curated dataset; its legacy locations are
+recorded in the pending
+[`Anatomie Studio second-pass report`](data/manual_reviews/anatomiestudio_second_pass/report_rows_0001_0023_v1.json).

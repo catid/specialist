@@ -38,17 +38,24 @@ rehashes train/validation Arrow files, manifest, model identity, and trainer
 source at every run boundary and refuses to mix a changed snapshot with cached
 results. The prior 2,228-row S3 cohort is preserved in
 [`../experiments/eggroll_es_hpo/snapshots/s3/`](../experiments/eggroll_es_hpo/snapshots/s3/).
-The complete stricter Rope365, Esinem, and Wikipedia passes remain pending
+The complete stricter Rope365, Esinem, Wikipedia, and Anatomie Studio passes remain pending
 under [`manual_reviews/rope365/`](manual_reviews/rope365/),
 [`manual_reviews/esinem_second_pass/`](manual_reviews/esinem_second_pass/), and
-[`manual_reviews/wikipedia_second_pass/`](manual_reviews/wikipedia_second_pass/)
+[`manual_reviews/wikipedia_second_pass/`](manual_reviews/wikipedia_second_pass/),
+and [`manual_reviews/anatomiestudio_second_pass/`](manual_reviews/anatomiestudio_second_pass/)
 for the next promoted snapshot. They are not part of the current 1,487-row
 artifact. Rope365 proposes 323 drops and 21 edits across all 601 retained rows;
 Esinem proposes 73 drops and four edits across all 150 retained rows; Wikipedia
-proposes 175 drops and two edits across all 204 retained rows. Their combined,
-replacement-aware temporary build passes twice byte-identically and projects
-916 unique rows: 278 Rope365, 77 Esinem, and 29 Wikipedia. Their separation
-preserves the completed S4 A/B cohort exactly.
+proposes 175 drops and two edits across all 204 retained rows; Anatomie Studio
+proposes three completeness rewrites across all 23 retained rows. Their
+combined, replacement-aware temporary build passes twice byte-identically and
+projects 916 unique rows: 278 Rope365, 77 Esinem, 29 Wikipedia, and 23 Anatomie
+Studio. Their separation preserves the completed S4 A/B cohort exactly.
+
+The user's malformed, contextless Anatomie Studio “What material...?” / `jute`
+example has zero matches in the active curated dataset. The second-pass report
+records its legacy fact ID and locations so it cannot be mistaken for a current
+training row or reintroduced by the pending edits.
 
 The merge also re-renders every retained record as canonical
 `Question: ...\nAnswer: ...` text from its validated structured fields. Legacy
