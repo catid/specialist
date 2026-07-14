@@ -1,0 +1,196 @@
+{
+  "aggregate_gate": {
+    "all_eight_spreads_nonzero": true,
+    "baseline": {
+      "crossfit_complement_to_screen_cosine": {
+        "count": 2,
+        "median": 0.3936314430866483,
+        "worst": 0.314941371734614
+      },
+      "crossfit_complement_to_screen_sign_agreement": {
+        "count": 2,
+        "median": 0.65625,
+        "worst": 0.53125
+      },
+      "full_to_matched56_optimization_cosine": {
+        "count": 3,
+        "median": 0.7608236805612648,
+        "worst": 0.7082628389768383
+      },
+      "full_to_matched56_optimization_sign_agreement": {
+        "count": 3,
+        "median": 0.8125,
+        "worst": 0.75
+      },
+      "matched56_pairwise_cosine": {
+        "count": 3,
+        "median": 0.47411088498906484,
+        "worst": 0.3900621868364503
+      },
+      "matched56_pairwise_sign_agreement": {
+        "count": 3,
+        "median": 0.59375,
+        "worst": 0.5625
+      }
+    },
+    "candidate_content_sha256": "7ae2ee84b6d4435e8e0c411f4351ff8dc62834945090a27d9f7dc1c6d65144db",
+    "conditions": {
+      "all_panel_spreads_nonzero": {
+        "passed": true
+      },
+      "crossfit_complement_to_screen_cosine": {
+        "comparison": "strictly_greater",
+        "median_passed": true,
+        "worst_passed": true
+      },
+      "crossfit_complement_to_screen_sign_agreement": {
+        "comparison": "not_lower",
+        "median_passed": true,
+        "worst_passed": true
+      },
+      "full_to_matched56_optimization_cosine": {
+        "comparison": "not_lower",
+        "median_passed": false,
+        "worst_passed": false
+      },
+      "full_to_matched56_optimization_sign_agreement": {
+        "comparison": "not_lower",
+        "median_passed": false,
+        "worst_passed": true
+      },
+      "matched56_pairwise_cosine": {
+        "comparison": "strictly_greater",
+        "median_passed": false,
+        "worst_passed": false
+      },
+      "matched56_pairwise_sign_agreement": {
+        "comparison": "not_lower",
+        "median_passed": true,
+        "worst_passed": true
+      }
+    },
+    "eligible_for_model_update": false,
+    "eligible_for_train_only_sampler_adoption": false,
+    "failed_rules": [
+      "matched56_pairwise_cosine.median_passed",
+      "matched56_pairwise_cosine.worst_passed",
+      "full_to_matched56_optimization_cosine.median_passed",
+      "full_to_matched56_optimization_cosine.worst_passed",
+      "full_to_matched56_optimization_sign_agreement.median_passed"
+    ],
+    "robust_aggregate": {
+      "coefficient_sha256": "6054cc3c27a53e81ef20bf58cb873fe4baf5ac27def0b1606578fa4674f0245a",
+      "l2_norm": 5.656844228955252,
+      "nonzero_coordinate_count": 32
+    },
+    "stability": {
+      "crossfit_complement_to_screen_cosine": {
+        "count": 2,
+        "median": 0.5429050986548454,
+        "worst": 0.508915138728717
+      },
+      "crossfit_complement_to_screen_sign_agreement": {
+        "count": 2,
+        "median": 0.765625,
+        "worst": 0.75
+      },
+      "full_to_matched56_optimization_cosine": {
+        "count": 3,
+        "median": 0.7132916285087167,
+        "worst": 0.6803342639761624
+      },
+      "full_to_matched56_optimization_sign_agreement": {
+        "count": 3,
+        "median": 0.75,
+        "worst": 0.75
+      },
+      "matched56_pairwise_cosine": {
+        "count": 3,
+        "median": 0.4427854137278768,
+        "worst": 0.26764423806475524
+      },
+      "matched56_pairwise_sign_agreement": {
+        "count": 3,
+        "median": 0.65625,
+        "worst": 0.59375
+      }
+    }
+  },
+  "contains_response_vectors_or_dense_result_hashes": false,
+  "contains_source_rows_questions_answers_or_document_content": false,
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "ee4ded3d974dfd0becaedb1007f96888e133db51e62130d2844ab9c25e2ccf2b",
+  "decision": {
+    "evaluation_surface_opened": false,
+    "model_update_authorized": false,
+    "reason": "v14a_failed_its_preregistered_conjunctive_gate",
+    "row_draw_iteration_1_confirmation_authorized": false,
+    "sampler": "retain_v13"
+  },
+  "next_train_only_estimator_recommendation": {
+    "authorization_if_passed": "only a separately preregistered alpha-zero confirmation on a fresh 32-direction basis; no evaluation or model update",
+    "construction": "freeze two distinct source-independent deterministic rows for every multirow document and the sole row for every singleton",
+    "current_authorization": "recommendation only; do not launch, open evaluation, or update",
+    "distinct_rows_per_multirow_document": 2,
+    "estimates": "average row rewards within each document first, then compute the equal-document full-frame mean plus the same five matched56 HT means and two disjoint 254-document complement means",
+    "full_frame_documents": 310,
+    "gate_scope": "the same full-to-matched56, matched56-pair, and disjoint-crossfit cosine/sign family with all thresholds frozen before launch",
+    "generation": "one identical 481-prompt generation batch per direction and sign; derive matched56 and crossfits without extra generation",
+    "hypothesis_count": 1,
+    "multirow_documents": 171,
+    "name": "fresh_two_distinct_rows_per_multiline_document_mean",
+    "persistence": "aggregate signed response vectors and dense-result hashes during the run; compact evidence retains metrics and hashes only",
+    "runtime": "alpha zero, same frozen 32-direction basis, plus then minus, four TP=1 engines, exact restoration after every sign",
+    "single_row_documents": 139,
+    "status": "recommend_preregister_before_implementation_or_launch",
+    "unique_train_prompts_per_direction_sign": 481,
+    "why_not_multiplicity_search_now": "testing k in {1,2,3,all} on one 794-row batch would select k on the same gate and require preregistered multiple-testing control plus an independent fresh-basis confirmation; k=2 is one cleaner cost-bounded hypothesis that directly targets row-choice variance"
+  },
+  "passed": true,
+  "runtime_integrity": {
+    "alpha": 0.0,
+    "application_count": 0,
+    "generation": {
+      "generation_calls_per_engine_per_sign": 1,
+      "matched_and_crossfit_responses_derived_without_generation": true,
+      "prompts_per_engine_per_sign": 310
+    },
+    "hardware": {
+      "all_engines_generate_every_signed_wave": true,
+      "engine_count": 4,
+      "gpu_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "partial_waves": 0,
+      "population_waves": 8,
+      "signed_waves": 16,
+      "tp_per_engine": 1
+    },
+    "identity_audit_passed": true,
+    "model_update_applied": false,
+    "panel_bundle_content_sha256": "185da7ac72ced6cdbd2d7a95bef26a0a41849a8a9b78e6fe11c5485b01218077",
+    "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "population_boundary_audit_sha256": "88796b4dff895a2cf22d6f4615b85ac5501449b7b86402f40651b07ae2403867",
+    "pre_post_base_probe_equal": true
+  },
+  "schema": "eggroll-es-v14a-full-frame-negative-aggregate-evidence-v14b",
+  "selection_surface": "frozen_train_aggregate_outputs_only",
+  "v14a_attempt": {
+    "content_sha256": "f43f1d4d1f6768841b774ed68efee7897a64b58a9cd121af276550b52ce5bcb2",
+    "file_sha256": "f577c7ceb02605879f6c42cfd26c8672ca97a5d4aa4158c1c59df926dba06e2a",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.snapshot794_layer_v14a_full_frame_matched56_crossfit_alpha_zero_resident_sign_basis20260714.launch_attempt.json",
+    "source_bundle_content_sha256": "5ac19d7c0a03223c7c53e608a618f86ec24b7afce2d178c42d85058996d4009d",
+    "source_commit": "0a3e2ab29b2104374cd680f36ba6bee4584f9a38"
+  },
+  "v14a_report": {
+    "content_sha256": "792254113bccb2962f70b0eeeabb4341475ad7d1c61a7ada60e68c22de68b44c",
+    "diagnostic_content_sha256": "dd5c6f225242af25885a814485723dec3230660a28e0d61f0ec97f51666e1ea6",
+    "file_sha256": "7ee4d14f421fda7e12998f35063d3b96982c369f93ac5147ba6b32fc1a25d97c",
+    "implementation_bundle_sha256": "92c682172c1d66d982c6e2cb33310b4661634c0ef0c0697bf4466564f43768a5",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v14a_full_frame_matched56_crossfit_alpha_zero_resident_sign_basis20260714/full_frame_diagnostic_v14a.json",
+    "recipe_content_sha256": "44111d43aec3a8b8401b791bd2c4512db4086d3cdfec16fcccfd3975eaf10cf0"
+  }
+}
