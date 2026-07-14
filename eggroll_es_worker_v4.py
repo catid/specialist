@@ -350,6 +350,32 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
 ):
     """Selected-only exact ES operations with an immutable complement guard."""
 
+    @staticmethod
+    def _update_cpu_tensor_hash_v4(
+        digest, name, tensor, chunk_bytes,
+    ):
+        """Hash an isolated CPU tensor without a second per-chunk memcpy."""
+        if tensor.device.type != "cpu":
+            raise RuntimeError("v4 zero-copy hashing requires a CPU tensor")
+        if not tensor.is_contiguous():
+            raise RuntimeError(
+                f"cannot byte-hash noncontiguous parameter {name!r}"
+            )
+        metadata = json.dumps({
+            "name": name,
+            "dtype": str(tensor.dtype),
+            "shape": list(tensor.shape),
+        }, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        digest.update(len(metadata).to_bytes(8, "little"))
+        digest.update(metadata)
+        raw = tensor.reshape(-1).view(torch.uint8)
+        byte_count = int(raw.numel())
+        digest.update(byte_count.to_bytes(8, "little"))
+        raw_view = memoryview(raw.numpy())
+        for start in range(0, byte_count, chunk_bytes):
+            digest.update(raw_view[start:start + chunk_bytes])
+        return byte_count
+
     def _require_layer_plan_v4(self):
         if getattr(self, "_v4_layer_plan_installed", False) is not True:
             raise RuntimeError("v4 frozen layer plan has not been installed")
@@ -439,7 +465,7 @@ class LayerRestrictedExactAuditWorkerExtensionV4(
 
         def tensor_record(name, cpu_tensor):
             record = hashlib.sha256()
-            byte_count = self._update_tensor_hash(
+            byte_count = self._update_cpu_tensor_hash_v4(
                 record, name, cpu_tensor, chunk_bytes,
             )
             return record.digest(), byte_count

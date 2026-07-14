@@ -408,6 +408,21 @@ def test_parallel_partition_digest_is_worker_and_chunk_invariant(monkeypatch):
     assert parallel == serial
 
 
+@pytest.mark.parametrize("chunk_bytes", [1, 3, 1024 * 1024, 64 * 1024 * 1024])
+def test_zero_copy_cpu_tensor_hash_matches_legacy_bytes(chunk_bytes):
+    tensor = torch.arange(257, dtype=torch.float32).to(torch.bfloat16)
+    name = "language_model.model.layers.7.mlp.gate.weight"
+    legacy = hashlib.sha256()
+    LayerRestrictedExactAuditWorkerExtensionV4._update_tensor_hash(
+        legacy, name, tensor, chunk_bytes,
+    )
+    zero_copy = hashlib.sha256()
+    LayerRestrictedExactAuditWorkerExtensionV4._update_cpu_tensor_hash_v4(
+        zero_copy, name, tensor, chunk_bytes,
+    )
+    assert zero_copy.digest() == legacy.digest()
+
+
 def test_first_reference_reuses_install_complement_audit_only(monkeypatch):
     worker, _, _ = install_worker(monkeypatch)
 
