@@ -480,6 +480,25 @@ def five_journals(deltas=None, **kwargs):
     ]
 
 
+def test_sorted_json_split_order_remains_valid_but_split_set_is_exact():
+    journal = make_journal(42)
+    journal["snapshot"]["evaluations"] = {
+        key: journal["snapshot"]["evaluations"][key]
+        for key in sorted(journal["snapshot"]["evaluations"])
+    }
+    for state in journal["states"]:
+        state["qa"] = {key: state["qa"][key] for key in sorted(state["qa"])}
+    reseal(journal)
+    assert validate_journal(journal)["seed"] == 42
+
+    journal["snapshot"]["evaluations"]["held-back"] = (
+        journal["snapshot"]["evaluations"]["validation"]
+    )
+    reseal(journal)
+    with pytest.raises(JournalValidationError, match="exactly validation,ood_qa"):
+        validate_journal(journal)
+
+
 def test_five_direct_confirmations_pass_all_predeclared_rules():
     assert "distributed_update_v3" not in validate_journal(
         make_journal(42)

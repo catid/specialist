@@ -1,0 +1,85 @@
+{
+  "classification": "exploratory_monotonic_pilot",
+  "content_sha256_before_self_field": "933f5bdf88056bb99607229a97f9be34c7738a0052bd28340ec23239f687edb2",
+  "direct_confirmation": false,
+  "family_configuration_sha256": "42b9f708c7083db02c3cbf5d751cc4821aeeca3c70600674f5688ad9093863e3",
+  "family_snapshot_sha256": "88d94c4bf20827b792798873a6fb52ff9adbe4af1ddc48d243edebd10719918f",
+  "schema": "eggroll-es-anchor-pilot-summary-v1",
+  "seed": 42,
+  "selection_allowed": false,
+  "source": "experiments/eggroll_es_hpo/runs/snapshot794_anchor_v2_exactrestore_rescue_pop16_items32_cos05_seed42/alpha_line_search.json",
+  "states": [
+    {
+      "ood_prose_gate": {
+        "delta": -0.0016894267005029828,
+        "paired_document_bootstrap_95_ci": [
+          -0.004104057574087755,
+          0.0010078449420595627
+        ],
+        "passed": false
+      },
+      "ood_qa_gate": {
+        "deltas": {
+          "exact": 0,
+          "mean_reward": 0.0,
+          "nonzero": 0
+        },
+        "passed": true
+      },
+      "path_dependent_monotonic_state": true,
+      "pilot_eligible": false,
+      "target_alpha": 1.5625e-06,
+      "validation_delta": -0.023
+    },
+    {
+      "ood_prose_gate": {
+        "delta": -0.0018352912196533122,
+        "paired_document_bootstrap_95_ci": [
+          -0.004340821143325163,
+          0.0008156491583736098
+        ],
+        "passed": false
+      },
+      "ood_qa_gate": {
+        "deltas": {
+          "exact": 0,
+          "mean_reward": 0.0,
+          "nonzero": 0
+        },
+        "passed": true
+      },
+      "path_dependent_monotonic_state": true,
+      "pilot_eligible": false,
+      "target_alpha": 3.125e-06,
+      "validation_delta": -0.024390243902439025
+    },
+    {
+      "ood_prose_gate": {
+        "delta": -0.0034083574724386168,
+        "paired_document_bootstrap_95_ci": [
+          -0.006209856142362136,
+          -0.0003153190741843111
+        ],
+        "passed": false
+      },
+      "ood_qa_gate": {
+        "deltas": {
+          "exact": 0,
+          "mean_reward": 0.0,
+          "nonzero": 0
+        },
+        "passed": true
+      },
+      "path_dependent_monotonic_state": true,
+      "pilot_eligible": false,
+      "target_alpha": 6.25e-06,
+      "validation_delta": -0.003609756097560979
+    }
+  ],
+  "targets": [
+    0.0,
+    1.5625e-06,
+    3.125e-06,
+    6.25e-06
+  ]
+}

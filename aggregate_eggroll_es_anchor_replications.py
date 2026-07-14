@@ -219,8 +219,9 @@ def _validate_snapshot(snapshot):
     evaluations = snapshot.get("evaluations")
     _require(isinstance(evaluations, dict), "evaluation identities are missing")
     _require(
-        tuple(evaluations) == ALLOWED_EVAL_SPLITS,
-        "evaluation identities must be exactly validation,ood_qa in order",
+        len(evaluations) == len(ALLOWED_EVAL_SPLITS)
+        and set(evaluations) == set(ALLOWED_EVAL_SPLITS),
+        "evaluation identities must be exactly validation,ood_qa",
     )
     normalized_evaluations = {
         split: _validate_dataset_split(evaluations[split], split)
@@ -1101,7 +1102,8 @@ def validate_journal(journal):
         qa = state.get("qa")
         _require(isinstance(qa, dict), f"state {index} QA results are missing")
         _require(
-            tuple(qa) == ALLOWED_EVAL_SPLITS,
+            len(qa) == len(ALLOWED_EVAL_SPLITS)
+            and set(qa) == set(ALLOWED_EVAL_SPLITS),
             f"state {index} QA splits are not allowlisted",
         )
         normalized_qa = {
