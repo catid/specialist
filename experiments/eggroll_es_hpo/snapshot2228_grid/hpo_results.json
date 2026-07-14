@@ -1,0 +1,100 @@
+{
+  "baseline": {
+    "alpha": 0.0,
+    "name": "baseline",
+    "run_summary": "experiments/eggroll_es_hpo/snapshot2228_grid/runs/baseline/run_summary.json",
+    "sigma": 0.0,
+    "steps": 0,
+    "validation_score": 0.09767285234556067
+  },
+  "baseline_selected": false,
+  "baseline_validation_score": 0.09767285234556067,
+  "batch_size": 64,
+  "best": {
+    "alpha": 0.001,
+    "name": "sigma2e-3_alpha1e-3",
+    "run_summary": "experiments/eggroll_es_hpo/snapshot2228_grid/runs/sigma2e-3_alpha1e-3/run_summary.json",
+    "sigma": 0.002,
+    "steps": 3,
+    "validation_score": 0.09961369544739988
+  },
+  "best_treatment": {
+    "alpha": 0.001,
+    "name": "sigma2e-3_alpha1e-3",
+    "run_summary": "experiments/eggroll_es_hpo/snapshot2228_grid/runs/sigma2e-3_alpha1e-3/run_summary.json",
+    "sigma": 0.002,
+    "steps": 3,
+    "validation_score": 0.09961369544739988
+  },
+  "dataset": {
+    "manifest": {
+      "eval_jsonl": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+      "eval_jsonl_sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7",
+      "eval_splits": {
+        "heldout": 169,
+        "train": 236
+      },
+      "schema": "eggroll-es-specialist-dataset-v1",
+      "train_jsonl": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+      "train_jsonl_sha256": "ea178be3d1052000095cde77a5c4b1b8b93130bb3b16fafdd85d0a107a7edf4d",
+      "train_rows": 2228
+    },
+    "train_arrow_sha256": "bb60372725825f2fc81b46b681899ed8b4ba1af79d10ab1e6905bae5fb660f6f"
+  },
+  "final_holdout_used_for_selection": false,
+  "max_tokens": 32,
+  "population_size": 8,
+  "results": [
+    {
+      "alpha": 0.00015,
+      "name": "sigma3e-4_alpha1.5e-4",
+      "run_summary": "experiments/eggroll_es_hpo/snapshot2228_grid/runs/sigma3e-4_alpha1.5e-4/run_summary.json",
+      "sigma": 0.0003,
+      "steps": 3,
+      "validation_score": 0.09495924669216461
+    },
+    {
+      "alpha": 0.00025,
+      "name": "sigma5e-4_alpha2.5e-4",
+      "run_summary": "experiments/eggroll_es_hpo/snapshot2228_grid/runs/sigma5e-4_alpha2.5e-4/run_summary.json",
+      "sigma": 0.0005,
+      "steps": 3,
+      "validation_score": 0.09543667461774898
+    },
+    {
+      "alpha": 0.00025,
+      "name": "sigma1e-3_alpha2.5e-4",
+      "run_summary": "experiments/eggroll_es_hpo/snapshot2228_grid/runs/sigma1e-3_alpha2.5e-4/run_summary.json",
+      "sigma": 0.001,
+      "steps": 3,
+      "validation_score": 0.09404227024010263
+    },
+    {
+      "alpha": 0.0005,
+      "name": "sigma1e-3_alpha5e-4",
+      "run_summary": "experiments/eggroll_es_hpo/snapshot2228_grid/runs/sigma1e-3_alpha5e-4/run_summary.json",
+      "sigma": 0.001,
+      "steps": 3,
+      "validation_score": 0.0938110127280276
+    },
+    {
+      "alpha": 0.001,
+      "name": "sigma1e-3_alpha1e-3",
+      "run_summary": "experiments/eggroll_es_hpo/snapshot2228_grid/runs/sigma1e-3_alpha1e-3/run_summary.json",
+      "sigma": 0.001,
+      "steps": 3,
+      "validation_score": 0.09334926310397006
+    },
+    {
+      "alpha": 0.001,
+      "name": "sigma2e-3_alpha1e-3",
+      "run_summary": "experiments/eggroll_es_hpo/snapshot2228_grid/runs/sigma2e-3_alpha1e-3/run_summary.json",
+      "sigma": 0.002,
+      "steps": 3,
+      "validation_score": 0.09961369544739988
+    }
+  ],
+  "schema": "eggroll-es-hpo-v1",
+  "seed": 42,
+  "selection_split": "train"
+}

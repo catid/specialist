@@ -24,7 +24,7 @@ es-at-scale/.venv/bin/pytest -q test_eggroll_es_specialist.py
 
 The builder converts `data/train_qa_curated_v1.jsonl` and
 `data/eval_qa_v2.jsonl` to the Hugging Face `DatasetDict` layout expected by
-the upstream trainer. The current artifact contains 3,258 training examples,
+the upstream trainer. The current moving artifact contains 1,487 training examples,
 169 heldout evaluation examples, and 236 train-split evaluation examples.
 Generated Arrow data is intentionally gitignored.
 
@@ -72,8 +72,9 @@ reward shaping, update, or synchronization logic.
 
 ## Validation on this host
 
-The end-to-end evaluation completed with heldout pass@1 `0.0674359708` and
-train-split pass@1 `0.0982221418`. A separate population-4 smoke run completed
+The fixed evaluation completed with heldout mean answer reward `0.0674359708`
+and train-split mean answer reward `0.0976728523`. A separate population-4
+smoke run completed
 the full perturb, generation, restore, FP32 update, NCCL rebroadcast, and final
 checkpoint path. During that end-to-end run every GPU reached 100% utilization;
 there were 14 one-second samples where all four were active simultaneously.
@@ -86,3 +87,7 @@ update also runs on engine 0 before broadcasting to the other engines. Thus all
 four GPUs are used concurrently for population rollouts, but the exact upstream
 design does not keep all four compute-active during evaluation, the centralized
 update, or checkpoint serialization.
+
+The completed validation-only grid and one-time holdout evaluation on the
+frozen 2,228-row S3 dataset snapshot are recorded in
+[`experiments/eggroll_es_hpo/README.md`](experiments/eggroll_es_hpo/README.md).

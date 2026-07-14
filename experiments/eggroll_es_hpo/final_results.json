@@ -1,0 +1,108 @@
+{
+  "schema": "eggroll-es-final-result-v1",
+  "model": {
+    "name": "Qwen3.6-35B-A3B",
+    "huggingface_revision": "995ad96eacd98c81ed38be0c5b274b04031597b0"
+  },
+  "upstream": {
+    "repository": "https://github.com/VsonicV/es-at-scale",
+    "commit": "574a9d134da1ffce2a8bb812019899e5c96b588a"
+  },
+  "dataset": {
+    "train_rows": 2228,
+    "train_jsonl_sha256": "ea178be3d1052000095cde77a5c4b1b8b93130bb3b16fafdd85d0a107a7edf4d",
+    "curation_sha256": "e6cb9da70241f41dee170dad37b2191a8a48c1945f1c7b72d6e90ba41d3fdb34",
+    "train_arrow_sha256": "bb60372725825f2fc81b46b681899ed8b4ba1af79d10ab1e6905bae5fb660f6f",
+    "eval_jsonl_sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7",
+    "validation_rows": 236,
+    "holdout_rows": 169
+  },
+  "selection": {
+    "split": "train",
+    "holdout_used_for_selection": false,
+    "seed": 42,
+    "population_size": 8,
+    "batch_size": 64,
+    "max_tokens": 32,
+    "sigma": 0.002,
+    "alpha": 0.001,
+    "steps": 3,
+    "six_step_validation_score": 0.09400715164860646,
+    "hpo_journal": "snapshot2228_grid/hpo_results.json",
+    "hpo_journal_sha256": "9e0da7d52693d821aefb07ffd2aff94d27c9d30975056f739d556eb84d57697e"
+  },
+  "validation": {
+    "baseline_mean_reward": 0.09767285234556067,
+    "treatment_mean_reward": 0.09961369544739988,
+    "treatment_minus_baseline": 0.001940843101839216,
+    "relative_change": 0.01987085515812141,
+    "baseline_exact": 14,
+    "treatment_exact": 14,
+    "baseline_nonzero": 93,
+    "treatment_nonzero": 99,
+    "treatment_wins": 22,
+    "baseline_wins": 15,
+    "ties": 199,
+    "paired_bootstrap_95_ci": [
+      -0.0007686855340148258,
+      0.0047438630818675874
+    ],
+    "comparison": "final_validation_comparison.json",
+    "comparison_sha256": "659e4e68f0dbdee86f7788f98f9d5738c0dfc1b4e2ba3947bd54b0ff9a799e56"
+  },
+  "holdout": {
+    "baseline_mean_reward": 0.06743597079539153,
+    "treatment_mean_reward": 0.07223065881690348,
+    "treatment_minus_baseline": 0.004794688021511949,
+    "relative_change": 0.07109985909537188,
+    "baseline_exact": 7,
+    "treatment_exact": 7,
+    "baseline_nonzero": 54,
+    "treatment_nonzero": 60,
+    "treatment_wins": 17,
+    "baseline_wins": 15,
+    "ties": 137,
+    "paired_bootstrap_95_ci": [
+      -0.010358852000581936,
+      0.021285275449436196
+    ],
+    "comparison": "final_holdout_comparison.json",
+    "comparison_sha256": "a836b714ac353421109569b7e6fd0b33452bfd30bf9c1a0f39b5c0ef4da161c3"
+  },
+  "checkpoint": {
+    "path": "runs/final_selected/checkpoint-es_exact_steps_3/pytorch_model.pth",
+    "bytes": 69321427447,
+    "sha256": "552b8cc091323321cd55647dbb967a165d9c1a8c785bd3544127e9579aecc30b",
+    "tracked_by_git": false
+  },
+  "gpu_trace": {
+    "path": "../gpu_utilization_eggroll_es_final.jsonl",
+    "sha256": "90c38dcbd6239db63c909302f0684f1c53ecd42c23457f769065bf14ae9a7f72",
+    "samples": 141,
+    "started_at": "2026-07-14T04:39:47.423840+00:00",
+    "ended_at": "2026-07-14T04:42:31.581244+00:00",
+    "mean_utilization_percent": [33.14, 14.44, 16.74, 17.17],
+    "mean_when_at_least_20_percent": [93.26, 86.14, 93.0, 91.6],
+    "all_four_at_least_20_percent_samples": 21,
+    "all_four_at_100_percent_samples": 9,
+    "gpu0_only_at_least_20_percent_samples": 23,
+    "max_memory_mib": [96639, 82346, 82346, 82346]
+  },
+  "software": {
+    "torch": "2.11.0+cu130",
+    "vllm": "0.25.0",
+    "transformers": "5.13.1",
+    "ray": "2.56.0",
+    "datasets": "5.0.0",
+    "training_script": "../../train_eggroll_es_specialist_s3.py",
+    "training_script_sha256": "ebdf5f1be4e9e64af3e234f2359afa571f2322a5eb0724368ae7087ed0a439af"
+  },
+  "limitations": [
+    "The reward is answer-token overlap with exact-match credit, not pure accuracy.",
+    "HPO and final training used one seed.",
+    "The validation split is not document-disjoint from training: a later audit found at least 42 retained Rope365 rows among the first 300 reviewed whose source URLs also occur in validation; none of those URLs occurred in the sealed heldout split.",
+    "Both paired 95% bootstrap intervals include zero.",
+    "Exact-match counts did not change on validation or holdout.",
+    "Upstream rollouts use all four GPUs, but evaluation, updates, and checkpoint serialization are centralized on GPU 0."
+  ]
+}

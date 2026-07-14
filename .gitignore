@@ -10,8 +10,13 @@ __pycache__/
 prof/
 sglang_storage/
 experiments/eggroll_es/
+experiments/eggroll_es_hpo/runs/
+experiments/eggroll_es_hpo/**/runs/
 experiments/gpu_utilization_eggroll_es_*.jsonl
 !experiments/gpu_utilization_eggroll_es_train_smoke.jsonl
+!experiments/gpu_utilization_eggroll_es_hpo.jsonl
+!experiments/gpu_utilization_eggroll_es_final.jsonl
+!experiments/gpu_utilization_eggroll_es_s4_probe.jsonl
 
 # Model weights and generated checkpoints
 models/
@@ -43,8 +48,11 @@ data/*.json
 !data/rope_resource_qa_v1.report.json
 !data/train_qa_curated_v1.jsonl
 !data/train_qa_curated_v1.report.json
+!data/train_qa_curated_v1.curation.jsonl
 !data/rope_resource_factual_qa_v1.jsonl
 !data/rope_resource_factual_qa_v1.report.json
+!data/rope_resource_manual_v1.jsonl
+!data/train_qa_kinbakutoday.curation.jsonl
 !data/rope_resources_coverage_v1.json
 
 # Downloaded paper intermediates; retain the reviewed Markdown and figures

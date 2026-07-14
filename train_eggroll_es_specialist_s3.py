@@ -78,12 +78,6 @@ def set_seed(seed):
         torch.cuda.manual_seed_all(seed)
 
 
-def exact_step_seed(global_seed, iteration):
-    """Derive the per-step seed without treating the valid seed 0 as absent."""
-    base_seed = 42 if global_seed is None else global_seed
-    return base_seed + iteration
-
-
 def load_trainer():
     """Load upstream with the minimum Qwen3.6/vLLM compatibility layer."""
     pythonpath = [str(COMPAT), str(UPSTREAM)]
@@ -262,7 +256,7 @@ def run_exact_steps(trainer, steps, skip_baseline_eval=False,
                 input_text, target_text = next(train_iterator)
             prompts = [trainer.template(item) for item in input_text]
             loop_rng = np.random.default_rng(
-                seed=exact_step_seed(trainer.global_seed, iteration)
+                seed=(trainer.global_seed or 42) + iteration
             )
             seeds = loop_rng.integers(
                 0, 2**30, size=trainer.population_size, dtype=np.int64

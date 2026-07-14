@@ -1,0 +1,380 @@
+{
+  "schema": "rope-topia-manual-source-v1",
+  "source_id": "rope_topia",
+  "source_name": "RopeTopia",
+  "requested_url": "http://rope-topia.com",
+  "canonical_site_url": "https://rope-topia.com/",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "Codex rope-topia manual worker",
+  "collection_policy": {
+    "mode": "manual_public_review",
+    "robots_url": "https://rope-topia.com/robots.txt",
+    "robots_http_status": 200,
+    "robots_evidence": "Sitemap: https://rope-topia.com/sitemap.xml",
+    "robots_observation": "No User-agent or Disallow rule was present. The only line named the public sitemap.",
+    "sitemap_url": "https://rope-topia.com/sitemap.xml",
+    "sitemap_http_status": 200,
+    "sitemap_url_count": 218,
+    "copyright_policy": "Do not reproduce article bodies. Keep only manually written standalone Q&A with the minimum source excerpt needed to verify each answer.",
+    "access_policy": "Do not work around the site's demo notice, authentication, payment, or other access controls. A title or URL is not evidence for facts that may have appeared in the missing article body."
+  },
+  "live_access": {
+    "observation": "The current host is a limited recovered-site demo, not a functioning copy of the original WordPress blog.",
+    "gate_evidence": "The DEMO version only includes 4 pages",
+    "gate_evidence_url": "https://rope-topia.com/blog/",
+    "blog_url": "https://rope-topia.com/blog/",
+    "blog_http_status": 200,
+    "blog_access_status": "demo_gate",
+    "accessible_demo_urls": [
+      "https://rope-topia.com/",
+      "https://rope-topia.com/index.html",
+      "https://rope-topia.com/about/",
+      "https://rope-topia.com/about.html",
+      "https://rope-topia.com/links/",
+      "https://rope-topia.com/links.html",
+      "https://rope-topia.com/portfolio/",
+      "https://rope-topia.com/portfolio.html"
+    ],
+    "accessible_demo_pages": [
+      {
+        "canonical_url": "https://rope-topia.com/",
+        "alias_url": "https://rope-topia.com/index.html",
+        "http_status": 200,
+        "content_role": "homepage and title-link index"
+      },
+      {
+        "canonical_url": "https://rope-topia.com/about/",
+        "alias_url": "https://rope-topia.com/about.html",
+        "http_status": 200,
+        "content_role": "biographical page; no durable instructional fact admitted"
+      },
+      {
+        "canonical_url": "https://rope-topia.com/links/",
+        "alias_url": "https://rope-topia.com/links.html",
+        "http_status": 200,
+        "content_role": "links page; no educational content admitted"
+      },
+      {
+        "canonical_url": "https://rope-topia.com/portfolio/",
+        "alias_url": "https://rope-topia.com/portfolio.html",
+        "http_status": 200,
+        "content_role": "portfolio index used only to verify one article title"
+      }
+    ],
+    "unavailable_public_endpoints": [
+      {
+        "url": "https://rope-topia.com/wp-json/",
+        "http_status": 404
+      },
+      {
+        "url": "https://rope-topia.com/wp-json/wp/v2/posts?per_page=100",
+        "http_status": 404
+      },
+      {
+        "url": "https://rope-topia.com/feed/",
+        "http_status": 404
+      },
+      {
+        "url": "https://rope-topia.com/blog/feed/",
+        "http_status": 404
+      },
+      {
+        "url": "https://rope-topia.com/portfolio-items/kinbaku-today-rope-is-not-about-rope/",
+        "http_status": 404,
+        "observation": "The sitemap-listed portfolioCats URL is the current HTTP 200 resource; stripping that path suffix produces this HTTP 404 URL."
+      }
+    ]
+  },
+  "resources": [
+    {
+      "id": "wicked_fast_bowline",
+      "title": "Wicked Fast Bowline (WykD’s fast bowline)",
+      "resource_kind": "tutorial",
+      "supplied_url": "https://rope-topia.com/portfolio-items/wicked-fast-bowline/",
+      "canonical_url": "https://rope-topia.com/portfolio-items/wicked-fast-bowline/",
+      "question": "Which canonical Rope-topia URL was listed for the Wicked Fast Bowline tutorial?",
+      "title_evidence": "Wicked Fast Bowline (WykD’s fast bowline)",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/portfolio-items/wicked-fast-bowline/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "wet_treating_rope",
+      "title": "Wet treating rope",
+      "resource_kind": "tutorial",
+      "supplied_url": "https://rope-topia.com/portfolio-items/wet-treating-rope/",
+      "canonical_url": "https://rope-topia.com/portfolio-items/wet-treating-rope/",
+      "question": "Which canonical Rope-topia URL was listed for the Wet treating rope tutorial?",
+      "title_evidence": "Wet treating rope",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/portfolio-items/wet-treating-rope/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "joining_rope",
+      "title": "Joining Rope",
+      "resource_kind": "tutorial",
+      "supplied_url": "https://rope-topia.com/portfolio-items/joining-rope/",
+      "canonical_url": "https://rope-topia.com/portfolio-items/joining-rope/",
+      "question": "Which canonical Rope-topia URL was listed for the Joining Rope tutorial?",
+      "title_evidence": "Joining Rope",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/portfolio-items/joining-rope/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "strugglers_knot",
+      "title": "Strugglers Knot",
+      "resource_kind": "tutorial",
+      "supplied_url": "https://rope-topia.com/portfolio-items/strugglers-knot/",
+      "canonical_url": "https://rope-topia.com/portfolio-items/strugglers-knot/",
+      "question": "Which canonical Rope-topia URL was listed for the Strugglers Knot tutorial?",
+      "title_evidence": "Strugglers Knot",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/portfolio-items/strugglers-knot/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "yin_yoga_for_bondage",
+      "title": "Yin Yoga for Bondage",
+      "resource_kind": "blog_post",
+      "supplied_url": "https://rope-topia.com/2012/09/yin-yoga-for-bondage/",
+      "canonical_url": "https://rope-topia.com/2012/09/yin-yoga-for-bondage/",
+      "question": "Which canonical Rope-topia URL was listed for the post Yin Yoga for Bondage?",
+      "title_evidence": "Yin Yoga for Bondage",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/2012/09/yin-yoga-for-bondage/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "ichinawa_ippon_me_no_nawa_one_rope",
+      "title": "Ichinawa, Ippon me no nawa and One rope",
+      "resource_kind": "blog_post",
+      "supplied_url": "https://rope-topia.com/2012/10/ichinawa-ippon-me-no-nawa-and-one-rope/",
+      "canonical_url": "https://rope-topia.com/2012/10/ichinawa-ippon-me-no-nawa-and-one-rope/",
+      "question": "Which canonical Rope-topia URL was listed for the post Ichinawa, Ippon me no nawa and One rope?",
+      "title_evidence": "Ichinawa, Ippon me no nawa and One rope",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/2012/10/ichinawa-ippon-me-no-nawa-and-one-rope/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "safety_cutters",
+      "title": "Safety cutters",
+      "resource_kind": "safety_page",
+      "supplied_url": "https://rope-topia.com/safety-cutters/",
+      "canonical_url": "https://rope-topia.com/safety-cutters/",
+      "question": "Which canonical Rope-topia URL was listed for its Safety cutters page?",
+      "title_evidence": "Safety cutters",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/safety-cutters/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "luck_self_awareness_responsibility_injuries",
+      "title": "Luck, self awareness, responsibility & rope bondage injuries",
+      "resource_kind": "blog_post",
+      "supplied_url": "https://rope-topia.com/2013/11/luck-self-awareness-responsibility-rope-bondage-injuries/",
+      "canonical_url": "https://rope-topia.com/2013/11/luck-self-awareness-responsibility-rope-bondage-injuries/",
+      "question": "Which canonical Rope-topia URL was listed for its post about luck, self-awareness, responsibility, and rope-bondage injuries?",
+      "title_evidence": "Luck, self awareness, responsibility & rope bondage injuries.",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/2013/11/luck-self-awareness-responsibility-rope-bondage-injuries/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "identifying_predatory_behaviour",
+      "title": "Identifying predatory behaviour",
+      "resource_kind": "community_safety_page",
+      "supplied_url": "https://rope-topia.com/newcomers-information/identifying-predatory-behaviour/",
+      "canonical_url": "https://rope-topia.com/newcomers-information/identifying-predatory-behaviour/",
+      "question": "Which canonical Rope-topia URL was listed for its Identifying predatory behaviour page?",
+      "title_evidence": "Identifying predatory behaviour",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/newcomers-information/identifying-predatory-behaviour/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "new_to_kink_scene",
+      "title": "So you’re new to the kink scene",
+      "resource_kind": "newcomer_page",
+      "supplied_url": "https://rope-topia.com/newcomers-information/so-youre-new-to-the-kink-scene/",
+      "canonical_url": "https://rope-topia.com/newcomers-information/so-youre-new-to-the-kink-scene/",
+      "question": "Which canonical Rope-topia URL was listed for its So you're new to the kink scene page?",
+      "title_evidence": "So you’re new to the kink scene",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/newcomers-information/so-youre-new-to-the-kink-scene/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "newcomers_information",
+      "title": "Newcomers information",
+      "resource_kind": "newcomer_hub",
+      "supplied_url": "https://rope-topia.com/newcomers-information/",
+      "canonical_url": "https://rope-topia.com/newcomers-information/",
+      "question": "Which canonical Rope-topia URL was listed for its Newcomers information hub?",
+      "title_evidence": "Newcomers information",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/newcomers-information/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "nerve_and_circulation_problems",
+      "title": "Nerve and Circulation Problems in Shibari",
+      "resource_kind": "safety_page",
+      "supplied_url": "https://rope-topia.com/nerve-and-circulation-problems/",
+      "canonical_url": "https://rope-topia.com/nerve-and-circulation-problems/",
+      "question": "Which canonical Rope-topia URL was listed for Nerve and Circulation Problems in Shibari?",
+      "title_evidence": "Nerve and Circulation Problems in Shibari",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/nerve-and-circulation-problems/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "rope_bottom_guide",
+      "title": "Rope Bottom Guide",
+      "resource_kind": "bottom_education_page",
+      "supplied_url": "https://rope-topia.com/rope-bottom-guide/",
+      "canonical_url": "https://rope-topia.com/rope-bottom-guide/",
+      "question": "Which canonical Rope-topia URL was listed for its Rope Bottom Guide page?",
+      "title_evidence": "Rope Bottom Guide",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/rope-bottom-guide/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "out_into_kink_community",
+      "title": "Getting out in the kink community",
+      "resource_kind": "newcomer_page",
+      "supplied_url": "https://rope-topia.com/newcomers-information/out-into-the-kink-community/",
+      "canonical_url": "https://rope-topia.com/newcomers-information/out-into-the-kink-community/",
+      "question": "Which canonical Rope-topia URL was listed for Getting out in the kink community?",
+      "title_evidence": "Getting out in the kink community",
+      "title_evidence_url": "https://rope-topia.com/",
+      "url_evidence": "<loc>https://rope-topia.com/newcomers-information/out-into-the-kink-community/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    },
+    {
+      "id": "kinbaku_today_rope_not_about_rope",
+      "title": "Kinbaku Today (Rope is not about Rope)",
+      "resource_kind": "article",
+      "supplied_url": "https://rope-topia.com/portfolio-items/kinbaku-today-rope-is-not-about-rope/portfolioCats-102-70-123-72-57/",
+      "canonical_url": "https://rope-topia.com/portfolio-items/kinbaku-today-rope-is-not-about-rope/portfolioCats-102-70-123-72-57/",
+      "question": "Which current Rope-topia URL does its sitemap list for the portfolio article Rope is not about Rope?",
+      "title_evidence": "Kinbaku Today (Rope is not about Rope)",
+      "title_evidence_url": "https://rope-topia.com/portfolio.html",
+      "url_evidence": "<loc>https://rope-topia.com/portfolio-items/kinbaku-today-rope-is-not-about-rope/portfolioCats-102-70-123-72-57/</loc>",
+      "url_evidence_url": "https://rope-topia.com/sitemap.xml",
+      "live_http_status": 200,
+      "access_status": "demo_gate"
+    }
+  ],
+  "excluded_urls": [
+    {
+      "title": "A week of bondage at BeachBind 2018",
+      "url": "https://rope-topia.com/2018/05/a-week-of-bondage-at-beachbind-2018/",
+      "live_http_status": 200,
+      "access_status": "demo_gate",
+      "reason": "Event/travel recap; the inaccessible title supplies no durable instructional fact."
+    },
+    {
+      "title": "WykD TK 4 week course",
+      "url": "https://rope-topia.com/2017/08/wykd-tk-4-week-course/",
+      "live_http_status": 200,
+      "access_status": "demo_gate",
+      "reason": "Time-bound course promotion; the article body is inaccessible."
+    },
+    {
+      "title": "London Shibari Intensive at Anatomie Studio in 2017",
+      "url": "https://rope-topia.com/2017/08/london-shibari-intensive-at-anatomie-studio-in-2017/",
+      "live_http_status": 200,
+      "access_status": "demo_gate",
+      "reason": "Past workshop promotion; the article body is inaccessible."
+    },
+    {
+      "title": "Tokyo and Kyoto 2018",
+      "url": "https://rope-topia.com/2018/04/tokyo-and-kyoto-2018/",
+      "live_http_status": 200,
+      "access_status": "demo_gate",
+      "reason": "Travel post; the inaccessible title supplies no durable instructional fact."
+    },
+    {
+      "title": "SWAMP Shibari Show",
+      "url": "https://rope-topia.com/2017/09/swamp-shibari-show/",
+      "live_http_status": 200,
+      "access_status": "demo_gate",
+      "reason": "Event/show post; the inaccessible title supplies no durable instructional fact."
+    },
+    {
+      "title": "A love letter",
+      "url": "https://rope-topia.com/2017/08/a-love-letter/",
+      "live_http_status": 200,
+      "access_status": "demo_gate",
+      "reason": "The title alone does not establish educational relevance and the article body is inaccessible."
+    },
+    {
+      "title": "Taboo magazine cover Shibari Bondage",
+      "url": "https://rope-topia.com/2013/12/taboo-magazine-cover-shibari-bondage/",
+      "live_http_status": 200,
+      "access_status": "demo_gate",
+      "reason": "Media/portfolio post; the inaccessible title supplies no durable instructional fact."
+    },
+    {
+      "title": "Tattooed Art",
+      "url": "https://rope-topia.com/2018/01/tattooed-art/",
+      "live_http_status": 200,
+      "access_status": "demo_gate",
+      "reason": "Art/promotion post; the inaccessible title supplies no durable instructional fact."
+    }
+  ],
+  "exclusions": [
+    {
+      "scope": "all 15 resource article bodies",
+      "reason": "Each live URL returned the explicit demo notice instead of its article body. Titles and URLs were indexed, but no missing content was inferred or copied."
+    },
+    {
+      "scope": "homepage definition of shibari",
+      "reason": "Excluded for semantic evaluation leakage: data/eval_qa.jsonl already asks for the literal translation and supplies the same definition."
+    },
+    {
+      "scope": "homepage and About-page artistic statements",
+      "reason": "Excluded as personal opinion, biography, or promotion rather than durable instructional rope facts."
+    },
+    {
+      "scope": "event posts, workshop notices, galleries, shoots, interviews, and commerce",
+      "reason": "Excluded as volatile, promotional, image-centric, or outside the educational dataset scope."
+    },
+    {
+      "scope": "external Rope Bottom Guide link",
+      "reason": "The external site is not Rope-topia blog content and was not silently substituted for Rope-topia's gated page."
+    }
+  ]
+}

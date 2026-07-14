@@ -1,0 +1,81 @@
+{
+  "baseline_validation_score": 0.09767285234556067,
+  "batch_size": 64,
+  "best": {
+    "alpha": 0.00025,
+    "name": "sigma5e-4_alpha2.5e-4",
+    "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/sigma5e-4_alpha2.5e-4/run_summary.json",
+    "sigma": 0.0005,
+    "steps": 3,
+    "validation_score": 0.09833969516838835
+  },
+  "dataset": {
+    "manifest": {
+      "eval_jsonl": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+      "eval_splits": {
+        "heldout": 169,
+        "train": 236
+      },
+      "schema": "eggroll-es-specialist-dataset-v1",
+      "train_jsonl": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+      "train_rows": 2915
+    },
+    "train_arrow_sha256": "807d423724508e5cdee2d9966e5677fb6dcd88fb28d9cc04200c8875725711a3"
+  },
+  "final_holdout_used_for_selection": false,
+  "max_tokens": 32,
+  "population_size": 8,
+  "results": [
+    {
+      "alpha": 0.00015,
+      "name": "sigma3e-4_alpha1.5e-4",
+      "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/sigma3e-4_alpha1.5e-4/run_summary.json",
+      "sigma": 0.0003,
+      "steps": 3,
+      "validation_score": 0.09522393954212288
+    },
+    {
+      "alpha": 0.00025,
+      "name": "sigma5e-4_alpha2.5e-4",
+      "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/sigma5e-4_alpha2.5e-4/run_summary.json",
+      "sigma": 0.0005,
+      "steps": 3,
+      "validation_score": 0.09833969516838835
+    },
+    {
+      "alpha": 0.00025,
+      "name": "sigma1e-3_alpha2.5e-4",
+      "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/sigma1e-3_alpha2.5e-4/run_summary.json",
+      "sigma": 0.001,
+      "steps": 3,
+      "validation_score": 0.09565298999058436
+    },
+    {
+      "alpha": 0.0005,
+      "name": "sigma1e-3_alpha5e-4",
+      "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/sigma1e-3_alpha5e-4/run_summary.json",
+      "sigma": 0.001,
+      "steps": 3,
+      "validation_score": 0.09272777000167534
+    },
+    {
+      "alpha": 0.001,
+      "name": "sigma1e-3_alpha1e-3",
+      "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/sigma1e-3_alpha1e-3/run_summary.json",
+      "sigma": 0.001,
+      "steps": 3,
+      "validation_score": 0.09397068258505782
+    },
+    {
+      "alpha": 0.001,
+      "name": "sigma2e-3_alpha1e-3",
+      "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/sigma2e-3_alpha1e-3/run_summary.json",
+      "sigma": 0.002,
+      "steps": 3,
+      "validation_score": 0.09479326497719202
+    }
+  ],
+  "schema": "eggroll-es-hpo-v1",
+  "seed": 42,
+  "selection_split": "train"
+}

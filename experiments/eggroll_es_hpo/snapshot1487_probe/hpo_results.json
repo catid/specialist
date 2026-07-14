@@ -1,0 +1,237 @@
+{
+  "baseline": {
+    "alpha": 0.0,
+    "name": "baseline",
+    "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/snapshot1487_probe/runs/baseline/run_summary.json",
+    "sigma": 0.0,
+    "steps": 0,
+    "validation_score": 0.09767285234556067
+  },
+  "baseline_selected": true,
+  "baseline_validation_score": 0.09767285234556067,
+  "batch_size": 64,
+  "best": {
+    "alpha": 0.0,
+    "name": "baseline",
+    "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/snapshot1487_probe/runs/baseline/run_summary.json",
+    "sigma": 0.0,
+    "steps": 0,
+    "validation_score": 0.09767285234556067
+  },
+  "best_treatment": {
+    "alpha": 0.001,
+    "name": "sigma2e-3_alpha1e-3",
+    "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/snapshot1487_probe/runs/sigma2e-3_alpha1e-3/run_summary.json",
+    "sigma": 0.002,
+    "steps": 3,
+    "validation_score": 0.09469050375328315
+  },
+  "dataset": {
+    "manifest": {
+      "eval_jsonl": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+      "eval_jsonl_sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7",
+      "eval_splits": {
+        "heldout": 169,
+        "train": 236
+      },
+      "schema": "eggroll-es-specialist-dataset-v1",
+      "train_jsonl": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+      "train_jsonl_sha256": "d371114ca4e2dacf7dfb97adb2f669ee8b3f44455354a15015fd2b56ac982d5f",
+      "train_rows": 1487
+    },
+    "snapshot": {
+      "eval_dataset": "/home/catid/specialist/data/eggroll_es_specialist/eval",
+      "manifest": {
+        "path": "/home/catid/specialist/data/eggroll_es_specialist/manifest.json",
+        "sha256": "f78314347895a67a1696e9e936c2710de4b7874833b6e4f28378ff4f960e8df2",
+        "size": 455
+      },
+      "selection_eval_arrow": {
+        "path": "/home/catid/specialist/data/eggroll_es_specialist/eval/train/data-00000-of-00001.arrow",
+        "sha256": "3b8b980f4be5060ade3671a53dde03a975382c63ab1e44f0133a19cd741d06cb",
+        "size": 29968
+      },
+      "train_arrow": {
+        "path": "/home/catid/specialist/data/eggroll_es_specialist/train/train/data-00000-of-00001.arrow",
+        "sha256": "ff1b07297f404249adca6000acf8360000017cb2a75412b49f6e234a8082cc7c",
+        "size": 216056
+      },
+      "train_dataset": "/home/catid/specialist/data/eggroll_es_specialist/train"
+    },
+    "train_arrow_sha256": "ff1b07297f404249adca6000acf8360000017cb2a75412b49f6e234a8082cc7c"
+  },
+  "final_holdout_used_for_selection": false,
+  "max_tokens": 32,
+  "model": {
+    "metadata": {
+      "config.json": {
+        "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B/config.json",
+        "sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+        "size": 3686
+      },
+      "generation_config.json": {
+        "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B/generation_config.json",
+        "sha256": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e",
+        "size": 202
+      },
+      "model.safetensors.index.json": {
+        "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B/model.safetensors.index.json",
+        "sha256": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+        "size": 98383
+      },
+      "tokenizer_config.json": {
+        "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B/tokenizer_config.json",
+        "sha256": "5186f0defcd7f232382c7f0aebcd2252d073bb921ab240e407b7ae8745d2b29b",
+        "size": 16718
+      }
+    },
+    "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "weight_shards": [
+      {
+        "mtime_ns": 1783709883683752231,
+        "path": "model-00001-of-00026.safetensors",
+        "size": 3996199712
+      },
+      {
+        "mtime_ns": 1783709853559490726,
+        "path": "model-00002-of-00026.safetensors",
+        "size": 1284907696
+      },
+      {
+        "mtime_ns": 1783709890701813140,
+        "path": "model-00003-of-00026.safetensors",
+        "size": 3357898360
+      },
+      {
+        "mtime_ns": 1783709885790770518,
+        "path": "model-00004-of-00026.safetensors",
+        "size": 3370808712
+      },
+      {
+        "mtime_ns": 1783709881694734967,
+        "path": "model-00005-of-00026.safetensors",
+        "size": 3357898360
+      },
+      {
+        "mtime_ns": 1783709885707769797,
+        "path": "model-00006-of-00026.safetensors",
+        "size": 3959424904
+      },
+      {
+        "mtime_ns": 1783709855142504470,
+        "path": "model-00007-of-00026.safetensors",
+        "size": 1096788232
+      },
+      {
+        "mtime_ns": 1783709896457863093,
+        "path": "model-00008-of-00026.safetensors",
+        "size": 3946842008
+      },
+      {
+        "mtime_ns": 1783709882571742579,
+        "path": "model-00009-of-00026.safetensors",
+        "size": 1096460848
+      },
+      {
+        "mtime_ns": 1783709894703847871,
+        "path": "model-00010-of-00026.safetensors",
+        "size": 3946841992
+      },
+      {
+        "mtime_ns": 1783709899809892181,
+        "path": "model-00011-of-00026.safetensors",
+        "size": 1096460752
+      },
+      {
+        "mtime_ns": 1783709917490045587,
+        "path": "model-00012-of-00026.safetensors",
+        "size": 3409971080
+      },
+      {
+        "mtime_ns": 1783709905951945477,
+        "path": "model-00013-of-00026.safetensors",
+        "size": 1633331664
+      },
+      {
+        "mtime_ns": 1783709926652125072,
+        "path": "model-00014-of-00026.safetensors",
+        "size": 3422553872
+      },
+      {
+        "mtime_ns": 1783709915267026300,
+        "path": "model-00015-of-00026.safetensors",
+        "size": 1633659224
+      },
+      {
+        "mtime_ns": 1783709943552271668,
+        "path": "model-00016-of-00026.safetensors",
+        "size": 3946842136
+      },
+      {
+        "mtime_ns": 1783709919331061560,
+        "path": "model-00017-of-00026.safetensors",
+        "size": 1096460608
+      },
+      {
+        "mtime_ns": 1783709949382322233,
+        "path": "model-00018-of-00026.safetensors",
+        "size": 3946841992
+      },
+      {
+        "mtime_ns": 1783709926466123459,
+        "path": "model-00019-of-00026.safetensors",
+        "size": 1096460808
+      },
+      {
+        "mtime_ns": 1783709958648402592,
+        "path": "model-00020-of-00026.safetensors",
+        "size": 3409971072
+      },
+      {
+        "mtime_ns": 1783709952643350514,
+        "path": "model-00021-of-00026.safetensors",
+        "size": 1633331744
+      },
+      {
+        "mtime_ns": 1783709958013397085,
+        "path": "model-00022-of-00026.safetensors",
+        "size": 3370808752
+      },
+      {
+        "mtime_ns": 1783709963786447148,
+        "path": "model-00023-of-00026.safetensors",
+        "size": 3357898392
+      },
+      {
+        "mtime_ns": 1783709964880456635,
+        "path": "model-00024-of-00026.safetensors",
+        "size": 3370808752
+      },
+      {
+        "mtime_ns": 1783709964388452369,
+        "path": "model-00025-of-00026.safetensors",
+        "size": 3832888256
+      },
+      {
+        "mtime_ns": 1783709963024440540,
+        "path": "model-00026-of-00026.safetensors",
+        "size": 2231416848
+      }
+    ]
+  },
+  "population_size": 8,
+  "results": [
+    {
+      "alpha": 0.001,
+      "name": "sigma2e-3_alpha1e-3",
+      "run_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/snapshot1487_probe/runs/sigma2e-3_alpha1e-3/run_summary.json",
+      "sigma": 0.002,
+      "steps": 3,
+      "validation_score": 0.09469050375328315
+    }
+  ],
+  "schema": "eggroll-es-hpo-v1",
+  "seed": 42,
+  "selection_split": "train",
+  "trainer_sha256": "9c5ca268d74808e6d67b8b11f4e2e53ff45e60abfef99400c5ae24d0d0b419b6"
+}

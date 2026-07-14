@@ -2,6 +2,7 @@
 """Convert the curated QA JSONL into ES-at-Scale DatasetDict artifacts."""
 
 import argparse
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -9,6 +10,14 @@ from pathlib import Path
 from datasets import Dataset, DatasetDict
 
 from qa_quality import qa_pair_from_record
+
+
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def load_training_rows(path):
@@ -76,7 +85,9 @@ def build(train_jsonl, eval_jsonl, output):
     manifest = {
         "schema": "eggroll-es-specialist-dataset-v1",
         "train_jsonl": str(Path(train_jsonl).resolve()),
+        "train_jsonl_sha256": file_sha256(train_jsonl),
         "eval_jsonl": str(Path(eval_jsonl).resolve()),
+        "eval_jsonl_sha256": file_sha256(eval_jsonl),
         "train_rows": len(train_rows),
         "eval_splits": {
             split: len(rows) for split, rows in sorted(eval_splits.items())

@@ -1,0 +1,52 @@
+{
+  "baseline_inputs": {
+    "data/train_qa_curated_v1.jsonl": "d9ec2b0fe0a438067b74cb1a168172e0a658d78c17627d4d6e29c1f02dbfef6d"
+  },
+  "counts": {
+    "accessible_demo_endpoints": 8,
+    "accessible_demo_pages": 4,
+    "article_content_qa": 0,
+    "baseline_rows_compared": 1472,
+    "canonical_urls_represented": 15,
+    "eval_facts_compared": 505,
+    "excluded_scopes": 5,
+    "excluded_urls": 8,
+    "gated_relevant_endpoints_including_blog": 24,
+    "gated_resources": 15,
+    "output": 15,
+    "resource_kinds": {
+      "article": 1,
+      "blog_post": 3,
+      "bottom_education_page": 1,
+      "community_safety_page": 1,
+      "newcomer_hub": 1,
+      "newcomer_page": 2,
+      "safety_page": 2,
+      "tutorial": 4
+    },
+    "resources": 15,
+    "supplied_urls_represented": 15,
+    "unavailable_public_endpoints": 5,
+    "unique_fact_ids": 15,
+    "unique_questions": 15
+  },
+  "eval_inputs": {
+    "data/eval_qa.jsonl": "c84442651265aa8a51ce8af1d524390dd8a98760c40c780afa9eed7a2ba146b5",
+    "data/eval_qa_v2.jsonl": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+  },
+  "manifest": "sources/rope_topia_manual_v1.json",
+  "manifest_sha256": "cc45b3dda9d264a181e7b3a51ca06eb9ed1de3b8e1ebf264ae461196065ffa92",
+  "output": "data/rope_topia_manual_v1.jsonl",
+  "output_sha256": "308a85762cb7d68a4dd9d3b4fcbe9d40a558054166e7c080c7a5401d3c940bcd",
+  "schema": "rope-topia-manual-report-v1",
+  "validation": {
+    "all_article_bodies_excluded": true,
+    "all_questions_standalone": true,
+    "all_resources_manually_reviewed": true,
+    "baseline_duplicate_count": 0,
+    "copyright_excerpts_are_short": true,
+    "eval_leakage_count": 0,
+    "primary_evidence_supports_answer_url": true,
+    "unsafe_or_unsupported_content_claims": 0
+  }
+}

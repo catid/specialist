@@ -13,6 +13,9 @@ The latest reproducible layer-location artifacts and exact recipe are in
 The direct EGGROLL/ES-at-Scale replication, pinned upstream submodule, Qwen3.6
 adapter, and four-GPU launch recipe are documented in
 [`EGGROLL_ES_REPLICATION.md`](EGGROLL_ES_REPLICATION.md).
+The cleaned-dataset HPO, final checkpoint recipe, holdout comparison, and GPU
+telemetry are in
+[`experiments/eggroll_es_hpo/README.md`](experiments/eggroll_es_hpo/README.md).
 
 Large model files, generated checkpoints, raw source corpora, and server logs
 are intentionally excluded. Compact deterministic experiment logs are retained
@@ -24,16 +27,27 @@ can be recovered without vendoring the full upstream repository.
 
 [`data/train_qa_curated_v1.jsonl`](data/train_qa_curated_v1.jsonl) is the current
 training dataset. Its
-[`build report`](data/train_qa_curated_v1.report.json) verifies 3,258 unique
-facts: 3,110 accepted base facts, 81 source-document manual facts, 29
-owner-curated resource-directory facts, and 38 manually reviewed resource
-facts. The final merge excluded three additional distinctive-answer aliases
-from the 3,113-row
+[`build report`](data/train_qa_curated_v1.report.json) verifies 1,487 unique
+facts: 1,314 accepted base facts, 81 source-document manual facts, 29
+owner-curated resource-directory facts, 48 manually reviewed resource facts,
+and 15 manually reviewed Rope-topia resource-index facts. The merge applies
+1,827 fact-ID-keyed decisions from the general
+[`curation ledger`](data/train_qa_curated_v1.curation.jsonl) and the complete
+[`Kinbaku audit`](data/train_qa_kinbakutoday.curation.jsonl)—1,797 drops and 30
+source-evidenced edits—and excludes two additional
+distinctive-answer aliases from the 3,113-row
 [`train_qa_verified_leakfree_v2.jsonl`](data/train_qa_verified_leakfree_v2.jsonl)
-base. That base remains the default in [`es_train_acc.py`](es_train_acc.py) only
+base. It also canonicalizes every training `text` field from validated Q&A so
+legacy generator instructions cannot leak into training. That base remains the
+default in [`es_train_acc.py`](es_train_acc.py) only
 to reproduce the recorded ES runs; [`sft_lora.py`](sft_lora.py) defaults to the
 curated dataset. New ES runs can select it with
 `--data data/train_qa_curated_v1.jsonl`.
+
+The completed 2,228-row S3 EGGROLL A/B cohort remains frozen under
+[`experiments/eggroll_es_hpo/snapshots/s3/`](experiments/eggroll_es_hpo/snapshots/s3/).
+Foreground experiments promote newer curation only between comparisons, then
+hash-pin one Arrow snapshot for both arms.
 
 The [`resource manifest`](sources/rope_resources_v1.json) preserves all 23
 user-supplied URLs. Its bounded, policy-respecting live collection captured 165

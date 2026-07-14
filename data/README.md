@@ -4,16 +4,48 @@
 
 [`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) is the current curated
 training set. Its
-[`deterministic build report`](train_qa_curated_v1.report.json) verifies 3,258
+[`deterministic build report`](train_qa_curated_v1.report.json) verifies 1,487
 unique questions and fact IDs:
 
 | Validated tranche | Accepted rows | Artifact and audit |
 | --- | ---: | --- |
-| Leakage-gated base | 3,110 | [`train_qa_verified_leakfree_v2.jsonl`](train_qa_verified_leakfree_v2.jsonl) supplied 3,113 rows; the curated merge report excludes three additional distinctive-answer aliases. |
+| Leakage-gated and manually audited base | 1,314 | [`train_qa_verified_leakfree_v2.jsonl`](train_qa_verified_leakfree_v2.jsonl) supplied 3,113 rows; 1,797 explicit manual drops and two additional distinctive-answer aliases are excluded during the curated merge. |
 | Source-document manual QA | 81 | [`train_qa_manual_v1.jsonl`](train_qa_manual_v1.jsonl), with provenance in its [`report`](train_qa_manual_v1.report.json) |
 | Owner-curated resource directory | 29 | [`rope_resource_qa_v1.jsonl`](rope_resource_qa_v1.jsonl): 23 direct resource answers plus six category answers; see its [`report`](rope_resource_qa_v1.report.json) |
 | Manually reviewed resource facts | 38 | [`rope_resource_factual_qa_v1.jsonl`](rope_resource_factual_qa_v1.jsonl), with evidence and reviewer provenance summarized in its [`report`](rope_resource_factual_qa_v1.report.json) |
-| **Curated v1 total** | **3,258** | [`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) and [`report`](train_qa_curated_v1.report.json) |
+| Additional manually reviewed resource facts | 10 | [`rope_resource_manual_v1.jsonl`](rope_resource_manual_v1.jsonl), audited against live Crash Restraint, Knot Head Nylon, and Shibari Study evidence in [`manual_reviews/resources/additions_audit_v1.jsonl`](manual_reviews/resources/additions_audit_v1.jsonl) |
+| Rope-topia resource index | 15 | [`rope_topia_manual_v1.jsonl`](rope_topia_manual_v1.jsonl) contains manually reviewed title-to-canonical-URL mappings only because the live article bodies are demo-gated; see its [`report`](rope_topia_manual_v1.report.json). |
+| **Curated v1 total** | **1,487** | [`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) and [`report`](train_qa_curated_v1.report.json) |
+
+The fact-ID-keyed general
+[`curation decisions`](train_qa_curated_v1.curation.jsonl) and complete
+[`Kinbaku Today audit`](train_qa_kinbakutoday.curation.jsonl) contain 1,827
+reviewed actions: 1,797 drops and 30 evidence-backed edits. The source-grouped
+review covered every one of the 1,240 Kinbaku Today, 707 Rope365, 716 Esinem,
+and 325 Wikipedia base records; a stricter second Kinbaku pass then reviewed
+all 1,174 formerly retained Kinbaku rows and retained 423. It removes
+translated/mixed-language copies, unsafe or
+medically unsupported snippets, volatile promotion, unrelated encyclopedia
+trivia, semantic duplicates, contextless questions, and source misreads. Every
+edit pins the expected original Q&A, reviewer, date, reason, source URL, and an
+extractive evidence passage; stale or unused decisions make the build fail.
+
+Dataset refreshes use an explicit snapshot boundary. Manual workers write
+source-grouped pending ledgers while an A/B run is active. Between runs, the
+reviewed ledgers are promoted, the deterministic JSONL and Arrow artifacts are
+rebuilt, and their hashes are pinned before either arm starts. The HPO runner
+rehashes train/validation Arrow files, manifest, model identity, and trainer
+source at every run boundary and refuses to mix a changed snapshot with cached
+results. The prior 2,228-row S3 cohort is preserved in
+[`../experiments/eggroll_es_hpo/snapshots/s3/`](../experiments/eggroll_es_hpo/snapshots/s3/).
+The next Rope365 pass remains pending under
+[`manual_reviews/rope365/`](manual_reviews/rope365/) for a future promoted
+snapshot; it is not part of the current 1,487-row artifact.
+
+The merge also re-renders every retained record as canonical
+`Question: ...\nAnswer: ...` text from its validated structured fields. Legacy
+generator instructions and alternate `Q:`/`A:` serializations therefore cannot
+become training targets even when their structured Q&A was valid.
 
 The manual tranche covers nine complete source documents and 156 reviewed
 candidates. [`manual_qa_candidates_v1.jsonl`](manual_qa_candidates_v1.jsonl) is
