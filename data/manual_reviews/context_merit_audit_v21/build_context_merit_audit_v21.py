@@ -34,6 +34,9 @@ CONTEXT_CURATIONS = tuple(
     f"pending_curation_context_merit_v{version}.jsonl"
     for version in range(1, 21)
 )
+PRIOR_CONTEXT_MERIT_DIRS = frozenset(
+    path.parent.name for path in CONTEXT_CURATIONS
+)
 CONTEXT_AUDITS = tuple(
     DATA / "manual_reviews" / f"context_merit_audit_v{version}" /
     f"context_merit_audit_v{version}.jsonl"
@@ -264,6 +267,7 @@ def patched_previous():
         "OUT_DIR": OUT_DIR, "AUDIT": AUDIT, "CURATION": CURATION,
         "REPORT": REPORT, "REVIEWER": REVIEWER, "REVIEWED_AT": REVIEWED_AT,
         "CONTEXT_CURATIONS": CONTEXT_CURATIONS, "SPECS": SPECS,
+        "PRIOR_CONTEXT_MERIT_DIRS": PRIOR_CONTEXT_MERIT_DIRS,
         "EXPECTED_SELECTION": EXPECTED_SELECTION,
         "ISOLATED_PROJECTION": ISOLATED_PROJECTION,
     }

@@ -31,6 +31,9 @@ CONTEXT_CURATIONS = tuple(
     f"pending_curation_context_merit_v{version}.jsonl"
     for version in range(1, 20)
 )
+PRIOR_CONTEXT_MERIT_DIRS = frozenset(
+    path.parent.name for path in CONTEXT_CURATIONS
+)
 file_sha256 = previous.file_sha256
 text_sha256 = previous.text_sha256
 read_jsonl = previous.read_jsonl
@@ -196,6 +199,7 @@ def patched_previous():
         "OUT_DIR": OUT_DIR, "AUDIT": AUDIT, "CURATION": CURATION,
         "REPORT": REPORT, "REVIEWER": REVIEWER, "REVIEWED_AT": REVIEWED_AT,
         "CONTEXT_CURATIONS": CONTEXT_CURATIONS, "SPECS": SPECS,
+        "PRIOR_CONTEXT_MERIT_DIRS": PRIOR_CONTEXT_MERIT_DIRS,
         "EXPECTED_SELECTION": EXPECTED_SELECTION,
         "ISOLATED_PROJECTION": ISOLATED_PROJECTION,
     }

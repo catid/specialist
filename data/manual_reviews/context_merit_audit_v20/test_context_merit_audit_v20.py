@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import contextlib
 import json
 import sys
 import tempfile
@@ -41,6 +42,30 @@ class ContextMeritAuditV20Test(unittest.TestCase):
         for path, expected in frozen.items():
             self.assertEqual(path.read_bytes(), expected,
                              f"test mutated frozen artifact: {path}")
+
+    def test_future_context_tranches_are_excluded_through_delegation(self) -> None:
+        manual_root = builder.DATA / "manual_reviews"
+        prior = manual_root / "context_merit_audit_v19" / "synthetic.jsonl"
+        future = manual_root / "context_merit_audit_v999" / "synthetic.jsonl"
+        scanner = builder
+        while not hasattr(scanner, "reviewed_fact_ids"):
+            scanner = scanner.previous
+        reader = mock.Mock(return_value=[{"fact_id": "fact-synthetic-prior"}])
+        with mock.patch.object(Path, "rglob", return_value=[prior, future]), \
+                mock.patch.object(scanner, "read_jsonl", reader):
+            with contextlib.ExitStack() as stack:
+                current = builder
+                while hasattr(current, "patched_previous"):
+                    stack.enter_context(current.patched_previous())
+                    current = current.previous
+                nested_allowlist = scanner.PRIOR_CONTEXT_MERIT_DIRS
+                reviewed = scanner.reviewed_fact_ids()
+        expected = frozenset(
+            f"context_merit_audit_v{i}" for i in range(1, 20))
+        self.assertEqual(builder.PRIOR_CONTEXT_MERIT_DIRS, expected)
+        self.assertEqual(nested_allowlist, expected)
+        self.assertEqual(reviewed, {"fact-synthetic-prior"})
+        self.assertEqual(reader.call_args_list, [mock.call(prior)])
 
     def test_selection_is_exact_and_nonoverlapping(self) -> None:
         ranked, _, _ = builder.ranked_unreviewed(
