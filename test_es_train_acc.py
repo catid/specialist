@@ -21,6 +21,16 @@ class AccuracyRewardTests(unittest.TestCase):
         self.assertLess(partial, 0.31)
 
 
+class FitnessShapingTests(unittest.TestCase):
+    def test_raw_shaping_preserves_sparse_reward_magnitude(self):
+        rewards = [0.0, 0.00075, 0.0]
+        self.assertEqual(es_train_acc.shape_fitness(rewards, "raw"), rewards)
+
+    def test_unknown_shaping_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "unknown shaping"):
+            es_train_acc.shape_fitness([0.0], "mystery")
+
+
 class ShuffledStreamTests(unittest.TestCase):
     def test_first_epoch_has_no_replacement(self):
         batches = [es_train_acc.batch_indices_without_replacement(12, 4, 9, g)

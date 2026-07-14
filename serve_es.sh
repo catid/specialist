@@ -6,6 +6,11 @@ cd /home/catid/specialist
 source /home/catid/specialist/.venv/bin/activate
 MODEL=${ES_MODEL:-/home/catid/specialist/models/Qwen3.6-35B-A3B}
 MEM_FRACTION=${ES_MEM_FRACTION:-0.88}
+DETERMINISTIC=${ES_DETERMINISTIC:-0}
+extra_args=()
+if [ "$DETERMINISTIC" = "1" ]; then
+  extra_args+=(--enable-deterministic-inference)
+fi
 pids=()
 launch_one() {
   local g=$1
@@ -13,9 +18,10 @@ launch_one() {
     --model-path "$MODEL" \
     --port $((30001 + g)) --host 127.0.0.1 \
     --tp-size 1 --mem-fraction-static "$MEM_FRACTION" \
+    "${extra_args[@]}" \
     > /home/catid/specialist/server_es$g.log 2>&1 &
   pids+=("$!")
-  echo "GPU $g -> port $((30001 + g)) (pid $!, model $MODEL)"
+  echo "GPU $g -> port $((30001 + g)) (pid $!, model $MODEL, deterministic $DETERMINISTIC)"
 }
 trap 'kill "${pids[@]}" 2>/dev/null || true; wait || true' INT TERM EXIT
 if [ "${1:-}" != "" ]; then

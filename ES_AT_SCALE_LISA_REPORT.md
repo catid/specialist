@@ -1,6 +1,6 @@
 # ES-at-Scale Audit and Qwen3.6 Layer-Location Experiments
 
-Date: 2026-07-13
+Date: 2026-07-14
 Target: Qwen3.6-35B-A3B, 40-layer hybrid MoE
 Hardware: 4× NVIDIA RTX PRO 6000 Blackwell Max-Q (97,887 MiB each)
 
@@ -21,6 +21,16 @@ about 286 million parameters and needs roughly 1.07 GiB of FP32 masters per
 replica. This is about two orders of magnitude less master movement than the
 original supported full-model target.
 
+A new deterministic-inference screen corrects an important flaw in the earlier
+location runs. All four replicas and three repeated 405-item base probes now
+produce identical answer hashes. Under that controlled runtime, the accuracy
+reward is much sparser than the old runs suggested: front+back was positive on
+the development-held split in all three six-commit seeds (mean +.0021), while
+the matched middle control was positive in one of three (mean -.0005). This is
+provisional evidence for the edge-location prior, not a final result: each
+front+back run had only two informative antithetic pairs out of 48, four of six
+generations had no update signal, and the evaluation remains contaminated.
+
 Actual motif insertion is feasible on these GPUs. Three 44-layer checkpoints
 were built by inserting a copied four-layer motif at the front, middle, or back,
 with the copied motif's attention output and routed/shared-expert down
@@ -38,6 +48,9 @@ projections scaled by ε=0.05. Each adds 6.27 GiB of BF16 weights and roughly
 - Consolidated experiment summary: `experiments/es_location/summary.json`
 - Curated-data smoke-screen summaries:
   `experiments/es_curated/{summary,summary_final}.json`
+- Deterministic probe and raw-shaping screen:
+  `experiments/es_determinism/probe_v1.json` and
+  `experiments/es_deterministic/summary_raw_v1.json`
 - Generation-20/30 FP32 exports and digest sidecars:
   `experiments/es_location/insert_back_seed1101_gen{20,30}_fp32_masters.*`
 
@@ -49,7 +62,12 @@ The old centered-rank code assigned distinct utilities to tied fitness values.
 Because all positive members preceded all negative members, an all-tie sparse
 reward population produced a systematic nonzero update. Ties now receive their
 average rank, and an all-tie population maps exactly to zero. Constant-population
-z-score shaping also maps to zero.
+z-score shaping also maps to zero. A deterministic follow-up exposed a second
+problem: with only one informative antithetic pair, centered ranks converted a
+raw reward difference of .00075 into a commit coefficient of .2667. The probe
+then collapsed to zero. Raw reward shaping is now the default, while rank and
+z-score modes remain explicit ablations. Journals and summaries report
+informative-pair counts, zero-signal generations, and maximum coefficients.
 
 ### Reproducible resume and targeted replay
 
@@ -164,6 +182,8 @@ intervals, McNemar tests, and multi-judge agreement utilities are included.
   source-grounded rebuilds do not redo Unicode and token preprocessing.
 - Each antithetic pair runs consecutively on the same replica.
 - Probe sets are sharded over all four GPUs.
+- Deterministic serving is an explicit launch mode; an answer-hash probe checks
+  the server flags, cross-replica canaries, and repeated complete evaluations.
 - The post-perturb warmup decodes one token instead of 64 throwaway tokens.
 - LoRA SFT uses the checkpoint chat template, masks prompt tokens, avoids a
   duplicate EOS, supports 1,024-token examples, step checkpoints, validation,
@@ -302,6 +322,48 @@ from .0300 to the same .0296 (−.0004). The two fresh base probes differed by
 direct evidence that probe variability is large enough to explain the apparent
 gain, not evidence for a middle-layer winner.
 
+Those screens did not enable SGLang's deterministic-inference mode, so their
+probe drift and dense-looking member-fitness variation cannot be cleanly
+separated from runtime nondeterminism. They remain useful systems baselines,
+but are superseded for layer-location inference by the deterministic screen
+below.
+
+### Deterministic final-data screen
+
+SGLang 0.5.15 was relaunched with deterministic inference, PyTorch sampling,
+radix-cache disablement, and FlashInfer attention. The four replicas produced
+the same 32-answer canary hash. Three complete base probes produced the same
+405-answer SHA-256 and exactly the same train/development-held rewards:
+.0295713212/.0304041190. A two-trial probe after the seed-9909 front+back run
+was likewise answer-identical at .0312422530/.0314957051.
+
+The comparison used the final 3,258-row curated artifact, three paired seeds,
+six commits, 8 antithetic pairs, 32 facts per member, sigma .01, learning rate
+.04, rank-4 noise, 70 dense units, and raw reward shaping for both targets.
+
+| Target | Held deltas by seed (7707, 8808, 9909) | Positive | Mean delta | Sample SD | Informative pairs | Zero-signal generations |
+|---|---|---:|---:|---:|---:|---:|
+| Front + back | +.0006, +.0046, +.0011 | 3/3 | +.0021 | .00218 | 6/144 pairs | 12/18 |
+| Matched middle | -.0005, +.0003, -.0013 | 1/3 | -.0005 | .00080 | 15/144 pairs | 8/18 |
+
+“Informative” means that the positive and negative member of an antithetic
+pair received different reward. Each target has 8 pairs × 6 generations × 3
+seeds = 144 pair comparisons.
+
+The front+back-minus-middle difference in mean held delta is +.0026. This is
+the first controlled directional support for the front/back prior in this
+repository, but the sparse fitness makes effect attribution fragile. In
+particular, every front+back seed learned from only two informative pairs, its
+train-probe changes were inconsistent, and the development-held set is not an
+independent final test.
+
+The interrupted rank-shaped middle diagnostic is intentionally retained. Its
+second generation had 15 zero member rewards and one reward of .00075; rank
+shaping assigned that pair a .2667 commit coefficient. After three commits,
+both probes were zero. Raw shaping keeps coefficients at the reward's actual
+scale (the six completed runs had maxima from .000323 to .000768) and avoids
+this particular amplification, but it does not solve reward sparsity.
+
 The back-inserted checkpoint was then continued to 30 commits as a systems and
 stability test. A fresh post-commit probe moved from .0190/.0287 to
 .0196/.0289 (train/development-held), still essentially flat. Exact FP32
@@ -331,6 +393,13 @@ mean utilization was 78.2–85.2% including request-turnover samples; every GPU
 reached 100%, and 87,434–87,888 MiB remained resident. All 12 commits recorded
 matching FP32-master and serving digests across all four replicas.
 
+The six deterministic raw-shaping runs recorded 246 samples per GPU. Mean
+utilization on GPUs 0-3 was 86.3%, 81.7%, 84.3%, and 83.7%, including launch
+and request-turnover samples; every GPU reached 100%. All 36 commits verified
+matching FP32-master and serving digests across all four replicas. The
+answer-hash probes additionally establish that work sharding did not introduce
+cross-replica answer differences.
+
 ## Motif-insertion pre-screen
 
 Each inserted checkpoint has 44 layers. The destination-to-source map and
@@ -353,24 +422,27 @@ exact-match accuracy.
 
 ## Recommended experiment order
 
-1. Preserve the completed four-seed location screens, curated-data smoke runs,
-   and matched zero-update controls as exploratory baselines; do not select a
-   winner from them.
-2. Build a separately sourced, expert-reviewed final test set, then repeat the
-   location comparison for longer budgets with a genuinely trained control.
-3. Compare 44-layer insertions only at equal training budgets; do not select a
+1. Replace the mostly binary batch reward with a denser correctness-anchored
+   signal, such as a small correct-answer log-probability component, without
+   reverting to the old pure-likelihood objective that encouraged format blur.
+2. Build a separately sourced, expert-reviewed final test set. Keep the current
+   evaluation for development only, then repeat front+back versus middle at a
+   longer budget with deterministic serving and a genuinely trained control.
+3. Treat the three-seed front+back result as the leading hypothesis, not a
+   selected winner; require replication under the denser reward and clean test.
+4. Compare 44-layer insertions only at equal training budgets; do not select a
    location from the single-seed back continuation.
-4. Unlock routed experts only after a location effect replicates.
-5. Sweep insertion damping (ε=0, 0.01, 0.05, 0.1) and test a learnable
+5. Unlock routed experts only after a location effect replicates.
+6. Sweep insertion damping (ε=0, 0.01, 0.05, 0.1) and test a learnable
    zero-initialized residual gate, which requires scalar-parameter perturbation
    support.
-6. Evaluate the owner-curated resource/factual QA tranche separately from the
+7. Evaluate the owner-curated resource/factual QA tranche separately from the
    original 3,113-item training set so dataset changes are not confused with a
    layer-location effect.
 
 ## Validation
 
-- 98 root regression tests and 6 SGLang ES-state tests pass.
+- 104 root regression tests and 6 SGLang ES-state tests pass.
 - Modified Python files compile; all top-level shell scripts pass `bash -n`;
   the SGLang diff passes `git diff --check`.
 - The paper transcription has 136 unique anchors, 50 resolving internal links,

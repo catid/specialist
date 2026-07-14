@@ -1,0 +1,436 @@
+{
+  "experiments": [
+    {
+      "all_verified_unit_counts": [
+        70
+      ],
+      "data": {
+        "bytes": 2195032,
+        "items": 3258,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "4b6f6140ad2256f6c14b2fb182f1266490cb535ba963855ef93e0a1e70f54770"
+      },
+      "end_heldout_probe": 0.0299,
+      "end_probe_after_generations": 6,
+      "end_train_probe": 0.0298,
+      "generation_range": [
+        0,
+        5
+      ],
+      "generations": 6,
+      "global_seed": 7707,
+      "heldout_delta": -0.0005000000000000004,
+      "informative_pairs_by_generation": [
+        0,
+        1,
+        0,
+        2,
+        0,
+        1
+      ],
+      "journal": "/home/catid/specialist/experiments/es_deterministic/middle_raw_seed7707.jsonl",
+      "layer_plan": "middle_matched",
+      "layers": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_deterministic/middle_raw_seed7707.log",
+      "max_abs_commit_coefficient": 0.0005859375000000001,
+      "max_member_fitness_all": 0.0011718750000000002,
+      "mean_member_fitness_last": 5.859375000000001e-05,
+      "name": "middle_raw_seed7707",
+      "num_planned_units": 70,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "shaping": "raw",
+      "start_heldout_probe": 0.0304,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0296,
+      "target_manifest_hashes": [
+        "bafd4afb30f1278378903c81929dc5d97f88b7ddc4d4e98a68ec02d097e2c7c1"
+      ],
+      "total_informative_pairs": 4,
+      "verified_commits": 6,
+      "zero_signal_generations": 3
+    },
+    {
+      "all_verified_unit_counts": [
+        70
+      ],
+      "data": {
+        "bytes": 2195032,
+        "items": 3258,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "4b6f6140ad2256f6c14b2fb182f1266490cb535ba963855ef93e0a1e70f54770"
+      },
+      "end_heldout_probe": 0.031,
+      "end_probe_after_generations": 6,
+      "end_train_probe": 0.0291,
+      "generation_range": [
+        0,
+        5
+      ],
+      "generations": 6,
+      "global_seed": 7707,
+      "heldout_delta": 0.0005999999999999998,
+      "informative_pairs_by_generation": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "journal": "/home/catid/specialist/experiments/es_deterministic/front_back_raw_seed7707.jsonl",
+      "layer_plan": "front_back",
+      "layers": [
+        0,
+        1,
+        2,
+        3,
+        36,
+        37,
+        38,
+        39
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_deterministic/front_back_raw_seed7707.log",
+      "max_abs_commit_coefficient": 0.0004261363636363637,
+      "max_member_fitness_all": 0.0008522727272727274,
+      "mean_member_fitness_last": 5.3267045454545466e-05,
+      "name": "front_back_raw_seed7707",
+      "num_planned_units": 70,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "shaping": "raw",
+      "start_heldout_probe": 0.0304,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0296,
+      "target_manifest_hashes": [
+        "68246d5cdf590f14d8929e36892c428d51a0ba9b004b5dfbbe33d19e581fa408"
+      ],
+      "total_informative_pairs": 2,
+      "verified_commits": 6,
+      "zero_signal_generations": 4
+    },
+    {
+      "all_verified_unit_counts": [
+        70
+      ],
+      "data": {
+        "bytes": 2195032,
+        "items": 3258,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "4b6f6140ad2256f6c14b2fb182f1266490cb535ba963855ef93e0a1e70f54770"
+      },
+      "end_heldout_probe": 0.0307,
+      "end_probe_after_generations": 6,
+      "end_train_probe": 0.0288,
+      "generation_range": [
+        0,
+        5
+      ],
+      "generations": 6,
+      "global_seed": 8808,
+      "heldout_delta": 0.00030000000000000165,
+      "informative_pairs_by_generation": [
+        2,
+        1,
+        0,
+        0,
+        2,
+        1
+      ],
+      "journal": "/home/catid/specialist/experiments/es_deterministic/middle_raw_seed8808.jsonl",
+      "layer_plan": "middle_matched",
+      "layers": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_deterministic/middle_raw_seed8808.log",
+      "max_abs_commit_coefficient": 0.0007681856187290973,
+      "max_member_fitness_all": 0.0015363712374581945,
+      "mean_member_fitness_last": 9.602320234113716e-05,
+      "name": "middle_raw_seed8808",
+      "num_planned_units": 70,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "shaping": "raw",
+      "start_heldout_probe": 0.0304,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0296,
+      "target_manifest_hashes": [
+        "bafd4afb30f1278378903c81929dc5d97f88b7ddc4d4e98a68ec02d097e2c7c1"
+      ],
+      "total_informative_pairs": 6,
+      "verified_commits": 6,
+      "zero_signal_generations": 2
+    },
+    {
+      "all_verified_unit_counts": [
+        70
+      ],
+      "data": {
+        "bytes": 2195032,
+        "items": 3258,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "4b6f6140ad2256f6c14b2fb182f1266490cb535ba963855ef93e0a1e70f54770"
+      },
+      "end_heldout_probe": 0.035,
+      "end_probe_after_generations": 6,
+      "end_train_probe": 0.0289,
+      "generation_range": [
+        0,
+        5
+      ],
+      "generations": 6,
+      "global_seed": 8808,
+      "heldout_delta": 0.004600000000000003,
+      "informative_pairs_by_generation": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "journal": "/home/catid/specialist/experiments/es_deterministic/front_back_raw_seed8808.jsonl",
+      "layer_plan": "front_back",
+      "layers": [
+        0,
+        1,
+        2,
+        3,
+        36,
+        37,
+        38,
+        39
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_deterministic/front_back_raw_seed8808.log",
+      "max_abs_commit_coefficient": 0.000493421052631579,
+      "max_member_fitness_all": 0.000986842105263158,
+      "mean_member_fitness_last": 0.0,
+      "name": "front_back_raw_seed8808",
+      "num_planned_units": 70,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "shaping": "raw",
+      "start_heldout_probe": 0.0304,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0296,
+      "target_manifest_hashes": [
+        "68246d5cdf590f14d8929e36892c428d51a0ba9b004b5dfbbe33d19e581fa408"
+      ],
+      "total_informative_pairs": 2,
+      "verified_commits": 6,
+      "zero_signal_generations": 4
+    },
+    {
+      "all_verified_unit_counts": [
+        70
+      ],
+      "data": {
+        "bytes": 2195032,
+        "items": 3258,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "4b6f6140ad2256f6c14b2fb182f1266490cb535ba963855ef93e0a1e70f54770"
+      },
+      "end_heldout_probe": 0.0291,
+      "end_probe_after_generations": 6,
+      "end_train_probe": 0.0302,
+      "generation_range": [
+        0,
+        5
+      ],
+      "generations": 6,
+      "global_seed": 9909,
+      "heldout_delta": -0.001299999999999999,
+      "informative_pairs_by_generation": [
+        0,
+        2,
+        0,
+        1,
+        0,
+        2
+      ],
+      "journal": "/home/catid/specialist/experiments/es_deterministic/middle_raw_seed9909.jsonl",
+      "layer_plan": "middle_matched",
+      "layers": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_deterministic/middle_raw_seed9909.log",
+      "max_abs_commit_coefficient": 0.0007211538461538463,
+      "max_member_fitness_all": 0.0014423076923076926,
+      "mean_member_fitness_last": 0.0001215277777777778,
+      "name": "middle_raw_seed9909",
+      "num_planned_units": 70,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "shaping": "raw",
+      "start_heldout_probe": 0.0304,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0296,
+      "target_manifest_hashes": [
+        "bafd4afb30f1278378903c81929dc5d97f88b7ddc4d4e98a68ec02d097e2c7c1"
+      ],
+      "total_informative_pairs": 5,
+      "verified_commits": 6,
+      "zero_signal_generations": 3
+    },
+    {
+      "all_verified_unit_counts": [
+        70
+      ],
+      "data": {
+        "bytes": 2195032,
+        "items": 3258,
+        "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+        "sha256": "4b6f6140ad2256f6c14b2fb182f1266490cb535ba963855ef93e0a1e70f54770"
+      },
+      "end_heldout_probe": 0.0315,
+      "end_probe_after_generations": 6,
+      "end_train_probe": 0.0312,
+      "generation_range": [
+        0,
+        5
+      ],
+      "generations": 6,
+      "global_seed": 9909,
+      "heldout_delta": 0.0011000000000000003,
+      "informative_pairs_by_generation": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "journal": "/home/catid/specialist/experiments/es_deterministic/front_back_raw_seed9909.jsonl",
+      "layer_plan": "front_back",
+      "layers": [
+        0,
+        1,
+        2,
+        3,
+        36,
+        37,
+        38,
+        39
+      ],
+      "learning_rate": 0.04,
+      "log": "/home/catid/specialist/experiments/es_deterministic/front_back_raw_seed9909.log",
+      "max_abs_commit_coefficient": 0.00032327586206896557,
+      "max_member_fitness_all": 0.0006465517241379311,
+      "mean_member_fitness_last": 0.0,
+      "name": "front_back_raw_seed9909",
+      "num_planned_units": 70,
+      "probe_data": {
+        "bytes": 1031980,
+        "items": 405,
+        "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      },
+      "shaping": "raw",
+      "start_heldout_probe": 0.0304,
+      "start_probe_after_generations": 0,
+      "start_train_probe": 0.0296,
+      "target_manifest_hashes": [
+        "68246d5cdf590f14d8929e36892c428d51a0ba9b004b5dfbbe33d19e581fa408"
+      ],
+      "total_informative_pairs": 2,
+      "verified_commits": 6,
+      "zero_signal_generations": 4
+    }
+  ],
+  "plan_aggregates": {
+    "front_back": {
+      "generations": 6,
+      "heldout_deltas": [
+        0.0005999999999999998,
+        0.004600000000000003,
+        0.0011000000000000003
+      ],
+      "mean_heldout_delta": 0.002100000000000001,
+      "negative_runs": 0,
+      "num_runs": 3,
+      "positive_runs": 3,
+      "runs": [
+        "front_back_raw_seed7707",
+        "front_back_raw_seed8808",
+        "front_back_raw_seed9909"
+      ],
+      "sample_stddev_heldout_delta": 0.002179449471770339
+    },
+    "middle_matched": {
+      "generations": 6,
+      "heldout_deltas": [
+        -0.0005000000000000004,
+        0.00030000000000000165,
+        -0.001299999999999999
+      ],
+      "mean_heldout_delta": -0.0004999999999999993,
+      "negative_runs": 2,
+      "num_runs": 3,
+      "positive_runs": 1,
+      "runs": [
+        "middle_raw_seed7707",
+        "middle_raw_seed8808",
+        "middle_raw_seed9909"
+      ],
+      "sample_stddev_heldout_delta": 0.0008000000000000004
+    }
+  },
+  "schema": "es-experiment-summary-v1",
+  "zero_lr_control": {
+    "heldout_deltas": [],
+    "mean_heldout_delta": null,
+    "negative_runs": 0,
+    "num_runs": 0,
+    "positive_runs": 0,
+    "runs": [],
+    "sample_stddev_heldout_delta": null
+  }
+}

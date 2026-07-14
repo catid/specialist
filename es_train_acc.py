@@ -122,6 +122,17 @@ def answer_score(pred, ref, exact_weight=0.7):
     return exact_weight * exact + (1.0 - exact_weight) * f1(pred, ref)
 
 
+def shape_fitness(values, shaping):
+    """Transform rewards without silently amplifying sparse raw signals."""
+    if shaping == "raw":
+        return list(values)
+    if shaping == "zscore":
+        return zscore(values)
+    if shaping == "ranks":
+        return centered_ranks(values)
+    raise ValueError(f"unknown shaping mode: {shaping}")
+
+
 def batch_indices_without_replacement(population, batch_size, global_seed,
                                       generation):
     """Deterministic shuffled stream that covers every fact before reuse."""
@@ -197,7 +208,11 @@ def main():
                     default=["dense"], help="unit groups used with --layer-plan")
     ap.add_argument("--model-path", type=Path, default=DEFAULT_MODEL,
                     help="checkpoint config used to validate --layer-plan")
-    ap.add_argument("--shaping", choices=["ranks", "zscore"], default="ranks")
+    ap.add_argument(
+        "--shaping", choices=["ranks", "raw", "zscore"], default="raw",
+        help=("fitness transform; raw is the safe default for sparse accuracy "
+              "rewards because ranks/zscore can amplify tiny differences"),
+    )
     ap.add_argument("--seed", type=int, default=11)
     args = ap.parse_args()
     if args.include_regex == "":
@@ -333,10 +348,15 @@ def main():
             for i, f in fut.result():
                 results[i] = f
 
-        f_tilde = (zscore(results) if args.shaping == "zscore"
-                   else centered_ranks(results))
+        f_tilde = shape_fitness(results, args.shaping)
         coeffs = [(s, args.lr * (f_tilde[j] - f_tilde[j + args.pairs]) /
                    (args.pairs * args.sigma)) for j, s in enumerate(seeds)]
+        informative_pairs = sum(
+            results[j] != results[j + args.pairs]
+            for j in range(args.pairs)
+        )
+        max_abs_coefficient = max((abs(coeff) for _, coeff in coeffs),
+                                  default=0.0)
         list(pool.map(lambda p: perturb(p, coeffs, args.sigma, rank=args.rank,
                                         mode="commit", include_regex=IR), args.ports))
         replica_state = None
@@ -362,6 +382,11 @@ def main():
                 "data": train_data_identity,
                 "probe_data": eval_data_identity,
                 "fitness": results,
+                "fitness_diagnostics": {
+                    "informative_pairs": informative_pairs,
+                    "unique_member_fitness": len(set(results)),
+                    "max_abs_commit_coefficient": max_abs_coefficient,
+                },
                 "replica_state": replica_state,
                 "mean_fit": sum(results) / len(results),
                 "max_fit": max(results),
@@ -371,6 +396,8 @@ def main():
             os.fsync(jf.fileno())
         msg = (f"[gen {g}] reward mean {sum(results)/len(results):.4f} "
                f"max {max(results):.4f} min {min(results):.4f} "
+               f"informative_pairs {informative_pairs}/{args.pairs} "
+               f"max_abs_coeff {max_abs_coefficient:.6g} "
                f"({time.time()-t0:.0f}s)")
         if (g + 1) % args.eval_every == 0:
             pt, ph = probe_all(probe_train), probe_all(probe_held)

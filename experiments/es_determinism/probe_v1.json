@@ -1,0 +1,93 @@
+{
+  "created_at": "2026-07-13T23:59:14.412525+00:00",
+  "evaluation": {
+    "items": 405,
+    "path": "/home/catid/specialist/data/eval_qa_v2.jsonl",
+    "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+  },
+  "ports": [
+    30001,
+    30002,
+    30003,
+    30004
+  ],
+  "repeated_trials_identical": true,
+  "replica_canary": {
+    "identical": true,
+    "items": 32,
+    "prediction_sha256_by_port": {
+      "30001": "b9a6a72b353e41d77003d8bee09fc0994fcaad25a1947e752c50a2247b7c95e0",
+      "30002": "b9a6a72b353e41d77003d8bee09fc0994fcaad25a1947e752c50a2247b7c95e0",
+      "30003": "b9a6a72b353e41d77003d8bee09fc0994fcaad25a1947e752c50a2247b7c95e0",
+      "30004": "b9a6a72b353e41d77003d8bee09fc0994fcaad25a1947e752c50a2247b7c95e0"
+    }
+  },
+  "schema": "es-determinism-probe-v1",
+  "server_modes": [
+    {
+      "attention_backend": "flashinfer",
+      "disable_radix_cache": true,
+      "enable_deterministic_inference": true,
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+      "port": 30001,
+      "sampling_backend": "pytorch",
+      "version": "0.5.15"
+    },
+    {
+      "attention_backend": "flashinfer",
+      "disable_radix_cache": true,
+      "enable_deterministic_inference": true,
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+      "port": 30002,
+      "sampling_backend": "pytorch",
+      "version": "0.5.15"
+    },
+    {
+      "attention_backend": "flashinfer",
+      "disable_radix_cache": true,
+      "enable_deterministic_inference": true,
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+      "port": 30003,
+      "sampling_backend": "pytorch",
+      "version": "0.5.15"
+    },
+    {
+      "attention_backend": "flashinfer",
+      "disable_radix_cache": true,
+      "enable_deterministic_inference": true,
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+      "port": 30004,
+      "sampling_backend": "pytorch",
+      "version": "0.5.15"
+    }
+  ],
+  "trials": [
+    {
+      "prediction_sha256": "a692b4d8c8ec87217e32b466c3cf12e491fae47d7e474b96df5c7bb629da6ff2",
+      "scores": {
+        "heldout": 0.0304041190300207,
+        "train": 0.02957132118376376
+      },
+      "seconds": 3.668383301999711,
+      "trial": 0
+    },
+    {
+      "prediction_sha256": "a692b4d8c8ec87217e32b466c3cf12e491fae47d7e474b96df5c7bb629da6ff2",
+      "scores": {
+        "heldout": 0.0304041190300207,
+        "train": 0.02957132118376376
+      },
+      "seconds": 3.6974787840008503,
+      "trial": 1
+    },
+    {
+      "prediction_sha256": "a692b4d8c8ec87217e32b466c3cf12e491fae47d7e474b96df5c7bb629da6ff2",
+      "scores": {
+        "heldout": 0.0304041190300207,
+        "train": 0.02957132118376376
+      },
+      "seconds": 3.708540843999799,
+      "trial": 2
+    }
+  ]
+}

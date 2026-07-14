@@ -8,11 +8,14 @@ The main technical audit and experiment results are in
 [`ES_AT_SCALE_LISA_REPORT.md`](ES_AT_SCALE_LISA_REPORT.md). The hand-reviewed
 paper transcription is in
 [`references/papers/2509.24372.md`](references/papers/2509.24372.md).
+The latest reproducible layer-location artifacts and exact recipe are in
+[`experiments/es_deterministic/README.md`](experiments/es_deterministic/README.md).
 
-Large model files, generated checkpoints, raw source corpora, and runtime logs
-are intentionally excluded. The nested SGLang implementation checkpoint is
-stored as `patches/sglang-specialist.bundle` so it can be recovered without
-vendoring the full upstream repository.
+Large model files, generated checkpoints, raw source corpora, and server logs
+are intentionally excluded. Compact deterministic experiment logs are retained
+with their journals so summary artifacts can be regenerated. The nested SGLang
+implementation checkpoint is stored as `patches/sglang-specialist.bundle` so it
+can be recovered without vendoring the full upstream repository.
 
 ## Dataset status
 

@@ -61,6 +61,21 @@ def summarize(journal_path):
     )[1] if probes else None
     states = [row.get("replica_state") for row in rows
               if row.get("replica_state") is not None]
+    informative_pairs = []
+    max_abs_coefficients = []
+    for row in rows:
+        fitness = row.get("fitness", [])
+        pairs = len(fitness) // 2
+        diagnostics = row.get("fitness_diagnostics", {})
+        informative_pairs.append(diagnostics.get(
+            "informative_pairs",
+            sum(fitness[index] != fitness[index + pairs]
+                for index in range(pairs)),
+        ))
+        max_abs_coefficients.append(diagnostics.get(
+            "max_abs_commit_coefficient",
+            max((abs(coeff) for _, coeff in row.get("ops", [])), default=0.0),
+        ))
     return {
         "name": journal_path.stem,
         "journal": str(journal_path.resolve()),
@@ -69,6 +84,7 @@ def summarize(journal_path):
         "generation_range": [rows[0]["gen"], rows[-1]["gen"]],
         "global_seed": rows[0].get("global_seed"),
         "learning_rate": rows[0].get("hparams", {}).get("learning_rate"),
+        "shaping": rows[0].get("shaping"),
         "data": rows[0].get("data"),
         "probe_data": rows[0].get("probe_data"),
         "layer_plan": rows[0].get("layer_plan", {}).get("plan"),
@@ -86,6 +102,10 @@ def summarize(journal_path):
                           if first and last else None),
         "mean_member_fitness_last": rows[-1]["mean_fit"],
         "max_member_fitness_all": max(row["max_fit"] for row in rows),
+        "informative_pairs_by_generation": informative_pairs,
+        "total_informative_pairs": sum(informative_pairs),
+        "zero_signal_generations": sum(count == 0 for count in informative_pairs),
+        "max_abs_commit_coefficient": max(max_abs_coefficients, default=0.0),
         "verified_commits": len(states),
         "all_verified_unit_counts": sorted({state["num_units"] for state in states}),
         "target_manifest_hashes": sorted(
@@ -93,15 +113,15 @@ def summarize(journal_path):
     }
 
 
-def aggregate_layer_plans(experiments):
-    """Aggregate comparable base-model, three-generation seed screens."""
+def aggregate_layer_plans(experiments, generations=3):
+    """Aggregate comparable base-model screens at one generation budget."""
     grouped = collections.defaultdict(list)
     for experiment in experiments:
         plan = experiment.get("layer_plan")
         name = experiment.get("name", "")
         delta = experiment.get("heldout_delta")
         if (plan in {"front", "back", "front_back", "middle_matched"}
-                and experiment.get("generations") == 3
+                and experiment.get("generations") == generations
                 and not name.startswith("insert_")
                 and experiment.get("learning_rate", 1.0) != 0.0
                 and delta is not None):
@@ -110,6 +130,7 @@ def aggregate_layer_plans(experiments):
     for plan, runs in sorted(grouped.items()):
         deltas = [run["heldout_delta"] for run in runs]
         aggregates[plan] = {
+            "generations": generations,
             "runs": [run["name"] for run in runs],
             "num_runs": len(runs),
             "heldout_deltas": deltas,
@@ -151,9 +172,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("journals", nargs="+", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--aggregate-generations", type=int, default=3)
     args = parser.parse_args()
     experiments = [summarize(path) for path in args.journals]
-    plan_aggregates = aggregate_layer_plans(experiments)
+    plan_aggregates = aggregate_layer_plans(
+        experiments, generations=args.aggregate_generations)
     zero_lr_control = aggregate_zero_lr_controls(experiments)
     control_mean = zero_lr_control["mean_heldout_delta"]
     if control_mean is not None:

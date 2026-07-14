@@ -1,0 +1,10 @@
+layer plan front_back: [0, 1, 2, 3, 36, 37, 38, 39] (70 units, sha256 6af34ef41187)
+train QA pairs: 3258; probes: 236/169
+verified 4 replicas: 70 units, manifest 68246d5cdf59
+[gen 0] probe reward train 0.0296 heldout 0.0304
+[gen 0] reward mean 0.0000 max 0.0000 min 0.0000 informative_pairs 0/8 max_abs_coeff 0 (11s)
+[gen 1] reward mean 0.0000 max 0.0000 min 0.0000 informative_pairs 0/8 max_abs_coeff 0 (11s)
+[gen 2] reward mean 0.0000 max 0.0000 min 0.0000 informative_pairs 0/8 max_abs_coeff 0 (11s) | probe_train_reward 0.0296 probe_held_reward 0.0304
+[gen 3] reward mean 0.0000 max 0.0006 min 0.0000 informative_pairs 1/8 max_abs_coeff 0.000323276 (11s)
+[gen 4] reward mean 0.0000 max 0.0006 min 0.0000 informative_pairs 1/8 max_abs_coeff 0.0003125 (11s)
+[gen 5] reward mean 0.0000 max 0.0000 min 0.0000 informative_pairs 0/8 max_abs_coeff 0 (11s) | probe_train_reward 0.0312 probe_held_reward 0.0315

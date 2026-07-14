@@ -23,6 +23,17 @@ class SummarizeExperimentsTests(unittest.TestCase):
         self.assertAlmostEqual(aggregate["mean_heldout_delta"], 0.025)
         self.assertEqual(aggregate["positive_runs"], 1)
 
+    def test_plan_aggregation_supports_six_generation_budget(self):
+        runs = [
+            {"name": "front_back_seed1", "layer_plan": "front_back",
+             "generations": 6, "heldout_delta": 0.01},
+            {"name": "front_back_short", "layer_plan": "front_back",
+             "generations": 3, "heldout_delta": 9.0},
+        ]
+        aggregate = aggregate_layer_plans(runs, generations=6)["front_back"]
+        self.assertEqual(aggregate["num_runs"], 1)
+        self.assertEqual(aggregate["generations"], 6)
+
     def test_probe_commit_accounting_across_resumes(self):
         log = """\
 [gen 0] probe F1 train 0.1000 heldout 0.2000
@@ -62,6 +73,9 @@ class SummarizeExperimentsTests(unittest.TestCase):
                     "gen": generation,
                     "mean_fit": 0.1,
                     "max_fit": 0.2,
+                    "fitness": [0.0, 0.1, 0.0, 0.0],
+                    "ops": [[123, 0.25]],
+                    "shaping": "raw",
                     "replica_state": None,
                     "data": {"sha256": "training-digest", "items": 123},
                     "probe_data": {"sha256": "probe-digest", "items": 45},
@@ -81,6 +95,9 @@ class SummarizeExperimentsTests(unittest.TestCase):
         self.assertAlmostEqual(result["heldout_delta"], 0.04)
         self.assertEqual(result["data"]["sha256"], "training-digest")
         self.assertEqual(result["probe_data"]["sha256"], "probe-digest")
+        self.assertEqual(result["total_informative_pairs"], 20)
+        self.assertEqual(result["max_abs_commit_coefficient"], 0.25)
+        self.assertEqual(result["shaping"], "raw")
 
 
 if __name__ == "__main__":
