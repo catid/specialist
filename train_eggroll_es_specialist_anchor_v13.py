@@ -84,6 +84,14 @@ coefficient_sha256 = anchor_v11c.coefficient_sha256
 file_sha256 = anchor_v11c.file_sha256
 anchor_v4 = anchor_v11c.anchor_v11b.anchor_v11.anchor_v4
 anchor_v10 = anchor_v11c.anchor_v11b.anchor_v11.anchor_v10
+FROZEN_RUNTIME_EXPECTATIONS_V13 = copy.deepcopy(
+    anchor_v10.anchor_v8.anchor_v7.anchor_v6.FROZEN_RUNTIME_EXPECTATIONS_V6
+)
+validate_layer_plan_installations_v13 = anchor_v10._clone_with_globals(
+    anchor_v4.validate_layer_plan_installations_v4,
+    {"FROZEN_RUNTIME_EXPECTATIONS_V4": FROZEN_RUNTIME_EXPECTATIONS_V13},
+    "validate_layer_plan_installations_v13",
+)
 
 
 def validate_frozen_layer_plan_bundle_v13(bundle):
@@ -501,7 +509,7 @@ class TrainPanelDiagnosticMixinV13:
                 anchor_v4.DENSE_GOLD_REWARD_CONFIG_SHA256_V4,
             ),
         )
-        install = anchor_v4.validate_layer_plan_installations_v4(reports, layer)
+        install = validate_layer_plan_installations_v13(reports, layer)
         self._v4_layer_plan = layer
         self._v4_layer_plan_install = install
         self._v4_reward_config = dict(anchor_v4.DENSE_GOLD_REWARD_CONFIG_V4)

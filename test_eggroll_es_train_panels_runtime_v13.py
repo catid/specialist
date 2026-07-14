@@ -29,6 +29,52 @@ def load_bundle():
     )
 
 
+def install_reports(bundle):
+    runtime = anchor_v13.FROZEN_RUNTIME_EXPECTATIONS_V13[
+        bundle["plan_sha256"]
+    ]
+    binding = {
+        "layer_plan_file_sha256": bundle["file_sha256"],
+        "layer_plan_sha256": bundle["plan_sha256"],
+        "checkpoint_to_runtime_mapping_sha256": "1" * 64,
+        "source_unit_count": runtime["source_unit_count"],
+        "runtime_selected_name_sha256": "2" * 64,
+        "selected_parameter_manifest_sha256": "3" * 64,
+        "runtime_selected_parameter_count": runtime[
+            "runtime_selected_parameter_count"
+        ],
+        "selected_element_count": runtime["selected_element_count"],
+        "unselected_origin_sha256": "4" * 64,
+        "dense_reward_sha256": anchor_v13.anchor_v4.DENSE_GOLD_REWARD_CONFIG_SHA256_V4,
+    }
+    return [{
+        "schema": "eggroll-es-layer-plan-installed-v4",
+        "installed": True,
+        "rank": rank,
+        "world_size": 4,
+        "reference_present_before_install": False,
+        "reference_generation_before_install": 0,
+        "selected_byte_count": runtime["selected_byte_count"],
+        "initial_identity": {"selected": {
+            "parameter_count": runtime["runtime_selected_parameter_count"],
+            "total_elements": runtime["selected_element_count"],
+            "total_bytes": runtime["selected_byte_count"],
+        }},
+        **binding,
+    } for rank in range(4)]
+
+
+def test_middle_late_runtime_installation_uses_inherited_v6_expectation():
+    bundle = load_bundle()
+    assert bundle["plan_sha256"] == PLAN_SHA
+    assert PLAN_SHA not in anchor_v13.anchor_v4.FROZEN_RUNTIME_EXPECTATIONS_V4
+    result = anchor_v13.validate_layer_plan_installations_v13(
+        install_reports(bundle), bundle,
+    )
+    assert result["runtime_selected_parameter_count"] == 23
+    assert result["selected_element_count"] == 142_999_552
+
+
 def cli(extra=None):
     spec = anchor_v11.FROZEN_STABILITY_PLANS_V11[PLAN_SHA]
     return [
