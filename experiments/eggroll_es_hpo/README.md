@@ -29,7 +29,11 @@ it scored 0.093420 versus the retained 0.097673 baseline (delta -0.004253,
 [-0.014460, +0.002012]. It did not access holdout or save a checkpoint. The
 result and four-GPU telemetry are retained in
 [`snapshot1487_seed43/`](snapshot1487_seed43/). Taken together, the two seeds
-show that this short ES recipe is seed-sensitive.
+show that this short ES recipe is seed-sensitive. Seeds 44–46 bring the total
+to five runs: mean delta +0.000311, but only two of five were positive. More
+importantly, the four post-selection seeds averaged -0.001296 and only one of
+four improved. See [`snapshot1487_multiseed/`](snapshot1487_multiseed/) for the
+full aggregation; the selected S4 recipe is not a robust improvement.
 
 The selected S4 checkpoint is stored locally at
 `runs/final_s4_selected/checkpoint-es_exact_steps_6/pytorch_model.pth`. It is
@@ -101,6 +105,7 @@ runs.
 | S2 | 2,349 | `ca9403139d0094116bb1c86391f7fab8c85bf1fbd8eefe128d55638c22814c63` | Same inherited setting: 0.094837 at 3 steps, 0.098036 at 6 steps. |
 | S3 (completed A/B) | 2,228 | `bb60372725825f2fc81b46b681899ed8b4ba1af79d10ab1e6905bae5fb660f6f` | Fresh grid selected sigma 0.002 / alpha 0.001 at 3 steps: 0.099614. |
 | S4 (completed A/B) | 1,487 | `ff1b07297f404249adca6000acf8360000017cb2a75412b49f6e234a8082cc7c` | Fresh grid selected sigma 0.001 / alpha 0.00025; six-step final validation 0.104408 and holdout 0.074038. |
+| S5 candidate | 908 | `05ad1e523032026d59bf2da953b5c15bfd8f6ea738067685b4eb947b012b86b2` | Cleaner promoted data and document-disjoint eval-v3; provisional transfer testing in progress, with sealed holdout unopened. |
 
 The compact run summaries for the S1 one-/six-step and S2 three-/six-step
 probes are retained in [`probes/`](probes/). The complete immutable S3 source
@@ -126,12 +131,17 @@ This instability is itself a finding: ES hyperparameters and the apparent best
 horizon changed after manual removal of noisy/contextless rows. Results from
 different dataset hashes must not be pooled as if they were replications.
 
-The validation split is not document-disjoint from training. A later manual
+The historical S4 validation split is not document-disjoint from training. A later manual
 audit of the first 300 retained Rope365 rows found 42 training rows whose source
 URLs also occur in the `train` validation split. No such URL overlap was found
 with the `heldout` split in those tranches. This makes validation/HPO
 scores more optimistic and reinforces that the small deltas are exploratory;
 the pending Rope365 ledgers will remove those rows in a future snapshot.
+S5 instead uses [`../../EVAL_V3_PROTOCOL.md`](../../EVAL_V3_PROTOCOL.md): 59
+manually audited domain questions are partitioned by source document into 41
+validation and 18 sealed holdout rows, with zero normalized source-URL overlap
+against the current training set. Twenty-four fixed general-knowledge QA items
+and 16 general-prose documents provide OOD non-inferiority gates.
 
 ## GPU verification
 

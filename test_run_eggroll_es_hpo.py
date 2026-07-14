@@ -33,6 +33,9 @@ def make_args(tmp_path, trials=None, force=False):
         batch_size=64,
         max_tokens=32,
         seed=42,
+        selection_split="train",
+        guard_splits="",
+        max_guard_degradation=0.0,
         n_vllm_engines=4,
         n_gpu_per_vllm_engine=1,
         use_gpus="0,1,2,3",
@@ -80,6 +83,44 @@ def test_select_best_can_choose_treatment():
 
     _, _, selected = hpo.select_best(0.5, "baseline.json", results)
 
+    assert selected["name"] == "treatment"
+
+
+def test_guarded_selection_rejects_ood_regression():
+    baseline = {
+        "evaluations": {"final": {"train": 0.5, "ood": 0.4}}
+    }
+    results = [{
+        "name": "treatment",
+        "validation_score": 0.6,
+        "evaluation_scores": {"train": 0.6, "ood": 0.39},
+    }]
+
+    _, best, best_guarded, selected = hpo.select_best_guarded(
+        baseline, results, "train", ["ood"], 0.0
+    )
+
+    assert best["name"] == "treatment"
+    assert best["guard_passed"] is False
+    assert best_guarded is None
+    assert selected["name"] == "baseline"
+
+
+def test_guard_tolerance_can_admit_small_ood_loss():
+    baseline = {
+        "evaluations": {"final": {"train": 0.5, "ood": 0.4}}
+    }
+    results = [{
+        "name": "treatment",
+        "validation_score": 0.6,
+        "evaluation_scores": {"train": 0.6, "ood": 0.395},
+    }]
+
+    _, _, best_guarded, selected = hpo.select_best_guarded(
+        baseline, results, "train", ["ood"], 0.01
+    )
+
+    assert best_guarded["name"] == "treatment"
     assert selected["name"] == "treatment"
 
 

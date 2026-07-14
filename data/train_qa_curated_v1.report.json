@@ -1,71 +1,72 @@
 {
   "counts": {
     "by_input": {
-      "data/rope_resource_factual_qa_v1.jsonl": 38,
+      "data/rope_resource_factual_qa_v1.jsonl": 30,
       "data/rope_resource_manual_v1.jsonl": 10,
-      "data/rope_resource_qa_v1.jsonl": 29,
+      "data/rope_resource_qa_v1.jsonl": 27,
       "data/rope_topia_manual_v1.jsonl": 15,
-      "data/train_qa_manual_v1.jsonl": 81,
-      "data/train_qa_verified_leakfree_v2.jsonl": 1314
+      "data/train_qa_manual_v1.jsonl": 73,
+      "data/train_qa_verified_leakfree_v2.jsonl": 753
     },
     "by_kind": {
-      "qa_manual": 81,
-      "qa_resource_category": 6,
-      "qa_resource_direct": 23,
+      "qa_manual": 73,
+      "qa_resource_category": 5,
+      "qa_resource_direct": 22,
       "qa_resource_index": 15,
-      "qa_resource_manual_fact": 48,
-      "qa_verified": 1314
+      "qa_resource_manual_fact": 40,
+      "qa_verified": 753
     },
     "by_source": {
       "amazon": 1,
       "anatomiestudio": 23,
-      "atx_empty_space": 3,
+      "atx_empty_space": 1,
       "austin_rope_slingers": 3,
-      "bight_bound": 3,
+      "bight_bound": 2,
       "chromaknotz": 2,
       "crash_restraint": 4,
       "degiotto_rope": 3,
-      "esinem": 150,
+      "esinem": 77,
       "house_of_bound": 1,
       "kinbakutoday": 423,
       "knothead_nylon": 4,
-      "owner_curated_rope_resource_directory": 29,
-      "rope365": 601,
+      "owner_curated_rope_resource_directory": 27,
+      "rope365": 278,
       "rope_topia": 15,
-      "rw_rope": 2,
+      "rw_rope": 1,
       "shibari_study": 3,
       "shibari_supply": 3,
       "subspace_designs": 1,
-      "tethered_together": 3,
-      "tetruss": 3,
-      "wikipedia": 204,
+      "tethered_together": 2,
+      "tetruss": 2,
+      "wikipedia": 29,
       "xpole_us": 3
     },
-    "excluded": 1799,
+    "excluded": 2378,
     "exclusion_reasons": {
       "distinctive_answer_alias": 2,
       "manual_curation:contextless_or_eval_collision": 1,
-      "manual_curation:contextless_or_low_value": 177,
+      "manual_curation:contextless_or_low_value": 224,
       "manual_curation:esinem_manual_quality_reject": 557,
+      "manual_curation:heldout_document_overlap": 257,
       "manual_curation:out_of_domain_encyclopedia_trivia": 57,
-      "manual_curation:out_of_domain_or_personal_trivia": 382,
-      "manual_curation:semantic_duplicate": 42,
-      "manual_curation:source_error_or_misread": 75,
+      "manual_curation:out_of_domain_or_personal_trivia": 478,
+      "manual_curation:semantic_duplicate": 67,
+      "manual_curation:source_error_or_misread": 85,
       "manual_curation:source_typo": 1,
       "manual_curation:translated_or_mixed_language": 108,
-      "manual_curation:unsafe_or_medically_unsupported": 119,
-      "manual_curation:volatile_or_promotional": 157,
+      "manual_curation:unsafe_or_medically_unsupported": 188,
+      "manual_curation:volatile_or_promotional": 232,
       "manual_curation:wikipedia_manual_quality_reject": 121
     },
-    "output": 1487,
-    "unique_fact_ids": 1487,
-    "unique_questions": 1487
+    "output": 908,
+    "unique_fact_ids": 908,
+    "unique_questions": 908
   },
   "curation": {
     "artifacts": [
       {
         "path": "data/train_qa_curated_v1.curation.jsonl",
-        "sha256": "3fc033f3a58638567c709f1bba8b94a5eda93d59c36d4d544c2f8c874b9d18ec"
+        "sha256": "5c83bc4f72be9ddf171744e879a4c19df054926971eecacf76d4421614399b40"
       },
       {
         "path": "data/train_qa_kinbakutoday.curation.jsonl",
@@ -73,34 +74,36 @@
       }
     ],
     "by_action": {
-      "drop": 1797,
-      "edit": 30
+      "drop": 2376,
+      "edit": 53
     },
     "by_reason": {
       "antecedent_misread": 2,
-      "category_error": 5,
+      "category_error": 10,
       "contextless_or_eval_collision": 1,
-      "contextless_or_low_value": 177,
-      "contextless_question": 4,
+      "contextless_or_low_value": 224,
+      "contextless_question": 14,
       "entity_reversal": 1,
       "esinem_manual_quality_reject": 557,
-      "incomplete_answer": 2,
-      "malformed_answer": 6,
-      "malformed_question": 1,
+      "heldout_document_overlap": 257,
+      "incomplete_answer": 5,
+      "malformed_answer": 7,
+      "malformed_question": 3,
       "out_of_domain_encyclopedia_trivia": 57,
-      "out_of_domain_or_personal_trivia": 382,
-      "overstated_claim": 2,
+      "out_of_domain_or_personal_trivia": 478,
+      "overstated_claim": 5,
       "rejected_method_context": 1,
-      "semantic_duplicate": 42,
-      "source_error_or_misread": 75,
+      "semantic_duplicate": 67,
+      "source_error_or_misread": 85,
       "source_misread": 2,
-      "source_typo": 5,
+      "source_typo": 3,
       "translated_or_mixed_language": 108,
-      "unsafe_or_medically_unsupported": 119,
-      "volatile_or_promotional": 157,
+      "translation_error": 1,
+      "unsafe_or_medically_unsupported": 188,
+      "volatile_or_promotional": 232,
       "wikipedia_manual_quality_reject": 121
     },
-    "decisions": 1827
+    "decisions": 2429
   },
   "eval_fact_count": 505,
   "exclusions": [
@@ -195,6 +198,12 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-f4d65ac3e43a922dde19",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 25,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
       "fact_id": "fact-741db0265b0bc21f1a2c",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 26,
@@ -261,9 +270,45 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-52fd5ba161f6f390de23",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 43,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-c140e56fde9f5cae88c4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 46,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-8c3091b58207533c1bcb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 47,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-615d21da0ce87b4ee342",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 48,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-677a349398ba1906acc2",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 49,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-5e17d05d1ae8a7c75821",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 52,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-26360831af6efb2704ed",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 53,
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
@@ -399,6 +444,24 @@
       "reason": "manual_curation:semantic_duplicate"
     },
     {
+      "fact_id": "fact-a424e5e6cfd2b6916243",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 77,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-187500db977839b83c51",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 78,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-17f1220dab2588816c32",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 79,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-cefa57f04dcb34922255",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 80,
@@ -409,6 +472,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 83,
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-db86a44032b75a15fb00",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 84,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-f64310e8775885186e9f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 86,
+      "reason": "manual_curation:contextless_or_low_value"
     },
     {
       "fact_id": "fact-989d4508c5fc1f5e212f",
@@ -429,10 +504,52 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-5d273e64bd9dcd91bf93",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 95,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-39e830ab55992cb667ba",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 96,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-d3670dd2e2f9e7ade18b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 97,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-79b1fb14be1eba60c7e4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 98,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-dc3c8e1c2075616557fe",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 99,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-62d4d68bd63e5c871696",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 100,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-d0ccde8e79f4479585ea",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 101,
       "reason": "manual_curation:out_of_domain_encyclopedia_trivia"
+    },
+    {
+      "fact_id": "fact-e1e7e27010193467b8e3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 102,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-16d95554f7b90475899e",
@@ -507,10 +624,34 @@
       "reason": "manual_curation:source_error_or_misread"
     },
     {
+      "fact_id": "fact-0dcaf94c28f401fa6960",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 120,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-de613d26fcde933784ef",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 125,
       "reason": "manual_curation:source_error_or_misread"
+    },
+    {
+      "fact_id": "fact-e368ca3af95093e9b305",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 127,
+      "reason": "manual_curation:source_error_or_misread"
+    },
+    {
+      "fact_id": "fact-3978e96024c965d7dfca",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 128,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-bac9df0fed95c2baf6cf",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 129,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-4f2b92dbaa42760babac",
@@ -549,6 +690,60 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-1db8048e43a0d2d71621",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 140,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f60dc8fa261a2d23276f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 141,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f81836ddf5979fffcc42",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 142,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-3a2c02145c11fe1ae112",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 143,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-663b111d542f63385cfa",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 144,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-01006153904cc0794540",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 145,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-d9d2cb4ce05b660c75cd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 146,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-5c1d838668a92d88eda3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 147,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-401504e740d2cdfc58cd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 148,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-09cadfdd25e3b4007672",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 153,
@@ -582,6 +777,12 @@
       "fact_id": "fact-9d0fc43a9aa0031c772a",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 163,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-f244ee63dd192d1617e5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 167,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
@@ -909,10 +1110,76 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-5b0bcf05190cbaa9c411",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 240,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-4a2b2d51353917abdb23",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 241,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-a2edbaf650d8d6a3cadd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 242,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-ce7ac95078a725dc34eb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 243,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f401e9ee59e7b987ce3c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 244,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-da1ef6aea542a8c42f96",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 245,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-89876f7e9d6bc36fd759",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 246,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-50b90fcc828620c28e8c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 247,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-25c0df2b2c4edd861759",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 248,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-280201dc8bbb5ef64079",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 249,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-1d2f8fafddc2d55fe872",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 250,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-74b1225b3bdc3721b717",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 251,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-7099057027c66a80700a",
@@ -921,10 +1188,46 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-aa5f382e14eeffff1710",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 253,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-14efcf4993b3d44fecd9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 254,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-f3617f53833c3ba4d946",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 255,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-a25182eea8af7d75e757",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 256,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-54d21600620fec1ba8ef",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 257,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-0037e8bdf2c7c0c4c43e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 258,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-8376e7a467bb155b613f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 259,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-c5541785d7be495b913d",
@@ -939,10 +1242,40 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-76cce6486733d75d99e1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 263,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-55472ad71b49c8087bfe",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 265,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-696ccd91e2c2c6a1e8f5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 266,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-3fc435f66142413686fb",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 267,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-d84aff674dd9bfa3a7a0",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 268,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-aa049bfe935ab96ce03c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 269,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-3b86cd9f03d5eca6c062",
@@ -999,6 +1332,12 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-d2957bf3aa35d56a9a5e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 286,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
       "fact_id": "fact-0d30bbba028158da877d",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 287,
@@ -1041,6 +1380,12 @@
       "reason": "manual_curation:translated_or_mixed_language"
     },
     {
+      "fact_id": "fact-16a0d16219beb0b2072a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 295,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-63f543d6bfeae1be148b",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 297,
@@ -1071,6 +1416,48 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-32d3501fb36e8b15bf98",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 302,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-1f41ee5eb5f601f129ef",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 303,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-5be6bb016c1bfc46c60e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 304,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-510ae1b5f9b9143c261e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 305,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-b4e142873dcb6db66f97",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 306,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-ca9d34e3175079a40523",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 308,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-0255bf23270c7f7b2ae4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 309,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-08fcc3d9ed92a70f53ce",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 313,
@@ -1089,10 +1476,34 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-5be3a195f17b799b4b94",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 316,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-7b5ebe653ddb6fab2f2d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 317,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-a1c8930ad767f1665e6e",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 318,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-1037df8aff32f0832e34",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 319,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-ca9f21cae3a0e3e823c6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 320,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-27aa1070306247303831",
@@ -1263,6 +1674,24 @@
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
+      "fact_id": "fact-8302dd36c561d6f3708e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 364,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-5e8ff55da42e1b28841f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 365,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-728a4c294628e5ecc305",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 366,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-470bd46af0d68c641565",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 367,
@@ -1291,6 +1720,24 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 373,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-88dbada1c23ae9c07812",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 374,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-9ffe362804e68af46794",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 375,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-5a3b88d7f90ccf8d6333",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 376,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-4af36b1b71d700625178",
@@ -1449,6 +1896,12 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-2b17d9c2a8a8e14a2c1f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 424,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-19312a83adbf6d10dd68",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 425,
@@ -1461,9 +1914,39 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-1c76bf3070edd268a971",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 428,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-2c35c5fe6fc85fa27487",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 429,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-120342c8da21025fef52",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 431,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-95b00ac7bd96c0608621",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 432,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-07a85362baf389bc2673",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 433,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-794820a127eb3fe4791d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 434,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
@@ -1483,6 +1966,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 441,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-12e85783444e0f96d8e4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 442,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-b46008b6d7a109264b4e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 443,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-b9bc0dd06633f7ff1ef5",
@@ -1513,6 +2008,24 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 451,
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-700d2f8c739a24ff5722",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 453,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-0e7d9cff4aef6f2b9506",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 454,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-5bdd5cbb981164b82f84",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 455,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-fe38e893c163d089f0c6",
@@ -1923,9 +2436,45 @@
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
+      "fact_id": "fact-37b28c8a84cf69e31abb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 534,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-f84fda49bf9f7248e9be",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 535,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-8a1c095b0dd31b39abef",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 536,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-36476b0df6fc36243267",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 537,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-3c8644979172c338594c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 542,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-efa00fde113a63e253fa",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 543,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-0aa0f436f1e3eea8e180",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 544,
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
@@ -1933,6 +2482,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 545,
       "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-6b4ccd32d82d06531eca",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 546,
+      "reason": "manual_curation:semantic_duplicate"
     },
     {
       "fact_id": "fact-227d6ce6201522ee4abb",
@@ -1951,6 +2506,24 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 549,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-229184e27f64c26e2539",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 550,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-bed241da069b935131ff",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 551,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-c88ce0ab651c5f195178",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 552,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-f08a48d64498305b6a74",
@@ -2043,6 +2616,12 @@
       "reason": "manual_curation:semantic_duplicate"
     },
     {
+      "fact_id": "fact-773ed9d496b39097f09c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 573,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-7e169cc2c200d401f489",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 578,
@@ -2127,10 +2706,52 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-91001c3927c48a22272c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 602,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-cad472e8619762a1c2aa",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 603,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-4250a9140022b01e8fe5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 604,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-09050582724d4f6960a0",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 605,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-5e8ab12a6d2a7429d1dd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 606,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-557c99636a9b0f7f716e",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 607,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-a02a4eb6f0d60ad2275c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 608,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-9ef4faac5a0ec6c83070",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 609,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-2fe44b9ae632aae1e911",
@@ -2223,6 +2844,12 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-13e4611f474a8b090310",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 629,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-6fec5b754b3b5b0c8ca9",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 630,
@@ -2253,10 +2880,28 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-07c4cd6b8b6874c4a0a9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 638,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-26dacb2e5800fc9d9443",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 639,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-00cf3b4fd9f30d0d006c",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 640,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-6923b3bc738fd29f9674",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 641,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-543dda7b0c6d1b1bb0be",
@@ -2325,6 +2970,60 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-016da9a33ff9431f4e79",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 654,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-0c28e5cce67bf1bbabff",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 655,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-3004bcf782d78caa7276",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 656,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-94af918ec6e7752d029e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 657,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-ea6c91636820d685ea13",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 658,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f5dafbd54b6cb9e0a908",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 659,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-49016910837306bf04b1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 660,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-58a9042471ef73907871",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 661,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-bccce058b206f3252b14",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 662,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-7414fc4c7fd99d3e8f02",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 663,
@@ -2340,6 +3039,18 @@
       "fact_id": "fact-ca12ef56b83843be7c80",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 665,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-916a1e9cf50820e2a9d7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 666,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-74b11f4e7ad6ecf50744",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 667,
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
@@ -2565,6 +3276,12 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-6ea751a7b20d393ff1a9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 718,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-717468889d97a69ebbf9",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 720,
@@ -2775,10 +3492,28 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-2ee2b980d4ecf220effe",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 764,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-ded59d2fed94bb8d645c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 765,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-46459fa574523880f987",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 766,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-1d8d08d84342dc09340a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 767,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-ee95c2987632751064a6",
@@ -2791,6 +3526,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 769,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-9bd8acb899d4ed127c39",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 770,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-4a45ba11477eafed9a74",
@@ -2871,9 +3612,39 @@
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
+      "fact_id": "fact-a5c0c205627438b64204",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 785,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-7852e81592faf8a62d6c",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 786,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-2679a2ac94e4c626da6f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 787,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-a84b729b0a13b6aef9b8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 788,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-8ea4bbead3041b0accab",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 789,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-71895311e99eec149fca",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 791,
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
@@ -3057,6 +3828,12 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-6e1b3e5c5682799f6d12",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 828,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-1f1285d1ac55bd21e4dc",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 829,
@@ -3067,6 +3844,24 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 830,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-71b843ccee5cf188e223",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 831,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-40b3cd9cd43b3a21d3f3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 832,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-7d4ecf83521efc1069d1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 833,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-fec595b0e64e52d4aad3",
@@ -3165,6 +3960,24 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-60df1df2ff0c3e816a1b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 853,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-2a21c84ae88edc4d0d81",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 854,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-c86f7bcba6f320264d80",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 855,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-fd28ad92114aa83ab31f",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 856,
@@ -3177,16 +3990,70 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-ad7905ad21e42d6e466e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 858,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-38e1fabcef50997d568b",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 859,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-7f166bf96fb6d7e60851",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 860,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f3faccb9b381563170e6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 861,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-a8d4109c3e6ddc96bb6c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 862,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-a7374220d6af994243e2",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 863,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-0321b0f6c17e61dee140",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 864,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-e50c55ec7125eff46343",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 865,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-d2ab5abaf5fa1393f017",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 866,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-da624a144fbb3e9eb78f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 867,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-e57b10e1be885fa0d217",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 868,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-554371a3668a08d91234",
@@ -3201,10 +4068,40 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-a41e90f13337aa2a4c5d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 871,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-c1459d2a5b1e4909b5bb",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 872,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-3353895a3b5c82f8b6a5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 873,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-5c20e5943ae6ef666d70",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 874,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-d6d3ec30c84f9f374cf8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 875,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-15aefee58522a2aeb18a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 876,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-5601b2a1fca9064f2227",
@@ -3277,6 +4174,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 890,
       "reason": "manual_curation:source_error_or_misread"
+    },
+    {
+      "fact_id": "fact-99b2398fd57dab7e6962",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 891,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-efb7f0df628c0ee51dbd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 892,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-b801ed3dbbe841e584e3",
@@ -3369,10 +4278,34 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-1fb8ba83f292489689fc",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 909,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-035e43b57f1ddbd3584a",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 910,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-6e6654932c44217f4983",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 911,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-b39b4defccd69c69b925",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 912,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-dd4866d0d9f515bf5961",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 913,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-733bd9315699fd671a65",
@@ -3403,6 +4336,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 919,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-dceee9f524035d168e7d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 920,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-1798333aa23dd4f9880b",
@@ -3615,10 +4554,22 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-04c83c9f7d3ddca338ee",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 969,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-cb9b3355a3dcf3f10524",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 970,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-0e0e786e88b74ac0d33f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 971,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-98165c58ed03fe655815",
@@ -3631,6 +4582,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 973,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-8ae61985d719b210772a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 974,
+      "reason": "manual_curation:contextless_or_low_value"
     },
     {
       "fact_id": "fact-10833fce92e583b1d1de",
@@ -3663,6 +4620,18 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-20b7836a7cf4acc4c40a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 983,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-2f00753048c1952564a6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 985,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-a0363c8b9eb118f7f18b",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 986,
@@ -3673,6 +4642,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 987,
       "reason": "manual_curation:translated_or_mixed_language"
+    },
+    {
+      "fact_id": "fact-f3748987bae38cf52e59",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 989,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-64bb4295e5616ce4ffb5",
@@ -3909,6 +4884,12 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-13273d54aeaea258084c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1033,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-0c9e56ce1dad9a5099cb",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1043,
@@ -3943,6 +4924,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1056,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-1073545e35b3bd4ae76b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1061,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-b7d047e9ce86205f3502",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1062,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-15923c77c14a8483bb1e",
@@ -4149,10 +5142,70 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-5310af2aeab02069d176",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1108,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-c58dce879d6685ee8baf",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1109,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-02402b3a4b3f6649b75d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1110,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-99ba8dd5a4e90dba88b2",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1111,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-289be6118c37f261fd8c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1112,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-2ea244ac1ae8541f44ca",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1113,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-f485313ee36444132dda",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1114,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-1f227332ad7e5d479efb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1115,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-47b9bdbbc0739106628a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1116,
+      "reason": "manual_curation:source_error_or_misread"
+    },
+    {
       "fact_id": "fact-f58bab3c6d1d0b9efc76",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1117,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-0766d9fe7d0e56065729",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1118,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-8c4a38e84d94961cb622",
@@ -4329,10 +5382,64 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-e47f85b5b40c68c7b90c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1162,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-106809365a7f97e4653a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1163,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-581018d2728f68bbdc4b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1164,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-1825e29fe84714b3d5e6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1165,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-e80eccaa9d54926f1cd0",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1166,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-a447aeb6eeb9c0bd37e6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1167,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-047c1976ac87b65c24b6",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1168,
       "reason": "manual_curation:source_error_or_misread"
+    },
+    {
+      "fact_id": "fact-9b1d204e2c9c4b3f6817",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1169,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-c7a0b86b84e8577109b8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1170,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-41117fe5c89d31a8b693",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1171,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-3976a30b53cd0002e73d",
@@ -4425,6 +5532,12 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-475e1d9cdba8f4eaa4d3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1198,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
       "fact_id": "fact-3b7f5817463f2f3fd849",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1199,
@@ -4455,6 +5568,42 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-192585549992f190f890",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1204,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-168ecba4eaac7d01b943",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1205,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-311e6899f245e0026d7b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1206,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-e01c7549ef7419d829b6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1207,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-f3764f5795ecf7145307",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1208,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-618ee908aa8d0e59549a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1209,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-271edb938f8e85642776",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1213,
@@ -4471,6 +5620,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1220,
       "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-1d4b1931be4e5b48087f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1221,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-31f34da3f36320f41261",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1223,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-268039d3f301b88021c6",
@@ -4515,6 +5676,12 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-0b7cfe9245b2c6a9ddc2",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1231,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-b49755d802411b6667c6",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1232,
@@ -4531,6 +5698,66 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1234,
       "reason": "manual_curation:translated_or_mixed_language"
+    },
+    {
+      "fact_id": "fact-3dbd293c0b9b76951ad8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1235,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-7d425ae14a3268ce0c22",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1236,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-9abe7a306cc38a3c05ba",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1237,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f605b0f6b81f64ae9150",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1238,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-a322a992f0069ab30a63",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1239,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-fb1ed0d1b16bcd8f1d4f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1240,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-dedff0179fc188f631aa",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1241,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-84e6eb6b08904bfce2f1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1242,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-4cd51fd463d15968c911",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1243,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-da84b13e0a920b33c20a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1244,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-ebe19c02874091cb69bb",
@@ -4581,6 +5808,12 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-f98a9aa9058a9d919ff0",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1260,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-6a46b9834812a2732529",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1261,
@@ -4617,10 +5850,82 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-749a258d7e314e85af01",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1267,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-3ed84a067780eb83d5d6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1268,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-6a2003ff11df640d3eaf",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1269,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-490e6cb3ed505605b575",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1270,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-f803394412e02df3aa18",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1271,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-c7c6a932bdd843c6c257",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1272,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-9e4cc7813ff5fb96b538",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1273,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-628d196c49b01f447be6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1274,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-17fc2ba7a34d5b9bbff2",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1275,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-0e9d12dd3954912d3cd1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1276,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-99a9fc57b8eaf3816bad",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1277,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-946061a1a3208624346e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1278,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-e177948bad79724ab71b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1279,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-4b3e06ea286e648fc894",
@@ -4629,10 +5934,34 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-bcf2ea35e11218cdba86",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1281,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-7d32c9077ac7549dbe73",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1282,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-d0d182f665cf47ee06af",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1283,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-363c108cd62e4a7dd5c4",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1284,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-87f90c1dfbea2b99b5f7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1285,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-b80bc51fb1a7c583da87",
@@ -4641,10 +5970,22 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-31ec1ed98aaacdbe398d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1287,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-2f4a1a49683058128f9a",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1288,
       "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-13ca00a4008bbd202e5a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1291,
+      "reason": "manual_curation:contextless_or_low_value"
     },
     {
       "fact_id": "fact-f68cec7b29506a530a81",
@@ -4701,6 +6042,12 @@
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
+      "fact_id": "fact-1145b6c8f8ed2a6b1eb6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1308,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-5b90e8ebb6296f859d19",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1309,
@@ -4725,10 +6072,34 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-a3aa965f123b7dddd255",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1313,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-0df1c82aa63833fbaafd",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1315,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-cb49972f9359e1789ad3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1316,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-962af9afdac8d5dda3de",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1317,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-ed2cb03173948c5a9d1b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1318,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-9723556e56448b598f4c",
@@ -4761,10 +6132,46 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-20bf54bffa4bc93487f8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1330,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-70ff12d720104b103925",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1331,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-43764d351df44def4b4e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1332,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-e4920ee6deed436351c9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1333,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-c675e92978a426cb8371",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1334,
+      "reason": "manual_curation:source_error_or_misread"
+    },
+    {
       "fact_id": "fact-02b62caf261f549a03f3",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1335,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-ab160d86e6aa2a068e40",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1338,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-9406778309ef8a3c6336",
@@ -4783,6 +6190,36 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1347,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-b768efecb55b44dabf24",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1348,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f25afac15a9d9d10d4bb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1349,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-8d3aec3968a8d19a043d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1350,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-a3438cdb2deb005ed62b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1351,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-391b1f5e0988cd4d2f2d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1356,
+      "reason": "manual_curation:contextless_or_low_value"
     },
     {
       "fact_id": "fact-c1f5afd1b8a3d203c921",
@@ -4827,6 +6264,12 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-10f7678e30528ca20a5b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1365,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-bdf49e5fcce28d7dcf79",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1366,
@@ -4843,6 +6286,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1368,
       "reason": "manual_curation:out_of_domain_encyclopedia_trivia"
+    },
+    {
+      "fact_id": "fact-5b86b90764a1027a8562",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1371,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-9e353fcb9ad468994d55",
@@ -4905,6 +6354,66 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-3ce6a9d30779b2a869f9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1390,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-75ce9c1ab5869acdcbf7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1391,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-0867650498fc562c9e0f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1392,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-421f931d6f95b177b66a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1393,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-5f72ce739ffd0f1ddeb7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1394,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-17b688dbcfde05661dff",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1395,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-5e94885eadb4474c3845",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1396,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-a987d087d2ff3cc57f79",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1397,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-e9f8224f7681591bdcba",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1398,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-5f727970b8c0df100d2d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1400,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-55af39b745fbd99527ac",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1402,
@@ -4932,6 +6441,24 @@
       "fact_id": "fact-8e841cb2ea1fdde28e49",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1406,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-275736c1578f923f9194",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1407,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-6df5de6c7ee993902546",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1408,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-9d0a507dc893f48a51d4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1409,
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
@@ -4989,6 +6516,24 @@
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
+      "fact_id": "fact-e9af8b9e59e35d1dc4da",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1422,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-c3f7414f59718f8967b3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1424,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-592aa4c77ba28d600f1e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1425,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-0c75595b2666f4bc9ebf",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1426,
@@ -5007,6 +6552,18 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-aa0d9eb5c867237c3a1c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1429,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-4ecad1448bfd090d59a9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1431,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-4fa9efa59b9c81e7860d",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1432,
@@ -5017,6 +6574,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1433,
       "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-9df47baba2f644a0353c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1435,
+      "reason": "manual_curation:semantic_duplicate"
     },
     {
       "fact_id": "fact-97f8a7457c6550efcee4",
@@ -5071,6 +6634,24 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1445,
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-04303bad0d506e0e1784",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1446,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-39bf01a6ae6209d65628",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1447,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-320c544da66fecc8561a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1448,
+      "reason": "manual_curation:contextless_or_low_value"
     },
     {
       "fact_id": "fact-5b4f2c61ab97ea2fb4ae",
@@ -5271,6 +6852,24 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-ab9123aaa62098f5b44f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1496,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-372ea0315aa9eb2f40dd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1497,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-9525506b38dec7d96292",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1498,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-29926ee0e76fe573cd33",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1501,
@@ -5292,6 +6891,36 @@
       "fact_id": "fact-68d7ede5c46c6f53f8c5",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1505,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-33ca17bd8f0e3667109b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1506,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-fa5308c7394c40314188",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1507,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-7def2b279b37aef85d55",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1508,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-46dc7ff6c14b912757d6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1509,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-61fb92a87034f8ec7049",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1510,
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
@@ -5349,6 +6978,12 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-8f3351d59b672cacf323",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1529,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-440d915cbf8c855647b1",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1530,
@@ -5361,16 +6996,106 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-46dc22d12b955d08f6e3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1532,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-04951ace1b8ba9f601c2",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1533,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-46823884be2bf8564ceb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1534,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-fc6dd8bdfa8a608f8c85",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1535,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-2fbda6c747dc09697d95",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1536,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-770d537f1053947f9f56",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1537,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-7206811d9cafa8962e92",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1538,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-32b9f7c6edf17f637960",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1539,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-9e5b7a8a08b147370d6d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1540,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-9bc89b0f209dfe60541d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1541,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-6d2dfad5317ac916734f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1542,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-7d5c8e80fb3bed1d1e94",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1543,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-2018ce252cad4e24f005",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1544,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-9b4f6ad11934a9d528e4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1545,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-9232b68e03c20b2e0e71",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1546,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-2313eabaa459a9f38162",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1547,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-aadbc802cc313be962c4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1548,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-c53a926527f90bd4cace",
@@ -5385,6 +7110,12 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-252938ce925645989f46",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1551,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-e00bd23f035dcadb5cff",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1552,
@@ -5397,10 +7128,40 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-96ce38cc505e4b43a886",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1554,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-56508ba3f26912aaec43",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1555,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-0a07ea9644ecdcd98fb5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1556,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-e4eb617c12275d6da864",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1557,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-f3ee343bedcdc71fb80c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1558,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-201a332c090a817e8139",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1559,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-2b09ac135f01d9203b3a",
@@ -5427,10 +7188,64 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-108dcf024a6d41d9ec39",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1568,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-a687e744a6d5ce9096c7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1569,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-395c58246406f310a396",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1570,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-89e9a1373b560b8846c8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1571,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-628d90805b4871c05157",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1572,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-19faf8b1489628059689",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1573,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-a5d2de80fdad533fdbe4",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1574,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-4290ca6ef23ee08a5589",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1577,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-860a74be880010188b71",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1578,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-76d702f20f3f1dbc166e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1579,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-3464cbd8f7aac9c2b640",
@@ -5517,10 +7332,76 @@
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
+      "fact_id": "fact-65e3d6cd0043c143a2e7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1599,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-cda7faae924811d5ee79",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1600,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-d255a55fa47995669f97",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1601,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-349ebee41b874575397f",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1604,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-777ccf49b2cfce7957d9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1605,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-c890d7849e732efcd944",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1607,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-a59cfe7246754e4b56d0",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1609,
+      "reason": "manual_curation:source_error_or_misread"
+    },
+    {
+      "fact_id": "fact-2aae825889377266dde7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1610,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-a583d49b4846ae8fb847",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1612,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-ad72d4da9daf3cb04932",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1613,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-5d3e083c4f5f83a36270",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1614,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-1e83ff58d6e5893b1e04",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1615,
+      "reason": "manual_curation:contextless_or_low_value"
     },
     {
       "fact_id": "fact-867fc3ff09b9bddd7576",
@@ -5575,6 +7456,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1626,
       "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-46e2f20294b06d2811d0",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1627,
+      "reason": "manual_curation:source_error_or_misread"
     },
     {
       "fact_id": "fact-5072b7860f782f2fdfac",
@@ -5709,6 +7596,12 @@
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
+      "fact_id": "fact-a2d8aaf0ad4ada343289",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1661,
+      "reason": "manual_curation:source_error_or_misread"
+    },
+    {
       "fact_id": "fact-5390175d26bb6e9e743c",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1667,
@@ -5767,6 +7660,36 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1679,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-5346f3946e6b64da222f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1680,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-fe08c1c1aa257ed4853a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1681,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-fd0a9f2be32dfa1479c7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1682,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-88959b442fec3e1a26b6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1683,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-a806c13dcb8827ba27bb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1684,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-ae2c4a15f800ccd1cf61",
@@ -5925,6 +7848,30 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-3e8a008c03698bb72967",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1720,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-eb78795584a5098443aa",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1721,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-c4d355f5ccdde8ab5544",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1722,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-b4bce946f9bfd1de433f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1723,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-5f93abc8a34f00dbb9cc",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1724,
@@ -5955,16 +7902,40 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-975704060bc7ad8284c9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1732,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-5a2fc25db6a615693ab3",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1736,
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-1081919aa1f1aae70003",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1738,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-f23ce5a3c26b9464ab46",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1739,
       "reason": "distinctive_answer_alias"
+    },
+    {
+      "fact_id": "fact-9e8e15a85a7b9eb9e529",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1740,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-e01c603e5ff07ca82d85",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1741,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-f177dc9fd5765c67e68d",
@@ -6013,6 +7984,30 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1749,
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-32404e6f52ab2d055e20",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1753,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-5a54bc68c43b4956680f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1754,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-61d0945e0c2415088dd8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1755,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-037e5f7eeafeb0e2e182",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1756,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-f1dffe88414580da6f84",
@@ -6069,6 +8064,18 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-38b5b798125313f15272",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1771,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-b52f23d894111315eace",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1772,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-24678eaabfdcd1ded3c0",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1775,
@@ -6117,6 +8124,60 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-ad9ad104d9111f1f9d80",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1790,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-9836553d647fd113f885",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1791,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-30bf0259dc117ccb676c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1792,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-33cb6db25fac18e3be79",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1793,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-30f445c4eb6fc43345a4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1794,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-15e07b006de60c2d1143",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1795,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-9b82b337cc0f203cf095",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1796,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-ed834d0beaa3865b8370",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1797,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-493ffb540283fdfda1f3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1798,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-1c69d26d0ea08338b9a6",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1799,
@@ -6129,6 +8190,12 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-9f6f052beaa19bcafc4e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1801,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-1775086fae0ad78c72b4",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1803,
@@ -6139,6 +8206,24 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1804,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-a4298c9564282242358c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1805,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-ed1e40e7f094e6f9c23e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1806,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-cb04e6167dc6019222d2",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1808,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-ce0b1ffda1456487e8a1",
@@ -6163,6 +8248,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1812,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-8da3eda2b0186af0dce4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1813,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-64f27da68345bf6d3b7a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1814,
+      "reason": "manual_curation:contextless_or_low_value"
     },
     {
       "fact_id": "fact-a639e1e937ad4f82c702",
@@ -6195,6 +8292,54 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-e8d72a749e1e0370ad7c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1823,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f1d24d07b6ffbf276acf",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1824,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-99e25ab16cf1fde496c4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1825,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-c19660e088b39185ae4c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1826,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-e8c9f94588998c72d884",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1827,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-1489e752e445787682c8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1828,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-01377eeb925877736def",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1829,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-87e419a4a930d1c32bb8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1830,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-4dbf45b621f17d452a9c",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1831,
@@ -6205,6 +8350,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1833,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-ba62782301a8c4a081c8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1834,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-4af6b3326c594fe3df33",
@@ -6301,6 +8452,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1850,
       "reason": "manual_curation:out_of_domain_encyclopedia_trivia"
+    },
+    {
+      "fact_id": "fact-970d114a6fd704c6a568",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1851,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-384c3e12ac9da2a56a93",
@@ -6429,6 +8586,12 @@
       "reason": "manual_curation:out_of_domain_encyclopedia_trivia"
     },
     {
+      "fact_id": "fact-c20971ec018adde1eec8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1873,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-bdbd6d41c576d473150b",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1874,
@@ -6451,6 +8614,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1877,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-b9e51a81a3496aace0e9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1878,
+      "reason": "manual_curation:source_error_or_misread"
     },
     {
       "fact_id": "fact-802bdf8ce4b5347e2a67",
@@ -6517,6 +8686,30 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1892,
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-b006c689a4a784039563",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1895,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-0b8ff08b9116860caeca",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1896,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-7e79bb6dd5be0798a54a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1897,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-32fb4516ea3fa6de999e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1900,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-23ea241ed31620d3342b",
@@ -6669,10 +8862,34 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-3ca1eeaef999582cc87c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1937,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f94f1b6650447a158efd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1938,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-29e05bad8491d2839dbb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1939,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-62242decbc2b300666f8",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1940,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-b0397537643a40be5b8b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1941,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-5754b690faf51f784cd9",
@@ -6721,6 +8938,30 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1949,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-62a78cd1484a914d9095",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1950,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-cf092cbe8702ed87eb84",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1951,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-d6596aafaa2e5dc04d18",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1952,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-8281dceba329c9feeb9f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1953,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-f2cec8072dc82a6e9c25",
@@ -6793,6 +9034,30 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 1969,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-08c1dc889eb592081ed9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1970,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-1649685a6a8d04e866e6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1971,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-2548babb36ca8d3bb3fe",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1972,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-0a72189960605661b511",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 1973,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-355379b2fe758d3c28e4",
@@ -6939,6 +9204,30 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-fdefb7b045b190ceb849",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2029,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-ddd80482ad36366caaba",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2040,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-30965f982c47b04c63c1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2041,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-2caf56fa4ff617494454",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2043,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-0e693164faf0379b4218",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2048,
@@ -7023,6 +9312,18 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-fcd1885abe21facade09",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2063,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-3c869c060da1a392a1b5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2064,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-b73bd60d48f197f17649",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2068,
@@ -7063,6 +9364,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2076,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-a12038735fa493579aee",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2078,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-abce68dd074b9638cf13",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2079,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-2b27b37d53280c1563bc",
@@ -7119,6 +9432,36 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-d1023239edcf383ed07c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2098,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-3c5a9c44e010afd178bb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2099,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-6756f34de7c1d84927b2",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2100,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-bfa44db65f7f42c36f93",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2101,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-ddd0b158caf71b166ca3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2102,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-4f3b16b5cb9696a70e76",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2103,
@@ -7167,16 +9510,64 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-c20d514c15870cb8a5eb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2111,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-028755a827245eb97086",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2114,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-805f6e5acb3bbeab7023",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2115,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-8a453b67f42e79010f57",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2116,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-26f72b0d20ad95695070",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2117,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-556972c568f3de4f350c",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2118,
       "reason": "manual_curation:semantic_duplicate"
     },
     {
+      "fact_id": "fact-64def16704eed7c7c1d9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2119,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-96ac96edda3fafc11caf",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2120,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-61b49af6942d4ad307ff",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2121,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-b3f13168e6313c456362",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2122,
+      "reason": "manual_curation:semantic_duplicate"
     },
     {
       "fact_id": "fact-817a9cf260906c69978c",
@@ -7191,6 +9582,18 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-425476d78c4158224c81",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2125,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-a00a85df2fcd462e18e7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2126,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-5e2010eca1f120959db2",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2127,
@@ -7201,6 +9604,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2128,
       "reason": "manual_curation:translated_or_mixed_language"
+    },
+    {
+      "fact_id": "fact-93f9a51dffee71ddfdbc",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2129,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-df2767f2856b840fec0e",
@@ -7237,6 +9646,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2135,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-965ac09bd26e1e07dc91",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2136,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-e9f72c347a3f4554a6e1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2137,
+      "reason": "manual_curation:semantic_duplicate"
     },
     {
       "fact_id": "fact-db9f8514987674b05016",
@@ -7353,6 +9774,30 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-98c03c5cb616571c69c5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2162,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-dd84acd4d77e31aea55c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2164,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-de06707d8b8392f09e2b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2165,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-7f1ec584bc6998f5d276",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2166,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-6d8d6f07b666098670f1",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2167,
@@ -7437,6 +9882,12 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-58fa424ce94eed6e158e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2184,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-12b2d21fdc15fa80e0cb",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2185,
@@ -7453,6 +9904,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2190,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-cd6517769db9207f90c4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2191,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-b166c8a0ec34df6675cb",
@@ -7635,6 +10092,24 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-3101582755f1225901f3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2232,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-eb5fe9e502d321310666",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2233,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-6abd4719c239f8550766",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2234,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-fb56c009f10baf317a5e",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2235,
@@ -7647,10 +10122,28 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-349f7565f086e9821aff",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2237,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-afa62f0a4d905bcbc5be",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2238,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-a8243b8fc45fea2759f9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2239,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-e81166568794610d6d16",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2240,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-25f8d0fc89eb4e24c54e",
@@ -7707,10 +10200,64 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-6e0f4b2c268c3d037b8c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2252,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-e729dc37d406f6212c5e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2253,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-b1b9c7854ebe191a6b2f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2255,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-79b7e361f69b43e5eb5b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2257,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-4abe861cb72d2f8c697d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2259,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-8070e16e0ec217fd30b0",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2260,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-d4163a81136aa3fbdeda",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2261,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-9b294343f1aa312fdf8b",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2262,
       "reason": "manual_curation:source_error_or_misread"
+    },
+    {
+      "fact_id": "fact-3fb64dfe68217294c956",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2263,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-6925b12efdd46896f6f8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2264,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-086b86b66fc9c26813ff",
@@ -7761,10 +10308,28 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-4e7be50412ea4e8af6db",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2273,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-22aae8447ff9de47d9e8",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2274,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-b76ee9f2504855e9e245",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2275,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-cf807227258311a85e60",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2278,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-135d154eda5c46c73d0b",
@@ -7813,6 +10378,30 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2295,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-f76d062ef07bd1a4f458",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2297,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-49ad47fe1fcfae1974df",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2298,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-ba0b88ff124be25c03bd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2299,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-62f82a9bf0d820da2fb8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2300,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-798afdb19e95b79f11d6",
@@ -7927,6 +10516,36 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2327,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-4fe32a1d43b4922b0ce1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2328,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-4daaf82db2d396c0d5f1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2329,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-b66170ce5e55af72854f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2330,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-2c8eed23722cf44e5bdd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2331,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-0a0536279e0108dfbf56",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2332,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-e165e0a8998b9537a18d",
@@ -8046,6 +10665,24 @@
       "fact_id": "fact-1ea33f7ebcb6a302b452",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2359,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-a44084e1f10e9fa94028",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2360,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-cee47b3bc8fb6de81206",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2361,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-fae3b764a9fb0d82a578",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2362,
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
@@ -8409,16 +11046,40 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-cd280228e3e1a3172120",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2444,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-5f2f3aab1dc0d11fdba6",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2447,
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-d4f0a2662ba4bbacc5b6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2448,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-6d22eb4cd83b6f9af387",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2449,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-7133c6057ead011a1a8a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2450,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-224b5f70a2d293aae4d5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2451,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-25f1c310b07cb9e0d745",
@@ -8511,10 +11172,52 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-de66c90752c7cae8c694",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2474,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-704d5aeddd4b114ef3e7",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2475,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-8258a9a79137add4f3fb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2476,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-25f885f10ff9cc71e1bb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2477,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-05d96d16d3e19ea3beef",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2478,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-dbb09054fe22bdb1b675",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2479,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-dd68b86bc1d09fd1ff4e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2480,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-d7fdfe427248d2d0da15",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2481,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-485218e50dc2f116a16a",
@@ -8631,6 +11334,18 @@
       "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
+      "fact_id": "fact-abf8a84e7077faa7067c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2501,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-001aa88f58189f9d85a3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2502,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-9510653d013053800d46",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2503,
@@ -8727,6 +11442,12 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-7ace49d341b700b1d87f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2522,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-60fb603a6ea57d5eabad",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2523,
@@ -8769,6 +11490,18 @@
       "reason": "manual_curation:translated_or_mixed_language"
     },
     {
+      "fact_id": "fact-a22b0013c4c691c06210",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2533,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-d3eaad56f6657382156d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2535,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-09c2fd2bdfb6365672f5",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2536,
@@ -8803,6 +11536,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2543,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-7ef8813bd62beec5e31c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2547,
+      "reason": "manual_curation:contextless_or_low_value"
     },
     {
       "fact_id": "fact-d5edf30242ffaa2fda59",
@@ -8955,6 +11694,12 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-e9530975c8b302206673",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2581,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
       "fact_id": "fact-230e75402ccecdeacd4a",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2584,
@@ -9021,6 +11766,12 @@
       "reason": "manual_curation:source_error_or_misread"
     },
     {
+      "fact_id": "fact-620fdb8ff0a5629f7cbe",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2601,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-a67451bcaa88ee94c239",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2602,
@@ -9037,6 +11788,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2604,
       "reason": "manual_curation:out_of_domain_encyclopedia_trivia"
+    },
+    {
+      "fact_id": "fact-999e536be3e5aa08c7c2",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2605,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-169faa7c24ad47d4cad0",
@@ -9309,10 +12066,52 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-176754a508c4012de582",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2662,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-f5a8920b394d7d13693f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2663,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-ee41c73b23528691080a",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2664,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-025bc3fe76a139c7c52e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2665,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-914bb9899047c972bd06",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2666,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-8b664dee9f1e2cc6621b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2667,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-885430963725b46744ef",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2668,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-02753ea743233ed6a68f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2669,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-f1e5e923f7ab80063bd1",
@@ -9393,6 +12192,12 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-f3ec055d4cfb77a0dab1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2690,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-1eadcfde867e64fb9db8",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2691,
@@ -9447,6 +12252,18 @@
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
+      "fact_id": "fact-5d8cfe78b9372b151b3a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2703,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-6a61db773a7043af3e28",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2704,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-304f0e9c1ac83f23b7fe",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2705,
@@ -9457,6 +12274,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2706,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-3f9ec5fe2a0662cb75c6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2707,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-b55f04f0addab3c3d5d3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2708,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-52f0ea67a436b87c2391",
@@ -9531,10 +12360,22 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-b014fca81046fd04a30e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2732,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-a7c216b2397cebe4cc98",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2733,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-6ab99b64c04bf20f479d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2735,
+      "reason": "manual_curation:source_error_or_misread"
     },
     {
       "fact_id": "fact-79a3b864b12d6f4b1dbe",
@@ -9547,6 +12388,66 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2738,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-26c434ef9491efc9e15f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2739,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-7b673e32b27394199488",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2740,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-b4d5b5108d52712c21a2",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2741,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-3ec0416f755e311c31f5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2742,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-b4413eba06926d93dad5",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2744,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-d42ce2b30de846f6eae6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2745,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-0b490c046cc2def95856",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2746,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-4449d4110990997ddf09",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2747,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-58706550fa9f14b15d70",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2748,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-9c0f4dda1aac18527741",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2750,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-eb2c50d01c4db9fc8215",
@@ -9603,10 +12504,76 @@
       "reason": "manual_curation:contextless_or_low_value"
     },
     {
+      "fact_id": "fact-3742bde6cc5aa221ff11",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2763,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-06a466d4235b43c7b7a8",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2764,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-65d39f6ada18a9287459",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2765,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-e9d5939c2a2551d565bb",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2766,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-bc0963e715d91849155f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2767,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-0ff01a8bc29cdf43e2d6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2768,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-7c679bf644bec7ab6acf",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2769,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-21475b4d1932d2711572",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2770,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-0dcb783fce6ce9aaed59",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2771,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-53379efadab8364caf20",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2772,
       "reason": "manual_curation:source_error_or_misread"
+    },
+    {
+      "fact_id": "fact-06452e1a255ff49f9029",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2773,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-9084bb4b33c41452b24c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2774,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-7cb50ca2907836abf125",
@@ -9663,6 +12630,12 @@
       "reason": "manual_curation:source_error_or_misread"
     },
     {
+      "fact_id": "fact-0584be968788d743fb7e",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2790,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-d2892d1910d613ae82dc",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2791,
@@ -9709,6 +12682,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2798,
       "reason": "manual_curation:source_error_or_misread"
+    },
+    {
+      "fact_id": "fact-d762a9dbf371363b76d2",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2799,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-364f43bf9b10398bdb87",
@@ -9831,6 +12810,12 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-f80105e00692b1a5ed84",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2831,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-913ef67892a05e05852f",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2832,
@@ -9855,6 +12840,42 @@
       "reason": "manual_curation:translated_or_mixed_language"
     },
     {
+      "fact_id": "fact-d40ac23f2a7cb9075cd4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2840,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-6f64697ebff0c87bf5af",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2842,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-0e057e699802fdd83538",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2843,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-a15b13d4279ffc801b97",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2845,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-727ec1c808726acfa344",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2847,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-177e97cc0d794d3e2a8c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2848,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-91c0d2c347f138284c7b",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2850,
@@ -9867,10 +12888,28 @@
       "reason": "manual_curation:out_of_domain_encyclopedia_trivia"
     },
     {
+      "fact_id": "fact-3fff162b57da4c90dfda",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2855,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-311de7e2150b17799567",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2856,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
       "fact_id": "fact-3a3590f838fb13cc4089",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2857,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-f0077119c0355153b28f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2858,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-bfcfda6ed25052651bc7",
@@ -9963,6 +13002,18 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-ea7879c44c34133e5e71",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2874,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-217c990dd39e9d3b307f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2875,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-be1a9c50ac7a096914c0",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2876,
@@ -9979,6 +13030,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2878,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-52b6ebdc7bd801f396cc",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2879,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-eed2b462e587e6685d50",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2880,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-52a60d06ce3f73a29598",
@@ -10005,6 +13068,12 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-a1a83c964dba9a403e7f",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2885,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-7bdd19b2319231e22d54",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2886,
@@ -10023,16 +13092,70 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-d5511e9ea22a07440e52",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2889,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-50be2eb34796f1ec01b9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2890,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-3f8fdcd799734304ce85",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2891,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-068ea6493fe8cc981b0a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2892,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-42c972a1e01554d4a427",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2893,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-444943e63f6c6dbfe3bd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2894,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-e2e1a2174c52de2ef94d",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2895,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-3b5ce6f312f05c17119a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2896,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-86d2dc63670c85f936a6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2897,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-f6b195a7d7c465d1c033",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2898,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-4c69a9970cbe8da00c85",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2899,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-f2d8df264592b91fbefc",
@@ -10089,10 +13212,28 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-f28944317fd09bda70de",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2909,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-4f624ac1f088773011c4",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2910,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-ca6a03d149c097d54e84",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2911,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-f03f963cb8ae27cb606a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2912,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-1e38db2ae38394eb1d65",
@@ -10101,10 +13242,34 @@
       "reason": "manual_curation:wikipedia_manual_quality_reject"
     },
     {
+      "fact_id": "fact-fc1a32d2066f30d7c075",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2914,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-69c8c69c14b361698076",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2915,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-e550eefa47999d02a012",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2916,
+      "reason": "manual_curation:source_error_or_misread"
+    },
+    {
       "fact_id": "fact-0a385052b4187662f014",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2917,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-582585cefaa5465e66e9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2918,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-a9450ccb3c3629a1ba3b",
@@ -10141,6 +13306,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2924,
       "reason": "manual_curation:wikipedia_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-8110782a0d1ed4df2620",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2925,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-a96de5b90d9ece4862dd",
@@ -10239,6 +13410,18 @@
       "reason": "manual_curation:volatile_or_promotional"
     },
     {
+      "fact_id": "fact-c8123020f70178f09f05",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2942,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-b08a594a7fb2d11c5b22",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2943,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-1cbb0e1d12a2586db874",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2945,
@@ -10255,6 +13438,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2947,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-63319ccbb61b70df6426",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2948,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-5187fdf5053ce75b9dca",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2949,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-6ecf57e749d40743dba9",
@@ -10287,6 +13482,24 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-21579cb6e5e79ff568be",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2955,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-117a966522a563702ac3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2956,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-79dbe352f44f506a049b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2957,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-46ae7560c86c9e31469b",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2958,
@@ -10309,6 +13522,18 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2962,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-6a316457111725bf7c32",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2965,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-98d7a1196412fc241866",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2967,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-142d5fcb96f9950e1413",
@@ -10347,6 +13572,12 @@
       "reason": "distinctive_answer_alias"
     },
     {
+      "fact_id": "fact-7f06f6f204ba41eb7a11",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2983,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
       "fact_id": "fact-fa0851c8a38921ec6b7d",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2984,
@@ -10357,6 +13588,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 2985,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-a08c8404f170b1d92577",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 2986,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
       "fact_id": "fact-070157bee36c32693d02",
@@ -10443,10 +13680,28 @@
       "reason": "manual_curation:unsafe_or_medically_unsupported"
     },
     {
+      "fact_id": "fact-612c5780cb1dc60d7812",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3002,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
       "fact_id": "fact-036125de2c8280b287fc",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3003,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-ba77a5b9e508f17a24f6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3004,
+      "reason": "manual_curation:volatile_or_promotional"
+    },
+    {
+      "fact_id": "fact-d98bd99a6883398ef5fd",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3005,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
     },
     {
       "fact_id": "fact-42849f7480a4ef9f3ec8",
@@ -10611,6 +13866,18 @@
       "reason": "manual_curation:translated_or_mixed_language"
     },
     {
+      "fact_id": "fact-95e279c052b43e55eb0c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3040,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-af26d1614fdeb3a4960c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3041,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-eeaead0b4ad708ad8aed",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3042,
@@ -10639,6 +13906,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3047,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-55c1ed4abf3bedf5f940",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3048,
+      "reason": "manual_curation:volatile_or_promotional"
     },
     {
       "fact_id": "fact-a75ffb2fabd86d943e82",
@@ -10749,6 +14022,12 @@
       "reason": "manual_curation:source_error_or_misread"
     },
     {
+      "fact_id": "fact-2868659456e1d4267a12",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3072,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
       "fact_id": "fact-d882a3529e3620b0ddd6",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3074,
@@ -10765,6 +14044,12 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3076,
       "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-1d042e45aa5919ac484b",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3077,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-6f4d06301af41da8cf77",
@@ -10803,6 +14088,12 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-575eed14a39d1c97c2c1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3084,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-c0734904fd9cda577a5a",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3085,
@@ -10833,6 +14124,18 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-6ea2ffbdb946a62e2df0",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3090,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-0828c8db2d601046e349",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3091,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
       "fact_id": "fact-a98eedd645d04cd19428",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3092,
@@ -10843,6 +14146,24 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3093,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-83f08a3b580ec300b12a",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3094,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-154e9fffb63c772fbbf3",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3095,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-07e1d525ad299f818dd1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3096,
+      "reason": "manual_curation:heldout_document_overlap"
     },
     {
       "fact_id": "fact-b5a7d73364f9e0dd840e",
@@ -10857,10 +14178,40 @@
       "reason": "manual_curation:esinem_manual_quality_reject"
     },
     {
+      "fact_id": "fact-d4d8693f92f2e2a5f5b1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3099,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-ad7f774b43d14863c080",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3100,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-b479544820dcea7644f6",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3101,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
       "fact_id": "fact-95d86785afe2046cab3a",
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3102,
       "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-faea60a50d71ed3106e1",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3103,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-6e280d0ab2cddf4f11b9",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3104,
+      "reason": "manual_curation:source_error_or_misread"
     },
     {
       "fact_id": "fact-4643f217d607e8003133",
@@ -10897,6 +14248,132 @@
       "input": "data/train_qa_verified_leakfree_v2.jsonl",
       "line": 3110,
       "reason": "manual_curation:esinem_manual_quality_reject"
+    },
+    {
+      "fact_id": "fact-01f250741ff887167a56",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3111,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-fcf9daa08ed792034c5c",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3112,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-5866521da4150e40d543",
+      "input": "data/train_qa_verified_leakfree_v2.jsonl",
+      "line": 3113,
+      "reason": "manual_curation:out_of_domain_or_personal_trivia"
+    },
+    {
+      "fact_id": "fact-31e3b4b095ffec039a7e",
+      "input": "data/train_qa_manual_v1.jsonl",
+      "line": 6,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-d0b2c11d7e2298b6645b",
+      "input": "data/train_qa_manual_v1.jsonl",
+      "line": 10,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-7f02691ccc80dbd1b021",
+      "input": "data/train_qa_manual_v1.jsonl",
+      "line": 11,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-0322fb4d137bd1740fa3",
+      "input": "data/train_qa_manual_v1.jsonl",
+      "line": 13,
+      "reason": "manual_curation:unsafe_or_medically_unsupported"
+    },
+    {
+      "fact_id": "fact-092612e250e724a3b601",
+      "input": "data/train_qa_manual_v1.jsonl",
+      "line": 15,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-5ff784f6215077967d89",
+      "input": "data/train_qa_manual_v1.jsonl",
+      "line": 16,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-e1964d550d43a1860ead",
+      "input": "data/train_qa_manual_v1.jsonl",
+      "line": 32,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-3e80a932d782457f9b65",
+      "input": "data/train_qa_manual_v1.jsonl",
+      "line": 49,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-60537a0cee952ef3c272",
+      "input": "data/rope_resource_qa_v1.jsonl",
+      "line": 2,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-994a94a5bd65e8e97174",
+      "input": "data/rope_resource_qa_v1.jsonl",
+      "line": 10,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-b539ccb068aa04cca38c",
+      "input": "data/rope_resource_factual_qa_v1.jsonl",
+      "line": 2,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-29b855a6e0f118a19e16",
+      "input": "data/rope_resource_factual_qa_v1.jsonl",
+      "line": 3,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-ed32696388993116d941",
+      "input": "data/rope_resource_factual_qa_v1.jsonl",
+      "line": 9,
+      "reason": "manual_curation:semantic_duplicate"
+    },
+    {
+      "fact_id": "fact-67886a2b0e6fd1731f4e",
+      "input": "data/rope_resource_factual_qa_v1.jsonl",
+      "line": 18,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-eb2fa4eec534fd292483",
+      "input": "data/rope_resource_factual_qa_v1.jsonl",
+      "line": 22,
+      "reason": "manual_curation:heldout_document_overlap"
+    },
+    {
+      "fact_id": "fact-074b7b9833b98aa6b5da",
+      "input": "data/rope_resource_factual_qa_v1.jsonl",
+      "line": 23,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-06eae7168cbe314e893a",
+      "input": "data/rope_resource_factual_qa_v1.jsonl",
+      "line": 32,
+      "reason": "manual_curation:contextless_or_low_value"
+    },
+    {
+      "fact_id": "fact-4bdb7e256112f90a64fd",
+      "input": "data/rope_resource_factual_qa_v1.jsonl",
+      "line": 33,
+      "reason": "manual_curation:volatile_or_promotional"
     }
   ],
   "input_sha256": {
@@ -10916,6 +14393,6 @@
     "data/rope_topia_manual_v1.jsonl"
   ],
   "output": "data/train_qa_curated_v1.jsonl",
-  "output_sha256": "d9ec2b0fe0a438067b74cb1a168172e0a658d78c17627d4d6e29c1f02dbfef6d",
+  "output_sha256": "ef2f39e95c73c69041517e03d04c6cf48a2c25a2198a9e6d05a56258c1875591",
   "schema": "curated-training-qa-report-v1"
 }

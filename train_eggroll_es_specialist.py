@@ -2,7 +2,9 @@
 """Run upstream ES-at-Scale full-parameter training on specialist QA."""
 
 import argparse
+import hashlib
 import json
+import math
 import os
 import random
 import re
@@ -82,6 +84,256 @@ def exact_step_seed(global_seed, iteration):
     """Derive the per-step seed without treating the valid seed 0 as absent."""
     base_seed = 42 if global_seed is None else global_seed
     return base_seed + iteration
+
+
+def load_ood_prose(path):
+    """Load and validate a frozen OOD prose JSONL artifact."""
+    path = Path(path)
+    raw = path.read_bytes()
+    rows = []
+    seen = set()
+    for line_number, line in enumerate(raw.decode("utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError as error:
+            raise ValueError(
+                f"invalid OOD prose JSON on line {line_number}: {error}"
+            ) from error
+        item_id = row.get("item_id")
+        text = row.get("text")
+        if not isinstance(item_id, str) or not item_id:
+            raise ValueError(
+                f"OOD prose line {line_number} has no non-empty item_id"
+            )
+        if item_id in seen:
+            raise ValueError(f"duplicate OOD prose item_id: {item_id}")
+        if row.get("split") != "ood_prose":
+            raise ValueError(
+                f"OOD prose item {item_id} has split {row.get('split')!r}"
+            )
+        if not isinstance(text, str) or not text.strip():
+            raise ValueError(f"OOD prose item {item_id} has no text")
+        seen.add(item_id)
+        rows.append(row)
+    if not rows:
+        raise ValueError("OOD prose artifact is empty")
+    return {
+        "path": str(path.resolve()),
+        "sha256": hashlib.sha256(raw).hexdigest(),
+        "rows": rows,
+    }
+
+
+def prepare_ood_prose_items(rows, tokenizer, max_input_tokens):
+    """Tokenize prose exactly once and attach stable alignment hashes."""
+    if max_input_tokens < 2:
+        raise ValueError("OOD prose max input tokens must be at least 2")
+    prepared = []
+    for row in rows:
+        token_ids = list(tokenizer.encode(
+            row["text"], add_special_tokens=False,
+        ))
+        if len(token_ids) < 2:
+            raise ValueError(
+                f"OOD prose item {row['item_id']} has fewer than two tokens"
+            )
+        if len(token_ids) > max_input_tokens:
+            raise ValueError(
+                f"OOD prose item {row['item_id']} has {len(token_ids)} "
+                f"tokens, above the explicit cap {max_input_tokens}"
+            )
+        token_bytes = json.dumps(
+            token_ids, separators=(",", ":"), ensure_ascii=True,
+        ).encode("ascii")
+        prepared.append({
+            "item_id": row["item_id"],
+            "source": row.get("source"),
+            "title": row.get("title"),
+            "url": row.get("url"),
+            "normalized_source_url": row.get("normalized_source_url"),
+            "text_sha256": hashlib.sha256(
+                row["text"].encode("utf-8")
+            ).hexdigest(),
+            "token_ids_sha256": hashlib.sha256(token_bytes).hexdigest(),
+            "prompt_token_ids": token_ids,
+        })
+    return prepared
+
+
+def dispatch_ood_prose(engines, items, sampling_params, resolve):
+    """Score round-robin shards concurrently, restoring source-file order."""
+    if not engines:
+        raise ValueError("OOD prose scoring requires at least one engine")
+    partitions = [[] for _ in engines]
+    for position, item in enumerate(items):
+        partitions[position % len(engines)].append((position, item))
+
+    handles = []
+    assignments = []
+    for engine, partition in zip(engines, partitions):
+        if not partition:
+            continue
+        prompts = [
+            {"prompt_token_ids": item["prompt_token_ids"]}
+            for _, item in partition
+        ]
+        handles.append(engine.generate.remote(
+            prompts, sampling_params, use_tqdm=False,
+        ))
+        assignments.append([position for position, _ in partition])
+
+    batches = resolve(handles)
+    if len(batches) != len(assignments):
+        raise ValueError("OOD prose engine result batch count changed")
+    ordered = [None] * len(items)
+    for positions, batch in zip(assignments, batches):
+        if len(batch) != len(positions):
+            raise ValueError("OOD prose engine changed its request count")
+        for position, output in zip(positions, batch):
+            ordered[position] = output
+    if any(output is None for output in ordered):
+        raise ValueError("OOD prose engine omitted a request")
+    return ordered
+
+
+def prompt_token_logprobs(output, expected_token_ids):
+    """Extract the selected token logprob at each teacher-forced position."""
+    returned_ids = list(output.prompt_token_ids or [])
+    if returned_ids != expected_token_ids:
+        raise ValueError("vLLM returned different OOD prose prompt token IDs")
+    prompt_logprobs = output.prompt_logprobs
+    if prompt_logprobs is None:
+        raise ValueError("vLLM did not return requested prompt logprobs")
+    if len(prompt_logprobs) != len(expected_token_ids):
+        raise ValueError("vLLM prompt logprob/token lengths differ")
+
+    # A decoder-only LM cannot score the first token without left context.
+    selected_logprobs = []
+    for position, token_id in enumerate(expected_token_ids[1:], 1):
+        candidates = prompt_logprobs[position]
+        if candidates is None or token_id not in candidates:
+            raise ValueError(
+                f"vLLM omitted selected token {token_id} at position "
+                f"{position}"
+            )
+        selected = candidates[token_id]
+        value = (
+            selected.logprob
+            if hasattr(selected, "logprob")
+            else selected["logprob"]
+        )
+        value = float(value)
+        if not math.isfinite(value):
+            raise ValueError("vLLM returned a non-finite prompt logprob")
+        selected_logprobs.append(value)
+    return selected_logprobs
+
+
+def summarize_ood_prose(items, outputs):
+    """Build aligned per-item and token-weighted corpus metrics."""
+    if len(items) != len(outputs):
+        raise ValueError("OOD prose item/output counts differ")
+    results = []
+    for item, output in zip(items, outputs):
+        values = prompt_token_logprobs(
+            output, item["prompt_token_ids"],
+        )
+        item_sum = math.fsum(values)
+        result = {
+            key: item[key]
+            for key in (
+                "item_id", "source", "title", "url",
+                "normalized_source_url", "text_sha256",
+                "token_ids_sha256",
+            )
+        }
+        result.update({
+            "prompt_token_count": len(item["prompt_token_ids"]),
+            "scored_token_count": len(values),
+            "sum_token_logprob": item_sum,
+            "mean_token_logprob": item_sum / len(values),
+        })
+        results.append(result)
+
+    scored_token_count = sum(
+        row["scored_token_count"] for row in results
+    )
+    sum_token_logprob = math.fsum(
+        row["sum_token_logprob"] for row in results
+    )
+    return {
+        "item_count": len(results),
+        "scored_token_count": scored_token_count,
+        "sum_token_logprob": sum_token_logprob,
+        "mean_token_logprob": sum_token_logprob / scored_token_count,
+        "items": results,
+    }
+
+
+def compare_ood_prose(baseline, final, max_degradation):
+    """Require aligned items and apply a higher-is-better logprob gate."""
+    if not math.isfinite(max_degradation) or max_degradation < 0.0:
+        raise ValueError("maximum OOD prose degradation must be non-negative")
+    alignment_fields = (
+        "item_id", "text_sha256", "token_ids_sha256",
+        "prompt_token_count", "scored_token_count",
+    )
+    baseline_alignment = [
+        tuple(row[field] for field in alignment_fields)
+        for row in baseline["items"]
+    ]
+    final_alignment = [
+        tuple(row[field] for field in alignment_fields)
+        for row in final["items"]
+    ]
+    if baseline_alignment != final_alignment:
+        raise ValueError("baseline/final OOD prose items are not aligned")
+    baseline_mean = float(baseline["mean_token_logprob"])
+    final_mean = float(final["mean_token_logprob"])
+    delta = final_mean - baseline_mean
+    return {
+        "metric": "mean_token_logprob",
+        "higher_is_better": True,
+        "baseline": baseline_mean,
+        "final": final_mean,
+        "delta": delta,
+        "max_degradation": max_degradation,
+        "passed": delta >= -max_degradation,
+    }
+
+
+def score_ood_prose(trainer, dataset, label, max_input_tokens):
+    """Score frozen prose on all live vLLM engines and save item results."""
+    import ray
+    from vllm import SamplingParams
+
+    items = prepare_ood_prose_items(
+        dataset["rows"], trainer.tokenizer, max_input_tokens,
+    )
+    sampling_params = SamplingParams(
+        n=1,
+        seed=42 if trainer.global_seed is None else trainer.global_seed,
+        temperature=0.0,
+        top_p=1.0,
+        max_tokens=1,
+        prompt_logprobs=1,
+        detokenize=False,
+    )
+    outputs = dispatch_ood_prose(
+        trainer.engines, items, sampling_params, ray.get,
+    )
+    evaluation = summarize_ood_prose(items, outputs)
+    result_path = (
+        Path(trainer.logging_dir) / "eval-output"
+        / f"ood_prose_{label}.json"
+    )
+    result_path.write_text(
+        json.dumps(evaluation["items"], indent=2, sort_keys=True) + "\n"
+    )
+    evaluation["results_path"] = str(result_path)
+    return evaluation
 
 
 def load_trainer():
@@ -199,11 +451,33 @@ def parse_args():
     )
     parser.add_argument(
         "--skip-baseline-eval", action="store_true",
-        help="In exact-step mode, evaluate only after training",
+        help=(
+            "In exact-step mode, skip only the generated-QA baseline; an "
+            "enabled OOD prose gate still scores both weight states"
+        ),
     )
     parser.add_argument(
         "--save-final-checkpoint", action="store_true",
         help="In exact-step mode, serialize the final model weights",
+    )
+    parser.add_argument(
+        "--ood-prose-jsonl",
+        help=(
+            "Opt-in frozen prose JSONL for baseline/final mean-token-logprob "
+            "gating in exact-step mode"
+        ),
+    )
+    parser.add_argument(
+        "--ood-prose-max-input-tokens", type=int, default=1024,
+        help=(
+            "Reject, rather than truncate, OOD prose above this token count"
+        ),
+    )
+    parser.add_argument(
+        "--max-ood-prose-degradation", type=float, default=0.0,
+        help=(
+            "Allowed decrease in final mean token logprob versus baseline"
+        ),
     )
     parser.add_argument("--reward-function-timeout", type=int, default=10)
     parser.add_argument(
@@ -243,12 +517,20 @@ def close_trainer(trainer):
 
 
 def run_exact_steps(trainer, steps, skip_baseline_eval=False,
-                    save_final_checkpoint=False):
+                    save_final_checkpoint=False, ood_prose=None,
+                    ood_prose_max_input_tokens=1024,
+                    max_ood_prose_degradation=0.0):
     """Run an exact number of otherwise unchanged upstream ES updates."""
     if steps < 0:
         raise ValueError("exact train steps must be non-negative")
     evaluated = []
+    ood_prose_evaluations = {}
     try:
+        if ood_prose is not None:
+            ood_prose_evaluations["baseline"] = score_ood_prose(
+                trainer, ood_prose, "baseline",
+                ood_prose_max_input_tokens,
+            )
         if not skip_baseline_eval:
             trainer.eval_step(iteration=0)
             evaluated.append(("baseline", 0))
@@ -282,6 +564,12 @@ def run_exact_steps(trainer, steps, skip_baseline_eval=False,
         if steps > 0 or skip_baseline_eval:
             trainer.eval_step(iteration=steps)
             evaluated.append(("final", steps))
+
+        if ood_prose is not None:
+            ood_prose_evaluations["final"] = score_ood_prose(
+                trainer, ood_prose, "final",
+                ood_prose_max_input_tokens,
+            )
 
         checkpoint = None
         if save_final_checkpoint:
@@ -319,6 +607,35 @@ def run_exact_steps(trainer, steps, skip_baseline_eval=False,
                 for label, iteration in evaluated
             },
         }
+        if ood_prose is not None:
+            summary["ood_prose"] = {
+                "schema": "eggroll-es-ood-prose-logprob-v1",
+                "dataset": {
+                    "path": ood_prose["path"],
+                    "sha256": ood_prose["sha256"],
+                    "item_count": len(ood_prose["rows"]),
+                },
+                "scoring": {
+                    "tokenizer": trainer.model_name,
+                    "add_special_tokens": False,
+                    "first_token_policy": "excluded_no_left_context",
+                    "aggregation": "token_weighted_corpus_mean",
+                    "max_input_tokens": ood_prose_max_input_tokens,
+                    "prompt_logprobs": 1,
+                    "temperature": 0.0,
+                    "generation_tokens": 1,
+                    "seed": (
+                        42 if trainer.global_seed is None
+                        else trainer.global_seed
+                    ),
+                },
+                "evaluations": ood_prose_evaluations,
+                "gate": compare_ood_prose(
+                    ood_prose_evaluations["baseline"],
+                    ood_prose_evaluations["final"],
+                    max_ood_prose_degradation,
+                ),
+            }
         summary_path = Path(trainer.logging_dir) / "run_summary.json"
         summary_path.write_text(
             json.dumps(summary, indent=2, sort_keys=True) + "\n"
@@ -338,6 +655,23 @@ def main():
         raise ValueError(
             "engine GPU allocation must consume every selected GPU"
         )
+    if args.ood_prose_jsonl and args.exact_train_steps is None:
+        raise ValueError(
+            "--ood-prose-jsonl currently requires --exact-train-steps"
+        )
+    if args.ood_prose_max_input_tokens < 2:
+        raise ValueError("--ood-prose-max-input-tokens must be at least 2")
+    if (
+        not math.isfinite(args.max_ood_prose_degradation)
+        or args.max_ood_prose_degradation < 0.0
+    ):
+        raise ValueError(
+            "--max-ood-prose-degradation must be non-negative"
+        )
+    ood_prose = (
+        load_ood_prose(args.ood_prose_jsonl)
+        if args.ood_prose_jsonl else None
+    )
     set_seed(args.seed)
 
     train_dict = load_from_disk(args.train_dataset)
@@ -404,6 +738,13 @@ def main():
             trainer, args.exact_train_steps,
             skip_baseline_eval=args.skip_baseline_eval,
             save_final_checkpoint=args.save_final_checkpoint,
+            ood_prose=ood_prose,
+            ood_prose_max_input_tokens=(
+                args.ood_prose_max_input_tokens
+            ),
+            max_ood_prose_degradation=(
+                args.max_ood_prose_degradation
+            ),
         )
 
 

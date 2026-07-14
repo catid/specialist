@@ -1,0 +1,231 @@
+{
+  "artifacts": {
+    "pending_append_safe": {
+      "drop": 8,
+      "edit": 0,
+      "path": "data/manual_reviews/resource_second_pass/pending_curation_tranche_02_manual_facts_v1.jsonl",
+      "rows": 8,
+      "sha256": "d360c64ed3935ef477200148b96ae69a5af80aedf98e62bf5b4ec1f6ce6322f1"
+    },
+    "pending_replacement": {
+      "path": "data/manual_reviews/resource_second_pass/pending_replacements_tranche_02_manual_facts_v1.jsonl",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "cumulative_resource_second_pass": {
+    "drop": 10,
+    "edit": 0,
+    "overlapping_training_rows": 4,
+    "overlapping_unique_source_urls": 3,
+    "retain_unchanged": 82,
+    "reviewed_rows": 92,
+    "tranches_completed": 2
+  },
+  "existing_curation": {
+    "edited_rows_in_tranche": [],
+    "existing_edits_retained": [],
+    "replacement_required": []
+  },
+  "heldout_audit": {
+    "eval_artifacts": {
+      "data/eval_qa.jsonl": {
+        "questions_on_overlapping_pages": 1,
+        "sha256": "c84442651265aa8a51ce8af1d524390dd8a98760c40c780afa9eed7a2ba146b5"
+      },
+      "data/eval_qa_v2.jsonl": {
+        "questions_on_overlapping_pages": 1,
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      }
+    },
+    "exact_normalized_question_answer_collisions": 0,
+    "heldout_docs_overlap_rows": 0,
+    "heldout_docs_sha256": "5f81e5848b96004eafd1cfc6523023c9d234f7e5c1aa9c3bc01520a23b416b15",
+    "heldout_questions_on_overlapping_pages": 2,
+    "high_similarity_question_answer_collisions": 0,
+    "overlapping_training_indices": [
+      8,
+      85
+    ],
+    "overlapping_training_rows": 2,
+    "overlapping_unique_source_urls": 2,
+    "policy": "Exclude a training row when its normalized source URL appears anywhere in either evaluation artifact or data/heldout_docs.jsonl, while preserving owner-supplied URL metadata in the source manifest.",
+    "similarity_method": "Exact normalized Q&A comparison plus the repository qa_quality.leakage_reason check; document-level URL overlap is enforced separately and more strictly."
+  },
+  "manual_outcome": {
+    "drop": 8,
+    "drop_indices": [
+      5,
+      8,
+      13,
+      27,
+      34,
+      40,
+      85,
+      88
+    ],
+    "edit": 0,
+    "edit_indices": [],
+    "reason_counts": {
+      "contextless_or_low_value": 4,
+      "heldout_document_overlap": 2,
+      "semantic_duplicate": 1,
+      "volatile_or_promotional": 1
+    },
+    "retain_unchanged": 40,
+    "retain_unchanged_indices": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      38,
+      39,
+      41,
+      75,
+      77,
+      78,
+      86,
+      89,
+      90,
+      91,
+      92
+    ],
+    "retained_after_edits": 40
+  },
+  "pass": "strict_second_pass",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-resource-second-pass",
+  "schema": "manual-source-audit-report-v1",
+  "source_group": [
+    "amazon",
+    "atx_empty_space",
+    "austin_rope_slingers",
+    "bight_bound",
+    "chromaknotz",
+    "crash_restraint",
+    "degiotto_rope",
+    "house_of_bound",
+    "knothead_nylon",
+    "rope365",
+    "rw_rope",
+    "shibari_study",
+    "shibari_supply",
+    "subspace_designs",
+    "tethered_together",
+    "tetruss",
+    "xpole_us"
+  ],
+  "source_verification": {
+    "method": "Each of the 48 rows was read manually against its tracked evidence field and source lineage in the three manual-fact review packets. Every answer was textually supported. Vendor claims were retained only when explicitly attributed and useful as durable material, care, equipment-specification, course, event, or safety information. Volatile availability, vague promotion, a non-bondage product fragment, and redundant mission language were rejected. All user-supplied resource URLs remain preserved in sources/rope_resources_v1.json.",
+    "source_match_failures": 0,
+    "tracked_evidence_records_checked": 48,
+    "tracked_source_sha256": {
+      "sources/manual_facts/resource_group_a.jsonl": "281bd54dbc594fcdc6f35fde28ef3472bf6e5b759336cd5fe6338c25af877963",
+      "sources/manual_facts/resource_group_b.jsonl": "0ca0e85e01d69689d3baf80ca4c1247d7fc75e87a78d3afe621862c99749ca10",
+      "sources/manual_facts/resource_group_c.jsonl": "cd6a6a38f3ee2744adf157937100bcd8a7056c42d8f18838321dab7812c5ccb7",
+      "sources/rope_resources_v1.json": "651ce27fece4b51c295ad5dc87b0b29ff051dbd34c9248efbbbe505ee8d25f25"
+    },
+    "tracked_sources_checked": 4
+  },
+  "tranche": {
+    "fact_id_sequence_sha256": "775f9b760695efea96f8380bfba94a8a154dc5dbe9c3e66a618611ada511ab76",
+    "ordering": "source-grouped subset of resource-derived order in data/train_qa_curated_v1.jsonl at audit time",
+    "reviewed_active_resource_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      38,
+      39,
+      40,
+      41,
+      75,
+      77,
+      78,
+      85,
+      86,
+      88,
+      89,
+      90,
+      91,
+      92
+    ],
+    "reviewed_rows": 48,
+    "tranche_id": 2,
+    "unique_source_urls": 30,
+    "unique_stored_document_sha256": 48
+  },
+  "validation": {
+    "active_artifacts_observed_at_report_write": {
+      "data/train_qa_curated_v1.curation.jsonl": "3fc033f3a58638567c709f1bba8b94a5eda93d59c36d4d544c2f8c874b9d18ec",
+      "data/train_qa_curated_v1.jsonl": "d9ec2b0fe0a438067b74cb1a168172e0a658d78c17627d4d6e29c1f02dbfef6d",
+      "data/train_qa_curated_v1.report.json": "3382e6bfef22d8690d7cb697f570db611e8a01696533eb60ec0502181ab60d82",
+      "data/train_qa_kinbakutoday.curation.jsonl": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    },
+    "active_files_mutated_by_this_audit": false,
+    "append_safe_temporary_build": {
+      "curation_decisions": 1837,
+      "excluded_rows": 1809,
+      "output_rows": 1477,
+      "output_sha256": "3e5f738c31b1ceda5eda45f8a29227fc679b5f8bd87acdd9517539c5c7e98d74",
+      "repeat_build_byte_identical": true,
+      "resource_derived_rows": 82,
+      "status": "passed"
+    }
+  }
+}

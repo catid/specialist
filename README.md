@@ -18,10 +18,9 @@ telemetry are in
 [`experiments/eggroll_es_hpo/README.md`](experiments/eggroll_es_hpo/README.md).
 On the frozen 1,487-row S4 snapshot, the selected six-update EGGROLL treatment
 raised validation reward from 0.097673 to 0.104408 and S4 holdout reward
-from 0.067436 to 0.074038. The holdout interval still includes zero, so this is
-an encouraging one-seed result rather than a conclusive improvement. A later
-seed-43 validation replicate scored below baseline and also crossed zero,
-showing that the short recipe is seed-sensitive.
+from 0.067436 to 0.074038. The holdout interval includes zero. Four clean
+post-selection replications then averaged -0.001296 versus baseline and only
+one of four improved numerically, so the S4 recipe is not a robust improvement.
 
 Large model files, generated checkpoints, raw source corpora, and server logs
 are intentionally excluded. Compact deterministic experiment logs are retained
@@ -33,13 +32,13 @@ can be recovered without vendoring the full upstream repository.
 
 [`data/train_qa_curated_v1.jsonl`](data/train_qa_curated_v1.jsonl) is the current
 training dataset. Its
-[`build report`](data/train_qa_curated_v1.report.json) verifies 1,487 unique
-facts: 1,314 accepted base facts, 81 source-document manual facts, 29
-owner-curated resource-directory facts, 48 manually reviewed resource facts,
+[`build report`](data/train_qa_curated_v1.report.json) verifies 908 unique
+facts: 753 accepted base facts, 73 source-document manual facts, 27
+owner-curated resource-directory facts, 40 manually reviewed resource facts,
 and 15 manually reviewed Rope-topia resource-index facts. The merge applies
-1,827 fact-ID-keyed decisions from the general
+2,429 fact-ID-keyed decisions from the general
 [`curation ledger`](data/train_qa_curated_v1.curation.jsonl) and the complete
-[`Kinbaku audit`](data/train_qa_kinbakutoday.curation.jsonl)—1,797 drops and 30
+[`Kinbaku audit`](data/train_qa_kinbakutoday.curation.jsonl)—2,376 drops and 53
 source-evidenced edits—and excludes two additional
 distinctive-answer aliases from the 3,113-row
 [`train_qa_verified_leakfree_v2.jsonl`](data/train_qa_verified_leakfree_v2.jsonl)
@@ -57,6 +56,14 @@ The completed 1,487-row S4 cohort is likewise frozen under
 Foreground experiments promote newer curation only between comparisons, then
 hash-pin one Arrow snapshot for both arms.
 
+The current S5 candidate promotes the completed Rope365, Esinem, Wikipedia,
+Anatomie Studio, and resource second passes. Its promotion manifest is
+[`train_qa_curated_v1.promotion_s5.json`](data/train_qa_curated_v1.promotion_s5.json).
+The new document-disjoint evaluation protocol, 59-question manual domain audit,
+and fixed OOD probes are documented in
+[`EVAL_V3_PROTOCOL.md`](EVAL_V3_PROTOCOL.md). Its sealed 18-question holdout is
+not used for HPO or stopping decisions.
+
 The [`resource manifest`](sources/rope_resources_v1.json) preserves all 23
 user-supplied URLs. Its bounded, policy-respecting live collection captured 165
 relevant public documents; the
@@ -72,5 +79,5 @@ polluted 28,017 ChatML metadata rows and allowed 270 leakage collisions to
 bypass filtering. The structural parser fix and regression tests are included.
 The specific malformed Anatomie Studio “What material...?” / `jute` example
 has zero matches in the active curated dataset; its legacy locations are
-recorded in the pending
+recorded in the
 [`Anatomie Studio second-pass report`](data/manual_reviews/anatomiestudio_second_pass/report_rows_0001_0023_v1.json).

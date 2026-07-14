@@ -4,23 +4,23 @@
 
 [`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) is the current curated
 training set. Its
-[`deterministic build report`](train_qa_curated_v1.report.json) verifies 1,487
+[`deterministic build report`](train_qa_curated_v1.report.json) verifies 908
 unique questions and fact IDs:
 
 | Validated tranche | Accepted rows | Artifact and audit |
 | --- | ---: | --- |
-| Leakage-gated and manually audited base | 1,314 | [`train_qa_verified_leakfree_v2.jsonl`](train_qa_verified_leakfree_v2.jsonl) supplied 3,113 rows; 1,797 explicit manual drops and two additional distinctive-answer aliases are excluded during the curated merge. |
-| Source-document manual QA | 81 | [`train_qa_manual_v1.jsonl`](train_qa_manual_v1.jsonl), with provenance in its [`report`](train_qa_manual_v1.report.json) |
-| Owner-curated resource directory | 29 | [`rope_resource_qa_v1.jsonl`](rope_resource_qa_v1.jsonl): 23 direct resource answers plus six category answers; see its [`report`](rope_resource_qa_v1.report.json) |
-| Manually reviewed resource facts | 38 | [`rope_resource_factual_qa_v1.jsonl`](rope_resource_factual_qa_v1.jsonl), with evidence and reviewer provenance summarized in its [`report`](rope_resource_factual_qa_v1.report.json) |
+| Leakage-gated and manually audited base | 753 | [`train_qa_verified_leakfree_v2.jsonl`](train_qa_verified_leakfree_v2.jsonl) supplied 3,113 rows; the active ledgers make every exclusion explicit. |
+| Source-document manual QA | 73 | [`train_qa_manual_v1.jsonl`](train_qa_manual_v1.jsonl), with provenance in its [`report`](train_qa_manual_v1.report.json) |
+| Owner-curated resource directory | 27 | [`rope_resource_qa_v1.jsonl`](rope_resource_qa_v1.jsonl): direct and category resource answers; see its [`report`](rope_resource_qa_v1.report.json) |
+| Manually reviewed resource facts | 30 | [`rope_resource_factual_qa_v1.jsonl`](rope_resource_factual_qa_v1.jsonl), with evidence and reviewer provenance summarized in its [`report`](rope_resource_factual_qa_v1.report.json) |
 | Additional manually reviewed resource facts | 10 | [`rope_resource_manual_v1.jsonl`](rope_resource_manual_v1.jsonl), audited against live Crash Restraint, Knot Head Nylon, and Shibari Study evidence in [`manual_reviews/resources/additions_audit_v1.jsonl`](manual_reviews/resources/additions_audit_v1.jsonl) |
 | Rope-topia resource index | 15 | [`rope_topia_manual_v1.jsonl`](rope_topia_manual_v1.jsonl) contains manually reviewed title-to-canonical-URL mappings only because the live article bodies are demo-gated; see its [`report`](rope_topia_manual_v1.report.json). |
-| **Curated v1 total** | **1,487** | [`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) and [`report`](train_qa_curated_v1.report.json) |
+| **Curated v1 total** | **908** | [`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) and [`report`](train_qa_curated_v1.report.json) |
 
 The fact-ID-keyed general
 [`curation decisions`](train_qa_curated_v1.curation.jsonl) and complete
-[`Kinbaku Today audit`](train_qa_kinbakutoday.curation.jsonl) contain 1,827
-reviewed actions: 1,797 drops and 30 evidence-backed edits. The source-grouped
+[`Kinbaku Today audit`](train_qa_kinbakutoday.curation.jsonl) contain 2,429
+reviewed actions: 2,376 drops and 53 evidence-backed edits. The source-grouped
 review covered every one of the 1,240 Kinbaku Today, 707 Rope365, 716 Esinem,
 and 325 Wikipedia base records; a stricter second Kinbaku pass then reviewed
 all 1,174 formerly retained Kinbaku rows and retained 423. It removes
@@ -38,19 +38,13 @@ rehashes train/validation Arrow files, manifest, model identity, and trainer
 source at every run boundary and refuses to mix a changed snapshot with cached
 results. The prior 2,228-row S3 cohort is preserved in
 [`../experiments/eggroll_es_hpo/snapshots/s3/`](../experiments/eggroll_es_hpo/snapshots/s3/).
-The complete stricter Rope365, Esinem, Wikipedia, and Anatomie Studio passes remain pending
-under [`manual_reviews/rope365/`](manual_reviews/rope365/),
-[`manual_reviews/esinem_second_pass/`](manual_reviews/esinem_second_pass/), and
-[`manual_reviews/wikipedia_second_pass/`](manual_reviews/wikipedia_second_pass/),
-and [`manual_reviews/anatomiestudio_second_pass/`](manual_reviews/anatomiestudio_second_pass/)
-for the next promoted snapshot. They are not part of the current 1,487-row
-artifact. Rope365 proposes 323 drops and 21 edits across all 601 retained rows;
-Esinem proposes 73 drops and four edits across all 150 retained rows; Wikipedia
-proposes 175 drops and two edits across all 204 retained rows; Anatomie Studio
-proposes three completeness rewrites across all 23 retained rows. Their
-combined, replacement-aware temporary build passes twice byte-identically and
-projects 916 unique rows: 278 Rope365, 77 Esinem, 29 Wikipedia, and 23 Anatomie
-Studio. Their separation preserves the completed S4 A/B cohort exactly.
+The complete stricter Rope365, Esinem, Wikipedia, Anatomie Studio, and resource
+second passes are promoted in the current artifact. The deterministic
+[`S5 promotion manifest`](train_qa_curated_v1.promotion_s5.json) records 602
+unique appended decisions, seven replacements, and two identical cross-ledger
+confirmations. The result retains 278 Rope365, 77 Esinem, 29 Wikipedia, 23
+Anatomie Studio, and 82 resource-derived rows. A third Kinbaku quality pass is
+being written to pending ledgers and is not part of this 908-row boundary.
 
 The user's malformed, contextless Anatomie Studio “What material...?” / `jute`
 example has zero matches in the active curated dataset. The second-pass report

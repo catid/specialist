@@ -50,6 +50,15 @@ def parse_args():
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--max-tokens", type=int, default=32)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--selection-split", default="train")
+    parser.add_argument(
+        "--guard-splits", default="",
+        help="Comma-separated evaluation splits that may not regress",
+    )
+    parser.add_argument(
+        "--max-guard-degradation", type=float, default=0.0,
+        help="Maximum absolute reward loss allowed on every guard split",
+    )
     parser.add_argument("--n-vllm-engines", type=int, default=4)
     parser.add_argument("--n-gpu-per-vllm-engine", type=int, default=1)
     parser.add_argument("--use-gpus", default="0,1,2,3")
@@ -70,6 +79,15 @@ def executable_path(path):
     return Path(path).expanduser().absolute()
 
 
+def comma_splits(value):
+    return [item.strip() for item in value.split(",") if item.strip()]
+
+
+def evaluation_splits(args):
+    splits = [args.selection_split, *comma_splits(args.guard_splits)]
+    return list(dict.fromkeys(splits))
+
+
 def command_for(args, name, sigma, alpha, steps):
     return [
         str(executable_path(args.python)), str(TRAINER),
@@ -78,7 +96,7 @@ def command_for(args, name, sigma, alpha, steps):
         "--eval-dataset", str(normalized_path(args.eval_dataset)),
         "--exact-train-steps", str(steps),
         "--skip-baseline-eval",
-        "--eval-splits", "train",
+        "--eval-splits", ",".join(evaluation_splits(args)),
         "--sigma", str(sigma),
         "--alpha", str(alpha),
         "--population-size", str(args.population_size),
@@ -123,13 +141,16 @@ def dataset_snapshot(args):
     eval_dataset = normalized_path(args.eval_dataset)
     common_root = train_dataset.parent
     manifest = common_root / "manifest.json"
+    eval_arrows = {
+        split: file_snapshot(single_arrow(eval_dataset, split))
+        for split in evaluation_splits(args)
+    }
     snapshot = {
         "train_dataset": str(train_dataset),
         "eval_dataset": str(eval_dataset),
         "train_arrow": file_snapshot(single_arrow(train_dataset, "train")),
-        "selection_eval_arrow": file_snapshot(
-            single_arrow(eval_dataset, "train")
-        ),
+        "selection_eval_arrow": eval_arrows[args.selection_split],
+        "eval_arrows": eval_arrows,
     }
     if manifest.is_file() and eval_dataset.parent == common_root:
         snapshot["manifest"] = file_snapshot(manifest)
@@ -195,7 +216,7 @@ def expected_summary(args, sigma, alpha, steps):
     }
 
 
-def validate_summary(summary, expected, summary_path):
+def validate_summary(summary, expected, summary_path, eval_splits=("train",)):
     if not isinstance(summary, dict):
         raise RuntimeError(f"invalid cached run summary: {summary_path}")
     mismatches = {
@@ -203,13 +224,14 @@ def validate_summary(summary, expected, summary_path):
         for key, value in expected.items()
         if summary.get(key) != value
     }
-    try:
-        float(summary["evaluations"]["final"]["train"])
-    except (KeyError, TypeError, ValueError):
-        mismatches["evaluations.final.train"] = {
-            "expected": "numeric validation score",
-            "recorded": summary.get("evaluations"),
-        }
+    for split in eval_splits:
+        try:
+            float(summary["evaluations"]["final"][split])
+        except (KeyError, TypeError, ValueError):
+            mismatches[f"evaluations.final.{split}"] = {
+                "expected": "numeric evaluation score",
+                "recorded": summary.get("evaluations"),
+            }
     if mismatches:
         raise RuntimeError(
             f"cached run summary does not match requested run at "
@@ -229,7 +251,7 @@ def run_request(command, frozen_dataset, frozen_model, trainer_sha256=None):
     }
 
 
-def load_cached_run(run_dir, command, request, expected):
+def load_cached_run(run_dir, command, request, expected, eval_splits):
     summary_path = run_dir / "run_summary.json"
     command_path = run_dir / "command.json"
     request_path = run_dir / "run_request.json"
@@ -250,7 +272,7 @@ def load_cached_run(run_dir, command, request, expected):
             f"{run_dir}. Rerun with --force"
         )
     summary = json.loads(summary_path.read_text())
-    validate_summary(summary, expected, summary_path)
+    validate_summary(summary, expected, summary_path, eval_splits)
     return summary
 
 
@@ -263,8 +285,10 @@ def run_one(args, name, sigma, alpha, steps, frozen_dataset, frozen_model,
         command, frozen_dataset, frozen_model, trainer_sha256
     )
     expected = expected_summary(args, sigma, alpha, steps)
+    eval_splits = evaluation_splits(args)
     if summary_path.exists() and not force:
-        return load_cached_run(run_dir, command, request, expected)
+        return load_cached_run(
+            run_dir, command, request, expected, eval_splits)
 
     run_dir.mkdir(parents=True, exist_ok=True)
     # A failed forced rerun must never leave a stale summary that looks fresh.
@@ -283,7 +307,7 @@ def run_one(args, name, sigma, alpha, steps, frozen_dataset, frozen_model,
     if not summary_path.is_file():
         raise RuntimeError(f"training did not write summary: {summary_path}")
     summary = json.loads(summary_path.read_text())
-    validate_summary(summary, expected, summary_path)
+    validate_summary(summary, expected, summary_path, eval_splits)
     return summary
 
 
@@ -304,6 +328,42 @@ def select_best(baseline_score, baseline_summary, results):
         [baseline, *results], key=lambda item: item["validation_score"]
     )
     return baseline, best_treatment, selected
+
+
+def select_best_guarded(baseline_summary, results, selection_split,
+                        guard_splits, max_guard_degradation):
+    baseline_scores = baseline_summary["evaluations"]["final"]
+    baseline = {
+        "name": "baseline",
+        "sigma": 0.0,
+        "alpha": 0.0,
+        "steps": 0,
+        "validation_score": baseline_scores[selection_split],
+        "evaluation_scores": baseline_scores,
+        "guard_passed": True,
+    }
+    eligible = []
+    for result in results:
+        scores = result["evaluation_scores"]
+        result["guard_passed"] = all(
+            scores[split] >= (
+                baseline_scores[split] - max_guard_degradation
+            )
+            for split in guard_splits
+        )
+        if result["guard_passed"]:
+            eligible.append(result)
+    best_treatment = max(
+        results, key=lambda item: item["validation_score"]
+    )
+    best_guarded = (
+        max(eligible, key=lambda item: item["validation_score"])
+        if eligible else None
+    )
+    selected = max(
+        [baseline, *eligible], key=lambda item: item["validation_score"]
+    )
+    return baseline, best_treatment, best_guarded, selected
 
 
 def selected_candidates(trials):
@@ -395,25 +455,32 @@ def main():
             frozen_trainer_sha256, file_sha256(TRAINER), "trainer source",
             f"after trial {trial['name']}",
         )
+        evaluation_scores = summary["evaluations"]["final"]
         results.append({
             **trial,
             "steps": args.steps,
-            "validation_score": summary["evaluations"]["final"]["train"],
+            "validation_score": evaluation_scores[args.selection_split],
+            "evaluation_scores": evaluation_scores,
             "run_summary": str(
                 args.output / "runs" / trial["name"] / "run_summary.json"
             ),
         })
-        baseline_score = baseline["evaluations"]["final"]["train"]
-        baseline_result, best_treatment, selected_result = select_best(
-            baseline_score,
-            args.output / "runs" / "baseline" / "run_summary.json",
-            results,
+        baseline_scores = baseline["evaluations"]["final"]
+        guard_splits = comma_splits(args.guard_splits)
+        (baseline_result, best_treatment, best_guarded_treatment,
+         selected_result) = select_best_guarded(
+            baseline, results, args.selection_split, guard_splits,
+            args.max_guard_degradation,
         )
         journal = {
             "schema": "eggroll-es-hpo-v1",
-            "selection_split": "train",
+            "selection_split": args.selection_split,
+            "guard_splits": guard_splits,
+            "max_guard_degradation": args.max_guard_degradation,
             "final_holdout_used_for_selection": False,
-            "baseline_validation_score": baseline_score,
+            "baseline_validation_score": baseline_scores[
+                args.selection_split
+            ],
             "baseline": baseline_result,
             "population_size": args.population_size,
             "batch_size": args.batch_size,
@@ -431,6 +498,7 @@ def main():
             "trainer_sha256": frozen_trainer_sha256,
             "results": results,
             "best_treatment": best_treatment,
+            "best_guarded_treatment": best_guarded_treatment,
             "best": selected_result,
             "baseline_selected": selected_result["name"] == "baseline",
         }

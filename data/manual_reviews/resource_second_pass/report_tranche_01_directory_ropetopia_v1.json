@@ -1,0 +1,192 @@
+{
+  "artifacts": {
+    "pending_append_safe": {
+      "drop": 2,
+      "edit": 0,
+      "path": "data/manual_reviews/resource_second_pass/pending_curation_tranche_01_directory_ropetopia_v1.jsonl",
+      "rows": 2,
+      "sha256": "57305b564d6bcac501ceb7c873e10a3a213d29b4d3e24541cc0a3e9d36730825"
+    },
+    "pending_replacement": {
+      "path": "data/manual_reviews/resource_second_pass/pending_replacements_tranche_01_directory_ropetopia_v1.jsonl",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "existing_curation": {
+    "edited_rows_in_tranche": [],
+    "existing_edits_retained": [],
+    "replacement_required": []
+  },
+  "heldout_audit": {
+    "eval_artifacts": {
+      "data/eval_qa.jsonl": {
+        "questions_on_overlapping_pages": 0,
+        "sha256": "c84442651265aa8a51ce8af1d524390dd8a98760c40c780afa9eed7a2ba146b5"
+      },
+      "data/eval_qa_v2.jsonl": {
+        "questions_on_overlapping_pages": 2,
+        "sha256": "62e920a786fb7a0da383aa19253ee6a2e9f63ac93d3d40de6ed93c5ea10b9fd7"
+      }
+    },
+    "exact_normalized_question_answer_collisions": 0,
+    "heldout_docs_overlap_rows": 2,
+    "heldout_questions_on_overlapping_pages": 2,
+    "high_similarity_question_answer_collisions": 0,
+    "overlapping_training_indices": [
+      42,
+      80
+    ],
+    "overlapping_training_rows": 2,
+    "overlapping_unique_source_urls": 1,
+    "policy": "Exclude a training row when its normalized source URL appears anywhere in either evaluation artifact or data/heldout_docs.jsonl, while preserving owner-supplied URL metadata in the source manifest.",
+    "similarity_method": "Exact normalized Q&A comparison plus the repository qa_quality.leakage_reason check; document-level URL overlap is enforced separately and more strictly."
+  },
+  "manual_outcome": {
+    "drop": 2,
+    "drop_indices": [
+      42,
+      80
+    ],
+    "edit": 0,
+    "edit_indices": [],
+    "reason_counts": {
+      "heldout_document_overlap": 2
+    },
+    "retain_unchanged": 42,
+    "retain_unchanged_indices": [
+      35,
+      36,
+      37,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      76,
+      79,
+      81,
+      82,
+      83,
+      84,
+      87
+    ],
+    "retained_after_edits": 42
+  },
+  "pass": "strict_second_pass",
+  "reviewed_at": "2026-07-14",
+  "reviewer": "codex-resource-second-pass",
+  "schema": "manual-source-audit-report-v1",
+  "source_group": [
+    "owner_curated_rope_resource_directory",
+    "rope_topia"
+  ],
+  "source_verification": {
+    "method": "All 29 owner-directory rows were checked against sources/rope_resources_v1.json. All 15 Rope-topia index rows were checked against sources/rope_topia_manual_v1.json and their stored sitemap evidence. Directory and index rows intentionally preserve owner-supplied URL recall without asserting untracked article content.",
+    "source_match_failures": 0,
+    "tracked_source_sha256": {
+      "sources/rope_resources_v1.json": "651ce27fece4b51c295ad5dc87b0b29ff051dbd34c9248efbbbe505ee8d25f25",
+      "sources/rope_topia_manual_v1.json": "cc45b3dda9d264a181e7b3a51ca06eb9ed1de3b8e1ebf264ae461196065ffa92"
+    },
+    "tracked_sources_checked": 2
+  },
+  "tranche": {
+    "fact_id_sequence_sha256": "146516404ae07011a94324e2b59de2da921b07864c164a20928e55243a993ab0",
+    "ordering": "source-grouped subset of resource-derived order in data/train_qa_curated_v1.jsonl at audit time",
+    "reviewed_active_resource_indices": [
+      35,
+      36,
+      37,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      76,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      87
+    ],
+    "reviewed_rows": 44,
+    "tranche_id": 1,
+    "unique_source_urls": 37,
+    "unique_stored_document_sha256": 2
+  },
+  "validation": {
+    "active_artifacts_observed_at_report_write": {
+      "data/train_qa_curated_v1.curation.jsonl": "3fc033f3a58638567c709f1bba8b94a5eda93d59c36d4d544c2f8c874b9d18ec",
+      "data/train_qa_curated_v1.jsonl": "d9ec2b0fe0a438067b74cb1a168172e0a658d78c17627d4d6e29c1f02dbfef6d",
+      "data/train_qa_curated_v1.report.json": "3382e6bfef22d8690d7cb697f570db611e8a01696533eb60ec0502181ab60d82",
+      "data/train_qa_kinbakutoday.curation.jsonl": "8b68caf2a6a4411f9ae26a05759c6ceb6852eaf05c28171b4a11dd93033ebadd"
+    },
+    "active_files_mutated_by_this_audit": false,
+    "append_safe_temporary_build": {
+      "curation_decisions": 1829,
+      "excluded_rows": 1801,
+      "output_rows": 1485,
+      "output_sha256": "671f055cb22c3acd49cb0f3753d9fde4dd407d3acd61e3c6b1b18ade5394e3f5",
+      "repeat_build_byte_identical": true,
+      "resource_derived_rows": 90,
+      "status": "passed"
+    }
+  }
+}

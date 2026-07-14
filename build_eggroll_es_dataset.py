@@ -68,10 +68,33 @@ def load_eval_rows(path):
     return splits
 
 
+def eval_paths(value):
+    if isinstance(value, (str, Path)):
+        return [Path(value)]
+    return [Path(path) for path in value]
+
+
+def load_eval_inputs(paths):
+    combined = {}
+    item_ids = set()
+    for path in eval_paths(paths):
+        for split, rows in load_eval_rows(path).items():
+            destination = combined.setdefault(split, [])
+            for row in rows:
+                item_id = row["item_id"]
+                if item_id in item_ids:
+                    raise ValueError(
+                        f"duplicate evaluation item_id {item_id}")
+                item_ids.add(item_id)
+                destination.append(row)
+    return combined
+
+
 def build(train_jsonl, eval_jsonl, output):
     output = Path(output)
     train_rows = load_training_rows(train_jsonl)
-    eval_splits = load_eval_rows(eval_jsonl)
+    paths = eval_paths(eval_jsonl)
+    eval_splits = load_eval_inputs(paths)
     if output.exists():
         shutil.rmtree(output)
     output.mkdir(parents=True)
@@ -82,12 +105,26 @@ def build(train_jsonl, eval_jsonl, output):
         split: Dataset.from_list(rows)
         for split, rows in sorted(eval_splits.items())
     }).save_to_disk(output / "eval")
+    eval_inputs = [
+        {
+            "path": str(path.resolve()),
+            "sha256": file_sha256(path),
+        }
+        for path in paths
+    ]
     manifest = {
         "schema": "eggroll-es-specialist-dataset-v1",
         "train_jsonl": str(Path(train_jsonl).resolve()),
         "train_jsonl_sha256": file_sha256(train_jsonl),
-        "eval_jsonl": str(Path(eval_jsonl).resolve()),
-        "eval_jsonl_sha256": file_sha256(eval_jsonl),
+        "eval_inputs": eval_inputs,
+        "eval_jsonl": (
+            eval_inputs[0]["path"] if len(eval_inputs) == 1
+            else [item["path"] for item in eval_inputs]
+        ),
+        "eval_jsonl_sha256": (
+            eval_inputs[0]["sha256"] if len(eval_inputs) == 1
+            else [item["sha256"] for item in eval_inputs]
+        ),
         "train_rows": len(train_rows),
         "eval_splits": {
             split: len(rows) for split, rows in sorted(eval_splits.items())
@@ -106,7 +143,8 @@ def main():
         default=Path("data/train_qa_curated_v1.jsonl"),
     )
     parser.add_argument(
-        "--eval-jsonl", type=Path, default=Path("data/eval_qa_v2.jsonl")
+        "--eval-jsonl", type=Path, nargs="+",
+        default=[Path("data/eval_qa_v2.jsonl")],
     )
     parser.add_argument(
         "--output", type=Path, default=Path("data/eggroll_es_specialist")

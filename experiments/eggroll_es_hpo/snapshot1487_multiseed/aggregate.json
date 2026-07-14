@@ -1,0 +1,192 @@
+{
+  "schema": "eggroll-es-s4-multiseed-validation-v1",
+  "model": "Qwen3.6-35B-A3B",
+  "dataset": {
+    "snapshot": "S4",
+    "train_rows": 1487,
+    "train_arrow_sha256": "ff1b07297f404249adca6000acf8360000017cb2a75412b49f6e234a8082cc7c",
+    "validation_rows": 236
+  },
+  "setting": {
+    "sigma": 0.001,
+    "alpha": 0.00025,
+    "population_size": 8,
+    "batch_size": 64,
+    "mini_batch_size": 64,
+    "max_tokens": 32,
+    "steps": 6
+  },
+  "protocol": {
+    "baseline_mean_reward": 0.09767285234556067,
+    "baseline_exact": 14,
+    "baseline_nonzero": 93,
+    "evaluation_split": "train",
+    "holdout_used_in_aggregate": false,
+    "seed_42_was_used_for_setting_and_horizon_selection": true,
+    "post_selection_replication_seeds": [
+      43,
+      44,
+      45,
+      46
+    ],
+    "training_script_sha256": "9c5ca268d74808e6d67b8b11f4e2e53ff45e60abfef99400c5ae24d0d0b419b6"
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "treatment_mean_reward": 0.10440790658436463,
+      "treatment_minus_baseline": 0.0067350542388039635,
+      "relative_change": 0.06895523246291355,
+      "treatment_exact": 15,
+      "exact_change": 1,
+      "treatment_nonzero": 95,
+      "nonzero_change": 2,
+      "treatment_wins": 15,
+      "baseline_wins": 8,
+      "ties": 213,
+      "paired_bootstrap_95_ci": [
+        0.00018604133652597694,
+        0.016839935256107042
+      ],
+      "run_summary": "../snapshot1487_final/run_summary.json",
+      "run_summary_sha256": "96749661a47cc04719a238259f6d56d029e22655f577b394fba89912d9df96ae",
+      "comparison": "../snapshot1487_final/validation_comparison.json",
+      "comparison_sha256": "1c3ffb3b12829875e6a5a34e355628445092d611a637326fd43748169f024209",
+      "treatment_evaluation_sha256": "b1dd61ef69c362589c152a79c8259856b85da5a12afa05173ee61adb51ae40e0",
+      "gpu_trace": "../../gpu_utilization_eggroll_es_s4_final.jsonl",
+      "gpu_trace_sha256": "1d4297aff43e2a127df48ce94d673ed405e784678b8bbaeb5cb0c1ca2c756811"
+    },
+    {
+      "seed": 43,
+      "treatment_mean_reward": 0.09341984328205186,
+      "treatment_minus_baseline": -0.004253009063508818,
+      "relative_change": -0.04354331368197145,
+      "treatment_exact": 13,
+      "exact_change": -1,
+      "treatment_nonzero": 92,
+      "nonzero_change": -1,
+      "treatment_wins": 12,
+      "baseline_wins": 14,
+      "ties": 210,
+      "paired_bootstrap_95_ci": [
+        -0.014460442120585677,
+        0.002012419643209134
+      ],
+      "run_summary": "../snapshot1487_seed43/run_summary.json",
+      "run_summary_sha256": "5d00e358c2289df4efe4de61e8d9057e46237c29e7f7df05c23588f158cda32d",
+      "comparison": "../snapshot1487_seed43/validation_comparison.json",
+      "comparison_sha256": "207e1ca39826c14b847bc8829145262fceaa6f8d033c08fb9ae83fb843b2a488",
+      "treatment_evaluation_sha256": "56b24c2933808011726edc2a865a35fc9ef86f41e0ace6df00e5713818d70bec",
+      "gpu_trace": "../../gpu_utilization_eggroll_es_s4_seed43.jsonl",
+      "gpu_trace_sha256": "f2cecf04954e2d731860c85c547740de26e8edc6a2c4e267916b95d5d0ed1ea2"
+    },
+    {
+      "seed": 44,
+      "treatment_mean_reward": 0.09791821327396284,
+      "treatment_minus_baseline": 0.0002453609284021769,
+      "relative_change": 0.0025120687936075557,
+      "treatment_exact": 14,
+      "exact_change": 0,
+      "treatment_nonzero": 93,
+      "nonzero_change": 0,
+      "treatment_wins": 17,
+      "baseline_wins": 13,
+      "ties": 206,
+      "paired_bootstrap_95_ci": [
+        -0.012388626549400417,
+        0.012577517547621767
+      ],
+      "run_summary": "../snapshot1487_seed44/run_summary.json",
+      "run_summary_sha256": "0778f0410d51de58bae915d76051de551df15e609ac601a7ba1f551a008e12b6",
+      "comparison": "../snapshot1487_seed44/validation_comparison.json",
+      "comparison_sha256": "e0854926f9f197723702f02ddb51d2ed5ff6ec33e7311ca5b85f46633296d17d",
+      "treatment_evaluation_sha256": "9a0f2f53fa3b96ed9c5b5cf9d12d0b1f94d1b2114cc932939ab40f9cb1900e6d",
+      "gpu_trace": "../../gpu_utilization_eggroll_es_s4_seed44.jsonl",
+      "gpu_trace_sha256": "596d53bea2d82219759bc8334fddea85b655babc1fa73160becc66e43f11cbfa"
+    },
+    {
+      "seed": 45,
+      "treatment_mean_reward": 0.09709843901452596,
+      "treatment_minus_baseline": -0.0005744133310347097,
+      "relative_change": -0.005880992652474398,
+      "treatment_exact": 14,
+      "exact_change": 0,
+      "treatment_nonzero": 90,
+      "nonzero_change": -3,
+      "treatment_wins": 11,
+      "baseline_wins": 14,
+      "ties": 211,
+      "paired_bootstrap_95_ci": [
+        -0.0133208998513719,
+        0.011737606006380684
+      ],
+      "run_summary": "../snapshot1487_seed45/run_summary.json",
+      "run_summary_sha256": "7d47d595700343fd30545e995f48eba8fa1f7d78fa406c676f81b551dcacd8b4",
+      "comparison": "../snapshot1487_seed45/validation_comparison.json",
+      "comparison_sha256": "7e6405d85b31623eab7c7dde16b246f5fff560c6bd56829740c1b602dd0490e4",
+      "treatment_evaluation_sha256": "d4e02e55a0ac22527166814cef940323da7103c6b064c527a04c695736f1fbf9",
+      "gpu_trace": "../../gpu_utilization_eggroll_es_s4_seed45.jsonl",
+      "gpu_trace_sha256": "81fb2342dd07fed8b846a1ce012e71c4988d734f54ed5bb9b50763e588ea87de"
+    },
+    {
+      "seed": 46,
+      "treatment_mean_reward": 0.09707284584316053,
+      "treatment_minus_baseline": -0.0006000065024001282,
+      "relative_change": -0.006143022165242039,
+      "treatment_exact": 14,
+      "exact_change": 0,
+      "treatment_nonzero": 91,
+      "nonzero_change": -2,
+      "treatment_wins": 13,
+      "baseline_wins": 17,
+      "ties": 206,
+      "paired_bootstrap_95_ci": [
+        -0.013316130392418144,
+        0.011650033490246578
+      ],
+      "run_summary": "../snapshot1487_seed46/run_summary.json",
+      "run_summary_sha256": "57b1cfa60b34de535849ce0f335bcdeab1414ea6c752d88980c9546335ad4fef",
+      "comparison": "../snapshot1487_seed46/validation_comparison.json",
+      "comparison_sha256": "2ba61608075a2fa40e137713a3b22655faa4b3193fb9389a720d6f1feaa1b4a2",
+      "treatment_evaluation_sha256": "09f1d406eab2f513f08644eb4247ed0d98037b586c39edd31e0de666d54f59c0",
+      "gpu_trace": "../../gpu_utilization_eggroll_es_s4_seed46.jsonl",
+      "gpu_trace_sha256": "5b14a24a8da8d63a790c226dda1a5436df5a527ceea2e6bece6ee0d384fce19a"
+    }
+  ],
+  "aggregate": {
+    "seed_count": 5,
+    "mean_treatment_reward": 0.09798344959961316,
+    "median_treatment_reward": 0.09709843901452596,
+    "mean_delta": 0.00031059725405249683,
+    "median_delta": -0.0005744133310347097,
+    "population_std_delta": 0.003569785676641494,
+    "sample_std_delta": 0.003991141719037731,
+    "mean_relative_change": 0.00317997526020457,
+    "positive_delta_seeds": 2,
+    "positive_delta_fraction": 0.4,
+    "positive_interval_seeds": 1,
+    "positive_interval_fraction": 0.2,
+    "mean_exact_change": 0.0,
+    "median_exact_change": 0.0,
+    "sum_exact_change": 0,
+    "mean_nonzero_change": -0.8,
+    "median_nonzero_change": -1.0,
+    "sum_nonzero_change": -4
+  },
+  "post_selection_replicates": {
+    "seed_count": 4,
+    "mean_delta": -0.0012955169921353698,
+    "median_delta": -0.000587209916717419,
+    "population_std_delta": 0.0017410334179461817,
+    "sample_std_delta": 0.0020103722250387245,
+    "mean_relative_change": -0.013263839040472668,
+    "positive_delta_seeds": 1,
+    "positive_delta_fraction": 0.25
+  },
+  "limitations": [
+    "Seed 42 was selected using this validation split, so the five-seed mean is selection-biased upward; seeds 43-46 are the clean post-selection robustness replicates.",
+    "The validation split has known document overlap with training.",
+    "The reward is normalized answer-token overlap with exact-match credit, not binary accuracy.",
+    "No heldout or OOD result was used in this aggregate."
+  ]
+}

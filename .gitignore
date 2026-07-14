@@ -21,6 +21,9 @@ experiments/gpu_utilization_eggroll_es_*.jsonl
 !experiments/gpu_utilization_eggroll_es_s4_horizon6.jsonl
 !experiments/gpu_utilization_eggroll_es_s4_final.jsonl
 !experiments/gpu_utilization_eggroll_es_s4_seed43.jsonl
+!experiments/gpu_utilization_eggroll_es_s4_seed44.jsonl
+!experiments/gpu_utilization_eggroll_es_s4_seed45.jsonl
+!experiments/gpu_utilization_eggroll_es_s4_seed46.jsonl
 
 # Model weights and generated checkpoints
 models/
@@ -43,6 +46,12 @@ data/*.jsonl
 data/*.json
 !data/eval_qa.jsonl
 !data/eval_qa_v2.jsonl
+!data/eval_qa_v3.jsonl
+!data/eval_qa_v3.review.json
+!data/eval_v3.report.json
+!data/ood_prose_v3.jsonl
+!data/ood_qa_v3.jsonl
+!data/train_qa_curated_v1.promotion_s5.json
 !data/train_qa_verified_leakfree_v2.jsonl
 !data/train_qa_verified_leakfree_v2.report.json
 !data/train_qa_manual_v1.jsonl
