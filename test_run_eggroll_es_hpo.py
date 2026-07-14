@@ -36,6 +36,9 @@ def make_args(tmp_path, trials=None, force=False):
         selection_split="train",
         guard_splits="",
         max_guard_degradation=0.0,
+        max_guard_exact_loss=0,
+        ood_prose_jsonl=None,
+        max_ood_prose_degradation=0.0,
         n_vllm_engines=4,
         n_gpu_per_vllm_engine=1,
         use_gpus="0,1,2,3",
@@ -124,6 +127,51 @@ def test_guard_tolerance_can_admit_small_ood_loss():
     assert selected["name"] == "treatment"
 
 
+def test_guarded_selection_rejects_failed_ood_prose_gate():
+    baseline = {
+        "evaluations": {"final": {"train": 0.5, "ood": 0.4}}
+    }
+    results = [{
+        "name": "treatment",
+        "validation_score": 0.6,
+        "evaluation_scores": {"train": 0.6, "ood": 0.4},
+        "ood_prose_guard_passed": False,
+    }]
+
+    _, _, best_guarded, selected = hpo.select_best_guarded(
+        baseline, results, "train", ["ood"], 0.0
+    )
+
+    assert best_guarded is None
+    assert selected["name"] == "baseline"
+
+
+def test_guarded_selection_rejects_exact_answer_loss():
+    baseline = {
+        "evaluations": {"final": {"train": 0.5, "ood": 0.4}},
+        "evaluation_details": {"ood": {"exact": 5}},
+    }
+    results = [{
+        "name": "treatment",
+        "validation_score": 0.6,
+        "evaluation_scores": {"train": 0.6, "ood": 0.4},
+        "evaluation_details": {"ood": {"exact": 4}},
+    }]
+
+    _, _, best_guarded, selected = hpo.select_best_guarded(
+        baseline, results, "train", ["ood"], 0.0, 0,
+    )
+
+    assert best_guarded is None
+    assert selected["name"] == "baseline"
+
+    _, _, best_guarded, selected = hpo.select_best_guarded(
+        baseline, results, "train", ["ood"], 0.0, 1,
+    )
+    assert best_guarded["name"] == "treatment"
+    assert selected["name"] == "treatment"
+
+
 def test_command_preserves_virtualenv_python_symlink(tmp_path):
     args = make_args(tmp_path)
     target = tmp_path / "system-python"
@@ -134,6 +182,70 @@ def test_command_preserves_virtualenv_python_symlink(tmp_path):
 
     assert command[0] == str(args.python.absolute())
     assert command[0] != str(args.python.resolve())
+
+
+def test_command_and_snapshot_pin_opt_in_ood_prose(tmp_path):
+    args = make_args(tmp_path)
+    args.ood_prose_jsonl = tmp_path / "ood.jsonl"
+    args.ood_prose_jsonl.write_text('{"text":"frozen"}\n')
+    args.max_ood_prose_degradation = 0.02
+
+    command = hpo.command_for(args, "candidate", 0.001, 0.00025, 3)
+    snapshot = hpo.dataset_snapshot(args)
+
+    assert command[-4:] == [
+        "--ood-prose-jsonl", str(args.ood_prose_jsonl.resolve()),
+        "--max-ood-prose-degradation", "0.02",
+    ]
+    assert snapshot["ood_prose_jsonl"]["sha256"] == hpo.file_sha256(
+        args.ood_prose_jsonl
+    )
+
+
+def test_summary_requires_matching_ood_prose_gate(tmp_path):
+    args = make_args(tmp_path)
+    args.ood_prose_jsonl = tmp_path / "ood.jsonl"
+    args.ood_prose_jsonl.write_text('{"text":"frozen"}\n')
+    dataset = hpo.dataset_snapshot(args)
+    summary = make_summary(args, 0.0, 0.0, 0)
+
+    with pytest.raises(RuntimeError, match="ood_prose"):
+        hpo.validate_summary(
+            summary, hpo.expected_summary(args, 0.0, 0.0, 0),
+            tmp_path / "summary.json", ["train"],
+            dataset["ood_prose_jsonl"],
+        )
+
+    summary["ood_prose"] = {
+        "dataset": {"sha256": dataset["ood_prose_jsonl"]["sha256"]},
+        "gate": {"passed": True},
+    }
+    hpo.validate_summary(
+        summary, hpo.expected_summary(args, 0.0, 0.0, 0),
+        tmp_path / "summary.json", ["train"],
+        dataset["ood_prose_jsonl"],
+    )
+
+
+def test_evaluation_details_pin_exact_nonzero_and_raw_hash(tmp_path):
+    run_dir = tmp_path / "run"
+    output = run_dir / "eval-output"
+    output.mkdir(parents=True)
+    path = output / "model_eval_taskood_iteration4.json"
+    path.write_text(json.dumps([
+        {"reward": 1.0, "format": "exact"},
+        {"reward": 0.25, "format": "partial"},
+        {"reward": 0.0, "format": "incorrect"},
+    ]))
+
+    details = hpo.evaluation_details(run_dir, {"ood": 1.25 / 3}, 3)
+
+    assert details["ood"]["exact"] == 1
+    assert details["ood"]["nonzero"] == 2
+    assert details["ood"]["sha256"] == hpo.file_sha256(path)
+
+    with pytest.raises(RuntimeError, match="disagrees"):
+        hpo.evaluation_details(run_dir, {"ood": 0.0}, 3)
 
 
 def test_cached_run_requires_exact_command_and_dataset_hash(
@@ -219,6 +331,13 @@ def test_main_force_reaches_baseline_and_every_requested_trial(
 
     monkeypatch.setattr(hpo, "parse_args", lambda: args)
     monkeypatch.setattr(hpo, "run_one", fake_run_one)
+    monkeypatch.setattr(
+        hpo, "evaluation_details",
+        lambda run_dir, scores, steps: {
+            split: {"exact": 1, "mean_reward": score}
+            for split, score in scores.items()
+        },
+    )
     hpo.main()
     capsys.readouterr()
 

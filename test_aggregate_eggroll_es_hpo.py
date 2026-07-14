@@ -102,3 +102,34 @@ def test_risk_adjusted_regression_retains_baseline():
     assert result["candidates"][0]["mean_selection_delta"] > 0
     assert result["candidates"][0]["robust_score"] < 0
     assert result["selected"] == "baseline"
+
+
+def test_rejects_exact_guard_loss_across_seeds():
+    journals = [journal(1, 0.1, 0.0), journal(2, 0.1, 0.0)]
+    for item in journals:
+        item["baseline"]["evaluation_details"] = {
+            "ood_qa": {"exact": 5}
+        }
+        item["results"][0]["evaluation_details"] = {
+            "ood_qa": {"exact": 5}
+        }
+    journals[1]["results"][0]["evaluation_details"]["ood_qa"]["exact"] = 4
+
+    result = aggregate(
+        journals, "validation", ["ood_qa"], max_guard_exact_loss=0,
+    )
+
+    assert result["selected"] == "baseline"
+
+
+def test_required_ood_prose_gate_is_fail_closed():
+    journals = [journal(1, 0.1, 0.0), journal(2, 0.1, 0.0)]
+    journals[0]["results"][0]["ood_prose_guard_passed"] = True
+    journals[1]["results"][0]["ood_prose_guard_passed"] = False
+
+    result = aggregate(
+        journals, "validation", ["ood_qa"],
+        require_ood_prose_guard=True,
+    )
+
+    assert result["selected"] == "baseline"

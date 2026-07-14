@@ -177,6 +177,17 @@ class EggrollSpecialistAdapterTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "duplicate"):
                 load_ood_prose(path)
 
+    def test_frozen_ood_prose_items_are_unique_source_documents(self):
+        path = Path(__file__).resolve().parent / "data/ood_prose_v3.jsonl"
+        rows = load_ood_prose(path)["rows"]
+        document_ids = [row.get("normalized_source_url") for row in rows]
+        self.assertEqual(len(rows), 16)
+        self.assertTrue(all(
+            isinstance(document_id, str) and document_id
+            for document_id in document_ids
+        ))
+        self.assertEqual(len(set(document_ids)), len(document_ids))
+
     def test_prepare_ood_prose_is_exact_and_never_truncates(self):
         rows = [{
             "item_id": "one", "text": "abc", "split": "ood_prose",

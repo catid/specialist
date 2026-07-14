@@ -59,6 +59,18 @@ def parse_args():
         "--max-guard-degradation", type=float, default=0.0,
         help="Maximum absolute reward loss allowed on every guard split",
     )
+    parser.add_argument(
+        "--max-guard-exact-loss", type=int, default=0,
+        help="Maximum exact-answer count loss allowed on every guard split",
+    )
+    parser.add_argument(
+        "--ood-prose-jsonl", type=Path,
+        help="Optional frozen prose artifact scored before and after each run",
+    )
+    parser.add_argument(
+        "--max-ood-prose-degradation", type=float, default=0.0,
+        help="Maximum mean-token-logprob loss allowed by the prose gate",
+    )
     parser.add_argument("--n-vllm-engines", type=int, default=4)
     parser.add_argument("--n-gpu-per-vllm-engine", type=int, default=1)
     parser.add_argument("--use-gpus", default="0,1,2,3")
@@ -89,7 +101,7 @@ def evaluation_splits(args):
 
 
 def command_for(args, name, sigma, alpha, steps):
-    return [
+    command = [
         str(executable_path(args.python)), str(TRAINER),
         "--model-name", str(normalized_path(args.model_name)),
         "--train-dataset", str(normalized_path(args.train_dataset)),
@@ -112,6 +124,14 @@ def command_for(args, name, sigma, alpha, steps):
         "--output-directory", str(normalized_path(args.output) / "runs"),
         "--experiment-name", name,
     ]
+    if args.ood_prose_jsonl is not None:
+        command.extend([
+            "--ood-prose-jsonl",
+            str(normalized_path(args.ood_prose_jsonl)),
+            "--max-ood-prose-degradation",
+            str(args.max_ood_prose_degradation),
+        ])
+    return command
 
 
 def single_arrow(dataset_path, split):
@@ -154,6 +174,8 @@ def dataset_snapshot(args):
     }
     if manifest.is_file() and eval_dataset.parent == common_root:
         snapshot["manifest"] = file_snapshot(manifest)
+    if args.ood_prose_jsonl is not None:
+        snapshot["ood_prose_jsonl"] = file_snapshot(args.ood_prose_jsonl)
     return snapshot
 
 
@@ -216,7 +238,40 @@ def expected_summary(args, sigma, alpha, steps):
     }
 
 
-def validate_summary(summary, expected, summary_path, eval_splits=("train",)):
+def evaluation_details(run_dir, scores, steps):
+    """Read compact guard metrics from the trainer's aligned raw outputs."""
+    details = {}
+    for split, score in scores.items():
+        path = (
+            Path(run_dir) / "eval-output"
+            / f"model_eval_task{split}_iteration{steps + 1}.json"
+        )
+        try:
+            rows = json.loads(path.read_text())
+            rewards = [float(row["reward"]) for row in rows]
+            formats = [row["format"] for row in rows]
+        except (OSError, KeyError, TypeError, ValueError,
+                json.JSONDecodeError) as exc:
+            raise RuntimeError(f"invalid evaluation output: {path}") from exc
+        if not rows:
+            raise RuntimeError(f"empty evaluation output: {path}")
+        mean_reward = sum(rewards) / len(rewards)
+        if abs(mean_reward - float(score)) > 1e-12:
+            raise RuntimeError(
+                f"evaluation output disagrees with run summary: {path}")
+        details[split] = {
+            "path": str(path.resolve()),
+            "sha256": file_sha256(path),
+            "rows": len(rows),
+            "mean_reward": mean_reward,
+            "exact": sum(value == "exact" for value in formats),
+            "nonzero": sum(value > 0 for value in rewards),
+        }
+    return details
+
+
+def validate_summary(summary, expected, summary_path, eval_splits=("train",),
+                     ood_prose_snapshot=None):
     if not isinstance(summary, dict):
         raise RuntimeError(f"invalid cached run summary: {summary_path}")
     mismatches = {
@@ -231,6 +286,20 @@ def validate_summary(summary, expected, summary_path, eval_splits=("train",)):
             mismatches[f"evaluations.final.{split}"] = {
                 "expected": "numeric evaluation score",
                 "recorded": summary.get("evaluations"),
+            }
+    if ood_prose_snapshot is not None:
+        recorded = summary.get("ood_prose", {})
+        dataset = recorded.get("dataset", {})
+        gate = recorded.get("gate", {})
+        if dataset.get("sha256") != ood_prose_snapshot["sha256"]:
+            mismatches["ood_prose.dataset.sha256"] = {
+                "expected": ood_prose_snapshot["sha256"],
+                "recorded": dataset.get("sha256"),
+            }
+        if not isinstance(gate.get("passed"), bool):
+            mismatches["ood_prose.gate.passed"] = {
+                "expected": "boolean gate decision",
+                "recorded": gate.get("passed"),
             }
     if mismatches:
         raise RuntimeError(
@@ -251,7 +320,8 @@ def run_request(command, frozen_dataset, frozen_model, trainer_sha256=None):
     }
 
 
-def load_cached_run(run_dir, command, request, expected, eval_splits):
+def load_cached_run(run_dir, command, request, expected, eval_splits,
+                    ood_prose_snapshot=None):
     summary_path = run_dir / "run_summary.json"
     command_path = run_dir / "command.json"
     request_path = run_dir / "run_request.json"
@@ -272,7 +342,8 @@ def load_cached_run(run_dir, command, request, expected, eval_splits):
             f"{run_dir}. Rerun with --force"
         )
     summary = json.loads(summary_path.read_text())
-    validate_summary(summary, expected, summary_path, eval_splits)
+    validate_summary(
+        summary, expected, summary_path, eval_splits, ood_prose_snapshot)
     return summary
 
 
@@ -286,9 +357,11 @@ def run_one(args, name, sigma, alpha, steps, frozen_dataset, frozen_model,
     )
     expected = expected_summary(args, sigma, alpha, steps)
     eval_splits = evaluation_splits(args)
+    ood_prose_snapshot = frozen_dataset.get("ood_prose_jsonl")
     if summary_path.exists() and not force:
         return load_cached_run(
-            run_dir, command, request, expected, eval_splits)
+            run_dir, command, request, expected, eval_splits,
+            ood_prose_snapshot)
 
     run_dir.mkdir(parents=True, exist_ok=True)
     # A failed forced rerun must never leave a stale summary that looks fresh.
@@ -307,7 +380,8 @@ def run_one(args, name, sigma, alpha, steps, frozen_dataset, frozen_model,
     if not summary_path.is_file():
         raise RuntimeError(f"training did not write summary: {summary_path}")
     summary = json.loads(summary_path.read_text())
-    validate_summary(summary, expected, summary_path, eval_splits)
+    validate_summary(
+        summary, expected, summary_path, eval_splits, ood_prose_snapshot)
     return summary
 
 
@@ -331,8 +405,10 @@ def select_best(baseline_score, baseline_summary, results):
 
 
 def select_best_guarded(baseline_summary, results, selection_split,
-                        guard_splits, max_guard_degradation):
+                        guard_splits, max_guard_degradation,
+                        max_guard_exact_loss=None):
     baseline_scores = baseline_summary["evaluations"]["final"]
+    baseline_details = baseline_summary.get("evaluation_details", {})
     baseline = {
         "name": "baseline",
         "sigma": 0.0,
@@ -340,16 +416,35 @@ def select_best_guarded(baseline_summary, results, selection_split,
         "steps": 0,
         "validation_score": baseline_scores[selection_split],
         "evaluation_scores": baseline_scores,
+        "evaluation_details": baseline_details,
         "guard_passed": True,
     }
     eligible = []
     for result in results:
         scores = result["evaluation_scores"]
-        result["guard_passed"] = all(
+        result["split_guards_passed"] = all(
             scores[split] >= (
                 baseline_scores[split] - max_guard_degradation
             )
             for split in guard_splits
+        )
+        if max_guard_exact_loss is None:
+            result["exact_guards_passed"] = True
+        else:
+            treatment_details = result.get("evaluation_details", {})
+            result["exact_guards_passed"] = all(
+                split in baseline_details
+                and split in treatment_details
+                and treatment_details[split]["exact"] >= (
+                    baseline_details[split]["exact"]
+                    - max_guard_exact_loss
+                )
+                for split in guard_splits
+            )
+        result["guard_passed"] = (
+            result["split_guards_passed"]
+            and result["exact_guards_passed"]
+            and result.get("ood_prose_guard_passed", True)
         )
         if result["guard_passed"]:
             eligible.append(result)
@@ -387,6 +482,10 @@ def main():
     args = parse_args()
     args.output = normalized_path(args.output)
     args.output.mkdir(parents=True, exist_ok=True)
+    if args.max_ood_prose_degradation < 0:
+        raise ValueError("max OOD prose degradation must be nonnegative")
+    if args.max_guard_exact_loss < 0:
+        raise ValueError("max guard exact loss must be nonnegative")
     selected = selected_candidates(args.trials)
 
     # Capture once before baseline, then compare every run boundary against
@@ -412,6 +511,10 @@ def main():
     baseline = run_one(
         args, "baseline", 0.0, 0.0, 0, frozen_dataset, frozen_model,
         force=args.force, trainer_sha256=frozen_trainer_sha256,
+    )
+    baseline["evaluation_details"] = evaluation_details(
+        args.output / "runs" / "baseline",
+        baseline["evaluations"]["final"], 0,
     )
     assert_snapshot(
         frozen_dataset, dataset_snapshot(args), "dataset", "after baseline"
@@ -456,11 +559,24 @@ def main():
             f"after trial {trial['name']}",
         )
         evaluation_scores = summary["evaluations"]["final"]
+        treatment_details = evaluation_details(
+            args.output / "runs" / trial["name"],
+            evaluation_scores, args.steps,
+        )
+        ood_prose_gate = (
+            summary["ood_prose"]["gate"]
+            if args.ood_prose_jsonl is not None else None
+        )
         results.append({
             **trial,
             "steps": args.steps,
             "validation_score": evaluation_scores[args.selection_split],
             "evaluation_scores": evaluation_scores,
+            "evaluation_details": treatment_details,
+            "ood_prose_guard_passed": (
+                ood_prose_gate["passed"] if ood_prose_gate else True
+            ),
+            "ood_prose_gate": ood_prose_gate,
             "run_summary": str(
                 args.output / "runs" / trial["name"] / "run_summary.json"
             ),
@@ -471,12 +587,18 @@ def main():
          selected_result) = select_best_guarded(
             baseline, results, args.selection_split, guard_splits,
             args.max_guard_degradation,
+            args.max_guard_exact_loss,
         )
         journal = {
             "schema": "eggroll-es-hpo-v1",
             "selection_split": args.selection_split,
             "guard_splits": guard_splits,
             "max_guard_degradation": args.max_guard_degradation,
+            "max_guard_exact_loss": args.max_guard_exact_loss,
+            "ood_prose_guard_enabled": args.ood_prose_jsonl is not None,
+            "max_ood_prose_degradation": (
+                args.max_ood_prose_degradation
+            ),
             "final_holdout_used_for_selection": False,
             "baseline_validation_score": baseline_scores[
                 args.selection_split

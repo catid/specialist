@@ -40,7 +40,8 @@ def candidate_identity(item):
 
 def aggregate(journals, selection_split, guard_splits,
               max_guard_degradation=0.0, min_positive_seed_fraction=0.6,
-              risk_penalty=0.5):
+              risk_penalty=0.5, max_guard_exact_loss=None,
+              require_ood_prose_guard=False):
     if not journals:
         raise ValueError("at least one seed journal is required")
     if not 0 <= min_positive_seed_fraction <= 1:
@@ -48,6 +49,8 @@ def aggregate(journals, selection_split, guard_splits,
     if max_guard_degradation < 0 or risk_penalty < 0:
         raise ValueError(
             "guard degradation and risk penalty must be nonnegative")
+    if max_guard_exact_loss is not None and max_guard_exact_loss < 0:
+        raise ValueError("max guard exact loss must be nonnegative")
     if len(set(guard_splits)) != len(guard_splits):
         raise ValueError("guard_splits contains duplicates")
     if selection_split in guard_splits:
@@ -97,14 +100,41 @@ def aggregate(journals, selection_split, guard_splits,
                         f"seed {journal['seed']} lacks numeric {split!r} "
                         "scores") from exc
                 deltas[split] = treatment_score - baseline_score
+            mean_guards_passed = all(
+                deltas[split] >= -max_guard_degradation
+                for split in guard_splits
+            )
+            if max_guard_exact_loss is None:
+                exact_guards_passed = True
+            else:
+                baseline_details = journal["baseline"].get(
+                    "evaluation_details", {})
+                treatment_details = result.get("evaluation_details", {})
+                exact_guards_passed = all(
+                    split in baseline_details
+                    and split in treatment_details
+                    and treatment_details[split]["exact"] >= (
+                        baseline_details[split]["exact"]
+                        - max_guard_exact_loss
+                    )
+                    for split in guard_splits
+                )
+            prose_guard_passed = (
+                result.get("ood_prose_guard_passed") is True
+                if require_ood_prose_guard else True
+            )
             per_seed.append({
                 "seed": journal["seed"],
                 "baseline_scores": baseline_scores,
                 "treatment_scores": treatment_scores,
                 "deltas": deltas,
-                "guard_passed": all(
-                    deltas[split] >= -max_guard_degradation
-                    for split in guard_splits
+                "mean_guards_passed": mean_guards_passed,
+                "exact_guards_passed": exact_guards_passed,
+                "ood_prose_guard_passed": prose_guard_passed,
+                "guard_passed": (
+                    mean_guards_passed
+                    and exact_guards_passed
+                    and prose_guard_passed
                 ),
             })
         selection_deltas = [
@@ -144,6 +174,8 @@ def aggregate(journals, selection_split, guard_splits,
         "selection_split": selection_split,
         "guard_splits": guard_splits,
         "max_guard_degradation": max_guard_degradation,
+        "max_guard_exact_loss": max_guard_exact_loss,
+        "require_ood_prose_guard": require_ood_prose_guard,
         "min_positive_seed_fraction": min_positive_seed_fraction,
         "risk_penalty": risk_penalty,
         "seeds": seeds,
@@ -163,6 +195,8 @@ def main():
     parser.add_argument("--selection-split", default="validation")
     parser.add_argument("--guard-splits", default="ood_qa")
     parser.add_argument("--max-guard-degradation", type=float, default=0.0)
+    parser.add_argument("--max-guard-exact-loss", type=int, default=0)
+    parser.add_argument("--require-ood-prose-guard", action="store_true")
     parser.add_argument("--min-positive-seed-fraction", type=float,
                         default=0.6)
     parser.add_argument("--risk-penalty", type=float, default=0.5)
@@ -174,7 +208,8 @@ def main():
         [item.strip() for item in args.guard_splits.split(",")
          if item.strip()],
         args.max_guard_degradation, args.min_positive_seed_fraction,
-        args.risk_penalty,
+        args.risk_penalty, args.max_guard_exact_loss,
+        args.require_ood_prose_guard,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
