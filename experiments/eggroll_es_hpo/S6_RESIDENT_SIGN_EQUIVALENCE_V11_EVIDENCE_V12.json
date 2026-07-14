@@ -1,0 +1,125 @@
+{
+  "builder": {
+    "file_sha256": "a716dba32954f377b2bf1f4490b6326b9572dc1b9b634bf5f26a21815f2ea3ea",
+    "path": "/home/catid/specialist/build_eggroll_es_v11_evidence_v12.py",
+    "v11g_driver_file_sha256": "913a0a728ae9e087e1240d4b6e56af02938eeda522b155d54593bec6d9fc127f",
+    "v11g_driver_path": "/home/catid/specialist/run_eggroll_es_anchor_equivalence_v11g.py"
+  },
+  "consensus": {
+    "anchor_cosine": 0.8527515739920155,
+    "cell_cosines": {
+      "D43": 0.938139575931748,
+      "D44": 0.938139575931748
+    },
+    "coefficient_sha256": "1a85502564020048f634b0a8ced3952343f135f67ffd1faad1aaa697aebea8a8",
+    "coefficients": [
+      -0.3351909573474715,
+      0.549533653720475,
+      1.1106392502352487,
+      1.4656329819941813,
+      0.0198887494129567,
+      -0.9286947426544143,
+      0.9416469827512188,
+      -0.24189446719627244,
+      -0.6297520877582911,
+      0.1380089616802588,
+      -0.453336373330877,
+      -1.5110211348031342,
+      -1.8551404740981603,
+      1.3819983529597273,
+      1.1314454215148866,
+      -1.7708723737215681,
+      1.214093829379483,
+      -0.08369237064291975,
+      0.46928587272594874,
+      0.04681362949617495,
+      -0.44980926309339553,
+      0.6672629588224755,
+      -0.6223861805769366,
+      2.0346783512283335,
+      0.6217549643732979,
+      -1.0339652477269574,
+      -0.9932247685543888,
+      -0.019375048636848843,
+      -0.3893596216489531,
+      -0.26449771913412007,
+      -1.5473661990064362,
+      1.3368950696364776
+    ],
+    "construction": "sqrt(32)*unit(unit(D43)+unit(D44))",
+    "content_sha256_before_self_field": "097447c4c2eac27ee28931859d1e2e0b3638ada38f3ade7558b08cdf063f76e0",
+    "duplicate_anchor_cells_collapsed": {
+      "D43": [
+        "D43xA43",
+        "D43xA44"
+      ],
+      "D44": [
+        "D44xA43",
+        "D44xA44"
+      ]
+    },
+    "l2_norm": 5.656854249492381,
+    "resident_cross_content_sha256": "2ecb41dc63d8955a606ab41e5f2b3f1962baea082c667f26f78accd7ec71dc22",
+    "schema": "eggroll-es-two-domain-unit-consensus-v12",
+    "seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570,
+      863156398,
+      658045682,
+      947615772,
+      615729462,
+      958574585,
+      1048698881,
+      573870406,
+      938961107,
+      635418192,
+      42810614,
+      120988352,
+      643498157,
+      552296232,
+      491294404,
+      607579228,
+      525239262,
+      401755469,
+      1009385806,
+      266538765,
+      936309830,
+      1063141744,
+      575175855,
+      1010837104,
+      983113236
+    ]
+  },
+  "contains_validation_ood_or_heldout_content": false,
+  "content_sha256_before_self_field": "b6212a4bdafaf234f8445b11c18ef96e15526d450f89d366542c63fae2d15e8f",
+  "downstream_validation": "exact_artifact_file_and_content_hashes",
+  "passed": true,
+  "schema": "eggroll-es-v11g-compact-equivalence-evidence-v12",
+  "selection_surface": "V11g_train_and_anchor_responses_only",
+  "v11g_attempt": {
+    "content_sha256": "d2ebaa14472e163129f4ea14c793825a12ed3435880ac293ec04bcbc30048b47",
+    "file_sha256": "91237f40056a68614ceaacbcb5c79ac965694eff16bedf48e4d14ec393373a75",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.snapshot794_layer_v11g_middle_late_resident_sign_exact_v10_policy_forwarded_d43d44_a43a44_basis20260714.launch_attempt.json",
+    "source_provenance": {
+      "file_sha256": "913a0a728ae9e087e1240d4b6e56af02938eeda522b155d54593bec6d9fc127f",
+      "git_head": "1ddc7dbf90dec36cf657fb7ae6eced4a78b5ff5c",
+      "relative_path": "run_eggroll_es_anchor_equivalence_v11g.py",
+      "schema": "eggroll-es-v11g-source"
+    },
+    "v11f_failure_binding_sha256": "a1d25f28b73fc7234a514b0c8b1599529b71e34e39ca9de4fd1cd117586730bb"
+  },
+  "v11g_journal": {
+    "content_sha256": "201a2b62f8475b836235edb69a8eda75bf556f209616ba2f0f528486394b22a6",
+    "equivalence_binding_sha256": "3bac42667fbc005a82fc29c2c61fc574aaf19280cc79ca4611684901aac045cd",
+    "file_sha256": "0302089d6cc3b1cccb68dd37ab350e7c85ea63876132af7ebc1659b529a050af",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_layer_v11g_middle_late_resident_sign_exact_v10_policy_forwarded_d43d44_a43a44_basis20260714/alpha_line_search.json",
+    "resident_artifact_content_sha256": "2ecb41dc63d8955a606ab41e5f2b3f1962baea082c667f26f78accd7ec71dc22"
+  },
+  "validation": "one_deep_V9_V10_V11c_V11g_ancestry_replay_at_mint_time"
+}
