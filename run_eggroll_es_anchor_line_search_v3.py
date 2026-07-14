@@ -4,6 +4,7 @@
 from pathlib import Path
 
 import run_eggroll_es_anchor_line_search as driver_v1
+import run_eggroll_es_anchor_line_search_v2 as driver_v2
 import train_eggroll_es_specialist_anchor_v3 as anchor_v3
 
 
@@ -35,6 +36,16 @@ def validate_effective_anchor_api(module=anchor_v3):
 def build_snapshot(*args, **kwargs):
     snapshot = _V1_BUILD_SNAPSHOT(*args, **kwargs)
     snapshot["schema"] = "eggroll-es-anchor-line-search-snapshot-v3"
+    # V3 directly reuses the exact-restoration implementation from v2 even
+    # though it enters through the frozen v1 driver.  Preserve those inherited
+    # identities explicitly so an offline auditor can reconstruct the complete
+    # implementation chain rather than trusting an implied dependency.
+    snapshot["implementation"]["corrected_driver"] = (
+        anchor_v3.file_sha256(Path(driver_v2.__file__).resolve())
+    )
+    snapshot["implementation"]["exact_worker"] = (
+        anchor_v3.file_sha256(anchor_v3.ROOT / "eggroll_es_worker_v2.py")
+    )
     snapshot["implementation"]["distributed_driver_v3"] = (
         anchor_v3.file_sha256(Path(__file__).resolve())
     )

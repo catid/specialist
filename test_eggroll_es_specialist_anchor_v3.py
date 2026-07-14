@@ -564,6 +564,25 @@ def test_resident_v3_wrapper_exposes_effective_anchor_api():
     assert canonical_sha256_v3({"safe": 1})
 
 
+def test_v3_snapshot_binds_inherited_v2_implementation_identities(monkeypatch):
+    monkeypatch.setattr(
+        line_search_v3,
+        "_V1_BUILD_SNAPSHOT",
+        lambda *args, **kwargs: {"implementation": {}},
+    )
+    snapshot = line_search_v3.build_snapshot()
+    implementation = snapshot["implementation"]
+    assert implementation["corrected_driver"] == anchor_v3.file_sha256(
+        line_search_v3.Path(line_search_v3.driver_v2.__file__).resolve()
+    )
+    assert implementation["exact_worker"] == anchor_v3.file_sha256(
+        anchor_v3.ROOT / "eggroll_es_worker_v2.py"
+    )
+    assert implementation["distributed_driver_v3"]
+    assert implementation["distributed_trainer_v3"]
+    assert implementation["distributed_worker_v3"]
+
+
 def test_v3_wrapper_persists_canonical_coefficient_values():
     seeds = [11, 22, 33, 44]
     coefficients = [0.5, -0.5, 1.0, -1.0]
