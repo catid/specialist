@@ -5,10 +5,64 @@ import pytest
 
 from aggregate_eggroll_es_anchor_replications import (
     JournalValidationError,
+    _validate_v4_bindings,
     aggregate_direct_confirmations,
     canonical_sha256,
     summarize_pilot,
     validate_journal,
+)
+
+
+V4_PLAN_SHA = (
+    "6af34ef41187d8b08f53b9dab1e40102744b954c80146c130bd2c053fc3f52cb"
+)
+V4_PLAN_FILE_SHA = (
+    "8e855cbd0d6130278e87b1af348e39dd0f683b8575d9abcb9260f3fe7b29d824"
+)
+V4_MODEL_CONFIG_SHA = (
+    "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99"
+)
+V4_MAPPING_SHA = (
+    "0a1b84e8ed53ef56c174e7fcac728a4820293505647ab6b9ea02bc86a012b3b1"
+)
+V4_RUNTIME_NAMES_SHA = (
+    "417b3867ba9a56f909d01b1e7bb0b8bb04f903c3ec49438a6675239a7bab270f"
+)
+V4_MIDDLE_PLAN_SHA = (
+    "b5e4e162116695e5d2544e24c2e0cdfb49ca8783aa6f9d707ef41d6f725ca5e0"
+)
+V4_MIDDLE_PLAN_FILE_SHA = (
+    "f2b38054e3cdaf41619cce579d3ba2e030fa3cfa87fd42b50543f655ff5f6dc0"
+)
+V4_MIDDLE_MAPPING_SHA = (
+    "d6f43de81bb5c41318a38f077b8a3e6272676801752ff68d4772977ac72182f7"
+)
+V4_MIDDLE_RUNTIME_NAMES_SHA = (
+    "a7df9257f81c05a3fb3e858209486bd930aad0ddb94d7398e1644b779fb8b70d"
+)
+V4_DENSE_REWARD_CONFIG = {
+    "schema": "eggroll-es-dense-qa-reward-v1",
+    "objective": "teacher_forced_gold_answer_prompt_logprob",
+    "text_construction": "exact_prompt_plus_answer",
+    "tokenization": {
+        "add_special_tokens": False,
+        "append_eos": False,
+        "max_total_tokens": 1024,
+        "require_prompt_token_prefix": True,
+        "truncation": False,
+    },
+    "scored_positions": "answer_tokens_only",
+    "aggregation": "mean_tokens_per_example_then_mean_examples",
+    "generation": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "max_tokens": 1,
+        "prompt_logprobs": 1,
+        "detokenize": False,
+    },
+}
+V4_DENSE_REWARD_SHA = (
+    "4941f2e94091b1f8e7ab7b5294ebc6520b80aba1326b7dc6ccea5140a3da5da2"
 )
 
 
@@ -178,7 +232,7 @@ def snapshot(seed, targets, schema_version=2):
             "target_alphas": list(targets),
         },
     }
-    if schema_version == 3:
+    if schema_version in (3, 4):
         value["implementation"].update({
             key: digest(key)
             for key in (
@@ -197,6 +251,39 @@ def snapshot(seed, targets, schema_version=2):
             "reference_recapture_policy": "once_before_next_population_only",
             "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
             "direct_alpha_confirmation_required": True,
+        }
+    if schema_version == 4:
+        value["implementation"].update({
+            key: digest(key)
+            for key in (
+                "distributed_driver_v4",
+                "distributed_trainer_v4",
+                "distributed_worker_v4",
+            )
+        })
+        value["frozen_layer_plan_v4"] = {
+            "path": "/safe/front_back_dense.json",
+            "file_sha256": V4_PLAN_FILE_SHA,
+            "plan_sha256": V4_PLAN_SHA,
+            "model_config_path": "/safe/qwen-config.json",
+            "model_config_sha256": V4_MODEL_CONFIG_SHA,
+        }
+        value["dense_gold_reward_v4"] = {
+            "config": copy.deepcopy(V4_DENSE_REWARD_CONFIG),
+            "reward_config_sha256": V4_DENSE_REWARD_SHA,
+        }
+        value["distributed_update_v4"] = {
+            "engine_count": 4,
+            "tp_per_engine": 1,
+            "seed_sharding": "strided_by_inter_engine_rank",
+            "collective_dtype": "torch.float32",
+            "two_phase_commit": True,
+            "final_hash_consensus_required": True,
+            "reference_recapture_policy": "once_before_next_population_only",
+            "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
+            "direct_alpha_confirmation_required": True,
+            "layer_plan_sha256": V4_PLAN_SHA,
+            "dense_reward_sha256": V4_DENSE_REWARD_SHA,
         }
     return value
 
@@ -364,6 +451,338 @@ def attach_v3_provenance(journal):
     coefficient_plan["applications"] = applications
 
 
+def v4_bindings():
+    return {
+        "layer_plan_file_sha256": V4_PLAN_FILE_SHA,
+        "layer_plan_sha256": V4_PLAN_SHA,
+        "checkpoint_to_runtime_mapping_sha256": V4_MAPPING_SHA,
+        "source_unit_count": 70,
+        "runtime_selected_name_sha256": V4_RUNTIME_NAMES_SHA,
+        "selected_parameter_manifest_sha256": digest("selected-manifest"),
+        "runtime_selected_parameter_count": 46,
+        "selected_element_count": 285_999_104,
+        "unselected_origin_sha256": digest("unselected-origin"),
+        "dense_reward_sha256": V4_DENSE_REWARD_SHA,
+    }
+
+
+def v4_partition(label, partition, bindings):
+    selected = partition == "selected"
+    value = {
+        "schema": "eggroll-es-parameter-partition-sha256-v4",
+        "partition": partition,
+        "sha256": (
+            digest(label)
+            if selected else bindings["unselected_origin_sha256"]
+        ),
+        "parameter_count": 46 if selected else 100,
+        "total_elements": 285_999_104 if selected else 1_000_000,
+        "total_bytes": 571_998_208 if selected else 2_000_000,
+        "layer_plan_file_sha256": bindings["layer_plan_file_sha256"],
+        "layer_plan_sha256": bindings["layer_plan_sha256"],
+        "checkpoint_to_runtime_mapping_sha256": (
+            bindings["checkpoint_to_runtime_mapping_sha256"]
+        ),
+        "runtime_selected_name_sha256": (
+            bindings["runtime_selected_name_sha256"]
+        ),
+        "selected_parameter_manifest_sha256": (
+            bindings["selected_parameter_manifest_sha256"]
+        ),
+        "dense_reward_sha256": bindings["dense_reward_sha256"],
+    }
+    return value
+
+
+def v4_weight_identity(label, bindings):
+    selected = v4_partition(f"{label}-selected", "selected", bindings)
+    unselected = v4_partition(f"{label}-unselected", "unselected", bindings)
+    payload = {
+        "schema": "eggroll-es-partitioned-weight-payload-v4",
+        "layer_plan_file_sha256": bindings["layer_plan_file_sha256"],
+        "layer_plan_sha256": bindings["layer_plan_sha256"],
+        "checkpoint_to_runtime_mapping_sha256": (
+            bindings["checkpoint_to_runtime_mapping_sha256"]
+        ),
+        "source_unit_count": bindings["source_unit_count"],
+        "runtime_selected_name_sha256": (
+            bindings["runtime_selected_name_sha256"]
+        ),
+        "selected_parameter_manifest_sha256": (
+            bindings["selected_parameter_manifest_sha256"]
+        ),
+        "dense_reward_sha256": bindings["dense_reward_sha256"],
+        "selected": selected,
+        "unselected": unselected,
+    }
+    return {
+        "schema": "eggroll-es-partitioned-weight-state-v4",
+        "sha256": canonical_sha256(payload),
+        **{key: payload[key] for key in (
+            "layer_plan_file_sha256", "layer_plan_sha256",
+            "checkpoint_to_runtime_mapping_sha256", "source_unit_count",
+            "runtime_selected_name_sha256",
+            "selected_parameter_manifest_sha256", "dense_reward_sha256",
+            "selected", "unselected",
+        )},
+    }
+
+
+def v4_identity_audit(seed, bindings, reference_identity):
+    probe = {
+        "schema": "eggroll-es-train-only-identity-probe-v4",
+        "dense_gold_output_sha256": digest(f"dense-probe-{seed}"),
+        "anchor_output_sha256": digest(f"anchor-probe-{seed}"),
+        "domain_requests": 64,
+        "anchor_requests": 16,
+        "reward_config_sha256": bindings["dense_reward_sha256"],
+        "layer_plan_sha256": bindings["layer_plan_sha256"],
+        "dispatch": "strided_engine_shards_separate_calls",
+    }
+    states = []
+    checks = []
+    for _rank in range(4):
+        states.append([{
+            "schema": "eggroll-es-selected-exact-reference-state-v4",
+            "reference_generation": 1,
+            "fresh_for_population": True,
+            "identity": copy.deepcopy(reference_identity),
+            **bindings,
+        }])
+        checks.append([{
+            "schema": "eggroll-es-selected-exact-reference-check-v4",
+            "passed": True,
+            "reference_generation": 1,
+            "reference": copy.deepcopy(reference_identity["selected"]),
+            "current": copy.deepcopy(reference_identity["selected"]),
+            "unselected_audit": "deferred_to_population_completion_v4",
+            **bindings,
+        }])
+    return {
+        "schema": "eggroll-es-alpha-zero-identity-audit-v2",
+        "iteration": 0,
+        "status": "passed",
+        "training_signal": "train_batch_and_train_only_anchor_only",
+        "reference_states": states,
+        "pre_probe": probe,
+        "post_probe": copy.deepcopy(probe),
+        "post_reference_checks": checks,
+        "passed": True,
+    }
+
+
+def attach_v4_provenance(journal):
+    coefficient_plan = journal["coefficient_plan"]
+    population_size = journal["trainer_configuration"]["population_size"]
+    seeds = list(journal["seeds"])
+    coefficients = [
+        (index - population_size / 2.0) / population_size
+        for index in range(population_size)
+    ]
+    coefficient_sha = canonical_sha256({
+        "seeds": seeds,
+        "coefficients": coefficients,
+    })
+    coefficient_plan["coefficient_sha256"] = coefficient_sha
+    coefficient_plan["coefficients"] = coefficients
+    for state in journal["states"]:
+        state["coefficient_sha256"] = coefficient_sha
+    bindings = v4_bindings()
+    reference = v4_weight_identity("v4-reference", bindings)
+    coefficient_plan["identity_audit"] = v4_identity_audit(
+        journal["trainer_configuration"]["global_seed"], bindings, reference,
+    )
+    coefficient_plan["frozen_layer_plan_v4"] = {
+        **copy.deepcopy(journal["snapshot"]["frozen_layer_plan_v4"]),
+        "runtime_mapping": copy.deepcopy(bindings),
+        "runtime_mapping_sha256": canonical_sha256(bindings),
+    }
+    coefficient_plan["dense_gold_reward_v4"] = copy.deepcopy(
+        journal["snapshot"]["dense_gold_reward_v4"],
+    )
+    boundary = {
+        "schema": "eggroll-es-population-boundary-audit-v4",
+        "iteration": 0,
+        "phase": "after_complete_population_exact_restore_before_plan",
+        "engine_count": 4,
+        "reference_generation": 1,
+        "reference_identity": copy.deepcopy(reference),
+        "current_identity": copy.deepcopy(reference),
+        "unselected_origin_sha256": bindings["unselected_origin_sha256"],
+        "runtime_mapping": copy.deepcopy(bindings),
+        "worker_reports": [{
+            "schema": "eggroll-es-post-population-audit-v4",
+            "passed": True,
+            "rank": rank,
+            "world_size": 4,
+            "reference_generation": 1,
+            "reference_sha256": reference["sha256"],
+            "current_identity": copy.deepcopy(reference),
+            **bindings,
+        } for rank in range(4)],
+        "passed": True,
+    }
+    boundary["audit_sha256"] = canonical_sha256(boundary)
+    coefficient_plan["population_boundary_audit_v4"] = boundary
+    plan_id = canonical_sha256({
+        "schema": "eggroll-es-distributed-plan-id-v4",
+        "iteration": 0,
+        "coefficient_sha256": coefficient_sha,
+        "reference_generation": 1,
+        "reference_sha256": reference["sha256"],
+        "layer_plan_sha256": bindings["layer_plan_sha256"],
+        "reward_config_sha256": bindings["dense_reward_sha256"],
+        "runtime_mapping_sha256": canonical_sha256(bindings),
+        "population_boundary_audit_sha256": boundary["audit_sha256"],
+    })
+    coefficient_plan["distributed_update_v4"] = {
+        "schema": "eggroll-es-distributed-seed-plan-v4",
+        "plan_id": plan_id,
+        "engine_count": 4,
+        "tp_per_engine": 1,
+        "reference_generation": 1,
+        "reference_identity": copy.deepcopy(reference),
+        "seed_sharding": "strided_by_inter_engine_rank",
+        "collective_dtype": "torch.float32",
+        "reference_recapture_policy": "once_before_next_population_only",
+        "layer_plan_sha256": bindings["layer_plan_sha256"],
+        "dense_reward_sha256": bindings["dense_reward_sha256"],
+        "runtime_mapping": copy.deepcopy(bindings),
+        "runtime_mapping_sha256": canonical_sha256(bindings),
+        "population_boundary_audit_sha256": boundary["audit_sha256"],
+    }
+    applications = []
+    previous_alpha = 0.0
+    previous_identity = reference
+    for sequence, target_alpha in enumerate(journal["targets"][1:], 1):
+        manifest = {
+            "schema": "eggroll-es-layer-restricted-update-manifest-v4",
+            "coefficient_sha256": coefficient_sha,
+            "population_size": population_size,
+            "world_size": 4,
+            "reference_generation": 1,
+            "plan_id": plan_id,
+            "update_sequence": sequence,
+            "previous_alpha": previous_alpha,
+            "target_alpha": target_alpha,
+            "expected_base_sha256": previous_identity["sha256"],
+            **bindings,
+        }
+        manifest_sha = canonical_sha256(manifest)
+        final_identity = v4_weight_identity(
+            f"v4-final-{journal['trainer_configuration']['global_seed']}-{sequence}",
+            bindings,
+        )
+        prepared = []
+        executed = []
+        commits = []
+        post_states = []
+        for rank in range(4):
+            indices = list(range(rank, population_size, 4))
+            prepared.append({
+                "schema": "eggroll-es-layer-restricted-update-prepared-v4",
+                "prepared": True,
+                "manifest_sha256": manifest_sha,
+                "rank": rank,
+                "world_size": 4,
+                "shard_indices": indices,
+                "shard_seeds": [seeds[index] for index in indices],
+                "shard_pair_sha256": canonical_sha256({
+                    "seeds": [seeds[index] for index in indices],
+                    "coefficients": [
+                        coefficients[index] for index in indices
+                    ],
+                }),
+                "base_sha256": previous_identity["sha256"],
+                "reference_generation": 1,
+                "update_sequence": sequence,
+                "allocation_preflight": {
+                    "schema": "eggroll-es-selected-allocation-preflight-v4",
+                    "passed": True,
+                    "parameter_count": 46,
+                    "element_count": 285_999_104,
+                    "largest_parameter_name": "model.selected.weight",
+                    "largest_parameter_shape": [1024, 1024],
+                    "parameter_dtype": "torch.bfloat16",
+                    "accumulator_dtype": "torch.float32",
+                    "simulated_peak_temporary_bytes": 6_291_456,
+                    "scratch_freed_before_collectives": True,
+                    "collectives_created": False,
+                    "rng_consumed": False,
+                    "weights_changed": False,
+                    **bindings,
+                },
+                **bindings,
+            })
+            executed.append({
+                "schema": "eggroll-es-layer-restricted-update-executed-v4",
+                "executed": True,
+                "manifest_sha256": manifest_sha,
+                "rank": rank,
+                "world_size": 4,
+                "parameter_count": 46,
+                "reduced_element_count": 285_999_104,
+                "collective_dtype": "torch.float32",
+                "final_identity": copy.deepcopy(final_identity),
+                **bindings,
+            })
+            commits.append({
+                "schema": "eggroll-es-layer-restricted-update-committed-v4",
+                "committed": True,
+                "manifest_sha256": manifest_sha,
+                "rank": rank,
+                "final_sha256": final_identity["sha256"],
+                "reference_generation": 1,
+                "reference_fresh_for_population": False,
+                "update_sequence": sequence,
+                "accepted_alpha": target_alpha,
+                **bindings,
+            })
+            post_states.append({
+                "schema": "eggroll-es-layer-restricted-worker-state-v4",
+                "communicator": {
+                    "rank": rank,
+                    "world_size": 4,
+                    "tp_world_size": 1,
+                    "available": True,
+                    "disabled": False,
+                },
+                "reference_generation": 1,
+                "reference_fresh_for_population": False,
+                "reference_identity": copy.deepcopy(reference),
+                "current_identity": copy.deepcopy(final_identity),
+                "update_session": plan_id,
+                "update_sequence": sequence,
+                "accepted_alpha": target_alpha,
+                "pending": False,
+                **bindings,
+            })
+        applications.append({
+            "schema": "eggroll-es-distributed-alpha-application-v4",
+            "target_alpha": target_alpha,
+            "alpha_increment": target_alpha - previous_alpha,
+            "update_sequence": sequence,
+            "manifest_sha256": manifest_sha,
+            "manifest": manifest,
+            "coefficient_sha256": coefficient_sha,
+            "layer_plan_sha256": bindings["layer_plan_sha256"],
+            "dense_reward_sha256": bindings["dense_reward_sha256"],
+            "runtime_mapping": copy.deepcopy(bindings),
+            "prepared_shards": prepared,
+            "executed_collectives": executed,
+            "commits": commits,
+            "post_commit_states": post_states,
+            "final_identity": final_identity,
+            "reference_recaptured": False,
+            "reference_fresh_for_population": False,
+            "bf16_alpha_semantics": "path_dependent_monotonic_increment",
+            "direct_alpha_confirmation_required": True,
+        })
+        previous_alpha = target_alpha
+        previous_identity = final_identity
+    coefficient_plan["applications"] = applications
+
+
 def make_journal(
     seed,
     validation_delta=0.01,
@@ -455,12 +874,19 @@ def make_journal(
         "states": states,
         "seeds": [seed * 100 + index for index in range(8)],
     }
-    if schema_version == 3:
+    if schema_version in (3, 4):
         journal["policy"].update({
             "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
             "direct_alpha_confirmation_required": True,
         })
+    if schema_version == 3:
         attach_v3_provenance(journal)
+    elif schema_version == 4:
+        journal["policy"].update({
+            "frozen_layer_plan_required": True,
+            "dense_gold_reward_required": True,
+        })
+        attach_v4_provenance(journal)
     journal["content_sha256_before_self_field"] = canonical_sha256(journal)
     return journal
 
@@ -797,6 +1223,158 @@ def test_v3_distributed_provenance_tampering_is_rejected(mutation, match):
         application["reference_recaptured"] = True
     else:
         application["direct_alpha_confirmation_required"] = False
+    reseal(journal)
+    with pytest.raises(JournalValidationError, match=match):
+        validate_journal(journal)
+
+
+def test_v4_journals_are_supported_as_a_separately_bound_family():
+    journals = [
+        make_journal(seed, schema_version=4)
+        for seed in (42, 43, 44, 45, 46)
+    ]
+    report = aggregate_direct_confirmations(journals, candidate_name="v4-front-back")
+    assert report["eligible"] is True
+    validated = validate_journal(journals[0])
+    provenance = validated["distributed_update_v4"]
+    assert provenance["plan_id"] == journals[0]["coefficient_plan"][
+        "distributed_update_v4"
+    ]["plan_id"]
+    assert provenance["layer_plan_sha256"] == V4_PLAN_SHA
+    assert provenance["dense_reward_sha256"] == V4_DENSE_REWARD_SHA
+    assert provenance["application_count"] == 1
+    assert provenance["population_boundary_audit_sha256"] == journals[0][
+        "coefficient_plan"
+    ]["population_boundary_audit_v4"]["audit_sha256"]
+
+
+def test_v4_accepts_only_both_predeclared_parameter_matched_runtime_plans():
+    front = v4_bindings()
+    assert _validate_v4_bindings(front, "front") == front
+    middle = {
+        **front,
+        "layer_plan_file_sha256": V4_MIDDLE_PLAN_FILE_SHA,
+        "layer_plan_sha256": V4_MIDDLE_PLAN_SHA,
+        "checkpoint_to_runtime_mapping_sha256": V4_MIDDLE_MAPPING_SHA,
+        "runtime_selected_name_sha256": V4_MIDDLE_RUNTIME_NAMES_SHA,
+    }
+    assert _validate_v4_bindings(middle, "middle") == middle
+    middle["layer_plan_file_sha256"] = V4_PLAN_FILE_SHA
+    with pytest.raises(JournalValidationError, match="file/plan identity pair"):
+        _validate_v4_bindings(middle, "mismatched")
+
+
+def test_v4_monotonic_application_chain_binds_prior_partition_identity():
+    journal = make_journal(
+        42, schema_version=4,
+        targets=(0.0, 0.00000625, 0.0000125),
+    )
+    validated = validate_journal(journal)
+    assert validated["distributed_update_v4"]["application_count"] == 2
+    applications = journal["coefficient_plan"]["applications"]
+    assert applications[1]["manifest"]["expected_base_sha256"] == (
+        applications[0]["final_identity"]["sha256"]
+    )
+    applications[1]["manifest"]["expected_base_sha256"] = journal[
+        "coefficient_plan"
+    ]["distributed_update_v4"]["reference_identity"]["sha256"]
+    reseal(journal)
+    with pytest.raises(JournalValidationError, match="manifest payload"):
+        validate_journal(journal)
+
+
+def test_merely_relabelled_v3_journal_cannot_masquerade_as_v4():
+    journal = make_journal(42, schema_version=3)
+    journal["schema"] = "eggroll-es-anchor-alpha-line-search-v4"
+    journal["snapshot"]["schema"] = "eggroll-es-anchor-line-search-snapshot-v4"
+    journal["policy"].update({
+        "frozen_layer_plan_required": True,
+        "dense_gold_reward_required": True,
+    })
+    reseal(journal)
+    with pytest.raises(JournalValidationError, match="v4 implementation identity"):
+        validate_journal(journal)
+
+
+@pytest.mark.parametrize(
+    "mutation,match",
+    [
+        ("snapshot_plan", "file/plan identity pair"),
+        ("snapshot_reward", "dense reward semantics"),
+        ("runtime_mapping", "checkpoint/runtime mapping"),
+        ("identity_selected_size", "frozen BF16 size"),
+        ("boundary_hash", "boundary audit hash"),
+        ("boundary_worker", "partition payload"),
+        ("plan_id", "plan ID"),
+        ("manifest", "manifest payload"),
+        ("prepared_shard", "seed/coefficient shard"),
+        ("preflight", "selected-only and side-effect free"),
+        ("executed_count", "collective metadata"),
+        ("executed_identity", "partition payload"),
+        ("commit_binding", "commit binding"),
+        ("post_reference", "immutable origin"),
+        ("recapture", "reference or direct-confirmation policy"),
+    ],
+)
+def test_v4_plan_reward_runtime_update_and_audit_tampering_is_rejected(
+    mutation, match,
+):
+    journal = make_journal(42, schema_version=4)
+    snapshot_value = journal["snapshot"]
+    plan = journal["coefficient_plan"]
+    application = plan["applications"][0]
+    if mutation == "snapshot_plan":
+        snapshot_value["frozen_layer_plan_v4"]["file_sha256"] = digest(
+            "other-plan-file"
+        )
+    elif mutation == "snapshot_reward":
+        snapshot_value["dense_gold_reward_v4"]["config"]["objective"] = (
+            "generated_answer_reward"
+        )
+    elif mutation == "runtime_mapping":
+        plan["frozen_layer_plan_v4"]["runtime_mapping"][
+            "checkpoint_to_runtime_mapping_sha256"
+        ] = digest("other-runtime-mapping")
+    elif mutation == "identity_selected_size":
+        plan["identity_audit"]["reference_states"][0][0]["identity"][
+            "selected"
+        ]["total_bytes"] -= 2
+    elif mutation == "boundary_hash":
+        plan["population_boundary_audit_v4"]["audit_sha256"] = digest(
+            "other-boundary-audit"
+        )
+    elif mutation == "boundary_worker":
+        plan["population_boundary_audit_v4"]["worker_reports"][0][
+            "current_identity"
+        ]["selected"]["sha256"] = digest("drifted-boundary-selected")
+    elif mutation == "plan_id":
+        plan["distributed_update_v4"]["plan_id"] = digest("other-plan-id")
+    elif mutation == "manifest":
+        application["manifest"]["target_alpha"] *= 2
+    elif mutation == "prepared_shard":
+        application["prepared_shards"][0]["shard_pair_sha256"] = digest(
+            "other-shard-pair"
+        )
+    elif mutation == "preflight":
+        application["prepared_shards"][0]["allocation_preflight"][
+            "collectives_created"
+        ] = True
+    elif mutation == "executed_count":
+        application["executed_collectives"][0]["reduced_element_count"] -= 1
+    elif mutation == "executed_identity":
+        application["executed_collectives"][0]["final_identity"]["selected"][
+            "sha256"
+        ] = digest("drifted-executed-selected")
+    elif mutation == "commit_binding":
+        application["commits"][0]["dense_reward_sha256"] = digest(
+            "other-reward"
+        )
+    elif mutation == "post_reference":
+        application["post_commit_states"][0]["reference_identity"][
+            "unselected"
+        ]["sha256"] = digest("drifted-unselected")
+    else:
+        application["reference_recaptured"] = True
     reseal(journal)
     with pytest.raises(JournalValidationError, match=match):
         validate_journal(journal)

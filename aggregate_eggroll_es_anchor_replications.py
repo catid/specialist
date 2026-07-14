@@ -22,6 +22,7 @@ from pathlib import Path
 ALLOWED_SCHEMAS = {
     "eggroll-es-anchor-alpha-line-search-v2",
     "eggroll-es-anchor-alpha-line-search-v3",
+    "eggroll-es-anchor-alpha-line-search-v4",
 }
 ALLOWED_EVAL_SPLITS = ("validation", "ood_qa")
 DEFAULT_CONFIRMATION_SEEDS = (42, 43, 44, 45, 46)
@@ -46,6 +47,78 @@ V3_DISTRIBUTED_POLICY = {
     "bf16_alpha_semantics": "path_dependent_monotonic_pilot",
     "direct_alpha_confirmation_required": True,
 }
+V4_SNAPSHOT_IMPLEMENTATION_KEYS = {
+    "distributed_driver_v4",
+    "distributed_trainer_v4",
+    "distributed_worker_v4",
+}
+V4_MODEL_CONFIG_SHA256 = (
+    "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99"
+)
+V4_FROZEN_LAYER_PLANS = {
+    "6af34ef41187d8b08f53b9dab1e40102744b954c80146c130bd2c053fc3f52cb": {
+        "file_sha256": (
+            "8e855cbd0d6130278e87b1af348e39dd0f683b8575d9abcb9260f3fe7b29d824"
+        ),
+        "checkpoint_to_runtime_mapping_sha256": (
+            "0a1b84e8ed53ef56c174e7fcac728a4820293505647ab6b9ea02bc86a012b3b1"
+        ),
+        "runtime_selected_name_sha256": (
+            "417b3867ba9a56f909d01b1e7bb0b8bb04f903c3ec49438a6675239a7bab270f"
+        ),
+    },
+    "b5e4e162116695e5d2544e24c2e0cdfb49ca8783aa6f9d707ef41d6f725ca5e0": {
+        "file_sha256": (
+            "f2b38054e3cdaf41619cce579d3ba2e030fa3cfa87fd42b50543f655ff5f6dc0"
+        ),
+        "checkpoint_to_runtime_mapping_sha256": (
+            "d6f43de81bb5c41318a38f077b8a3e6272676801752ff68d4772977ac72182f7"
+        ),
+        "runtime_selected_name_sha256": (
+            "a7df9257f81c05a3fb3e858209486bd930aad0ddb94d7398e1644b779fb8b70d"
+        ),
+    },
+}
+V4_SOURCE_UNIT_COUNT = 70
+V4_RUNTIME_PARAMETER_COUNT = 46
+V4_SELECTED_ELEMENT_COUNT = 285_999_104
+V4_SELECTED_BYTE_COUNT = 571_998_208
+V4_BINDING_KEYS = {
+    "layer_plan_file_sha256",
+    "layer_plan_sha256",
+    "checkpoint_to_runtime_mapping_sha256",
+    "source_unit_count",
+    "runtime_selected_name_sha256",
+    "selected_parameter_manifest_sha256",
+    "runtime_selected_parameter_count",
+    "selected_element_count",
+    "unselected_origin_sha256",
+    "dense_reward_sha256",
+}
+V4_DENSE_REWARD_CONFIG = {
+    "schema": "eggroll-es-dense-qa-reward-v1",
+    "objective": "teacher_forced_gold_answer_prompt_logprob",
+    "text_construction": "exact_prompt_plus_answer",
+    "tokenization": {
+        "add_special_tokens": False,
+        "append_eos": False,
+        "max_total_tokens": 1024,
+        "require_prompt_token_prefix": True,
+        "truncation": False,
+    },
+    "scored_positions": "answer_tokens_only",
+    "aggregation": "mean_tokens_per_example_then_mean_examples",
+    "generation": {
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "max_tokens": 1,
+        "prompt_logprobs": 1,
+        "detokenize": False,
+    },
+}
+V4_DENSE_REWARD_SHA256 = (
+    "4941f2e94091b1f8e7ab7b5294ebc6520b80aba1326b7dc6ccea5140a3da5da2"
+)
 
 
 class JournalValidationError(ValueError):
@@ -142,6 +215,113 @@ def _validate_weight_identity(identity, label):
     }
 
 
+def _validate_v4_bindings(bindings, label):
+    _require(isinstance(bindings, dict), f"{label} is missing")
+    _require(
+        set(bindings) == V4_BINDING_KEYS,
+        f"{label} fields changed",
+    )
+    plan_sha = _sha256(bindings.get("layer_plan_sha256"), f"{label} plan SHA-256")
+    frozen = V4_FROZEN_LAYER_PLANS.get(plan_sha)
+    _require(frozen is not None, f"{label} plan is not frozen")
+    _require(
+        bindings.get("layer_plan_file_sha256") == frozen["file_sha256"],
+        f"{label} file/plan identity pair changed",
+    )
+    _require(
+        bindings.get("checkpoint_to_runtime_mapping_sha256")
+        == frozen["checkpoint_to_runtime_mapping_sha256"],
+        f"{label} checkpoint/runtime mapping changed",
+    )
+    _require(
+        bindings.get("runtime_selected_name_sha256")
+        == frozen["runtime_selected_name_sha256"],
+        f"{label} selected runtime names changed",
+    )
+    for key in (
+        "layer_plan_file_sha256", "selected_parameter_manifest_sha256",
+        "unselected_origin_sha256", "dense_reward_sha256",
+    ):
+        _sha256(bindings.get(key), f"{label} {key}")
+    _require(
+        bindings.get("source_unit_count") == V4_SOURCE_UNIT_COUNT
+        and type(bindings.get("source_unit_count")) is int
+        and bindings.get("runtime_selected_parameter_count")
+        == V4_RUNTIME_PARAMETER_COUNT
+        and type(bindings.get("runtime_selected_parameter_count")) is int
+        and bindings.get("selected_element_count") == V4_SELECTED_ELEMENT_COUNT
+        and type(bindings.get("selected_element_count")) is int,
+        f"{label} frozen selection counts changed",
+    )
+    _require(
+        bindings.get("dense_reward_sha256") == V4_DENSE_REWARD_SHA256,
+        f"{label} dense reward identity changed",
+    )
+    return copy.deepcopy(bindings)
+
+
+def _validate_v4_dense_reward(value, label):
+    _require(isinstance(value, dict), f"{label} is missing")
+    _require(
+        value.get("config") == V4_DENSE_REWARD_CONFIG,
+        f"{label} semantics changed",
+    )
+    _require(
+        canonical_sha256(value["config"]) == V4_DENSE_REWARD_SHA256,
+        f"{label} independently reconstructed hash changed",
+    )
+    _require(
+        value.get("reward_config_sha256") == V4_DENSE_REWARD_SHA256,
+        f"{label} recorded hash changed",
+    )
+    return {
+        "config": copy.deepcopy(V4_DENSE_REWARD_CONFIG),
+        "reward_config_sha256": V4_DENSE_REWARD_SHA256,
+    }
+
+
+def _validate_v4_layer_identity(value, label, *, require_runtime):
+    _require(isinstance(value, dict), f"{label} is missing")
+    path = value.get("path")
+    model_config_path = value.get("model_config_path")
+    _require(isinstance(path, str) and path, f"{label} path is empty")
+    _require(
+        isinstance(model_config_path, str) and model_config_path,
+        f"{label} model-config path is empty",
+    )
+    _assert_no_heldout(path, f"{label}.path")
+    _assert_no_heldout(model_config_path, f"{label}.model_config_path")
+    plan_sha = _sha256(value.get("plan_sha256"), f"{label} plan SHA-256")
+    frozen = V4_FROZEN_LAYER_PLANS.get(plan_sha)
+    _require(frozen is not None, f"{label} plan is not frozen")
+    _require(
+        value.get("file_sha256") == frozen["file_sha256"],
+        f"{label} file/plan identity pair changed",
+    )
+    _require(
+        value.get("model_config_sha256") == V4_MODEL_CONFIG_SHA256,
+        f"{label} model-config identity changed",
+    )
+    normalized = {
+        "path": path,
+        "file_sha256": frozen["file_sha256"],
+        "plan_sha256": plan_sha,
+        "model_config_path": model_config_path,
+        "model_config_sha256": V4_MODEL_CONFIG_SHA256,
+    }
+    if require_runtime:
+        bindings = _validate_v4_bindings(
+            value.get("runtime_mapping"), f"{label} runtime mapping",
+        )
+        _require(
+            value.get("runtime_mapping_sha256") == canonical_sha256(bindings),
+            f"{label} runtime mapping hash changed",
+        )
+        normalized["runtime_mapping"] = bindings
+        normalized["runtime_mapping_sha256"] = canonical_sha256(bindings)
+    return normalized
+
+
 def _assert_no_heldout(value, trail="journal"):
     """Reject heldout-bearing keys or string values without opening paths."""
     if isinstance(value, dict):
@@ -212,8 +392,9 @@ def _validate_snapshot(snapshot):
         schema in {
             "eggroll-es-anchor-line-search-snapshot-v2",
             "eggroll-es-anchor-line-search-snapshot-v3",
+            "eggroll-es-anchor-line-search-snapshot-v4",
         },
-        "snapshot schema is not corrected anchored v2/v3",
+        "snapshot schema is not corrected anchored v2/v3/v4",
     )
     train = _validate_dataset_split(snapshot.get("train"), "training")
     evaluations = snapshot.get("evaluations")
@@ -292,7 +473,10 @@ def _validate_snapshot(snapshot):
     normalized_implementation = copy.deepcopy(implementation)
     for key in required_implementation:
         _sha256(implementation.get(key), f"implementation {key}")
-    if schema == "eggroll-es-anchor-line-search-snapshot-v3":
+    if schema in {
+        "eggroll-es-anchor-line-search-snapshot-v3",
+        "eggroll-es-anchor-line-search-snapshot-v4",
+    }:
         _require(
             V3_SNAPSHOT_IMPLEMENTATION_KEYS.issubset(implementation),
             "v3 implementation identity is incomplete",
@@ -303,6 +487,32 @@ def _validate_snapshot(snapshot):
             snapshot.get("distributed_update_v3"),
             V3_DISTRIBUTED_POLICY,
             "v3 snapshot distributed policy",
+        )
+    normalized_v4_layer = None
+    normalized_v4_reward = None
+    if schema == "eggroll-es-anchor-line-search-snapshot-v4":
+        _require(
+            V4_SNAPSHOT_IMPLEMENTATION_KEYS.issubset(implementation),
+            "v4 implementation identity is incomplete",
+        )
+        for key in V4_SNAPSHOT_IMPLEMENTATION_KEYS:
+            _sha256(implementation.get(key), f"implementation {key}")
+        normalized_v4_layer = _validate_v4_layer_identity(
+            snapshot.get("frozen_layer_plan_v4"),
+            "v4 snapshot frozen layer plan", require_runtime=False,
+        )
+        normalized_v4_reward = _validate_v4_dense_reward(
+            snapshot.get("dense_gold_reward_v4"),
+            "v4 snapshot dense reward",
+        )
+        _require_exact_fields(
+            snapshot.get("distributed_update_v4"),
+            {
+                **V3_DISTRIBUTED_POLICY,
+                "layer_plan_sha256": normalized_v4_layer["plan_sha256"],
+                "dense_reward_sha256": V4_DENSE_REWARD_SHA256,
+            },
+            "v4 snapshot distributed policy",
         )
 
     recipe = snapshot.get("recipe")
@@ -343,12 +553,15 @@ def _validate_snapshot(snapshot):
 
     normalized_recipe = copy.deepcopy(recipe)
     normalized_recipe["target_alphas"] = targets
-    if schema == "eggroll-es-anchor-line-search-snapshot-v3":
+    if schema in {
+        "eggroll-es-anchor-line-search-snapshot-v3",
+        "eggroll-es-anchor-line-search-snapshot-v4",
+    }:
         _require(
             recipe["population_size"] % V3_ENGINE_COUNT == 0,
             "v3 population size is not divisible by four engines",
         )
-    return {
+    normalized = {
         "schema": schema,
         "train": train,
         "evaluations": normalized_evaluations,
@@ -359,6 +572,10 @@ def _validate_snapshot(snapshot):
         "seed": seed,
         "targets": targets,
     }
+    if normalized_v4_layer is not None:
+        normalized["frozen_layer_plan_v4"] = normalized_v4_layer
+        normalized["dense_gold_reward_v4"] = normalized_v4_reward
+    return normalized
 
 
 def _validate_qa_summary(summary, label):
@@ -504,7 +721,228 @@ def _leaf_dicts(value):
             yield from _leaf_dicts(item)
 
 
-def _validate_identity_audit(audit):
+def _nested_schema_reports(value, schema):
+    reports = []
+    if isinstance(value, dict):
+        if value.get("schema") == schema:
+            reports.append(value)
+        for item in value.values():
+            reports.extend(_nested_schema_reports(item, schema))
+    elif isinstance(value, (list, tuple)):
+        for item in value:
+            reports.extend(_nested_schema_reports(item, schema))
+    return reports
+
+
+def _validate_v4_partition_identity(identity, partition, bindings, label):
+    _require(isinstance(identity, dict), f"{label} is missing")
+    _require(
+        identity.get("schema") == "eggroll-es-parameter-partition-sha256-v4"
+        and identity.get("partition") == partition,
+        f"{label} schema or partition changed",
+    )
+    normalized = {
+        "schema": "eggroll-es-parameter-partition-sha256-v4",
+        "partition": partition,
+        "sha256": _sha256(identity.get("sha256"), f"{label} SHA-256"),
+        "parameter_count": _integer(
+            identity.get("parameter_count"), f"{label} parameters", minimum=1,
+        ),
+        "total_elements": _integer(
+            identity.get("total_elements"), f"{label} elements", minimum=1,
+        ),
+        "total_bytes": _integer(
+            identity.get("total_bytes"), f"{label} bytes", minimum=1,
+        ),
+    }
+    for key in (
+        "layer_plan_file_sha256", "layer_plan_sha256",
+        "checkpoint_to_runtime_mapping_sha256",
+        "runtime_selected_name_sha256",
+        "selected_parameter_manifest_sha256", "dense_reward_sha256",
+    ):
+        _require(
+            identity.get(key) == bindings[key],
+            f"{label} {key} changed",
+        )
+        normalized[key] = bindings[key]
+    if partition == "selected":
+        _require(
+            normalized["parameter_count"] == V4_RUNTIME_PARAMETER_COUNT
+            and normalized["total_elements"] == V4_SELECTED_ELEMENT_COUNT
+            and normalized["total_bytes"] == V4_SELECTED_BYTE_COUNT
+            and normalized["total_bytes"] == 2 * normalized["total_elements"],
+            f"{label} frozen BF16 size changed",
+        )
+    else:
+        _require(
+            normalized["sha256"] == bindings["unselected_origin_sha256"],
+            f"{label} differs from immutable origin",
+        )
+    return normalized
+
+
+def _validate_v4_weight_identity(identity, bindings, label):
+    _require(isinstance(identity, dict), f"{label} is missing")
+    _require(
+        identity.get("schema") == "eggroll-es-partitioned-weight-state-v4",
+        f"{label} schema changed",
+    )
+    for key in (
+        "layer_plan_file_sha256", "layer_plan_sha256",
+        "checkpoint_to_runtime_mapping_sha256", "source_unit_count",
+        "runtime_selected_name_sha256",
+        "selected_parameter_manifest_sha256", "dense_reward_sha256",
+    ):
+        _require(identity.get(key) == bindings[key], f"{label} {key} changed")
+    selected = _validate_v4_partition_identity(
+        identity.get("selected"), "selected", bindings, f"{label} selected",
+    )
+    unselected = _validate_v4_partition_identity(
+        identity.get("unselected"), "unselected", bindings,
+        f"{label} unselected",
+    )
+    payload = {
+        "schema": "eggroll-es-partitioned-weight-payload-v4",
+        "layer_plan_file_sha256": bindings["layer_plan_file_sha256"],
+        "layer_plan_sha256": bindings["layer_plan_sha256"],
+        "checkpoint_to_runtime_mapping_sha256": (
+            bindings["checkpoint_to_runtime_mapping_sha256"]
+        ),
+        "source_unit_count": bindings["source_unit_count"],
+        "runtime_selected_name_sha256": (
+            bindings["runtime_selected_name_sha256"]
+        ),
+        "selected_parameter_manifest_sha256": (
+            bindings["selected_parameter_manifest_sha256"]
+        ),
+        "dense_reward_sha256": bindings["dense_reward_sha256"],
+        "selected": selected,
+        "unselected": unselected,
+    }
+    recorded_sha = _sha256(identity.get("sha256"), f"{label} SHA-256")
+    _require(
+        recorded_sha == canonical_sha256(payload),
+        f"{label} does not match its partition payload",
+    )
+    return {
+        "schema": "eggroll-es-partitioned-weight-state-v4",
+        "sha256": recorded_sha,
+        **{key: payload[key] for key in (
+            "layer_plan_file_sha256", "layer_plan_sha256",
+            "checkpoint_to_runtime_mapping_sha256", "source_unit_count",
+            "runtime_selected_name_sha256",
+            "selected_parameter_manifest_sha256", "dense_reward_sha256",
+            "selected", "unselected",
+        )},
+    }
+
+
+def _validate_v4_identity_audit(audit, bindings):
+    _require(
+        audit.get("schema") == "eggroll-es-alpha-zero-identity-audit-v2",
+        "v4 coefficient identity audit schema changed",
+    )
+    pre_probe = audit.get("pre_probe")
+    post_probe = audit.get("post_probe")
+    _require(
+        isinstance(pre_probe, dict) and pre_probe == post_probe,
+        "v4 pre/post alpha-zero identity probes differ",
+    )
+    _require(
+        pre_probe.get("schema") == "eggroll-es-train-only-identity-probe-v4"
+        and pre_probe.get("dispatch")
+        == "strided_engine_shards_separate_calls"
+        and pre_probe.get("reward_config_sha256")
+        == bindings["dense_reward_sha256"]
+        and pre_probe.get("layer_plan_sha256")
+        == bindings["layer_plan_sha256"],
+        "v4 identity probe policy or binding changed",
+    )
+    for key in ("dense_gold_output_sha256", "anchor_output_sha256"):
+        _sha256(pre_probe.get(key), f"v4 identity probe {key}")
+    _integer(pre_probe.get("domain_requests"), "v4 identity domain requests", minimum=1)
+    _integer(pre_probe.get("anchor_requests"), "v4 identity anchor requests", minimum=1)
+
+    reference_states = audit.get("reference_states")
+    _require(
+        isinstance(reference_states, list) and len(reference_states) == V3_ENGINE_COUNT,
+        "v4 identity audit must contain four reference states",
+    )
+    reference_identities = []
+    reference_generations = []
+    for rank, nested in enumerate(reference_states):
+        reports = _nested_schema_reports(
+            nested, "eggroll-es-selected-exact-reference-state-v4",
+        )
+        _require(len(reports) == 1, f"v4 engine {rank} reference state is ambiguous")
+        report = reports[0]
+        _require(
+            report.get("fresh_for_population") is True,
+            f"v4 engine {rank} reference was not fresh",
+        )
+        for key, value in bindings.items():
+            _require(report.get(key) == value, f"v4 engine {rank} reference binding changed")
+        reference_generations.append(_integer(
+            report.get("reference_generation"),
+            f"v4 engine {rank} reference generation", minimum=1,
+        ))
+        reference_identities.append(_validate_v4_weight_identity(
+            report.get("identity"), bindings,
+            f"v4 engine {rank} reference identity",
+        ))
+    _require(
+        len(set(reference_generations)) == 1
+        and len({canonical_sha256(value) for value in reference_identities}) == 1,
+        "v4 engine reference generations or identities differ",
+    )
+
+    checks = audit.get("post_reference_checks")
+    _require(
+        isinstance(checks, list) and len(checks) == V3_ENGINE_COUNT,
+        "v4 identity audit must contain four post-reference checks",
+    )
+    selected_reference = reference_identities[0]["selected"]
+    for rank, nested in enumerate(checks):
+        reports = _nested_schema_reports(
+            nested, "eggroll-es-selected-exact-reference-check-v4",
+        )
+        _require(len(reports) == 1, f"v4 engine {rank} reference check is ambiguous")
+        report = reports[0]
+        _require(
+            report.get("passed") is True
+            and report.get("unselected_audit")
+            == "deferred_to_population_completion_v4"
+            and _integer(
+                report.get("reference_generation"),
+                f"v4 engine {rank} checked reference generation", minimum=1,
+            ) == reference_generations[0],
+            f"v4 engine {rank} post-reference check changed",
+        )
+        for key, value in bindings.items():
+            _require(report.get(key) == value, f"v4 engine {rank} check binding changed")
+        reference = _validate_v4_partition_identity(
+            report.get("reference"), "selected", bindings,
+            f"v4 engine {rank} checked reference",
+        )
+        current = _validate_v4_partition_identity(
+            report.get("current"), "selected", bindings,
+            f"v4 engine {rank} checked current",
+        )
+        _require(
+            reference == current == selected_reference,
+            f"v4 engine {rank} selected reference check differs",
+        )
+    return {
+        "iteration": _integer(
+            audit.get("iteration"), "v4 identity audit iteration", minimum=0,
+        ),
+        "reference_generation": reference_generations[0],
+        "reference_identity": reference_identities[0],
+    }
+
+
+def _validate_identity_audit(audit, *, v4_bindings=None):
     _require(isinstance(audit, dict), "coefficient identity audit is missing")
     _require(
         audit.get("schema") in {
@@ -522,6 +960,8 @@ def _validate_identity_audit(audit):
         == "train_batch_and_train_only_anchor_only",
         "identity audit training signal changed",
     )
+    if v4_bindings is not None:
+        return _validate_v4_identity_audit(audit, v4_bindings)
     pre_probe = audit.get("pre_probe")
     post_probe = audit.get("post_probe")
     _require(
@@ -563,6 +1003,7 @@ def _validate_identity_audit(audit):
             for side in ("reference", "current"):
                 _require(isinstance(leaf.get(side), dict), "weight check identity is missing")
                 _sha256(leaf[side].get("sha256"), f"weight check {side} SHA-256")
+    return None
 
 
 def _validate_v3_preflight(preflight, label):
@@ -991,12 +1432,502 @@ def _validate_v3_distributed_provenance(
     }
 
 
+def _v4_update_manifest(
+    *, coefficient_sha256, population_size, reference_generation, plan_id,
+    update_sequence, previous_alpha, target_alpha, expected_base_sha256,
+    bindings,
+):
+    return {
+        "schema": "eggroll-es-layer-restricted-update-manifest-v4",
+        "coefficient_sha256": coefficient_sha256,
+        "population_size": population_size,
+        "world_size": V3_ENGINE_COUNT,
+        "reference_generation": reference_generation,
+        "plan_id": plan_id,
+        "update_sequence": update_sequence,
+        "previous_alpha": previous_alpha,
+        "target_alpha": target_alpha,
+        "expected_base_sha256": expected_base_sha256,
+        **bindings,
+    }
+
+
+def _validate_v4_boundary_audit(
+    audit, *, bindings, audit_iteration, reference_generation,
+    reference_identity,
+):
+    _require(isinstance(audit, dict), "v4 population boundary audit is missing")
+    _require(
+        audit.get("schema") == "eggroll-es-population-boundary-audit-v4"
+        and audit.get("phase")
+        == "after_complete_population_exact_restore_before_plan"
+        and audit.get("passed") is True,
+        "v4 population boundary audit policy changed or did not pass",
+    )
+    _require(
+        _integer(audit.get("iteration"), "v4 boundary iteration", minimum=0)
+        == audit_iteration
+        and audit.get("engine_count") == V3_ENGINE_COUNT
+        and type(audit.get("engine_count")) is int
+        and _integer(
+            audit.get("reference_generation"),
+            "v4 boundary reference generation", minimum=1,
+        ) == reference_generation,
+        "v4 population boundary audit identity changed",
+    )
+    _require(
+        audit.get("runtime_mapping") == bindings
+        and audit.get("unselected_origin_sha256")
+        == bindings["unselected_origin_sha256"],
+        "v4 population boundary runtime binding changed",
+    )
+    recorded_reference = _validate_v4_weight_identity(
+        audit.get("reference_identity"), bindings,
+        "v4 boundary reference identity",
+    )
+    recorded_current = _validate_v4_weight_identity(
+        audit.get("current_identity"), bindings,
+        "v4 boundary current identity",
+    )
+    _require(
+        recorded_reference == recorded_current == reference_identity,
+        "v4 population boundary did not exactly restore the reference",
+    )
+    reports = _validate_v3_rank_set(
+        audit.get("worker_reports"), "v4 population boundary worker reports",
+    )
+    for rank, report in reports.items():
+        _require(
+            report.get("schema") == "eggroll-es-post-population-audit-v4"
+            and report.get("passed") is True
+            and report.get("world_size") == V3_ENGINE_COUNT
+            and type(report.get("world_size")) is int
+            and _integer(
+                report.get("reference_generation"),
+                f"v4 population boundary rank {rank} reference generation",
+                minimum=1,
+            ) == reference_generation
+            and report.get("reference_sha256") == reference_identity["sha256"],
+            f"v4 population boundary rank {rank} metadata changed",
+        )
+        for key, value in bindings.items():
+            _require(
+                report.get(key) == value,
+                f"v4 population boundary rank {rank} binding changed",
+            )
+        _require(
+            _validate_v4_weight_identity(
+                report.get("current_identity"), bindings,
+                f"v4 population boundary rank {rank} current identity",
+            ) == reference_identity,
+            f"v4 population boundary rank {rank} did not restore reference",
+        )
+    audit_sha = _sha256(audit.get("audit_sha256"), "v4 boundary audit SHA-256")
+    unhashed = copy.deepcopy(audit)
+    unhashed.pop("audit_sha256", None)
+    _require(
+        audit_sha == canonical_sha256(unhashed),
+        "v4 population boundary audit hash does not match",
+    )
+    return audit_sha
+
+
+def _validate_v4_preflight(preflight, bindings, label):
+    _require(isinstance(preflight, dict), f"{label} is missing")
+    _require(
+        preflight.get("schema") == "eggroll-es-selected-allocation-preflight-v4"
+        and preflight.get("passed") is True
+        and preflight.get("parameter_count") == V4_RUNTIME_PARAMETER_COUNT
+        and type(preflight.get("parameter_count")) is int
+        and preflight.get("element_count") == V4_SELECTED_ELEMENT_COUNT
+        and type(preflight.get("element_count")) is int
+        and preflight.get("accumulator_dtype") == "torch.float32"
+        and preflight.get("scratch_freed_before_collectives") is True
+        and preflight.get("collectives_created") is False
+        and preflight.get("rng_consumed") is False
+        and preflight.get("weights_changed") is False,
+        f"{label} was not selected-only and side-effect free",
+    )
+    _integer(
+        preflight.get("simulated_peak_temporary_bytes"),
+        f"{label} simulated temporary bytes", minimum=1,
+    )
+    _require(
+        isinstance(preflight.get("largest_parameter_name"), str)
+        and bool(preflight["largest_parameter_name"])
+        and isinstance(preflight.get("largest_parameter_shape"), list)
+        and preflight["largest_parameter_shape"]
+        and all(
+            not isinstance(item, bool) and isinstance(item, int) and item > 0
+            for item in preflight["largest_parameter_shape"]
+        )
+        and preflight.get("parameter_dtype") == "torch.bfloat16",
+        f"{label} selected parameter metadata changed",
+    )
+    for key, value in bindings.items():
+        _require(preflight.get(key) == value, f"{label} binding changed")
+
+
+def _validate_v4_distributed_provenance(
+    coefficient_plan, *, coefficient_sha, targets, snapshot, journal_seeds,
+):
+    population_size = snapshot["recipe"]["population_size"]
+    _require(
+        isinstance(journal_seeds, list)
+        and len(journal_seeds) == population_size,
+        "v4 journal population seeds are incomplete",
+    )
+    for seed in journal_seeds:
+        _integer(seed, "v4 population seed", minimum=0)
+    _require(
+        len(set(journal_seeds)) == population_size,
+        "v4 population seeds are not unique",
+    )
+    raw_coefficients = coefficient_plan.get("coefficients")
+    _require(
+        isinstance(raw_coefficients, list)
+        and len(raw_coefficients) == population_size,
+        "v4 canonical coefficient values are incomplete",
+    )
+    coefficients = [
+        _finite_float(value, "v4 canonical coefficient")
+        for value in raw_coefficients
+    ]
+    _require(
+        canonical_sha256({
+            "seeds": journal_seeds,
+            "coefficients": coefficients,
+        }) == coefficient_sha,
+        "v4 canonical coefficient values do not match their SHA-256",
+    )
+
+    layer = _validate_v4_layer_identity(
+        coefficient_plan.get("frozen_layer_plan_v4"),
+        "v4 coefficient frozen layer plan", require_runtime=True,
+    )
+    for key in (
+        "path", "file_sha256", "plan_sha256", "model_config_path",
+        "model_config_sha256",
+    ):
+        _require(
+            layer[key] == snapshot["frozen_layer_plan_v4"][key],
+            f"v4 coefficient layer plan {key} differs from snapshot",
+        )
+    bindings = layer["runtime_mapping"]
+    reward = _validate_v4_dense_reward(
+        coefficient_plan.get("dense_gold_reward_v4"),
+        "v4 coefficient dense reward",
+    )
+    _require(
+        reward == snapshot["dense_gold_reward_v4"],
+        "v4 coefficient dense reward differs from snapshot",
+    )
+    identity_audit = _validate_identity_audit(
+        coefficient_plan.get("identity_audit"), v4_bindings=bindings,
+    )
+
+    metadata = coefficient_plan.get("distributed_update_v4")
+    _require(isinstance(metadata, dict), "v4 distributed seed plan is missing")
+    _require(
+        metadata.get("schema") == "eggroll-es-distributed-seed-plan-v4",
+        "v4 distributed seed plan schema changed",
+    )
+    _require_exact_fields(
+        metadata,
+        {
+            "engine_count": V3_ENGINE_COUNT,
+            "tp_per_engine": 1,
+            "seed_sharding": "strided_by_inter_engine_rank",
+            "collective_dtype": "torch.float32",
+            "reference_recapture_policy": "once_before_next_population_only",
+            "layer_plan_sha256": bindings["layer_plan_sha256"],
+            "dense_reward_sha256": bindings["dense_reward_sha256"],
+            "runtime_mapping": bindings,
+            "runtime_mapping_sha256": canonical_sha256(bindings),
+        },
+        "v4 distributed seed plan",
+    )
+    plan_id = _sha256(metadata.get("plan_id"), "v4 plan ID")
+    reference_generation = _integer(
+        metadata.get("reference_generation"),
+        "v4 reference generation", minimum=1,
+    )
+    reference_identity = _validate_v4_weight_identity(
+        metadata.get("reference_identity"), bindings,
+        "v4 reference identity",
+    )
+    _require(
+        reference_generation == identity_audit["reference_generation"]
+        and reference_identity == identity_audit["reference_identity"],
+        "v4 distributed reference differs from identity audit",
+    )
+    boundary_sha = _validate_v4_boundary_audit(
+        coefficient_plan.get("population_boundary_audit_v4"),
+        bindings=bindings,
+        audit_iteration=identity_audit["iteration"],
+        reference_generation=reference_generation,
+        reference_identity=reference_identity,
+    )
+    _require(
+        metadata.get("population_boundary_audit_sha256") == boundary_sha,
+        "v4 distributed plan boundary-audit identity changed",
+    )
+    expected_plan_id = canonical_sha256({
+        "schema": "eggroll-es-distributed-plan-id-v4",
+        "iteration": identity_audit["iteration"],
+        "coefficient_sha256": coefficient_sha,
+        "reference_generation": reference_generation,
+        "reference_sha256": reference_identity["sha256"],
+        "layer_plan_sha256": bindings["layer_plan_sha256"],
+        "reward_config_sha256": bindings["dense_reward_sha256"],
+        "runtime_mapping_sha256": canonical_sha256(bindings),
+        "population_boundary_audit_sha256": boundary_sha,
+    })
+    _require(plan_id == expected_plan_id, "v4 plan ID does not match its inputs")
+
+    applications = coefficient_plan.get("applications")
+    expected_count = sum(target > 0.0 for target in targets)
+    _require(
+        isinstance(applications, list) and len(applications) == expected_count,
+        "v4 application count does not match nonzero targets",
+    )
+    previous_alpha = 0.0
+    expected_base_sha = reference_identity["sha256"]
+    for sequence, (target_alpha, application) in enumerate(
+        zip(targets[1:], applications), 1,
+    ):
+        label = f"v4 application {sequence}"
+        _require(isinstance(application, dict), f"{label} is invalid")
+        _require(
+            application.get("schema")
+            == "eggroll-es-distributed-alpha-application-v4"
+            and application.get("update_sequence") == sequence
+            and type(application.get("update_sequence")) is int
+            and _same_float(application.get("target_alpha"), target_alpha)
+            and _same_float(
+                application.get("alpha_increment"),
+                target_alpha - previous_alpha,
+            )
+            and application.get("coefficient_sha256") == coefficient_sha
+            and application.get("layer_plan_sha256")
+            == bindings["layer_plan_sha256"]
+            and application.get("dense_reward_sha256")
+            == bindings["dense_reward_sha256"]
+            and application.get("runtime_mapping") == bindings,
+            f"{label} plan, reward, or alpha binding changed",
+        )
+        expected_manifest = _v4_update_manifest(
+            coefficient_sha256=coefficient_sha,
+            population_size=population_size,
+            reference_generation=reference_generation,
+            plan_id=plan_id,
+            update_sequence=sequence,
+            previous_alpha=previous_alpha,
+            target_alpha=target_alpha,
+            expected_base_sha256=expected_base_sha,
+            bindings=bindings,
+        )
+        _require(
+            application.get("manifest") == expected_manifest,
+            f"{label} manifest payload changed",
+        )
+        manifest_sha = _sha256(
+            application.get("manifest_sha256"), f"{label} manifest SHA-256",
+        )
+        _require(
+            manifest_sha == canonical_sha256(expected_manifest)
+            and manifest_sha == canonical_sha256(application["manifest"]),
+            f"{label} manifest does not match the committed transition",
+        )
+
+        prepared = _validate_v3_rank_set(
+            application.get("prepared_shards"), f"{label} prepared reports",
+        )
+        for rank, report in prepared.items():
+            _require(
+                report.get("schema")
+                == "eggroll-es-layer-restricted-update-prepared-v4"
+                and report.get("prepared") is True
+                and report.get("manifest_sha256") == manifest_sha
+                and report.get("world_size") == V3_ENGINE_COUNT
+                and type(report.get("world_size")) is int
+                and _integer(
+                    report.get("reference_generation"),
+                    f"{label} rank {rank} prepared reference generation",
+                    minimum=1,
+                ) == reference_generation
+                and _integer(
+                    report.get("update_sequence"),
+                    f"{label} rank {rank} prepared sequence", minimum=1,
+                ) == sequence
+                and report.get("base_sha256") == expected_base_sha,
+                f"{label} rank {rank} prepared metadata changed",
+            )
+            for key, value in bindings.items():
+                _require(report.get(key) == value, f"{label} rank {rank} prepared binding changed")
+            expected_indices = list(range(rank, population_size, V3_ENGINE_COUNT))
+            _require(
+                report.get("shard_indices") == expected_indices
+                and report.get("shard_seeds")
+                == [journal_seeds[index] for index in expected_indices]
+                and report.get("shard_pair_sha256") == canonical_sha256({
+                    "seeds": [journal_seeds[index] for index in expected_indices],
+                    "coefficients": [
+                        coefficients[index] for index in expected_indices
+                    ],
+                }),
+                f"{label} rank {rank} seed/coefficient shard changed",
+            )
+            _validate_v4_preflight(
+                report.get("allocation_preflight"), bindings,
+                f"{label} rank {rank} allocation preflight",
+            )
+
+        final_identity = _validate_v4_weight_identity(
+            application.get("final_identity"), bindings,
+            f"{label} final identity",
+        )
+        _require(
+            final_identity["unselected"] == reference_identity["unselected"],
+            f"{label} unselected partition metadata changed",
+        )
+        executed = _validate_v3_rank_set(
+            application.get("executed_collectives"),
+            f"{label} executed reports",
+        )
+        for rank, report in executed.items():
+            _require(
+                report.get("schema")
+                == "eggroll-es-layer-restricted-update-executed-v4"
+                and report.get("executed") is True
+                and report.get("manifest_sha256") == manifest_sha
+                and report.get("world_size") == V3_ENGINE_COUNT
+                and type(report.get("world_size")) is int
+                and report.get("collective_dtype") == "torch.float32"
+                and report.get("parameter_count") == V4_RUNTIME_PARAMETER_COUNT
+                and type(report.get("parameter_count")) is int
+                and report.get("reduced_element_count")
+                == V4_SELECTED_ELEMENT_COUNT
+                and type(report.get("reduced_element_count")) is int,
+                f"{label} rank {rank} collective metadata changed",
+            )
+            for key, value in bindings.items():
+                _require(report.get(key) == value, f"{label} rank {rank} executed binding changed")
+            _require(
+                _validate_v4_weight_identity(
+                    report.get("final_identity"), bindings,
+                    f"{label} rank {rank} final identity",
+                ) == final_identity,
+                f"{label} rank {rank} final identity differs",
+            )
+
+        commits = _validate_v3_rank_set(
+            application.get("commits"), f"{label} commit reports",
+        )
+        for rank, report in commits.items():
+            _require(
+                report.get("schema")
+                == "eggroll-es-layer-restricted-update-committed-v4"
+                and report.get("committed") is True
+                and report.get("manifest_sha256") == manifest_sha
+                and report.get("final_sha256") == final_identity["sha256"]
+                and _integer(
+                    report.get("reference_generation"),
+                    f"{label} rank {rank} commit reference generation",
+                    minimum=1,
+                ) == reference_generation
+                and report.get("reference_fresh_for_population") is False
+                and _integer(
+                    report.get("update_sequence"),
+                    f"{label} rank {rank} commit sequence", minimum=1,
+                ) == sequence
+                and _same_float(report.get("accepted_alpha"), target_alpha),
+                f"{label} rank {rank} commit metadata changed",
+            )
+            for key, value in bindings.items():
+                _require(report.get(key) == value, f"{label} rank {rank} commit binding changed")
+
+        post_states = _validate_v3_rank_set(
+            application.get("post_commit_states"),
+            f"{label} post-commit states", communicator_rank=True,
+        )
+        for rank, state in post_states.items():
+            communicator = state.get("communicator")
+            _require(
+                state.get("schema")
+                == "eggroll-es-layer-restricted-worker-state-v4"
+                and state.get("pending") is False
+                and isinstance(communicator, dict)
+                and communicator.get("rank") == rank
+                and communicator.get("world_size") == V3_ENGINE_COUNT
+                and type(communicator.get("world_size")) is int
+                and communicator.get("tp_world_size") == 1
+                and type(communicator.get("tp_world_size")) is int
+                and communicator.get("available") is True
+                and communicator.get("disabled") is False
+                and _integer(
+                    state.get("reference_generation"),
+                    f"{label} rank {rank} state reference generation",
+                    minimum=1,
+                ) == reference_generation
+                and state.get("reference_fresh_for_population") is False
+                and state.get("update_session") == plan_id
+                and _integer(
+                    state.get("update_sequence"),
+                    f"{label} rank {rank} state sequence", minimum=1,
+                ) == sequence
+                and _same_float(state.get("accepted_alpha"), target_alpha),
+                f"{label} rank {rank} post-commit state changed",
+            )
+            for key, value in bindings.items():
+                _require(state.get(key) == value, f"{label} rank {rank} state binding changed")
+            _require(
+                _validate_v4_weight_identity(
+                    state.get("reference_identity"), bindings,
+                    f"{label} rank {rank} retained reference",
+                ) == reference_identity,
+                f"{label} rank {rank} retained reference changed",
+            )
+            _require(
+                _validate_v4_weight_identity(
+                    state.get("current_identity"), bindings,
+                    f"{label} rank {rank} current identity",
+                ) == final_identity,
+                f"{label} rank {rank} current identity differs",
+            )
+
+        _require(
+            application.get("reference_recaptured") is False
+            and application.get("reference_fresh_for_population") is False
+            and application.get("bf16_alpha_semantics")
+            == "path_dependent_monotonic_increment"
+            and application.get("direct_alpha_confirmation_required") is True,
+            f"{label} reference or direct-confirmation policy changed",
+        )
+        previous_alpha = target_alpha
+        expected_base_sha = final_identity["sha256"]
+
+    return {
+        "plan_id": plan_id,
+        "reference_generation": reference_generation,
+        "application_count": len(applications),
+        "final_identity_sha256": expected_base_sha,
+        "layer_plan_sha256": bindings["layer_plan_sha256"],
+        "runtime_mapping_sha256": canonical_sha256(bindings),
+        "dense_reward_sha256": bindings["dense_reward_sha256"],
+        "population_boundary_audit_sha256": boundary_sha,
+    }
+
+
 def validate_journal(journal):
     _require(isinstance(journal, dict), "journal root must be an object")
     _assert_no_heldout(journal)
     _verify_content_hash(journal)
     journal_schema = journal.get("schema")
-    _require(journal_schema in ALLOWED_SCHEMAS, "journal is not corrected v2/v3")
+    _require(
+        journal_schema in ALLOWED_SCHEMAS,
+        "journal is not corrected v2/v3/v4",
+    )
     _require(journal.get("status") == "complete", "journal is incomplete or failed")
     _require(journal.get("in_progress") is None, "journal still has in-progress work")
     policy = journal.get("policy")
@@ -1016,16 +1947,25 @@ def validate_journal(journal):
     )
 
     snapshot = _validate_snapshot(journal.get("snapshot"))
-    expected_snapshot_schema = (
-        "eggroll-es-anchor-line-search-snapshot-v3"
-        if journal_schema == "eggroll-es-anchor-alpha-line-search-v3"
-        else "eggroll-es-anchor-line-search-snapshot-v2"
-    )
+    expected_snapshot_schema = {
+        "eggroll-es-anchor-alpha-line-search-v2": (
+            "eggroll-es-anchor-line-search-snapshot-v2"
+        ),
+        "eggroll-es-anchor-alpha-line-search-v3": (
+            "eggroll-es-anchor-line-search-snapshot-v3"
+        ),
+        "eggroll-es-anchor-alpha-line-search-v4": (
+            "eggroll-es-anchor-line-search-snapshot-v4"
+        ),
+    }[journal_schema]
     _require(
         snapshot["schema"] == expected_snapshot_schema,
         "journal and snapshot corrected-version schemas differ",
     )
-    if journal_schema == "eggroll-es-anchor-alpha-line-search-v3":
+    if journal_schema in {
+        "eggroll-es-anchor-alpha-line-search-v3",
+        "eggroll-es-anchor-alpha-line-search-v4",
+    }:
         _require_exact_fields(
             policy,
             {
@@ -1033,6 +1973,15 @@ def validate_journal(journal):
                 "direct_alpha_confirmation_required": True,
             },
             "v3 journal policy",
+        )
+    if journal_schema == "eggroll-es-anchor-alpha-line-search-v4":
+        _require_exact_fields(
+            policy,
+            {
+                "frozen_layer_plan_required": True,
+                "dense_gold_reward_required": True,
+            },
+            "v4 journal policy",
         )
     targets = journal.get("targets")
     _require(isinstance(targets, list), "journal targets are missing")
@@ -1069,10 +2018,20 @@ def validate_journal(journal):
         coefficient_plan.get("seed_count") == snapshot["recipe"]["population_size"],
         "coefficient seed count differs from population size",
     )
-    _validate_identity_audit(coefficient_plan.get("identity_audit"))
+    if journal_schema != "eggroll-es-anchor-alpha-line-search-v4":
+        _validate_identity_audit(coefficient_plan.get("identity_audit"))
     distributed_v3 = None
+    distributed_v4 = None
     if journal_schema == "eggroll-es-anchor-alpha-line-search-v3":
         distributed_v3 = _validate_v3_distributed_provenance(
+            coefficient_plan,
+            coefficient_sha=coefficient_sha,
+            targets=targets,
+            snapshot=snapshot,
+            journal_seeds=journal.get("seeds"),
+        )
+    elif journal_schema == "eggroll-es-anchor-alpha-line-search-v4":
+        distributed_v4 = _validate_v4_distributed_provenance(
             coefficient_plan,
             coefficient_sha=coefficient_sha,
             targets=targets,
@@ -1173,6 +2132,8 @@ def validate_journal(journal):
     }
     if distributed_v3 is not None:
         validated["distributed_update_v3"] = distributed_v3
+    if distributed_v4 is not None:
+        validated["distributed_update_v4"] = distributed_v4
     return validated
 
 
