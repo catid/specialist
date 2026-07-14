@@ -63,8 +63,9 @@ def test_v11d_failure_telemetry_is_atomic_and_reraises(
     tmp_path, monkeypatch,
 ):
     attempt = tmp_path / "attempt.json"
-    frozen_output = driver_v11c.driver_v11b.driver_v11.FROZEN_OUTPUT_DIRECTORY_V11
-    run_dir = frozen_output / driver_v11d.EXPERIMENT_NAME_V11D
+    driver_v11 = driver_v11c.driver_v11b.driver_v11
+    monkeypatch.setattr(driver_v11, "FROZEN_OUTPUT_DIRECTORY_V11", tmp_path)
+    run_dir = tmp_path / driver_v11d.EXPERIMENT_NAME_V11D
     assert not run_dir.exists()
 
     def fail(_argv):
