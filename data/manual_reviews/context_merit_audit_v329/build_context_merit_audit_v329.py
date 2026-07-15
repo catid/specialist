@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+"""Drop five semantic duplicates covered by richer owner-resource or definition rows."""
+from __future__ import annotations
+import hashlib,json,sys,tempfile
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3];DATA=ROOT/"data";V328=DATA/"manual_reviews/context_merit_audit_v328";V290=DATA/"manual_reviews/context_merit_audit_v290";sys.path[:0]=[str(ROOT),str(V328),str(V290)]
+import build_context_merit_audit_v328 as previous
+import build_context_merit_audit_v290 as core
+OUT_DIR=Path(__file__).resolve().parent;AUDIT=OUT_DIR/"context_merit_audit_v329.jsonl";CURATION=OUT_DIR/"pending_curation_context_merit_v329.jsonl";REPORT=OUT_DIR/"report_context_merit_v329.json";BASELINE_ROWS=536;BASELINE_SHA256="4fb60c9e28afef9aef7719e3708b36a1bbbce99a12cd7d39f9c65bdf2f2cf89a";EXPECTED_OUTPUT_SHA256="a4a99444d03a5cf8f76396db90e2c640224a1941fdb99740cf96c093ce2ee1a9"
+EXPECTED_CAPACITY_BEFORE={"conflict_units":260,"equipment_material":23,"resources_general":84,"safety_consent":81,"technique":72};EXPECTED_CAPACITY_AFTER={"conflict_units":260,"equipment_material":23,"resources_general":84,"safety_consent":81,"technique":72}
+RESOURCE_MANIFEST=previous.RESOURCE_MANIFEST;file_sha256=previous.file_sha256;text_sha256=previous.text_sha256;read_jsonl=previous.read_jsonl;write_jsonl=previous.write_jsonl;conservative_capacity=previous.conservative_capacity;portable=previous.portable;PRIOR=(V328/"context_merit_audit_v328.jsonl",V328/"pending_curation_context_merit_v328.jsonl",V328/"report_context_merit_v328.json")
+SPECS=(
+ {"fact_id":"fact-166d7a0087be4877d24b","active_index":10,"expected_question":"According to Rope365, how many symmetrically tied half hitches make up a cow hitch?","expected_answer":"two","retained_fact":"fact-c3bc9054c6df1f6e96ea","reason_code":"drop_cow_hitch_count_duplicate","reason":"The retained definition already states that a cow hitch consists of two consecutive half hitches in opposite directions."},
+ {"fact_id":"fact-a3e364cf668c3d88118f","active_index":44,"expected_question":"How do the X-POLE A-FRAME's height and required floor area change from its lowest to fully extended setup?","expected_answer":"At minimum it is 2,255 millimetres (89 inches or 7.5 feet) high and uses 3.6 square metres (38 square feet); fully extended it is 3,480 millimetres (137 inches or 11.42 feet) high and uses 8.9 square metres (95 square feet).","retained_fact":"fact-b18e8884104d75e6bf42","reason_code":"drop_xpole_height_footprint_duplicate","reason":"The retained owner-resource row includes the requested product URL and the same minimum-to-maximum height and floor-area ranges."},
+ {"fact_id":"fact-55c90fdc82293a161e2b","active_index":201,"expected_question":"What dimensional variability and safety limitation does Shibari Supply disclose for its nominal four-inch suspension bamboo?","expected_answer":"It says natural bamboo may measure about 4 to 4.4 inches in diameter, vary by a few inches from the selected length, and taper end-to-end; the vendor makes no guarantee of safety, suitability, or longevity for any purpose.","retained_fact":"fact-64d5128c1a734c3d20a1","reason_code":"drop_bamboo_variability_caveat_duplicate","reason":"The retained owner-resource row preserves the supplier URL, nominal lengths and diameter, natural variability and taper, and the vendor's safety/suitability/longevity disclaimer."},
+ {"fact_id":"fact-75f766c3b61d17469189","active_index":274,"expected_question":"What is the owner-supplied synthetic-upline rope resource, and what should someone confirm about custom orders?","expected_answer":"RW Rope: https://www.rwrope.com/. The supplied directory says custom orders are accepted, but current availability is volatile and should be confirmed with the vendor.","retained_fact":"fact-08545681242a0cab6bc8","reason_code":"drop_rw_rope_custom_order_duplicate","reason":"The retained supplier-comparison row includes RW Rope's requested URL, synthetic-upline role, custom-order note, and current-availability verification caveat."},
+ {"fact_id":"fact-1dc1e8ebd1445d698171","active_index":434,"expected_question":"Which House of Bound tutorial covers rope conditioning, and how does the page say tutorials are purchased and delivered?","expected_answer":"The listed title is Lief's Rope Conditioning Tutorial; the page directs buyers to the House of Bound Etsy shop and says purchased videos are shared through Vimeo for continued access.","retained_fact":"fact-5da2e7fcfd2ad0aac48e","reason_code":"drop_house_of_bound_conditioning_access_duplicate","reason":"The retained owner-resource row includes the same conditioning topic, Etsy purchase direction, Vimeo access method, catalog URL, and additional tutorial categories."},
+)
+def build_baseline(out,report):
+ previous.build_projection(out,report)
+ if (len(read_jsonl(out)),file_sha256(out))!=(BASELINE_ROWS,BASELINE_SHA256):raise ValueError("v328 drift")
+def build_projection(out,report):
+ d=out.parent/f".{out.name}.v329-input";d.mkdir(parents=True,exist_ok=True);base=d/"v328.jsonl";build_baseline(base,d/"v328.report.json");core.build_projection_with_inputs(out,report,(CURATION,),(base,))
+def observe(before):
+ with tempfile.TemporaryDirectory(prefix=".v329-observe-",dir=OUT_DIR) as t:
+  d=Path(t);out=d/"out.jsonl";rep=d/"out.report.json";ds=[];rs=[]
+  for _ in (1,2):build_projection(out,rep);ds.append(out.read_bytes());rs.append(rep.read_bytes())
+  rows=read_jsonl(out);return{"rows":len(rows),"sha":hashlib.sha256(ds[0]).hexdigest(),"eval":json.loads(rs[0])["eval_fact_count"],"de":ds[0]==ds[1],"re":rs[0]==rs[1],"before":conservative_capacity(before),"after":conservative_capacity(rows)}
+def main():
+ OUT_DIR.mkdir(parents=True,exist_ok=True)
+ with tempfile.TemporaryDirectory(prefix=".v329-base-",dir=OUT_DIR) as t:d=Path(t);base=d/"v328.jsonl";build_baseline(base,d/"v328.report.json");before=read_jsonl(base)
+ by_fact={r["fact_id"]:(i,r) for i,r in enumerate(before,1)};audits=[];curations=[]
+ for audit_index,s in enumerate(SPECS,1):
+  index,active=by_fact[s["fact_id"]]
+  if index!=s["active_index"] or (active["question"],active["answer"])!=(s["expected_question"],s["expected_answer"]):raise ValueError(f"candidate drift {s['fact_id']}")
+  if s["retained_fact"] not in by_fact:raise ValueError("retained fact drift")
+  evidence=active.get("evidence")
+  if not evidence:raise ValueError("missing evidence")
+  curations.append({"action":"drop","document_sha256":active["document_sha256"],"evidence":evidence,"evidence_url":active["url"],"expected_answer":active["answer"],"expected_question":active["question"],"fact_id":active["fact_id"],"reason":s["reason"],"reason_code":s["reason_code"],"reviewed_at":"2026-07-15","reviewer":"codex-context-merit-audit-v329","source_lineage":active["source_lineage"]})
+  audits.append({"active_answer":active["answer"],"active_index":index,"active_question":active["question"],"audit_index":audit_index,"decision":"drop","document_sha256":active["document_sha256"],"fact_id":active["fact_id"],"projection_lineage":{"active_index":index,"baseline_rows":BASELINE_ROWS,"baseline_sha256":BASELINE_SHA256},"reason":s["reason"],"reason_code":s["reason_code"],"retained_fact_id":s["retained_fact"],"review_pass":"owner_resource_semantic_duplicate_train_only_cleanup","reviewed_at":"2026-07-15","reviewer":"codex-context-merit-audit-v329","schema":"context-merit-audit-v329","source":active["source"],"source_support":"manual_dataset_context_review","support_evidence":evidence,"support_evidence_sha256":text_sha256(evidence),"url":active["url"]})
+ write_jsonl(AUDIT,audits);write_jsonl(CURATION,curations);o=observe(before)
+ if not o["de"] or not o["re"] or (o["rows"],o["eval"])!=(531,612) or o["before"]!=EXPECTED_CAPACITY_BEFORE:raise ValueError(f"projection drift {o}")
+ if EXPECTED_CAPACITY_AFTER!="PENDING" and o["after"]!=EXPECTED_CAPACITY_AFTER:raise ValueError(f"capacity drift {o}")
+ if EXPECTED_OUTPUT_SHA256!="PENDING" and o["sha"]!=EXPECTED_OUTPUT_SHA256:raise ValueError("output drift")
+ REPORT.write_text(json.dumps({"audit":{"by_decision":{"drop":5,"edit":0,"keep":0},"path":portable(AUDIT),"rows":5,"sha256":file_sha256(AUDIT)},"conservative_capacity":{"after":o["after"],"before":o["before"],"delta":{k:o["after"][k]-o["before"][k] for k in o["before"]},"grouping":"shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"},"prior_checkpoint":{"candidate":{"rows":BASELINE_ROWS,"sha256":BASELINE_SHA256},"artifacts":[{"path":portable(p),"sha256":file_sha256(p)} for p in PRIOR]},"isolated_build_projection":{"automated_projection_runs":2,"new_additions_applied":0,"output_rows":o["rows"],"output_sha256":o["sha"],"repeat_dataset_byte_identical":o["de"],"repeat_projection_report_byte_identical":o["re"],"sealed_eval_fact_count_reported_by_tooling":o["eval"]},"new_pending_curation":{"decisions":5,"path":portable(CURATION),"sha256":file_sha256(CURATION)},"schema":"context-merit-audit-report-v329","sealed_evaluation_policy":{"automated_collision_tool_reads_sealed_content":True,"automated_read_scope":"fact-ID collision exclusion and aggregate eval_fact_count reporting only","manual_worker_opened_eval_or_heldout_content":False,"manual_worker_received_eval_or_heldout_content":False}},ensure_ascii=False,indent=2,sort_keys=True)+"\n")
+if __name__=="__main__":main()
