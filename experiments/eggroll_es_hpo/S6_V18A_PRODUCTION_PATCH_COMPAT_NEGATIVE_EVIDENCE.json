@@ -1,0 +1,347 @@
+{
+  "arms": {
+    "patch_full": {
+      "bootstrap_pass_count": 0,
+      "endpoints": {
+        "aggregate_to_optimization_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.18517666359390708,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.1127249367113673
+        },
+        "aggregate_to_optimization_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.2552977316929802,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.19598054508630708
+        },
+        "aggregate_to_optimization_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.125,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.03125
+        },
+        "aggregate_to_optimization_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.1875,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0
+        },
+        "optimization_pairwise_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.23969157831757518,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.28050265648178807
+        },
+        "optimization_pairwise_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.26080675118014096,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.2375885511462241
+        },
+        "optimization_pairwise_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.1875,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.09375
+        },
+        "optimization_pairwise_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21875,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.03125
+        },
+        "train_screen_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.38136826453819284,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0360289525519325
+        },
+        "train_screen_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.5097434267546832,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.018475260771724344
+        },
+        "train_screen_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.234375,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.078125
+        },
+        "train_screen_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.28125,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.09375
+        }
+      },
+      "observed_pass_count": 7,
+      "preregistered_gate_passed": false
+    },
+    "patch_one_third": {
+      "bootstrap_pass_count": 0,
+      "endpoints": {
+        "aggregate_to_optimization_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.28505269572919717,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.025682145518512334
+        },
+        "aggregate_to_optimization_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.3836790944904965,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.14727790392876333
+        },
+        "aggregate_to_optimization_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.15625,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0
+        },
+        "aggregate_to_optimization_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.1875,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.03125
+        },
+        "optimization_pairwise_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.33384565281348655,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.07979534432516638
+        },
+        "optimization_pairwise_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.37043436416141,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.10971526029028449
+        },
+        "optimization_pairwise_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21875,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.03125
+        },
+        "optimization_pairwise_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.25,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.03125
+        },
+        "train_screen_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.5299255666542584,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.20205335361626814
+        },
+        "train_screen_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.6515794050211645,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.21799841282631166
+        },
+        "train_screen_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.28125,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.125
+        },
+        "train_screen_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.3125,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.15625
+        }
+      },
+      "observed_pass_count": 5,
+      "preregistered_gate_passed": false
+    },
+    "patch_two_thirds": {
+      "bootstrap_pass_count": 0,
+      "endpoints": {
+        "aggregate_to_optimization_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.2101554948975718,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.09132295298583581
+        },
+        "aggregate_to_optimization_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.2750287624259534,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.2858402890369596
+        },
+        "aggregate_to_optimization_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.125,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0625
+        },
+        "aggregate_to_optimization_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.1875,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.03125
+        },
+        "optimization_pairwise_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.24470369086795046,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.3310964672346457
+        },
+        "optimization_pairwise_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.2788400127635778,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.3009058920452862
+        },
+        "optimization_pairwise_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.1875,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.09375
+        },
+        "optimization_pairwise_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21875,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.09375
+        },
+        "train_screen_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.4672204981625429,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.2103067803496324
+        },
+        "train_screen_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.5530001588997031,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.2192047620474791
+        },
+        "train_screen_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.28125,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.046875
+        },
+        "train_screen_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.3125,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.03125
+        }
+      },
+      "observed_pass_count": 8,
+      "preregistered_gate_passed": false
+    }
+  },
+  "backend": {
+    "moe_backend": "default_triton",
+    "override_environment": {
+      "VLLM_MOE_USE_DEEP_GEMM": null,
+      "VLLM_ROCM_USE_AITER": null,
+      "VLLM_ROCM_USE_AITER_MOE": null,
+      "VLLM_TUNED_CONFIG_FOLDER": null,
+      "VLLM_USE_DEEP_GEMM": null
+    },
+    "v16_task_ab_decision_retained": "default_triton"
+  },
+  "bootstrap": {
+    "arm_count": 3,
+    "endpoint_count_per_arm": 12,
+    "familywise_alpha": 0.05,
+    "one_sided_quantile": 0.001388888888888889,
+    "paired_and_stratified": true,
+    "repetitions": 50000,
+    "replicates_persisted": false,
+    "seed": 20260724,
+    "total_endpoint_count": 36
+  },
+  "contains_response_vectors_or_row_content": false,
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "9fc09b8125e7c945d75b5f2c60d06961a320dc8802e033838b6efa57d29f0d42",
+  "decision": {
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "model_update_authorized": false,
+    "retain_dataset": "production",
+    "retain_recipe": "v13_middle_late_layers_20_23",
+    "separate_train_only_recipe_preregistration_authorized": false
+  },
+  "gate_summary": {
+    "all_rules_conjunctive": true,
+    "any_patch_passed": false,
+    "bootstrap_pass_counts": {
+      "patch_full": 0,
+      "patch_one_third": 0,
+      "patch_two_thirds": 0
+    },
+    "observed_pass_counts": {
+      "patch_full": 7,
+      "patch_one_third": 5,
+      "patch_two_thirds": 8
+    },
+    "required_per_arm": 12
+  },
+  "hardware": {
+    "all_engines_every_signed_wave": true,
+    "engine_count": 4,
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tp_per_engine": 1
+  },
+  "input_artifacts": {
+    "compact_report": {
+      "content_sha256": "4dfc8a653bbcacb2d0760439b0e2efc91db935d4198eb19898f5c0dc2b1a326a",
+      "file_sha256": "efcc2e2c2317a072937d4bc34c27ed2b22d6e33cc0ae0e7c5873aba457b4f14e",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot_v298_production_patch_v18a_nested_thirds_5x52_plus3_alpha_zero_middle_late_basis20260714/runs/1784085367124161970-80586-5e68ee14f55be587/production_patch_compat_v18a.json"
+    },
+    "gate_content_sha256": "b0ddce7920c8dce23f7bda50ccdde8f432319eacf8423460045e7c01beaf38d4",
+    "launch_attempt": {
+      "content_sha256": "1b6701416f5e8fe8e14fdb2ee1134d67fcbd847d3d402d463535d76aabc5a817",
+      "file_sha256": "44340402296a814e1890520bc8f10e2df2364df023a30a9f3b9e68c15282b02d",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot_v298_production_patch_v18a_nested_thirds_5x52_plus3_alpha_zero_middle_late_basis20260714/attempts/1784085367124161970-80586-5e68ee14f55be587.json"
+    },
+    "summary_content_sha256": "61daae6f2072e8f73c3ac37c88a23f62c333e819e4ae125fb8e62025b739388d"
+  },
+  "interpretation": "valid_train_only_run_but_all_three_patch_sizes_failed_zero_margin_familywise_compatibility_gate",
+  "runtime_integrity": {
+    "all_four_gpus_observed_every_signed_wave": true,
+    "checks": {
+      "all_four_tp1_engines_every_signed_wave": true,
+      "all_integrity_audits_passed": true,
+      "exact_reference_restored_once_per_signed_wave": true,
+      "fixed_side_batch_identity_every_direction_sign_and_arm": true,
+      "gpu_ids_zero_through_three_declared": true,
+      "latin_arm_order_complete": true,
+      "population_boundary_audit_passed": true,
+      "pre_post_base_probes_equal_all_four_arms": true,
+      "same_resident_perturbation_all_four_arms": true,
+      "tokenizer_and_prompt_logprob_contract_passed": true
+    },
+    "exact_restoration_and_boundary_audit_passed": true,
+    "fixed_request_identity_sha256": "95c97b72cfc9a79b9ab5c95640e5d152620a568b2afbb17e3a51a24e36ac0673",
+    "per_unit_scores_persisted": false,
+    "population_boundary_audit_sha256": "88796b4dff895a2cf22d6f4615b85ac5501449b7b86402f40651b07ae2403867",
+    "pre_post_probe_identity_sha256": "fb5c054522cff26582b3147818aedf9762633c0c40744f57bd4891feebe68aa4",
+    "requests_per_engine_per_signed_wave": 1070,
+    "restore_checks_sha256": "8683a11c9e82354c36fba04856f11b5103862f3218705e8f55bf9404451464f6",
+    "signed_wave_count": 16
+  },
+  "schema": "eggroll-es-production-patch-compat-negative-evidence-v18a",
+  "source_provenance": {
+    "all_files_match_launch_commit": true,
+    "content_sha256": "23dc2170341c94167bad12511b3cf4ec5ccbcbb05d90ac877fc9ee59de0aa68f",
+    "file_count": 33,
+    "git_head": "c82bfdbadec28ecb1c31b73dda90d45da209a8e3",
+    "implementation_bundle_sha256": "3e16f53f979c7b1090ccc885a6cbf07f111b9f5a21d64b798cbad8a7ebc3874b"
+  },
+  "status": "valid_completed_run_preregistered_gate_failed"
+}
