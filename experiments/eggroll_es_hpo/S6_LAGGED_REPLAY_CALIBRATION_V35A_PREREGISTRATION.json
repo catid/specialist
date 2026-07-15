@@ -28,7 +28,7 @@
     "selection_after_audit": "for_each_panel_and_stratum_take_the_lowest_calibration_ranked_eligible_rows_until_the_frozen_required_count"
   },
   "bound_inputs": {
-    "file_bundle_sha256": "b2c38895aea0e093ab9bb16909707c929e01d9b94363f99219db7b4bab3c3686",
+    "file_bundle_sha256": "0a62db982ee422df6b09164a002be5087e97d70e7712696a34f4d8c4611e222e",
     "files": {
       "layer_plan": {
         "file_sha256": "4dca69212f2eee1c5882a7f3de944e3dadd8de94b42e58e7d7495547e8b1c747",
@@ -47,7 +47,7 @@
         "path": "/home/catid/specialist/experiments/eggroll_es_hpo/train_panel_sampling_v13/document_balanced_train_panels_v13.json"
       },
       "protocol_v35a": {
-        "file_sha256": "c5fb01bf5b858d8ad418c4b8cc339d6df53b2ea31e7241286f2d2f9b5661ebf3",
+        "file_sha256": "e1cda725207239f55c2b59df15777de6f95519e823ab6110e340ab4d2a008bb2",
         "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_LAGGED_REPLAY_CALIBRATION_V35A_PROTOCOL.md"
       },
       "sampler_v13": {
@@ -73,7 +73,7 @@
     "v14a_negative_content_sha256": "ee4ded3d974dfd0becaedb1007f96888e133db51e62130d2844ab9c25e2ccf2b",
     "v14b_negative_content_sha256": "440504e6c81673ea8de89f336d587a0c57408ea21d3a925ed73b73ecfbeaa7b8"
   },
-  "content_sha256_before_self_field": "c6c6968680b6c4c1ffc9df821522f034afc0ea21cc95ef2fb80de28433b1c07f",
+  "content_sha256_before_self_field": "3a5240d6863a4d65f43ffdcbfe2c7b68e11fbb1f8cfc51b0e4c16b261601b094",
   "difficulty_calibration": {
     "final_hard_tier_cap": 0.25,
     "final_hard_tier_count_rule": "floor(0.25*panel_stratum_rows);_never_exceeds_the_cap",
@@ -83,6 +83,7 @@
     "provisional_candidates_per_panel": 29,
     "provisional_candidates_total": 87,
     "ranking_unit": "within_each_optimization_panel_and_stratum",
+    "ranks_derive_only_from_named_calibration_estimand_phase_B": true,
     "required_final_hard_rows_per_panel": 13,
     "required_final_hard_rows_total": 39,
     "score_direction": "lower_mean_gold_answer_token_logprob_is_harder",
@@ -150,7 +151,10 @@
   "hardware_and_generation": {
     "all_four_engines_generate_the_complete_optimization_union": true,
     "all_four_gpu_activity_and_cleanup_certificates_required": true,
+    "calibration_estimand_phase": "B",
+    "calibration_estimand_requests": 672,
     "engine_count": 4,
+    "exact_dense_commitments_required_across_phases_A_B_C": true,
     "exact_tokens_and_logprobs_required_across_all_four_engines": true,
     "gpu_ids": [
       0,
@@ -158,8 +162,18 @@
       2,
       3
     ],
-    "requests_per_engine": 168,
-    "total_requests": 672,
+    "integrity_phases_in_order": [
+      "A",
+      "B",
+      "C"
+    ],
+    "integrity_repeat_phases": [
+      "A",
+      "C"
+    ],
+    "integrity_repeat_requests": 1344,
+    "physical_total_requests": 2016,
+    "requests_per_engine_per_phase": 168,
     "tp_per_engine": 1
   },
   "nonredundancy": {

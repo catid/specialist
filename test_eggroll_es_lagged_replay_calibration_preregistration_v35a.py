@@ -9,7 +9,7 @@ import eggroll_es_lagged_replay_calibration_preregistration_v35a as prereg
 def test_build_is_self_hashed_and_train_only():
     value = prereg.build_preregistration()
     assert value["content_sha256_before_self_field"] == (
-        "c6c6968680b6c4c1ffc9df821522f034afc0ea21cc95ef2fb80de28433b1c07f"
+        "3a5240d6863a4d65f43ffdcbfe2c7b68e11fbb1f8cfc51b0e4c16b261601b094"
     )
     assert value["content_sha256_before_self_field"] == prereg.canonical_sha256(
         prereg.without_self(value)
@@ -34,7 +34,7 @@ def test_build_is_self_hashed_and_train_only():
 def test_materialized_preregistration_is_exact_rebuild():
     materialized = json.loads(prereg.OUTPUT_PATH.read_text(encoding="utf-8"))
     assert prereg.file_sha256(prereg.OUTPUT_PATH) == (
-        "f8054b98e6dfc2ea4e834e47060672ce0e5b3bfb4acb76d59807716b65b80bfb"
+        "fcfaead965d16173324c779112243ba8eb5472a806b09647a5eb0049b1589561"
     )
     assert materialized == prereg.build_preregistration()
 
@@ -45,10 +45,19 @@ def test_calibration_uses_all_four_gpus_and_exact_equivalence():
     assert hardware["gpu_ids"] == [0, 1, 2, 3]
     assert hardware["engine_count"] == 4
     assert hardware["tp_per_engine"] == 1
-    assert hardware["requests_per_engine"] == 168
-    assert hardware["total_requests"] == 672
+    assert hardware["integrity_phases_in_order"] == ["A", "B", "C"]
+    assert hardware["calibration_estimand_phase"] == "B"
+    assert hardware["requests_per_engine_per_phase"] == 168
+    assert hardware["calibration_estimand_requests"] == 672
+    assert hardware["integrity_repeat_phases"] == ["A", "C"]
+    assert hardware["integrity_repeat_requests"] == 1_344
+    assert hardware["physical_total_requests"] == 2_016
     assert hardware["all_four_engines_generate_the_complete_optimization_union"] is True
     assert hardware["exact_tokens_and_logprobs_required_across_all_four_engines"] is True
+    assert hardware["exact_dense_commitments_required_across_phases_A_B_C"] is True
+    assert prereg.build_preregistration()["difficulty_calibration"][
+        "ranks_derive_only_from_named_calibration_estimand_phase_B"
+    ] is True
 
 
 def test_tier_counts_are_stratified_capped_and_have_audit_slack():

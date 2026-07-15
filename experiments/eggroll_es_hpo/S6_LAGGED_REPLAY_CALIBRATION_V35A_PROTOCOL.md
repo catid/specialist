@@ -3,10 +3,14 @@
 V35A is a train-only calibration stage. It is not a replay comparison, model
 update, checkpoint, dataset promotion, or evaluation authorization.
 
-The exact V13 production optimization panels are scored once with the frozen
-unperturbed Qwen3.6-35B-A3B model. All four TP=1 engines generate the identical
-168-request union, and token/log-probability results must be exactly equal
-across engines. Source/container bytes may be read solely to bind and project
+The exact V13 production optimization panels are scored in three named phases
+A, B, and C with the frozen unperturbed Qwen3.6-35B-A3B model. In every phase,
+all four TP=1 engines generate the identical 168-request union, and token/log-
+probability results must be exactly equal across engines and phases. Phase B is
+the only calibration estimand used for ranking; A and C are integrity repeats.
+The budget therefore distinguishes 672 phase-B estimand requests, 1,344 A/C
+integrity-repeat requests, and 2,016 physical requests. Source/container bytes
+may be read solely to bind and project
 the exact optimization indices. Screen rows are never materialized as
 requests, interpreted, generated, scored, ranked, selected, or used.
 

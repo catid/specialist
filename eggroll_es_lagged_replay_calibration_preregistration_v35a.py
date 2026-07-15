@@ -53,7 +53,7 @@ PROTOCOL_PATH = (
 BOUND_FILES = {
     "protocol_v35a": (
         PROTOCOL_PATH,
-        "c5fb01bf5b858d8ad418c4b8cc339d6df53b2ea31e7241286f2d2f9b5661ebf3",
+        "e1cda725207239f55c2b59df15777de6f95519e823ab6110e340ab4d2a008bb2",
     ),
     "sampler_v13": (
         Path(sampler_v13.__file__).resolve(),
@@ -300,9 +300,23 @@ def build_preregistration() -> dict:
             "engine_count": 4,
             "tp_per_engine": 1,
             "all_four_engines_generate_the_complete_optimization_union": True,
-            "requests_per_engine": len(OPTIMIZATION_PANELS) * sampler_v13.PANEL_SIZE,
-            "total_requests": 4 * len(OPTIMIZATION_PANELS) * sampler_v13.PANEL_SIZE,
+            "integrity_phases_in_order": ["A", "B", "C"],
+            "calibration_estimand_phase": "B",
+            "requests_per_engine_per_phase": (
+                len(OPTIMIZATION_PANELS) * sampler_v13.PANEL_SIZE
+            ),
+            "calibration_estimand_requests": (
+                4 * len(OPTIMIZATION_PANELS) * sampler_v13.PANEL_SIZE
+            ),
+            "integrity_repeat_phases": ["A", "C"],
+            "integrity_repeat_requests": (
+                2 * 4 * len(OPTIMIZATION_PANELS) * sampler_v13.PANEL_SIZE
+            ),
+            "physical_total_requests": (
+                3 * 4 * len(OPTIMIZATION_PANELS) * sampler_v13.PANEL_SIZE
+            ),
             "exact_tokens_and_logprobs_required_across_all_four_engines": True,
+            "exact_dense_commitments_required_across_phases_A_B_C": True,
             "all_four_gpu_activity_and_cleanup_certificates_required": True,
         },
         "difficulty_calibration": {
@@ -328,6 +342,7 @@ def build_preregistration() -> dict:
                 hard_rows_per_panel * len(OPTIMIZATION_PANELS)
             ),
             "no_candidate_response_or_fresh_HPO_basis_observed_before_tier_freeze": True,
+            "ranks_derive_only_from_named_calibration_estimand_phase_B": True,
         },
         "blinded_manual_quality_gate": {
             "reviewer_receives": (
@@ -427,7 +442,12 @@ def main(argv=None) -> int:
     print(json.dumps({
         "schema": "eggroll-es-lagged-replay-calibration-preregistration-build-v35a",
         "content_sha256": value["content_sha256_before_self_field"],
-        "optimization_requests": value["hardware_and_generation"]["total_requests"],
+        "calibration_estimand_requests": value["hardware_and_generation"][
+            "calibration_estimand_requests"
+        ],
+        "physical_total_requests": value["hardware_and_generation"][
+            "physical_total_requests"
+        ],
         "provisional_candidates": value["difficulty_calibration"][
             "provisional_candidates_total"
         ],
