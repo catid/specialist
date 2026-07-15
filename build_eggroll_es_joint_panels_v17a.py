@@ -45,7 +45,7 @@ SAMPLER_SHA256_V17A = (
 CANDIDATE_ROWS_V17A = 492
 PRODUCTION_ROWS_V17A = 784
 PANEL_SEED_V17A = 20260717
-ROTATION_SEED_V17A = 20260718
+REPRESENTATIVE_SEED_V17A = 20260718
 PANEL_NAMES_V17A = (
     "optimization_0", "optimization_1", "optimization_2",
     "train_screen_0", "train_screen_1",
@@ -154,27 +154,29 @@ def _load_bound_rows_v17a():
     return candidate, production
 
 
-def _member_order_v17a(unit_id, side, members):
-    ordered = sorted(
-        members,
+def _representative_v17a(unit_id, side, members, stratum):
+    preferred = [
+        item for item in members
+        if item["classified_stratum"] == stratum
+    ]
+    pool = preferred or members
+    selected = min(
+        pool,
         key=lambda item: canonical_sha256({
-            "schema": "eggroll-es-v17a-side-row-order",
-            "seed": ROTATION_SEED_V17A,
+            "schema": "eggroll-es-v17a-fixed-side-representative",
+            "seed": REPRESENTATIVE_SEED_V17A,
             "unit_id": unit_id,
             "side": side,
             "row_sha256": item["row_sha256"],
         }),
     )
     return {
-        "row_count": len(ordered),
-        "row_indices": [item["row_index"] for item in ordered],
-        "row_sha256": [item["row_sha256"] for item in ordered],
-        "ordered_row_sha256": canonical_sha256(
-            [item["row_sha256"] for item in ordered]
-        ),
-        "rotation": (
-            "direction_index_mod_side_row_count; plus_and_minus_share_row"
-        ),
+        "row_index": selected["row_index"],
+        "row_sha256": selected["row_sha256"],
+        "document_sha256": selected["document_sha256"],
+        "classified_stratum": selected["classified_stratum"],
+        "preferred_dominant_stratum": bool(preferred),
+        "reuse": "fixed_for_every_direction_and_both_signs",
     }
 
 
@@ -248,22 +250,64 @@ def build_joint_units_v17a(candidate, production):
                 candidate_counts[name], sampler_v13._TIE_PRIORITY[name],
             ),
         )
+        candidate_documents = defaultdict(list)
+        production_documents = defaultdict(list)
+        for item in by_side["candidate"]:
+            candidate_documents[item["row"]["document_sha256"]].append(item)
+        for item in by_side["production"]:
+            production_documents[item["row"]["document_sha256"]].append(item)
+        common_documents = set(candidate_documents) & set(production_documents)
+        eligible_documents = [
+            document
+            for document in common_documents
+            if any(
+                sampler_v13.classify_stratum(item["row"]) == stratum
+                for item in candidate_documents[document]
+            )
+        ]
+        if not eligible_documents:
+            raise RuntimeError(
+                "v17a paired unit lacks a shared candidate-dominant document"
+            )
+        shared_document = min(
+            eligible_documents,
+            key=lambda document: canonical_sha256({
+                "schema": "eggroll-es-v17a-shared-document-selection",
+                "seed": REPRESENTATIVE_SEED_V17A,
+                "unit_id": unit_id,
+                "document_sha256": document,
+            }),
+        )
         side_contract = {}
         for side in ("candidate", "production"):
+            document_members = (
+                candidate_documents[shared_document]
+                if side == "candidate"
+                else production_documents[shared_document]
+            )
             side_members = [{
                 "row_index": item["row_index"],
                 "row_sha256": sampler_v13.row_sha256(item["row"]),
-            } for item in by_side[side]]
-            side_contract[side] = _member_order_v17a(
-                unit_id, side, side_members,
+                "document_sha256": item["row"]["document_sha256"],
+                "classified_stratum": sampler_v13.classify_stratum(item["row"]),
+            } for item in document_members]
+            side_contract[side] = _representative_v17a(
+                unit_id, side, side_members, stratum,
             )
             assignments.extend(
                 f"{side}:{row_sha256}\t{unit_id}"
-                for row_sha256 in side_contract[side]["row_sha256"]
+                for row_sha256 in sorted(
+                    sampler_v13.row_sha256(item["row"])
+                    for item in by_side[side]
+                )
             )
+        if side_contract["candidate"]["classified_stratum"] != stratum:
+            raise RuntimeError("v17a candidate representative missed its stratum")
         paired.append({
             "unit_id": unit_id,
             "stratum": stratum,
+            "shared_document_sha256": shared_document,
+            "shared_document_count": len(common_documents),
             "candidate_stratum_row_counts": dict(sorted(candidate_counts.items())),
             "sides": side_contract,
         })
@@ -351,6 +395,12 @@ def build_manifest_v17a():
             "ordered_unit_identity_sha256": canonical_sha256(
                 [item["unit_id"] for item in selected]
             ),
+            "ordered_side_row_identity_sha256": {
+                side: canonical_sha256([
+                    item["sides"][side]["row_sha256"] for item in selected
+                ])
+                for side in ("candidate", "production")
+            },
             "items": selected,
         })
     if len(selected_ids) != len(set(selected_ids)) != 0:
@@ -397,7 +447,7 @@ def build_manifest_v17a():
         },
         "panel_contract": {
             "panel_seed": PANEL_SEED_V17A,
-            "rotation_seed": ROTATION_SEED_V17A,
+            "representative_seed": REPRESENTATIVE_SEED_V17A,
             "panel_names": list(PANEL_NAMES_V17A),
             "optimization_panels": list(OPTIMIZATION_PANELS_V17A),
             "train_only_screens": list(TRAIN_SCREENS_V17A),
@@ -405,8 +455,8 @@ def build_manifest_v17a():
             "stratum_quotas": dict(STRATUM_QUOTAS_V17A),
             "required_paired_strata": dict(REQUIRED_PAIRED_STRATA_V17A),
             "globally_disjoint_joint_conflict_units": True,
-            "same_unit_membership_order_and_direction_rotation_both_versions": True,
-            "plus_minus_share_exact_rotated_row_per_side": True,
+            "same_joint_unit_and_shared_document_both_versions": True,
+            "fixed_side_representative_every_direction_and_sign": True,
             "same_resident_perturbation_scores_both_versions": True,
             "version_generation_order": (
                 "alternate_candidate_first_and_production_first_by_signed_wave"
@@ -451,6 +501,13 @@ def validate_manifest_v17a(manifest):
         or any(
             len(panel.get("items", [])) != PANEL_SIZE_V17A
             or panel.get("stratum_counts") != STRATUM_QUOTAS_V17A
+            or panel.get("ordered_side_row_identity_sha256") != {
+                side: canonical_sha256([
+                    item["sides"][side]["row_sha256"]
+                    for item in panel["items"]
+                ])
+                for side in ("candidate", "production")
+            }
             for panel in manifest.get("panels", [])
         )
     ):
@@ -461,12 +518,21 @@ def validate_manifest_v17a(manifest):
         or len({item["unit_id"] for item in items}) != 190
         or any(set(item["sides"]) != {"candidate", "production"} for item in items)
         or any(
-            side["row_count"] <= 0
-            or side["row_count"] != len(side["row_indices"])
-            or side["row_count"] != len(side["row_sha256"])
-            or side["ordered_row_sha256"]
-            != canonical_sha256(side["row_sha256"])
+            not isinstance(side.get("row_index"), int)
+            or not isinstance(side.get("row_sha256"), str)
+            or len(side["row_sha256"]) != 64
+            or side.get("reuse") != "fixed_for_every_direction_and_both_signs"
             for item in items for side in item["sides"].values()
+        )
+        or any(
+            item["sides"]["candidate"]["classified_stratum"]
+            != item["stratum"]
+            or not item["sides"]["candidate"]["preferred_dominant_stratum"]
+            or any(
+                side["document_sha256"] != item["shared_document_sha256"]
+                for side in item["sides"].values()
+            )
+            for item in items
         )
         or any(
             not math.isclose(

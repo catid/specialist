@@ -49,7 +49,7 @@ def test_v17a_manifest_is_deterministic_and_matches_committed_output_if_present(
         assert json.loads(builder.OUTPUT_PATH_V17A.read_text()) == first
 
 
-def test_v17a_paired_rotation_and_ht_contract_contains_no_raw_content():
+def test_v17a_fixed_same_document_crn_and_ht_contract_contains_no_raw_content():
     manifest = builder.build_manifest_v17a()
     serialized = json.dumps(manifest, sort_keys=True)
     assert '"question"' not in serialized
@@ -58,15 +58,46 @@ def test_v17a_paired_rotation_and_ht_contract_contains_no_raw_content():
     for panel in manifest["panels"]:
         for item in panel["items"]:
             assert set(item["sides"]) == {"candidate", "production"}
+            assert len(item["shared_document_sha256"]) == 64
+            assert item["shared_document_count"] >= 1
+            candidate = item["sides"]["candidate"]
+            assert candidate["classified_stratum"] == item["stratum"]
+            assert candidate["preferred_dominant_stratum"] is True
             for side in item["sides"].values():
-                assert side["rotation"] == (
-                    "direction_index_mod_side_row_count; "
-                    "plus_and_minus_share_row"
+                assert side["reuse"] == (
+                    "fixed_for_every_direction_and_both_signs"
                 )
-                assert side["row_count"] > 0
+                assert isinstance(side["row_index"], int)
+                assert len(side["row_sha256"]) == 64
+                assert side["document_sha256"] == item["shared_document_sha256"]
             assert item["inclusion_probability_per_panel"] * (
                 item["horvitz_thompson_unit_weight"]
             ) == pytest.approx(1.0)
+    assert manifest["panel_contract"][
+        "fixed_side_representative_every_direction_and_sign"
+    ] is True
+    assert "rotation" not in serialized
+
+
+def test_v17a_every_direction_and_sign_reuses_exact_ordered_side_batches():
+    manifest = builder.build_manifest_v17a()
+    frozen = {
+        panel["name"]: panel["ordered_side_row_identity_sha256"]
+        for panel in manifest["panels"]
+    }
+    for _direction_index in range(32):
+        for _sign in ("plus", "minus"):
+            observed = {
+                panel["name"]: {
+                    side: builder.canonical_sha256([
+                        item["sides"][side]["row_sha256"]
+                        for item in panel["items"]
+                    ])
+                    for side in ("candidate", "production")
+                }
+                for panel in manifest["panels"]
+            }
+            assert observed == frozen
 
 
 def test_v17a_validator_rejects_rehashable_overlap_and_capacity_tampering():
@@ -79,7 +110,7 @@ def test_v17a_validator_rejects_rehashable_overlap_and_capacity_tampering():
         key: value for key, value in changed.items()
         if key != "content_sha256_before_self_field"
     })
-    with pytest.raises(RuntimeError, match="identity or weighting"):
+    with pytest.raises(RuntimeError, match="manifest contract|identity or weighting"):
         builder.validate_manifest_v17a(changed)
     changed = copy.deepcopy(manifest)
     changed["joint_frame"]["paired_stratum_counts"]["equipment_material"] = 9
