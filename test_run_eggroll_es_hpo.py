@@ -96,6 +96,29 @@ def test_select_best_can_choose_treatment():
     assert selected["name"] == "treatment"
 
 
+@pytest.mark.parametrize("value", [float("nan"), float("inf"), -float("inf")])
+def test_selection_rejects_nonfinite_scores(value):
+    with pytest.raises(ValueError, match="finite"):
+        hpo.select_best(
+            0.5, "baseline.json",
+            [{"name": "treatment", "validation_score": value}],
+        )
+
+    baseline = {
+        "evaluations": {"final": {"train": 0.5, "ood": 0.4}}
+    }
+    with pytest.raises(ValueError, match="finite"):
+        hpo.select_best_guarded(
+            baseline,
+            [{
+                "name": "treatment",
+                "validation_score": value,
+                "evaluation_scores": {"train": value, "ood": 0.4},
+            }],
+            "train", ["ood"], 0.0,
+        )
+
+
 def test_guarded_selection_rejects_ood_regression():
     baseline = {
         "evaluations": {"final": {"train": 0.5, "ood": 0.4}}
@@ -310,6 +333,22 @@ def test_evaluation_details_pin_exact_nonzero_and_raw_hash(tmp_path):
 
     with pytest.raises(RuntimeError, match="disagrees"):
         hpo.evaluation_details(run_dir, {"ood": 0.0}, 3)
+
+    path.write_text(json.dumps([
+        {"reward": float("nan"), "format": "incorrect"},
+    ]))
+    with pytest.raises(RuntimeError, match="non-finite evaluation reward"):
+        hpo.evaluation_details(run_dir, {"ood": float("nan")}, 3)
+
+
+def test_summary_rejects_nonfinite_eval_score(tmp_path):
+    args = make_args(tmp_path)
+    summary = make_summary(args, 0.0, 0.0, 0, score=float("nan"))
+    with pytest.raises(RuntimeError, match="requested run"):
+        hpo.validate_summary(
+            summary, hpo.expected_summary(args, 0.0, 0.0, 0),
+            tmp_path / "summary.json", ["train"],
+        )
 
 
 def test_cached_run_requires_exact_command_and_dataset_hash(

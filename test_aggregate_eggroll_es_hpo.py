@@ -67,6 +67,21 @@ def test_rejects_seed_unstable_candidate():
     assert result["selected"] == "baseline"
 
 
+@pytest.mark.parametrize("value", [float("nan"), float("inf"), -float("inf")])
+def test_rejects_nonfinite_scores_and_policy_values(value):
+    journals = [journal(1, 0.1, 0.0), journal(2, 0.1, 0.0)]
+    journals[0]["results"][0]["evaluation_scores"]["validation"] = value
+    with pytest.raises(ValueError, match="finite"):
+        aggregate(journals, "validation", ["ood_qa"])
+
+    journals = [journal(1, 0.1, 0.0), journal(2, 0.1, 0.0)]
+    with pytest.raises(ValueError, match="finite"):
+        aggregate(
+            journals, "validation", ["ood_qa"],
+            max_guard_degradation=value,
+        )
+
+
 def test_refuses_mixed_dataset_hashes():
     journals = [journal(1, 0.1, 0.0), journal(2, 0.1, 0.0)]
     journals[1]["dataset"]["train_arrow_sha256"] = "changed"

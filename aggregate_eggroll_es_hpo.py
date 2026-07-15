@@ -7,7 +7,11 @@ import math
 import statistics
 from pathlib import Path
 
-from run_eggroll_es_hpo import inspect_ood_prose_gate
+from run_eggroll_es_hpo import (
+    finite_nonnegative,
+    finite_number,
+    inspect_ood_prose_gate,
+)
 
 
 def scores(item, selection_split):
@@ -79,11 +83,15 @@ def aggregate(journals, selection_split, guard_splits,
         raise ValueError("at least one seed journal is required")
     if not 0 <= min_positive_seed_fraction <= 1:
         raise ValueError("min_positive_seed_fraction must be in [0, 1]")
-    if max_guard_degradation < 0 or risk_penalty < 0:
-        raise ValueError(
-            "guard degradation and risk penalty must be nonnegative")
-    if max_guard_exact_loss is not None and max_guard_exact_loss < 0:
-        raise ValueError("max guard exact loss must be nonnegative")
+    max_guard_degradation = finite_nonnegative(
+        max_guard_degradation, "max guard degradation")
+    risk_penalty = finite_nonnegative(risk_penalty, "risk penalty")
+    if max_guard_exact_loss is not None and (
+        isinstance(max_guard_exact_loss, bool)
+        or not isinstance(max_guard_exact_loss, int)
+        or max_guard_exact_loss < 0
+    ):
+        raise ValueError("max guard exact loss must be a nonnegative integer")
     if (
         isinstance(expected_ood_prose_max_degradation, bool)
         or not isinstance(
@@ -141,11 +149,17 @@ def aggregate(journals, selection_split, guard_splits,
             deltas = {}
             for split in [selection_split, *guard_splits]:
                 try:
-                    baseline_score = float(baseline_scores[split])
-                    treatment_score = float(treatment_scores[split])
+                    baseline_score = finite_number(
+                        baseline_scores[split],
+                        f"seed {journal['seed']} baseline {split!r} score",
+                    )
+                    treatment_score = finite_number(
+                        treatment_scores[split],
+                        f"seed {journal['seed']} treatment {split!r} score",
+                    )
                 except (KeyError, TypeError, ValueError) as exc:
                     raise ValueError(
-                        f"seed {journal['seed']} lacks numeric {split!r} "
+                        f"seed {journal['seed']} lacks finite numeric {split!r} "
                         "scores") from exc
                 deltas[split] = treatment_score - baseline_score
             mean_guards_passed = all(

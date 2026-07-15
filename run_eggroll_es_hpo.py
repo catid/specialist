@@ -27,6 +27,23 @@ CANDIDATES = [
 ]
 
 
+def finite_number(value, label):
+    if (
+        isinstance(value, bool)
+        or not isinstance(value, (int, float))
+        or not math.isfinite(value)
+    ):
+        raise ValueError(f"{label} must be a finite number")
+    return float(value)
+
+
+def finite_nonnegative(value, label):
+    value = finite_number(value, label)
+    if value < 0:
+        raise ValueError(f"{label} must be nonnegative")
+    return value
+
+
 def file_sha256(path):
     digest = hashlib.sha256()
     with path.open("rb") as source:
@@ -256,8 +273,15 @@ def evaluation_details(run_dir, scores, steps):
             raise RuntimeError(f"invalid evaluation output: {path}") from exc
         if not rows:
             raise RuntimeError(f"empty evaluation output: {path}")
+        if not all(math.isfinite(value) for value in rewards):
+            raise RuntimeError(f"non-finite evaluation reward: {path}")
+        try:
+            recorded_score = finite_number(
+                scores[split], f"recorded {split!r} score")
+        except ValueError as exc:
+            raise RuntimeError(f"non-finite evaluation score: {path}") from exc
         mean_reward = sum(rewards) / len(rewards)
-        if abs(mean_reward - float(score)) > 1e-12:
+        if abs(mean_reward - recorded_score) > 1e-12:
             raise RuntimeError(
                 f"evaluation output disagrees with run summary: {path}")
         details[split] = {
@@ -407,7 +431,10 @@ def validate_summary(summary, expected, summary_path, eval_splits=("train",),
     }
     for split in eval_splits:
         try:
-            float(summary["evaluations"]["final"][split])
+            finite_number(
+                summary["evaluations"]["final"][split],
+                f"evaluations.final.{split}",
+            )
         except (KeyError, TypeError, ValueError):
             mismatches[f"evaluations.final.{split}"] = {
                 "expected": "numeric evaluation score",
@@ -534,6 +561,12 @@ def run_one(args, name, sigma, alpha, steps, frozen_dataset, frozen_model,
 
 def select_best(baseline_score, baseline_summary, results):
     """Select across the no-op baseline and trained candidates."""
+    baseline_score = finite_number(baseline_score, "baseline score")
+    for result in results:
+        result["validation_score"] = finite_number(
+            result.get("validation_score"),
+            f"candidate {result.get('name')!r} validation score",
+        )
     baseline = {
         "name": "baseline",
         "sigma": 0.0,
@@ -555,7 +588,21 @@ def select_best_guarded(baseline_summary, results, selection_split,
                         guard_splits, max_guard_degradation,
                         max_guard_exact_loss=None,
                         max_ood_prose_degradation=None):
+    max_guard_degradation = finite_nonnegative(
+        max_guard_degradation, "max guard degradation")
+    if max_guard_exact_loss is not None and (
+        isinstance(max_guard_exact_loss, bool)
+        or not isinstance(max_guard_exact_loss, int)
+        or max_guard_exact_loss < 0
+    ):
+        raise ValueError("max guard exact loss must be a nonnegative integer")
     baseline_scores = baseline_summary["evaluations"]["final"]
+    for split in [selection_split, *guard_splits]:
+        try:
+            baseline_scores[split] = finite_number(
+                baseline_scores[split], f"baseline {split!r} score")
+        except KeyError as exc:
+            raise ValueError(f"baseline lacks {split!r} score") from exc
     baseline_details = baseline_summary.get("evaluation_details", {})
     baseline = {
         "name": "baseline",
@@ -570,6 +617,20 @@ def select_best_guarded(baseline_summary, results, selection_split,
     eligible = []
     for result in results:
         scores = result["evaluation_scores"]
+        for split in [selection_split, *guard_splits]:
+            try:
+                scores[split] = finite_number(
+                    scores[split],
+                    f"candidate {result.get('name')!r} {split!r} score",
+                )
+            except KeyError as exc:
+                raise ValueError(
+                    f"candidate {result.get('name')!r} lacks {split!r} score"
+                ) from exc
+        result["validation_score"] = finite_number(
+            result.get("validation_score"),
+            f"candidate {result.get('name')!r} validation score",
+        )
         result["split_guards_passed"] = all(
             scores[split] >= (
                 baseline_scores[split] - max_guard_degradation
@@ -645,10 +706,16 @@ def main():
     args = parse_args()
     args.output = normalized_path(args.output)
     args.output.mkdir(parents=True, exist_ok=True)
-    if args.max_ood_prose_degradation < 0:
-        raise ValueError("max OOD prose degradation must be nonnegative")
-    if args.max_guard_exact_loss < 0:
-        raise ValueError("max guard exact loss must be nonnegative")
+    args.max_ood_prose_degradation = finite_nonnegative(
+        args.max_ood_prose_degradation, "max OOD prose degradation")
+    args.max_guard_degradation = finite_nonnegative(
+        args.max_guard_degradation, "max guard degradation")
+    if (
+        isinstance(args.max_guard_exact_loss, bool)
+        or not isinstance(args.max_guard_exact_loss, int)
+        or args.max_guard_exact_loss < 0
+    ):
+        raise ValueError("max guard exact loss must be a nonnegative integer")
     selected = selected_candidates(args.trials)
 
     # Capture once before baseline, then compare every run boundary against
