@@ -1,0 +1,27 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/safety_mechanics_additions_v22/pending_additions_safety_mechanics_tranche_22_v1.jsonl",
+    "rows": 3,
+    "sha256": "611b632876f5aafaef7b3c9a5f905c90b30de7172d2eae50e46d8fb46fff1914"
+  },
+  "baseline": {
+    "rows": 526,
+    "sha256": "18ce02136c2c7993dd9dfe8dbde228632ad25a64d73be56dd4bc7d808d016509"
+  },
+  "method": {
+    "authoring": "manual train-only full-source review and hand-authored Q&A",
+    "collision_scope": "v338 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "three distinct safety facts from three manually reviewed Rope365 source documents"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 0,
+    "expected_strata": {
+      "safety_consent": 3
+    },
+    "urls": 0
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-safety-mechanics-additions-v22",
+  "schema": "manual-safety-mechanics-additions-report-v22",
+  "status": "segregated_pending_integration"
+}
