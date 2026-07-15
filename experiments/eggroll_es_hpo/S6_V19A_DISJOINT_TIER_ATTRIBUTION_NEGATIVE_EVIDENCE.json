@@ -1,0 +1,352 @@
+{
+  "arms": {
+    "patch_tier_1_only": {
+      "bootstrap_pass_count": 0,
+      "endpoints": {
+        "aggregate_to_optimization_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.23803888501618983,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.03475582621975165
+        },
+        "aggregate_to_optimization_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.49920783169819877,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.14301763111587817
+        },
+        "aggregate_to_optimization_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.125,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.03125
+        },
+        "aggregate_to_optimization_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21875,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.15625
+        },
+        "optimization_pairwise_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.2209836702721757,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.025865818795128323
+        },
+        "optimization_pairwise_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.4306828060827883,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.09495857985041645
+        },
+        "optimization_pairwise_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.125,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0
+        },
+        "optimization_pairwise_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21875,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.0625
+        },
+        "train_screen_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.4140394389697319,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.15294607290556173
+        },
+        "train_screen_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.5358293322195792,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.11013067941599261
+        },
+        "train_screen_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.203125,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.046875
+        },
+        "train_screen_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.25,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0
+        }
+      },
+      "observed_pass_count": 2,
+      "preregistered_attribution_gate_passed": false
+    },
+    "patch_tier_2_only": {
+      "bootstrap_pass_count": 0,
+      "endpoints": {
+        "aggregate_to_optimization_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.13282012336689963,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.14536832146050327
+        },
+        "aggregate_to_optimization_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.37387350047179363,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.04412613202966337
+        },
+        "aggregate_to_optimization_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.109375,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.015625
+        },
+        "aggregate_to_optimization_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21875,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.125
+        },
+        "optimization_pairwise_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.13637577281498733,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.18261063971336866
+        },
+        "optimization_pairwise_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.3609953607758453,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.013745856951823177
+        },
+        "optimization_pairwise_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.09375,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0625
+        },
+        "optimization_pairwise_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21875,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.1875
+        },
+        "train_screen_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.36074139628375246,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.08036937201089084
+        },
+        "train_screen_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.44647293815894934,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0271087696156831
+        },
+        "train_screen_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.203125,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.15625
+        },
+        "train_screen_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.25,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.09375
+        }
+      },
+      "observed_pass_count": 5,
+      "preregistered_attribution_gate_passed": false
+    },
+    "patch_tier_3_only": {
+      "bootstrap_pass_count": 0,
+      "endpoints": {
+        "aggregate_to_optimization_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.2110115799023119,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.04564503135844056
+        },
+        "aggregate_to_optimization_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.5000213483431162,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.015433051508549012
+        },
+        "aggregate_to_optimization_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.109375,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.015625
+        },
+        "aggregate_to_optimization_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21875,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.03125
+        },
+        "optimization_pairwise_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21650919482293146,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.051294566282652554
+        },
+        "optimization_pairwise_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.4750202058956932,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.14078515341452408
+        },
+        "optimization_pairwise_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.125,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.03125
+        },
+        "optimization_pairwise_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.21875,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.09375
+        },
+        "train_screen_cosine_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.4116912655182082,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.20545460649653463
+        },
+        "train_screen_cosine_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.5134179653095012,
+          "observed_noninferiority_pass": false,
+          "patch_minus_production": -0.1140574987356103
+        },
+        "train_screen_sign_agreement_median": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.203125,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0
+        },
+        "train_screen_sign_agreement_worst": {
+          "bootstrap_noninferiority_pass": false,
+          "familywise_lcb": -0.28125,
+          "observed_noninferiority_pass": true,
+          "patch_minus_production": 0.0
+        }
+      },
+      "observed_pass_count": 4,
+      "preregistered_attribution_gate_passed": false
+    }
+  },
+  "backend": {
+    "moe_backend": "default_triton",
+    "override_environment": {
+      "VLLM_MOE_USE_DEEP_GEMM": null,
+      "VLLM_ROCM_USE_AITER": null,
+      "VLLM_ROCM_USE_AITER_MOE": null,
+      "VLLM_TUNED_CONFIG_FOLDER": null,
+      "VLLM_USE_DEEP_GEMM": null
+    },
+    "v16_task_ab_decision_retained": "default_triton"
+  },
+  "bootstrap": {
+    "endpoint_count_per_tier": 12,
+    "familywise_alpha": 0.05,
+    "one_sided_quantile": 0.001388888888888889,
+    "paired_and_stratified": true,
+    "repetitions": 50000,
+    "replicates_persisted": false,
+    "seed": 20260728,
+    "tier_count": 3,
+    "total_endpoint_count": 36,
+    "whole_panel_block_resampling_used": false
+  },
+  "contains_response_vectors_or_row_content": false,
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "84895cba0c6b79adc1b6ae59680632694bc1e6cb29bf90211cdf8c7f3665040f",
+  "decision": {
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "model_update_authorized": false,
+    "retain_dataset": "production",
+    "retain_recipe": "v13_middle_late_layers_20_23",
+    "separate_fresh_basis_train_only_confirmation_authorized": false
+  },
+  "gate_summary": {
+    "all_rules_conjunctive": true,
+    "any_tier_passed": false,
+    "bootstrap_pass_counts": {
+      "patch_tier_1_only": 0,
+      "patch_tier_2_only": 0,
+      "patch_tier_3_only": 0
+    },
+    "observed_pass_counts": {
+      "patch_tier_1_only": 2,
+      "patch_tier_2_only": 5,
+      "patch_tier_3_only": 4
+    },
+    "required_per_tier": 12
+  },
+  "hardware": {
+    "all_engines_every_signed_wave": true,
+    "engine_count": 4,
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tp_per_engine": 1
+  },
+  "input_artifacts": {
+    "compact_report": {
+      "content_sha256": "bcdb96107c12b374b343773947182537e9b370a4805c5ccb941d935ac0646e0d",
+      "file_sha256": "bbffe518097c239f7ce613272077ae090a82bfd32de4b79b3f67b796e5ed13a6",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot_v298_production_patch_v19a_disjoint_thirds_10x24_plus1_alpha_zero_middle_late_fresh_basis/runs/1784089171975392026-148640-d2cca7b7fea6e833/disjoint_tier_attribution_v19a.json"
+    },
+    "gate_content_sha256": "f905dfcdd0253b235b9825f8d00b8efa21fe6eb7d63483dfa1a5710db31b9d80",
+    "launch_attempt": {
+      "content_sha256": "909b2ca817c76a531fded34f3622dc02aa5cd03494967b42a8044784f19418c5",
+      "file_sha256": "f9142c2a00d92b2fff7054968688c940bf8cfdc69296d32a34dd9c41957f5f9d",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot_v298_production_patch_v19a_disjoint_thirds_10x24_plus1_alpha_zero_middle_late_fresh_basis/attempts/1784089171975392026-148640-d2cca7b7fea6e833.json"
+    },
+    "summary_content_sha256": "6fdb60e0c45508eaa574c319e457b6978d69a18127e9a955ccdf2eba38d0cad3"
+  },
+  "interpretation": "valid_train_only_run_but_each_disjoint_candidate_tier_failed_the_zero_margin_familywise_attribution_gate",
+  "runtime_integrity": {
+    "all_four_gpus_observed_every_signed_wave": true,
+    "checks": {
+      "all_four_tp1_engines_every_signed_wave": true,
+      "all_integrity_audits_passed": true,
+      "all_ten_panels_every_direction_sign_and_arm": true,
+      "exact_reference_restored_once_per_signed_wave": true,
+      "fixed_side_batch_identity_every_direction_sign_and_arm": true,
+      "gpu_ids_zero_through_three_declared": true,
+      "latin_arm_order_complete": true,
+      "population_boundary_audit_passed": true,
+      "pre_post_base_probes_equal_all_four_arms": true,
+      "same_resident_perturbation_all_four_arms": true,
+      "tokenizer_and_prompt_logprob_contract_passed": true,
+      "unselected_origin_audit_passed": true
+    },
+    "dense_result_commitment_count": 2560,
+    "exact_restoration_and_boundary_audit_passed": true,
+    "fixed_request_identity_sha256": "31c67ae110b3934fa487714bb0504cc81435280a28e75d7ba033ab3c7715b491",
+    "panel_count": 10,
+    "per_unit_scores_persisted": false,
+    "population_boundary_audit_sha256": "88796b4dff895a2cf22d6f4615b85ac5501449b7b86402f40651b07ae2403867",
+    "pre_post_probe_identity_sha256": "70fa02b8d6b11a7e47d8af5527ba17907eccd22628276d839f908cb5b9857407",
+    "requests_per_engine_per_signed_wave": 990,
+    "restore_checks_sha256": "8683a11c9e82354c36fba04856f11b5103862f3218705e8f55bf9404451464f6",
+    "signed_wave_count": 16
+  },
+  "schema": "eggroll-es-disjoint-tier-attribution-negative-evidence-v19a",
+  "source_provenance": {
+    "all_files_match_launch_commit": true,
+    "content_sha256": "2b40010689f860ec18b2f9b419902a2234de2492d58219e7ac7b7af43fe063e1",
+    "file_count": 43,
+    "git_head": "d64ae529a022d64f02d409e4e912f01d29c3588b",
+    "implementation_bundle_sha256": "73ab67f230993810403171d2d18cc9abfbc4ab161a05356d87345c628ca0df4d"
+  },
+  "status": "valid_completed_run_preregistered_gate_failed"
+}
