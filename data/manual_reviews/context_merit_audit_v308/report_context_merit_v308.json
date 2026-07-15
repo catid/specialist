@@ -1,0 +1,100 @@
+{
+  "addition_artifact": {
+    "path": "data/manual_reviews/structure_psychology_additions_v19/pending_additions_structure_psychology_tranche_19_v1.jsonl",
+    "rows": 3,
+    "sha256": "bd5163d47ffd2017e0fd3031b8145ac879bccfe25615a6d2ce1d35f2e9a6c7f9"
+  },
+  "audit": {
+    "by_decision": {
+      "add": 3,
+      "drop": 0,
+      "edit": 0,
+      "keep": 0
+    },
+    "path": "data/manual_reviews/context_merit_audit_v308/context_merit_audit_v308.jsonl",
+    "rows": 3,
+    "sha256": "9986df63e1eb9cd73a6e306e5c1fe9deaa4128847cc7a7f9bac20b7a0823121f"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 255,
+      "equipment_material": 22,
+      "resources_general": 82,
+      "safety_consent": 86,
+      "technique": 65
+    },
+    "before": {
+      "conflict_units": 252,
+      "equipment_material": 22,
+      "resources_general": 82,
+      "safety_consent": 84,
+      "technique": 64
+    },
+    "delta": {
+      "conflict_units": 3,
+      "equipment_material": 0,
+      "resources_general": 0,
+      "safety_consent": 2,
+      "technique": 1
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "excluded_source": [
+    {
+      "decision": "reject",
+      "reason": "Its opening group-risk lesson duplicates the existing multi-person consent and exit-planning row; hazardous race, tug, and gag prompts were not operationalized.",
+      "url": "https://rope365.com/games/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the chain-stitch handling fact was retained; the high-force pulley tightening prompt was excluded.",
+      "url": "https://rope365.com/more-techniques/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the shoulder load-distribution rationale was retained; high-risk armbinder instructions and source-level nerve mapping were excluded.",
+      "url": "https://rope365.com/hogtie-shoulders-to-ankles/"
+    }
+  ],
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 3,
+    "output_rows": 548,
+    "output_sha256": "24ecadeeff3e4d7fc726e4dcc2429fb154843fb37477f5a02e45a9dd05b36da5",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "decisions": 0,
+    "path": "data/manual_reviews/context_merit_audit_v308/pending_curation_context_merit_v308.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prior_checkpoint": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v307/context_merit_audit_v307.jsonl",
+        "sha256": "01944a5d9a0e5ecb5e31b232560345c35307d57c3442f2fdd5d38dc1a0ec1448"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v307/pending_curation_context_merit_v307.jsonl",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v307/report_context_merit_v307.json",
+        "sha256": "cd45bdd9982362a9090d16b1613bdd13316c5e1a01006480c48b5a1f596d8c3a"
+      }
+    ],
+    "candidate": {
+      "rows": 545,
+      "sha256": "deff6ff8a1902d6b83d6d81351d7596811e863008ecbebc42914fdcd9ed64df3"
+    }
+  },
+  "schema": "context-merit-audit-report-v308",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  }
+}

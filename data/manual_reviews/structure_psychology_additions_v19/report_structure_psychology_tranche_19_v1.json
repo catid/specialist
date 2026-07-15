@@ -1,0 +1,45 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/structure_psychology_additions_v19/pending_additions_structure_psychology_tranche_19_v1.jsonl",
+    "rows": 3,
+    "sha256": "bd5163d47ffd2017e0fd3031b8145ac879bccfe25615a6d2ce1d35f2e9a6c7f9"
+  },
+  "baseline": {
+    "rows": 545,
+    "sha256": "deff6ff8a1902d6b83d6d81351d7596811e863008ecbebc42914fdcd9ed64df3"
+  },
+  "excluded_source": [
+    {
+      "decision": "reject",
+      "reason": "Its opening group-risk lesson duplicates the existing multi-person consent and exit-planning row; hazardous race, tug, and gag prompts were not operationalized.",
+      "url": "https://rope365.com/games/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the chain-stitch handling fact was retained; the high-force pulley tightening prompt was excluded.",
+      "url": "https://rope365.com/more-techniques/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the shoulder load-distribution rationale was retained; high-risk armbinder instructions and source-level nerve mapping were excluded.",
+      "url": "https://rope365.com/hogtie-shoulders-to-ankles/"
+    }
+  ],
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v307 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded fact from each of three distinct new documents"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "safety_consent": 2,
+      "technique": 1
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-structure-psychology-additions-v19",
+  "schema": "manual-structure-psychology-additions-report-v19",
+  "status": "segregated_pending_integration"
+}
