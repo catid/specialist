@@ -11,8 +11,15 @@ import run_vllm_moe_tuning_evaluation_v27a as runtime
 
 def test_v27a_runtime_binds_exact_preoutput_preregistration():
     value = runtime.load_preregistration()
+    retry = runtime.load_retry_preregistration()
     assert value["content_sha256_before_self_field"] == runtime.PREREG_CONTENT_SHA256
     assert runtime.PREREG_COMMIT == "2572204429cf2b016d0a001086d309b582b97724"
+    assert retry["content_sha256_before_self_field"] == (
+        runtime.RETRY_PREREG_CONTENT_SHA256
+    )
+    assert runtime.RETRY_PREREG_COMMIT == (
+        "1c35946ea688950b2ff577a8c24620acd2dc7ea4"
+    )
 
 
 def test_v27a_tuned_config_validation_is_exact_except_commit_check(tmp_path, monkeypatch):
@@ -59,6 +66,15 @@ def test_v27a_real_launch_is_fail_closed_and_dry_run_is_gpu_free(capsys):
     value = json.loads(capsys.readouterr().out)
     assert value["gpu_launched"] is False
     assert value["evaluation_launched"] is False
+
+
+def test_v27a_ray_gpu_id_canonicalization_is_strict_and_representation_only():
+    for gpu in range(4):
+        assert runtime.normalize_ray_gpu_id(gpu) == gpu
+        assert runtime.normalize_ray_gpu_id(str(gpu)) == gpu
+    for invalid in (True, False, 4, -1, "4", "00", "GPU-0", 0.0, None, [0]):
+        with pytest.raises(RuntimeError, match="Ray GPU ID"):
+            runtime.normalize_ray_gpu_id(invalid)
 
 
 def test_v27a_worker_and_report_close_dataset_model_and_nontrain_surfaces():

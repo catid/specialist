@@ -23,6 +23,13 @@ PREREG_PATH = ROOT / (
 PREREG_COMMIT = "2572204429cf2b016d0a001086d309b582b97724"
 PREREG_FILE_SHA256 = "8e2571fc4fd364ff6f80122ce614a6f4f6ac413f684969da7e215e851c4ee47e"
 PREREG_CONTENT_SHA256 = "9259d596c69918fd17a81573e3fbc0a74f3b024d5cb60cff2600c183862e92b8"
+RETRY_PREREG_PATH = ROOT / (
+    "experiments/eggroll_es_hpo/"
+    "S6_V27D_MOE_TUNING_EVALUATION_IDENTITY_RETRY_PREREGISTRATION.json"
+)
+RETRY_PREREG_COMMIT = "1c35946ea688950b2ff577a8c24620acd2dc7ea4"
+RETRY_PREREG_FILE_SHA256 = "56a094bc6099261e510ae2be83b18ba903cad3ae7054dd1f5473dfc0dd42e2b9"
+RETRY_PREREG_CONTENT_SHA256 = "0a1f394a869deb3af75e8d2bd53043988909e6def0f969dc5254def761255eeb"
 OFFICIAL_TUNER_PATH = Path("/tmp/benchmark_moe_v025.py")
 OFFICIAL_TUNER_SHA256 = "230151de56d177ac22920ff9dada010f4361933b34b54e18d5981367723a8bcf"
 MODEL_PATH = ROOT / "models/Qwen3.6-35B-A3B"
@@ -39,9 +46,11 @@ EXPECTED_TUNED_FILENAME = (
     "Max-Q_Workstation_Edition.json"
 )
 RUNS = ROOT / "experiments/eggroll_es_hpo/runs"
-EXPERIMENT_NAME = "s6_v27a_moe_tuned_vs_default_fresh_paired_kernel_evaluation"
+EXPERIMENT_NAME = (
+    "s6_v27a_moe_tuned_vs_default_fresh_paired_kernel_evaluation_retry_r1"
+)
 ATTEMPT_PATH = RUNS / f".{EXPERIMENT_NAME}.launch_attempt.json"
-REPORT_PATH = RUNS / EXPERIMENT_NAME / "moe_tuning_evaluation_v27a.json"
+REPORT_PATH = RUNS / EXPERIMENT_NAME / "moe_tuning_evaluation_v27a_retry_r1.json"
 
 
 def file_sha256(path):
@@ -105,6 +114,31 @@ def load_preregistration():
     return value
 
 
+def load_retry_preregistration():
+    raw = subprocess.check_output(
+        [
+            "git", "show",
+            f"{RETRY_PREREG_COMMIT}:{RETRY_PREREG_PATH.relative_to(ROOT)}",
+        ],
+        cwd=ROOT,
+    )
+    if (
+        hashlib.sha256(raw).hexdigest() != RETRY_PREREG_FILE_SHA256
+        or file_sha256(RETRY_PREREG_PATH) != RETRY_PREREG_FILE_SHA256
+    ):
+        raise RuntimeError("V27D retry preregistration file changed")
+    value = json.loads(RETRY_PREREG_PATH.read_text())
+    if (
+        value.get("content_sha256_before_self_field")
+        != RETRY_PREREG_CONTENT_SHA256
+        or canonical_sha256(without_self(value)) != RETRY_PREREG_CONTENT_SHA256
+        or value.get("status")
+        != "preregistered_before_retry_measurement_retry_not_launched"
+    ):
+        raise RuntimeError("V27D retry preregistration semantics changed")
+    return value
+
+
 def implementation_bundle():
     paths = {
         "runtime": Path(__file__).resolve(),
@@ -112,6 +146,15 @@ def implementation_bundle():
         "prereg_builder": ROOT / "build_vllm_moe_tuning_preregistration_v27a.py",
         "prereg_tests": ROOT / "test_build_vllm_moe_tuning_preregistration_v27a.py",
         "preregistration": PREREG_PATH,
+        "retry_prereg_builder": (
+            ROOT
+            / "build_vllm_moe_tuning_evaluation_identity_retry_preregistration_v27d.py"
+        ),
+        "retry_prereg_tests": (
+            ROOT
+            / "test_build_vllm_moe_tuning_evaluation_identity_retry_preregistration_v27d.py"
+        ),
+        "retry_preregistration": RETRY_PREREG_PATH,
     }
     files = {
         key: {
@@ -202,6 +245,21 @@ def _load_official_module(path=OFFICIAL_TUNER_PATH):
     return module
 
 
+def normalize_ray_gpu_id(value):
+    """Canonicalize Ray's version-dependent physical GPU ID representation."""
+    if isinstance(value, bool):
+        raise RuntimeError("V27A Ray GPU ID representation changed")
+    if isinstance(value, int):
+        result = value
+    elif isinstance(value, str) and value in {"0", "1", "2", "3"}:
+        result = int(value)
+    else:
+        raise RuntimeError("V27A Ray GPU ID representation changed")
+    if result not in {0, 1, 2, 3}:
+        raise RuntimeError("V27A Ray GPU ID physical range changed")
+    return result
+
+
 def _worker_evaluate(physical_gpu, batch_size, seed, config_folder):
     """Executed inside a one-GPU Ray actor; returns hardware and timing only."""
     import ray
@@ -210,7 +268,12 @@ def _worker_evaluate(physical_gpu, batch_size, seed, config_folder):
     module = _load_official_module()
     visible = os.environ.get("CUDA_VISIBLE_DEVICES")
     ray_ids = ray.get_gpu_ids()
-    if visible != str(physical_gpu) or ray_ids != [physical_gpu]:
+    if (
+        not isinstance(ray_ids, list)
+        or len(ray_ids) != 1
+        or normalize_ray_gpu_id(ray_ids[0]) != physical_gpu
+        or visible != str(physical_gpu)
+    ):
         raise RuntimeError("V27A Ray physical-GPU assignment changed")
     torch.set_default_device("cuda")
     module.set_random_seed(seed)
@@ -238,6 +301,8 @@ def _worker_evaluate(physical_gpu, batch_size, seed, config_folder):
         raise RuntimeError("V27A nonfinite kernel time")
     return {
         "physical_gpu": physical_gpu,
+        "ray_gpu_id_raw": ray_ids[0],
+        "ray_gpu_id_canonical": normalize_ray_gpu_id(ray_ids[0]),
         "cuda_visible_devices": visible,
         "runtime_cuda_device": torch.cuda.current_device(),
         "gpu_name": torch.cuda.get_device_name(),
@@ -272,12 +337,12 @@ def run_arm(arm, config_folder, seed):
         for worker, identity in zip(workers, identities):
             ids = identity.get("ray_gpu_ids")
             visible = identity.get("visible")
-            if (
-                not isinstance(ids, list) or len(ids) != 1
-                or visible != str(ids[0]) or ids[0] in by_gpu
-            ):
+            if not isinstance(ids, list) or len(ids) != 1:
                 raise RuntimeError("V27A Ray one-actor-per-GPU identity changed")
-            by_gpu[int(ids[0])] = worker
+            canonical_id = normalize_ray_gpu_id(ids[0])
+            if visible != str(canonical_id) or canonical_id in by_gpu:
+                raise RuntimeError("V27A Ray one-actor-per-GPU identity changed")
+            by_gpu[canonical_id] = worker
         if set(by_gpu) != {0, 1, 2, 3}:
             raise RuntimeError("V27A Ray four-GPU coverage changed")
         results = ray.get([
@@ -289,6 +354,8 @@ def run_arm(arm, config_folder, seed):
     expected_source = arm
     if any(
         result.get("physical_gpu") != gpu
+        or result.get("ray_gpu_id_canonical") != gpu
+        or str(result.get("ray_gpu_id_raw")) != str(gpu)
         or result.get("batch_size") != BATCH_SIZES[gpu]
         or result.get("runtime_cuda_device") != 0
         or result.get("gpu_name")
@@ -335,6 +402,7 @@ def summarize(records):
 
 def run_evaluation(tuned_path, tuned_sha256, expected_implementation):
     prereg = load_preregistration()
+    retry_prereg = load_retry_preregistration()
     implementation = implementation_bundle()
     if implementation["bundle_sha256"] != expected_implementation:
         raise RuntimeError("V27A implementation bundle changed")
@@ -353,6 +421,9 @@ def run_evaluation(tuned_path, tuned_sha256, expected_implementation):
         "status": "launching",
         "phase": "before_first_arm",
         "preregistration_content_sha256": PREREG_CONTENT_SHA256,
+        "retry_preregistration_content_sha256": (
+            retry_prereg["content_sha256_before_self_field"]
+        ),
         "implementation_bundle_sha256": implementation["bundle_sha256"],
         "tuned_config_file_sha256": tuned_sha256,
         "hardware_identity_sha256": canonical_sha256(hardware),
@@ -374,6 +445,9 @@ def run_evaluation(tuned_path, tuned_sha256, expected_implementation):
         report = seal({
             "schema": "vllm-moe-tuning-evaluation-report-v27a",
             "preregistration_content_sha256": PREREG_CONTENT_SHA256,
+            "retry_preregistration_content_sha256": (
+                retry_prereg["content_sha256_before_self_field"]
+            ),
             "implementation": implementation,
             "tuned_config": {
                 "path": str(Path(tuned_path).resolve()),
@@ -425,11 +499,15 @@ def parser():
 def main(argv=None):
     args = parser().parse_args(argv)
     prereg = load_preregistration()
+    retry_prereg = load_retry_preregistration()
     implementation = implementation_bundle()
     if args.dry_run:
         print(json.dumps(seal({
             "schema": "vllm-moe-tuning-evaluation-dry-run-v27a",
             "preregistration_content_sha256": prereg["content_sha256_before_self_field"],
+            "retry_preregistration_content_sha256": (
+                retry_prereg["content_sha256_before_self_field"]
+            ),
             "implementation": implementation,
             "gpu_launched": False,
             "evaluation_launched": False,
