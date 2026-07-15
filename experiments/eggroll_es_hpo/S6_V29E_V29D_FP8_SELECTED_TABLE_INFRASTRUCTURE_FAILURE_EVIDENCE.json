@@ -1,0 +1,42 @@
+{
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "b9f9413e1dc4f174999c27b36287002f6de128fef0f378f805ae0392ab6127d4",
+  "contracts": {
+    "v29c_selection_commit": "a203f4821c4a737310df75543353d21ce6cea978",
+    "v29c_selection_content_sha256": "dc4d3b6d2b090e4e740f63de573875f331a456d6951b62cf49a003b1114ee02e",
+    "v29c_selection_file_sha256": "47d1b09fb188dd1f8ff16314f1c20fe614f02b1cff067a1615a0d6f0f5ce2a7b",
+    "v29d_implementation_bundle_sha256": "12207d122ea2a8ae1d1204361f152667645f70beac69962c758ced2937c78885",
+    "v29d_preregistration_commit": "23d6bd0f7d90a7438488e55eb796928b9a0bfd31",
+    "v29d_preregistration_content_sha256": "8bb3ecd02992f46cc2eb8a7f3144966ab5139f4b59fd1e179ef021a5d5687061",
+    "v29d_preregistration_file_sha256": "55519ce1150f3466817cbe3b7f6d22b4b79553755fc35c7e28a45b038dba7f42",
+    "v29d_recipe_content_sha256": "0f3c3eed8cc4abc34d7c478838073f64b64648f518e0503ba4da2c2e24b9e053"
+  },
+  "decision": {
+    "authorize_only_exact_observability_retry_preregistration": true,
+    "selected_table_adoption_authorized": false,
+    "training_model_update_checkpoint_dataset_promotion_authorized": false,
+    "v29d_result_available": false
+  },
+  "failed_attempt": {
+    "content_sha256": "3d7f133610cb8eca9a0ce5ffb930170f627b746d18ff56fce04f73c9c0a76142",
+    "failure_exception_class": "RuntimeError",
+    "failure_message_sha256": "c0dd55cfb46132f2d48cdcaea5cb128d93f183d60e816fd9eff93b5a2b7c97c8",
+    "file_sha256": "1dabc51d07b0728f2f0492a4404fdd3b8ab61127d26d2c5f693dd8bcca4bb08f",
+    "phase": "inside_counterbalanced_synthetic_kernel_evaluation",
+    "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v29d_fp8_selected_table_paired_synthetic_kernel_evaluation.launch_attempt.json"
+  },
+  "failure_boundary": {
+    "activity_observability_gate_failed": true,
+    "dataset_or_nontrain_surface_opened": false,
+    "direct_table_adoption_or_action_taken": false,
+    "evaluation_report_written": false,
+    "final_idle_certificate_present": true,
+    "final_idle_certificate_sha256": "81b02885c550d90dd84edc32104c7bae658405c188bffa97583db3f285d23166",
+    "kernel_statistical_evaluation_completed": false,
+    "prelaunch_idle_certificate_sha256": "d1a73084e65e24ef8048a6fffeb9a6cb6f1b17fa1278e51cb4cba991590d3913"
+  },
+  "raw_message_traceback_timing_output_or_pid_details_persisted": false,
+  "schema": "vllm-moe-fp8-selected-table-infrastructure-failure-evidence-v29e",
+  "status": "valid_failed_before_evaluation_report_observability_only"
+}
