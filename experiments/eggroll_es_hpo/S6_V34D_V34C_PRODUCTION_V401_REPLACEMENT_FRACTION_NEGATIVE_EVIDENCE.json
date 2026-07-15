@@ -1,0 +1,281 @@
+{
+  "aggregate_execution": {
+    "a_b_exact": {
+      "all_dense_result_commitments_exact": true,
+      "all_source_engine_panel_score_arrays_exact": true
+    },
+    "a_c_exact": {
+      "all_dense_result_commitments_exact": true,
+      "all_source_engine_panel_score_arrays_exact": true
+    },
+    "activity_and_restore_sha256": "9366f559c58207e3d1731d7733f8e50009bfe600f87007d7fa1531397e641a89",
+    "all_four_tp1_engines_both_sources_every_wave": true,
+    "all_runtime_integrity_audits_passed": true,
+    "configuration": {
+      "alpha_zero": true,
+      "content_sha256": "e87e8b5214c96433676a8c42ac59f247be75b9b9ec6bf1fe60cc18ff227fd2ef",
+      "device_identity_sha256": "a62153ba381c77400ecdaf2601326e174365def247f28e9ec00fba085e0f6a30",
+      "installation_sha256": "182b2d2f69d2860fea1c620da61721d2845a39b14ffd4ec8fe4e31ca09daaa61",
+      "selected_reference_identity_sha256": "8123122857a895cd94e8f45119ed30e770536517e0a1d0606b9a45432da6fd8f"
+    },
+    "failure_cleanup_and_final_all_gpu_idle_passed": true,
+    "fraction_specific_request_count": 0,
+    "full_context_guard_excluded_from_fraction_analysis": true,
+    "full_context_request_count": 4680,
+    "origin_and_population_boundary_audits_passed": true,
+    "perturbed_request_count": 49920,
+    "phase_a_b_c_commitments_identical": true,
+    "physical_gpu_count": 4,
+    "synchronized_signed_wave_count": 32,
+    "total_generation_request_count": 54600
+  },
+  "artifacts": {
+    "compact_report": {
+      "content_sha256": "1163bd079d692c48a83fce845825907467c98a8800660c5e4d92b4c6c107c79d",
+      "file_sha256": "8dc9bcec82c52a1a961e6e7596059425d42e8003281e97cc30f424fc1a6e3825",
+      "relative_path": "experiments/eggroll_es_hpo/runs/s6_v34c_production_v401_replacement_fraction_hpo_basis20261015/production_v401_replacement_fraction_report_v34c.json"
+    },
+    "durable_attempt": {
+      "content_sha256": "17793b2a328c9f711d494bffff85888b7a081fe9612e789216fcaa1fc4194dd6",
+      "file_sha256": "66e32c7528b196f8f62cc06c684cb646cdebaf2a016df53a4d7983a8a26ede6f",
+      "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v34c_production_v401_replacement_fraction_hpo_basis20261015.launch_attempt.json"
+    }
+  },
+  "content_sha256_before_self_field": "a4338527e79d06acfa52f0cdae024e1b96d9b97b74e014b032094868725b39bb",
+  "decision": {
+    "checkpoint_write_authority": false,
+    "dataset_promotion_authority": false,
+    "model_update_authority": false,
+    "nontrain_reuse_authority": false,
+    "replacement_fraction_adoption_authority": false,
+    "retain_production_at_fraction_0_0": true,
+    "validation_heldout_ood_or_benchmark_evaluation_authority": false
+  },
+  "fixed_sequence_result": {
+    "all_12_familywise_lcbs_failed": true,
+    "all_12_point_deltas_nonnegative": false,
+    "bootstrap": {
+      "draw_plan_sha256": "458d4bdaf9e8f990258712e561699c630ab8e1091f9919979492081c283d5dec",
+      "one_sided_bonferroni_quantile": 0.004166666666666667,
+      "quantile_method": "linear",
+      "raw_draws_or_replicates_persisted": false,
+      "repetitions": 50000,
+      "seed": 20261016
+    },
+    "endpoint_count": 12,
+    "exact_endpoints": {
+      "aggregate_to_optimization_cosine_median": {
+        "familywise_lcb": -0.007115963038491676,
+        "fraction_minus_production": -0.0010475757231054317,
+        "noninferiority_margin": 0.0
+      },
+      "aggregate_to_optimization_cosine_worst": {
+        "familywise_lcb": -0.007732728118699607,
+        "fraction_minus_production": -0.0036341577519395374,
+        "noninferiority_margin": 0.0
+      },
+      "aggregate_to_optimization_sign_agreement_median": {
+        "familywise_lcb": -0.03125,
+        "fraction_minus_production": 0.0,
+        "noninferiority_margin": 0.0
+      },
+      "aggregate_to_optimization_sign_agreement_worst": {
+        "familywise_lcb": -0.03125,
+        "fraction_minus_production": 0.0,
+        "noninferiority_margin": 0.0
+      },
+      "optimization_pairwise_cosine_median": {
+        "familywise_lcb": -0.006948961205803455,
+        "fraction_minus_production": -0.0029125659578429774,
+        "noninferiority_margin": 0.0
+      },
+      "optimization_pairwise_cosine_worst": {
+        "familywise_lcb": -0.007046657959264781,
+        "fraction_minus_production": -0.0025744247860692293,
+        "noninferiority_margin": 0.0
+      },
+      "optimization_pairwise_sign_agreement_median": {
+        "familywise_lcb": -0.03125,
+        "fraction_minus_production": 0.0,
+        "noninferiority_margin": 0.0
+      },
+      "optimization_pairwise_sign_agreement_worst": {
+        "familywise_lcb": -0.03125,
+        "fraction_minus_production": 0.0,
+        "noninferiority_margin": 0.0
+      },
+      "train_screen_cosine_median": {
+        "familywise_lcb": -0.003918169789458088,
+        "fraction_minus_production": 0.0020034967993220465,
+        "noninferiority_margin": 0.0
+      },
+      "train_screen_cosine_worst": {
+        "familywise_lcb": -0.006005723865678034,
+        "fraction_minus_production": 0.002938824557453368,
+        "noninferiority_margin": 0.0
+      },
+      "train_screen_sign_agreement_median": {
+        "familywise_lcb": -0.03125,
+        "fraction_minus_production": 0.0078125,
+        "noninferiority_margin": 0.0
+      },
+      "train_screen_sign_agreement_worst": {
+        "familywise_lcb": -0.03125,
+        "fraction_minus_production": 0.015625,
+        "noninferiority_margin": 0.0
+      }
+    },
+    "familywise_lcb_failure_count": 12,
+    "fraction_compact_estimator_sha256": "aca47da56eca4302791d2e25cde8493a7f9890b362bcd0a132cc9c8b64a74a43",
+    "fraction_specific_model_request_count": 0,
+    "largest_consecutively_passing_fraction": 0.0,
+    "no_higher_fraction_result_inferred": true,
+    "production_fraction": 0.0,
+    "stopped_at_first_failure": true,
+    "tested_fraction": 0.05,
+    "tested_fraction_count": 1,
+    "tested_fraction_passed": false,
+    "untested_fractions_after_first_failure": [
+      0.1,
+      0.2,
+      0.4,
+      1.0
+    ]
+  },
+  "frozen_bindings": {
+    "authorization_gate_content_sha256": "ae92bb2637a8d89bf3362ab3c4c42af2337a735e4b3f5575ad3f19daeca471f4",
+    "committed_source_certificate_sha256": "980321c40dd9fb750b9eda1716ad8106247ef0a18e2117c024bc145c346e00d3",
+    "configuration_content_sha256": "e87e8b5214c96433676a8c42ac59f247be75b9b9ec6bf1fe60cc18ff227fd2ef",
+    "final_idle_certificate_sha256": "66a8efe7fbd5abc4e9423ccb5dd0616a72a52c569695ace5de0834d3d2d575e8",
+    "fixed_sequence_content_sha256": "f3e614d8a4ffbad202c739ef8b28c2ccf43f7ca0472f2bc6eb1876c64024ccdb",
+    "implementation_bundle_sha256": "62799c09d85cf62c5428bb541836726086b04f97c6440036f4ab4e0f7ab8563c",
+    "live_model_audit_sha256": "fcfeda342954ba12e80c4ac82a0040f279c6bdcb3c003649ffa9c9abd737e2c5",
+    "postcleanup_binding_recheck_sha256": "266988823212d6671108ddd1151832261e89826f3e6e87374188f4d82862cfa3",
+    "preanalysis_audit_content_sha256": "387002798060145fe1ec38140bbb26f646a53c06626395dba1ddaa8578fe6f9b",
+    "prelaunch_idle_certificate_sha256": "63436f339c5aa2430289d200b59ecd6043298981e79dcb7c89d0346be8a78de6",
+    "recipe_content_sha256": "e1196c730be0cddb82af953a49120a659ab39ecb4a3927a288b806319de1b2e7",
+    "runtime_environment_certificate_sha256": "7acc87ffb6a50682f19309ea3059823d0fc96dfc459e30cb66d64e157a76f52a",
+    "summary_content_sha256": "af2d793cd9650bb748de509c6a038a4f4312197674b9158c8190af78237885d6"
+  },
+  "input_scope": {
+    "compact_attempt_and_report_aggregates_only": true,
+    "detailed_scores_responses_coefficients_or_bootstrap_draws_persisted": false,
+    "evaluation_validation_heldout_ood_or_benchmark_content_opened": false,
+    "gpu_launched": false,
+    "panel_candidate_manifest_or_dataset_content_opened": false,
+    "raw_stdout_or_runtime_logs_opened": false,
+    "source_contract_constants_only": true
+  },
+  "schema": "eggroll-es-v401-replacement-fraction-negative-evidence-v34d",
+  "side_effects": {
+    "checkpoint_written": false,
+    "dataset_promotion_applied": false,
+    "direct_action_taken": false,
+    "evaluation_opened": false,
+    "model_update_applied": false,
+    "nontrain_surface_opened": false
+  },
+  "status": "sealed_completed_compact_negative_evidence",
+  "transitively_frozen_source_contracts": {
+    "binding_basis": {
+      "committed_source_certificate_sha256": "980321c40dd9fb750b9eda1716ad8106247ef0a18e2117c024bc145c346e00d3",
+      "implementation_bundle_sha256": "62799c09d85cf62c5428bb541836726086b04f97c6440036f4ab4e0f7ab8563c",
+      "postcleanup_binding_recheck_sha256": "266988823212d6671108ddd1151832261e89826f3e6e87374188f4d82862cfa3",
+      "recipe_content_sha256": "e1196c730be0cddb82af953a49120a659ab39ecb4a3927a288b806319de1b2e7"
+    },
+    "candidate_manifest": {
+      "candidate_file_sha256": "8e29826dd389171c69f5eb6f43781f900345974c3d4d11274268e86c6145693b",
+      "content_sha256": "42304107e89119c10c545dc79b4f85ab08bd4b8b78efec710d286987a3e8a5af",
+      "file_sha256": "1013032a1a4c21a2ece6e80e0930aecee8430639e07eaf48c2ac7701708e8f52",
+      "freeze_commit": "59dfe718a914be8b37e05ff9daa822ab467d18a4",
+      "relative_path": "experiments/eggroll_es_hpo/dataset_candidates/v401/manifest.json"
+    },
+    "model_and_layer_plan": {
+      "layer_plan": {
+        "content_sha256": "07a155d1217b27ba1bf30e057024247236a812841c52bab401d465c9fdb5273f",
+        "file_sha256": "4dca69212f2eee1c5882a7f3de944e3dadd8de94b42e58e7d7495547e8b1c747",
+        "relative_path": "experiments/layer_plans/v23a_base_middle_late_dense.json"
+      },
+      "model": {
+        "config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+        "index_sha256": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+        "relative_path": "models/Qwen3.6-35B-A3B"
+      }
+    },
+    "panels": {
+      "content_free_frame": {
+        "content_sha256": "2b2a5f9b66b59401f7ca1fffd4d901933d02b84b580356dc50b7b874da18dc7b",
+        "file_sha256": "832bbea07d08c487621e2dc88dfb8ebffc4b05d888badbbe5eb0fd71124efde3",
+        "relative_path": "experiments/eggroll_es_hpo/train_panel_sampling_v34b/production_v401_replacement_fraction_panels_v34b.json",
+        "runtime_frame_content_sha256": "a4f290bcdece10de81997d680c07475266896c7140ed394ede990b0e93d98c0e"
+      },
+      "transient_panel_bundle": {
+        "content_sha256": "9d9824dfb0051ab8ed39d2a1d01ad22baa77c94305a9c76d434b38c41aca2f6c"
+      }
+    },
+    "preregistration": {
+      "content_sha256": "8ebf4b34b693e459c2b59f331e0768eb116842dbd61c24202302794b3e3b439b",
+      "file_sha256": "b852730872621fe9259087dd681ebf8854f985e8caa9208f0e8257a1d07de91b",
+      "relative_path": "experiments/eggroll_es_hpo/S6_V401_REPLACEMENT_FRACTION_HPO_V34B_PREREGISTRATION.json"
+    },
+    "production": {
+      "file_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
+      "relative_path": "data/train_qa_curated_v1.jsonl",
+      "source_commit": "a21de35748054c3ae8737a767606234952f9561e"
+    },
+    "v34b_commit": "b254d4bdae0bb3fcb98d015c155393df9cca2d5d",
+    "v34b_source_files": {
+      "cpu_runner_test_v34b": {
+        "file_sha256": "fc3e789b9d1a69f94f8c02e70cbb422ceee503bfb7d740930277703928066e45",
+        "relative_path": "test_run_eggroll_es_v401_replacement_fraction_v34b.py"
+      },
+      "cpu_runner_v34b": {
+        "file_sha256": "4cfa9e0da6038b2ba5f3998c8597827e715b130e0bda7a2ca4c7145bf58cd02e",
+        "relative_path": "run_eggroll_es_v401_replacement_fraction_v34b.py"
+      },
+      "frame_builder_v34b": {
+        "file_sha256": "936efe422f560fd49f4f6bfa775465c786e9b3d2299189c4343f38ae1ede1774",
+        "relative_path": "build_eggroll_es_v401_replacement_fraction_frame_v34b.py"
+      },
+      "frame_test_v34b": {
+        "file_sha256": "b1a8c7098302c844966dc056e191f193a3cfd908f17558e2c591ebdfc6f17ff7",
+        "relative_path": "test_build_eggroll_es_v401_replacement_fraction_frame_v34b.py"
+      },
+      "frame_v34b": {
+        "file_sha256": "832bbea07d08c487621e2dc88dfb8ebffc4b05d888badbbe5eb0fd71124efde3",
+        "relative_path": "experiments/eggroll_es_hpo/train_panel_sampling_v34b/production_v401_replacement_fraction_panels_v34b.json"
+      },
+      "mechanics_test_v34b": {
+        "file_sha256": "d6d1b87d53b18f9c0e69087c9e02cc2445e1cfb81d9acaf83535b6ec261bb3f9",
+        "relative_path": "test_train_eggroll_es_v401_replacement_fraction_v34b.py"
+      },
+      "mechanics_v34b": {
+        "file_sha256": "5a59d618ba690f354c0564a52a391602b6f7a207a076523eac5ae262ba50c183",
+        "relative_path": "train_eggroll_es_v401_replacement_fraction_v34b.py"
+      },
+      "preregistration_module_v34b": {
+        "file_sha256": "5ebb49b951c61e144cda1f6dd06d23b4b1f746cd500a58059f77fc8aec48f41b",
+        "relative_path": "eggroll_es_v401_replacement_fraction_preregistration_v34b.py"
+      },
+      "preregistration_test_v34b": {
+        "file_sha256": "1499e8d5aff293fcdafc14896c89cc3506c691a1468ac39a0b7d15a16296b13d",
+        "relative_path": "test_eggroll_es_v401_replacement_fraction_preregistration_v34b.py"
+      },
+      "preregistration_v34b": {
+        "file_sha256": "b852730872621fe9259087dd681ebf8854f985e8caa9208f0e8257a1d07de91b",
+        "relative_path": "experiments/eggroll_es_hpo/S6_V401_REPLACEMENT_FRACTION_HPO_V34B_PREREGISTRATION.json"
+      }
+    },
+    "v34c_commit": "756b782e33cbf5cff27c68c3827d86d0ca6d5150",
+    "v34c_source_files": {
+      "gpu_runtime_test_v34c": {
+        "file_sha256": "d09235124e09f07b1683ec74ba2b8c08986fbe079ecf70bd5ab25adf6cc82b4f",
+        "relative_path": "test_run_eggroll_es_v401_replacement_fraction_v34c.py"
+      },
+      "gpu_runtime_v34c": {
+        "file_sha256": "c9686c15fe2b187908ab8f916ab3d4feb7b2b52b148585f9bed7bdbc0fa43b83",
+        "relative_path": "run_eggroll_es_v401_replacement_fraction_v34c.py"
+      }
+    }
+  }
+}
