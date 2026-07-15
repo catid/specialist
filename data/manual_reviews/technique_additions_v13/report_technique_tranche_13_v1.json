@@ -1,0 +1,27 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/technique_additions_v13/pending_additions_technique_tranche_13_v1.jsonl",
+    "rows": 3,
+    "sha256": "5ec0b4744704e2f0f409993ac4847c1c3d9c3a63537e93db80535f34d7923e6f"
+  },
+  "baseline": {
+    "rows": 528,
+    "sha256": "cbba5461f1f60bd1770ef6a776be9747d20fd58745ff20263bc4983f31dddbf7"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v301 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one transferable technique concept from each of three distinct, previously unrepresented documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "technique": 3
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-technique-additions-v13",
+  "schema": "manual-technique-additions-report-v13",
+  "status": "segregated_pending_integration"
+}
