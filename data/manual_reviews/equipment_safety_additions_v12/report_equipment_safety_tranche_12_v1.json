@@ -1,0 +1,28 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/equipment_safety_additions_v12/pending_additions_equipment_safety_tranche_12_v1.jsonl",
+    "rows": 3,
+    "sha256": "7dddff797d1e3c3bc8480b34b75b319d021190b22f7c4c8037ffb421d78f351e"
+  },
+  "baseline": {
+    "rows": 525,
+    "sha256": "b0315512acb0af95ff5fd0f0af835b21fcda293ff87c3cf9329a0ca1e44493a0"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v300 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded equipment or safety fact from each of three distinct, previously unrepresented documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "equipment_material": 1,
+      "safety_consent": 2
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-equipment-safety-additions-v12",
+  "schema": "manual-equipment-safety-additions-report-v12",
+  "status": "segregated_pending_integration"
+}
