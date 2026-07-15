@@ -1,0 +1,91 @@
+{
+  "command": [
+    "/home/catid/specialist/.venv/bin/torchrun",
+    "--standalone",
+    "--nproc-per-node=4",
+    "/home/catid/specialist/sft_lora_equal_unit_v37a.py",
+    "--data",
+    "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_train.jsonl",
+    "--data-sha256",
+    "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "--data-rows",
+    "448",
+    "--expected-conflict-units",
+    "208",
+    "--expected-weight-identity-sha256",
+    "631199dc13d240434f7b0a9ea94c0848c315d83b12fada0be3a7189e57a85b06",
+    "--out",
+    "/home/catid/specialist/experiments/sft_controls/v37a_equal_unit_fold3_v412/middle_late_r32_seed17",
+    "--epochs",
+    "3.0",
+    "--rank",
+    "32",
+    "--per-device-batch-size",
+    "7",
+    "--learning-rate",
+    "0.0001",
+    "--seed",
+    "17",
+    "--max-length",
+    "1024",
+    "--save-steps",
+    "16",
+    "--target-layers",
+    "20,21,22,23",
+    "--expected-trainable-elements",
+    "4528128",
+    "--expected-trainable-tensors",
+    "70",
+    "--expected-world-size",
+    "4",
+    "--attn-implementation",
+    "sdpa"
+  ],
+  "completed_at_utc": "2026-07-15T20:22:46.287553+00:00",
+  "content_sha256_before_self_field": "e747c3a293717f8e875db0046beeedf196430be091463190e1a9a97c84011715",
+  "dataset": {
+    "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_train.jsonl",
+    "rows": 448,
+    "sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "unique_documents": 234,
+    "unique_fact_ids": 448
+  },
+  "final_report": "/home/catid/specialist/experiments/sft_controls/v37a_equal_unit_fold3_v412/runtime_report_v37a.json",
+  "final_report_sha256": "aae3adcc439b9fb6011cb9ffdde036fa64596648b3b24b46ffc29aeca3a22aac",
+  "output_dir": "/home/catid/specialist/experiments/sft_controls/v37a_equal_unit_fold3_v412/middle_late_r32_seed17",
+  "phase": "complete",
+  "prelaunch_gpu_exclusivity": {
+    "compute_pids_by_gpu": {
+      "0": [],
+      "1": [],
+      "2": [],
+      "3": []
+    },
+    "maximum_allowed_memory_mib": 2048,
+    "memory_used_mib_by_gpu": {
+      "0": 4,
+      "1": 4,
+      "2": 4,
+      "3": 4
+    }
+  },
+  "preregistration": {
+    "content_sha256": "bd737a1d972303a34026ee60ad9a9799805d14d31d0d142892065b11c2f557ea",
+    "file_sha256": "b359e295197558784cb69665b8c4d659ff7deb4e8cb635bf09b159f949f4db61",
+    "implementation_bindings": {
+      "engine": "e9823359d82aeb61d7fd1f17f24ea22fc46680cc122c55232b1913d765d1d49d",
+      "launcher": "73fe9e0402f4e8515ade143e6528d1ae5c0f6b0d8feed1ef7101af6f3df58ead",
+      "layer_plan": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
+      "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+      "sft": "f6f38312e5e4baf19923ac4a52ecb30813bfd5c8be4f561a6d9c38076a0159b4",
+      "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d"
+    },
+    "path": "/home/catid/specialist/experiments/sft_controls/v37a_equal_unit_fold3_v412/preregistration_v37a.json"
+  },
+  "returncode": 0,
+  "schema": "specialist-sft-equal-unit-attempt-v37a",
+  "started_at_utc": "2026-07-15T20:21:38.780516+00:00",
+  "status": "complete",
+  "torchrun_pid": 2559707
+}
