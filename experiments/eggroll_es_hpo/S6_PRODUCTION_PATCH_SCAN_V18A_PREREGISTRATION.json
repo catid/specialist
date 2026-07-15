@@ -1,15 +1,16 @@
 {
   "analysis": {
     "bootstrap": {
-      "candidate_only_resampling": "one_component_per_active_layer_is_inherited_from_the_resampled_panel_block",
+      "candidate_only_resampling": "for_each_fixed_target_panel_and_active_layer_draw_the_q1_observation_from_same_role_panels_with_shared_indices_all_arms_while_base_panel_identity_remains_fixed",
       "familywise_alpha": 0.05,
+      "fixed_panel_identities_every_replicate": true,
       "multiplicity": "Bonferroni_over_three_patch_arms_times_twelve_stability_endpoints",
       "one_sided_quantile": 0.001388888888888889,
-      "panel_block_resampling": "resample_optimization_three_and_train_screen_two_panels_within_role_with_shared_indices_all_arms",
       "persist_per_unit_scores_or_bootstrap_draws": false,
       "recompute_HT_arm_totals_exact_denominator_coefficients_aggregate_and_all_nonlinear_endpoints_each_replicate": true,
       "repetitions": 50000,
       "seed": 20260724,
+      "whole_panel_block_resampling_used": false,
       "within_panel_base_resampling": "resample_thirteen_components_within_each_of_four_base_HT_strata_using_shared_uniforms_all_arms"
     },
     "endpoint_contract": {
@@ -558,7 +559,7 @@
       }
     ]
   },
-  "content_sha256_before_self_field": "514e1c9f3e8eb16ce9c224236439780ad6c1db706720285a3a3dda1d8db3d503",
+  "content_sha256_before_self_field": "72509385d9df9fe2ce36a81c065dae995268cfcb3708eb10cd76ce39f9e77151",
   "estimator": {
     "arm_mean": "arm_total_divided_by_exact_arm_population_denominator",
     "arm_population_denominators": {
@@ -762,7 +763,7 @@
       "safety_consent": 7,
       "technique": 17
     },
-    "screens_excluded_from_every_direction": true,
+    "screens_scored_every_direction_but_excluded_from_optimization_or_update": true,
     "train_only_screens": [
       "train_screen_0",
       "train_screen_1"
@@ -833,15 +834,21 @@
   "runtime_estimate": {
     "bootstrap_cpu_repetitions": 50000,
     "estimated_aggregate_gpu_hours": [
-      0.9,
-      1.9
+      3.0,
+      6.0
     ],
     "estimated_wall_minutes_four_gpus": [
-      14,
-      28
+      45,
+      90
     ],
-    "relative_prompt_request_count_vs_v17a": 0.5631578947368421,
-    "requests_per_engine_per_signed_wave_all_arms": 214,
+    "relative_prompt_request_count_vs_v17a": 2.8157894736842106,
+    "requests_per_engine_per_arm_per_signed_wave": {
+      "patch_full": 275,
+      "patch_one_third": 265,
+      "patch_two_thirds": 270,
+      "production_only": 260
+    },
+    "requests_per_engine_per_signed_wave_all_arms": 1070,
     "v17a_requests_per_engine_per_signed_wave": 380
   },
   "schema": "eggroll-es-production-patch-scan-preregistration-v18a",

@@ -89,11 +89,35 @@ def test_v18a_preregisters_subset_ht_crn_bootstrap_and_36_familywise_gates():
     analysis = value["analysis"]
     assert analysis["hypothesis_count"] == 36
     assert len(analysis["endpoint_contract"]) == 36
-    assert analysis["bootstrap"]["repetitions"] == 50_000
-    assert analysis["bootstrap"]["one_sided_quantile"] == 0.05 / 36
-    assert analysis["bootstrap"][
+    bootstrap = analysis["bootstrap"]
+    assert bootstrap["repetitions"] == 50_000
+    assert bootstrap["one_sided_quantile"] == 0.05 / 36
+    assert bootstrap["fixed_panel_identities_every_replicate"] is True
+    assert bootstrap["whole_panel_block_resampling_used"] is False
+    assert "q1" in bootstrap["candidate_only_resampling"]
+    assert "same_role_panels" in bootstrap["candidate_only_resampling"]
+    assert bootstrap[
         "persist_per_unit_scores_or_bootstrap_draws"
     ] is False
+
+    panels = value["panels"]
+    assert panels[
+        "screens_scored_every_direction_but_excluded_from_optimization_or_update"
+    ] is True
+    assert "screens_excluded_from_every_direction" not in panels
+
+    runtime = value["runtime_estimate"]
+    assert runtime["requests_per_engine_per_arm_per_signed_wave"] == {
+        "production_only": 260,
+        "patch_one_third": 265,
+        "patch_two_thirds": 270,
+        "patch_full": 275,
+    }
+    assert runtime["requests_per_engine_per_signed_wave_all_arms"] == 1_070
+    assert runtime["v17a_requests_per_engine_per_signed_wave"] == 380
+    assert runtime["relative_prompt_request_count_vs_v17a"] == 1_070 / 380
+    assert runtime["estimated_wall_minutes_four_gpus"] == [45, 90]
+    assert runtime["estimated_aggregate_gpu_hours"] == [3.0, 6.0]
 
 
 def test_v18a_freezes_v13_middle_late_default_triton_and_no_authority():

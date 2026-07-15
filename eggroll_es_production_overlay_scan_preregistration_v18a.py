@@ -336,7 +336,8 @@ def build_preregistration_v18a() -> dict:
             ),
             "globally_joint_component_disjoint": True,
             "fixed_side_representatives_every_direction_sign_and_arm": True,
-            "screens_excluded_from_every_direction": True,
+            "screens_scored_every_direction_but_excluded_from_optimization_"
+            "or_update": True,
             "infeasible_action": (
                 "abort_v18a_without_quota_seed_grouping_or_solver_fallback"
             ),
@@ -417,18 +418,17 @@ def build_preregistration_v18a() -> dict:
                     "Bonferroni_over_three_patch_arms_times_twelve_stability_"
                     "endpoints"
                 ),
-                "panel_block_resampling": (
-                    "resample_optimization_three_and_train_screen_two_panels_"
-                    "within_role_with_shared_indices_all_arms"
-                ),
+                "fixed_panel_identities_every_replicate": True,
                 "within_panel_base_resampling": (
                     "resample_thirteen_components_within_each_of_four_base_"
                     "HT_strata_using_shared_uniforms_all_arms"
                 ),
                 "candidate_only_resampling": (
-                    "one_component_per_active_layer_is_inherited_from_the_"
-                    "resampled_panel_block"
+                    "for_each_fixed_target_panel_and_active_layer_draw_the_q1_"
+                    "observation_from_same_role_panels_with_shared_indices_all_"
+                    "arms_while_base_panel_identity_remains_fixed"
                 ),
+                "whole_panel_block_resampling_used": False,
                 "recompute_HT_arm_totals_exact_denominator_coefficients_"
                 "aggregate_and_all_nonlinear_endpoints_each_replicate": True,
                 "persist_per_unit_scores_or_bootstrap_draws": False,
@@ -454,11 +454,17 @@ def build_preregistration_v18a() -> dict:
             "evaluation_authorized": False,
         },
         "runtime_estimate": {
-            "requests_per_engine_per_signed_wave_all_arms": 214,
+            "requests_per_engine_per_arm_per_signed_wave": {
+                "production_only": 260,
+                "patch_one_third": 265,
+                "patch_two_thirds": 270,
+                "patch_full": 275,
+            },
+            "requests_per_engine_per_signed_wave_all_arms": 1070,
             "v17a_requests_per_engine_per_signed_wave": 380,
-            "relative_prompt_request_count_vs_v17a": 214 / 380,
-            "estimated_wall_minutes_four_gpus": [14, 28],
-            "estimated_aggregate_gpu_hours": [0.9, 1.9],
+            "relative_prompt_request_count_vs_v17a": 1070 / 380,
+            "estimated_wall_minutes_four_gpus": [45, 90],
+            "estimated_aggregate_gpu_hours": [3.0, 6.0],
             "bootstrap_cpu_repetitions": BOOTSTRAP_REPETITIONS_V18A,
         },
         "required_next_artifacts": {
@@ -501,6 +507,45 @@ def validate_preregistration_v18a(value: dict) -> dict:
         != frame_v18a.ARM_REQUESTS_PER_PANEL_V18A
         or value.get("analysis", {}).get("hypothesis_count") != 36
         or len(value.get("analysis", {}).get("endpoint_contract", {})) != 36
+        or value.get("analysis", {}).get("bootstrap", {}).get(
+            "fixed_panel_identities_every_replicate"
+        )
+        is not True
+        or value.get("analysis", {}).get("bootstrap", {}).get(
+            "whole_panel_block_resampling_used"
+        )
+        is not False
+        or value.get("panels", {}).get(
+            "screens_scored_every_direction_but_excluded_from_optimization_"
+            "or_update"
+        )
+        is not True
+        or "screens_excluded_from_every_direction" in value.get("panels", {})
+        or value.get("runtime_estimate", {}).get(
+            "requests_per_engine_per_arm_per_signed_wave"
+        )
+        != {
+            "production_only": 260,
+            "patch_one_third": 265,
+            "patch_two_thirds": 270,
+            "patch_full": 275,
+        }
+        or value.get("runtime_estimate", {}).get(
+            "requests_per_engine_per_signed_wave_all_arms"
+        )
+        != 1070
+        or value.get("runtime_estimate", {}).get(
+            "relative_prompt_request_count_vs_v17a"
+        )
+        != 1070 / 380
+        or value.get("runtime_estimate", {}).get(
+            "estimated_wall_minutes_four_gpus"
+        )
+        != [45, 90]
+        or value.get("runtime_estimate", {}).get(
+            "estimated_aggregate_gpu_hours"
+        )
+        != [3.0, 6.0]
         or scoring.get("objective_change_allowed_in_v18a") is not False
         or "objective_change_allowed_in_v17a" in scoring
         or set(token_lengths.get("tokenizer_boundary_mismatch_count", {}))
