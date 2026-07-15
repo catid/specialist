@@ -1,0 +1,47 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/equipment_additions_v7/pending_additions_equipment_tranche_07_v1.jsonl",
+    "rows": 3,
+    "sha256": "5becbbe974fc068c74789b7ddad05f572ffe8c9cad1059a7946604fcf3bae726"
+  },
+  "baseline": {
+    "rows": 510,
+    "sha256": "53dfec56416923431838a74914ba3900553aae8cfc23c95d42b8169792c61b1f"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v295 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one durable equipment or vendor-navigation fact from each of three distinct, previously unrepresented documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "equipment_material": 3
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-equipment-additions-v7",
+  "schema": "manual-equipment-additions-report-v7",
+  "sources": {
+    "a_frame_support_documents": {
+      "document_sha256": "57e7aa6c2b42bc5943a6296e6ba267c0247a7004964616b034d1671930af3aef",
+      "file_sha256": "0d90c94011e7c3f86b14c560d859c4834f9b192c7d75c8bc2485965e78a33506",
+      "path": "data/raw/rope_resources_v1/xpole_a_frame__4503d099f45260a68e60.json",
+      "url": "https://xpoleus.com/support/a-frame/"
+    },
+    "custom_hardware_design_input": {
+      "document_sha256": "4190a89de76eb741ac09ebd83abbab5d3c347de117e5a7beaac593ac256c3eb4",
+      "file_sha256": "10a731010009610e068da89b98b948de6849b107bc16565eeef04d6bb9672528",
+      "path": "data/raw/rope_resources_v1/subspace_designs__10d8ce5448a30149b028.json",
+      "url": "https://www.subspacedesigns.shop/subspacecustomorders"
+    },
+    "texas_rope_vendor_materials": {
+      "document_sha256": "46475111b24234a74718317ff767509dc5b1010525e9cf507dbb267e0efc6928",
+      "file_sha256": "4d559c2a1a30fbf0f54b454ef8859c6cb67224dae321900c8071dfb789c79396",
+      "path": "data/raw/rope_resources_v1/austin_rope_slingers__76c874894072bdc4b3f9.json",
+      "url": "https://www.austinropeslingers.com/rope-101-resources/"
+    }
+  },
+  "status": "segregated_pending_integration"
+}
