@@ -1,0 +1,44 @@
+{
+  "candidate": {
+    "file_sha256": "874b77dd8ef988bb24d4b13999ddebc2068b053eab208def9bb1e23e7138c36a",
+    "path": "experiments/eggroll_es_hpo/dataset_candidates/v364/train_qa_context_merit_v364.jsonl",
+    "rows": 531
+  },
+  "content_sha256_before_self_field": "d399345c2b7292557f246ac93cf1127b02049cdf1d1b2c3ddec7daf164736ad8",
+  "firewall": {
+    "candidate_row_content_in_manifest": false,
+    "checkpoint_write_authorized": false,
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "heldout_validation_ood_eval_or_benchmark_content_opened": false,
+    "model_update_authorized": false,
+    "runtime_launch_authorized": false,
+    "scope": "train_only"
+  },
+  "projection_report": {
+    "file_sha256": "4ac00be2c11c6c8fc0aed37a92035ac8e50928a14b2b5ae19c4408fcaed4ee85",
+    "path": "experiments/eggroll_es_hpo/dataset_candidates/v364/projection_report_v364.json",
+    "schema": "curated-training-qa-report-v1"
+  },
+  "provenance": {
+    "curator_report": {
+      "candidate_rows": 531,
+      "candidate_sha256": "874b77dd8ef988bb24d4b13999ddebc2068b053eab208def9bb1e23e7138c36a",
+      "file_sha256": "3aab5bf4c9d342e8264637b8338dc0874ebeaff03e742f336933a6673e95c8e4",
+      "path": "data/manual_reviews/context_merit_audit_v364/report_context_merit_v364.json",
+      "repeat_dataset_byte_identical": true,
+      "repeat_projection_report_byte_identical": true
+    },
+    "source_artifact_file_sha256": {
+      "data/manual_reviews/context_merit_audit_v364/build_context_merit_audit_v364.py": "2a6b3c289d19b4b0693fbbf38c53fc5309232e5ebd494ea12ed95d21e0ff434d",
+      "data/manual_reviews/context_merit_audit_v364/context_merit_audit_v364.jsonl": "205947ec2285842dcf727e83906be61ac884cd3f7470d635ecfbfd377b256940",
+      "data/manual_reviews/context_merit_audit_v364/pending_curation_context_merit_v364.jsonl": "f095877969f136f6e2f881ec83d1522251b248936bcadf33f674819bde5ce828",
+      "data/manual_reviews/context_merit_audit_v364/report_context_merit_v364.json": "3aab5bf4c9d342e8264637b8338dc0874ebeaff03e742f336933a6673e95c8e4",
+      "data/manual_reviews/context_merit_audit_v364/test_context_merit_audit_v364.py": "a3eb79f2b6b60d9d1f4fef926f673067c387ab9d97626049bd784461b130c6a2"
+    },
+    "source_artifact_inventory_sha256": "a85ef2e7379cad2713b8e9edf4641427d9dfe99684bf89f4c2c008073a6f3c77",
+    "source_commit": "3e078d7393acc1e56a1690271b9ee41b5efb51cb"
+  },
+  "schema": "eggroll-es-immutable-train-candidate-manifest-v364",
+  "status": "sealed_train_only_snapshot_no_runtime_or_evaluation_authority"
+}

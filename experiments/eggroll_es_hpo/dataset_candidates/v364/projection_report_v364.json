@@ -1,0 +1,76 @@
+{
+  "counts": {
+    "by_input": {
+      "experiments/eggroll_es_hpo/dataset_candidates/v364/.train_qa_context_merit_v364.jsonl.v364-input/v363.jsonl": 531
+    },
+    "by_kind": {
+      "qa_manual": 42,
+      "qa_resource_category": 4,
+      "qa_resource_direct": 20,
+      "qa_resource_index": 15,
+      "qa_resource_manual_fact": 138,
+      "qa_verified": 312
+    },
+    "by_source": {
+      "amazon": 1,
+      "anatomiestudio": 29,
+      "atx_empty_space": 2,
+      "austin_rope_slingers": 4,
+      "bight_bound": 2,
+      "chromaknotz": 2,
+      "crash_restraint": 7,
+      "degiotto_rope": 3,
+      "esinem": 35,
+      "kinbakutoday": 162,
+      "knothead_nylon": 5,
+      "owner_curated_rope_resource_directory": 24,
+      "rope365": 198,
+      "rope_topia": 15,
+      "ropeconnections": 1,
+      "shibari_study": 4,
+      "subspace_designs": 2,
+      "tethered_together": 7,
+      "tetruss": 2,
+      "wikipedia": 16,
+      "wykd": 7,
+      "xpole_a_frame": 1,
+      "xpole_us": 2
+    },
+    "excluded": 0,
+    "exclusion_reasons": {},
+    "output": 531,
+    "unique_fact_ids": 531,
+    "unique_questions": 531
+  },
+  "curation": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v364/pending_curation_context_merit_v364.jsonl",
+        "sha256": "f095877969f136f6e2f881ec83d1522251b248936bcadf33f674819bde5ce828"
+      }
+    ],
+    "by_action": {
+      "edit": 3
+    },
+    "by_reason": {
+      "complete_marlinspike_kit_guidance": 1,
+      "complete_partner_signal_monitoring_instruction": 1,
+      "complete_tsujimura_hojojutsu_purpose_contrast": 1
+    },
+    "decisions": 3,
+    "edit_support_types": {
+      "manual_paraphrase": 3
+    }
+  },
+  "eval_fact_count": 612,
+  "exclusions": [],
+  "input_sha256": {
+    "experiments/eggroll_es_hpo/dataset_candidates/v364/.train_qa_context_merit_v364.jsonl.v364-input/v363.jsonl": "3c315c8c1822aaf7ce848c845570a89cf0ba0b9c5f3707936914ef22aaa02fdb"
+  },
+  "inputs": [
+    "experiments/eggroll_es_hpo/dataset_candidates/v364/.train_qa_context_merit_v364.jsonl.v364-input/v363.jsonl"
+  ],
+  "output": "experiments/eggroll_es_hpo/dataset_candidates/v364/train_qa_context_merit_v364.jsonl",
+  "output_sha256": "874b77dd8ef988bb24d4b13999ddebc2068b053eab208def9bb1e23e7138c36a",
+  "schema": "curated-training-qa-report-v1"
+}
