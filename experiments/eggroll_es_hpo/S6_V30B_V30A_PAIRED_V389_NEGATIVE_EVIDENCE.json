@@ -1,0 +1,125 @@
+{
+  "aggregate_execution": {
+    "all_runtime_restore_boundary_preclaim_and_final_idle_integrity_passed": true,
+    "candidate_record_count": 531,
+    "final_idle_certificate_sha256": "00740c6fd0661c2613bbdc3a0e3b02d902f22e9f036eb085e1b0c0d497b0c64a",
+    "full_context_request_count_all_engines": 4680,
+    "live_model_audit_content_sha256": "f5cb0baf14dd17efc679a2baf7bc2377552f4b9cd6e423e1376b5b14b65623b6",
+    "pairs_per_panel": 39,
+    "panel_count": 5,
+    "perturbed_request_count_all_engines": 24960,
+    "population_boundary_audit_sha256": "0fafb9834bbc724795b72a2bfa7da36c3539f3ee093995180f8c3f7bd2087988",
+    "prelaunch_idle_certificate_sha256": "28c3f8d1bc9ab8fee79f18736af8c800655b8cf48852c8f5ba60151399708094",
+    "production_record_count": 784,
+    "reserve_pair_count": 10,
+    "restore_checks_sha256": "5141ebc7c5c1f9a291330e99233894267d783a8afd4c3ceef670445dbcc59b97",
+    "runtime_audit_content_sha256": "d757a40019bddeb715a1f8106b7ac90c0865d23fba020d31db4d2b438889c5c1",
+    "runtime_environment_content_sha256": "7acc87ffb6a50682f19309ea3059823d0fc96dfc459e30cb66d64e157a76f52a",
+    "selected_pair_count": 195,
+    "signed_wave_count": 16,
+    "total_generation_request_count": 29640
+  },
+  "aggregate_result": {
+    "all_familywise_lcbs_nonnegative": false,
+    "best_familywise_lcb": -0.125,
+    "endpoint_count": 12,
+    "gate_pass": false,
+    "negative_familywise_lcb_count": 12,
+    "negative_point_estimate_count": 7,
+    "positive_point_estimate_count": 3,
+    "worst_familywise_lcb": -0.44378228533250474,
+    "zero_point_estimate_count": 2
+  },
+  "artifacts": {
+    "compact_report": {
+      "content_sha256": "1073fe301dab129215e2c7c8e8877ecdd9be4fc9c3f71d920a788d2ec2e381b3",
+      "file_sha256": "784dbeece2ffa3eace520db8083d9f6c6b1d66bfc688257f37de5b38d2d0a5af",
+      "relative_path": "experiments/eggroll_es_hpo/runs/s6_v30a_paired_production_v389_train_only_runtime_basis20261003/paired_production_v389_compatibility_v30a.json"
+    },
+    "durable_attempt": {
+      "content_sha256": "a93d1bd28eff0607c9ce4ff165e8b3ae24428995cc4fbbadc2a99ed32d41cc01",
+      "file_sha256": "c0a8b9e4e7b4607fa37eebfde0ae57fc561716ed94e48b25f01fef481f2fe995",
+      "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v30a_paired_production_v389_train_only_runtime_basis20261003.launch_attempt.json"
+    }
+  },
+  "content_sha256_before_self_field": "e1466718df3baf44268ea099bd507e12e8023807917610050d9e161774b45cfd",
+  "decision": {
+    "direct_followup_authority": false,
+    "retain_production_dataset": true,
+    "retain_v13_recipe": true,
+    "v389_replacement_authorized": false
+  },
+  "endpoint_gate_aggregates": {
+    "aggregate_to_optimization_cosine_median": {
+      "candidate_v389_minus_production": -0.0833085058352121,
+      "familywise_lcb": -0.2500635087576087
+    },
+    "aggregate_to_optimization_cosine_worst": {
+      "candidate_v389_minus_production": -0.05402994133497441,
+      "familywise_lcb": -0.34971867133086976
+    },
+    "aggregate_to_optimization_sign_agreement_median": {
+      "candidate_v389_minus_production": 0.03125,
+      "familywise_lcb": -0.125
+    },
+    "aggregate_to_optimization_sign_agreement_worst": {
+      "candidate_v389_minus_production": -0.0625,
+      "familywise_lcb": -0.1875
+    },
+    "optimization_pairwise_cosine_median": {
+      "candidate_v389_minus_production": -0.02585786049274097,
+      "familywise_lcb": -0.40331670683301735
+    },
+    "optimization_pairwise_cosine_worst": {
+      "candidate_v389_minus_production": -0.1476208521518517,
+      "familywise_lcb": -0.44378228533250474
+    },
+    "optimization_pairwise_sign_agreement_median": {
+      "candidate_v389_minus_production": 0.0,
+      "familywise_lcb": -0.21875
+    },
+    "optimization_pairwise_sign_agreement_worst": {
+      "candidate_v389_minus_production": -0.03125,
+      "familywise_lcb": -0.25
+    },
+    "train_screen_cosine_median": {
+      "candidate_v389_minus_production": 0.07096498366367587,
+      "familywise_lcb": -0.20262201264726712
+    },
+    "train_screen_cosine_worst": {
+      "candidate_v389_minus_production": 0.013487686321821957,
+      "familywise_lcb": -0.2877068758549798
+    },
+    "train_screen_sign_agreement_median": {
+      "candidate_v389_minus_production": 0.0,
+      "familywise_lcb": -0.15625
+    },
+    "train_screen_sign_agreement_worst": {
+      "candidate_v389_minus_production": -0.03125,
+      "familywise_lcb": -0.1875
+    }
+  },
+  "nontrain_data_content_persisted": false,
+  "raw_or_record_level_details_persisted": false,
+  "schema": "eggroll-es-v30a-paired-v389-negative-evidence-v30b",
+  "side_effects": {
+    "checkpoint_written": false,
+    "dataset_promotion_applied": false,
+    "direct_action_taken": false,
+    "model_mutation_applied": false,
+    "nontrain_data_surface_opened": false
+  },
+  "source_history": {
+    "candidate_input_freeze_commit": "2e8a6b7d02fbc77a2442f6790fe0f80f1bebc02e",
+    "clean_launch_source_commit": "a203f4821c4a737310df75543353d21ce6cea978",
+    "committed_clean_source_content_sha256": "09ef0135e222dac94b6a41477dbe670ea9371690efdfea21ef229b4d50a77ac4",
+    "hardened_implementation_commit": "5448c17a5217bd37dedd41e3a42b4fe5bd72d5a4",
+    "immutable_bound_file_count": 10,
+    "implementation_bundle_sha256": "2ff928d4b74fc018e38895481b33ed8c1b12e1ab0b7de77ef444e80050deb717",
+    "implementation_file_count": 65,
+    "preregistration_commit": "c54cbf4cdea670f4044a6dc5fb035eb20face83c",
+    "recipe_content_sha256": "c78c103dc197c51d8dec9ac5b9958d47ca333fec4cbcf49a7df315c62e4724f4",
+    "source_provenance_content_sha256": "d3669fa265f3e2cf4879670fd294da27d0de3ba6e0637256b1d429d871cf65d6"
+  },
+  "status": "valid_completed_negative_gate_no_action"
+}
