@@ -1,0 +1,80 @@
+{
+  "attempt": {
+    "content_sha256": "8c50bc4c6e50b0012b1e56aab67094aa76bd9ea1c32faf617dfd3d20f51e0b05",
+    "file_sha256": "31116ebde5d5722e1057f01206809069bf070304ec9ea98e5118bb5f966d9b56",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.s6_v24a_hybrid_backend_train_only_compatibility_memory_retry_r1.launch_attempt.json",
+    "source_commit": "d4d8d8978514784ba4b157811860521f91c9c234",
+    "source_content_sha256": "04bef1d455351ed42c2481f75cdae6d3972bba2db79d53b247c0d6cfd5a91adf"
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_response_vectors_unit_scores_timing_vectors_or_bootstrap_replicates": false,
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "715f10d7d90f8dd42355aa29f69466cb42c98d076f0006e7ae9b75affa1e4e18",
+  "decision": {
+    "checkpoint_write_authorized": false,
+    "confirmation_authorized": false,
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "global_gate_passed": false,
+    "model_update_authorized": false,
+    "reason": "both_duplicate_pairs_failed_quality_compatibility",
+    "reject_backend_for_hpo": "fp8_frozen_backbone_with_layers_20_23_bf16_v24",
+    "retain_backend": "bf16_qwen3.6_35b_a3b_v13_middle_late"
+  },
+  "memory_result": {
+    "bf16_bytes": 69455494144,
+    "both_pairs_passed": true,
+    "duplicate_bf16_exact": true,
+    "duplicate_hybrid_exact": true,
+    "endpoint": "vllm_model_load_consumed_bytes",
+    "hybrid_bytes": 35986854400,
+    "nvml_excluded_from_gate": true,
+    "reduction": 0.48187173896726543,
+    "threshold": 0.4
+  },
+  "quality_result": {
+    "best_familywise_lcb_headroom": -0.0014021927936964643,
+    "endpoints_per_pair": 16,
+    "familywise_endpoints_passed_per_pair": {
+      "pair_a": 0,
+      "pair_b": 0
+    },
+    "quality_pass_by_pair": {
+      "pair_a": false,
+      "pair_b": false
+    },
+    "worst_familywise_lcb_headroom": -1.4387552130331378
+  },
+  "report": {
+    "content_sha256": "bb70e98062433be64eebcf6facf7dd572e2b05c9e970c94db9aea8a36f785a3d",
+    "file_sha256": "19fb30df59420517b6b1de0f6009992db0a58991bee23a784cad0d5c212a40be",
+    "implementation_bundle_sha256": "6e996e4a71f0acf160b7ca27ad19dc2e09a30863676ee21ea01796d5682d8d6d",
+    "memory_retry_overlay_bundle_sha256": "8bd35ea23d5f544a9e4830e9a23138e7b946db90ae1cd121d0fe582b3ed2ed27",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/s6_v24a_hybrid_backend_train_only_compatibility_memory_retry_r1/hybrid_backend_compatibility_v24a_memory_retry_r1.json",
+    "recipe_content_sha256": "759959c910fc0c0654dd7b4ba64d68e2cafe6afbda204c89c6dabd64292a1283"
+  },
+  "runtime_integrity": {
+    "all_64_signed_waves_complete": true,
+    "all_75_040_generation_requests_accounted": true,
+    "all_four_gpus_one_actor_each": true,
+    "compact_persistence_only": true,
+    "exact_restore_and_population_boundary_audit": true,
+    "matched_full_context_a_b_and_a_c_exact": true,
+    "memory_preflight_before_reference_or_perturbation": true
+  },
+  "schema": "eggroll-es-v24a-hybrid-negative-aggregate-evidence-r2",
+  "scope_note": "This closes only the exact V24 hybrid checkpoint and backend recipe. It does not generalize to other quantization formats, calibration methods, BF16 layer ranges, or mixed-precision designs.",
+  "speed_result": {
+    "pair_a": {
+      "familywise_lcb_headroom": 0.03190353650425881,
+      "observed_bf16_over_hybrid_median": 1.0890458935158114,
+      "speed_pass": true
+    },
+    "pair_b": {
+      "familywise_lcb_headroom": -0.008087017895568567,
+      "observed_bf16_over_hybrid_median": 1.050405612961755,
+      "speed_pass": false
+    }
+  },
+  "status": "valid_completed_train_only_gate_failed"
+}
