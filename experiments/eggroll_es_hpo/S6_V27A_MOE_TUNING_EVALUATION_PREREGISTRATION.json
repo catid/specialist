@@ -1,0 +1,176 @@
+{
+  "authority": {
+    "checkpoint_write_allowed": false,
+    "dataset_promotion_allowed": false,
+    "direct_training_recipe_adoption_allowed": false,
+    "model_update_allowed": false,
+    "pass_authorizes_only_separate_end_to_end_train_only_runtime_ab_preregistration": true,
+    "validation_heldout_ood_or_benchmark_open_allowed": false
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "9259d596c69918fd17a81573e3fbc0a74f3b024d5cb60cff2600c183862e92b8",
+  "evaluation": {
+    "batch_sizes": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "common_command": {
+      "dtype": "auto_bfloat16",
+      "official_num_iters_per_worker": 100,
+      "raw_endpoint": "reported_kernel_time_microseconds",
+      "tp_size": 1,
+      "tune": false
+    },
+    "default_arm": {
+      "requires_generic_default_config_warning": true,
+      "vllm_tuned_config_folder": "fresh_empty_directory"
+    },
+    "failure_decision": "discard_tuned_table_and_keep_vllm_generic_defaults",
+    "fresh_seeds": [
+      20260716,
+      20260717,
+      20260718,
+      20260719,
+      20260720
+    ],
+    "not_launched_by_this_artifact": true,
+    "paired_endpoint": "default_kernel_time_divided_by_tuned_kernel_time",
+    "pass_gate": {
+      "all_config_and_hardware_identities_exact": true,
+      "all_processes_exit_zero": true,
+      "each_batch_median_speedup_at_least": 1.0,
+      "each_batch_tuned_faster_in_at_least_repetitions": 4,
+      "global_geometric_mean_speedup_at_least": 1.03
+    },
+    "repetitions": 5,
+    "schedule": [
+      {
+        "arm_order": [
+          "default",
+          "tuned"
+        ],
+        "batch_to_physical_gpu": {
+          "1024": 2,
+          "2048": 3,
+          "256": 0,
+          "512": 1
+        },
+        "repetition": 0,
+        "seed": 20260716
+      },
+      {
+        "arm_order": [
+          "tuned",
+          "default"
+        ],
+        "batch_to_physical_gpu": {
+          "1024": 2,
+          "2048": 3,
+          "256": 0,
+          "512": 1
+        },
+        "repetition": 1,
+        "seed": 20260717
+      },
+      {
+        "arm_order": [
+          "default",
+          "tuned"
+        ],
+        "batch_to_physical_gpu": {
+          "1024": 2,
+          "2048": 3,
+          "256": 0,
+          "512": 1
+        },
+        "repetition": 2,
+        "seed": 20260718
+      },
+      {
+        "arm_order": [
+          "tuned",
+          "default"
+        ],
+        "batch_to_physical_gpu": {
+          "1024": 2,
+          "2048": 3,
+          "256": 0,
+          "512": 1
+        },
+        "repetition": 3,
+        "seed": 20260719
+      },
+      {
+        "arm_order": [
+          "default",
+          "tuned"
+        ],
+        "batch_to_physical_gpu": {
+          "1024": 2,
+          "2048": 3,
+          "256": 0,
+          "512": 1
+        },
+        "repetition": 4,
+        "seed": 20260720
+      }
+    ],
+    "separate_fresh_process_and_ray_runtime_per_arm": true,
+    "summaries": {
+      "global": "geometric_mean_of_four_per_batch_medians",
+      "per_batch": "median_of_five_paired_speedups"
+    },
+    "tuned_arm": {
+      "requires_exact_tuned_config_load_log": true,
+      "vllm_tuned_config_folder": "future_hash_frozen_tuned_directory"
+    }
+  },
+  "hardware": {
+    "driver_version": "610.43.02",
+    "exactly_four_one_gpu_ray_workers": true,
+    "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "gpu_uuids_in_physical_order": [
+      "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927",
+      "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded",
+      "GPU-04cde663-7c53-2f18-3ec4-1699820e2640",
+      "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999"
+    ]
+  },
+  "schema": "vllm-moe-tuning-evaluation-preregistration-v27a",
+  "selection": {
+    "batch_sizes": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "expected_filename": "E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition.json",
+    "installed_fused_moe_sha256": "72811a4e543cc6f415f184cb951b61522643cddc4d6456f61a2f8c1a53b2cf79",
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_geometry": {
+      "config_file_n_dimension": 512,
+      "dtype": "bfloat16",
+      "experts": 256,
+      "experts_per_token": 8,
+      "hidden_size": 2048,
+      "moe_intermediate_size": 512,
+      "tensor_parallel_size": 1
+    },
+    "official_source_sha256": "230151de56d177ac22920ff9dada010f4361933b34b54e18d5981367723a8bcf",
+    "official_source_url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.25.0/benchmarks/kernels/benchmark_moe.py",
+    "search_space_configurations_per_batch": 1920,
+    "selection_seed": 20260715,
+    "state_at_preregistration": "official_tuner_running_output_not_observed",
+    "temporary_output_directory": "/tmp/vllm_moe_tuned_v25",
+    "torch_version": "2.11.0+cu130",
+    "triton_version": "3.6.0",
+    "tuned_output_must_be_frozen_by_hash_before_evaluation": true,
+    "vllm_version": "0.25.0"
+  },
+  "selection_is_not_evaluation": true,
+  "status": "preregistered_before_tuning_output_observed_evaluation_not_launched"
+}
