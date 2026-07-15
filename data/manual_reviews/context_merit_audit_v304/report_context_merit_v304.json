@@ -1,0 +1,87 @@
+{
+  "addition_artifact": {
+    "path": "data/manual_reviews/multiperson_chest_additions_v15/pending_additions_multiperson_chest_tranche_15_v1.jsonl",
+    "rows": 2,
+    "sha256": "60b1ce76d1c2e9f522611ce848613f5c185caa57595036b848f60097f660ae21"
+  },
+  "audit": {
+    "by_decision": {
+      "add": 2,
+      "drop": 0,
+      "edit": 0,
+      "keep": 0
+    },
+    "path": "data/manual_reviews/context_merit_audit_v304/context_merit_audit_v304.jsonl",
+    "rows": 2,
+    "sha256": "f479d952b0e5914e4dc1826498d4cbf9b0c7f5ce60fa4f36edeca3916e8e0e67"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 243,
+      "equipment_material": 22,
+      "resources_general": 81,
+      "safety_consent": 80,
+      "technique": 60
+    },
+    "before": {
+      "conflict_units": 241,
+      "equipment_material": 22,
+      "resources_general": 81,
+      "safety_consent": 79,
+      "technique": 59
+    },
+    "delta": {
+      "conflict_units": 2,
+      "equipment_material": 0,
+      "resources_general": 0,
+      "safety_consent": 1,
+      "technique": 1
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "excluded_third_candidate": {
+    "decision": "reject",
+    "reason": "The fully reviewed head page's technique prompts are unsafe to operationalize, while its mouth-hygiene line duplicates a stronger existing advance-consent checklist."
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 2,
+    "output_rows": 536,
+    "output_sha256": "b9260425ba23c54413c771840f584f621120f3891a1b6ef1380fe732f38de68d",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "decisions": 0,
+    "path": "data/manual_reviews/context_merit_audit_v304/pending_curation_context_merit_v304.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prior_checkpoint": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v303/context_merit_audit_v303.jsonl",
+        "sha256": "4ab4e9ccde2bd06d926769a0791e915ccb3ecf1a085c5475faf58c2ff0d225b1"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v303/pending_curation_context_merit_v303.jsonl",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v303/report_context_merit_v303.json",
+        "sha256": "5a1e91693cee800bc6205779ff64f38b6518953806214fc2e8284a179099297d"
+      }
+    ],
+    "candidate": {
+      "rows": 534,
+      "sha256": "8ace985d0a66db9638cd303a3fb47a271a367365094b3b6b4ec401f1d7369401"
+    }
+  },
+  "schema": "context-merit-audit-report-v304",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  }
+}

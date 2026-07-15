@@ -1,0 +1,32 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/multiperson_chest_additions_v15/pending_additions_multiperson_chest_tranche_15_v1.jsonl",
+    "rows": 2,
+    "sha256": "60b1ce76d1c2e9f522611ce848613f5c185caa57595036b848f60097f660ae21"
+  },
+  "baseline": {
+    "rows": 534,
+    "sha256": "8ace985d0a66db9638cd303a3fb47a271a367365094b3b6b4ec401f1d7369401"
+  },
+  "excluded_third_candidate": {
+    "decision": "reject",
+    "reason": "The fully reviewed head page's technique prompts are unsafe to operationalize, while its mouth-hygiene line duplicates a stronger existing advance-consent checklist."
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v303 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "two bounded nonredundant facts from distinct new documents; no filler third row"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 2,
+    "expected_strata": {
+      "safety_consent": 1,
+      "technique": 1
+    },
+    "urls": 2
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-multiperson-chest-additions-v15",
+  "schema": "manual-multiperson-chest-additions-report-v15",
+  "status": "segregated_pending_integration"
+}
