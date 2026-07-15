@@ -1,0 +1,27 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/safety_additions_v11/pending_additions_safety_tranche_11_v1.jsonl",
+    "rows": 3,
+    "sha256": "630cec95eabab4cf266c26e6e2072c72cda2de5c0e0217fcc05c83170d18bedb"
+  },
+  "baseline": {
+    "rows": 522,
+    "sha256": "6f65b7ac17fd30e92cb843d8fcc158e0532b725d61af834501bd592a709918d0"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v299 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded safety fact from each of three distinct, previously unrepresented documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "safety_consent": 3
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-safety-additions-v11",
+  "schema": "manual-safety-additions-report-v11",
+  "status": "segregated_pending_integration"
+}
