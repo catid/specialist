@@ -1,0 +1,33 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/anatomy_creativity_additions_v16/pending_additions_anatomy_creativity_tranche_16_v1.jsonl",
+    "rows": 3,
+    "sha256": "447a11189f62ed84e504a9858e101e50370fbe39accba0fb04406d09cba7bf1f"
+  },
+  "baseline": {
+    "rows": 536,
+    "sha256": "b9260425ba23c54413c771840f584f621120f3891a1b6ef1380fe732f38de68d"
+  },
+  "excluded_source": {
+    "decision": "reject",
+    "reason": "Risky pressure-point and neck practice prompts were not operationalized; the safe anatomy meta-point duplicates stronger existing rows.",
+    "url": "https://rope365.com/body/"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v304 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded fact from each of three distinct new documents"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "safety_consent": 1,
+      "technique": 2
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-anatomy-creativity-additions-v16",
+  "schema": "manual-anatomy-creativity-additions-report-v16",
+  "status": "segregated_pending_integration"
+}

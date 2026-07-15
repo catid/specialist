@@ -1,0 +1,88 @@
+{
+  "addition_artifact": {
+    "path": "data/manual_reviews/anatomy_creativity_additions_v16/pending_additions_anatomy_creativity_tranche_16_v1.jsonl",
+    "rows": 3,
+    "sha256": "447a11189f62ed84e504a9858e101e50370fbe39accba0fb04406d09cba7bf1f"
+  },
+  "audit": {
+    "by_decision": {
+      "add": 3,
+      "drop": 0,
+      "edit": 0,
+      "keep": 0
+    },
+    "path": "data/manual_reviews/context_merit_audit_v305/context_merit_audit_v305.jsonl",
+    "rows": 3,
+    "sha256": "ea8aa43a57c5ae632cb3019cdc4a1d13d0d7409e87e49accfc3524f08e0b919a"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 246,
+      "equipment_material": 22,
+      "resources_general": 81,
+      "safety_consent": 81,
+      "technique": 62
+    },
+    "before": {
+      "conflict_units": 243,
+      "equipment_material": 22,
+      "resources_general": 81,
+      "safety_consent": 80,
+      "technique": 60
+    },
+    "delta": {
+      "conflict_units": 3,
+      "equipment_material": 0,
+      "resources_general": 0,
+      "safety_consent": 1,
+      "technique": 2
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "excluded_source": {
+    "decision": "reject",
+    "reason": "Risky pressure-point and neck practice prompts were not operationalized; the safe anatomy meta-point duplicates stronger existing rows.",
+    "url": "https://rope365.com/body/"
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 3,
+    "output_rows": 539,
+    "output_sha256": "80eba8b89487052c10e046328211282e159ae334661b6776efba571d4e2824bc",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "decisions": 0,
+    "path": "data/manual_reviews/context_merit_audit_v305/pending_curation_context_merit_v305.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prior_checkpoint": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v304/context_merit_audit_v304.jsonl",
+        "sha256": "f479d952b0e5914e4dc1826498d4cbf9b0c7f5ce60fa4f36edeca3916e8e0e67"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v304/pending_curation_context_merit_v304.jsonl",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v304/report_context_merit_v304.json",
+        "sha256": "e9a01c944e22758a1221a1407ca79c23a09ae74c054deec490fd670ff0ed6e6d"
+      }
+    ],
+    "candidate": {
+      "rows": 536,
+      "sha256": "b9260425ba23c54413c771840f584f621120f3891a1b6ef1380fe732f38de68d"
+    }
+  },
+  "schema": "context-merit-audit-report-v305",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  }
+}
