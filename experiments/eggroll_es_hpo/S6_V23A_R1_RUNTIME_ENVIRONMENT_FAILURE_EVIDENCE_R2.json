@@ -1,0 +1,43 @@
+{
+  "authority": {
+    "dataset_content_inspected": false,
+    "evaluation_opened": false,
+    "model_selection_allowed": false,
+    "train_only_failure_diagnosis": true
+  },
+  "content_sha256_before_self_field": "51ab2573fe04de32db0daaf9fc788b52dbbe40dc2b41e4eb096fd21bc6249ab7",
+  "failed_attempt": {
+    "compact_report_absent": true,
+    "compact_report_relative_path": "experiments/eggroll_es_hpo/runs/insertion_location_stability_v23a_authoritative_raw_seed_retry_r1/insertion_location_stability_v23a_seed_retry_r1.json",
+    "content_sha256": "cfc18374362a5d6ba6c959f89b08c7ddd1f0117c50faeb2b177180dfc8094ca9",
+    "failure_type": "ModuleNotFoundError",
+    "file_sha256": "7862c63ed9346544b3cfb9b944f07282f7fcb129759ca0fa6f05e87a505debd0",
+    "missing_dependency": "vllm",
+    "model_update_applied": false,
+    "nontrain_surface_opened": false,
+    "phase": "inside_v23a_r1_train_only_runtime",
+    "recipe_content_sha256": "c49c97a45d73d8373bb3d53f7a891f324a22920ebb86bd99619e8e681da62ea0",
+    "relative_path": "experiments/eggroll_es_hpo/runs/.insertion_location_stability_v23a_authoritative_raw_seed_retry_r1.launch_attempt.json",
+    "source_git_head": "a3878b43d1c6beb1ee0e1476c0973a841c246708",
+    "source_implementation_bundle_sha256": "856754221a74ca26f5a6b1bb0499c726b5e9453ce8ca305b2c66f7a46cdd9c65",
+    "source_provenance_content_sha256": "b317aaa3089929dc1c497037f797a20ef6c51562836f266cc21b258e87853117",
+    "status": "failed"
+  },
+  "failure_boundary": {
+    "cause_classification": "runtime_interpreter_missing_required_dependency",
+    "engine_actor_creation_reached": false,
+    "failed_before_trainer_instance_creation": true,
+    "failed_during_trainer_dependency_import": true,
+    "gpu_training_work_reached": false,
+    "panel_loading_reached": false,
+    "perturbation_reached": false,
+    "reference_scoring_reached": false
+  },
+  "original_seed_failure_evidence": {
+    "content_sha256": "95d8542cd46c3743f4cb4db99159b485e10798766779b43024572925beeed922",
+    "file_sha256": "1fae9b7244eff3b532eb3fa93e769b0085728309460804c683a452028d399438"
+  },
+  "row_or_response_content_persisted": false,
+  "schema": "eggroll-es-v23a-r1-runtime-environment-failure-evidence-r2",
+  "traceback_or_model_repr_persisted": false
+}
