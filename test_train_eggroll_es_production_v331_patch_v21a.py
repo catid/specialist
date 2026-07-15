@@ -125,7 +125,12 @@ def test_v21a_bootstrap_is_chunk_invariant(
 def _summary(bootstrap, passed_integrity=True):
     return {
         "arms": {
-            arm: {"all_panel_spreads_nonzero": True}
+            arm: {
+                "all_panel_spreads_nonzero": True,
+                "endpoint_values": {
+                    name: 0.0 for name in mechanics_v21a.ENDPOINT_NAMES_V21A
+                },
+            }
             for arm in mechanics_v21a.ARMS_V21A
         },
         "paired_bootstrap": copy.deepcopy(bootstrap),
@@ -177,3 +182,31 @@ def test_v21a_rejects_shapes_panel_tampering_and_gate_coverage(
     )))
     with pytest.raises(RuntimeError, match="gate input coverage changed"):
         mechanics_v21a.evaluate_compatibility_gate_v21a(_summary(incomplete))
+
+
+@pytest.mark.parametrize("tamper", (
+    "positive_infinity", "nonzero_margin", "comparison_name",
+    "quantile_method", "draw_plan", "endpoint_extra_key", "delta_mismatch",
+))
+def test_v21a_gate_rejects_exact_contract_tampering(bootstrap_v21a, tamper):
+    value = copy.deepcopy(bootstrap_v21a)
+    for item in value["comparison"]["endpoints"].values():
+        item["treatment_minus_control"] = 0.0
+        item["familywise_lcb"] = 0.0
+    first = next(iter(value["comparison"]["endpoints"].values()))
+    if tamper == "positive_infinity":
+        first["familywise_lcb"] = float("inf")
+    elif tamper == "nonzero_margin":
+        first["noninferiority_margin"] = np.finfo(np.float64).eps
+    elif tamper == "comparison_name":
+        value["comparison"]["name"] = "changed"
+    elif tamper == "quantile_method":
+        value["quantile_method"] = "nearest"
+    elif tamper == "draw_plan":
+        value["draw_plan_content_sha256"] = "0" * 64
+    elif tamper == "endpoint_extra_key":
+        first["extra"] = False
+    elif tamper == "delta_mismatch":
+        first["treatment_minus_control"] = np.finfo(np.float64).eps
+    with pytest.raises(RuntimeError, match="gate input coverage changed"):
+        mechanics_v21a.evaluate_compatibility_gate_v21a(_summary(value))

@@ -700,15 +700,61 @@ def evaluate_compatibility_gate_v21a(summary):
     comparison = bootstrap.get("comparison", {})
     endpoints = comparison.get("endpoints", {})
     integrity = summary.get("runtime_integrity", {})
+    expected_bootstrap_keys = {
+        "seed", "repetitions", "one_sided_quantile", "quantile_method",
+        "draw_plan_content_sha256", "paired_same_draws_both_arms",
+        "whole_panel_block_resampling_used", "comparison",
+    }
+    expected_comparison_keys = {
+        "name", "treatment", "control", "endpoints",
+    }
+    expected_endpoint_keys = {
+        "treatment_minus_control", "familywise_lcb",
+        "noninferiority_margin",
+    }
+    def finite_number(value):
+        return (
+            isinstance(value, (int, float, np.integer, np.floating))
+            and not isinstance(value, (bool, np.bool_))
+            and math.isfinite(float(value))
+        )
+
+    arm_endpoints = {
+        arm: arms.get(arm, {}).get("endpoint_values", {}) for arm in ARMS_V21A
+    }
     if (
         set(arms) != set(ARMS_V21A)
+        or any(set(arm_endpoints[arm]) != set(ENDPOINT_NAMES_V21A) for arm in ARMS_V21A)
+        or set(bootstrap) != expected_bootstrap_keys
+        or set(comparison) != expected_comparison_keys
         or set(endpoints) != set(ENDPOINT_NAMES_V21A)
+        or any(set(item) != expected_endpoint_keys for item in endpoints.values())
+        or bootstrap.get("seed") != prereg_v21a.BOOTSTRAP_SEED_V21A
         or bootstrap.get("repetitions") != 50_000
         or bootstrap.get("one_sided_quantile") != 0.05 / 12
+        or bootstrap.get("quantile_method") != BOOTSTRAP_QUANTILE_METHOD_V21A
+        or bootstrap.get("draw_plan_content_sha256") != DRAW_CONTENT_SHA256_V21A
         or bootstrap.get("paired_same_draws_both_arms") is not True
         or bootstrap.get("whole_panel_block_resampling_used") is not False
+        or comparison.get("name")
+        != "production_plus_v331_patch_vs_production"
         or comparison.get("treatment") != "production_plus_v331_patch"
         or comparison.get("control") != "production_only"
+        or any(
+            not all(finite_number(item[key]) for key in expected_endpoint_keys)
+            or item["noninferiority_margin"] != 0.0
+            for item in endpoints.values()
+        )
+        or any(
+            not finite_number(value)
+            for values in arm_endpoints.values() for value in values.values()
+        )
+        or any(
+            endpoints[name]["treatment_minus_control"]
+            != arm_endpoints["production_plus_v331_patch"][name]
+            - arm_endpoints["production_only"][name]
+            for name in ENDPOINT_NAMES_V21A
+        )
     ):
         raise RuntimeError("v21a gate input coverage changed")
     observed = {
