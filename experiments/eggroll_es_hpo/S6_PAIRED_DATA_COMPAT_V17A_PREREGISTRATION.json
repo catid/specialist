@@ -1,0 +1,342 @@
+{
+  "analysis": {
+    "bootstrap": {
+      "endpoint_count": 12,
+      "familywise_alpha": 0.05,
+      "multiplicity": "Bonferroni_over_six_families_times_two_summaries",
+      "one_sided_quantile": 0.004166666666666667,
+      "persist_per_unit_scores_or_bootstrap_replicates": false,
+      "preserve_per_panel_stratum_counts": [
+        14,
+        8,
+        2,
+        14
+      ],
+      "recompute_each_replicate": "Horvitz_Thompson_panel_scores_then_32_coefficients_then_all_nonlinear_median_and_worst_endpoints",
+      "repetitions": 20000,
+      "resampling_unit": "paired_joint_conflict_unit_within_panel_stratum",
+      "reserve_units_used": false,
+      "same_resample_indices_both_versions": true,
+      "seed": 20260719
+    },
+    "cross_dataset_direction_cosine": "diagnostic_only",
+    "endpoint_contract": {
+      "aggregate_to_optimization_cosine_median": {
+        "metric_family": "aggregate_to_optimization_cosine",
+        "noninferiority_margin": 0.0,
+        "summary": "median"
+      },
+      "aggregate_to_optimization_cosine_worst": {
+        "metric_family": "aggregate_to_optimization_cosine",
+        "noninferiority_margin": 0.0,
+        "summary": "worst"
+      },
+      "aggregate_to_optimization_sign_agreement_median": {
+        "metric_family": "aggregate_to_optimization_sign_agreement",
+        "noninferiority_margin": 0.0,
+        "summary": "median"
+      },
+      "aggregate_to_optimization_sign_agreement_worst": {
+        "metric_family": "aggregate_to_optimization_sign_agreement",
+        "noninferiority_margin": 0.0,
+        "summary": "worst"
+      },
+      "optimization_pairwise_cosine_median": {
+        "metric_family": "optimization_pairwise_cosine",
+        "noninferiority_margin": 0.0,
+        "summary": "median"
+      },
+      "optimization_pairwise_cosine_worst": {
+        "metric_family": "optimization_pairwise_cosine",
+        "noninferiority_margin": 0.0,
+        "summary": "worst"
+      },
+      "optimization_pairwise_sign_agreement_median": {
+        "metric_family": "optimization_pairwise_sign_agreement",
+        "noninferiority_margin": 0.0,
+        "summary": "median"
+      },
+      "optimization_pairwise_sign_agreement_worst": {
+        "metric_family": "optimization_pairwise_sign_agreement",
+        "noninferiority_margin": 0.0,
+        "summary": "worst"
+      },
+      "train_screen_cosine_median": {
+        "metric_family": "train_screen_cosine",
+        "noninferiority_margin": 0.0,
+        "summary": "median"
+      },
+      "train_screen_cosine_worst": {
+        "metric_family": "train_screen_cosine",
+        "noninferiority_margin": 0.0,
+        "summary": "worst"
+      },
+      "train_screen_sign_agreement_median": {
+        "metric_family": "train_screen_sign_agreement",
+        "noninferiority_margin": 0.0,
+        "summary": "median"
+      },
+      "train_screen_sign_agreement_worst": {
+        "metric_family": "train_screen_sign_agreement",
+        "noninferiority_margin": 0.0,
+        "summary": "worst"
+      }
+    },
+    "robust_direction": "coordinatewise_median_of_three_independently_standardized_Horvitz_Thompson_central_response_vectors",
+    "within_version_stability_only_for_gate": true
+  },
+  "content_sha256_before_self_field": "4cc9064ff6c2612486549ebcb1b58cb2e64749c24391c56dc2c550b3518db5de",
+  "experiment_name": "snapshot_v283_data_v17a_paired_production_candidate_5x38_alpha_zero_middle_late_basis20260714",
+  "firewall": {
+    "benchmark_outcomes_used": false,
+    "evaluation_surfaces_opened": false,
+    "heldout_opened": false,
+    "model_update_or_checkpoint_write_in_v17a": false,
+    "sigma_or_alpha_hpo_in_v17a": false,
+    "train_only": true
+  },
+  "frozen_recipe": {
+    "alpha": 0.0,
+    "arm_order": [
+      "production",
+      "candidate_v283"
+    ],
+    "arm_order_by_signed_wave": "alternate_production_first_and_candidate_first",
+    "layer_plan": {
+      "description": "middle-late dense layers 20-23",
+      "file_sha256": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
+      "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "path": "/home/catid/specialist/experiments/layer_plans/middle_late_dense_v6.json",
+      "plan_sha256": "03745c603a6b48898b41afbd4d9121aef276d7e45ca1a3ae14607ec5d1042cb9"
+    },
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "model_update_allowed": false,
+    "perturbation_basis_seed": 20260714,
+    "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "perturbation_seed_sha256": "07fa4900cd10fd17b678355389adcfa4f5ac7ec356be46088466cd32b032e6e1",
+    "population_size": 32,
+    "same_fixed_ordered_side_batch_every_direction_and_sign": true,
+    "same_resident_perturbation_scores_both_versions": true,
+    "sigma": 0.0003,
+    "sign_order": [
+      "plus",
+      "minus"
+    ]
+  },
+  "hardware": {
+    "all_four_engines_required_every_signed_wave": true,
+    "engine_count": 4,
+    "estimated_four_gpu_hours": [
+      1.0,
+      2.0
+    ],
+    "estimated_wall_minutes": [
+      15,
+      30
+    ],
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "partial_waves_allowed": false,
+    "tp_per_engine": 1
+  },
+  "hypothesis": "on the exact common joint-conflict frame, v283 produces a train-only ES estimator that is noninferior in within-version stability to production under otherwise paired alpha-zero mechanics",
+  "hypothesis_count": 1,
+  "inputs": {
+    "candidate": {
+      "file_sha256": "83d14d9d42740c836b49a8ec9e4237766e9d751c827c21d4d2c79500ee4bc3b9",
+      "freeze_manifest_file_sha256": "014f37177073d5a433b2da2b01298463cc87856f0278a60d66e53a0dce55bbfb",
+      "freeze_manifest_path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v283/manifest.json",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v283/train_qa_context_merit_v283.jsonl",
+      "rows": 492
+    },
+    "candidate_freeze_commit": "2bf505e",
+    "candidate_role": "complete_training_candidate_replacing_production_if_promoted",
+    "joint_frame": {
+      "content_sha256": "eaad58e01a429cae00f85af1d057dbde9e72a3a0c196cd90089ad0f1366ca194",
+      "file_sha256": "bfd53bb2c2148381e0b5b9b24102a67e20ef65f7dabe96314e097ad800ea7ff1",
+      "joint_components": 276,
+      "paired_strata": {
+        "equipment_material": 13,
+        "resources_general": 71,
+        "safety_consent": 70,
+        "technique": 41
+      },
+      "paired_units": 195,
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/train_panel_sampling_v17a/paired_data_version_panels_v17a.json",
+      "reserve_units": 5,
+      "selected_units": 190
+    },
+    "production": {
+      "file_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
+      "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+      "rows": 784
+    },
+    "retained_v13_aggregate": {
+      "content_sha256": "06f662574013345a6c777af8688a38f3941286d9e11a427ed3342de53451b1e3",
+      "file_sha256": "d367c9c4de1e1f3526ddb3dfba2f5bf24efc77cbccf951f7359eb1969fcd7b54",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V13B_TRAIN_PANEL_AGGREGATE_EVIDENCE_V14A.json",
+      "stability": {
+        "aggregate_to_optimization_cosine": {
+          "count": 3,
+          "median": 0.7608236805612648,
+          "worst": 0.7082628389768383
+        },
+        "aggregate_to_optimization_sign_agreement": {
+          "count": 3,
+          "median": 0.8125,
+          "worst": 0.75
+        },
+        "all_panel_spreads_nonzero": true,
+        "optimization_pairwise_cosine": {
+          "count": 3,
+          "median": 0.47411088498906484,
+          "worst": 0.3900621868364503
+        },
+        "optimization_pairwise_sign_agreement": {
+          "count": 3,
+          "median": 0.59375,
+          "worst": 0.5625
+        },
+        "robust_aggregate": {
+          "coefficient_sha256": "9610b67262227360380d72bf957fb4cb9d6624ea7bb3ad3d613912ccd7e270af",
+          "l2_norm": 4.903904218736408,
+          "nonzero_coordinate_count": 32
+        },
+        "train_screen_cosine": {
+          "count": 2,
+          "median": 0.3936314430866483,
+          "worst": 0.314941371734614
+        },
+        "train_screen_sign_agreement": {
+          "count": 2,
+          "median": 0.65625,
+          "worst": 0.53125
+        }
+      }
+    }
+  },
+  "integrity": {
+    "committed_source_bundle_required": true,
+    "exact_reference_restore_after_both_version_calls_each_sign": true,
+    "fresh_o_excl_attempt_and_run_required": true,
+    "persist_response_vectors_or_row_content": false,
+    "population_boundary_audit_required": true,
+    "pre_post_base_probe_both_versions_must_match": true,
+    "unselected_parameter_origin_must_not_change": true
+  },
+  "panels": {
+    "exact_horvitz_thompson_weights": true,
+    "fixed_same_document_representatives": true,
+    "globally_disjoint_joint_units": true,
+    "names": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "optimization": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2"
+    ],
+    "panel_size": 38,
+    "screen_use": "v17a_compatibility_only_not_reused_as_v17b_full_candidate_screens",
+    "stratum_quotas": {
+      "equipment_material": 2,
+      "resources_general": 14,
+      "safety_consent": 14,
+      "technique": 8
+    },
+    "train_only_screens": [
+      "train_screen_0",
+      "train_screen_1"
+    ]
+  },
+  "power": {
+    "equipment_units_per_panel": 2,
+    "interpretation": "compatibility_noninferiority_not_superiority_or_dataset_quality_promotion",
+    "paired_common_random_numbers_reduce_version_delta_variance": true,
+    "per_panel_units": 38,
+    "selected_fraction_of_paired_frame": 0.9743589743589743,
+    "standard_error_inflation_vs_v13_if_iid": 1.2139539573337679,
+    "stratum_specific_improvement_claim_authorized": false,
+    "v13_per_panel_units": 56
+  },
+  "promotion_gate": {
+    "all_file_content_source_and_runtime_integrity_audits": true,
+    "all_rules_conjunctive": true,
+    "both_versions_all_panel_spreads_nonzero": true,
+    "candidate_median_and_worst_not_below_production_all_six_families": true,
+    "cross_dataset_direction_similarity_used_for_gate": false,
+    "every_zero_margin_paired_familywise_lcb_nonnegative": true,
+    "failure_decision": "retain_production_dataset_and_v13_recipe",
+    "pass_decision": "authorize_only_drafting_and_separate_preregistration_of_v17b_full_candidate_5x39_train_only_hpo",
+    "pass_does_not_authorize_dataset_promotion_update_or_evaluation": true
+  },
+  "required_runtime_adapter": {
+    "must_bind_preregistration_file_and_content_hashes": true,
+    "must_prove_no_model_update_entrypoint_reachable": true,
+    "runtime_not_authorized_by_this_preregistration_commit": true,
+    "status": "not_yet_implemented"
+  },
+  "schema": "eggroll-es-paired-data-compat-preregistration-v17a",
+  "scoring": {
+    "autoregressive_accuracy_or_token_f1_used": false,
+    "dense_reward_config_sha256": "4941f2e94091b1f8e7ab7b5294ebc6520b80aba1326b7dc6ccea5140a3da5da2",
+    "detokenize": false,
+    "eos_scored": false,
+    "max_tokens": 1,
+    "max_tokens_role": "dummy_generation_trigger_not_answer_cap",
+    "max_total_prompt_answer_tokens": 1024,
+    "objective": "per_example_mean_full_gold_answer_token_logprob",
+    "objective_change_allowed_in_v17a": false,
+    "prompt_contains_full_gold_answer": true,
+    "prompt_logprobs": 1,
+    "scored_positions": "all_aligned_answer_tokens_only",
+    "token_length_audit": {
+      "candidate_answer_token_quantiles_p50_p90_p95_p99_max": [
+        18,
+        42,
+        53,
+        81,
+        86
+      ],
+      "combined_prompt_answer_token_quantiles_p50_p90_p95_p99_max": {
+        "candidate_v283": [
+          67,
+          91,
+          106,
+          131,
+          144
+        ],
+        "production": [
+          54,
+          63,
+          67,
+          86,
+          142
+        ]
+      },
+      "over_frozen_1024_total_token_cap_count": {
+        "candidate_v283": 0,
+        "production": 0
+      },
+      "tokenizer_boundary_mismatch_count": {
+        "candidate_v283": 0,
+        "production": 0
+      }
+    }
+  },
+  "stage_separation": {
+    "v17a": "paired_data_version_compatibility_only",
+    "v17a_common_only_frame_is_not_v17b_estimand": true,
+    "v17a_pass_does_not_promote_dataset_or_authorize_update": true,
+    "v17b": "later_separate_full_candidate_5x39_sigma_alpha_hpo_only_if_v17a_passes"
+  },
+  "status": "preregistered_runtime_not_yet_authorized"
+}
