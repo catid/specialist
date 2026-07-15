@@ -1,0 +1,179 @@
+{
+  "content_sha256_before_self_field": "1690210499f6ac2739b6d63c02c8b3101dc36027438042c9534d2ad9de5c9d68",
+  "inputs": {
+    "candidate": {
+      "file_sha256": "874b77dd8ef988bb24d4b13999ddebc2068b053eab208def9bb1e23e7138c36a",
+      "freeze_commit": "de0d5518f5cffe2ee71d8fc6884e506f3c1f3272",
+      "freeze_manifest_file_sha256": "42ca9d7186f70b94681b88c70eca341d19fff50ac422e2539b05912fe5cf6bfd",
+      "freeze_manifest_path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v364/manifest.json",
+      "freeze_test_file_sha256": "749a143a80f39d14bec3d6092d9bc46856b1f7f5bac26e614ef720b7d64a7bea",
+      "freeze_test_path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v364/test_frozen_candidate_v364.py",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v364/train_qa_context_merit_v364.jsonl",
+      "projection_report_file_sha256": "4ac00be2c11c6c8fc0aed37a92035ac8e50928a14b2b5ae19c4408fcaed4ee85",
+      "projection_report_path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v364/projection_report_v364.json",
+      "rows": 531
+    },
+    "conflict_implementation": {
+      "file_sha256": "81ca63c230995d44dfdb739a78b4a1a0f85d09724ba5915860ae36f78ccc3da9",
+      "path": "/home/catid/specialist/eggroll_es_train_panel_sampler_v13.py"
+    },
+    "production": {
+      "file_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
+      "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+      "rows": 784,
+      "source_commit": "a21de35748054c3ae8737a767606234952f9561e"
+    }
+  },
+  "joint_frame": {
+    "candidate_only_unit_count": 54,
+    "cross_side_grouping": "connected_components_over_combined_candidate_and_production_rows_using_document_normalized_url_lineage_family_and_pinned_v13_lexical_semantic_links",
+    "joint_component_count": 326,
+    "paired_assignment_root_sha256": "1091a1be02633a2e18e5b96904454ef96dd97374142204785b84e20a328b7549",
+    "paired_stratum_counts": {
+      "equipment_material": 13,
+      "resources_general": 76,
+      "safety_consent": 62,
+      "technique": 54
+    },
+    "paired_unit_count": 205,
+    "pairing_anchor_preference": "same_document_when_available_otherwise_same_joint_conflict_unit",
+    "production_only_unit_count": 67,
+    "reserve_paired_unit_count": 10,
+    "selected_paired_unit_count": 195,
+    "selected_unit_id_root_sha256": "49b0ca045fabd99c8b41d2ca3f972a046808563270170041271c8982c921c406",
+    "stratum_assignment": "candidate_side_dominant_stratum_on_common_documents_when_available_otherwise_on_the_full_paired_component"
+  },
+  "panel_contract": {
+    "estimand": "equal_weight_joint_conflict_unit_mean_with_exact_stratum_Horvitz_Thompson_weights",
+    "fixed_side_representative_every_direction_and_sign": true,
+    "globally_disjoint_joint_conflict_units": true,
+    "optimization_panels": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2"
+    ],
+    "panel_names": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "panel_seed": 20261006,
+    "panel_size": 39,
+    "representative_seed": 20261007,
+    "required_paired_strata": {
+      "equipment_material": 10,
+      "resources_general": 75,
+      "safety_consent": 60,
+      "technique": 50
+    },
+    "same_resident_perturbation_scores_both_versions": true,
+    "stratum_quotas": {
+      "equipment_material": 2,
+      "resources_general": 15,
+      "safety_consent": 12,
+      "technique": 10
+    },
+    "train_only_screens": [
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "version_generation_order": "alternate_candidate_first_and_production_first_by_signed_wave"
+  },
+  "panels": [
+    {
+      "name": "optimization_0",
+      "ordered_side_row_identity_sha256": {
+        "candidate": "9436463a484f051c1155885278dc12e1d0b60d23c1e7507e45fb527bcb7f5099",
+        "production": "f99ad2ba6a2abb1c71f570523aac573361f8b293c81925cf44571caa513e4c0a"
+      },
+      "ordered_unit_identity_sha256": "f0c006cadea3762a8c58039af860ed1215c6ef07ca28dd5acbb60fb591365f9d",
+      "role": "optimization",
+      "rows_per_side_per_direction": 39,
+      "stratum_counts": {
+        "equipment_material": 2,
+        "resources_general": 15,
+        "safety_consent": 12,
+        "technique": 10
+      }
+    },
+    {
+      "name": "optimization_1",
+      "ordered_side_row_identity_sha256": {
+        "candidate": "456d0bb95ba965c0e46317baf94f81d292a4d5389d6fad36c3f23fa515c086df",
+        "production": "75a50206f0a9c318fe2d6185b2909548e0389524bf0d052bfa53cbfec1f4497a"
+      },
+      "ordered_unit_identity_sha256": "2705bedd41f840e43bbdabe8f05ab102d843761e1ccfc2610d8573164bc336c0",
+      "role": "optimization",
+      "rows_per_side_per_direction": 39,
+      "stratum_counts": {
+        "equipment_material": 2,
+        "resources_general": 15,
+        "safety_consent": 12,
+        "technique": 10
+      }
+    },
+    {
+      "name": "optimization_2",
+      "ordered_side_row_identity_sha256": {
+        "candidate": "6398752c2778657dccc796aaa46c36abdadb3c2da472bb58d26a9b745ead82b9",
+        "production": "3ffe4fd6601f70bc4c1913f8e7a454fe4762080cb6f64d69849cacfcedd96be3"
+      },
+      "ordered_unit_identity_sha256": "16ac89ac58be221f22269a021e9b08240a7431e2773565b3222d1049b5f72372",
+      "role": "optimization",
+      "rows_per_side_per_direction": 39,
+      "stratum_counts": {
+        "equipment_material": 2,
+        "resources_general": 15,
+        "safety_consent": 12,
+        "technique": 10
+      }
+    },
+    {
+      "name": "train_screen_0",
+      "ordered_side_row_identity_sha256": {
+        "candidate": "3e7877b7689cab86925e9e9a1441b2f7541689455840a3c42dc75338e09a8f2c",
+        "production": "bfc0eb100070f8c4af40f685b6cfad6e549e8eb56c335cc93efaf6bbe7a0cb60"
+      },
+      "ordered_unit_identity_sha256": "773d68e84562d2c498fa929fe10f395baf4204b093b38e35475fae6faf948b25",
+      "role": "train_only_screen",
+      "rows_per_side_per_direction": 39,
+      "stratum_counts": {
+        "equipment_material": 2,
+        "resources_general": 15,
+        "safety_consent": 12,
+        "technique": 10
+      }
+    },
+    {
+      "name": "train_screen_1",
+      "ordered_side_row_identity_sha256": {
+        "candidate": "b30593def10e6497f221efcb1aad525adf6be53d9f60de782c1c40b9e89fc09c",
+        "production": "2ec036cf5e862d3eed64b08da0619af282b6df63c5acb89ddd571ba7ae716934"
+      },
+      "ordered_unit_identity_sha256": "b0cc82169c47ea758dc06e5a78a5d4cb62982306d802f3ede4ce1505c0f589db",
+      "role": "train_only_screen",
+      "rows_per_side_per_direction": 39,
+      "stratum_counts": {
+        "equipment_material": 2,
+        "resources_general": 15,
+        "safety_consent": 12,
+        "technique": 10
+      }
+    }
+  ],
+  "runtime_frame_content_sha256": "49e64e608d52a125689abe18ae85a3332cd9c908e21123402ab425038a22cd01",
+  "schema": "eggroll-es-paired-data-version-panel-aggregate-v33a",
+  "separation": {
+    "common_subset_is_not_full_candidate_training_estimand": true,
+    "contains_evaluation_content": false,
+    "contains_per_unit_ids_hashes_indices_documents_strata_weights_or_anchors": false,
+    "contains_row_prompt_or_answer_content": false,
+    "future_role": "separate_full_candidate_hpo_only_if_v33a_passes",
+    "runtime_reconstructs_unit_details_transiently_from_frozen_train_sources": true,
+    "runtime_unit_details_persisted": false,
+    "v33a_role": "matched_data_version_compatibility_only"
+  },
+  "status": "sealed_train_only_aggregate_no_gpu_or_update_authorization"
+}
