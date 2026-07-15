@@ -1,0 +1,46 @@
+{
+  "authority": {
+    "dataset_content_inspected": false,
+    "evaluation_opened": false,
+    "model_selection_allowed": false,
+    "train_only_failure_diagnosis": true
+  },
+  "content_sha256_before_self_field": "6622f67662b7ba6c4a15ca3bbe0b3b2cb4af28e661731433d81d37033ab1031f",
+  "failed_attempt": {
+    "compact_report_absent": true,
+    "compact_report_relative_path": "experiments/eggroll_es_hpo/runs/insertion_location_stability_v23a_authoritative_raw_seed_retry_r2/insertion_location_stability_v23a_seed_retry_r2.json",
+    "content_sha256": "3bab30a38e5331fafc8c4a7ad727572b142126f73cf30052a7c80b6b05118997",
+    "failure_guard": "pre_post_unperturbed_reference_probe_exact_identity",
+    "failure_type": "RuntimeError",
+    "file_sha256": "fe66592ad056b256d24dc05da15288c52e5100c1bc0b6fc1a1bbad85b14f1251",
+    "model_update_applied": false,
+    "nontrain_surface_opened": false,
+    "phase": "inside_v23a_r2_train_only_runtime",
+    "recipe_content_sha256": "1ee204ab7d7b4fbe42e8f80fd3562eda28a94da211aec601d5470cbb35f89b7a",
+    "relative_path": "experiments/eggroll_es_hpo/runs/.insertion_location_stability_v23a_authoritative_raw_seed_retry_r2.launch_attempt.json",
+    "runtime_environment_content_sha256": "7acc87ffb6a50682f19309ea3059823d0fc96dfc459e30cb66d64e157a76f52a",
+    "source_git_head": "19cb1280da88a2896177c245ce32ae063b9e02fd",
+    "source_implementation_bundle_sha256": "face2b9b781a8ac0c079fde0d09bae323afcd240ac154855b0d092d8970cbeb4",
+    "source_provenance_content_sha256": "4a58a3f1d54b020b68e1e488652fa0162d2d2aa7e03bcd283964433030105eb1",
+    "status": "failed"
+  },
+  "probe_context_diagnosis": {
+    "exact_dense_hashes_across_mismatched_batch_contexts_are_not_a_weight_identity_test": true,
+    "generation_batch_shape_and_order_same": false,
+    "post_probe_source": "same_request_0_scored_inside_1_request_batch",
+    "pre_probe_source": "request_0_scored_inside_280_request_batch",
+    "request_identity_same": true,
+    "smallest_repair": "repeat_exact_full_280_request_context_before_and_after_population"
+  },
+  "proven_control_flow_boundary": {
+    "all_64_selected_restore_verifications_completed": true,
+    "all_64_signed_waves_completed": true,
+    "compact_estimator_and_gate_construction_reached": false,
+    "failure_occurred_after_full_weight_identity_audit": true,
+    "full_selected_and_unselected_population_boundary_audit_completed": true
+  },
+  "r2_attempt_preserved_immutable": true,
+  "row_response_or_score_content_persisted": false,
+  "schema": "eggroll-es-v23a-r2-probe-context-failure-evidence-r3",
+  "traceback_or_model_repr_persisted": false
+}
