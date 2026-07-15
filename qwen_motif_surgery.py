@@ -38,6 +38,21 @@ SCALED_SUFFIXES = (
 )
 
 
+def expected_scaled_suffixes(layer_type: str) -> frozenset[str]:
+    """Return every residual-output tensor that must be damped in one layer."""
+    if layer_type == "linear_attention":
+        attention_suffix = ".linear_attn.out_proj.weight"
+    elif layer_type == "full_attention":
+        attention_suffix = ".self_attn.o_proj.weight"
+    else:
+        raise ValueError(f"unsupported inserted layer type: {layer_type!r}")
+    return frozenset({
+        attention_suffix,
+        ".mlp.experts.down_proj",
+        ".mlp.shared_expert.down_proj.weight",
+    })
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as source:
@@ -116,6 +131,7 @@ def build_checkpoint(src: Path, dst: Path, plan: str, epsilon: float):
     temporary.mkdir(parents=True)
     duplicated_bytes = 0
     inserted_tensors = 0
+    scaled_suffixes_by_destination = defaultdict(set)
     try:
         shards = sorted(set(index["weight_map"].values()))
         for shard_index, shard in enumerate(shards, 1):
@@ -132,12 +148,38 @@ def build_checkpoint(src: Path, dst: Path, plan: str, epsilon: float):
                             if not output.is_floating_point():
                                 raise TypeError(f"cannot scale non-floating tensor {name}")
                             output.mul_(epsilon)
+                            matched = [
+                                suffix for suffix in SCALED_SUFFIXES
+                                if remapped.endswith(suffix)
+                            ]
+                            if len(matched) != 1:
+                                raise ValueError(
+                                    f"ambiguous residual-output tensor {remapped}")
+                            scaled_suffixes_by_destination[destination].add(
+                                matched[0])
                         output_tensors[remapped] = output.contiguous()
                         if inserted:
                             inserted_tensors += 1
                             duplicated_bytes += output.numel() * output.element_size()
             save_file(output_tensors, temporary / shard, metadata=metadata)
             print(f"shard {shard_index}/{len(shards)} written", flush=True)
+
+        expected_scaled_by_destination = {}
+        for destination in sorted(inserted_destinations):
+            layer_type = config["text_config"]["layer_types"][
+                mapping[destination]
+            ]
+            expected_scaled = expected_scaled_suffixes(layer_type)
+            observed_scaled = frozenset(
+                scaled_suffixes_by_destination[destination])
+            if observed_scaled != expected_scaled:
+                raise ValueError(
+                    "inserted layer residual-output damping coverage changed; "
+                    f"destination={destination}, "
+                    f"missing={sorted(expected_scaled - observed_scaled)}, "
+                    f"extra={sorted(observed_scaled - expected_scaled)}")
+            expected_scaled_by_destination[str(destination)] = sorted(
+                expected_scaled)
 
         for path in src.iterdir():
             if path.name.startswith("model-") and path.suffix == ".safetensors":
@@ -172,6 +214,10 @@ def build_checkpoint(src: Path, dst: Path, plan: str, epsilon: float):
             "destination_to_source_layer": mapping,
             "inserted_destination_layers": sorted(inserted_destinations),
             "scaled_suffixes": list(SCALED_SUFFIXES),
+            "scaled_suffixes_by_inserted_destination": (
+                expected_scaled_by_destination),
+            "scaled_inserted_tensors": sum(
+                len(value) for value in expected_scaled_by_destination.values()),
             "inserted_tensors": inserted_tensors,
             "inserted_tensor_bytes": duplicated_bytes,
         }
