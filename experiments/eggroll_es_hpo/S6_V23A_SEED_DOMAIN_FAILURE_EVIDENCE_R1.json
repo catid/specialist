@@ -1,0 +1,50 @@
+{
+  "authority": {
+    "dataset_content_inspected": false,
+    "evaluation_opened": false,
+    "model_selection_allowed": false,
+    "train_only_failure_diagnosis": true
+  },
+  "content_sha256_before_self_field": "95d8542cd46c3743f4cb4db99159b485e10798766779b43024572925beeed922",
+  "failed_attempt": {
+    "compact_report_absent": true,
+    "compact_report_relative_path": "experiments/eggroll_es_hpo/runs/insertion_location_stability_v23a_authoritative_raw/insertion_location_stability_v23a.json",
+    "content_sha256": "b6a4c152d1748496e104c5e9fbcfdf71f2d67a8460e86b9cc31160a872f5fc1a",
+    "failure_type": "RayTaskError(ValueError)",
+    "file_sha256": "a1a49964eeffd6ce8ba4ea081ab2323e52cf80dc66523b80f9a6bcdf1b1cc8b0",
+    "model_update_applied": false,
+    "nontrain_surface_opened": false,
+    "phase": "inside_v23a_train_only_runtime",
+    "relative_path": "experiments/eggroll_es_hpo/runs/.insertion_location_stability_v23a_authoritative_raw.launch_attempt.json",
+    "source_git_head": "cf384e7c438759c794ea9608865f196da7fd702b",
+    "status": "failed"
+  },
+  "failure_boundary": {
+    "failed_at_numpy_legacy_seed_call": true,
+    "failed_in_worker_seed_setup": true,
+    "first_preregistered_perturbation_must_fail_at_same_boundary": true,
+    "inference_basis": "all 32 preregistered direction seeds exceed NumPy's legacy seed domain; the worker calls seed setup before selected-parameter iteration and the runtime calls perturbed generation only after perturbation returns",
+    "perturbed_generation_reached": false,
+    "selected_parameter_add_reached": false,
+    "unperturbed_reference_generation_may_have_completed": true
+  },
+  "row_or_response_content_persisted": false,
+  "schema": "eggroll-es-v23a-seed-domain-failure-evidence-r1",
+  "seed_domain": {
+    "all_direction_seeds_exceed_numpy_legacy_max": true,
+    "all_direction_seeds_fit_positive_signed_63_bit": true,
+    "direction_count": 32,
+    "direction_seed_list_sha256": "03aeeb630f27c865cb222c04d4e8ee4d3de3385f426634e660454b6922cad178",
+    "full_to_numpy_projection_sha256": "227363befe45584c3816253137c5026f7d440687892879f0ba6f25430c19ced0",
+    "maximum_direction_seed": 8856246387301146993,
+    "minimum_direction_seed": 338992483785630933,
+    "numpy_legacy_max_inclusive": 4294967295,
+    "numpy_projection_contains_zero": false,
+    "numpy_projection_maximum": 4263717227,
+    "numpy_projection_minimum": 276724920,
+    "numpy_projection_rule": "full_seed modulo 2**32",
+    "numpy_projection_unique_count": 32,
+    "torch_preregistered_max_inclusive": 9223372036854775807
+  },
+  "traceback_or_model_repr_persisted": false
+}
