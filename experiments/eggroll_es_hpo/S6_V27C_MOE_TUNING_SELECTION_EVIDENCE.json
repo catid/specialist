@@ -1,0 +1,100 @@
+{
+  "authority": {
+    "direct_recipe_adoption_authorized": false,
+    "model_update_checkpoint_or_dataset_promotion_authorized": false,
+    "selection_result_authorizes_only_preregistered_v27a_evaluation": true,
+    "validation_heldout_ood_or_benchmark_open_authorized": false
+  },
+  "completion": {
+    "all_four_workers_completed_1920_of_1920": true,
+    "all_other_runtime_errors_reraised": true,
+    "committed_table_is_canonical_reformat_with_exact_content_hash": true,
+    "complete_log_bytes": 3946399,
+    "complete_log_sha256": "cd79b8ee4aa53d095258c05c2293b076187fdc805aac0dab495947fbead5626c",
+    "exact_runtime_error_filter_used": "PassManager::run failed",
+    "exit_code": 0,
+    "pipeline_diagnostic_occurrences": 30,
+    "raw_selected_output_file_sha256": "750fca006017b0c71bf148c5be48768d5cfee7f5ae936553d588622aabfbf5d2",
+    "ray_task_error_occurrences": 0,
+    "selected_output_file_count": 1,
+    "traceback_occurrences": 0
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "5d5f3181d9db5d4a097e712ed96d7da3933ea20392db20ddcb180893e3f91ff9",
+  "next_gate": {
+    "evaluation_contract_commit": "2572204429cf2b016d0a001086d309b582b97724",
+    "evaluation_not_launched_by_this_artifact": true,
+    "evaluation_runtime_commit": "4a7a22b922ad5ed5bbd63f64135cfe42c3f3a0fa",
+    "fresh_paired_default_vs_tuned_kernel_evaluation_required": true,
+    "table_must_be_committed_before_launch": true
+  },
+  "schema": "vllm-moe-tuning-selection-evidence-v27c",
+  "selected_table": {
+    "configs": {
+      "1024": {
+        "BLOCK_SIZE_K": 128,
+        "BLOCK_SIZE_M": 64,
+        "BLOCK_SIZE_N": 128,
+        "GROUP_SIZE_M": 16,
+        "num_stages": 3,
+        "num_warps": 4
+      },
+      "2048": {
+        "BLOCK_SIZE_K": 64,
+        "BLOCK_SIZE_M": 128,
+        "BLOCK_SIZE_N": 128,
+        "GROUP_SIZE_M": 16,
+        "num_stages": 2,
+        "num_warps": 4
+      },
+      "256": {
+        "BLOCK_SIZE_K": 64,
+        "BLOCK_SIZE_M": 16,
+        "BLOCK_SIZE_N": 256,
+        "GROUP_SIZE_M": 16,
+        "num_stages": 3,
+        "num_warps": 8
+      },
+      "512": {
+        "BLOCK_SIZE_K": 64,
+        "BLOCK_SIZE_M": 32,
+        "BLOCK_SIZE_N": 256,
+        "GROUP_SIZE_M": 64,
+        "num_stages": 3,
+        "num_warps": 8
+      }
+    },
+    "content_sha256": "a4f82f53b037f766536013bdc10c8ca1e49873603a8f44972ef8007ed406de84",
+    "file_sha256": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "relative_path": "experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c/E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition.json",
+    "triton_version": "3.6.0"
+  },
+  "selection_contract": {
+    "batch_sizes": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "dtype": "auto_bfloat16",
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "official_tuner_sha256": "230151de56d177ac22920ff9dada010f4361933b34b54e18d5981367723a8bcf",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "search_space_configurations_per_batch": 1920,
+    "selection_seed": 20260715,
+    "tp_size": 1,
+    "v27a_evaluation_preregistration_commit": "2572204429cf2b016d0a001086d309b582b97724",
+    "v27b_patched_tuner_sha256": "2a9c31063532c0572500d9ed19db7df18d82cd8dad85cefb41eab2a6269df25e",
+    "v27b_retry_preregistration_commit": "90ee9dd8275348e1bc5abcc5bbbf0caceec83bdd",
+    "v27c_patched_tuner_sha256": "ec1cfe2aea31a3aed59fc2322b8697855329f1d8cdf8c5c4d0310655e6399ec7",
+    "v27c_retry_preregistration_commit": "1708f64fa06a40efdd97a10d60fa965bd1d33b78"
+  },
+  "status": "valid_completed_selection_not_evaluation"
+}
