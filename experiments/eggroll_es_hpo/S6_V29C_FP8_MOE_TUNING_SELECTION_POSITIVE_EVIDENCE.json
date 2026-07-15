@@ -1,0 +1,97 @@
+{
+  "aggregate_result": {
+    "all_four_distinct_uuid_workers_active_and_positive": true,
+    "all_four_gpus_finally_idle": true,
+    "all_four_official_futures_submitted_before_wait": true,
+    "bf16_v27c_table_loaded_or_reused": false,
+    "configurations_per_worker": 1920,
+    "official_actor_pid_map_commitment_sha256": "3d652d0c607fe03e3ad5c2944a6e4f615eee6f3ae84a7b2062e8370d63cac421",
+    "official_source_unmodified": true,
+    "official_worker_count": 4,
+    "only_official_OutOfResources_skip_active": true,
+    "per_gpu": {
+      "0": {
+        "assigned_official_actor_pid_observed": true,
+        "maximum_gpu_utilization_percent": 100,
+        "nvml_uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927",
+        "sample_count": 10321
+      },
+      "1": {
+        "assigned_official_actor_pid_observed": true,
+        "maximum_gpu_utilization_percent": 100,
+        "nvml_uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded",
+        "sample_count": 10321
+      },
+      "2": {
+        "assigned_official_actor_pid_observed": true,
+        "maximum_gpu_utilization_percent": 100,
+        "nvml_uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640",
+        "sample_count": 10321
+      },
+      "3": {
+        "assigned_official_actor_pid_observed": true,
+        "maximum_gpu_utilization_percent": 100,
+        "nvml_uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999",
+        "sample_count": 10321
+      }
+    },
+    "placement_identity_commitment_after_sha256": "08e5bbac970eac336cccdc88d010edf3fc73cc6cf3a86ff27064c8ad100c9776",
+    "placement_identity_commitment_before_sha256": "08e5bbac970eac336cccdc88d010edf3fc73cc6cf3a86ff27064c8ad100c9776",
+    "selected_batch_sizes": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "selected_table_content_sha256": "d4a49735ccfd094d6e5a3ee763eca99ed355a51fd11a7c835bfecf9fafeaa50d",
+    "selected_table_file_sha256": "1a4ed0f44c6d7cc788baecd073107b4634db4c769f0820d10174f61117b25618",
+    "simultaneous_all_four_positive_observation_count": 4842,
+    "total_configurations": 7680
+  },
+  "artifacts": {
+    "ignored_live_attempt": {
+      "content_sha256": "0adfbf058eea46f3c55a10ac5ac61812b074fe24b6c772a382e04348e076681d",
+      "file_sha256": "a7d2b85fdffa44fbb6e4f395ef1e749ea2fd6f23daa7cb4db683adbb14454456",
+      "phase": "after_compact_report_and_final_gpu_cleanup",
+      "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v29b_fp8_w8a8_block128_moe_tuning_selection.launch_attempt.json",
+      "status": "complete"
+    },
+    "ignored_live_report": {
+      "content_sha256": "34fff582e872f0a7cb6a2e6ce8be645b746ec4a28530cadc3a9d1885f8d76eb3",
+      "file_sha256": "3f24a1e5e520a4f5a199fc118d91eca6a741ff08ecf391f0c6a4b61f15118b62",
+      "relative_path": "experiments/eggroll_es_hpo/runs/s6_v29b_fp8_w8a8_block128_moe_tuning_selection/fp8_moe_tuning_selection_report_v29b.json"
+    },
+    "original_official_selected_table": {
+      "content_sha256": "d4a49735ccfd094d6e5a3ee763eca99ed355a51fd11a7c835bfecf9fafeaa50d",
+      "file_sha256": "1a4ed0f44c6d7cc788baecd073107b4634db4c769f0820d10174f61117b25618",
+      "must_be_force_added_at_exact_original_path_in_v29c_commit": true,
+      "relative_path": "experiments/vllm_moe_tuning/v025_rtx_pro_6000_fp8_w8a8_block128_tp1_exhaustive_v29b/E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition,dtype=fp8_w8a8,block_shape=[128,128].json"
+    }
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "dc4d3b6d2b090e4e740f63de573875f331a456d6951b62cf49a003b1114ee02e",
+  "contracts": {
+    "live_cpu_disk_audit_content_sha256": "33d634560c57e20b2d8e468f1821311d5382bb606c72c67599c194ecbee5e070",
+    "official_tuner_sha256": "230151de56d177ac22920ff9dada010f4361933b34b54e18d5981367723a8bcf",
+    "runtime_environment_certificate_sha256": "7acc87ffb6a50682f19309ea3059823d0fc96dfc459e30cb66d64e157a76f52a",
+    "search_space_sha256": "e9a5db2e566fab0e43bc47f7e92682debc830617199f15f9e0275e7eaed81c98",
+    "v29b_implementation_bundle_sha256": "fdcc961aa78da024efa4a9731c38a56b624df35786b4638621de86df97584fd5",
+    "v29b_preregistration_content_sha256": "0dff2a5c6ac6e8312f72f0221140305aa06cf52a453d855188a329e2952ef7bf",
+    "v29b_preregistration_file_sha256": "1a9316f1d2a1a47e583b2027670626d3434ab0d0a235b26ae003058ae20b5369",
+    "v29b_recipe_content_sha256": "835e4876620bca3691d172710128c378484a5d17925756a2eef7cc361a94b1c4"
+  },
+  "decision": {
+    "authorize_only_separate_fp8_table_evaluation_preregistration": true,
+    "checkpoint_write_authorized": false,
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized_by_this_evidence": false,
+    "selected_table_direct_adoption_authorized": false,
+    "selection_positive_evidence_valid": true,
+    "training_or_model_update_authorized": false,
+    "validation_heldout_ood_or_benchmark_open_authorized": false
+  },
+  "raw_progress_timing_vectors_compiler_logs_search_results_or_pids_persisted": false,
+  "schema": "vllm-moe-fp8-tuning-selection-positive-evidence-v29c",
+  "status": "valid_completed_selection_not_evaluation"
+}
