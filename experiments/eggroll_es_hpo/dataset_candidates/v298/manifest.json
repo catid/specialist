@@ -1,0 +1,159 @@
+{
+  "candidate": {
+    "file_sha256": "20530df56ea5eca3d0e775f455a1448b91a997f5f0f4c2492868f7ee492b01ff",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v298/train_qa_context_merit_v298.jsonl",
+    "rows": 519
+  },
+  "content_sha256_before_self_field": "34bf53ce391d2f935c6faf9985c8a2db36dcc5b329a9c504a7c267acc2f3c1dc",
+  "firewall": {
+    "evaluation_facts": "empty_tuple",
+    "evaluation_paths_passed_to_merge": [],
+    "heldout_validation_ood_eval_or_benchmark_content_opened": false,
+    "model_update_authorized": false,
+    "row_content_in_manifest": false,
+    "runtime_launch_authorized": false
+  },
+  "provenance": {
+    "addition_versions_in_order": [
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298
+    ],
+    "checkpoint_chain": [
+      {
+        "rows": 492,
+        "sha256": "107a43403edbc51a6b2b72f5c964648e865d384fe2156ce12c84b7cbcb63c614",
+        "version": 284
+      },
+      {
+        "rows": 492,
+        "sha256": "172340fec38e97a8dcf2a70b15157af3a9ce627d359dd780d6b7043324e819ae",
+        "version": 285
+      },
+      {
+        "rows": 492,
+        "sha256": "338514d23d367ae3a8240ef686b47227e8443e23942120540d9a3085a40c69c2",
+        "version": 286
+      },
+      {
+        "rows": 492,
+        "sha256": "527ef93fac6f53b1dc6a433523f62244cad9978bf36103bbb56a2f61d9c0a1b5",
+        "version": 287
+      },
+      {
+        "rows": 492,
+        "sha256": "cdaf70a32714f3a4e248618688fcfc840d10eade0cafca0e1e9c9b15e65ab2c3",
+        "version": 288
+      },
+      {
+        "rows": 492,
+        "sha256": "17948a72bd383f9445f269567c1fe4964468cecc5892259cb88cfcaf217a5cdb",
+        "version": 289
+      },
+      {
+        "rows": 495,
+        "sha256": "1afd8517320e5465ad3f52d915bc9391b19ca56a32a2db3ffcd713f88442acf1",
+        "version": 290
+      },
+      {
+        "rows": 498,
+        "sha256": "ed516dffd88a6300945ead3b83062ca667d1b18977a6c96a8bcb6724880830fa",
+        "version": 291
+      },
+      {
+        "rows": 501,
+        "sha256": "3a1b3ca8e9ada0be0a8758fd9b9cc4ce01d17164746d587dcb028a0e916a7a17",
+        "version": 292
+      },
+      {
+        "rows": 504,
+        "sha256": "1913fbab4e3b0638683b44f02682cd9316548750046f13c70bd8abfe7327d960",
+        "version": 293
+      },
+      {
+        "rows": 507,
+        "sha256": "b9768507b55aa6650f86b1cc4cf849d268f4d0c619f53384b3b74eca2af61c5b",
+        "version": 294
+      },
+      {
+        "rows": 510,
+        "sha256": "53dfec56416923431838a74914ba3900553aae8cfc23c95d42b8169792c61b1f",
+        "version": 295
+      },
+      {
+        "rows": 513,
+        "sha256": "9038c7b518e2962083f6579dddd257b9e19f7e00b8119b9f5fd8bc0a1421ae4c",
+        "version": 296
+      },
+      {
+        "rows": 516,
+        "sha256": "93097a170a71269f46b538fdfdf40a22e9d228795abbf0262deb52cc8aa4535c",
+        "version": 297
+      },
+      {
+        "rows": 519,
+        "sha256": "20530df56ea5eca3d0e775f455a1448b91a997f5f0f4c2492868f7ee492b01ff",
+        "version": 298
+      }
+    ],
+    "checkpoint_chain_root_sha256": "ddc087395c42677ff2c28926025637cef53892ba4f3346aaeffea1477e12d336",
+    "curation_versions_in_order": [
+      284,
+      285,
+      286,
+      287,
+      288,
+      289
+    ],
+    "method": "direct_build_curated_qa_merge_train_manual_only_with_empty_eval_fact_set_and_exact_checkpoint_abort",
+    "replay_input_file_sha256": {
+      "build_curated_qa.py": "b12cb79907a50d05bde9269f3a98e43514da58e05fa1b85cb58bcfc692549384",
+      "data/manual_reviews/community_additions_v9/pending_additions_community_tranche_09_v1.jsonl": "9b96a61054a7cc36d1a7ef34b3d5576d476c8c9f9663142ceab14ed40ad2b16e",
+      "data/manual_reviews/context_merit_audit_v284/pending_curation_context_merit_v284.jsonl": "6e24e82d5ddc71124d2b5a990a19a10802ff012c4126e6dff321514b9d739230",
+      "data/manual_reviews/context_merit_audit_v285/pending_curation_context_merit_v285.jsonl": "9709d31f983ec15a899f4464b5e963f0e528a02223385525aaf06270125c2bd5",
+      "data/manual_reviews/context_merit_audit_v286/pending_curation_context_merit_v286.jsonl": "941b22b0ec1490954827c7b38c06799793d715393b955bfd8281073d8fe122d3",
+      "data/manual_reviews/context_merit_audit_v287/pending_curation_context_merit_v287.jsonl": "e1e4e2b40092dbd8686b003dc7bead1453ebc14d3354c8f0064f4cd48890a5c8",
+      "data/manual_reviews/context_merit_audit_v288/pending_curation_context_merit_v288.jsonl": "2cebd87f68d759d59e787ae50c94787de636bee6ead2d671687fafabb123f523",
+      "data/manual_reviews/context_merit_audit_v289/pending_curation_context_merit_v289.jsonl": "3e9fd9f5f8b43db3e8487caa550ea6b0273dceebb0db9561cc65403f38ba012a",
+      "data/manual_reviews/equipment_additions_v7/pending_additions_equipment_tranche_07_v1.jsonl": "5becbbe974fc068c74789b7ddad05f572ffe8c9cad1059a7946604fcf3bae726",
+      "data/manual_reviews/resource_additions_v3/pending_additions_resource_tranche_03_v1.jsonl": "fc43f07ac642d33a477d548bbe35729ddd01ba55d09a6bed539110b9863e7636",
+      "data/manual_reviews/resource_additions_v6/pending_additions_resource_tranche_06_v1.jsonl": "3c552115a93015bdf90cfb69c98449a0e1060f2d8e5d42878ab3ff0dbd8f1589",
+      "data/manual_reviews/technique_additions_v2/pending_additions_technique_tranche_02_v1.jsonl": "3125b51e446ee47b708d155b7fbb4fa0640476b422a29d897429e2e0525917d7",
+      "data/manual_reviews/technique_additions_v5/pending_additions_technique_tranche_05_v1.jsonl": "5258c9a759bb5a5f4bce26671a5476c3f7e6454e6700c9aaed8d6195e20fc9fd",
+      "data/manual_reviews/technique_additions_v8/pending_additions_technique_tranche_08_v1.jsonl": "211c2e4dfcfe22e4daa77fe893c16f93f82bd1c40c2fabcc1f314d763ef506db",
+      "data/manual_reviews/technique_equipment_additions_v1/pending_additions_technique_equipment_tranche_01_v1.jsonl": "058cb668b8a243b1656d52dde21b93f19229d76d0408c6e6bce3b7b494169cf9",
+      "data/manual_reviews/technique_equipment_additions_v4/pending_additions_technique_equipment_tranche_04_v1.jsonl": "b929fde8bf96fe7dafb9dbc02f0827c0b20310c30a00683b398bc070481d7e9a",
+      "experiments/eggroll_es_hpo/dataset_candidates/v283/manifest.json": "014f37177073d5a433b2da2b01298463cc87856f0278a60d66e53a0dce55bbfb",
+      "experiments/eggroll_es_hpo/dataset_candidates/v283/train_qa_context_merit_v283.jsonl": "83d14d9d42740c836b49a8ec9e4237766e9d751c827c21d4d2c79500ee4bc3b9"
+    },
+    "replay_input_inventory_root_sha256": "6875a7266d71d89516081c7c2e2081c03e2bc78e025ed93826708b61d0d7312f",
+    "seal_commit": "37cb23bfc9db64c30b05972337ee4747425cadd8",
+    "sealed_reported_component_file_sha256": {
+      "data/manual_reviews/community_additions_v9/pending_additions_community_tranche_09_v1.jsonl": "9b96a61054a7cc36d1a7ef34b3d5576d476c8c9f9663142ceab14ed40ad2b16e",
+      "data/manual_reviews/context_merit_audit_v297/context_merit_audit_v297.jsonl": "8512245e221f6cac12265139022c16d357f67df5e229993e0b85d459993d4bd7",
+      "data/manual_reviews/context_merit_audit_v297/pending_curation_context_merit_v297.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data/manual_reviews/context_merit_audit_v297/report_context_merit_v297.json": "6994445fb08e026c52b50e4aa908b996ce7e2307a8c07561ab6b556f9b311956",
+      "data/manual_reviews/context_merit_audit_v298/build_context_merit_audit_v298.py": "cc6acef57645451f35ba1690b531483b433433d615ca94319deeac7170543fa1",
+      "data/manual_reviews/context_merit_audit_v298/context_merit_audit_v298.jsonl": "c884261bdfff1fd93b5b0dde53118ff2f0344484664a926ebed20297e9d078ce",
+      "data/manual_reviews/context_merit_audit_v298/pending_curation_context_merit_v298.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "data/manual_reviews/context_merit_audit_v298/report_context_merit_v298.json": "efe7527ab4a77385368941d2107a059633d9b33d34846393a90d766dfcc4b741",
+      "data/manual_reviews/context_merit_audit_v298/test_context_merit_audit_v298.py": "a0a884c1d3426121b3c7e247f0b6d11148df5e6562aecc927312d552d7466595"
+    },
+    "sealed_reported_component_root_sha256": "c7446439142092b8580930c70685d5f382a667b3dfdb1abbfcca0b9688364bd6",
+    "starting_candidate": {
+      "file_sha256": "83d14d9d42740c836b49a8ec9e4237766e9d751c827c21d4d2c79500ee4bc3b9",
+      "manifest_file_sha256": "014f37177073d5a433b2da2b01298463cc87856f0278a60d66e53a0dce55bbfb",
+      "manifest_path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v283/manifest.json",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v283/train_qa_context_merit_v283.jsonl",
+      "rows": 492
+    }
+  },
+  "schema": "eggroll-es-immutable-train-candidate-manifest-v298",
+  "status": "materialized_train_only_no_eval_or_runtime_authorization"
+}

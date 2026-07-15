@@ -1,0 +1,512 @@
+{
+  "constrained_flow": {
+    "base_category_quota_per_panel": {
+      "fallback": 13,
+      "paired_tier_1": 13,
+      "paired_tier_2": 13,
+      "paired_tier_3": 13
+    },
+    "candidate_only_layer_quota_per_panel": {
+      "1": 1,
+      "2": 1,
+      "3": 1
+    },
+    "globally_panel_disjoint_joint_components": true,
+    "infeasible_action": "abort_v18a_without_quota_seed_grouping_or_solver_fallback",
+    "panel_count": 5,
+    "production_topic_quota_per_panel": {
+      "equipment_material": 4,
+      "resources_general": 24,
+      "safety_consent": 7,
+      "technique": 17
+    },
+    "quota_seed_or_solver_relaxation_used": false,
+    "seed": 20260722,
+    "selected_base_components": 260,
+    "selected_candidate_only_components": 15,
+    "selected_joint_component_identity_root_sha256": "8f338667f210dd2c75541c66559e4143722aec3cb1f9e3f9a4c4d4eb1b7dde4b",
+    "solver": {
+      "constraint_count": 350,
+      "fallback_solver_used": false,
+      "implementation": "scipy.optimize.milp_highs_binary_constrained_flow",
+      "mip_gap": 0.0,
+      "objective": 42.47472393876896,
+      "quota_relaxation_used": false,
+      "scipy_version": "1.18.0",
+      "status": 0,
+      "success": true,
+      "variable_count": 1475
+    }
+  },
+  "content_sha256_before_self_field": "6a844851cc4e5a07c08b338c5e48f3b5ab58dbeb10c765570f3fa02f20c77b3b",
+  "estimand": {
+    "arm_mean": "arm_total_divided_by_exact_arm_population_denominator",
+    "arm_population_denominators": {
+      "patch_full": 295,
+      "patch_one_third": 280,
+      "patch_two_thirds": 287,
+      "production_only": 272
+    },
+    "arm_requests_per_panel": {
+      "patch_full": 55,
+      "patch_one_third": 53,
+      "patch_two_thirds": 54,
+      "production_only": 52
+    },
+    "arm_total": "sum_HT_weight_times_selected_active_component_score_over_the_arm_specific_active_base_and_candidate_only_strata",
+    "base_population_ht_strata": {
+      "fallback": {
+        "horvitz_thompson_weight": 5.384615384615385,
+        "per_panel_quota": 13,
+        "population": 70
+      },
+      "paired_tier_1": {
+        "horvitz_thompson_weight": 5.153846153846154,
+        "per_panel_quota": 13,
+        "population": 67
+      },
+      "paired_tier_2": {
+        "horvitz_thompson_weight": 5.230769230769231,
+        "per_panel_quota": 13,
+        "population": 68
+      },
+      "paired_tier_3": {
+        "horvitz_thompson_weight": 5.153846153846154,
+        "per_panel_quota": 13,
+        "population": 67
+      }
+    },
+    "candidate_ht_never_targets_all_226": true,
+    "candidate_only_ht_strata": {
+      "1": {
+        "active_from_arm_tier": 1,
+        "horvitz_thompson_weight": 8.0,
+        "per_panel_quota": 1,
+        "population": 8
+      },
+      "2": {
+        "active_from_arm_tier": 2,
+        "horvitz_thompson_weight": 7.0,
+        "per_panel_quota": 1,
+        "population": 7
+      },
+      "3": {
+        "active_from_arm_tier": 3,
+        "horvitz_thompson_weight": 8.0,
+        "per_panel_quota": 1,
+        "population": 8
+      }
+    },
+    "plain_request_mean_used": false,
+    "same_arm_paired_duplicate_count": 0,
+    "semantics": "one_representative_per_joint_component_candidate_substitutes_eligible_paired_production_candidate_only_adds_and_fallback_remains_production",
+    "shared_component_counted_once_per_arm": true
+  },
+  "firewall": {
+    "contains_evaluation_content": false,
+    "contains_question_answer_prompt_response_or_row_content": false,
+    "dataset_promotion_authorized": false,
+    "heldout_validation_ood_eval_or_benchmark_content_opened": false,
+    "model_update_authorized": false,
+    "runtime_launch_authorized": false
+  },
+  "inputs": {
+    "candidate": {
+      "file_sha256": "20530df56ea5eca3d0e775f455a1448b91a997f5f0f4c2492868f7ee492b01ff",
+      "manifest_file_sha256": "8fd138e10217884675188538b6776dfd87a2015cf69922611c0c6100c7ff59e0",
+      "manifest_path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v298/manifest.json",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v298/train_qa_context_merit_v298.jsonl",
+      "rows": 519
+    },
+    "grouping_implementation": {
+      "file_sha256": "81ca63c230995d44dfdb739a78b4a1a0f85d09724ba5915860ae36f78ccc3da9",
+      "path": "/home/catid/specialist/eggroll_es_train_panel_sampler_v13.py"
+    },
+    "production": {
+      "file_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
+      "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+      "rows": 784
+    }
+  },
+  "joint_frame": {
+    "candidate_component_count": 226,
+    "candidate_components_by_topic": {
+      "equipment_material": 21,
+      "resources_general": 79,
+      "safety_consent": 73,
+      "technique": 53
+    },
+    "grouping": "combined_document_normalized_url_raw_lineage_and_pinned_v13_lexical_semantic_connected_components_with_side_components_kept_intact",
+    "joint_component_count": 295,
+    "joint_component_identity_root_sha256": "064b9b43b44cc18f3d20390299b9c3b11fa69abc4db44300687dff2a6f4c90a8",
+    "match_class_counts": {
+      "candidate_only": 23,
+      "production_only": 69,
+      "shared_document": 202,
+      "shared_url_without_shared_document": 1
+    },
+    "production_component_count": 272,
+    "production_components_by_topic": {
+      "equipment_material": 22,
+      "resources_general": 125,
+      "safety_consent": 38,
+      "technique": 87
+    },
+    "relation_counts": {
+      "candidate_only": 23,
+      "paired": 203,
+      "production_only": 69
+    },
+    "representative_rule": "fixed_side_dominant_topic_representative_within_each_side_component_no_cross_side_or_topic_fallback"
+  },
+  "panels": [
+    {
+      "arms": {
+        "patch_full": {
+          "active_joint_component_identity_root_sha256": "92c966e48145e0816909b92aaf2c094448c76ff33da60eb2d3ef789d68d296fa",
+          "candidate_representatives": 42,
+          "production_representatives": 13,
+          "representative_assignment_root_sha256": "3fc00d5c712711b7794308d7e29f4707c80168dccb7cb043792a38cdcce16955",
+          "requests": 55,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_one_third": {
+          "active_joint_component_identity_root_sha256": "95d06d4a673e2c9bd9a172403b3cce36445f3cfcbd795385b34ba425ac892320",
+          "candidate_representatives": 14,
+          "production_representatives": 39,
+          "representative_assignment_root_sha256": "ba55e12e84725def8957d82b5b5cbe4af547225161118e1311f27e1be121cc84",
+          "requests": 53,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_two_thirds": {
+          "active_joint_component_identity_root_sha256": "65173e4e89de8d9bfbb4a0830d0bce7be45612a35f577722e03afbcbcc94bd89",
+          "candidate_representatives": 28,
+          "production_representatives": 26,
+          "representative_assignment_root_sha256": "bc93e08757d9558e8fb51aeae76a7f3c73b5a838f3b4605865833cf1d1198ca2",
+          "requests": 54,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "production_only": {
+          "active_joint_component_identity_root_sha256": "da8b6bcef05460be3ebf9efddb7b680373b697f6d6d11443808717966932a5d2",
+          "candidate_representatives": 0,
+          "production_representatives": 52,
+          "representative_assignment_root_sha256": "c2e791deb3788f3e5d2f4e86749fd6872c5feb59f37ae7694f1cba5d4ef4859a",
+          "requests": 52,
+          "same_arm_paired_duplicate_count": 0
+        }
+      },
+      "base_category_counts": {
+        "fallback": 13,
+        "paired_tier_1": 13,
+        "paired_tier_2": 13,
+        "paired_tier_3": 13
+      },
+      "base_components": 52,
+      "candidate_only_layer_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "name": "optimization_0",
+      "production_topic_counts": {
+        "equipment_material": 4,
+        "resources_general": 24,
+        "safety_consent": 7,
+        "technique": 17
+      },
+      "role": "optimization",
+      "selected_base_joint_component_identity_root_sha256": "da8b6bcef05460be3ebf9efddb7b680373b697f6d6d11443808717966932a5d2",
+      "selected_candidate_only_joint_component_identity_root_sha256": "c420ce4e964aee829c9bd23fc859691909fbca2af746676af1b307c5fb6c7a36"
+    },
+    {
+      "arms": {
+        "patch_full": {
+          "active_joint_component_identity_root_sha256": "6b5a58db239b774fed4b5862c4dd3c6290bff8a0876445d107937079d33c69eb",
+          "candidate_representatives": 42,
+          "production_representatives": 13,
+          "representative_assignment_root_sha256": "2ba8dd2abfbb31eb78a03ccd3d4a36e159dea636432519d898386e6a5155e660",
+          "requests": 55,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_one_third": {
+          "active_joint_component_identity_root_sha256": "4cf92a03d29837394e1fdd1cac7a27d284cf6f26fe9dc2343ee206f3c678eebf",
+          "candidate_representatives": 14,
+          "production_representatives": 39,
+          "representative_assignment_root_sha256": "105cba4d63eac8e1d4eeb8dbcf0f7f50f1557fd9393755006c71fe85100dba8f",
+          "requests": 53,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_two_thirds": {
+          "active_joint_component_identity_root_sha256": "6fe60529c31c6a13b6bb93d4865a8787976a8eff50fd90fe3374a4cb311b7b50",
+          "candidate_representatives": 28,
+          "production_representatives": 26,
+          "representative_assignment_root_sha256": "95e41eeaf2d9d68a7f4878415efa188b0fbe4cdb1f78d20e18fb9f4ed6c186ad",
+          "requests": 54,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "production_only": {
+          "active_joint_component_identity_root_sha256": "d70303018caf25c7e06d5605118f6e1f25f54ea3e0c9d55e80b01f8ddc49d930",
+          "candidate_representatives": 0,
+          "production_representatives": 52,
+          "representative_assignment_root_sha256": "40fdf979e299736f18f55099a6d10fc202caf437d056a141bc2e877f92313017",
+          "requests": 52,
+          "same_arm_paired_duplicate_count": 0
+        }
+      },
+      "base_category_counts": {
+        "fallback": 13,
+        "paired_tier_1": 13,
+        "paired_tier_2": 13,
+        "paired_tier_3": 13
+      },
+      "base_components": 52,
+      "candidate_only_layer_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "name": "optimization_1",
+      "production_topic_counts": {
+        "equipment_material": 4,
+        "resources_general": 24,
+        "safety_consent": 7,
+        "technique": 17
+      },
+      "role": "optimization",
+      "selected_base_joint_component_identity_root_sha256": "d70303018caf25c7e06d5605118f6e1f25f54ea3e0c9d55e80b01f8ddc49d930",
+      "selected_candidate_only_joint_component_identity_root_sha256": "0db6af735b5fb4e909d0dcf0e89fc021c4dd04765982fbbfd015d85e06e1b9dd"
+    },
+    {
+      "arms": {
+        "patch_full": {
+          "active_joint_component_identity_root_sha256": "bb47a551251a5169e59e61dfd45f630db698071d61b7561fa1fbe18d94b3c8d0",
+          "candidate_representatives": 42,
+          "production_representatives": 13,
+          "representative_assignment_root_sha256": "aed593d7a89435fc90e9237db06ee09441fdae161d3892b929d8f37a359a42ed",
+          "requests": 55,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_one_third": {
+          "active_joint_component_identity_root_sha256": "f71e73f134a1ae80fca2997f71b7ed8e5ab5e9a731d2bdb1dc7bf76b194325c8",
+          "candidate_representatives": 14,
+          "production_representatives": 39,
+          "representative_assignment_root_sha256": "2913acf6d3578cfb261826c99e3e3a216526880df37aa9af81ff9ef3debb5e4f",
+          "requests": 53,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_two_thirds": {
+          "active_joint_component_identity_root_sha256": "e202b444133b501f80bc23b6f6657da449880ebe39251b345ce2d6f21e4c5ac4",
+          "candidate_representatives": 28,
+          "production_representatives": 26,
+          "representative_assignment_root_sha256": "fbdaf55d3fd5862fed2cd9600c17eff831790ae7431e2a30205e52a868acdd0e",
+          "requests": 54,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "production_only": {
+          "active_joint_component_identity_root_sha256": "8ba6d3275988964501a091792ff341d01d8d13131e9fcbe9fff3dddf72d358f7",
+          "candidate_representatives": 0,
+          "production_representatives": 52,
+          "representative_assignment_root_sha256": "959094a980eca631d32c27b830062eecad5e268abcde471bcd8ab0fc21a70dda",
+          "requests": 52,
+          "same_arm_paired_duplicate_count": 0
+        }
+      },
+      "base_category_counts": {
+        "fallback": 13,
+        "paired_tier_1": 13,
+        "paired_tier_2": 13,
+        "paired_tier_3": 13
+      },
+      "base_components": 52,
+      "candidate_only_layer_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "name": "optimization_2",
+      "production_topic_counts": {
+        "equipment_material": 4,
+        "resources_general": 24,
+        "safety_consent": 7,
+        "technique": 17
+      },
+      "role": "optimization",
+      "selected_base_joint_component_identity_root_sha256": "8ba6d3275988964501a091792ff341d01d8d13131e9fcbe9fff3dddf72d358f7",
+      "selected_candidate_only_joint_component_identity_root_sha256": "137a658d20b6f94163e1ffe91bc5fe3d1210b7bafb7a9420f052cf919b2040ae"
+    },
+    {
+      "arms": {
+        "patch_full": {
+          "active_joint_component_identity_root_sha256": "b9ab9e1c59e47475a03c6791db4ac6956f5413155ad9bb7a21163d876a379fad",
+          "candidate_representatives": 42,
+          "production_representatives": 13,
+          "representative_assignment_root_sha256": "395e3928e1610586b7fcb323b7eb6a860c530c414c7173f1e5c1b4430c4b9ba1",
+          "requests": 55,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_one_third": {
+          "active_joint_component_identity_root_sha256": "2e892df6e37b4cdab520dd56acae2c165fd6ae06986d551ad6e324bb9326696a",
+          "candidate_representatives": 14,
+          "production_representatives": 39,
+          "representative_assignment_root_sha256": "af44ad8531d22fd8965ffd8b0b95c46bd85b3ca4acad4b791fdda0a52c065301",
+          "requests": 53,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_two_thirds": {
+          "active_joint_component_identity_root_sha256": "808fd71e07d913df09692057d96dd60c4fa64cb9bb57f780ee223d7e16c0c041",
+          "candidate_representatives": 28,
+          "production_representatives": 26,
+          "representative_assignment_root_sha256": "7935d79e65c4b0f42dda974d89337fa3bdb161be408a3c1bb7ce5d87ed070ffb",
+          "requests": 54,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "production_only": {
+          "active_joint_component_identity_root_sha256": "59b21f6ab468ad254e3bacdc607db7a97d491074857f1059b411774886db1f4a",
+          "candidate_representatives": 0,
+          "production_representatives": 52,
+          "representative_assignment_root_sha256": "a8bd7c48a97815a0caa80ba5443b7f6303210cdc806df6fe96774484e115f000",
+          "requests": 52,
+          "same_arm_paired_duplicate_count": 0
+        }
+      },
+      "base_category_counts": {
+        "fallback": 13,
+        "paired_tier_1": 13,
+        "paired_tier_2": 13,
+        "paired_tier_3": 13
+      },
+      "base_components": 52,
+      "candidate_only_layer_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "name": "train_screen_0",
+      "production_topic_counts": {
+        "equipment_material": 4,
+        "resources_general": 24,
+        "safety_consent": 7,
+        "technique": 17
+      },
+      "role": "train_only_screen",
+      "selected_base_joint_component_identity_root_sha256": "59b21f6ab468ad254e3bacdc607db7a97d491074857f1059b411774886db1f4a",
+      "selected_candidate_only_joint_component_identity_root_sha256": "7694b08d33899c9961db7e65069ea46b35eba3a4cb7a7cfb3b14dfb0a72bf069"
+    },
+    {
+      "arms": {
+        "patch_full": {
+          "active_joint_component_identity_root_sha256": "647d9ae6b8d1b8655a6bf5fadfced81eaa61040f8ae6f8d20b4cbbeaf54fe915",
+          "candidate_representatives": 42,
+          "production_representatives": 13,
+          "representative_assignment_root_sha256": "569e76aefa2be69d5f147151faba67947a818ef546a4123d31b11f4061b411b0",
+          "requests": 55,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_one_third": {
+          "active_joint_component_identity_root_sha256": "251ad2844f3293f2cd01f258824e0ecde30c8cdbd7c194c48ce7c1a2c9f62826",
+          "candidate_representatives": 14,
+          "production_representatives": 39,
+          "representative_assignment_root_sha256": "76da92f884caa8ffeedafda1380ab2762e81fe1907cc4452cffa472dcfbfaaae",
+          "requests": 53,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "patch_two_thirds": {
+          "active_joint_component_identity_root_sha256": "300b3428d94bd3f0accc22379cbd6c081483fcf74767e3a6510fa29a2c323c1d",
+          "candidate_representatives": 28,
+          "production_representatives": 26,
+          "representative_assignment_root_sha256": "283d31ba0cca8a4dc6c4f981009e2a3bbf7c17c6350345c654e23f083ce6e748",
+          "requests": 54,
+          "same_arm_paired_duplicate_count": 0
+        },
+        "production_only": {
+          "active_joint_component_identity_root_sha256": "f6b13f7732bffed9d648a33b8a9756e71746ca54b36f8a6291c72e057fbaafeb",
+          "candidate_representatives": 0,
+          "production_representatives": 52,
+          "representative_assignment_root_sha256": "04866abb5ddd01f3987b0b1bca11502a697427f3e2ccf4badec58ab2c88ef36c",
+          "requests": 52,
+          "same_arm_paired_duplicate_count": 0
+        }
+      },
+      "base_category_counts": {
+        "fallback": 13,
+        "paired_tier_1": 13,
+        "paired_tier_2": 13,
+        "paired_tier_3": 13
+      },
+      "base_components": 52,
+      "candidate_only_layer_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+      },
+      "name": "train_screen_1",
+      "production_topic_counts": {
+        "equipment_material": 4,
+        "resources_general": 24,
+        "safety_consent": 7,
+        "technique": 17
+      },
+      "role": "train_only_screen",
+      "selected_base_joint_component_identity_root_sha256": "f6b13f7732bffed9d648a33b8a9756e71746ca54b36f8a6291c72e057fbaafeb",
+      "selected_candidate_only_joint_component_identity_root_sha256": "cacd4a8547c296c9b58b88a0e73cda67c0ec879e8abee0399e077319fe600ed7"
+    }
+  ],
+  "safe_patch_population": {
+    "base_category_population_identity_root_sha256": {
+      "fallback": "6ed19a326f8f700d60595f74eec3e7692eb949957990eba4970f235f8c14490e",
+      "paired_tier_1": "595da3ce9d34677bae167274136e35a21efdaa943578aa553db811c0d9ecff78",
+      "paired_tier_2": "6f8254f77bdd18bf7db0676cd798c889fa192f209ebdbc9c0e6d78a4c036570d",
+      "paired_tier_3": "8f2296023d8df4a980245f4fcee4424cbd6551979304296db5bf7cb9351a2add"
+    },
+    "candidate_only_components": 23,
+    "candidate_only_layer_population_identity_root_sha256": {
+      "1": "bec5d14c1ead577d1fb1ce4d990b49c3d3790c292167c2b0f6e7c4fd3129599f",
+      "2": "9595d03829f3b443ebdefbb3a2c09c4d73461f2d4d265309e7265179e4e092ad",
+      "3": "dfb7bc8df5b0e0d10a6884d1500e8a951a60cc5bc2e05c29120ab858d70bcc68"
+    },
+    "candidate_only_layer_populations": {
+      "1": 8,
+      "2": 7,
+      "3": 8
+    },
+    "cumulative_fraction_of_eligible_225_by_arm": {
+      "patch_full": [
+        1,
+        1
+      ],
+      "patch_one_third": [
+        1,
+        3
+      ],
+      "patch_two_thirds": [
+        2,
+        3
+      ],
+      "production_only": [
+        0,
+        1
+      ]
+    },
+    "cumulative_patch_population_by_arm": {
+      "patch_full": 225,
+      "patch_one_third": 75,
+      "patch_two_thirds": 150,
+      "production_only": 0
+    },
+    "eligible_patch_components": 225,
+    "eligible_shared_document_paired_components": 202,
+    "excluded_ambiguous_always_uses": "production_representative",
+    "excluded_ambiguous_candidate_topic": "technique",
+    "excluded_ambiguous_match_class": "shared_url_without_shared_document",
+    "excluded_ambiguous_paired_components": 1,
+    "excluded_ambiguous_production_topic": "resources_general",
+    "paired_tier_populations": {
+      "1": 67,
+      "2": 68,
+      "3": 67
+    },
+    "prefix_seed": 20260721
+  },
+  "schema": "eggroll-es-production-patch-flow-certificate-v18a",
+  "status": "feasible_frozen_frame_only_no_runtime_or_update_authorization"
+}
