@@ -1,0 +1,339 @@
+{
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "d8b3cc6f5837606f43c0fa26841b223a974d93fb4117c91fde553dae67af4767",
+  "equivalence_analysis": {
+    "all_four_physical_gpu_pair_metrics_must_pass_independently": true,
+    "exact_repeatability_within_each_wave_gpu_cell_required": true,
+    "same_backend_score_arrays_and_token_ids_exact_across_all_four_appearances": true,
+    "score": "per-example mean full gold-answer token logprob in natural-log units",
+    "threshold_justification": {
+      "max_0.75_nats": "rejects isolated catastrophic answer-token divergence",
+      "mean_absolute_0.05_nats": "caps the average likelihood-ratio displacement at exp(0.05)-1, about 5.13%",
+      "no_threshold_selected_after_outputs": true,
+      "pearson_0.995_and_token_agreement_0.99": "preserve row ordering and deterministic greedy behavior",
+      "rmse_0.10_and_p99_0.25_nats": "bound dispersion and 99th-percentile displacement while allowing expected FP8-versus-BF16 kernel rounding"
+    },
+    "thresholds": {
+      "absolute_mean_signed_logprob_delta_max": 0.02,
+      "greedy_first_token_agreement_min": 0.99,
+      "maximum_absolute_logprob_delta_max": 0.75,
+      "mean_absolute_logprob_delta_max": 0.05,
+      "p99_absolute_logprob_delta_max": 0.25,
+      "root_mean_square_logprob_delta_max": 0.1,
+      "row_logprob_pearson_min": 0.995
+    }
+  },
+  "experiment_name": "s6_v26a_fp8_vs_routed_experts_bf16_backbone_train_only_probe",
+  "gate": {
+    "checkpoint_write_authorized": false,
+    "conjunctive_requirements": [
+      "all runtime model device token and request integrity audits pass",
+      "all equivalence thresholds pass on each of four physical-GPU pairs",
+      "all four paired throughput familywise lower bounds are at least 0.90",
+      "all eight wave-GPU cell peak NVML fractions are at most 0.95"
+    ],
+    "dataset_promotion_authorized": false,
+    "direct_model_adoption_authorized": false,
+    "evaluation_authorized": false,
+    "failure_decision": "retain_existing_FP8_model_for_any_later_training_A_B",
+    "model_update_authorized": false,
+    "pass_authority": "authorize_only_a_separate_fresh_preregistered_train_only_training_A_B"
+  },
+  "model_contract": {
+    "conversion_code_identities": {
+      "auditor": {
+        "file_sha256": "b57fdef36ab0d742171449323c937bc441f723190b4cc8bb2862e33b420af5f0",
+        "path": "audit_qwen36_fp8_routed_experts_bf16_backbone_v26.py"
+      },
+      "auditor_tests": {
+        "file_sha256": "67b4bdfd373a21e8091447845044ef5dcf2711e94d2efd729f8b4a5888da07ea",
+        "path": "test_audit_qwen36_fp8_routed_experts_bf16_backbone_v26.py"
+      },
+      "builder": {
+        "file_sha256": "75ca45672c3e4496638ced92acab6c9a9dafa7510d0830c337f1b1fb3f48076a",
+        "path": "build_qwen36_fp8_routed_experts_bf16_backbone_v26.py"
+      },
+      "builder_tests": {
+        "file_sha256": "c03b184223f8b6a0938eb3c2bea26edefe0b5cccdf83bd7dca2a92d237e391ff",
+        "path": "test_build_qwen36_fp8_routed_experts_bf16_backbone_v26.py"
+      }
+    },
+    "fp8": {
+      "config_sha256": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+      "index_sha256": "6f176f344e41d35b17af12904e33401da5ebff3b49fccb8bfa0185bc2d50f9d6",
+      "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+      "weight_shard_manifest": {
+        "file_count": 42,
+        "manifest_sha256": "25ae972a0ac80b7875b5e041172d5ad572b522619040f4786a9facdf0e36e5dd",
+        "total_bytes": 37463662160
+      }
+    },
+    "hybrid_v26": {
+      "all_non_routed_pathways_exact_bf16": true,
+      "config_sha256": "e3c0081b616106017a26e2267bccbaefe1e221f41b729cfb1d89fddb3bfbf0b7",
+      "index_sha256": "00209ac9b1eda53eada4af96d3f86c653150ea0e3229a6d10620507023ae4b72",
+      "non_routed_fp8_scale_count": 0,
+      "only_routed_experts_remain_fp8": true,
+      "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8-routed-experts-BF16-backbone-v26",
+      "provenance_content_sha256": "e56b0162e0bd27f1690b68762290fcd247788c6f02fa2c22fe79e48153b42845",
+      "provenance_file_sha256": "9a6860a673584d342fe64438539e33fffb8915b6b776c2b5386ffdb01ce6ad65",
+      "target_byte_count": 38890114784,
+      "target_key_count": 63939,
+      "weight_shard_manifest": {
+        "file_count": 67,
+        "manifest_sha256": "6a4df77903cd680550724f988ef224eb4390a02088c7cf72987da7346e303539",
+        "total_bytes": 38898892464
+      }
+    },
+    "required_exact_prelaunch_audit_content_sha256": "52a21f4956cc386393d129897e59c59a578ca2f3e7818577e8974c7e1ce228d2"
+  },
+  "pairing": {
+    "fp8_first_physical_gpu_ids": [
+      0,
+      2
+    ],
+    "hybrid_first_physical_gpu_ids": [
+      1,
+      3
+    ],
+    "pair_order": [
+      "physical_gpu_0",
+      "physical_gpu_1",
+      "physical_gpu_2",
+      "physical_gpu_3"
+    ],
+    "physical_gpu_pairs": {
+      "physical_gpu_0": {
+        "candidate_backend": "fp8_routed_bf16_backbone_v26",
+        "candidate_cell": "wave_b_gpu_0",
+        "candidate_wave": "wave_b",
+        "load_order": "fp8_first",
+        "physical_gpu_id": 0,
+        "reference_backend": "full_fp8",
+        "reference_cell": "wave_a_gpu_0",
+        "reference_wave": "wave_a"
+      },
+      "physical_gpu_1": {
+        "candidate_backend": "fp8_routed_bf16_backbone_v26",
+        "candidate_cell": "wave_a_gpu_1",
+        "candidate_wave": "wave_a",
+        "load_order": "hybrid_first",
+        "physical_gpu_id": 1,
+        "reference_backend": "full_fp8",
+        "reference_cell": "wave_b_gpu_1",
+        "reference_wave": "wave_b"
+      },
+      "physical_gpu_2": {
+        "candidate_backend": "fp8_routed_bf16_backbone_v26",
+        "candidate_cell": "wave_b_gpu_2",
+        "candidate_wave": "wave_b",
+        "load_order": "fp8_first",
+        "physical_gpu_id": 2,
+        "reference_backend": "full_fp8",
+        "reference_cell": "wave_a_gpu_2",
+        "reference_wave": "wave_a"
+      },
+      "physical_gpu_3": {
+        "candidate_backend": "fp8_routed_bf16_backbone_v26",
+        "candidate_cell": "wave_a_gpu_3",
+        "candidate_wave": "wave_a",
+        "load_order": "hybrid_first",
+        "physical_gpu_id": 3,
+        "reference_backend": "full_fp8",
+        "reference_cell": "wave_b_gpu_3",
+        "reference_wave": "wave_b"
+      }
+    },
+    "same_physical_gpu_compared_across_fresh_load_waves": true,
+    "same_request_tokens_sampling_and_repetition_index_all_cells": true,
+    "wave_order_fixed_before_outputs": [
+      "wave_a",
+      "wave_b"
+    ]
+  },
+  "preregistered_before_any_v26a_train_reward_output": true,
+  "required_runtime_adapter": {
+    "current_external_gpu_owner_blocks_launch": true,
+    "gpu_idle_check_after_cpu_disk_audits_immediately_before_attempt_claim": true,
+    "must_persist_only_aggregate_metrics_hashes_and_integrity_booleans": true,
+    "must_require_exact_post_commit_implementation_and_recipe_hashes": true,
+    "must_verify_no_other_gpu_owner_before_attempt_claim": true,
+    "status": "implemented_but_future_gpu_launch_not_yet_authorized"
+  },
+  "runtime_contract": {
+    "all_four_gpus_must_be_idle_after_wave_a_teardown_before_wave_b": true,
+    "all_four_physical_gpus_active_concurrently_in_each_wave": true,
+    "all_raw_outputs_scores_token_ids_timings_and_memory_samples_in_memory_only": true,
+    "determinism_repetitions": 2,
+    "engine_count_per_wave": 4,
+    "fresh_ray_actors_engines_and_model_loads_between_waves": true,
+    "generation_calls_per_engine_per_wave": 10,
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "interwave_async_cleanup_idle_poll_interval_seconds": 0.5,
+    "interwave_async_cleanup_idle_poll_timeout_seconds": 30.0,
+    "interwave_poll_must_preserve_nvml_uuid_pci_and_total_memory": true,
+    "model_load_initialization_and_teardown_time_excluded": true,
+    "one_actor_and_one_complete_model_replica_per_physical_gpu_per_wave": true,
+    "peak_vram": "maximum of the post-warmup resident audit and 10ms actor-local NVML sampling across each timed generate call",
+    "physical_gpu_identity_bound_by_nvml_index_uuid_and_pci_bus_across_waves": true,
+    "placement_group_creation_order_never_used_as_physical_gpu_identity": true,
+    "placement_groups_are_non_detached_and_removed_after_each_wave": true,
+    "placement_groups_bound_by_lightweight_string_int_canonicalized_gpu_probe": true,
+    "prelaunch_idle_check_remains_immediate_and_unpolled": true,
+    "resident_vram": "NVML used bytes after warmup before determinism and timing calls",
+    "same_dtype": "bfloat16",
+    "same_gpu_memory_utilization": 0.82,
+    "same_moe_backend": "triton",
+    "tensor_parallel_size_per_engine": 1,
+    "throughput_definition": "fixed aggregate prompt tokens plus one output token per request divided by actor-local synchronized generation seconds",
+    "timing_clock": "actor-local time.perf_counter_ns with CUDA synchronization",
+    "timing_repetitions": 7,
+    "total_engine_generation_calls_all_waves": 80,
+    "total_generation_requests_all_engines_all_waves": 22400,
+    "warmup_repetitions": 1,
+    "wave_backend_mapping": {
+      "wave_a": [
+        "full_fp8",
+        "fp8_routed_bf16_backbone_v26",
+        "full_fp8",
+        "fp8_routed_bf16_backbone_v26"
+      ],
+      "wave_b": [
+        "fp8_routed_bf16_backbone_v26",
+        "full_fp8",
+        "fp8_routed_bf16_backbone_v26",
+        "full_fp8"
+      ]
+    },
+    "wave_count": 2
+  },
+  "sampling_contract": {
+    "detokenize": false,
+    "enforce_eager": true,
+    "max_tokens": 1,
+    "n": 1,
+    "prefix_caching": false,
+    "prompt_logprobs": 1,
+    "seed": 43,
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "schema": "eggroll-es-v26-model-compat-speed-preregistration-v26a",
+  "speed_and_memory_analysis": {
+    "all_eight_wave_gpu_cells_peak_vram_gated": true,
+    "each_physical_gpu_speed_pair_gated_independently": true,
+    "fp8_first_and_hybrid_first_order_strata_reported_separately": true,
+    "hybrid_over_fp8_throughput_noninferiority_ratio": 0.9,
+    "maximum_peak_nvml_fraction": 0.95,
+    "model_load_time_excluded_from_throughput": true,
+    "one_sided_familywise_quantile": 0.0125,
+    "paired_bootstrap_draw_plan_sha256": "44d02b27a262c55e0f7c2345ff92285ac584400ed036393b52fb1cc7ca7e0b0d",
+    "paired_bootstrap_repetitions": 20000,
+    "paired_bootstrap_seed": 20260920,
+    "paired_timing_repetitions": 7,
+    "throughput_and_vram_recorded_for_every_wave_gpu_cell": true,
+    "throughput_ratio_paired_by_physical_gpu_and_repetition_across_waves": true,
+    "timing_vectors_bootstrap_draws_replicates_and_memory_samples_not_persisted": true,
+    "wave_level_summary_reported_to_expose_load_order_effects": true
+  },
+  "status": "preregistered_future_runtime_not_launched",
+  "strict_train_only": true,
+  "train_request_contract": {
+    "contains_validation_ood_heldout_or_benchmark_content": false,
+    "driver_tokenizes_once_and_passes_identical_prompt_token_ids": true,
+    "maximum_prompt_plus_answer_tokens": 1024,
+    "panel_bundle_content_sha256": "cc176a9b86c6447dcde8a11fd28d68c837d2119715126c57a3f37293fb0d492b",
+    "panel_manifest_content_sha256": "46cc98b694c98c1ee1c5456b855fb3b1db4534b3df2dcda69fc690a2d8a61bf5",
+    "panel_manifest_file_sha256": "e555d9d6746cde6297cd3ab523b16dd7d78d81e2674447ee46d754ebfac52da7",
+    "panel_manifest_path": "/home/catid/specialist/experiments/eggroll_es_hpo/train_panel_sampling_v13/document_balanced_train_panels_v13.json",
+    "panel_names": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "request_count_per_engine_call": 280,
+    "rows_per_panel": 56,
+    "token_contract_is_hashed_and_aggregate_only": true,
+    "train_source_arrow_sha256": "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6",
+    "train_source_file_sha256": "f7127c38c7b540eaf9cf4349d1a1b8076e171da7f8ea43c11068ad1c311bb776"
+  },
+  "waves": {
+    "wave_a": {
+      "all_four_gpus_active_concurrently": true,
+      "fresh_engine_and_model_load_boundary_before_wave": true,
+      "gpu_assignments": {
+        "0": {
+          "backend": "full_fp8",
+          "cell": "wave_a_gpu_0",
+          "engine_rank": 0,
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+          "physical_gpu_id": 0
+        },
+        "1": {
+          "backend": "fp8_routed_bf16_backbone_v26",
+          "cell": "wave_a_gpu_1",
+          "engine_rank": 1,
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8-routed-experts-BF16-backbone-v26",
+          "physical_gpu_id": 1
+        },
+        "2": {
+          "backend": "full_fp8",
+          "cell": "wave_a_gpu_2",
+          "engine_rank": 2,
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+          "physical_gpu_id": 2
+        },
+        "3": {
+          "backend": "fp8_routed_bf16_backbone_v26",
+          "cell": "wave_a_gpu_3",
+          "engine_rank": 3,
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8-routed-experts-BF16-backbone-v26",
+          "physical_gpu_id": 3
+        }
+      },
+      "wave_index": 0
+    },
+    "wave_b": {
+      "all_four_gpus_active_concurrently": true,
+      "fresh_engine_and_model_load_boundary_before_wave": true,
+      "gpu_assignments": {
+        "0": {
+          "backend": "fp8_routed_bf16_backbone_v26",
+          "cell": "wave_b_gpu_0",
+          "engine_rank": 0,
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8-routed-experts-BF16-backbone-v26",
+          "physical_gpu_id": 0
+        },
+        "1": {
+          "backend": "full_fp8",
+          "cell": "wave_b_gpu_1",
+          "engine_rank": 1,
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+          "physical_gpu_id": 1
+        },
+        "2": {
+          "backend": "fp8_routed_bf16_backbone_v26",
+          "cell": "wave_b_gpu_2",
+          "engine_rank": 2,
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8-routed-experts-BF16-backbone-v26",
+          "physical_gpu_id": 2
+        },
+        "3": {
+          "backend": "full_fp8",
+          "cell": "wave_b_gpu_3",
+          "engine_rank": 3,
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+          "physical_gpu_id": 3
+        }
+      },
+      "wave_index": 1
+    }
+  }
+}
