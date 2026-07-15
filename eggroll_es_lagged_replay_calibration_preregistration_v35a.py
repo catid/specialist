@@ -53,7 +53,7 @@ PROTOCOL_PATH = (
 BOUND_FILES = {
     "protocol_v35a": (
         PROTOCOL_PATH,
-        "cf6f3896d92a54fa4ab297c1818cd421481e860d563030d883ee2c85491b541b",
+        "d200204b54f578bf6f0e8c1d2c00f3ffb5b49f8eaa8e612efb32065d5e666e2a",
     ),
     "sampler_v13": (
         Path(sampler_v13.__file__).resolve(),
@@ -241,7 +241,17 @@ def build_preregistration() -> dict:
                 "hash_bound_base_Qwen3.6-35B-A3B",
                 "manual_review_of_only_provisional_training_examples",
             ],
-            "excluded_panels_not_generated_or_opened": list(EXCLUDED_SCREENS),
+            "screen_firewall": {
+                "screen_panels": list(EXCLUDED_SCREENS),
+                "screen_rows_materialized_as_requests": False,
+                "screen_rows_interpreted": False,
+                "screen_rows_generated": False,
+                "screen_rows_scored": False,
+                "screen_rows_ranked": False,
+                "screen_rows_selected": False,
+                "screen_rows_used": False,
+                "source_or_container_bytes_may_be_read_only_to_bind_and_project_exact_optimization_indices": True,
+            },
             "nontrain_evaluation_surfaces_opened": False,
             "dataset_rows_questions_answers_or_document_text_persisted_in_runtime_artifact": False,
             "raw_rewards_logprobs_tokens_outputs_or_manual_review_text_persisted": False,

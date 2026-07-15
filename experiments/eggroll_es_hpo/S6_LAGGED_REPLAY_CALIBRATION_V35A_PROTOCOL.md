@@ -6,8 +6,9 @@ update, checkpoint, dataset promotion, or evaluation authorization.
 The exact V13 production optimization panels are scored once with the frozen
 unperturbed Qwen3.6-35B-A3B model. All four TP=1 engines generate the identical
 168-request union, and token/log-probability results must be exactly equal
-across engines. The two train screens are not generated or opened during this
-stage.
+across engines. Source/container bytes may be read solely to bind and project
+the exact optimization indices. Screen rows are never materialized as
+requests, interpreted, generated, scored, ranked, selected, or used.
 
 Within each optimization panel and stratum, rows are ranked from lowest to
 highest mean gold-answer token log-probability, with row SHA-256 as the frozen

@@ -9,16 +9,24 @@ import eggroll_es_lagged_replay_calibration_preregistration_v35a as prereg
 def test_build_is_self_hashed_and_train_only():
     value = prereg.build_preregistration()
     assert value["content_sha256_before_self_field"] == (
-        "27e046a70e849eb69f5da179ef263f065ca492a8d13e7891e7aa972a194fb531"
+        "ea50107652a1249de447e63c2891c4ef2ce61691772eb5c0dff76d3843f90127"
     )
     assert value["content_sha256_before_self_field"] == prereg.canonical_sha256(
         prereg.without_self(value)
     )
     firewall = value["strict_train_only_firewall"]
     assert firewall["nontrain_evaluation_surfaces_opened"] is False
-    assert firewall["excluded_panels_not_generated_or_opened"] == [
-        "train_screen_0", "train_screen_1",
-    ]
+    screen = firewall["screen_firewall"]
+    assert screen["screen_panels"] == ["train_screen_0", "train_screen_1"]
+    assert screen[
+        "source_or_container_bytes_may_be_read_only_to_bind_and_project_exact_optimization_indices"
+    ] is True
+    for key in (
+        "screen_rows_materialized_as_requests", "screen_rows_interpreted",
+        "screen_rows_generated", "screen_rows_scored", "screen_rows_ranked",
+        "screen_rows_selected", "screen_rows_used",
+    ):
+        assert screen[key] is False
     assert value["authority"]["open_nontrain_evaluation"] is False
     assert value["authority"]["apply_model_update_or_write_checkpoint"] is False
 
@@ -26,7 +34,7 @@ def test_build_is_self_hashed_and_train_only():
 def test_materialized_preregistration_is_exact_rebuild():
     materialized = json.loads(prereg.OUTPUT_PATH.read_text(encoding="utf-8"))
     assert prereg.file_sha256(prereg.OUTPUT_PATH) == (
-        "9f8790d99b4e3040304d858817015b451a2cce1abd69c531b611f7911b434272"
+        "9f2a33a5ba4c6e2ee895322fc93de1482f607ebd3013e2cf5e47eaf4ebde8773"
     )
     assert materialized == prereg.build_preregistration()
 

@@ -28,7 +28,7 @@
     "selection_after_audit": "for_each_panel_and_stratum_take_the_lowest_calibration_ranked_eligible_rows_until_the_frozen_required_count"
   },
   "bound_inputs": {
-    "file_bundle_sha256": "a89267474ae400f0442666daa585ae479104f7b7db1c296567c58ef399b47e85",
+    "file_bundle_sha256": "d9bc89b5c26842c98ca684ad909dda347d8310ac3b975a52a174676bc31cf8cc",
     "files": {
       "layer_plan": {
         "file_sha256": "4dca69212f2eee1c5882a7f3de944e3dadd8de94b42e58e7d7495547e8b1c747",
@@ -47,7 +47,7 @@
         "path": "/home/catid/specialist/experiments/eggroll_es_hpo/train_panel_sampling_v13/document_balanced_train_panels_v13.json"
       },
       "protocol_v35a": {
-        "file_sha256": "cf6f3896d92a54fa4ab297c1818cd421481e860d563030d883ee2c85491b541b",
+        "file_sha256": "d200204b54f578bf6f0e8c1d2c00f3ffb5b49f8eaa8e612efb32065d5e666e2a",
         "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_LAGGED_REPLAY_CALIBRATION_V35A_PROTOCOL.md"
       },
       "sampler_v13": {
@@ -73,7 +73,7 @@
     "v14a_negative_content_sha256": "ee4ded3d974dfd0becaedb1007f96888e133db51e62130d2844ab9c25e2ccf2b",
     "v14b_negative_content_sha256": "440504e6c81673ea8de89f336d587a0c57408ea21d3a925ed73b73ecfbeaa7b8"
   },
-  "content_sha256_before_self_field": "27e046a70e849eb69f5da179ef263f065ca492a8d13e7891e7aa972a194fb531",
+  "content_sha256_before_self_field": "ea50107652a1249de447e63c2891c4ef2ce61691772eb5c0dff76d3843f90127",
   "difficulty_calibration": {
     "final_hard_tier_cap": 0.25,
     "no_candidate_response_or_fresh_HPO_basis_observed_before_tier_freeze": true,
@@ -274,12 +274,22 @@
       "manual_review_of_only_provisional_training_examples"
     ],
     "dataset_rows_questions_answers_or_document_text_persisted_in_runtime_artifact": false,
-    "excluded_panels_not_generated_or_opened": [
-      "train_screen_0",
-      "train_screen_1"
-    ],
     "model_update_checkpoint_or_dataset_promotion": false,
     "nontrain_evaluation_surfaces_opened": false,
-    "raw_rewards_logprobs_tokens_outputs_or_manual_review_text_persisted": false
+    "raw_rewards_logprobs_tokens_outputs_or_manual_review_text_persisted": false,
+    "screen_firewall": {
+      "screen_panels": [
+        "train_screen_0",
+        "train_screen_1"
+      ],
+      "screen_rows_generated": false,
+      "screen_rows_interpreted": false,
+      "screen_rows_materialized_as_requests": false,
+      "screen_rows_ranked": false,
+      "screen_rows_scored": false,
+      "screen_rows_selected": false,
+      "screen_rows_used": false,
+      "source_or_container_bytes_may_be_read_only_to_bind_and_project_exact_optimization_indices": true
+    }
   }
 }
