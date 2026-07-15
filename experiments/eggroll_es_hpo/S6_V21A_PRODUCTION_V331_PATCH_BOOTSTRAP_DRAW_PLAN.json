@@ -1,0 +1,166 @@
+{
+  "base_draws": {
+    "bytes_sha256": "6788ef3e007992b4b1478263c112d45ff42341fb26f9bbb9d0008cab023f418a",
+    "category_order": [
+      "paired_tier_1",
+      "paired_tier_2",
+      "paired_tier_3",
+      "fallback"
+    ],
+    "dtype": "uint8",
+    "panel_order": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "optimization_3",
+      "optimization_4",
+      "optimization_5",
+      "train_screen_0",
+      "train_screen_1",
+      "train_screen_2",
+      "train_screen_3"
+    ],
+    "shape": [
+      10,
+      4,
+      50000,
+      6
+    ],
+    "shared_across_both_arms": true
+  },
+  "candidate_draws_same_role_and_topic": true,
+  "candidate_only_draws": {
+    "optimization": {
+      "equipment_material": {
+        "bytes_sha256": "e962ca76e9e7418c0c2bb30a506fb641d32d56254e99f40dc33e3944cd8b880f",
+        "draws_per_target_panel_per_replicate": 1,
+        "dtype": "uint8",
+        "shape": [
+          6,
+          50000,
+          1
+        ],
+        "source_slot_count": 6
+      },
+      "resources_general": {
+        "bytes_sha256": "9c20f2b5f3bcafb6e577f3aeca026dc89d5e0ea611afe4000ca050189745259d",
+        "draws_per_target_panel_per_replicate": 1,
+        "dtype": "uint8",
+        "shape": [
+          6,
+          50000,
+          1
+        ],
+        "source_slot_count": 6
+      },
+      "safety_consent": {
+        "bytes_sha256": "937995211d0bcf50da2c6c396729e6f75367c5a6cbb2e75e634849c7d8185935",
+        "draws_per_target_panel_per_replicate": 2,
+        "dtype": "uint8",
+        "shape": [
+          6,
+          50000,
+          2
+        ],
+        "source_slot_count": 12
+      },
+      "technique": {
+        "bytes_sha256": "40362f2740697541f0485c3135c7b8dd71f7c5ae01dc5752c4bf01eeec8f9b73",
+        "draws_per_target_panel_per_replicate": 2,
+        "dtype": "uint8",
+        "shape": [
+          6,
+          50000,
+          2
+        ],
+        "source_slot_count": 12
+      }
+    },
+    "train_only_screen": {
+      "equipment_material": {
+        "bytes_sha256": "ed2fe10b80e8ae6127b8d8cd7d6adbcc41c5614999015b71cc21a8a7d00cae16",
+        "draws_per_target_panel_per_replicate": 1,
+        "dtype": "uint8",
+        "shape": [
+          4,
+          50000,
+          1
+        ],
+        "source_slot_count": 4
+      },
+      "resources_general": {
+        "bytes_sha256": "f9e141e1fe8306883fd7d918676b77c923539191cd876550a4a81f40738a6631",
+        "draws_per_target_panel_per_replicate": 1,
+        "dtype": "uint8",
+        "shape": [
+          4,
+          50000,
+          1
+        ],
+        "source_slot_count": 4
+      },
+      "safety_consent": {
+        "bytes_sha256": "b0271aaeb6bd574addb0c30280914ec9e908576fb09b176c269a419e97d1a297",
+        "draws_per_target_panel_per_replicate": 2,
+        "dtype": "uint8",
+        "shape": [
+          4,
+          50000,
+          2
+        ],
+        "source_slot_count": 8
+      },
+      "technique": {
+        "bytes_sha256": "4469c7c3238fc0c33898c11ee7d5b388f98d20243f3eef1aa2c24b7450618fc6",
+        "draws_per_target_panel_per_replicate": 2,
+        "dtype": "uint8",
+        "shape": [
+          4,
+          50000,
+          2
+        ],
+        "source_slot_count": 8
+      }
+    }
+  },
+  "candidate_source_slot_counts": {
+    "optimization": {
+      "equipment_material": 6,
+      "resources_general": 6,
+      "safety_consent": 12,
+      "technique": 12
+    },
+    "train_only_screen": {
+      "equipment_material": 4,
+      "resources_general": 4,
+      "safety_consent": 8,
+      "technique": 8
+    }
+  },
+  "checkpoint_write_authorized": false,
+  "contains_train_or_evaluation_content": false,
+  "content_sha256_before_self_field": "b7964861ccd092f2c8c1177de5ff041f561e9a8f3a4d8b65bb2e4deb9aa7e820",
+  "dataset_promotion_authorized": false,
+  "draw_arrays_persisted": false,
+  "evaluation_authorized": false,
+  "familywise_alpha": 0.05,
+  "fixed_panel_identities_every_replicate": true,
+  "foundation": {
+    "commit": "74b9775e019a25f01d860e3508c9979646624db8",
+    "preregistration_content_sha256": "f7d0814eeebf94e929421599b6ed66099db8d827aab26f67798aa73e06353dfc",
+    "preregistration_file_sha256": "d0a9284bb5a944b6f5059f4ed55a4616e2d00acaf2a8bdbba731603eb2126dbd"
+  },
+  "gpu_launch_authorized": false,
+  "hypothesis_count": 12,
+  "model_update_authorized": false,
+  "one_sided_quantile": 0.004166666666666667,
+  "ordered_array_commitment_sha256": "ae9612d4a2413f5aba04a8a96ba52c7306d0549ad24dba6d0945233c878c9b5f",
+  "paired_same_draws_both_arms": true,
+  "quantile_method": "linear",
+  "repetitions": 50000,
+  "runtime_launch_authorized": false,
+  "schema": "eggroll-es-production-v331-patch-bootstrap-draw-plan-v21a",
+  "seed": 20260822,
+  "status": "exact_draw_commitments_only_no_runtime_authority",
+  "whole_panel_block_resampling_used": false
+}
