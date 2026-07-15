@@ -558,7 +558,7 @@
       }
     ]
   },
-  "content_sha256_before_self_field": "2ad168ee20f5fb6d9acfdf61c8fad1c37579692a9f77c7dde536a2801a18a8bb",
+  "content_sha256_before_self_field": "514e1c9f3e8eb16ce9c224236439780ad6c1db706720285a3a3dda1d8db3d503",
   "estimator": {
     "arm_mean": "arm_total_divided_by_exact_arm_population_denominator",
     "arm_population_denominators": {
@@ -698,6 +698,16 @@
       "file_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
       "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
       "rows": 784
+    },
+    "token_length_audit": {
+      "boundary_mismatch_count": 0,
+      "builder_file_sha256": "9ff344ce001673f21a3782c813f2545f7503c19f8f0cc6be7d57ae64bfc8e7f3",
+      "builder_path": "/home/catid/specialist/audit_eggroll_es_token_lengths_v18a.py",
+      "candidate_label": "candidate_v298",
+      "content_sha256": "8157f64794cfe34f50dc795bed338f4109aa84addb38f114932b95f3d7598329",
+      "file_sha256": "df1d3810e988c3ece4ef921643ffe226fa7bb7f2f91edf2895865afe78c7ee6f",
+      "over_frozen_1024_total_token_cap_count": 0,
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_TOKEN_LENGTH_AUDIT_V18A.json"
     },
     "v17a_negative_evidence": {
       "content_sha256": "3566fb66bed9ca694877efad281b451b73c28cc6c0b8b50b7472d00e92f3a3d7",
@@ -844,24 +854,33 @@
     "max_tokens_role": "dummy_generation_trigger_not_answer_cap",
     "max_total_prompt_answer_tokens": 1024,
     "objective": "per_example_mean_full_gold_answer_token_logprob",
-    "objective_change_allowed_in_v17a": false,
+    "objective_change_allowed_in_v18a": false,
     "prompt_contains_full_gold_answer": true,
     "prompt_logprobs": 1,
     "scored_positions": "all_aligned_answer_tokens_only",
     "token_length_audit": {
-      "candidate_answer_token_quantiles_p50_p90_p95_p99_max": [
-        18,
-        42,
-        53,
-        81,
-        86
-      ],
+      "answer_token_quantiles_p50_p90_p95_p99_max": {
+        "candidate_v298": [
+          19,
+          42,
+          52,
+          74,
+          86
+        ],
+        "production": [
+          5,
+          14,
+          18,
+          36,
+          87
+        ]
+      },
       "combined_prompt_answer_token_quantiles_p50_p90_p95_p99_max": {
-        "candidate_v283": [
+        "candidate_v298": [
           67,
           91,
-          106,
-          131,
+          104,
+          129,
           144
         ],
         "production": [
@@ -873,11 +892,12 @@
         ]
       },
       "over_frozen_1024_total_token_cap_count": {
-        "candidate_v283": 0,
+        "candidate_v298": 0,
         "production": 0
       },
+      "quantile_method": "higher",
       "tokenizer_boundary_mismatch_count": {
-        "candidate_v283": 0,
+        "candidate_v298": 0,
         "production": 0
       }
     }

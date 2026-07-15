@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 
+import audit_eggroll_es_token_lengths_v18a as token_audit_v18a
 import build_eggroll_es_overlay_frame_v18a as frame_v18a
 import build_eggroll_es_v17a_compact_evidence as evidence_v17a
 import eggroll_es_paired_data_compat_preregistration_v17a as prereg_v17a
@@ -45,6 +46,15 @@ V17A_EVIDENCE_FILE_SHA256 = (
 V17A_EVIDENCE_CONTENT_SHA256 = (
     "3566fb66bed9ca694877efad281b451b73c28cc6c0b8b50b7472d00e92f3a3d7"
 )
+TOKEN_AUDIT_BUILDER_FILE_SHA256_V18A = (
+    "9ff344ce001673f21a3782c813f2545f7503c19f8f0cc6be7d57ae64bfc8e7f3"
+)
+TOKEN_AUDIT_FILE_SHA256_V18A = (
+    "df1d3810e988c3ece4ef921643ffe226fa7bb7f2f91edf2895865afe78c7ee6f"
+)
+TOKEN_AUDIT_CONTENT_SHA256_V18A = (
+    "8157f64794cfe34f50dc795bed338f4109aa84addb38f114932b95f3d7598329"
+)
 
 ARM_ORDER_V18A = frame_v18a.ARM_ORDER_V18A
 ENDPOINT_NAMES_V18A = tuple(prereg_v17a.ENDPOINT_CONTRACT_V17A)
@@ -65,7 +75,7 @@ def _without_self(value):
     }
 
 
-def load_bound_inputs_v18a() -> tuple[dict, dict, dict]:
+def load_bound_inputs_v18a() -> tuple[dict, dict, dict, dict]:
     expected = {
         frame_v18a.CANDIDATE_PATH_V18A: frame_v18a.CANDIDATE_SHA256_V18A,
         frame_v18a.CANDIDATE_MANIFEST_PATH_V18A: (
@@ -77,6 +87,10 @@ def load_bound_inputs_v18a() -> tuple[dict, dict, dict]:
         Path(frame_v18a.__file__).resolve(): FRAME_BUILDER_FILE_SHA256_V18A,
         FLOW_CERTIFICATE_PATH_V18A: FLOW_CERTIFICATE_FILE_SHA256_V18A,
         V17A_EVIDENCE_PATH: V17A_EVIDENCE_FILE_SHA256,
+        Path(token_audit_v18a.__file__).resolve(): (
+            TOKEN_AUDIT_BUILDER_FILE_SHA256_V18A
+        ),
+        token_audit_v18a.OUTPUT_PATH_V18A: TOKEN_AUDIT_FILE_SHA256_V18A,
     }
     if any(file_sha256(path) != digest for path, digest in expected.items()):
         raise RuntimeError("v18a immutable input binding changed")
@@ -88,6 +102,10 @@ def load_bound_inputs_v18a() -> tuple[dict, dict, dict]:
     frame_v18a.validate_certificate_v18a(flow)
     evidence = json.loads(V17A_EVIDENCE_PATH.read_text(encoding="utf-8"))
     evidence_v17a.validate_evidence_v17a(evidence)
+    token_audit = json.loads(
+        token_audit_v18a.OUTPUT_PATH_V18A.read_text(encoding="utf-8")
+    )
+    token_audit_v18a.validate_audit_v18a(token_audit)
     if (
         flow.get("content_sha256_before_self_field")
         != FLOW_CERTIFICATE_CONTENT_SHA256_V18A
@@ -97,9 +115,43 @@ def load_bound_inputs_v18a() -> tuple[dict, dict, dict]:
         != "valid_completed_run_preregistered_gate_failed"
         or evidence.get("decision", {}).get("retain_dataset") != "production"
         or evidence.get("decision", {}).get("retain_recipe") != "v13"
+        or token_audit.get("content_sha256_before_self_field")
+        != TOKEN_AUDIT_CONTENT_SHA256_V18A
     ):
         raise RuntimeError("v18a flow or V17A evidence content changed")
-    return candidate_manifest, flow, evidence
+    return candidate_manifest, flow, evidence, token_audit
+
+
+def scoring_contract_v18a(token_audit: dict) -> dict:
+    scoring = copy.deepcopy(
+        prereg_v17a.build_preregistration_v17a()["scoring"]
+    )
+    if scoring.pop("objective_change_allowed_in_v17a", None) is not False:
+        raise RuntimeError("v18a inherited scoring objective contract changed")
+    scoring["objective_change_allowed_in_v18a"] = False
+    sources = token_audit["sources"]
+    scoring["token_length_audit"] = {
+        "quantile_method": token_audit["quantile_method"],
+        "tokenizer_boundary_mismatch_count": {
+            name: source["tokenizer_boundary_mismatch_count"]
+            for name, source in sources.items()
+        },
+        "over_frozen_1024_total_token_cap_count": {
+            name: source["over_frozen_1024_total_token_cap_count"]
+            for name, source in sources.items()
+        },
+        "combined_prompt_answer_token_quantiles_p50_p90_p95_p99_max": {
+            name: source[
+                "combined_prompt_answer_token_quantiles_p50_p90_p95_p99_max"
+            ]
+            for name, source in sources.items()
+        },
+        "answer_token_quantiles_p50_p90_p95_p99_max": {
+            name: source["answer_token_quantiles_p50_p90_p95_p99_max"]
+            for name, source in sources.items()
+        },
+    }
+    return scoring
 
 
 def signed_wave_arm_orders_v18a() -> list[dict]:
@@ -127,7 +179,7 @@ def signed_wave_arm_orders_v18a() -> list[dict]:
 
 
 def build_preregistration_v18a() -> dict:
-    candidate_manifest, flow, evidence = load_bound_inputs_v18a()
+    candidate_manifest, flow, evidence, token_audit = load_bound_inputs_v18a()
     endpoint_contract = {
         f"{arm}__{endpoint}": {
             "arm": arm,
@@ -221,6 +273,18 @@ def build_preregistration_v18a() -> dict:
                 "file_sha256": V17A_EVIDENCE_FILE_SHA256,
                 "content_sha256": V17A_EVIDENCE_CONTENT_SHA256,
                 "preregistered_gate_passed": False,
+            },
+            "token_length_audit": {
+                "path": str(token_audit_v18a.OUTPUT_PATH_V18A),
+                "file_sha256": TOKEN_AUDIT_FILE_SHA256_V18A,
+                "content_sha256": TOKEN_AUDIT_CONTENT_SHA256_V18A,
+                "builder_path": str(
+                    Path(token_audit_v18a.__file__).resolve()
+                ),
+                "builder_file_sha256": TOKEN_AUDIT_BUILDER_FILE_SHA256_V18A,
+                "candidate_label": "candidate_v298",
+                "boundary_mismatch_count": 0,
+                "over_frozen_1024_total_token_cap_count": 0,
             },
         },
         "patch_semantics": {
@@ -335,9 +399,7 @@ def build_preregistration_v18a() -> dict:
             "all_four_tp1_engines_every_signed_wave": True,
             "partial_waves_allowed": False,
         },
-        "scoring": copy.deepcopy(
-            prereg_v17a.build_preregistration_v17a()["scoring"]
-        ),
+        "scoring": scoring_contract_v18a(token_audit),
         "analysis": {
             "metric_families": list(prereg_v17a.METRIC_FAMILIES_V17A),
             "endpoint_names": list(ENDPOINT_NAMES_V18A),
@@ -421,6 +483,8 @@ def build_preregistration_v18a() -> dict:
 
 
 def validate_preregistration_v18a(value: dict) -> dict:
+    scoring = value.get("scoring", {})
+    token_lengths = scoring.get("token_length_audit", {})
     if (
         not isinstance(value, dict)
         or value.get("schema")
@@ -437,6 +501,16 @@ def validate_preregistration_v18a(value: dict) -> dict:
         != frame_v18a.ARM_REQUESTS_PER_PANEL_V18A
         or value.get("analysis", {}).get("hypothesis_count") != 36
         or len(value.get("analysis", {}).get("endpoint_contract", {})) != 36
+        or scoring.get("objective_change_allowed_in_v18a") is not False
+        or "objective_change_allowed_in_v17a" in scoring
+        or set(token_lengths.get("tokenizer_boundary_mismatch_count", {}))
+        != {"candidate_v298", "production"}
+        or token_lengths.get(
+            "combined_prompt_answer_token_quantiles_p50_p90_p95_p99_max", {}
+        ).get("candidate_v298") != [67, 91, 104, 129, 144]
+        or token_lengths.get(
+            "answer_token_quantiles_p50_p90_p95_p99_max", {}
+        ).get("candidate_v298") != [19, 42, 52, 74, 86]
         or value.get("patch_semantics", {}).get(
             "paired_candidate_and_production_both_present_same_arm"
         ) is not False

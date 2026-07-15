@@ -60,6 +60,19 @@ def test_v18a_preregisters_exact_patch_semantics_and_populations():
 
 def test_v18a_preregisters_subset_ht_crn_bootstrap_and_36_familywise_gates():
     value = prereg_v18a.build_preregistration_v18a()
+    scoring = value["scoring"]
+    assert scoring["objective_change_allowed_in_v18a"] is False
+    assert "objective_change_allowed_in_v17a" not in scoring
+    token_lengths = scoring["token_length_audit"]
+    assert set(token_lengths["tokenizer_boundary_mismatch_count"]) == {
+        "candidate_v298", "production",
+    }
+    assert token_lengths[
+        "combined_prompt_answer_token_quantiles_p50_p90_p95_p99_max"
+    ]["candidate_v298"] == [67, 91, 104, 129, 144]
+    assert token_lengths["answer_token_quantiles_p50_p90_p95_p99_max"][
+        "candidate_v298"
+    ] == [19, 42, 52, 74, 86]
     estimator = value["estimator"]
     assert estimator["candidate_ht_targets_only_active_sealed_subset"] is True
     assert estimator["candidate_ht_never_upweights_to_all_226"] is True
