@@ -1,0 +1,28 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/technique_safety_additions_v10/pending_additions_technique_safety_tranche_10_v1.jsonl",
+    "rows": 3,
+    "sha256": "010dcb95ed3fc890f3c6d6d526be6807680cff696bd81375c099792e1bc2f75c"
+  },
+  "baseline": {
+    "rows": 519,
+    "sha256": "20530df56ea5eca3d0e775f455a1448b91a997f5f0f4c2492868f7ee492b01ff"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v298 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded fact from each of three distinct, previously unrepresented documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "safety_consent": 1,
+      "technique": 2
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-technique-safety-additions-v10",
+  "schema": "manual-technique-safety-additions-report-v10",
+  "status": "segregated_pending_integration"
+}
