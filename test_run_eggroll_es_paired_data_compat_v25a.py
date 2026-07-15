@@ -222,12 +222,24 @@ def test_v25a_full_context_phase_equality_is_exact_and_content_free():
     ] is False
 
 
-def test_v25a_fresh_paths_are_unclaimed_and_disjoint():
+def test_v25a_paths_are_disjoint_and_fresh_or_completed_exactly():
     attempt = runtime.OUTPUT_DIRECTORY_V25A / runtime.ATTEMPT_NAME_V25A
     run_dir = runtime.OUTPUT_DIRECTORY_V25A / runtime.EXPERIMENT_NAME_V25A
     report = run_dir / runtime.REPORT_NAME_V25A
     assert len({attempt, run_dir, report}) == 3
-    assert not attempt.exists() and not run_dir.exists() and not report.exists()
+    if not attempt.exists() and not run_dir.exists() and not report.exists():
+        return
+    assert attempt.exists() and run_dir.is_dir() and report.is_file()
+    ledger = json.loads(attempt.read_text())
+    assert ledger["status"] == "complete"
+    assert ledger["phase"] == "after_cleanup_and_compact_report"
+    assert ledger["report_binding"] == {
+        "path": str(report),
+        "file_sha256": runtime.file_sha256(report),
+        "content_sha256": json.loads(report.read_text())[
+            "content_sha256_before_self_field"
+        ],
+    }
 
 
 def test_v25a_real_launch_hash_and_environment_are_fail_closed(monkeypatch):
