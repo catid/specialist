@@ -1,0 +1,28 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/resource_access_additions_v14/pending_additions_resource_access_tranche_14_v1.jsonl",
+    "rows": 3,
+    "sha256": "3c7b6f7b54e81626129ca4580f9d9f6a3a7185b38846701cf6214eb3baef1b63"
+  },
+  "baseline": {
+    "rows": 531,
+    "sha256": "e71677ffdf831747d3e5f5287fce3812ed0a604b6eba114d28e5c0b5125e6a0e"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v302 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded access or creative-practice fact from three distinct new documents"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "resources_general": 2,
+      "technique": 1
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-resource-access-additions-v14",
+  "schema": "manual-resource-access-additions-report-v14",
+  "status": "segregated_pending_integration"
+}
