@@ -1,0 +1,76 @@
+{
+  "counts": {
+    "by_input": {
+      "experiments/sft_controls/v36a_v412/.train_v412.jsonl.v412-input/v411.jsonl": 531
+    },
+    "by_kind": {
+      "qa_manual": 42,
+      "qa_resource_category": 4,
+      "qa_resource_direct": 20,
+      "qa_resource_index": 15,
+      "qa_resource_manual_fact": 138,
+      "qa_verified": 312
+    },
+    "by_source": {
+      "amazon": 1,
+      "anatomiestudio": 29,
+      "atx_empty_space": 2,
+      "austin_rope_slingers": 4,
+      "bight_bound": 2,
+      "chromaknotz": 2,
+      "crash_restraint": 7,
+      "degiotto_rope": 3,
+      "esinem": 35,
+      "kinbakutoday": 162,
+      "knothead_nylon": 5,
+      "owner_curated_rope_resource_directory": 24,
+      "rope365": 198,
+      "rope_topia": 15,
+      "ropeconnections": 1,
+      "shibari_study": 4,
+      "subspace_designs": 2,
+      "tethered_together": 7,
+      "tetruss": 2,
+      "wikipedia": 16,
+      "wykd": 7,
+      "xpole_a_frame": 1,
+      "xpole_us": 2
+    },
+    "excluded": 0,
+    "exclusion_reasons": {},
+    "output": 531,
+    "unique_fact_ids": 531,
+    "unique_questions": 531
+  },
+  "curation": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v412/pending_curation_context_merit_v412.jsonl",
+        "sha256": "645b0309ff51e659fa4df7af805e78e23fb4273fe289a285b782982782ec6556"
+      }
+    ],
+    "by_action": {
+      "edit": 3
+    },
+    "by_reason": {
+      "complete_frog_position_comfort_check": 1,
+      "complete_larks_head_half_hitch": 1,
+      "complete_tension_signal_practice": 1
+    },
+    "decisions": 3,
+    "edit_support_types": {
+      "manual_paraphrase": 3
+    }
+  },
+  "eval_fact_count": 612,
+  "exclusions": [],
+  "input_sha256": {
+    "experiments/sft_controls/v36a_v412/.train_v412.jsonl.v412-input/v411.jsonl": "3b4963c17f029bab11aa5e6050e4c04c52aced907ae9d48f05324b902b0ea4b5"
+  },
+  "inputs": [
+    "experiments/sft_controls/v36a_v412/.train_v412.jsonl.v412-input/v411.jsonl"
+  ],
+  "output": "experiments/sft_controls/v36a_v412/train_v412.jsonl",
+  "output_sha256": "44a5482e49073d23a35bdc4c574d6c52c9e8d7f946559dfa722dda16eec5882b",
+  "schema": "curated-training-qa-report-v1"
+}
