@@ -25,6 +25,22 @@ class EqualUnitTrainerV38ATest(unittest.TestCase):
         self.assertEqual(subject.ALPHA, 0.00015)
         self.assertEqual(len(subject.SEEDS), 32)
 
+    def test_placement_groups_are_driver_scoped(self):
+        calls = []
+
+        def placement_group_fn(bundles, **kwargs):
+            calls.append((bundles, kwargs))
+            return object()
+
+        groups = subject.create_placement_groups_v38a(placement_group_fn, 4)
+        self.assertEqual(len(groups), 4)
+        self.assertEqual(calls, [
+            ([{"GPU": 1, "CPU": 0}], {"strategy": "PACK"})
+        ] * 4)
+        self.assertTrue(all("lifetime" not in kwargs for _bundles, kwargs in calls))
+        with self.assertRaises(ValueError):
+            subject.create_placement_groups_v38a(placement_group_fn, 3)
+
 
 if __name__ == "__main__":
     unittest.main()

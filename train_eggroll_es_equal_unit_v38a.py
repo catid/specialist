@@ -33,6 +33,19 @@ canonical_sha256 = anchor_v13.canonical_sha256
 coefficient_sha256 = anchor_v13.coefficient_sha256
 
 
+def create_placement_groups_v38a(placement_group_fn, num_engines: int):
+    """Create four driver-scoped GPU reservations; detached lifetime is forbidden."""
+    if int(num_engines) != REQUIRED_ENGINE_COUNT:
+        raise ValueError("v38a requires exactly four placement groups")
+    return [
+        placement_group_fn(
+            [{"GPU": 1, "CPU": 0}],
+            strategy="PACK",
+        )
+        for _index in range(REQUIRED_ENGINE_COUNT)
+    ]
+
+
 def load_equal_unit_train_bundle(
     dataset_path: Path,
     dataset_sha256: str,
@@ -365,13 +378,60 @@ def load_trainer(layer_plan_bundle):
         sys.path.insert(0, str(ROOT))
     anchor_v13.validate_frozen_layer_plan_bundle_v13(layer_plan_bundle)
     parent = anchor_v13.anchor_v11c.load_trainer(layer_plan_bundle)
-    parent.launch_engines = anchor_v10._clone_with_globals(
-        parent.launch_engines,
-        {"WORKER_EXTENSION": WORKER_EXTENSION},
-        "launch_engines_v38a",
-    )
 
     class EqualUnitUpdateTrainerV38A(EqualUnitUpdateMixinV38A, parent):
-        pass
+        def launch_engines(
+            self,
+            num_engines=4,
+            n_gpu_per_vllm_engine=1,
+            model_name="Qwen/Qwen2.5-Math-1.5B",
+            precision="bfloat16",
+        ):
+            if int(num_engines) != REQUIRED_ENGINE_COUNT:
+                raise ValueError("v38a requires exactly four engines")
+            if int(n_gpu_per_vllm_engine) != 1:
+                raise ValueError("v38a requires TP=1")
+            import ray
+            from ray.util.placement_group import placement_group
+            from ray.util.scheduling_strategies import (
+                PlacementGroupSchedulingStrategy,
+            )
+            from es_at_scale.trainer.es_trainer import ESNcclLLM
+
+            pgs = create_placement_groups_v38a(
+                placement_group, num_engines,
+            )
+            ray.get([pg.ready() for pg in pgs])
+            strategies = [
+                PlacementGroupSchedulingStrategy(
+                    placement_group=pg,
+                    placement_group_capture_child_tasks=True,
+                    placement_group_bundle_index=0,
+                )
+                for pg in pgs
+            ]
+            engine_args = {
+                "model": model_name,
+                "tensor_parallel_size": 1,
+                "worker_extension_cls": WORKER_EXTENSION,
+                "dtype": precision,
+                "enable_prefix_caching": False,
+                "enforce_eager": True,
+                "gpu_memory_utilization": 0.82,
+                "max_model_len": 2048,
+                "limit_mm_per_prompt": {"image": 0, "video": 0},
+                "mm_processor_cache_gb": 0,
+                "skip_mm_profiling": True,
+                "moe_backend": "triton",
+            }
+            engines = [
+                ray.remote(
+                    num_cpus=0,
+                    num_gpus=1,
+                    scheduling_strategy=strategy,
+                )(ESNcclLLM).remote(**engine_args)
+                for strategy in strategies
+            ]
+            return engines, pgs
 
     return EqualUnitUpdateTrainerV38A

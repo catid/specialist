@@ -26,6 +26,58 @@ def file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def readback_selected_snapshot_v38a(
+    worker,
+    path: Path,
+    selected,
+    expected_metadata: dict[str, str],
+    expected_selected_identity: dict,
+    chunk_bytes: int = 64 * 1024 * 1024,
+) -> dict:
+    """Reopen a snapshot and prove its selected bytes match the live state."""
+    path = Path(path).resolve()
+    selected = list(selected)
+    expected_names = [name for name, _parameter in selected]
+    if not expected_names or len(set(expected_names)) != len(expected_names):
+        raise RuntimeError("v38a snapshot selected inventory is invalid")
+    with safe_open(path, framework="pt") as source:
+        metadata = source.metadata() or {}
+        keys = list(source.keys())
+    if metadata != expected_metadata:
+        raise RuntimeError("v38a snapshot metadata changed on readback")
+    if keys != sorted(expected_names):
+        raise RuntimeError("v38a snapshot selected-name inventory changed on readback")
+    tensors = load_file(path, device="cpu")
+    if set(tensors) != set(expected_names) or len(tensors) != len(expected_names):
+        raise RuntimeError("v38a snapshot tensor inventory changed on readback")
+    reopened = []
+    for name, parameter in selected:
+        tensor = tensors[name]
+        if (
+            tensor.device.type != "cpu"
+            or tensor.dtype != parameter.dtype
+            or tuple(tensor.shape) != tuple(parameter.shape)
+            or not tensor.is_contiguous()
+        ):
+            raise RuntimeError("v38a snapshot tensor metadata changed on readback")
+        reopened.append((name, tensor))
+    reopened_identity = worker._partition_identity_v4(
+        "selected", reopened, int(chunk_bytes),
+    )
+    if reopened_identity != expected_selected_identity:
+        raise RuntimeError("v38a snapshot selected bytes differ from live final state")
+    return {
+        "schema": "eggroll-es-selected-snapshot-readback-v38a",
+        "verified": True,
+        "metadata": metadata,
+        "file_sha256": file_sha256(path),
+        "file_bytes": path.stat().st_size,
+        "tensor_count": len(reopened),
+        "tensor_elements": sum(tensor.numel() for _name, tensor in reopened),
+        "selected_identity": reopened_identity,
+    }
+
+
 class EqualUnitUpdateWorkerExtensionV38A(
     worker_v11c.ResidentSignAuditWorkerExtensionV11C,
 ):
@@ -87,22 +139,39 @@ class EqualUnitUpdateWorkerExtensionV38A(
             name: parameter.detach().to(device="cpu", copy=True).contiguous()
             for name, parameter in selected
         }
+        metadata = {
+            "schema": "eggroll-es-selected-runtime-snapshot-v38a",
+            "final_identity_sha256": str(expected_final_sha256),
+            "accepted_alpha": repr(expected_alpha),
+            "layer_plan_sha256": self._v4_layer_plan_sha256,
+        }
+        linked = False
         try:
-            save_file(tensors, temporary, metadata={
-                "schema": "eggroll-es-selected-runtime-snapshot-v38a",
-                "final_identity_sha256": str(expected_final_sha256),
-                "accepted_alpha": repr(expected_alpha),
-                "layer_plan_sha256": self._v4_layer_plan_sha256,
-            })
+            save_file(tensors, temporary, metadata=metadata)
             os.link(temporary, path)
+            linked = True
+            readback = readback_selected_snapshot_v38a(
+                self,
+                path,
+                selected,
+                metadata,
+                current["selected"],
+            )
+        except BaseException:
+            if linked:
+                path.unlink(missing_ok=True)
+            raise
         finally:
             temporary.unlink(missing_ok=True)
         result.update({
             "written": True,
-            "file_sha256": file_sha256(path),
-            "file_bytes": path.stat().st_size,
-            "tensor_count": len(tensors),
-            "tensor_elements": sum(tensor.numel() for tensor in tensors.values()),
+            "readback_verified": True,
+            "readback": readback,
+            "file_sha256": readback["file_sha256"],
+            "file_bytes": readback["file_bytes"],
+            "tensor_count": readback["tensor_count"],
+            "tensor_elements": readback["tensor_elements"],
+            "reopened_selected_identity": readback["selected_identity"],
         })
         return result
 

@@ -17,9 +17,9 @@ OUTPUT = (
     "equal_unit_fold3_nonzero_v38a.json"
 ).resolve()
 EXPECTED_BINDINGS = {
-    "runtime": "221faaf0aeaaa9c3ffef91acbc98f21f7927e26bb09bb5fa72297331d7b2aba5",
-    "trainer": "0afa022ab91f1e31d2077295e67864095656952086e265153a75e953d31a4fdd",
-    "worker": "69bd20ffac1dc05ba75c6bdf91588079f48ca40e78271893578f613a76a5feaf",
+    "runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "trainer": "a76dc19b0c1c9d5b57bebd66544662553935dfbc23f72a47e172f4366cba5852",
+    "worker": "0b5a2a86a0aa51f34e38ddad653d34bfdbb7779e409fd6e47a4d9f3dcb3fec50",
     "dataset": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
     "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
     "layer_plan": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
@@ -76,13 +76,14 @@ def build() -> dict:
         "shadow_dev_external_eval_ood_or_holdout_opened": False,
         "prelaunch_integrity_revision": {
             "prior_preregistration_file_sha256": (
-                "78fa2979d28e6b7cca6cdcf50c262d774851b066852267e0eddfa70ba860b322"
+                "20430e4c264a01522a53bfb21b63cdf2e9375f2928da77f87c02021318f7275e"
             ),
             "prior_attempt_launched": False,
             "change": (
-                "require successful Ray cleanup and final GPU-idle certificate, "
-                "and explicitly gate nonzero coefficients, changed selected state, "
-                "unchanged complement, four-rank commit, and snapshot inventory"
+                "reopen and rehash the serialized selected snapshot against the "
+                "live final selected identity; replace detached Ray reservations "
+                "with driver-scoped groups and require all four exact GCS records "
+                "to reach REMOVED before shutdown"
             ),
         },
         "implementation_bindings": observed,
@@ -157,6 +158,10 @@ def build() -> dict:
             "selected_final_identity_differs_from_base": True,
             "unselected_identity_equals_origin": True,
             "selected_snapshot_rank_zero_only_and_content_addressed": True,
+            "selected_snapshot_reopened_identity_equals_live_final": True,
+            "driver_scoped_non_detached_placement_groups": True,
+            "all_four_exact_placement_groups_gcs_removed": True,
+            "all_four_compute_process_lists_empty_after_ray_shutdown": True,
         },
         "decision_firewall": {
             "authorized": "train-only state seal and runtime comparison",
@@ -186,7 +191,7 @@ def main() -> None:
             raise RuntimeError("v38a preregistration already exists")
         if (
             hashing.file_sha256(OUTPUT)
-            != "78fa2979d28e6b7cca6cdcf50c262d774851b066852267e0eddfa70ba860b322"
+            != "20430e4c264a01522a53bfb21b63cdf2e9375f2928da77f87c02021318f7275e"
             or runtime.ATTEMPT.exists()
             or runtime.RUN_DIR.exists()
         ):

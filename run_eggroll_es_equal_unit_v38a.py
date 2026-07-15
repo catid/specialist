@@ -254,6 +254,20 @@ def validate_sealed_update(update: dict) -> dict:
         or written[0].get("rank") != 0
         or written[0].get("tensor_count") != 23
         or written[0].get("tensor_elements") != 142_999_552
+        or written[0].get("readback_verified") is not True
+        or written[0].get("readback", {}).get("verified") is not True
+        or written[0].get("reopened_selected_identity") != final.get("selected")
+        or written[0].get("readback", {}).get("selected_identity")
+        != final.get("selected")
+        or written[0].get("readback", {}).get("file_sha256")
+        != written[0].get("file_sha256")
+        or update.get("snapshot_file_sha256") != written[0].get("file_sha256")
+        or written[0].get("readback", {}).get("metadata") != {
+            "schema": "eggroll-es-selected-runtime-snapshot-v38a",
+            "final_identity_sha256": final.get("sha256"),
+            "accepted_alpha": repr(0.00015),
+            "layer_plan_sha256": final.get("layer_plan_sha256"),
+        }
     ):
         raise RuntimeError("v38a sealed update gate failed")
     return {
@@ -262,6 +276,102 @@ def validate_sealed_update(update: dict) -> dict:
         "unselected_identity_equals_origin": True,
         "four_rank_commit_consensus": True,
         "selected_snapshot_inventory_exact": True,
+        "selected_snapshot_reopened_identity_exact": True,
+    }
+
+
+def placement_group_rows_v38a(pgs, table_fn) -> list[dict]:
+    rows = []
+    seen = set()
+    for pg in pgs:
+        expected_id = pg.id.hex()
+        if expected_id in seen:
+            raise RuntimeError("v38a placement-group identity repeated")
+        seen.add(expected_id)
+        row = table_fn(pg)
+        if (
+            not isinstance(row, dict)
+            or row.get("placement_group_id") != expected_id
+            or row.get("strategy") != "PACK"
+        ):
+            raise RuntimeError("v38a placement-group GCS record changed")
+        rows.append({
+            "placement_group_id": expected_id,
+            "strategy": row["strategy"],
+            "state": row.get("state"),
+            "bundles": row.get("bundles"),
+            "bundles_to_node_id": row.get("bundles_to_node_id"),
+        })
+    if len(rows) != 4:
+        raise RuntimeError("v38a placement-group coverage changed")
+    return rows
+
+
+def wait_for_placement_groups_removed_v38a(
+    pgs,
+    table_fn,
+    timeout_seconds: float = 30.0,
+    poll_seconds: float = 0.1,
+) -> list[dict]:
+    deadline = time.monotonic() + float(timeout_seconds)
+    last = None
+    while time.monotonic() < deadline:
+        last = placement_group_rows_v38a(pgs, table_fn)
+        if all(row.get("state") == "REMOVED" for row in last):
+            return last
+        time.sleep(float(poll_seconds))
+    raise RuntimeError(f"v38a placement groups survived removal: {last}")
+
+
+def strict_close_trainer_v38a(trainer) -> dict:
+    """Remove every actor and driver-scoped reservation without swallowing errors."""
+    import ray
+    from ray.util import placement_group_table
+    from ray.util.placement_group import remove_placement_group
+
+    engines = list(trainer.engines)
+    pgs = list(trainer.pgs)
+    if len(engines) != 4 or len(pgs) != 4:
+        raise RuntimeError("v38a strict cleanup requires four engines and groups")
+    before = placement_group_rows_v38a(pgs, placement_group_table)
+    if any(row.get("state") != "CREATED" for row in before):
+        raise RuntimeError("v38a placement group was not live before cleanup")
+    failures = []
+    for index, engine in enumerate(engines):
+        try:
+            ray.kill(engine, no_restart=True)
+        except BaseException as error:
+            failures.append(f"engine {index}: {type(error).__name__}: {error}")
+    for index, pg in enumerate(pgs):
+        try:
+            remove_placement_group(pg)
+        except BaseException as error:
+            failures.append(
+                f"placement group {index}: {type(error).__name__}: {error}"
+            )
+    after = wait_for_placement_groups_removed_v38a(
+        pgs, placement_group_table,
+    )
+    try:
+        trainer.mp_pool.close()
+        trainer.mp_pool.join()
+    except BaseException as error:
+        failures.append(f"reward pool: {type(error).__name__}: {error}")
+    if trainer.logging == "wandb":
+        try:
+            trainer.wandb.finish()
+        except BaseException as error:
+            failures.append(f"wandb: {type(error).__name__}: {error}")
+    if failures:
+        raise RuntimeError(f"v38a strict cleanup failed: {failures}")
+    return {
+        "schema": "eggroll-es-placement-group-cleanup-v38a",
+        "driver_scoped_non_detached_by_construction": True,
+        "engine_kill_count": 4,
+        "placement_group_remove_count": 4,
+        "before": before,
+        "after": after,
+        "all_four_gcs_states_removed": True,
     }
 
 
@@ -370,7 +480,7 @@ def main(argv: list[str] | None = None) -> int:
         if update["snapshot_file_sha256"] != evidence.file_sha256(SNAPSHOT):
             raise RuntimeError("v38a selected snapshot changed after save")
         update_gates = validate_sealed_update(update)
-        base.close_trainer(trainer)
+        placement_group_cleanup = strict_close_trainer_v38a(trainer)
         trainer = None
         import ray
         ray.shutdown()
@@ -392,6 +502,7 @@ def main(argv: list[str] | None = None) -> int:
             "update_gates": update_gates,
             "gpu_activity": gpu,
             "preflight": preflight,
+            "placement_group_cleanup": placement_group_cleanup,
             "final_idle": final_idle,
             "artifacts": {
                 "selected_runtime_snapshot": str(SNAPSHOT),

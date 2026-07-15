@@ -6,7 +6,7 @@
     "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v38a_equal_unit_fold3_pop32_antithetic_nonzero",
     "selected_runtime_snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v38a_equal_unit_fold3_pop32_antithetic_nonzero/selected_runtime_snapshot_v38a.safetensors"
   },
-  "content_sha256_before_self_field": "f01dc273ca82f335be02515be895ecee9af7c9afb6999721319ecd0c11a942c0",
+  "content_sha256_before_self_field": "bc5fde297206f607bf36b69afc14a232db5a2bea925c9df7efed3d3828974643",
   "decision_firewall": {
     "authorized": "train-only state seal and runtime comparison",
     "forbidden": [
@@ -25,21 +25,21 @@
     "layer_plan": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
     "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
     "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
-    "runtime": "221faaf0aeaaa9c3ffef91acbc98f21f7927e26bb09bb5fa72297331d7b2aba5",
+    "runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
     "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
-    "trainer": "0afa022ab91f1e31d2077295e67864095656952086e265153a75e953d31a4fdd",
+    "trainer": "a76dc19b0c1c9d5b57bebd66544662553935dfbc23f72a47e172f4366cba5852",
     "trainer_v11c": "c663b62f9d7990a2c59d8b46ad6258209b590bb29aa48946755a7d263a3d0799",
     "trainer_v13": "1a8a4145a85c183bb6121914357b7e6bce916b4f76a0693887ac41fa3a8c4c6e",
     "trainer_v4": "9b771f5f5578cc233bea9b92ee48dbad8bbf7f363fae44d4dadde5e926f6cd65",
-    "worker": "69bd20ffac1dc05ba75c6bdf91588079f48ca40e78271893578f613a76a5feaf",
+    "worker": "0b5a2a86a0aa51f34e38ddad653d34bfdbb7779e409fd6e47a4d9f3dcb3fec50",
     "worker_v11c": "d75951483058de340185fc81f6ed050deeac1551107c0357349a1f311cdb2c22",
     "worker_v3": "636698c7ea8e8155ea08298e428b5c40c01141ff10db59290d74831db360e5b1",
     "worker_v4": "876033b6b2ac8a869f0f82656c7e49434b7ba25789c1ddf776ac433659f72f59"
   },
   "prelaunch_integrity_revision": {
-    "change": "require successful Ray cleanup and final GPU-idle certificate, and explicitly gate nonzero coefficients, changed selected state, unchanged complement, four-rank commit, and snapshot inventory",
+    "change": "reopen and rehash the serialized selected snapshot against the live final selected identity; replace detached Ray reservations with driver-scoped groups and require all four exact GCS records to reach REMOVED before shutdown",
     "prior_attempt_launched": false,
-    "prior_preregistration_file_sha256": "78fa2979d28e6b7cca6cdcf50c262d774851b066852267e0eddfa70ba860b322"
+    "prior_preregistration_file_sha256": "20430e4c264a01522a53bfb21b63cdf2e9375f2928da77f87c02021318f7275e"
   },
   "recipe": {
     "alpha": 0.00015,
@@ -122,14 +122,18 @@
     "world_size": 4
   },
   "required_runtime_gates": {
+    "all_four_compute_process_lists_empty_after_ray_shutdown": true,
+    "all_four_exact_placement_groups_gcs_removed": true,
     "all_four_gpus_attributed_positive_activity": true,
     "all_four_worker_pids_unique_and_physically_mapped": true,
     "coefficient_spread_nonzero": true,
+    "driver_scoped_non_detached_placement_groups": true,
     "exact_restore_and_population_boundary_audit": true,
     "exclusive_idle_preflight": true,
     "pre_and_post_population_base_probe_exact": true,
     "selected_final_identity_differs_from_base": true,
     "selected_snapshot_rank_zero_only_and_content_addressed": true,
+    "selected_snapshot_reopened_identity_equals_live_final": true,
     "target_alpha_exact": 0.00015,
     "two_phase_four_rank_fp32_update": true,
     "unselected_identity_equals_origin": true
