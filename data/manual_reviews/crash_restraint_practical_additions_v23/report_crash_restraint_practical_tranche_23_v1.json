@@ -1,0 +1,28 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/crash_restraint_practical_additions_v23/pending_additions_crash_restraint_practical_tranche_23_v1.jsonl",
+    "rows": 3,
+    "sha256": "f4557c2d7bcb6aa1463f85dfe257350a176c571750cc0603fd5cbd77159aa3cf"
+  },
+  "baseline": {
+    "rows": 528,
+    "sha256": "d49115f9f277f4d68cde82abc9efdf85ddbd98282120f8736d6e475d104c0c1e"
+  },
+  "method": {
+    "authoring": "manual train-only source review and hand-authored Q&A",
+    "collision_scope": "v342 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "three distinct practical facts from two underused owner-recommended Crash Restraint documents"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 0,
+    "expected_strata": {
+      "equipment_material": 1,
+      "resources_general": 2
+    },
+    "urls": 0
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-crash-restraint-practical-additions-v23",
+  "schema": "manual-crash-restraint-practical-additions-report-v23",
+  "status": "segregated_pending_integration"
+}
