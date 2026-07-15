@@ -1,0 +1,317 @@
+{
+  "arms": {
+    "default_empty": {
+      "VLLM_TUNED_CONFIG_FOLDER": "fresh_exclusive_empty_directory",
+      "expected_config_source": "generic_fp8_fallback_none"
+    },
+    "v29_selected_tuned": {
+      "VLLM_TUNED_CONFIG_FOLDER": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_fp8_w8a8_block128_tp1_exhaustive_v29b",
+      "expected_config_source": "exact_v29_selected_fp8_table"
+    }
+  },
+  "authorization_basis": {
+    "authorizes_only_this_separate_full_model_runtime_ab_preregistration": true,
+    "v29f_evidence_commit": "5fe27ca6eb297a10c7a26aefc51b7e3dde28aa47",
+    "v29f_evidence_content_sha256": "1d3bd12b9b447303fb4f46083567c1ae7db723dddee261fbf36a76928de3a7f9",
+    "v29f_evidence_file_sha256": "2fe8c0a2f244ac1d2594904d21e1b28b1383274f05c341cc839b06c7940b7258",
+    "v29f_evidence_path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V29F_V29E_FP8_SELECTED_TABLE_EVALUATION_POSITIVE_EVIDENCE.json",
+    "v29f_kernel_global_speedup": 1.0435030576977902
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "17e0cf1b7ea560e8e446d50bffcd97f6f110cda4ff0624abd5b37e6ce83908d8",
+  "exact_equivalence_contract": {
+    "all_determinism_and_timed_calls_match_within_arm": true,
+    "cumulative_logprob_exact": true,
+    "default_and_tuned_exact_for_every_pair_gpu_and_call": true,
+    "generated_token_ids_exact": true,
+    "no_tolerance_or_posthoc_exception": true,
+    "output_dtype_shape_and_commitment_exact": true,
+    "selected_generated_token_logprob_exact": true
+  },
+  "gate_and_authority": {
+    "all_exact_equivalence_config_activity_identity_cleanup_and_performance_gates_required": true,
+    "bf16_table_reuse_authorized": false,
+    "checkpoint_write_authorized": false,
+    "dataset_promotion_authorized": false,
+    "direct_table_or_recipe_adoption_authorized": false,
+    "evaluation_validation_heldout_ood_or_benchmark_access_authorized": false,
+    "failure_decision": "retain_empty_default_serialized_fp8_runtime",
+    "model_update_or_training_authorized": false,
+    "nontrain_runtime_reuse_authorized": false,
+    "pass_authority": "authorize_only_exact_v29_table_in_a_separately_frozen_serialized_fp8_train_only_recipe_ab"
+  },
+  "only_intended_arm_difference": "VLLM_TUNED_CONFIG_FOLDER",
+  "persistence_contract": {
+    "compact_aggregate_ratios_bounds_hashes_counts_and_booleans_only": true,
+    "dataset_rows_prompts_answers_text_or_semantic_content": false,
+    "raw_tokens_outputs_logprobs_timings_memory_samples_pids_or_bootstrap_draws": false
+  },
+  "prior_preregistration": {
+    "commit": "02ee7b7a7a1b0fd33b1e5f3db5c95ea2b32a11e6",
+    "content_sha256": "5a8bb93c60631f5a1acb22d729c942a6f2630f8ad72b0698bc7c32ee5c3f089f",
+    "file_sha256": "853a38e75bfe91baa21d0d4331dcfbd298f7828da529920dc3c244c81f908a1f",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V29E_FP8_SELECTED_TABLE_EVALUATION_RETRY_PREREGISTRATION.json",
+    "strict_synthetic_kernel_only": true
+  },
+  "request_budget": {
+    "fresh_four_engine_groups": 16,
+    "full_model_tp1_loads": 64,
+    "generation_calls_per_engine_per_group": 10,
+    "synchronized_activity_witnesses": 64,
+    "total_generated_tokens": 640,
+    "total_generation_requests": 640,
+    "total_prompt_tokens": 614400
+  },
+  "runtime_contract": {
+    "all_four_idle_before_claim_between_every_group_and_after_cleanup": true,
+    "committed_clean_source_and_fresh_exclusive_paths_required": true,
+    "dtype": "bfloat16",
+    "enable_prefix_caching": false,
+    "enforce_eager": true,
+    "engines_per_group": 4,
+    "exact_config_source_verified_inside_every_actor": true,
+    "gpu_memory_utilization": 0.82,
+    "launch_load_compile_warmup_determinism_and_cleanup_excluded_from_timing": true,
+    "max_model_len": 4096,
+    "moe_backend": "triton",
+    "one_distinct_actor_pid_per_exact_gpu_uuid": true,
+    "peak_vram": "per_timed_call_torch_peak_allocated_and_reserved",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "placement_groups_mapped_by_physical_gpu_probe": true,
+    "quantization_from_serialized_checkpoint": "fp8_block_128x128",
+    "simultaneous_all_four_pid_bound_positive_activity_required_per_group": true,
+    "tensor_parallel_size_per_engine": 1,
+    "timing_clock": "actor_local_perf_counter_ns_with_cuda_synchronize"
+  },
+  "schedule": {
+    "default_first_count": 4,
+    "determinism_calls_per_engine": 2,
+    "fixed_pair_seeds": [
+      2026101400,
+      2026101401,
+      2026101402,
+      2026101403,
+      2026101404,
+      2026101405,
+      2026101406,
+      2026101407
+    ],
+    "fresh_four_tp1_engine_group_per_arm": true,
+    "fresh_ray_runtime_and_full_model_loads_per_arm": true,
+    "no_posthoc_schedule_or_repetition_adaptation": true,
+    "pair_count": 8,
+    "paired_counterbalanced_schedule": [
+      {
+        "arm_order": [
+          "default_empty",
+          "v29_selected_tuned"
+        ],
+        "pair": "pair_00",
+        "pair_index": 0,
+        "synthetic_seed": 2026101400
+      },
+      {
+        "arm_order": [
+          "v29_selected_tuned",
+          "default_empty"
+        ],
+        "pair": "pair_01",
+        "pair_index": 1,
+        "synthetic_seed": 2026101401
+      },
+      {
+        "arm_order": [
+          "default_empty",
+          "v29_selected_tuned"
+        ],
+        "pair": "pair_02",
+        "pair_index": 2,
+        "synthetic_seed": 2026101402
+      },
+      {
+        "arm_order": [
+          "v29_selected_tuned",
+          "default_empty"
+        ],
+        "pair": "pair_03",
+        "pair_index": 3,
+        "synthetic_seed": 2026101403
+      },
+      {
+        "arm_order": [
+          "default_empty",
+          "v29_selected_tuned"
+        ],
+        "pair": "pair_04",
+        "pair_index": 4,
+        "synthetic_seed": 2026101404
+      },
+      {
+        "arm_order": [
+          "v29_selected_tuned",
+          "default_empty"
+        ],
+        "pair": "pair_05",
+        "pair_index": 5,
+        "synthetic_seed": 2026101405
+      },
+      {
+        "arm_order": [
+          "default_empty",
+          "v29_selected_tuned"
+        ],
+        "pair": "pair_06",
+        "pair_index": 6,
+        "synthetic_seed": 2026101406
+      },
+      {
+        "arm_order": [
+          "v29_selected_tuned",
+          "default_empty"
+        ],
+        "pair": "pair_07",
+        "pair_index": 7,
+        "synthetic_seed": 2026101407
+      }
+    ],
+    "timing_calls_per_engine": 7,
+    "tuned_first_count": 4,
+    "warmup_calls_per_engine": 1
+  },
+  "schema": "vllm-moe-fp8-full-model-runtime-ab-preregistration-v29h",
+  "selected_table_contract": {
+    "block_shape_selector": [
+      128,
+      128
+    ],
+    "commit": "a203f4821c4a737310df75543353d21ce6cea978",
+    "content_sha256": "d4a49735ccfd094d6e5a3ee763eca99ed355a51fd11a7c835bfecf9fafeaa50d",
+    "dtype_selector": "fp8_w8a8",
+    "exact_configs": {
+      "1024": {
+        "BLOCK_SIZE_K": 128,
+        "BLOCK_SIZE_M": 64,
+        "BLOCK_SIZE_N": 256,
+        "GROUP_SIZE_M": 16,
+        "num_stages": 3,
+        "num_warps": 8
+      },
+      "2048": {
+        "BLOCK_SIZE_K": 128,
+        "BLOCK_SIZE_M": 64,
+        "BLOCK_SIZE_N": 256,
+        "GROUP_SIZE_M": 64,
+        "num_stages": 3,
+        "num_warps": 8
+      },
+      "256": {
+        "BLOCK_SIZE_K": 128,
+        "BLOCK_SIZE_M": 16,
+        "BLOCK_SIZE_N": 128,
+        "GROUP_SIZE_M": 64,
+        "num_stages": 3,
+        "num_warps": 4
+      },
+      "512": {
+        "BLOCK_SIZE_K": 128,
+        "BLOCK_SIZE_M": 32,
+        "BLOCK_SIZE_N": 128,
+        "GROUP_SIZE_M": 64,
+        "num_stages": 2,
+        "num_warps": 4
+      }
+    },
+    "file_sha256": "1a4ed0f44c6d7cc788baecd073107b4634db4c769f0820d10174f61117b25618",
+    "loaded_config_sha256": "ebf00590ac51e66e52f5e99b933d1be72703fbbcc809cc2d585eca8d6b0c0a5d",
+    "path": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_fp8_w8a8_block128_tp1_exhaustive_v29b/E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition,dtype=fp8_w8a8,block_shape=[128,128].json",
+    "triton_version": "3.6.0"
+  },
+  "serialized_fp8_model_contract": {
+    "all_files": {
+      "file_count": 56,
+      "fingerprint_sha256": "b3307a2ce16d029a5ca0b7fb2828070c1fe07c232d396f877ea6d9a3cc9d22c9",
+      "real_launch_rehashes_all_56_files_before_gpu_claim": true,
+      "size_manifest_sha256": "46b80dca12b6cedfa9444cf7e7d13b03175a9e75a6abd775d235b9ad658737b0",
+      "total_bytes": 37493015668
+    },
+    "config_sha256": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+    "full_model_loaded_independently_on_every_tp1_engine": true,
+    "index_sha256": "6f176f344e41d35b17af12904e33401da5ebff3b49fccb8bfa0185bc2d50f9d6",
+    "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+    "quantization": {
+      "activation_dtype": "bfloat16",
+      "activation_scheme": "dynamic",
+      "format": "e4m3",
+      "quant_method": "fp8",
+      "weight_block_size": [
+        128,
+        128
+      ]
+    },
+    "weight_shards": {
+      "file_count": 42,
+      "manifest_sha256": "25ae972a0ac80b7875b5e041172d5ad572b522619040f4786a9facdf0e36e5dd",
+      "total_bytes": 37463662160
+    }
+  },
+  "statistical_contract": {
+    "absolute_nvml_fraction_max": 0.95,
+    "bootstrap_draw_plan_sha256": "34c02441fd2be849c5d5f240aa64e22311f32bd5527e9f12bbc42217b5c30789",
+    "bootstrap_resamples": 50000,
+    "bootstrap_seed": 20261014,
+    "bootstrap_statistic": "hierarchical_pair_then_call_resampled_median",
+    "endpoints": [
+      "gpu0_full_model_latency_speedup",
+      "gpu1_full_model_latency_speedup",
+      "gpu2_full_model_latency_speedup",
+      "gpu3_full_model_latency_speedup",
+      "gpu0_peak_vram_ratio",
+      "gpu1_peak_vram_ratio",
+      "gpu2_peak_vram_ratio",
+      "gpu3_peak_vram_ratio",
+      "global_full_model_latency_geometric_mean_speedup",
+      "global_peak_vram_max_ratio"
+    ],
+    "familywise_alpha": 0.05,
+    "global_latency_lcb_ratio_min": 0.99,
+    "global_latency_point_ratio_min": 1.002,
+    "multiplicity": "Bonferroni_across_all_10_one_sided_endpoints",
+    "paired_unit": "fresh_engine_group_pair_with_seven_matched_calls",
+    "per_endpoint_one_sided_alpha": 0.005,
+    "per_gpu_latency_lcb_ratio_min": 0.98,
+    "per_gpu_latency_point_ratio_min": 0.99,
+    "thresholds_selected_before_full_model_gpu_outputs": true,
+    "vram_point_ratio_max": 1.01,
+    "vram_ucb_ratio_max": 1.02
+  },
+  "status": "preregistered_before_serialized_fp8_full_model_ab_not_launched",
+  "strict_synthetic_train_runtime_only": true,
+  "synthetic_request_contract": {
+    "construction": "integer_token_ids_200_plus_position_and_fixed_pair_seed_modulo_1000",
+    "dataset_files_tokenizers_decoded_text_or_semantic_content_opened": false,
+    "one_request_per_engine_per_call": true,
+    "prompt_tokens_by_exact_physical_gpu": {
+      "0": 256,
+      "1": 512,
+      "2": 1024,
+      "3": 2048
+    },
+    "raw_token_ids_or_decoded_text_persisted": false,
+    "same_exact_token_ids_sampling_and_call_order_within_every_pair": true,
+    "sampling": {
+      "detokenize": false,
+      "logprobs": 1,
+      "max_tokens": 1,
+      "n": 1,
+      "seed": 43,
+      "temperature": 0.0,
+      "top_p": 1.0
+    }
+  }
+}
