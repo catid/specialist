@@ -1,0 +1,48 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/technique_equipment_additions_v4/pending_additions_technique_equipment_tranche_04_v1.jsonl",
+    "rows": 3,
+    "sha256": "b929fde8bf96fe7dafb9dbc02f0827c0b20310c30a00683b398bc070481d7e9a"
+  },
+  "baseline": {
+    "rows": 501,
+    "sha256": "3a1b3ca8e9ada0be0a8758fd9b9cc4ce01d17164746d587dcb028a0e916a7a17"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v292 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one useful fact from each of three distinct, previously unrepresented source documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "equipment_material": 1,
+      "technique": 2
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-technique-equipment-additions-v4",
+  "schema": "manual-technique-equipment-additions-report-v4",
+  "sources": {
+    "partner_movement": {
+      "document_sha256": "bfc239e1c41785d0dd6d54633f404f22ea98cdd6ff393e23a2c61e89e0ad749d",
+      "file_sha256": "99591bf0e5883a4521b16bfbc63c8a394bfc893482fff13607187a2fdcab92f5",
+      "path": "data/raw/rope_resources_v1/rope365__f1daf7c0610cc26f063d.json",
+      "url": "https://rope365.com/movement/"
+    },
+    "rope_dye_material_match": {
+      "document_sha256": "3592435741f8c9ec3a4e914e04d96495d4421a51e5112a5fd6cfc55b9cc30f42",
+      "file_sha256": "ec372f9a7f05279f1d59a5d2e4a6729881c1fd6fa11250cc59d3269cc307e067",
+      "path": "data/raw/rope_resources_v1/rope365__7e518bc9ebc9f4fd433e.json",
+      "url": "https://rope365.com/rope-color/"
+    },
+    "tail_management_drill": {
+      "document_sha256": "24c0287d8fc3a525cc5c6853e6fce18d4ebfee7a08d026adbbebd344c8603f6c",
+      "file_sha256": "b1b23184a0222fb4e6a75b33e31d518a000d095813561bed06a615a77c85386f",
+      "path": "data/raw/rope_resources_v1/rope365__28764d9f7debbae39e5c.json",
+      "url": "https://rope365.com/handling/"
+    }
+  },
+  "status": "segregated_pending_integration"
+}
