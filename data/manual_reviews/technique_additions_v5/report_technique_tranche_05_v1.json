@@ -1,0 +1,47 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/technique_additions_v5/pending_additions_technique_tranche_05_v1.jsonl",
+    "rows": 3,
+    "sha256": "5258c9a759bb5a5f4bce26671a5476c3f7e6454e6700c9aaed8d6195e20fc9fd"
+  },
+  "baseline": {
+    "rows": 504,
+    "sha256": "1913fbab4e3b0638683b44f02682cd9316548750046f13c70bd8abfe7327d960"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v293 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one useful technique fact from each of three distinct, previously unrepresented source documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "technique": 3
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-technique-additions-v5",
+  "schema": "manual-technique-additions-report-v5",
+  "sources": {
+    "add_second_column": {
+      "document_sha256": "f8f574fcfe8f0dec7a01807b19e44a51d089356b47d7de8d1eb34de90c16d722",
+      "file_sha256": "6c0ac324dde27f0839eee07c3c074b7f62b179b2f4a217619bc96e1e9a781e2b",
+      "path": "data/raw/rope_resources_v1/rope365__8cda4e4fbfe05ce2b00b.json",
+      "url": "https://rope365.com/more-columns/"
+    },
+    "clove_hitch_stack_tradeoff": {
+      "document_sha256": "4d54e41a0ae892ac0a3b6a92d21cb1259076ba6cae159951fd002ea47b151d36",
+      "file_sha256": "f3bb06851f6672589959d1945e4de8eb98fbb9949913cd1ed4900ce6bd9d183e",
+      "path": "data/raw/rope_resources_v1/rope365__f4a15e598bb62feddb04.json",
+      "url": "https://rope365.com/clove-hitch/"
+    },
+    "restricted_movement_feedback": {
+      "document_sha256": "08aca4bd46b5e97c2133074a52408ae1469b2acf2b3395b1f8a3ba07033fa509",
+      "file_sha256": "5cbd2afb7a8bbc3a0e0815cab87dd5abbd121085fb29afe6e74bd250adf062cb",
+      "path": "data/raw/rope_resources_v1/rope365__a647a43555bde33c420b.json",
+      "url": "https://rope365.com/assembling-ties/"
+    }
+  },
+  "status": "segregated_pending_integration"
+}
