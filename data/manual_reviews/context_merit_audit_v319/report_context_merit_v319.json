@@ -1,0 +1,100 @@
+{
+  "addition_artifact": {
+    "path": "data/manual_reviews/group_learning_additions_v23/pending_additions_group_learning_tranche_23_v1.jsonl",
+    "rows": 3,
+    "sha256": "98d04e92b9435a415f34b4d19ca2ac0ad4b4857eaa5f8bf6073dfc3c2f676b72"
+  },
+  "audit": {
+    "by_decision": {
+      "add": 3,
+      "drop": 0,
+      "edit": 0,
+      "keep": 0
+    },
+    "path": "data/manual_reviews/context_merit_audit_v319/context_merit_audit_v319.jsonl",
+    "rows": 3,
+    "sha256": "d9d43a97b83f7c440d6d1674cee561b99ba49d2f157ebb0039e8eda93435ba81"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 261,
+      "equipment_material": 23,
+      "resources_general": 84,
+      "safety_consent": 86,
+      "technique": 68
+    },
+    "before": {
+      "conflict_units": 258,
+      "equipment_material": 23,
+      "resources_general": 83,
+      "safety_consent": 84,
+      "technique": 68
+    },
+    "delta": {
+      "conflict_units": 3,
+      "equipment_material": 0,
+      "resources_general": 1,
+      "safety_consent": 2,
+      "technique": 0
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "excluded_source": [
+    {
+      "decision": "partial_use",
+      "reason": "Only group risk, comfort, and boundary preparation was retained; racing, tugging, mouth-held-object, hook, and other hazardous games were excluded.",
+      "url": "https://rope365.com/games/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only school-fit and teacher-verification criteria were retained; testimonials and promotional claims were excluded.",
+      "url": "https://www.esinem.com/choosing-online-shibari-schools/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the concrete minimum safety checks were retained; promotional comparisons and unsupported superiority claims were excluded.",
+      "url": "https://www.esinem.com/not-all-shibari-tutorials-are-equal/"
+    }
+  ],
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 3,
+    "output_rows": 548,
+    "output_sha256": "1a702020d42d10f7179e0e73372574f6c2fd768083c969fa0329798bcf4f55dc",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "decisions": 0,
+    "path": "data/manual_reviews/context_merit_audit_v319/pending_curation_context_merit_v319.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prior_checkpoint": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v318/context_merit_audit_v318.jsonl",
+        "sha256": "17f1251b9f73278a4f919e2e22be74428f96f03fb52c59be46744d3870984420"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v318/pending_curation_context_merit_v318.jsonl",
+        "sha256": "f6aeedc15b4cb913664d799a82abf132443a1ebe741e4f6efd136ad67548f4a4"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v318/report_context_merit_v318.json",
+        "sha256": "d52f878ba2cece0825a9fd88eb5bd4a15a0b6a5e3adf63a147a3cca0db9e9243"
+      }
+    ],
+    "candidate": {
+      "rows": 545,
+      "sha256": "fadaa3d594515494745be850541af9273858c79b1ae7c3c21be123213f88a042"
+    }
+  },
+  "schema": "context-merit-audit-report-v319",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  }
+}

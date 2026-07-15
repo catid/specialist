@@ -1,0 +1,45 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/group_learning_additions_v23/pending_additions_group_learning_tranche_23_v1.jsonl",
+    "rows": 3,
+    "sha256": "98d04e92b9435a415f34b4d19ca2ac0ad4b4857eaa5f8bf6073dfc3c2f676b72"
+  },
+  "baseline": {
+    "rows": 545,
+    "sha256": "fadaa3d594515494745be850541af9273858c79b1ae7c3c21be123213f88a042"
+  },
+  "excluded_source": [
+    {
+      "decision": "partial_use",
+      "reason": "Only group risk, comfort, and boundary preparation was retained; racing, tugging, mouth-held-object, hook, and other hazardous games were excluded.",
+      "url": "https://rope365.com/games/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only school-fit and teacher-verification criteria were retained; testimonials and promotional claims were excluded.",
+      "url": "https://www.esinem.com/choosing-online-shibari-schools/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the concrete minimum safety checks were retained; promotional comparisons and unsupported superiority claims were excluded.",
+      "url": "https://www.esinem.com/not-all-shibari-tutorials-are-equal/"
+    }
+  ],
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v318 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded consent or learning-quality fact from each of three distinct new documents"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "resources_general": 1,
+      "safety_consent": 2
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-group-learning-additions-v23",
+  "schema": "manual-group-learning-additions-report-v23",
+  "status": "segregated_pending_integration"
+}
