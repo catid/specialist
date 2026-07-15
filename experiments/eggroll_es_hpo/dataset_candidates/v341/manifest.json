@@ -1,0 +1,38 @@
+{
+  "candidate": {
+    "file_sha256": "40f4b73c25cccfddc49da039b40483b469b9858deec9d00ca399cb490f5aa47a",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v341/train_qa_context_merit_v341.jsonl",
+    "rows": 528
+  },
+  "content_sha256_before_self_field": "a93278d011495d3d1f95894a505cd38e5408fed6510f60f12df6079fb1cab77a",
+  "firewall": {
+    "automated_projection_collision_filter_read_sealed_content": true,
+    "candidate_row_content_in_manifest": false,
+    "checkpoint_write_authorized": false,
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "heldout_validation_ood_eval_or_benchmark_content_opened": false,
+    "model_update_authorized": false,
+    "replay_stderr_exposed": false,
+    "replay_stdout_exposed": false,
+    "runtime_launch_authorized": false,
+    "seal_parsed_or_emitted_jsonl_row_content": false
+  },
+  "provenance": {
+    "collision_input_file_sha256": "fa24ae255394b3010861cc795e1d6654f5dde8689900359f37c24fbe8a9817e1",
+    "ongoing_working_tree_curation_used": false,
+    "repeat_replay_required_to_match_exact_candidate_bytes": true,
+    "retrieval": "detached_exact_commit_projection_replay_with_suppressed_streams_and_sha256_only_ephemeral_capture",
+    "source_artifact_file_sha256": {
+      "data/manual_reviews/context_merit_audit_v341/build_context_merit_audit_v341.py": "6160c439b8d90ba178cd5653cebb76836455a5ba238b1145ebf4124552b49bcd",
+      "data/manual_reviews/context_merit_audit_v341/context_merit_audit_v341.jsonl": "7b54f2c2de84047316a3baacd97d0135b16ef48bc9de28beef74dc4529d5b4f2",
+      "data/manual_reviews/context_merit_audit_v341/pending_curation_context_merit_v341.jsonl": "13d6145dd27e032df7bcdc6d9dd53fb678bed4d43a8f3400fa21db639947fe78",
+      "data/manual_reviews/context_merit_audit_v341/report_context_merit_v341.json": "da2037d2fa3a2ea908572c9a6a3784b01aa31b27f6f62768a398c5213dec7a86",
+      "data/manual_reviews/context_merit_audit_v341/test_context_merit_audit_v341.py": "6daf84bb1ea166b07045bc31303cd1a94ae52f79e6700acfe77fd8ab40769177"
+    },
+    "source_artifact_inventory_sha256": "d21c4af435afdfc58de5eb270794d73295a6b944a7fc22d39b14aac25496df41",
+    "source_commit": "162e39408f4af0feee694dd4c128e9bb10dac057"
+  },
+  "schema": "eggroll-es-immutable-train-candidate-manifest-v341",
+  "status": "sealed_train_only_snapshot_no_runtime_or_evaluation_authority"
+}
