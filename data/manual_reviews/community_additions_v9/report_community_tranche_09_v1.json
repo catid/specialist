@@ -1,0 +1,28 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/community_additions_v9/pending_additions_community_tranche_09_v1.jsonl",
+    "rows": 3,
+    "sha256": "9b96a61054a7cc36d1a7ef34b3d5576d476c8c9f9663142ceab14ed40ad2b16e"
+  },
+  "baseline": {
+    "rows": 516,
+    "sha256": "93097a170a71269f46b538fdfdf40a22e9d228795abbf0262deb52cc8aa4535c"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v297 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one durable community-format fact from each of three new documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "resources_general": 2,
+      "safety_consent": 1
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-community-additions-v9",
+  "schema": "manual-community-additions-report-v9",
+  "status": "segregated_pending_integration"
+}
