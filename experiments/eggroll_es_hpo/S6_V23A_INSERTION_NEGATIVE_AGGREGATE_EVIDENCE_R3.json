@@ -1,0 +1,86 @@
+{
+  "aggregate_gate": {
+    "decision": "retain_v13_base_middle_late_recipe",
+    "family_hypothesis_count": 48,
+    "location_results": {
+      "insert_back_e005": {
+        "all_sixteen_familywise_lcbs_passed": false,
+        "base_runtime_integrity_passed": true,
+        "candidate_runtime_integrity_passed": true,
+        "gradient_pass_count": 0,
+        "location_passed": false,
+        "mean_familywise_lcb": -0.2644736778580434,
+        "minimum_familywise_lcb": -0.5675335440721672,
+        "reference_pass_count": 0
+      },
+      "insert_front_e005": {
+        "all_sixteen_familywise_lcbs_passed": false,
+        "base_runtime_integrity_passed": true,
+        "candidate_runtime_integrity_passed": true,
+        "gradient_pass_count": 0,
+        "location_passed": false,
+        "mean_familywise_lcb": -0.5032856776922238,
+        "minimum_familywise_lcb": -1.0654551915109935,
+        "reference_pass_count": 0
+      },
+      "insert_middle_e005": {
+        "all_sixteen_familywise_lcbs_passed": false,
+        "base_runtime_integrity_passed": true,
+        "candidate_runtime_integrity_passed": true,
+        "gradient_pass_count": 0,
+        "location_passed": false,
+        "mean_familywise_lcb": -0.5082781905408548,
+        "minimum_familywise_lcb": -0.9314083067362329,
+        "reference_pass_count": 0
+      }
+    },
+    "passing_location_count": 0,
+    "selected_location_for_confirmation": null
+  },
+  "attempt": {
+    "content_sha256": "e53b5b4c0ddeee1757476cf1513753efac42dd60cb9334b1f0339276e1238e87",
+    "file_sha256": "779d3e6113db1353bfa74a768348f1cdaf36d8735d8c24d70c130edd884c41d8",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.insertion_location_stability_v23a_authoritative_raw_seed_retry_r3.launch_attempt.json",
+    "source_bundle_content_sha256": "8fb0bbe343d1ce1b36e2f2eedefdc4f0bd059c5e791e66a0c7af4704478b6c8f",
+    "source_commit": "89e1563da58e15ab51d923025efb0017cb95ee72"
+  },
+  "closure": {
+    "checkpoint_write_authorized": false,
+    "closed_hypotheses": [
+      "insert_front_e005_layers_4_7",
+      "insert_middle_e005_layers_20_23",
+      "insert_back_e005_layers_40_43"
+    ],
+    "confirmation_authorized": false,
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "model_update_authorized": false,
+    "retained_recipe": "v13_base_middle_late"
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_response_vectors_unit_scores_bootstrap_draws_or_replicates": false,
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "51736876f895bb29c1f9f57845f4f2d4ef1f439b4b854bc9b17599aa35320417",
+  "report": {
+    "content_sha256": "852fb08c6b4709d19fc990e75fe66c5e807c67ca224a13610aa70246a04d815f",
+    "file_sha256": "fc62a4d4a9fae8e72eedad2881730061ff45f7218d323a25babd0ce2ad344d14",
+    "implementation_bundle_sha256": "40ca3eea1948a9717da0180a65781694505f0db9fe61f0f13cf4c61e490f1755",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/insertion_location_stability_v23a_authoritative_raw_seed_retry_r3/insertion_location_stability_v23a_seed_retry_r3.json",
+    "recipe_content_sha256": "b18e3e97736c78e229c2a26e918d3bc9b2e24ffb22f95f0934136b6dea4c6c4d"
+  },
+  "runtime_integrity": {
+    "all_64_signed_waves_completed": true,
+    "all_four_arms_passed": true,
+    "exact_restore_every_arm_every_wave": true,
+    "full_context_guard_phase_count": 3,
+    "matched_context_reference_repeat_exact_after_population": true,
+    "matched_context_reference_repeat_exact_before_population": true,
+    "population_boundary_audit_completed": true,
+    "requests_all_engines_all_signed_waves": 71680,
+    "seed_domain_certificate_all_four_workers_identical": true,
+    "signed_wave_count": 64,
+    "unselected_origin_unchanged": true
+  },
+  "schema": "eggroll-es-v23a-insertion-negative-aggregate-evidence-r3",
+  "scope_note": "This closes only the three preregistered epsilon-0.05 insertion locations; it does not generalize to other insertion strengths, ranges, duplication counts, or backend representations."
+}
