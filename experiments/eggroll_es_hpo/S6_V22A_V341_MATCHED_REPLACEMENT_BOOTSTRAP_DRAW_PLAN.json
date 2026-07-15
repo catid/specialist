@@ -1,0 +1,62 @@
+{
+  "base_draws": {
+    "bytes_sha256": "bcd2021a33c5350e67f58e3ee29d0b1337b0eb4a2db83af198e4654be38aaf45",
+    "category_order": [
+      "paired_tier_1",
+      "paired_tier_2",
+      "paired_tier_3",
+      "fallback"
+    ],
+    "draws_per_panel_category_per_replicate": 6,
+    "dtype": "uint8",
+    "panel_order": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "optimization_3",
+      "optimization_4",
+      "optimization_5",
+      "train_screen_0",
+      "train_screen_1",
+      "train_screen_2",
+      "train_screen_3"
+    ],
+    "shape": [
+      10,
+      4,
+      50000,
+      6
+    ],
+    "shared_across_both_arms": true,
+    "source_slots_per_panel_category": 6
+  },
+  "candidate_only_draws_present": false,
+  "checkpoint_write_authorized": false,
+  "contains_train_or_evaluation_content": false,
+  "content_sha256_before_self_field": "bb7fb2d5ca147142c0a8406fbe929944d964452deaeb2378f7a7286988fb7b2e",
+  "dataset_promotion_authorized": false,
+  "draw_arrays_persisted": false,
+  "evaluation_authorized": false,
+  "familywise_alpha": 0.05,
+  "fixed_panel_identities_every_replicate": true,
+  "fixed_stratum_identities_every_replicate": true,
+  "foundation": {
+    "commit": "a5df84f9c31e9b3f8c7f601a807164df344dbff5",
+    "preregistration_content_sha256": "ab0a72443a305bde922bf8fcb3cd9444a741489fc613f93e9d91eada3cc0ad08",
+    "preregistration_file_sha256": "b86a61e212af9862553119bc75f0c1bcfc264088af058585face1ac8f288e004"
+  },
+  "gpu_launch_authorized": false,
+  "hypothesis_count": 12,
+  "model_update_authorized": false,
+  "one_sided_quantile": 0.004166666666666667,
+  "ordered_array_commitment_sha256": "e3c0e6fe575d49e5431078416c4c455df8d03fd68bc3eff917a25a8039d3497f",
+  "paired_same_draws_both_arms": true,
+  "quantile_method": "linear",
+  "repetitions": 50000,
+  "runtime_launch_authorized": false,
+  "same_ht_coefficients_and_denominator_both_arms": true,
+  "schema": "eggroll-es-v341-matched-replacement-bootstrap-draw-plan-v22a",
+  "seed": 20260824,
+  "status": "exact_draw_commitment_only_no_runtime_authority",
+  "whole_panel_block_resampling_used": false
+}
