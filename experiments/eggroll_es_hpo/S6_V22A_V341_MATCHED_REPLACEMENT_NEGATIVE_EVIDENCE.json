@@ -1,0 +1,141 @@
+{
+  "aggregate_only_audit": {
+    "bootstrap_draws_or_replicates_persisted": false,
+    "checkpoint_or_evaluation_files_created": false,
+    "contains_holdout_validation_ood_or_benchmark_content": false,
+    "contains_row_question_answer_prompt_token_response_or_unit_scores": false,
+    "forbidden_content_keys_found": [],
+    "model_update_checkpoint_evaluation_or_promotion_applied": false,
+    "union_planner_called": false
+  },
+  "analysis": {
+    "bootstrap_pass_count": 0,
+    "bootstrap_repetitions": 50000,
+    "candidate_only_resampling_present": false,
+    "comparison": "v341_matched_replacement_vs_production",
+    "endpoint_count": 12,
+    "endpoint_pass_status_sha256": "4623fd723ebb6e260da3b4703bb13416c0efa76c33eab3cefe854a6ba695e519",
+    "noninferiority_margin": 0.0,
+    "observed_pass_count": 5,
+    "one_sided_quantile": 0.004166666666666667,
+    "paired_same_draws_both_arms": true,
+    "quantile_method": "linear",
+    "same_ht_coefficients_and_denominator_both_arms": true
+  },
+  "content_sha256_before_self_field": "67eb3c39aa8d13a8924a2880c04f021f8ad27b9fcfb82eba9731ab195f5d3318",
+  "decision": {
+    "candidate_v341_replacement_promotion_authorized": false,
+    "checkpoint_write_authorized": false,
+    "compatibility_gate_passed": false,
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "model_update_authorized": false,
+    "retain_production_dataset_and_v13_recipe": true
+  },
+  "execution": {
+    "all_runtime_integrity_audits_passed": true,
+    "dense_result_commitment_count": 2560,
+    "dense_result_commitments_sha256": "b375d09b66498b9edf20addbc723175e68fc8a906542eb803d61eaf81c7d6efb",
+    "engine_count": 4,
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "pre_post_probe_identity_sha256": "d74c33f717b529d41ee0982014073118e39f62de68197903ff027ed733a83868",
+    "requests_all_engines_all_signed_waves": 61440,
+    "requests_per_engine_all_signed_waves": 15360,
+    "requests_per_engine_per_signed_wave": 480,
+    "restore_checks_sha256": "bc4f3b0bed6ead0b3f207a49d64a478417e84e789da4e9dcc43ae4eb443495ff",
+    "signed_wave_count": 32,
+    "signed_wave_schedule_sha256": "3b7849d6eb1fade0ee2c3a3b6247cc5d929fcd9e91c263f30b0538c3fa80575d",
+    "tp_per_engine": 1
+  },
+  "inputs": {
+    "completed_attempt": {
+      "content_sha256": "8b3f1c1e8c460f5742f097c81a165fa9f94363e4bc819ff14badbd72886abd2a",
+      "file_sha256": "ef5c81c9901e3548e92b4ab967b8b4b26dc1b2b56b9881106b274d7e6ec24452",
+      "launch_id": "1784101310448295149-393068-b321f6b74812720d",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/production_v341_matched_replacement_v22a_authoritative_raw/attempts/1784101310448295149-393068-b321f6b74812720d.json"
+    },
+    "durable_cardinality": {
+      "attempt_count": 2,
+      "checkpoint_file_count": 0,
+      "completed_attempt_count": 1,
+      "evaluation_file_count": 0,
+      "failed_attempt_count": 1,
+      "report_count": 1
+    },
+    "failed_attempt": {
+      "content_sha256": "5bddce1d1b5c15f38bcbbcc950961ad9f9b9459278a055baba3612f5d669352b",
+      "fail_closed": true,
+      "file_sha256": "0de50a97af21ef6ff50724f56f21a65af7a776598740200a79e7bcab11f890a7",
+      "launch_id": "1784101254443005006-391898-c54723bc0b653705",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/production_v341_matched_replacement_v22a_authoritative_raw/attempts/1784101254443005006-391898-c54723bc0b653705.json"
+    },
+    "report": {
+      "content_sha256": "2f83f198ad0ec6fa943b8cdac21c8c4bb86a2906c62e22e750001e2324aca59d",
+      "file_sha256": "4c1baebfdc5e646afe751c3183541768b154c3d871984a2c01313d0016a0487a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/production_v341_matched_replacement_v22a_authoritative_raw/runs/1784101310448295149-393068-b321f6b74812720d/raw_v341_matched_replacement_attribution_v22a.json"
+    }
+  },
+  "recipe": {
+    "alpha": 0.0,
+    "content_sha256": "d03028e4586321077942ab7e0168bf2c9284f9c385b68854d439f2df9487ae87",
+    "draw_plan_content_sha256": "bb7fb2d5ca147142c0a8406fbe929944d964452deaeb2378f7a7286988fb7b2e",
+    "layer_plan": {
+      "commit": "a4cfdb6726d4381f5d280b47ca4866569c35bd3b",
+      "file_sha256": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
+      "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "path": "/home/catid/specialist/experiments/layer_plans/middle_late_dense_v6.json",
+      "plan_sha256": "03745c603a6b48898b41afbd4d9121aef276d7e45ca1a3ae14607ec5d1042cb9"
+    },
+    "layers": [
+      20,
+      21,
+      22,
+      23
+    ],
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "moe_backend": {
+      "moe_backend": "default_triton",
+      "override_environment": {
+        "VLLM_MOE_USE_DEEP_GEMM": null,
+        "VLLM_ROCM_USE_AITER": null,
+        "VLLM_ROCM_USE_AITER_MOE": null,
+        "VLLM_TUNED_CONFIG_FOLDER": null,
+        "VLLM_USE_DEEP_GEMM": null
+      },
+      "v16_task_ab_decision_retained": "default_triton"
+    },
+    "panel_bundle_content_sha256": "bda020933ff7b6abf3c9dd21e79e743d66bdf72f1ca23dbd31b5a96f9f571b0e",
+    "perturbation_basis_sha256": "f68624388ac0549ac82ba3d1e64a317233c42f900502a6f5c6d6f07071b4c60e",
+    "perturbation_seed_list_sha256": "9faecdc81492052a6c466b0e986df9e31be0c0fccf24687a96ed604f2ef0f553",
+    "population_size": 64,
+    "sigma": 0.0003
+  },
+  "recomputed_gate": {
+    "all_panel_spreads_nonzero": true,
+    "all_runtime_integrity_audits_passed": true,
+    "all_twelve_bootstrap_passed": false,
+    "all_twelve_observed_passed": false,
+    "bootstrap_pass_count": 0,
+    "compatibility_gate_passed": false,
+    "dataset_promotion_authorized": false,
+    "decision": "retain_production_dataset_and_v13_recipe",
+    "evaluation_authorized": false,
+    "model_update_authorized": false,
+    "observed_pass_count": 5,
+    "schema": "eggroll-es-v341-matched-replacement-compatibility-gate-v22a"
+  },
+  "schema": "eggroll-es-v341-matched-replacement-negative-evidence-v22a",
+  "source_provenance": {
+    "all_source_files_match_launch_head": true,
+    "git_head": "d105841049b4fc01f8252599ad5a1cf271c2c156",
+    "implementation_bundle_sha256": "7485078a7c6306ba191b285800487e5ece67e20c68311076f5986f0dfd8ea1e7",
+    "source_file_bindings_sha256": "4e3d966cf7f6d240adca64facac74e5aca79f7d3145ba44d1d7625e0ee0a4920",
+    "source_file_count": 69
+  },
+  "status": "valid_completed_authoritative_raw_negative_compatibility_gate"
+}
