@@ -1,0 +1,47 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/resource_additions_v3/pending_additions_resource_tranche_03_v1.jsonl",
+    "rows": 3,
+    "sha256": "fc43f07ac642d33a477d548bbe35729ddd01ba55d09a6bed539110b9863e7636"
+  },
+  "baseline": {
+    "rows": 498,
+    "sha256": "ed516dffd88a6300945ead3b83062ca667d1b18977a6c96a8bcb6724880830fa"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v291 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one useful navigation fact from each of three distinct, previously unrepresented source documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "resources_general": 3
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-resource-additions-v3",
+  "schema": "manual-resource-additions-report-v3",
+  "sources": {
+    "free_video_locations": {
+      "document_sha256": "0d27d6e36f5851d22020992e3ea9afcf63520fa9f0f74d157b50cf46bac50c56",
+      "file_sha256": "7aca6f3e1ad8e046c874f52cad8baaa5f6e3f35ce05a235241670969746fb0cb",
+      "path": "data/raw/rope_resources_v1/rope365__8198e26dda1deeda15ff.json",
+      "url": "https://rope365.com/videos/"
+    },
+    "learning_resource_roles": {
+      "document_sha256": "b03a6511afeb7396afb5884883a264b4957eb7709389d67c8cf3682eacfb589a",
+      "file_sha256": "6cda1d0e88c27253ab343e3b81a793fc119545a35857888d5ba2fdb1920dd8ee",
+      "path": "data/raw/rope_resources_v1/rope365__aecd17aade64e5360148.json",
+      "url": "https://rope365.com/getting-started/"
+    },
+    "online_resource_directory": {
+      "document_sha256": "35c1d304f641b4207288ca161b06d9eb642eacf99e2acf22977482a934620a30",
+      "file_sha256": "09441e045183f6d3aaaf85b8de4773f9a5489332a3c218dd0f1b93da505c888a",
+      "path": "data/raw/rope_resources_v1/rope365__5a84060d1c422a8c3b32.json",
+      "url": "https://rope365.com/websites/"
+    }
+  },
+  "status": "segregated_pending_integration"
+}
