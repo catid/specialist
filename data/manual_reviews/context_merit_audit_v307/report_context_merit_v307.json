@@ -1,0 +1,95 @@
+{
+  "addition_artifact": {
+    "path": "data/manual_reviews/hogtie_mobility_safety_additions_v18/pending_additions_hogtie_mobility_safety_tranche_18_v1.jsonl",
+    "rows": 3,
+    "sha256": "5470244d47d37746d8587d10371bcbee5b834d87df78a741fb0fd103a2b830bd"
+  },
+  "audit": {
+    "by_decision": {
+      "add": 3,
+      "drop": 0,
+      "edit": 0,
+      "keep": 0
+    },
+    "path": "data/manual_reviews/context_merit_audit_v307/context_merit_audit_v307.jsonl",
+    "rows": 3,
+    "sha256": "01944a5d9a0e5ecb5e31b232560345c35307d57c3442f2fdd5d38dc1a0ec1448"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 252,
+      "equipment_material": 22,
+      "resources_general": 82,
+      "safety_consent": 84,
+      "technique": 64
+    },
+    "before": {
+      "conflict_units": 249,
+      "equipment_material": 22,
+      "resources_general": 82,
+      "safety_consent": 82,
+      "technique": 63
+    },
+    "delta": {
+      "conflict_units": 3,
+      "equipment_material": 0,
+      "resources_general": 0,
+      "safety_consent": 2,
+      "technique": 1
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "excluded_source": [
+    {
+      "decision": "reject",
+      "reason": "Its hand-movement and thumb-sensation monitoring guidance duplicates existing box-tie monitoring rows.",
+      "url": "https://rope365.com/hogtie-wrists-to-ankles/"
+    },
+    {
+      "decision": "reject",
+      "reason": "The useful body-adaptation theme is already covered, while the page's one-side-tighter prompt was not operationalized.",
+      "url": "https://rope365.com/hogtie-asymmetry/"
+    }
+  ],
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 3,
+    "output_rows": 545,
+    "output_sha256": "deff6ff8a1902d6b83d6d81351d7596811e863008ecbebc42914fdcd9ed64df3",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "decisions": 0,
+    "path": "data/manual_reviews/context_merit_audit_v307/pending_curation_context_merit_v307.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prior_checkpoint": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v306/context_merit_audit_v306.jsonl",
+        "sha256": "339f525c4d72d0e09a11a20bc13d8bd4d182c651b8bd49bed4952e17b859aec3"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v306/pending_curation_context_merit_v306.jsonl",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v306/report_context_merit_v306.json",
+        "sha256": "50b305763e1f91ea2c9d01cedce0c8c90289dd1f0c7df5c47996fdd005fc908b"
+      }
+    ],
+    "candidate": {
+      "rows": 542,
+      "sha256": "ca43bcbd324a267afaef20aa69f1d2b8859b633335f6242133ac4e0233deccb4"
+    }
+  },
+  "schema": "context-merit-audit-report-v307",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  }
+}

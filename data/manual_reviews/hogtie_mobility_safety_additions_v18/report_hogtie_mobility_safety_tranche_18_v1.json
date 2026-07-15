@@ -1,0 +1,40 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/hogtie_mobility_safety_additions_v18/pending_additions_hogtie_mobility_safety_tranche_18_v1.jsonl",
+    "rows": 3,
+    "sha256": "5470244d47d37746d8587d10371bcbee5b834d87df78a741fb0fd103a2b830bd"
+  },
+  "baseline": {
+    "rows": 542,
+    "sha256": "ca43bcbd324a267afaef20aa69f1d2b8859b633335f6242133ac4e0233deccb4"
+  },
+  "excluded_source": [
+    {
+      "decision": "reject",
+      "reason": "Its hand-movement and thumb-sensation monitoring guidance duplicates existing box-tie monitoring rows.",
+      "url": "https://rope365.com/hogtie-wrists-to-ankles/"
+    },
+    {
+      "decision": "reject",
+      "reason": "The useful body-adaptation theme is already covered, while the page's one-side-tighter prompt was not operationalized.",
+      "url": "https://rope365.com/hogtie-asymmetry/"
+    }
+  ],
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v306 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded movement-safety fact from each of three distinct new documents"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "safety_consent": 2,
+      "technique": 1
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-hogtie-mobility-safety-additions-v18",
+  "schema": "manual-hogtie-mobility-safety-additions-report-v18",
+  "status": "segregated_pending_integration"
+}
