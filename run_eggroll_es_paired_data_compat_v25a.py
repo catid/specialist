@@ -30,11 +30,11 @@ PREREG_CONTENT_SHA256_V25A = mechanics_v25a.PREREGISTRATION_CONTENT_SHA256_V25A
 PREREG_COMMIT_V25A = "2dc41890875568cdc5cf5d1ae3f94e242532e010"
 FRAME_COMMIT_V25A = "ff5ed979c180210e2ae1e1cb617f35c8d4d4c266"
 EXPERIMENT_NAME_V25A = (
-    "s6_v25a_paired_production_v364_train_only_runtime_basis20260907"
+    "s6_v25a_paired_production_v364_train_only_runtime_basis20260907_retry_r1"
 )
 OUTPUT_DIRECTORY_V25A = (ROOT / "experiments/eggroll_es_hpo/runs").resolve()
 ATTEMPT_NAME_V25A = f".{EXPERIMENT_NAME_V25A}.launch_attempt.json"
-REPORT_NAME_V25A = "paired_production_v364_compatibility_v25a.json"
+REPORT_NAME_V25A = "paired_production_v364_compatibility_v25a_retry_r1.json"
 WORKER_EXTENSION_V25A = (
     "eggroll_es_worker_v23a_retry_r1."
     "InsertionLocationAuditWorkerExtensionV23ARetryR1"
@@ -475,6 +475,37 @@ def _phase_identity(phase):
     }
 
 
+def _validate_exact_references_v25a(references, selected):
+    """Validate the v4 reference schema; rank mapping is certified separately."""
+    if len(references) != 4 or len(selected) != 4:
+        raise RuntimeError("v25a exact reference coverage changed")
+    if any(
+        reference.get("schema")
+        != "eggroll-es-selected-exact-reference-state-v4"
+        or reference.get("reference_generation") != 1
+        or reference.get("fresh_for_population") is not True
+        or not isinstance(reference.get("identity"), dict)
+        or selected[rank].get("schema")
+        != "eggroll-es-selected-exact-reference-check-v4"
+        or selected[rank].get("passed") is not True
+        or selected[rank].get("reference_generation") != 1
+        or selected[rank].get("reference")
+        != reference["identity"].get("selected")
+        or selected[rank].get("current") != selected[rank].get("reference")
+        for rank, reference in enumerate(references)
+    ):
+        raise RuntimeError("v25a exact reference certificate changed")
+    if (
+        len({canonical_sha256(item["reference"]) for item in selected}) != 1
+        or len({
+            canonical_sha256(reference["identity"])
+            for reference in references
+        }) != 1
+    ):
+        raise RuntimeError("v25a selected reference identity differs across engines")
+    return canonical_sha256(selected[0]["reference"])
+
+
 class PairedDataCompatRuntimeMixinV25A:
     def configure_paired_data_compat_v25a(
         self, preregistration, panel_bundle, layer_bundle,
@@ -598,34 +629,9 @@ class PairedDataCompatRuntimeMixinV25A:
                 for engine in self.engines
             ])
         ]
-        if (
-            any(
-                reference.get("schema")
-                != "eggroll-es-selected-exact-reference-state-v4"
-                or reference.get("reference_generation") != 1
-                or reference.get("fresh_for_population") is not True
-                or reference.get("rank") != rank
-                or reference.get("world_size") != 4
-                or not isinstance(reference.get("identity"), dict)
-                or selected[rank].get("schema")
-                != "eggroll-es-selected-exact-reference-check-v4"
-                or selected[rank].get("passed") is not True
-                or selected[rank].get("reference_generation") != 1
-                or selected[rank].get("rank") != rank
-                or selected[rank].get("world_size") != 4
-                or selected[rank].get("reference")
-                != reference["identity"].get("selected")
-                or selected[rank].get("current")
-                != selected[rank].get("reference")
-                for rank, reference in enumerate(references)
-            )
-            or len({canonical_sha256(item["reference"]) for item in selected}) != 1
-            or len({
-                canonical_sha256(reference["identity"])
-                for reference in references
-            }) != 1
-        ):
-            raise RuntimeError("v25a selected reference identity differs across engines")
+        selected_reference_identity_sha256 = _validate_exact_references_v25a(
+            references, selected,
+        )
         self._v25a_preregistration = copy.deepcopy(preregistration)
         self._v25a_panel_bundle = panel_bundle
         self._v25a_references = [item["identity"] for item in references]
@@ -634,8 +640,8 @@ class PairedDataCompatRuntimeMixinV25A:
             "device_identity_sha256": canonical_sha256(devices),
             "installation_sha256": canonical_sha256(installs),
             "seed_certificate_sha256": canonical_sha256(seed_reports),
-            "selected_reference_identity_sha256": canonical_sha256(
-                selected[0]["reference"]
+            "selected_reference_identity_sha256": (
+                selected_reference_identity_sha256
             ),
             "panel_bundle_content_sha256": panel_bundle[
                 "content_sha256_before_self_field"
@@ -798,8 +804,6 @@ class PairedDataCompatRuntimeMixinV25A:
                 != "eggroll-es-selected-exact-reference-check-v4"
                 or item.get("passed") is not True
                 or item.get("reference_generation") != 1
-                or item.get("rank") != rank
-                or item.get("world_size") != 4
                 or item.get("reference")
                 != self._v25a_references[rank]["selected"]
                 or item.get("current") != item.get("reference")

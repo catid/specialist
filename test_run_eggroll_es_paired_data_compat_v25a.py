@@ -132,8 +132,6 @@ def test_v25a_restore_unwraps_each_tp1_result_and_rebinds_every_rank():
                         "schema": "eggroll-es-selected-exact-reference-check-v4",
                         "passed": True,
                         "reference_generation": 1,
-                        "rank": rank,
-                        "world_size": 4,
                         "reference": selected,
                         "current": selected,
                     }])
@@ -147,18 +145,62 @@ def test_v25a_restore_unwraps_each_tp1_result_and_rebinds_every_rank():
 
 
 def test_v25a_configuration_requires_full_seed_and_fresh_reference_certificates():
-    source = inspect.getsource(
+    configure_source = inspect.getsource(
         runtime.PairedDataCompatRuntimeMixinV25A.configure_paired_data_compat_v25a
     )
     for token in (
         'report.get("python_random_receives_full_seed") is not True',
         'report.get("torch_cuda_all_receives_full_seed") is not True',
+    ):
+        assert token in configure_source
+    reference_source = inspect.getsource(runtime._validate_exact_references_v25a)
+    for token in (
         'reference.get("reference_generation") != 1',
         'reference.get("fresh_for_population") is not True',
         'selected[rank].get("reference")',
         'reference["identity"].get("selected")',
     ):
-        assert token in source
+        assert token in reference_source
+    restore_source = inspect.getsource(
+        runtime.PairedDataCompatRuntimeMixinV25A._restore_and_verify_v25a
+    )
+    for invalid_worker_v4_field_check in (
+        'reference.get("rank")', 'reference.get("world_size")',
+        'selected[rank].get("rank")', 'selected[rank].get("world_size")',
+        'item.get("rank")', 'item.get("world_size")',
+    ):
+        assert invalid_worker_v4_field_check not in reference_source
+        assert invalid_worker_v4_field_check not in restore_source
+
+
+def test_v25a_reference_validation_matches_rankless_worker_v4_schema():
+    selected_identity = {"schema": "partition", "sha256": "a" * 64}
+    full_identity = {
+        "schema": "eggroll-es-partitioned-weight-state-v4",
+        "sha256": "b" * 64,
+        "selected": selected_identity,
+    }
+    references = [{
+        "schema": "eggroll-es-selected-exact-reference-state-v4",
+        "reference_generation": 1,
+        "fresh_for_population": True,
+        "identity": full_identity,
+    } for _ in range(4)]
+    selected = [{
+        "schema": "eggroll-es-selected-exact-reference-check-v4",
+        "passed": True,
+        "reference_generation": 1,
+        "reference": selected_identity,
+        "current": selected_identity,
+    } for _ in range(4)]
+    assert runtime._validate_exact_references_v25a(references, selected) == (
+        runtime.canonical_sha256(selected_identity)
+    )
+    assert all("rank" not in item and "world_size" not in item for item in references)
+    assert all("rank" not in item and "world_size" not in item for item in selected)
+    selected[3] = {**selected[3], "current": {"sha256": "c" * 64}}
+    with pytest.raises(RuntimeError, match="certificate changed"):
+        runtime._validate_exact_references_v25a(references, selected)
 
 
 def test_v25a_full_context_phase_equality_is_exact_and_content_free():
