@@ -9,8 +9,10 @@ import hashlib
 import json
 import math
 import os
+import re
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import numpy as np
@@ -49,6 +51,32 @@ BF16_CONFIG_SHA256_V30A = (
 BF16_INDEX_SHA256_V30A = (
     "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83"
 )
+EXPECTED_GPU_NAME_V30A = (
+    "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition"
+)
+EXPECTED_DRIVER_VERSION_V30A = "610.43.02"
+EXPECTED_GPU_IDENTITIES_V30A = {
+    0: {
+        "nvml_uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927",
+        "pci_bus_id": "00000000:01:00.0",
+        "total_bytes": 102_641_958_912,
+    },
+    1: {
+        "nvml_uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded",
+        "pci_bus_id": "00000000:21:00.0",
+        "total_bytes": 102_641_958_912,
+    },
+    2: {
+        "nvml_uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640",
+        "pci_bus_id": "00000000:C1:00.0",
+        "total_bytes": 102_641_958_912,
+    },
+    3: {
+        "nvml_uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999",
+        "pci_bus_id": "00000000:F1:00.0",
+        "total_bytes": 102_641_958_912,
+    },
+}
 BOUND_FILES_V30A = {
     "candidate_materializer_v30a": (
         ROOT / "build_eggroll_es_v389_train_only_candidate_v30a.py",
@@ -110,6 +138,24 @@ FORBIDDEN_PERSISTED_KEYS_V30A = {
     "prompt_token_ids", "unit_scores", "responses", "coefficients",
     "bootstrap_replicates", "bootstrap_draws", "row_content",
 }
+ALLOWED_UNTRACKED_PREFIXES_V30A = (
+    "experiments/dataset_probes/",
+)
+ALLOWED_UNTRACKED_PATHS_V30A = frozenset({
+    "experiments/gpu_utilization_v31_base_qwen36_train_reward_probe.jsonl",
+})
+CURATOR_UNTRACKED_PATTERN_V30A = re.compile(
+    r"data/manual_reviews/context_merit_audit_v([0-9]+)/.+\Z"
+)
+WORKTREE_ALLOWLIST_CONTRACT_V30A = {
+    "curator_snapshot_directories": (
+        "data/manual_reviews/context_merit_audit_vN/ where N >= 390"
+    ),
+    "path_prefixes": list(ALLOWED_UNTRACKED_PREFIXES_V30A),
+    "exact_paths": sorted(ALLOWED_UNTRACKED_PATHS_V30A),
+    "tracked_changes_allowed": False,
+    "other_untracked_paths_allowed": False,
+}
 
 
 canonical_sha256 = prereg_v30a.canonical_sha256
@@ -162,6 +208,46 @@ def _verify_bound_files_v30a():
     return identities
 
 
+def _is_allowed_untracked_v30a(relative):
+    if relative in ALLOWED_UNTRACKED_PATHS_V30A or any(
+        relative.startswith(prefix) for prefix in ALLOWED_UNTRACKED_PREFIXES_V30A
+    ):
+        return True
+    match = CURATOR_UNTRACKED_PATTERN_V30A.fullmatch(relative)
+    return match is not None and int(match.group(1)) >= 390
+
+
+def _validate_worktree_status_v30a(raw_status):
+    if not isinstance(raw_status, str):
+        raise TypeError("v30a worktree status must be text")
+    allowed_untracked = []
+    rejected = []
+    for line in raw_status.splitlines():
+        if len(line) < 4 or line[2] != " ":
+            raise RuntimeError("v30a worktree status record changed")
+        status, relative = line[:2], line[3:]
+        if status == "??" and _is_allowed_untracked_v30a(relative):
+            allowed_untracked.append(relative)
+        else:
+            rejected.append({"status": status, "relative_path": relative})
+    if rejected:
+        raise RuntimeError(
+            "v30a real launch requires a clean worktree outside the explicit "
+            "untracked allowlist"
+        )
+    return {
+        "all_tracked_files_clean": True,
+        "only_explicitly_allowlisted_untracked_paths_present": True,
+        "allowed_untracked_entry_count": len(allowed_untracked),
+        "allowed_untracked_entries_sha256": canonical_sha256(
+            sorted(allowed_untracked)
+        ),
+        "allowlist_contract_sha256": canonical_sha256(
+            WORKTREE_ALLOWLIST_CONTRACT_V30A
+        ),
+    }
+
+
 def _certify_real_launch_committed_source_v30a():
     relative_paths = sorted({
         Path(path).resolve().relative_to(ROOT).as_posix()
@@ -185,7 +271,17 @@ def _certify_real_launch_committed_source_v30a():
     ).strip()
     if len(head) != 40:
         raise RuntimeError("v30a committed source head changed")
-    return head
+    status = subprocess.check_output(
+        ["git", "status", "--porcelain=v1", "--untracked-files=all"],
+        cwd=ROOT,
+        text=True,
+    )
+    worktree = _validate_worktree_status_v30a(status)
+    return _seal({
+        "schema": "eggroll-es-committed-clean-source-certificate-v30a",
+        "git_head": head,
+        **worktree,
+    })
 
 
 def load_preregistration_v30a():
@@ -278,6 +374,129 @@ def validate_live_model_v30a(preregistration):
         "config_sha256": BF16_CONFIG_SHA256_V30A,
         "index_sha256": BF16_INDEX_SHA256_V30A,
     })
+
+
+def _observe_all_four_gpus_v30a():
+    import pynvml
+
+    pynvml.nvmlInit()
+    rows = []
+    try:
+        if pynvml.nvmlDeviceGetCount() != 4:
+            raise RuntimeError("v30a requires exactly four physical GPUs")
+        driver = pynvml.nvmlSystemGetDriverVersion()
+        if isinstance(driver, bytes):
+            driver = driver.decode("ascii")
+        for gpu_id in range(4):
+            handle = pynvml.nvmlDeviceGetHandleByIndex(gpu_id)
+            processes = []
+            for function_name in (
+                "nvmlDeviceGetComputeRunningProcesses",
+                "nvmlDeviceGetGraphicsRunningProcesses",
+            ):
+                function = getattr(pynvml, function_name, None)
+                if function is not None:
+                    try:
+                        processes.extend(function(handle))
+                    except pynvml.NVMLError_NotSupported:
+                        pass
+            memory = pynvml.nvmlDeviceGetMemoryInfo(handle)
+            name = pynvml.nvmlDeviceGetName(handle)
+            uuid = pynvml.nvmlDeviceGetUUID(handle)
+            pci_bus_id = pynvml.nvmlDeviceGetPciInfo(handle).busId
+            if isinstance(name, bytes):
+                name = name.decode("utf-8")
+            if isinstance(uuid, bytes):
+                uuid = uuid.decode("ascii")
+            if isinstance(pci_bus_id, bytes):
+                pci_bus_id = pci_bus_id.decode("ascii")
+            rows.append({
+                "physical_gpu_id": gpu_id,
+                "name": str(name),
+                "driver_version": str(driver),
+                "nvml_uuid": str(uuid),
+                "pci_bus_id": str(pci_bus_id),
+                "total_bytes": int(memory.total),
+                "running_process_count": len({
+                    int(item.pid) for item in processes
+                }),
+            })
+    finally:
+        pynvml.nvmlShutdown()
+    return {
+        "gpus": rows,
+        "all_four_idle": all(
+            item["running_process_count"] == 0 for item in rows
+        ),
+    }
+
+
+def _physical_gpu_identity_v30a(certificate):
+    result = {
+        item["physical_gpu_id"]: {
+            "name": item.get("name"),
+            "driver_version": item.get("driver_version"),
+            "nvml_uuid": item.get("nvml_uuid"),
+            "pci_bus_id": item.get("pci_bus_id"),
+            "total_bytes": item.get("total_bytes"),
+        }
+        for item in certificate.get("gpus", [])
+    }
+    if (
+        set(result) != set(range(4))
+        or any(
+            item["name"] != EXPECTED_GPU_NAME_V30A
+            or item["driver_version"] != EXPECTED_DRIVER_VERSION_V30A
+            or item["nvml_uuid"]
+            != EXPECTED_GPU_IDENTITIES_V30A[gpu_id]["nvml_uuid"]
+            or str(item["pci_bus_id"]).upper()
+            != EXPECTED_GPU_IDENTITIES_V30A[gpu_id]["pci_bus_id"].upper()
+            or item["total_bytes"]
+            != EXPECTED_GPU_IDENTITIES_V30A[gpu_id]["total_bytes"]
+            for gpu_id, item in result.items()
+        )
+    ):
+        raise RuntimeError("v30a physical GPU identity changed")
+    return result
+
+
+def assert_all_four_gpus_idle_v30a():
+    observation = _observe_all_four_gpus_v30a()
+    _physical_gpu_identity_v30a(observation)
+    if observation.get("all_four_idle") is not True:
+        raise RuntimeError("v30a requires all four GPUs idle before claim")
+    return _seal({
+        "schema": "eggroll-es-v30a-prelaunch-idle-certificate",
+        **observation,
+    })
+
+
+def wait_for_final_gpu_idle_v30a(
+    expected_idle_certificate, *, timeout_seconds=30.0, interval_seconds=0.5,
+):
+    if timeout_seconds != 30.0 or interval_seconds != 0.5:
+        raise RuntimeError("v30a final GPU cleanup polling contract changed")
+    expected = _physical_gpu_identity_v30a(expected_idle_certificate)
+    started = time.monotonic()
+    polls = 0
+    while True:
+        observation = _observe_all_four_gpus_v30a()
+        polls += 1
+        if _physical_gpu_identity_v30a(observation) != expected:
+            raise RuntimeError("v30a final cleanup physical GPU identity changed")
+        elapsed = time.monotonic() - started
+        if observation.get("all_four_idle") is True:
+            return _seal({
+                "schema": "eggroll-es-v30a-final-idle-certificate",
+                **observation,
+                "poll_count": polls,
+                "elapsed_milliseconds": int(round(elapsed * 1000.0)),
+                "bounded_async_cleanup_wait": True,
+            })
+        remaining = timeout_seconds - elapsed
+        if remaining <= 0:
+            raise RuntimeError("v30a final GPU cleanup exceeded 30 seconds")
+        time.sleep(min(interval_seconds, remaining))
 
 
 def recipe_v30a(
@@ -405,7 +624,19 @@ def recipe_v30a(
             "engine_count": 4,
             "tp_per_engine": 1,
             "fixed_rank_to_physical_gpu": True,
+            "expected_gpu_name": EXPECTED_GPU_NAME_V30A,
+            "expected_driver_version": EXPECTED_DRIVER_VERSION_V30A,
+            "expected_physical_gpu_identity_sha256": canonical_sha256(
+                EXPECTED_GPU_IDENTITIES_V30A
+            ),
+            "all_four_gpus_idle_immediately_before_attempt_claim": True,
+            "bounded_final_idle_certificate_required_after_cleanup": True,
+            "final_idle_timeout_seconds": 30.0,
+            "final_idle_poll_interval_seconds": 0.5,
         },
+        "source_cleanliness": copy.deepcopy(
+            WORKTREE_ALLOWLIST_CONTRACT_V30A
+        ),
         "worker_extension": WORKER_EXTENSION_V30A,
         "implementation_bundle_sha256": implementation["bundle_sha256"],
         "output_directory": str(OUTPUT_DIRECTORY_V30A),
@@ -456,7 +687,8 @@ def validate_runtime_v30a(args, preregistration, implementation, recipe):
         if expected is not None and expected != actual:
             raise ValueError(f"v30a {label} hash changed")
     if not args.v30a_dry_run:
-        _certify_real_launch_committed_source_v30a()
+        return _certify_real_launch_committed_source_v30a()
+    return None
 
 
 def _request_identity(prompt_items):
@@ -1094,6 +1326,7 @@ def _parser():
 
 def run_exact_v30a(
     preregistration, panel_bundle, layer_bundle, implementation, recipe,
+    committed_clean_source,
 ):
     environment = runtime_r2.certify_runtime_environment_r2()
     attempt_path = OUTPUT_DIRECTORY_V30A / ATTEMPT_NAME_V30A
@@ -1103,14 +1336,30 @@ def run_exact_v30a(
         raise RuntimeError("v30a requires fresh exclusive attempt and run paths")
     provenance = runtime_v23a._source_provenance_v23a(implementation)
     live_model = validate_live_model_v30a(preregistration)
+    if (
+        committed_clean_source.get("schema")
+        != "eggroll-es-committed-clean-source-certificate-v30a"
+        or committed_clean_source.get("git_head") != provenance.get("git_head")
+        or committed_clean_source.get("all_tracked_files_clean") is not True
+        or committed_clean_source.get(
+            "only_explicitly_allowlisted_untracked_paths_present"
+        ) is not True
+    ):
+        raise RuntimeError("v30a committed-clean source certificate changed")
+    prelaunch_idle = assert_all_four_gpus_idle_v30a()
     attempt = {
         "schema": "eggroll-es-durable-launch-attempt-v30a",
         "status": "launching",
         "phase": "before_trainer_creation",
         "recipe": recipe,
         "source_provenance": provenance,
+        "committed_clean_source_certificate": committed_clean_source,
         "runtime_environment_certificate": environment,
         "live_model_audit": live_model,
+        "prelaunch_idle_certificate_sha256": prelaunch_idle[
+            "content_sha256_before_self_field"
+        ],
+        "final_idle_certificate_sha256": None,
         "model_update_applied": False,
         "checkpoint_written": False,
         "evaluation_opened": False,
@@ -1118,18 +1367,42 @@ def run_exact_v30a(
     }
     runtime_v23a._exclusive_write_json_v23a(attempt_path, attempt)
     if run_dir.exists():
+        final_idle = None
+        final_idle_failure = None
+        try:
+            final_idle = wait_for_final_gpu_idle_v30a(prelaunch_idle)
+        except BaseException as error:
+            final_idle_failure = error
         attempt.update({
             "status": "failed",
-            "phase": "fresh_run_reservation_race",
+            "phase": "fresh_run_reservation_race_after_finalization",
             "failure_type": "FreshRunReservationError",
             "failure_sha256": canonical_sha256(
                 "v30a run directory appeared after exclusive attempt claim"
             ),
+            "final_idle_certificate_sha256": (
+                None
+                if final_idle is None
+                else final_idle["content_sha256_before_self_field"]
+            ),
+            "all_four_gpus_idle_after_cleanup": final_idle is not None,
+            "final_idle_failure_sha256": (
+                None
+                if final_idle_failure is None
+                else canonical_sha256({
+                    "type": type(final_idle_failure).__name__,
+                    "repr": repr(final_idle_failure),
+                })
+            ),
         })
         runtime_v23a._rewrite_json_v23a(attempt_path, attempt)
+        if final_idle_failure is not None:
+            raise final_idle_failure
         raise RuntimeError("v30a run directory appeared after exclusive attempt claim")
     trainer = None
     failure = None
+    final_idle = None
+    final_idle_failure = None
     configuration = summary = gate = audit = None
     try:
         runtime_v23a.base.set_seed(43)
@@ -1149,15 +1422,35 @@ def run_exact_v30a(
             except BaseException as cleanup_error:
                 if failure is None:
                     failure = cleanup_error
+        try:
+            final_idle = wait_for_final_gpu_idle_v30a(prelaunch_idle)
+        except BaseException as idle_error:
+            final_idle_failure = idle_error
+            if failure is None:
+                failure = idle_error
     if failure is not None:
         attempt.update({
             "status": "failed",
-            "phase": "inside_v30a_train_only_runtime",
+            "phase": "after_cleanup_or_final_idle_failure",
             "failure_type": type(failure).__name__,
             "failure_sha256": canonical_sha256({
                 "type": type(failure).__name__, "repr": repr(failure),
             }),
             "report_exists_after_attempt": report_path.exists(),
+            "final_idle_certificate_sha256": (
+                None
+                if final_idle is None
+                else final_idle["content_sha256_before_self_field"]
+            ),
+            "all_four_gpus_idle_after_cleanup": final_idle is not None,
+            "final_idle_failure_sha256": (
+                None
+                if final_idle_failure is None
+                else canonical_sha256({
+                    "type": type(final_idle_failure).__name__,
+                    "repr": repr(final_idle_failure),
+                })
+            ),
             "model_update_applied": False,
             "checkpoint_written": False,
             "evaluation_opened": False,
@@ -1165,33 +1458,69 @@ def run_exact_v30a(
         })
         runtime_v23a._rewrite_json_v23a(attempt_path, attempt)
         raise failure
-    report = _seal({
-        "schema": "eggroll-es-paired-data-compat-report-v30a",
-        "recipe": recipe,
-        "configuration": configuration,
-        "summary": summary,
-        "gate": gate,
-        "runtime_audit": audit,
-        "implementation": implementation,
-        "model_update_applied": False,
-        "checkpoint_written": False,
-        "evaluation_opened": False,
-        "dataset_promotion_applied": False,
-        "direct_action_taken": False,
-    })
-    _assert_compact(report)
-    runtime_v23a._exclusive_write_json_v23a(report_path, report)
-    attempt.update({
-        "status": "complete",
-        "phase": "after_cleanup_and_compact_report",
-        "report_binding": {
-            "path": str(report_path),
-            "file_sha256": file_sha256(report_path),
-            "content_sha256": report["content_sha256_before_self_field"],
-        },
-    })
-    runtime_v23a._rewrite_json_v23a(attempt_path, attempt)
-    return report
+    try:
+        report = _seal({
+            "schema": "eggroll-es-paired-data-compat-report-v30a",
+            "recipe": recipe,
+            "configuration": configuration,
+            "summary": summary,
+            "gate": gate,
+            "runtime_audit": audit,
+            "implementation": implementation,
+            "committed_clean_source_certificate_sha256": committed_clean_source[
+                "content_sha256_before_self_field"
+            ],
+            "prelaunch_idle_certificate_sha256": prelaunch_idle[
+                "content_sha256_before_self_field"
+            ],
+            "final_idle_certificate_sha256": final_idle[
+                "content_sha256_before_self_field"
+            ],
+            "all_four_gpus_idle_after_cleanup": True,
+            "model_update_applied": False,
+            "checkpoint_written": False,
+            "evaluation_opened": False,
+            "dataset_promotion_applied": False,
+            "direct_action_taken": False,
+        })
+        _assert_compact(report)
+        runtime_v23a._exclusive_write_json_v23a(report_path, report)
+        attempt.update({
+            "status": "complete",
+            "phase": "after_compact_report_and_final_gpu_cleanup",
+            "report_binding": {
+                "path": str(report_path),
+                "file_sha256": file_sha256(report_path),
+                "content_sha256": report["content_sha256_before_self_field"],
+            },
+            "final_idle_certificate_sha256": final_idle[
+                "content_sha256_before_self_field"
+            ],
+            "all_four_gpus_idle_after_cleanup": True,
+        })
+        runtime_v23a._rewrite_json_v23a(attempt_path, attempt)
+        return report
+    except BaseException as finalization_error:
+        attempt.update({
+            "status": "failed",
+            "phase": "after_final_idle_during_compact_report_finalization",
+            "failure_type": type(finalization_error).__name__,
+            "failure_sha256": canonical_sha256({
+                "type": type(finalization_error).__name__,
+                "repr": repr(finalization_error),
+            }),
+            "report_exists_after_attempt": report_path.exists(),
+            "final_idle_certificate_sha256": final_idle[
+                "content_sha256_before_self_field"
+            ],
+            "all_four_gpus_idle_after_cleanup": True,
+            "model_update_applied": False,
+            "checkpoint_written": False,
+            "evaluation_opened": False,
+            "dataset_promotion_applied": False,
+        })
+        runtime_v23a._rewrite_json_v23a(attempt_path, attempt)
+        raise
 
 
 def main(argv=None):
@@ -1205,7 +1534,9 @@ def main(argv=None):
     recipe = recipe_v30a(
         preregistration, panel_bundle, layer_bundle, implementation
     )
-    validate_runtime_v30a(args, preregistration, implementation, recipe)
+    committed_clean_source = validate_runtime_v30a(
+        args, preregistration, implementation, recipe
+    )
     if args.v30a_dry_run:
         payload = _seal({
             "schema": "eggroll-es-paired-data-compat-dry-run-v30a",
@@ -1222,7 +1553,8 @@ def main(argv=None):
         print(json.dumps(payload, sort_keys=True))
         return payload
     return run_exact_v30a(
-        preregistration, panel_bundle, layer_bundle, implementation, recipe
+        preregistration, panel_bundle, layer_bundle, implementation, recipe,
+        committed_clean_source,
     )
 
 
