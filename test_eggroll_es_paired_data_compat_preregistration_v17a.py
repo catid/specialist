@@ -166,6 +166,25 @@ def test_v17a_cross_dataset_similarity_cannot_change_gate():
     ] is True
 
 
+def test_v17a_rejects_diagnostic_extra_content_and_non_lowercase_sha_fields():
+    diagnostic_extra = synthetic_candidate()
+    diagnostic_extra["cross_dataset_direction_similarity_diagnostic"][
+        "raw_similarity"
+    ] = 0.99
+    reseal(diagnostic_extra)
+    with pytest.raises(RuntimeError, match="diagnostic contract"):
+        prereg.evaluate_candidate_v17a(diagnostic_extra)
+
+    for bad_digest in ("A" * 64, "g" * 64, "0" * 63):
+        bad_sha = synthetic_candidate()
+        bad_sha["versions"]["production"][
+            "compact_estimator_sha256"
+        ] = bad_digest
+        reseal(bad_sha)
+        with pytest.raises(RuntimeError, match="SHA-256|stability contract"):
+            prereg.evaluate_candidate_v17a(bad_sha)
+
+
 def test_v17a_rejects_update_surface_integrity_and_contract_tampering():
     for mutation in ("update", "integrity", "extra"):
         value = synthetic_candidate()

@@ -160,6 +160,12 @@ surface and every nonzero alpha/update/checkpoint entrypoint, and prove:
 - exact prompt-token IDs, answer boundaries, and prompt-logprob coverage;
 - compact aggregate persistence only, with no response vector or row content.
 
+The compact summary is also fail-closed: every persisted field whose name
+contains `sha256` must be exactly 64 lowercase hexadecimal characters. The
+cross-dataset diagnostic must contain exactly `used_for_gate` and
+`content_sha256`; no raw value, vector, metadata, or extra key may be hidden in
+that non-gating object.
+
 Any mismatch, partial result, failed bootstrap endpoint, or cleanup failure
 retains production and V13. No fallback sigma, alpha, panel geometry, dataset,
 or endpoint may be attempted.

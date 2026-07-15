@@ -85,7 +85,7 @@
     "robust_direction": "coordinatewise_median_of_three_independently_standardized_Horvitz_Thompson_central_response_vectors",
     "within_version_stability_only_for_gate": true
   },
-  "content_sha256_before_self_field": "4cc9064ff6c2612486549ebcb1b58cb2e64749c24391c56dc2c550b3518db5de",
+  "content_sha256_before_self_field": "c324282a0e7151103fa90f6e724119a4eaf90d800ded2ff8ad57a008d3a63440",
   "experiment_name": "snapshot_v283_data_v17a_paired_production_candidate_5x38_alpha_zero_middle_late_basis20260714",
   "firewall": {
     "benchmark_outcomes_used": false,
@@ -279,10 +279,15 @@
     "pass_does_not_authorize_dataset_promotion_update_or_evaluation": true
   },
   "required_runtime_adapter": {
+    "all_persisted_hash_fields_lowercase_hex": true,
     "must_bind_preregistration_file_and_content_hashes": true,
     "must_prove_no_model_update_entrypoint_reachable": true,
     "runtime_not_authorized_by_this_preregistration_commit": true,
-    "status": "not_yet_implemented"
+    "status": "not_yet_implemented",
+    "summary_diagnostic_exact_keys": [
+      "used_for_gate",
+      "content_sha256"
+    ]
   },
   "schema": "eggroll-es-paired-data-compat-preregistration-v17a",
   "scoring": {

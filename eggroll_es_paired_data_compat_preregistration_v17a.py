@@ -9,6 +9,7 @@ import hashlib
 import json
 import math
 import os
+import re
 from pathlib import Path
 
 import build_eggroll_es_joint_panels_v17a as frame_v17a
@@ -127,6 +128,7 @@ TOKEN_LENGTH_AUDIT_V17A = {
     },
     "candidate_answer_token_quantiles_p50_p90_p95_p99_max": [18, 42, 53, 81, 86],
 }
+LOWERCASE_SHA256_PATTERN_V17A = re.compile(r"[0-9a-f]{64}\Z")
 
 
 def file_sha256(path):
@@ -137,6 +139,30 @@ def canonical_sha256(value):
     return hashlib.sha256(
         json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
     ).hexdigest()
+
+
+def validate_persisted_sha256_fields_v17a(value):
+    """Reject every persisted SHA-labelled field that is not lowercase hex."""
+    pending = [value]
+    while pending:
+        current = pending.pop()
+        if isinstance(current, dict):
+            for key, item in current.items():
+                if (
+                    isinstance(key, str)
+                    and "sha256" in key
+                    and (
+                        not isinstance(item, str)
+                        or LOWERCASE_SHA256_PATTERN_V17A.fullmatch(item) is None
+                    )
+                ):
+                    raise RuntimeError(
+                        "v17a persisted SHA-256 field is not lowercase hex"
+                    )
+                pending.append(item)
+        elif isinstance(current, list):
+            pending.extend(current)
+    return True
 
 
 def _without_self(value):
@@ -372,6 +398,10 @@ def build_preregistration_v17a():
             "runtime_not_authorized_by_this_preregistration_commit": True,
             "must_bind_preregistration_file_and_content_hashes": True,
             "must_prove_no_model_update_entrypoint_reachable": True,
+            "summary_diagnostic_exact_keys": [
+                "used_for_gate", "content_sha256",
+            ],
+            "all_persisted_hash_fields_lowercase_hex": True,
         },
         "firewall": {
             "train_only": True,
@@ -383,6 +413,7 @@ def build_preregistration_v17a():
         },
     }
     value["content_sha256_before_self_field"] = canonical_sha256(value)
+    validate_persisted_sha256_fields_v17a(value)
     return value
 
 
@@ -415,6 +446,7 @@ def evaluate_candidate_v17a(candidate):
         != canonical_sha256(_without_self(candidate))
     ):
         raise RuntimeError("v17a candidate summary contract changed")
+    validate_persisted_sha256_fields_v17a(candidate)
     integrity = candidate["runtime_integrity"]
     required_integrity = {
         "all_four_engines_every_signed_wave": True,
@@ -507,9 +539,8 @@ def evaluate_candidate_v17a(candidate):
     diagnostic = candidate["cross_dataset_direction_similarity_diagnostic"]
     if (
         not isinstance(diagnostic, dict)
+        or set(diagnostic) != {"used_for_gate", "content_sha256"}
         or diagnostic.get("used_for_gate") is not False
-        or not isinstance(diagnostic.get("content_sha256"), str)
-        or len(diagnostic["content_sha256"]) != 64
     ):
         raise RuntimeError("v17a cross-dataset diagnostic contract changed")
     passed = (
