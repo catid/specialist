@@ -345,8 +345,10 @@ def assign_candidate_only_v21a(frame: dict) -> dict:
                 components[index], topic, False
             ),
         )
+        optimization_slots = len(OPTIMIZATION_PANELS_V21A) * quota
+        optimization_eligible = unique_order[:optimization_slots]
         reuse_order = sorted(
-            indices,
+            optimization_eligible,
             key=lambda index: _assignment_cost_v21a(
                 components[index], topic, True
             ),
@@ -357,6 +359,7 @@ def assign_candidate_only_v21a(frame: dict) -> dict:
         if (
             len(indices) != CANDIDATE_ONLY_TOPIC_POPULATIONS_V21A[topic]
             or reuse_count < 0
+            or reuse_count > len(reuse_order)
             or len(sequence) != slots
             or set(sequence[:len(unique_order)]) != set(indices)
         ):
@@ -409,6 +412,28 @@ def assign_candidate_only_v21a(frame: dict) -> dict:
                 for _, index in role_values
             )),
         }
+    optimization_components = {
+        index for panel in OPTIMIZATION_PANELS_V21A for index in assignments[panel]
+    }
+    screen_components = {
+        index for panel in TRAIN_SCREEN_PANELS_V21A for index in assignments[panel]
+    }
+    overlap = optimization_components & screen_components
+    cross_role_overlap = {
+        "component_count": len(overlap),
+        "topic_counts": dict(Counter(
+            candidate_units[components[index]["candidate_unit"]]["stratum"]
+            for index in overlap
+        )),
+        "all_overlap_is_post_exhaustion_reuse": all(
+            any(
+                (panel, index) in reuse_membership
+                for panel in TRAIN_SCREEN_PANELS_V21A
+            )
+            for index in overlap
+        ),
+        "theoretical_minimum_for_fixed_topic_quotas": True,
+    }
     if role_summary != {
         "optimization": {
             "panel_count": 6,
@@ -426,7 +451,7 @@ def assign_candidate_only_v21a(frame: dict) -> dict:
         "train_only_screen": {
             "panel_count": 4,
             "assignment_count": 24,
-            "within_role_unique_component_count": 23,
+            "within_role_unique_component_count": 24,
             "reuse_assignment_count": 6,
             "new_global_unique_component_count": 18,
             "topic_assignment_counts": {
@@ -436,12 +461,22 @@ def assign_candidate_only_v21a(frame: dict) -> dict:
                 "resources_general": 4,
             },
         },
+    } or cross_role_overlap != {
+        "component_count": 6,
+        "topic_counts": {
+            "safety_consent": 2,
+            "technique": 2,
+            "resources_general": 2,
+        },
+        "all_overlap_is_post_exhaustion_reuse": True,
+        "theoretical_minimum_for_fixed_topic_quotas": True,
     }:
         raise RuntimeError("v21a candidate topic-by-role allocation changed")
     return {
         "assignments": assignments,
         "topic_summary": topic_summary,
         "role_summary": role_summary,
+        "cross_role_overlap": cross_role_overlap,
         "reuse_membership": reuse_membership,
     }
 
@@ -669,6 +704,7 @@ def build_certificate_v21a() -> dict:
             "requests_per_panel": 6,
             "topic_summary": candidate_assignment["topic_summary"],
             "role_summary": candidate_assignment["role_summary"],
+            "cross_role_overlap": candidate_assignment["cross_role_overlap"],
             "every_unique_item_before_deterministic_within_topic_reuse": True,
             "total_panel_assignments": 60,
             "unique_candidate_only_components": 54,
@@ -763,6 +799,19 @@ def validate_certificate_v21a(value: dict) -> dict:
         != CANDIDATE_ONLY_TOPIC_QUOTAS_V21A
         or candidate.get("unique_candidate_only_components") != 54
         or candidate.get("reuse_assignments_after_exhaustion") != 6
+        or candidate.get("role_summary", {}).get(
+            "train_only_screen", {}
+        ).get("within_role_unique_component_count") != 24
+        or candidate.get("cross_role_overlap") != {
+            "component_count": 6,
+            "topic_counts": {
+                "safety_consent": 2,
+                "technique": 2,
+                "resources_general": 2,
+            },
+            "all_overlap_is_post_exhaustion_reuse": True,
+            "theoretical_minimum_for_fixed_topic_quotas": True,
+        }
         or candidate.get("inherited_q3_rejected_as_insufficient") is not True
         or len(panels) != 10
         or tuple(panel.get("name") for panel in panels) != PANEL_NAMES_V21A

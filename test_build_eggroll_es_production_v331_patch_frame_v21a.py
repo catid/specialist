@@ -88,7 +88,7 @@ def test_v21a_minimal_q6_exhausts_all_unique_before_six_reuses(rebuilt_v21a):
         "train_only_screen": {
             "panel_count": 4,
             "assignment_count": 24,
-            "within_role_unique_component_count": 23,
+            "within_role_unique_component_count": 24,
             "reuse_assignment_count": 6,
             "new_global_unique_component_count": 18,
             "topic_assignment_counts": {
@@ -98,6 +98,16 @@ def test_v21a_minimal_q6_exhausts_all_unique_before_six_reuses(rebuilt_v21a):
                 "resources_general": 4,
             },
         },
+    }
+    assert assignment["cross_role_overlap"] == {
+        "component_count": 6,
+        "topic_counts": {
+            "safety_consent": 2,
+            "technique": 2,
+            "resources_general": 2,
+        },
+        "all_overlap_is_post_exhaustion_reuse": True,
+        "theoretical_minimum_for_fixed_topic_quotas": True,
     }
 
 
@@ -155,3 +165,21 @@ def test_v21a_certificate_rejects_candidate_authority_and_quota_tampering(rebuil
     })
     with pytest.raises(RuntimeError, match="frame certificate changed"):
         frame_v21a.validate_certificate_v21a(tampered)
+
+
+def test_v21a_certificate_rejects_screen_uniqueness_and_overlap_tampering(rebuilt_v21a):
+    for path, value in (
+        (("role_summary", "train_only_screen", "within_role_unique_component_count"), 23),
+        (("cross_role_overlap", "component_count"), 5),
+    ):
+        tampered = copy.deepcopy(rebuilt_v21a)
+        target = tampered["candidate_only_assignment"]
+        for key in path[:-1]:
+            target = target[key]
+        target[path[-1]] = value
+        tampered["content_sha256_before_self_field"] = frame_v21a.canonical_sha256({
+            key: item for key, item in tampered.items()
+            if key != "content_sha256_before_self_field"
+        })
+        with pytest.raises(RuntimeError, match="frame certificate changed"):
+            frame_v21a.validate_certificate_v21a(tampered)

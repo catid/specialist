@@ -8,10 +8,20 @@
     "v19a_frame": "7ad195a55b1e51268dfba1cddb43f869b014bdb1ef329f5d73c8246ac6cbff58"
   },
   "candidate_only_assignment": {
+    "cross_role_overlap": {
+      "all_overlap_is_post_exhaustion_reuse": true,
+      "component_count": 6,
+      "theoretical_minimum_for_fixed_topic_quotas": true,
+      "topic_counts": {
+        "resources_general": 2,
+        "safety_consent": 2,
+        "technique": 2
+      }
+    },
     "every_unique_item_before_deterministic_within_topic_reuse": true,
     "inherited_q3_rejected_as_insufficient": true,
     "minimal_uniform_per_panel_quota_for_complete_topic_breadth": true,
-    "ordered_assignment_sha256": "f224d5d100e03517de1811c7a8acccf7ce2cdfb49755ea36ee2af00c2f08f5eb",
+    "ordered_assignment_sha256": "60fa4652151631dd70f0192db348420554b5f5ebe4e3150bec81e25acb348399",
     "quota_per_panel_by_topic": {
       "equipment_material": 1,
       "resources_general": 1,
@@ -45,7 +55,7 @@
           "safety_consent": 8,
           "technique": 8
         },
-        "within_role_unique_component_count": 23
+        "within_role_unique_component_count": 24
       }
     },
     "seed": 20260820,
@@ -61,7 +71,7 @@
       },
       "resources_general": {
         "all_unique_assigned_before_first_reuse": true,
-        "ordered_assignment_identity_sha256": "867d7458bae869005c0312bed78420738f261f91784b675e4d722a765d5e325c",
+        "ordered_assignment_identity_sha256": "81bf0da308a870edfec86f82b7e0b6452d5d524a12a314b93a46ba2019c6f77b",
         "population": 8,
         "quota_per_panel": 1,
         "reuse_assignments_after_exhaustion": 2,
@@ -123,7 +133,7 @@
     "source": "exact_frozen_v19a_ten_panel_base_flow",
     "train_only_screen_panel_count": 4
   },
-  "content_sha256_before_self_field": "3d0602d5252c99ce912ac0738bb16e3efdd1238e1c4724430a2675f087c01f44",
+  "content_sha256_before_self_field": "59e3352aabe851e31cf9e5ee47559051373f397d7354d3125ace821c65b118c6",
   "estimand": {
     "arm_population_denominators": {
       "production_only": 272,
@@ -647,12 +657,12 @@
           "same_arm_component_duplicate_count": 0
         },
         "production_plus_v331_patch": {
-          "active_joint_component_identity_root_sha256": "b4e5f87fc560e4d907b0637ae91532692eaa074a2aacf99365290e5c3dacf8f6",
+          "active_joint_component_identity_root_sha256": "885f4afeee227af520b00377dd5f15a550157dfab6ed01fcbad2e50e590d3911",
           "candidate_only_representatives": 6,
           "paired_candidate_replacements": 0,
           "population_denominator": 326,
           "production_representatives": 24,
-          "representative_assignment_root_sha256": "8d7d310bda7c84db768e5912d8aca30ad786ad0be899cd25ba89cc51bce86e70",
+          "representative_assignment_root_sha256": "671ff76ee9fa91fca6af76dd396a258486f28ccf26178d43c974123189ef54d1",
           "requests": 30,
           "same_arm_component_duplicate_count": 0
         }
@@ -680,7 +690,7 @@
       },
       "role": "train_only_screen",
       "selected_base_joint_component_identity_root_sha256": "72fb9e78748e90e828117d11377f9f774e8e98ff9f8aedacb905cb7fcb942617",
-      "selected_candidate_only_joint_component_identity_root_sha256": "3f8085162b05c098b8f23524f205d8fba1aa765ddfacacbd23c8793858d38a91"
+      "selected_candidate_only_joint_component_identity_root_sha256": "53a1dab1c39816d4506b1d957fb2c803e405972eebc26666242d59cf45271222"
     },
     {
       "arms": {
@@ -695,12 +705,12 @@
           "same_arm_component_duplicate_count": 0
         },
         "production_plus_v331_patch": {
-          "active_joint_component_identity_root_sha256": "03ecd937b8986a923d8ef1ff82cadaef21574318a00bebcae8444f765712aa5b",
+          "active_joint_component_identity_root_sha256": "bd9bff5da1a4e4070208d89d3104db07d40130a9996c00d7f70c5d73c6d93ef0",
           "candidate_only_representatives": 6,
           "paired_candidate_replacements": 0,
           "population_denominator": 326,
           "production_representatives": 24,
-          "representative_assignment_root_sha256": "c7be1b4ec44248f80ffb9b771e6d16fca74918d0ad036fd437526163efd96f67",
+          "representative_assignment_root_sha256": "e5e65da4a383d20e442cf1822191e2ccb616693424fd54b3bfd853d698c01fff",
           "requests": 30,
           "same_arm_component_duplicate_count": 0
         }
@@ -728,7 +738,7 @@
       },
       "role": "train_only_screen",
       "selected_base_joint_component_identity_root_sha256": "ef3911fb1c0f021f151a1ac5712f266a4aa49d342ad402ba10c1a420d079862d",
-      "selected_candidate_only_joint_component_identity_root_sha256": "5deffc8ee45407f0fec2a28b9d14b50bf4a0edf0b3cbc648dd9d5efaed471d54"
+      "selected_candidate_only_joint_component_identity_root_sha256": "7fa2e2ab3a630ba49527997c58629b9ceb3111d8574736abf22f07a963199390"
     }
   ],
   "schema": "eggroll-es-production-v331-patch-flow-certificate-v21a",
