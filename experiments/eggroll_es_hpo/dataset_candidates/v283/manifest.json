@@ -1,0 +1,155 @@
+{
+  "artifact": {
+    "candidate_role": "complete_training_candidate_replacing_production_if_promoted",
+    "is_overlay": false,
+    "path": "experiments/eggroll_es_hpo/dataset_candidates/v283/train_qa_context_merit_v283.jsonl",
+    "rows": 492,
+    "sha256": "83d14d9d42740c836b49a8ec9e4237766e9d751c827c21d4d2c79500ee4bc3b9"
+  },
+  "frozen_at": "2026-07-15",
+  "lineage": {
+    "canonical_builder": {
+      "api": "build_projection(output, report, OUTPUT_PROJECTION_CURATIONS)",
+      "path": "data/manual_reviews/context_merit_audit_v283/build_context_merit_audit_v283.py",
+      "sha256": "bcee69b9290ee8b1a28d6cc161000ad42e566ad648c2d98a37d7b4bac1a4b954"
+    },
+    "context_merit_terminal_commit": "cc2a61e",
+    "context_merit_versions": {
+      "first": 1,
+      "last": 283
+    },
+    "curation_chain": {
+      "entries": 285,
+      "root_sha256": "8657b477460ecda744e111451a7ebb724a378cdd9dc12ebb3413ee7e3f134924",
+      "root_specification": "SHA-256 over UTF-8 '<repo-relative path>\\t<file SHA-256>\\n' records in OUTPUT_PROJECTION_CURATIONS order",
+      "terminal_path": "data/manual_reviews/context_merit_audit_v283/pending_curation_context_merit_v283.jsonl",
+      "terminal_sha256": "6aec20880f56416ee8006fd7648fd178a52a40418dfd6d8121ca877e8ae552a0"
+    },
+    "production_input": {
+      "path": "data/train_qa_curated_v1.jsonl",
+      "rows": 784,
+      "sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507"
+    },
+    "production_report": {
+      "path": "data/train_qa_curated_v1.report.json",
+      "sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a"
+    },
+    "promotion_target_if_approved": "data/train_qa_curated_v1.jsonl"
+  },
+  "policy": {
+    "automated_rebuild_sealed_read_scope": "fact-ID collision exclusion and aggregate count only",
+    "evaluation_content_stored": false,
+    "manual_worker_inspected_evaluation_content": false,
+    "production_mutated_by_freeze": false,
+    "scope": "train-only"
+  },
+  "train_panel_capacity": {
+    "conflict_units": {
+      "assignment_root_sha256": "5c6adaae0ca01610a911bde737ee4dd24b47e90c03278832f5f5a9751e33222a",
+      "count": 199,
+      "grouping_rule": "Connected components under shared document_sha256, any normalized URL identifier, source_lineage raw/raw_document/raw_successor_document family, or the pinned v13 lexical-semantic cluster",
+      "per_stratum": {
+        "equipment_material": 15,
+        "resources_general": 71,
+        "safety_consent": 72,
+        "technique": 41
+      },
+      "unit_id_set_root_sha256": "90a9d3d26f3d9ec558d4010ad4a121eba5ef7ff6b5ddf7f58a591d2d448e76ac",
+      "unit_size_histogram": {
+        "1": 112,
+        "2": 36,
+        "3": 19,
+        "4": 8,
+        "5": 10,
+        "6": 6,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "13": 1,
+        "15": 1,
+        "22": 1,
+        "49": 1
+      }
+    },
+    "duplicate_and_production_conflicts": {
+      "candidate_normalized_duplicate_groups": {
+        "answer": 0,
+        "fact_id": 0,
+        "question": 0
+      },
+      "production_normalized_duplicate_groups": {
+        "answer": 33,
+        "fact_id": 0,
+        "question": 0
+      },
+      "versus_active_production": {
+        "candidate_only_fact_ids": 472,
+        "production_only_fact_ids": 764,
+        "same_fact_id_changed_normalized_qa": 0,
+        "same_fact_id_identical_normalized_qa": 20,
+        "shared_document_sha256s": 225,
+        "shared_exact_normalized_qa_pairs": 20,
+        "shared_fact_ids": 20,
+        "shared_normalized_questions": 24,
+        "shared_question_changed_answer": 4,
+        "shared_question_same_answer": 20
+      }
+    },
+    "five_panel_gate": {
+      "decision": "fail_closed_insufficient_independent_units",
+      "eligible": false,
+      "panel_count": 5,
+      "panel_size": 56,
+      "reason": "The frame has 199 conservative conflict units, fewer than the 280 globally disjoint units required; equipment/material, resources/general, and technique also miss their five-panel quotas.",
+      "required_conflict_units": 280,
+      "required_per_stratum": {
+        "equipment_material": 30,
+        "resources_general": 125,
+        "safety_consent": 45,
+        "technique": 80
+      }
+    },
+    "lexical_semantic_rule": {
+      "clusters": 492,
+      "implementation_path": "eggroll_es_train_panel_sampler_v13.py",
+      "implementation_sha256": "81ca63c230995d44dfdb739a78b4a1a0f85d09724ba5915860ae36f78ccc3da9"
+    },
+    "unique_document_sha256s": 232,
+    "url_groups": {
+      "all_normalized_identifiers": 256,
+      "normalization": "Lowercase scheme/host, collapse path slashes, remove non-root trailing slash and fragment, sort query fields, and discard only utm_*, si, fbclid, and gclid tracking fields",
+      "primary_assignment_root_sha256": "451031e0113660b5515597bd8d6a8cc63f0dbfec51b7f023711fd16c3387b49c",
+      "primary_group_count": 249,
+      "primary_group_size_histogram": {
+        "1": 147,
+        "2": 50,
+        "3": 21,
+        "4": 10,
+        "5": 10,
+        "6": 5,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "13": 1,
+        "15": 1
+      }
+    }
+  },
+  "schema": "specialist-train-only-candidate-freeze-v1",
+  "validation": {
+    "byte_identical_rebuilds": 2,
+    "duplicate_normalized_answer_groups": 0,
+    "duplicate_normalized_fact_id_groups": 0,
+    "duplicate_normalized_question_groups": 0,
+    "leak_token_matches": {
+      "</think>": 0,
+      "<|im_end|>": 0,
+      "<|im_start|>": 0
+    },
+    "projection_report_normalized_sha256": "0484f49d4d6dc17523df8f6a810f688ef4f9f3b16905b165bc1331abe1bf4cb3",
+    "resource_urls_present": 24,
+    "resource_urls_total": 24
+  }
+}
