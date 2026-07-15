@@ -1,0 +1,117 @@
+W0715 19:53:51.294000 2541122 torch/distributed/run.py:851] 
+W0715 19:53:51.294000 2541122 torch/distributed/run.py:851] *****************************************
+W0715 19:53:51.294000 2541122 torch/distributed/run.py:851] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0715 19:53:51.294000 2541122 torch/distributed/run.py:851] *****************************************
+training examples: 531; eval: 0
+{"encoding_audit": {"eos_appended": false, "prompt_mode": "es_exact", "train_answer_tokens": 13439, "train_prompt_tokens": 26379, "train_rows": 531}}
+training examples: 531; eval: 0
+{"encoding_audit": {"eos_appended": false, "prompt_mode": "es_exact", "train_answer_tokens": 13439, "train_prompt_tokens": 26379, "train_rows": 531}}
+training examples: 531; eval: 0
+{"encoding_audit": {"eos_appended": false, "prompt_mode": "es_exact", "train_answer_tokens": 13439, "train_prompt_tokens": 26379, "train_rows": 531}}
+training examples: 531; eval: 0
+{"encoding_audit": {"eos_appended": false, "prompt_mode": "es_exact", "train_answer_tokens": 13439, "train_prompt_tokens": 26379, "train_rows": 531}}
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+
+Loading weights:   0%|          | 0/693 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/693 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/693 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/693 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 693/693 [00:00<00:00, 16574.40it/s]
+
+Loading weights: 100%|██████████| 693/693 [00:00<00:00, 14195.14it/s]
+
+Loading weights: 100%|██████████| 693/693 [00:00<00:00, 14063.34it/s]
+
+Loading weights: 100%|██████████| 693/693 [00:00<00:00, 13647.54it/s]
+trainable params: 4,528,128 || all params: 34,665,138,816 || trainable%: 0.0131
+{"trainable_inventory": {"elements": 4528128, "identity_sha256": "46dbf26cf2a5c39cdb68d4858b5a6de89fa9ecb3c3007c459bba09b1cd6cec3c", "target_layers": [20, 21, 22, 23], "tensor_count": 70}}
+Traceback (most recent call last):
+  File "/home/catid/specialist/sft_lora.py", line 317, in <module>
+    main()
+  File "/home/catid/specialist/sft_lora.py", line 289, in main
+    args = TrainingArguments(
+           ^^^^^^^^^^^^^^^^^^
+TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'group_by_length'
+trainable params: 4,528,128 || all params: 34,665,138,816 || trainable%: 0.0131
+{"trainable_inventory": {"elements": 4528128, "identity_sha256": "46dbf26cf2a5c39cdb68d4858b5a6de89fa9ecb3c3007c459bba09b1cd6cec3c", "target_layers": [20, 21, 22, 23], "tensor_count": 70}}
+Traceback (most recent call last):
+  File "/home/catid/specialist/sft_lora.py", line 317, in <module>
+    main()
+  File "/home/catid/specialist/sft_lora.py", line 289, in main
+    args = TrainingArguments(
+           ^^^^^^^^^^^^^^^^^^
+TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'group_by_length'
+trainable params: 4,528,128 || all params: 34,665,138,816 || trainable%: 0.0131
+{"trainable_inventory": {"elements": 4528128, "identity_sha256": "46dbf26cf2a5c39cdb68d4858b5a6de89fa9ecb3c3007c459bba09b1cd6cec3c", "target_layers": [20, 21, 22, 23], "tensor_count": 70}}
+Traceback (most recent call last):
+  File "/home/catid/specialist/sft_lora.py", line 317, in <module>
+    main()
+  File "/home/catid/specialist/sft_lora.py", line 289, in main
+    args = TrainingArguments(
+           ^^^^^^^^^^^^^^^^^^
+TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'group_by_length'
+trainable params: 4,528,128 || all params: 34,665,138,816 || trainable%: 0.0131
+{"trainable_inventory": {"elements": 4528128, "identity_sha256": "46dbf26cf2a5c39cdb68d4858b5a6de89fa9ecb3c3007c459bba09b1cd6cec3c", "target_layers": [20, 21, 22, 23], "tensor_count": 70}}
+Traceback (most recent call last):
+  File "/home/catid/specialist/sft_lora.py", line 317, in <module>
+    main()
+  File "/home/catid/specialist/sft_lora.py", line 289, in main
+    args = TrainingArguments(
+           ^^^^^^^^^^^^^^^^^^
+TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'group_by_length'
+E0715 19:53:56.285000 2541122 torch/distributed/elastic/multiprocessing/api.py:986] failed (exitcode: 1) local_rank: 0 (pid: 2541200) of binary: /home/catid/specialist/.venv/bin/python3
+Traceback (most recent call last):
+  File "/home/catid/specialist/.venv/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/catid/specialist/.venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 362, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/catid/specialist/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 990, in main
+    run(args)
+  File "/home/catid/specialist/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 981, in run
+    elastic_launch(
+  File "/home/catid/specialist/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 170, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catid/specialist/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 317, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/home/catid/specialist/sft_lora.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-07-15_19:53:56
+  host      : foureyes
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 2541201)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2026-07-15_19:53:56
+  host      : foureyes
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 2541202)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[3]:
+  time      : 2026-07-15_19:53:56
+  host      : foureyes
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 2541203)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-07-15_19:53:56
+  host      : foureyes
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2541200)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

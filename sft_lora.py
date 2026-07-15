@@ -131,6 +131,32 @@ def parse_target_layers(value):
         raise ValueError("target layers must be comma-separated values in [0, 39]")
     return layers
 
+
+def training_argument_kwargs(arguments, output_dir, has_eval):
+    """Return only arguments supported by the live Transformers API."""
+    return dict(
+        output_dir=output_dir,
+        num_train_epochs=arguments.epochs,
+        per_device_train_batch_size=arguments.per_device_batch_size,
+        gradient_accumulation_steps=arguments.grad_accum,
+        learning_rate=arguments.learning_rate,
+        lr_scheduler_type="cosine",
+        warmup_ratio=0.03,
+        logging_steps=10,
+        save_strategy="steps",
+        save_steps=arguments.save_steps,
+        save_total_limit=3,
+        bf16=True,
+        report_to=[],
+        ddp_find_unused_parameters=False,
+        gradient_checkpointing=arguments.gradient_checkpointing,
+        dataloader_num_workers=2,
+        dataloader_pin_memory=True,
+        seed=arguments.seed,
+        eval_strategy="steps" if has_eval else "no",
+        eval_steps=arguments.save_steps if has_eval else None,
+    )
+
 def main():
     import argparse
     ap = argparse.ArgumentParser()
@@ -286,22 +312,7 @@ def main():
         }
     }, sort_keys=True), flush=True)
 
-    args = TrainingArguments(
-        output_dir=OUT,
-        num_train_epochs=a.epochs,
-        per_device_train_batch_size=a.per_device_batch_size,
-        gradient_accumulation_steps=a.grad_accum,
-        learning_rate=a.learning_rate,
-        lr_scheduler_type="cosine", warmup_ratio=0.03,
-        logging_steps=10, save_strategy="steps", save_steps=a.save_steps,
-        save_total_limit=3, bf16=True,
-        report_to=[], ddp_find_unused_parameters=False,
-        gradient_checkpointing=a.gradient_checkpointing,
-        dataloader_num_workers=2, dataloader_pin_memory=True,
-        group_by_length=True, seed=a.seed,
-        eval_strategy="steps" if eval_ds is not None else "no",
-        eval_steps=a.save_steps if eval_ds is not None else None,
-    )
+    args = TrainingArguments(**training_argument_kwargs(a, OUT, eval_ds is not None))
     trainer_class = ExampleMeanTrainer if a.loss_mode == "example_mean" else Trainer
     trainer = trainer_class(
         model=model, args=args, train_dataset=ds, eval_dataset=eval_ds,

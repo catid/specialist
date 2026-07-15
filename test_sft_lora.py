@@ -2,11 +2,14 @@
 from __future__ import annotations
 
 import unittest
+import argparse
+import inspect
 from types import SimpleNamespace
 
 import torch
 
 import sft_lora
+from transformers import TrainingArguments
 
 
 class FakeTokenizer:
@@ -82,6 +85,23 @@ class SFTLoRATest(unittest.TestCase):
             },
         )
         self.assertTrue(torch.allclose(observed, expected))
+
+    def test_training_arguments_match_live_transformers_signature(self):
+        arguments = argparse.Namespace(
+            epochs=3.0,
+            per_device_batch_size=7,
+            grad_accum=1,
+            learning_rate=1e-4,
+            save_steps=19,
+            gradient_checkpointing=True,
+            seed=17,
+        )
+        kwargs = sft_lora.training_argument_kwargs(arguments, "out", False)
+        supported = set(inspect.signature(TrainingArguments).parameters)
+        self.assertLessEqual(set(kwargs), supported)
+        self.assertNotIn("group_by_length", kwargs)
+        instantiated = TrainingArguments(**kwargs)
+        self.assertEqual(instantiated.per_device_train_batch_size, 7)
 
 
 if __name__ == "__main__":

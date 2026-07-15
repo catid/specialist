@@ -14,6 +14,7 @@ RUN_DIR = (ROOT / "experiments/sft_controls/v36a_v412").resolve()
 DATASET = RUN_DIR / "train_v412.jsonl"
 OUTPUT_DIR = RUN_DIR / "middle_late_r32_seed17"
 PREREGISTRATION = RUN_DIR / "preregistration_v36a.json"
+ARTIFACT_TAG = "v36a"
 LAYER_PLAN = (ROOT / "experiments/layer_plans/middle_late_dense_v6.json").resolve()
 
 EXPECTED = {
@@ -36,10 +37,10 @@ def _arguments():
         "--dataset-sha256", EXPECTED["dataset_sha256"],
         "--dataset-rows", str(EXPECTED["dataset_rows"]),
         "--output-dir", str(OUTPUT_DIR),
-        "--stdout-log", str(RUN_DIR / "stdout_v36a.log"),
-        "--gpu-log", str(RUN_DIR / "gpu_activity_v36a.jsonl"),
-        "--report", str(RUN_DIR / "runtime_report_v36a.json"),
-        "--attempt-report", str(RUN_DIR / "attempt_v36a.json"),
+        "--stdout-log", str(RUN_DIR / f"stdout_{ARTIFACT_TAG}.log"),
+        "--gpu-log", str(RUN_DIR / f"gpu_activity_{ARTIFACT_TAG}.jsonl"),
+        "--report", str(RUN_DIR / f"runtime_report_{ARTIFACT_TAG}.json"),
+        "--attempt-report", str(RUN_DIR / f"attempt_{ARTIFACT_TAG}.json"),
         "--preregistration", str(PREREGISTRATION),
         "--preregistration-sha256", "PENDING",
         "--preregistration-content-sha256", "PENDING",
@@ -102,10 +103,10 @@ def build():
         },
         "artifacts": {
             "output_dir": str(OUTPUT_DIR),
-            "stdout_log": str(RUN_DIR / "stdout_v36a.log"),
-            "gpu_log": str(RUN_DIR / "gpu_activity_v36a.jsonl"),
-            "report": str(RUN_DIR / "runtime_report_v36a.json"),
-            "attempt_report": str(RUN_DIR / "attempt_v36a.json"),
+            "stdout_log": str(RUN_DIR / f"stdout_{ARTIFACT_TAG}.log"),
+            "gpu_log": str(RUN_DIR / f"gpu_activity_{ARTIFACT_TAG}.jsonl"),
+            "report": str(RUN_DIR / f"runtime_report_{ARTIFACT_TAG}.json"),
+            "attempt_report": str(RUN_DIR / f"attempt_{ARTIFACT_TAG}.json"),
         },
         "comparison_binding": {
             "eggroll_es_layer_plan": str(LAYER_PLAN),
