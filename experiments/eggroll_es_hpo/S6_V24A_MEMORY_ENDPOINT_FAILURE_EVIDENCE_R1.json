@@ -1,0 +1,69 @@
+{
+  "authoritative_replacement_endpoint": {
+    "assignment_semantics": "self.model_memory_usage = m.consumed_memory",
+    "gpu_worker_source": {
+      "file_sha256": "7e00284da7b453154af47300630483ed7ea5a5d79e724c5ee61d4a24edaf930e",
+      "relative_path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py",
+      "weights_memory_use_line": 466
+    },
+    "measured_after_model_load_before_scoring": true,
+    "model_runner_source": {
+      "assignment_line": 5294,
+      "file_sha256": "6c92ded8468f44d6df863a617ce588f132fa6df7031feecc0cc421702a41610e",
+      "load_log_line": 5307,
+      "relative_path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py"
+    },
+    "name": "vllm_model_load_consumed_bytes",
+    "rpc_expression": "int(self.model_runner.model_memory_usage)",
+    "used_for_retry_memory_gate": true
+  },
+  "authority": {
+    "dataset_content_inspected": false,
+    "evaluation_opened": false,
+    "model_selection_allowed": false,
+    "train_only_instrumentation_diagnosis": true
+  },
+  "content_sha256_before_self_field": "0773a2b4b24d53723da51b517970f50f2cb15bf5ced46c872e8d584b761fb594",
+  "failed_attempt": {
+    "compact_report_absent": true,
+    "compact_report_relative_path": "experiments/eggroll_es_hpo/runs/s6_v24a_hybrid_backend_train_only_compatibility_runtime/hybrid_backend_compatibility_v24a.json",
+    "configuration_not_persisted": true,
+    "content_sha256": "31679c585b49256572b7e86e60b23753481d4fb7911cb1a5c863a4528b35deaa",
+    "failure_type": "SystemExit",
+    "file_sha256": "4d33a25c394efeb350dd03761e018d18bb29146315ff945152757ae01f833390",
+    "model_update_applied": false,
+    "nontrain_surface_opened": false,
+    "phase": "inside_v24a_train_only_runtime",
+    "recipe_content_sha256": "10b9409ce939a132f95d8da9011d9dc8e649bd4ccc47ec93d25d855032efa1c8",
+    "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v24a_hybrid_backend_train_only_compatibility_runtime.launch_attempt.json",
+    "source_git_head": "cb52c1a5960d7cd68d7046cf09f84d482d71ad1e",
+    "source_implementation_bundle_sha256": "8e55cd04379382fd4e33b913fb87a934b6142a062e40144a6633aaf249a49bf2",
+    "source_provenance_content_sha256": "db0e6fc457e93e218a9801b55b88ed505f9b063a453e597868c3fda18e9c7262",
+    "status": "failed"
+  },
+  "invalid_original_memory_endpoint": {
+    "contemporaneous_approximate_mib": {
+      "bf16": 82484,
+      "hybrid": 82508
+    },
+    "equalized_by_fixed_gpu_memory_utilization": true,
+    "excluded_from_retry_memory_gate": true,
+    "fixed_gpu_memory_utilization": 0.82,
+    "forty_percent_reduction_gate_capable": false,
+    "includes_vllm_kv_cache_reservation": true,
+    "name": "post_warmup_nvml_resident_bytes",
+    "observed_hybrid_not_lower_than_bf16": true,
+    "original_source": "pynvml.nvmlDeviceGetMemoryInfo(handle).used",
+    "retained_as_diagnostic": true
+  },
+  "retry_scope": {
+    "abort_before_reference_a_b_or_first_perturbation_on_failure": true,
+    "all_arms_basis_panels_schedule_quality_speed_bootstrap_and_guards_unchanged": true,
+    "duplicate_backend_values_must_match_exactly": true,
+    "memory_reduction_threshold": 0.4,
+    "sole_semantic_repair": "replace post-warmup NVML gate input with exact vLLM model-load-consumed bytes"
+  },
+  "row_response_score_or_bootstrap_content_persisted": false,
+  "schema": "eggroll-es-v24a-memory-endpoint-failure-evidence-r1",
+  "traceback_or_model_repr_persisted": false
+}
