@@ -1,0 +1,78 @@
+{
+  "aggregate_result": {
+    "all_per_batch_gates_passed": true,
+    "batch_1024": {
+      "median_speedup": 1.1209752402917341,
+      "pass": true,
+      "repetitions": 5,
+      "tuned_faster_repetitions": 5
+    },
+    "batch_2048": {
+      "median_speedup": 1.0155353235485465,
+      "pass": true,
+      "repetitions": 5,
+      "tuned_faster_repetitions": 5
+    },
+    "batch_256": {
+      "median_speedup": 1.055909609745163,
+      "pass": true,
+      "repetitions": 5,
+      "tuned_faster_repetitions": 5
+    },
+    "batch_512": {
+      "median_speedup": 1.0246098951794156,
+      "pass": true,
+      "repetitions": 5,
+      "tuned_faster_repetitions": 5
+    },
+    "global_gate_passed": true,
+    "global_geometric_mean_speedup": 1.0534625119555665,
+    "required_global_geometric_mean_speedup": 1.03
+  },
+  "artifacts": {
+    "attempt": {
+      "content_sha256": "7453f80cc10c85e8b5ff39bfaf70f90f0b7c38c84497a42b75cc9e5fdeb7c85d",
+      "file_sha256": "048f2347b43e5b2646ca6088ceb2b5138f3948594ece827a9927cbf67d57e204",
+      "phase": "after_compact_report",
+      "status": "complete"
+    },
+    "complete_log_bytes": 9263,
+    "complete_log_sha256": "f5b5fe67f3745428adcecfc6015cdaa3aeb1f529cef09db76e8b61bc9facba74",
+    "report": {
+      "content_sha256": "91b658edc89249020c3860bfd414bb33725e63e8419ce12c0fbee1dba751f6de",
+      "file_sha256": "94b322a7dc90f5d142ace058d9f3d682edb3349935614ed551fa105486934dfb"
+    }
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "c6a58230dd221fbf1f18baa67144672fa37ad1fcb81e81af12cca9eaf0ec8b20",
+  "contracts": {
+    "base_evaluation_preregistration_commit": "2572204429cf2b016d0a001086d309b582b97724",
+    "identity_retry_preregistration_commit": "1c35946ea688950b2ff577a8c24620acd2dc7ea4",
+    "identity_retry_preregistration_content_sha256": "0a1f394a869deb3af75e8d2bd53043988909e6def0f969dc5254def761255eeb",
+    "identity_retry_runtime_commit": "6987c3a",
+    "implementation_bundle_sha256": "8a339a76b9fd6bb1535ce3dcfe0fb036e5ab57f42acf3cff32b4c3896af5da36",
+    "official_tuner_sha256": "230151de56d177ac22920ff9dada010f4361933b34b54e18d5981367723a8bcf",
+    "selected_table_content_sha256": "a4f82f53b037f766536013bdc10c8ca1e49873603a8f44972ef8007ed406de84",
+    "selected_table_file_sha256": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562"
+  },
+  "decision": {
+    "authorize_separate_end_to_end_train_only_runtime_ab_preregistration": true,
+    "direct_recipe_adoption_authorized": false,
+    "model_update_checkpoint_dataset_promotion_authorized": false,
+    "validation_heldout_ood_or_benchmark_open_authorized": false
+  },
+  "runtime_integrity": {
+    "all_four_physical_gpu_ids_canonicalized_and_verified_each_arm": true,
+    "all_processes_exit_zero": true,
+    "alternating_arm_order_unchanged": true,
+    "default_arm_generic_fallback_verified_each_repetition": true,
+    "exactly_four_one_gpu_workers_per_arm": true,
+    "fresh_ray_arm_count": 10,
+    "official_iterations_per_worker": 100,
+    "repetition_count": 5,
+    "tuned_arm_exact_committed_table_load_verified_each_repetition": true
+  },
+  "schema": "vllm-moe-tuning-evaluation-positive-evidence-v27d",
+  "status": "valid_completed_paired_kernel_gate_passed"
+}
