@@ -1,0 +1,196 @@
+{
+  "conflict_unit_strata": {
+    "equipment_material": 23,
+    "resources_general": 84,
+    "safety_consent": 81,
+    "technique": 71
+  },
+  "content_sha256_before_self_field": "417ba17e0cbaad30ac8d60fa1ce58acdbbffbff1052695ae3e2005bd43504b5a",
+  "coverage": {
+    "all_fold_shadow_dev_rows": 531,
+    "all_fold_train_rows": 2124,
+    "each_source_row_shadow_dev_count": 1,
+    "each_source_row_train_count": 4
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "shadow_dev": {
+        "conflict_units": 54,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_0_shadow_dev.jsonl",
+        "rows": 159,
+        "sha256": "0b807e7f31947460f8dcf36f9f65a2da642f6b96213539d018fab246ddab3ce4"
+      },
+      "shadow_dev_row_strata": {
+        "equipment_material": 20,
+        "resources_general": 42,
+        "safety_consent": 70,
+        "technique": 27
+      },
+      "shadow_dev_unit_strata": {
+        "equipment_material": 5,
+        "resources_general": 17,
+        "safety_consent": 17,
+        "technique": 15
+      },
+      "train": {
+        "conflict_units": 205,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_0_train.jsonl",
+        "rows": 372,
+        "sha256": "84ca9dcf1d4b59ec12ddb1116462b93e5b9effc4aedba2139fa8d55814d610f1"
+      },
+      "train_dev_conflict_unit_intersection": 0,
+      "train_dev_document_sha256_intersection": 0
+    },
+    {
+      "fold": 1,
+      "shadow_dev": {
+        "conflict_units": 52,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_1_shadow_dev.jsonl",
+        "rows": 123,
+        "sha256": "42caa61107bf9bc221ba04623a948923f3df4c07026ec957e1799733e746734d"
+      },
+      "shadow_dev_row_strata": {
+        "equipment_material": 9,
+        "resources_general": 54,
+        "safety_consent": 30,
+        "technique": 30
+      },
+      "shadow_dev_unit_strata": {
+        "equipment_material": 5,
+        "resources_general": 17,
+        "safety_consent": 16,
+        "technique": 14
+      },
+      "train": {
+        "conflict_units": 207,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_1_train.jsonl",
+        "rows": 408,
+        "sha256": "77a7d184ca38ade973593e738ad50a5c0eda111c9cd2b823e0d0eace99eedab0"
+      },
+      "train_dev_conflict_unit_intersection": 0,
+      "train_dev_document_sha256_intersection": 0
+    },
+    {
+      "fold": 2,
+      "shadow_dev": {
+        "conflict_units": 52,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_2_shadow_dev.jsonl",
+        "rows": 79,
+        "sha256": "ff6e799629a6d578e9e985a4af42112312c1d93293f329f465c2ad9baeccdafb"
+      },
+      "shadow_dev_row_strata": {
+        "equipment_material": 7,
+        "resources_general": 28,
+        "safety_consent": 21,
+        "technique": 23
+      },
+      "shadow_dev_unit_strata": {
+        "equipment_material": 5,
+        "resources_general": 17,
+        "safety_consent": 16,
+        "technique": 14
+      },
+      "train": {
+        "conflict_units": 207,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_2_train.jsonl",
+        "rows": 452,
+        "sha256": "928376a67ac78633dd709728c6a7e1bf6b76353c74254b97be1f02bf7508c2e2"
+      },
+      "train_dev_conflict_unit_intersection": 0,
+      "train_dev_document_sha256_intersection": 0
+    },
+    {
+      "fold": 3,
+      "shadow_dev": {
+        "conflict_units": 51,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_shadow_dev.jsonl",
+        "rows": 83,
+        "sha256": "6d5b72f7506a752fd5275425739ec785e25f0ff486f5c03b68e91c8e99d7ebeb"
+      },
+      "shadow_dev_row_strata": {
+        "equipment_material": 5,
+        "resources_general": 22,
+        "safety_consent": 31,
+        "technique": 25
+      },
+      "shadow_dev_unit_strata": {
+        "equipment_material": 4,
+        "resources_general": 17,
+        "safety_consent": 16,
+        "technique": 14
+      },
+      "train": {
+        "conflict_units": 208,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_train.jsonl",
+        "rows": 448,
+        "sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a"
+      },
+      "train_dev_conflict_unit_intersection": 0,
+      "train_dev_document_sha256_intersection": 0
+    },
+    {
+      "fold": 4,
+      "shadow_dev": {
+        "conflict_units": 50,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_4_shadow_dev.jsonl",
+        "rows": 87,
+        "sha256": "f033db8b59e2e6285a4b792bab2189cb6ee833b15e8ab8dae0ffd0f1804c19a8"
+      },
+      "shadow_dev_row_strata": {
+        "equipment_material": 7,
+        "resources_general": 29,
+        "safety_consent": 30,
+        "technique": 21
+      },
+      "shadow_dev_unit_strata": {
+        "equipment_material": 4,
+        "resources_general": 16,
+        "safety_consent": 16,
+        "technique": 14
+      },
+      "train": {
+        "conflict_units": 209,
+        "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_4_train.jsonl",
+        "rows": 444,
+        "sha256": "2d928482436796d3b2c0ad37cfa531237923534faae73c12d2840a4eb8f9fbe4"
+      },
+      "train_dev_conflict_unit_intersection": 0,
+      "train_dev_document_sha256_intersection": 0
+    }
+  ],
+  "policy": {
+    "assignment": "within each dominant stratum, keyed permutation then round-robin assignment across five folds",
+    "component_edges": [
+      "shared document_sha256",
+      "shared normalized URL",
+      "shared raw/raw_document/raw_successor_document lineage",
+      "shared frozen V13 lexical-semantic cluster"
+    ],
+    "conflict_units": 259,
+    "external_evaluation_ood_holdout_or_benchmark_opened": false,
+    "fold_count": 5,
+    "master_seed": "specialist-v37a-train-shadow-conflict-folds-20260715"
+  },
+  "schema": "specialist-train-shadow-conflict-folds-v37a",
+  "selection_firewall": {
+    "allowed": [
+      "fold-train optimization",
+      "frozen shadow-dev aggregate metrics"
+    ],
+    "forbidden": [
+      "external validation",
+      "OOD",
+      "holdout",
+      "judge feedback",
+      "benchmark feedback",
+      "moving a conflict unit between folds"
+    ]
+  },
+  "source": {
+    "path": "/home/catid/specialist/experiments/sft_controls/v36a_v412/train_v412.jsonl",
+    "rows": 531,
+    "sha256": "44a5482e49073d23a35bdc4c574d6c52c9e8d7f946559dfa722dda16eec5882b"
+  },
+  "status": "frozen_train_derived_not_external_evaluation"
+}
