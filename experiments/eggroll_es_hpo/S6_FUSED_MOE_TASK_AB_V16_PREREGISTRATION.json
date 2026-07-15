@@ -1,0 +1,237 @@
+{
+  "arms": {
+    "default_triton": {
+      "VLLM_TUNED_CONFIG_FOLDER": null,
+      "moe_backend": "triton"
+    },
+    "only_intended_difference": "exact_tuned_config_folder_activation",
+    "order": [
+      "default_triton",
+      "tuned_triton"
+    ],
+    "same_model_panels_basis_generation_and_hardware": true,
+    "tuned_triton": {
+      "VLLM_TUNED_CONFIG_FOLDER": "/home/catid/specialist/experiments/vllm_moe_tuning/v026_rtx_pro_6000_bf16_tp1_pruned",
+      "config_file_sha256": "a6fbb265df9527d0024d531a1779dc19ecb416f80c873036d9713a2fdce9df2d",
+      "moe_backend": "triton"
+    }
+  },
+  "contains_validation_ood_heldout_or_benchmark_content": false,
+  "content_sha256_before_self_field": "82569802ad89a0c3c92e4bb0a28a2db867a0bcb01ab7268ff9ab6048558a115c",
+  "evidence": {
+    "benchmark": {
+      "exact_output_identity": true,
+      "file_sha256": "29a6c21492ef71d326590e959f7cc4228d0185abdac691938f43e9324826ab52",
+      "path": "/home/catid/specialist/experiments/vllm_moe_tuning/v026_rtx_pro_6000_bf16_tp1_pruned/benchmark_evidence.json",
+      "sealed_median_time_speedup": 1.1704957009439074,
+      "sealed_worst_per_gpu_speedup": 1.1646831453362367
+    },
+    "config_commit": "82cdf8e2babfa99aafdbd2eac1233571c56feca1",
+    "end_to_end_commit": "7cb80e6ba8310c8556e1093a77d80526072c7ad7",
+    "tuned_config": {
+      "file_sha256": "a6fbb265df9527d0024d531a1779dc19ecb416f80c873036d9713a2fdce9df2d",
+      "path": "/home/catid/specialist/experiments/vllm_moe_tuning/v026_rtx_pro_6000_bf16_tp1_pruned/E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition.json"
+    },
+    "v13": {
+      "content_sha256": "06f662574013345a6c777af8688a38f3941286d9e11a427ed3342de53451b1e3",
+      "file_sha256": "d367c9c4de1e1f3526ddb3dfba2f5bf24efc77cbccf951f7359eb1969fcd7b54",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V13B_TRAIN_PANEL_AGGREGATE_EVIDENCE_V14A.json",
+      "stability": {
+        "aggregate_to_optimization_cosine": {
+          "count": 3,
+          "median": 0.7608236805612648,
+          "worst": 0.7082628389768383
+        },
+        "aggregate_to_optimization_sign_agreement": {
+          "count": 3,
+          "median": 0.8125,
+          "worst": 0.75
+        },
+        "all_panel_spreads_nonzero": true,
+        "optimization_pairwise_cosine": {
+          "count": 3,
+          "median": 0.47411088498906484,
+          "worst": 0.3900621868364503
+        },
+        "optimization_pairwise_sign_agreement": {
+          "count": 3,
+          "median": 0.59375,
+          "worst": 0.5625
+        },
+        "robust_aggregate": {
+          "coefficient_sha256": "9610b67262227360380d72bf957fb4cb9d6624ea7bb3ad3d613912ccd7e270af",
+          "l2_norm": 4.903904218736408,
+          "nonzero_coordinate_count": 32
+        },
+        "train_screen_cosine": {
+          "count": 2,
+          "median": 0.3936314430866483,
+          "worst": 0.314941371734614
+        },
+        "train_screen_sign_agreement": {
+          "count": 2,
+          "median": 0.65625,
+          "worst": 0.53125
+        }
+      }
+    }
+  },
+  "experiment_name": "snapshot794_system_v16_fused_moe_default_vs_tuned_v13_five_panels_alpha_zero_basis20260714",
+  "firewall": {
+    "all_evaluation_surfaces_remain_closed": true,
+    "forbidden": [
+      "validation",
+      "OOD",
+      "heldout",
+      "benchmark outcomes",
+      "model update",
+      "architecture change",
+      "data HPO",
+      "post-hoc timing endpoint or shape selection"
+    ]
+  },
+  "hardware": {
+    "all_four_gpus_required_every_signed_wave": true,
+    "engine_count": 4,
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "partial_waves_allowed": false,
+    "population_waves": 8,
+    "signed_waves": 16,
+    "tp_per_engine": 1
+  },
+  "hypothesis": "the exact committed RTX Pro fused-MoE config improves generation-only V13 five-panel diagnostic time without changing any dense output hash or compact estimator result",
+  "hypothesis_count": 1,
+  "integrity": {
+    "all_four_engines_must_participate_every_signed_wave": true,
+    "committed_source_bundle_required": true,
+    "exact_reference_restoration_after_every_sign": true,
+    "fresh_o_excl_attempt_and_run_required": true,
+    "persist_response_vectors_row_prompt_or_answer_content": false,
+    "population_boundary_audit_required": true,
+    "pre_post_base_probe_must_match_exactly": true,
+    "report_and_attempt_self_hashes_required": true
+  },
+  "promotion_gate": {
+    "all_integrity_restoration_and_hardware_audits_required": true,
+    "all_rules_conjunctive": true,
+    "exact_equivalence": {
+      "compact_estimator_equal": true,
+      "dense_result_manifest_sha256_equal": true,
+      "diagnostic_content_sha256_equal": true,
+      "task_output_sha256_equal": true
+    },
+    "failure_decision": "keep_tuned_config_disabled_and_retain_default_triton_v13",
+    "pass_decision": "authorize_only_opt_in_tuned_config_for_a_later_separately_preregistered_training_experiment",
+    "pass_does_not_authorize_model_update_or_evaluation": true,
+    "timing": {
+      "minimum_median_paired_wave_speedup": 1.05,
+      "minimum_nonregressive_wave_count": 14,
+      "minimum_total_generation_time_speedup": 1.05,
+      "post_hoc_shapes_repetitions_or_endpoints_allowed": false,
+      "required_wave_count": 16,
+      "threshold_justification": "five_percent_is_a_material_conservative_fraction_of_the_sealed_17.05_percent_median_and_16.47_percent_worst_gpu_synthetic_gain_under_task_shape_shift"
+    }
+  },
+  "required_runtime_adapter": {
+    "real_launch_requires_fresh_committed_implementation_bundle": true,
+    "required_files": [
+      "train_eggroll_es_fused_moe_task_ab_v16.py",
+      "run_eggroll_es_fused_moe_task_ab_v16.py",
+      "test_eggroll_es_fused_moe_task_ab_runtime_v16.py"
+    ],
+    "runtime_not_authorized_by_this_preregistration_commit": true,
+    "status": "not_yet_implemented"
+  },
+  "schema": "eggroll-es-fused-moe-task-ab-preregistration-v16",
+  "selection_surface": "exact_frozen_v13_train_panels_only",
+  "separation": {
+    "failed_v15b_architecture_result_used": false,
+    "no_model_or_data_hpo": true,
+    "retained_model_recipe": "V13 middle-late layers 20-23",
+    "systems_ab_only": true
+  },
+  "status": "preregistered_runtime_not_yet_authorized",
+  "task": {
+    "alpha": 0.0,
+    "generation_seed": 43,
+    "layer_plan": "V13 middle-late layers 20-23",
+    "max_tokens": 1,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "model_update_allowed": false,
+    "panel_bundle_content_sha256": "cc176a9b86c6447dcde8a11fd28d68c837d2119715126c57a3f37293fb0d492b",
+    "panel_identities": {
+      "optimization_0": "680f93cde737ba1a18539d5dd58c756ff6f3436bdffa247cb05174926f944c1d",
+      "optimization_1": "84adafc1bcf9ac55fd465c1d85f344349ba2b12d22b2d1c3515a7ec3f59a55f7",
+      "optimization_2": "d54b92cf9102276ad80345f2d182267c18664a86fda24dc8e159396b2460b230",
+      "train_screen_0": "b0fda37f28f3f3d0d2a043ba5ad94e32326e1a35167cf5839a269dd910325473",
+      "train_screen_1": "9ee454ef6a13968c7476f6af9c1847a1b5cb7f50d0cc67388372a8f71c8e3c33"
+    },
+    "panel_names": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "panel_size": 56,
+    "perturbation_basis": {
+      "basis_seed": 20260714,
+      "basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+      "seed_sha256": "07fa4900cd10fd17b678355389adcfa4f5ac7ec356be46088466cd32b032e6e1",
+      "seeds": [
+        140002291,
+        1028842752,
+        480373990,
+        1037026679,
+        759861149,
+        227761095,
+        428721957,
+        150663570,
+        863156398,
+        658045682,
+        947615772,
+        615729462,
+        958574585,
+        1048698881,
+        573870406,
+        938961107,
+        635418192,
+        42810614,
+        120988352,
+        643498157,
+        552296232,
+        491294404,
+        607579228,
+        525239262,
+        401755469,
+        1009385806,
+        266538765,
+        936309830,
+        1063141744,
+        575175855,
+        1010837104,
+        983113236
+      ]
+    },
+    "prompts_per_direction_and_sign": 280,
+    "sign_order": [
+      "plus",
+      "minus"
+    ],
+    "temperature": 0.0
+  },
+  "timing_protocol": {
+    "boundary": "only blocking four-engine generation resolve for each signed wave; excludes init, model load, graph capture, JIT warmup, perturb, restore, scoring, analysis, and cleanup",
+    "clock": "time.perf_counter_ns",
+    "compact_wave_seconds_persisted": true,
+    "paired_wave_order": "same frozen basis order and plus-minus order in both arms",
+    "raw_content_persisted": false,
+    "timed_signed_wave_count_per_arm": 16,
+    "unmeasured_warmup": "one exact combined-five-panel reference generation call per engine after init and before timed signed waves"
+  }
+}
