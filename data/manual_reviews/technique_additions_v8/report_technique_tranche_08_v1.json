@@ -1,0 +1,47 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/technique_additions_v8/pending_additions_technique_tranche_08_v1.jsonl",
+    "rows": 3,
+    "sha256": "211c2e4dfcfe22e4daa77fe893c16f93f82bd1c40c2fabcc1f314d763ef506db"
+  },
+  "baseline": {
+    "rows": 513,
+    "sha256": "9038c7b518e2962083f6579dddd257b9e19f7e00b8119b9f5fd8bc0a1421ae4c"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v296 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded technique fact from each of three new documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "technique": 3
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-technique-additions-v8",
+  "schema": "manual-technique-additions-report-v8",
+  "sources": {
+    "asymmetric_harness_methods": {
+      "document_sha256": "f97e46428df4c106cdcc0832792441b2e749e384d706ae0e2ccc3ab8a8aa4e77",
+      "file_sha256": "3d22c286f2c1b61cbec129acd2b4b3e2272329ea95a07e523b85540a7847b377",
+      "path": "data/raw/rope_resources_v1/rope365__b6a3b96502814b070a59.json",
+      "url": "https://rope365.com/chestasymmetry/"
+    },
+    "front_stem_attachment": {
+      "document_sha256": "f33691052bb0ee1da4ca61ca79a77754eb0ab1f1f4cb493e0710bcbee5bd940f",
+      "file_sha256": "f3c5740ed5b099ba371432d82493ac7c648cbdb7e6f264730344f92f3c0e8031",
+      "path": "data/raw/rope_resources_v1/rope365__f85b7dd6c9c6a4a08bfd.json",
+      "url": "https://rope365.com/box-tie-front-v/"
+    },
+    "narrow_cinch_bulk": {
+      "document_sha256": "01d185cbe42ecafaaba10ec01769a54036c943309b2fcb82ed6bbe8b53fab15e",
+      "file_sha256": "df7ab014757b2095474febdc58b8cc0adbb77cfabf853678b3825dc3383c1b5d",
+      "path": "data/raw/rope_resources_v1/rope365__4b71bf74a2741be37598.json",
+      "url": "https://rope365.com/frog-cinches/"
+    }
+  },
+  "status": "segregated_pending_integration"
+}
