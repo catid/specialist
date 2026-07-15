@@ -1,0 +1,45 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/learning_method_additions_v20/pending_additions_learning_method_tranche_20_v1.jsonl",
+    "rows": 3,
+    "sha256": "18db883efaab6ed5faf552b07fb49ca33a9b68c20401fe73579bd4c5982c2ee4"
+  },
+  "baseline": {
+    "rows": 548,
+    "sha256": "24ecadeeff3e4d7fc726e4dcc2429fb154843fb37477f5a02e45a9dd05b36da5"
+  },
+  "excluded_source": [
+    {
+      "decision": "reject",
+      "reason": "The page offers attachment ideas but no anchor-integrity or load check, so no unstated safety rule was inferred.",
+      "url": "https://rope365.com/bed/"
+    },
+    {
+      "decision": "reject",
+      "reason": "Its prerequisite navigation duplicates the existing Spring curriculum row.",
+      "url": "https://rope365.com/fall/"
+    },
+    {
+      "decision": "reject",
+      "reason": "Its navigation is redundant and its catalog includes unsafe self-choking and other high-risk prompts.",
+      "url": "https://rope365.com/winter/"
+    }
+  ],
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v308 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "three distinct learning lessons from one fully reviewed new document; counted as one conservative conflict unit"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 1,
+    "expected_strata": {
+      "safety_consent": 1,
+      "technique": 2
+    },
+    "urls": 1
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-learning-method-additions-v20",
+  "schema": "manual-learning-method-additions-report-v20",
+  "status": "segregated_pending_integration"
+}
