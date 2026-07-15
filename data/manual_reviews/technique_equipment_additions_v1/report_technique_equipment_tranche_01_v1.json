@@ -1,0 +1,49 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/technique_equipment_additions_v1/pending_additions_technique_equipment_tranche_01_v1.jsonl",
+    "rows": 3,
+    "sha256": "058cb668b8a243b1656d52dde21b93f19229d76d0408c6e6bce3b7b494169cf9"
+  },
+  "baseline": {
+    "path": "/tmp/deterministic-v289-projection",
+    "rows": 492,
+    "sha256": "17948a72bd383f9445f269567c1fe4964468cecc5892259cb88cfcaf217a5cdb"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v289 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one useful fact from each of three distinct, previously unrepresented source documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "equipment_material": 2,
+      "technique": 1
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-technique-equipment-additions-v1",
+  "schema": "manual-technique-equipment-additions-report-v1",
+  "sources": {
+    "carabiner_profile": {
+      "document_sha256": "80aeef8bde68b0d4c6109f004eedef239ce0ba5d1aaa0a2d998d8c29f581fae7",
+      "file_sha256": "dec9f9d59ad0af3cada607c35feb18ac6e0f7770b6f5ff0cdb69e5eacfe87561",
+      "path": "data/raw/rope_resources_v1/rope365__917bc6534539143cae83.json",
+      "url": "https://rope365.com/knis-equipment-primer/"
+    },
+    "extension_tradeoff": {
+      "document_sha256": "c7726534db53d49cbeff183b3658be1bf18b117bd6f92293c56b978059f9bb88",
+      "file_sha256": "e43d6d6a8894bb834bd584c12b81150231b3e831305a950698a320426d9deb4e",
+      "path": "data/raw/rope_resources_v1/rope365__76f666ac4cb6ff1c2f23.json",
+      "url": "https://rope365.com/extending-rope/"
+    },
+    "rope_end_maintenance": {
+      "document_sha256": "15a23b9d96394e1dc93323ec84c6055a12177e0197c9f5276af0922c342c9d4f",
+      "file_sha256": "67d5189a628b012ae4588912bc962f64da77d2a841a61a1b915715674b9e827a",
+      "path": "data/raw/rope_resources_v1/rope365__11ea3b338375c2127fa4.json",
+      "url": "https://rope365.com/rope-ends/"
+    }
+  },
+  "status": "segregated_pending_integration"
+}
