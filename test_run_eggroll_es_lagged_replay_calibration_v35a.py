@@ -66,6 +66,114 @@ def _dense_fixture(logprob=-0.5):
     return items, outputs
 
 
+def _exercise_lifecycle(monkeypatch, tmp_path, failure=None):
+    events = []
+    attempt = tmp_path / "attempt.json"
+    run_directory = tmp_path / "run"
+    report_path = run_directory / "report.json"
+    monkeypatch.setattr(runtime, "ROOT", tmp_path)
+    monkeypatch.setattr(runtime, "ATTEMPT_PATH", attempt)
+    monkeypatch.setattr(runtime, "RUN_DIRECTORY", run_directory)
+    monkeypatch.setattr(runtime, "REPORT_PATH", report_path)
+    preregistration = runtime.load_preregistration()
+    manifest = runtime.load_manifest(preregistration)
+    _prereg, metadata, values = _metadata_and_values()
+
+    live_model = runtime._seal({
+        "schema": "fake-live-model",
+        "shard_byte_certificate": {
+            "shard_sha256": dict(runtime.MODEL_SHARD_SHA256),
+        },
+    })
+    environment = runtime._seal({"schema": "fake-environment"})
+    prelaunch = runtime._seal({"schema": "fake-prelaunch-idle"})
+    final_idle = runtime._seal({"schema": "fake-final-idle"})
+    source_audit = runtime._seal({"schema": "fake-source-audit"})
+    runtime_audit = runtime._seal({
+        "schema": "fake-content-free-runtime-audit",
+        "phase_B_only_calibration_estimand": True,
+    })
+    configuration = runtime._seal({"schema": "fake-configuration"})
+    implementation = {"bundle_sha256": "1" * 64}
+    recipe = {"content_sha256_before_self_field": "2" * 64}
+    committed = {
+        "git_head": "3" * 40,
+        "content_sha256_before_self_field": "4" * 64,
+    }
+
+    monkeypatch.setattr(runtime.runtime_r2, "certify_runtime_environment_r2", lambda: environment)
+    monkeypatch.setattr(runtime, "validate_live_model", lambda _prereg: live_model)
+    monkeypatch.setattr(runtime.runtime_v33a, "assert_all_four_gpus_idle_v33a", lambda: prelaunch)
+    monkeypatch.setattr(runtime.runtime_v23a.base, "set_seed", lambda _seed: None)
+
+    class FakeTrainer:
+        def configure_lagged_replay_calibration_v35a(self, *_args):
+            return configuration
+
+        def capture_calibration_v35a(self):
+            events.append("capture")
+            if failure == "capture":
+                raise RuntimeError("secret capture failure details")
+            return np.copy(values), copy.deepcopy(metadata), runtime_audit
+
+    monkeypatch.setattr(
+        runtime, "make_trainer_fail_closed", lambda *_args: FakeTrainer()
+    )
+
+    def close(_trainer):
+        events.append("close")
+        if failure == "cleanup":
+            raise RuntimeError("secret cleanup failure details")
+
+    monkeypatch.setattr(runtime, "close_trainer_fail_closed", close)
+
+    def wait(_prelaunch):
+        events.append("final_idle")
+        return final_idle
+
+    monkeypatch.setattr(runtime.runtime_v33a, "wait_for_final_gpu_idle_v33a", wait)
+
+    def recheck(*_args):
+        events.append("postcleanup_rehash")
+        return runtime._seal({"schema": "fake-postcleanup-rehash"})
+
+    monkeypatch.setattr(runtime, "recheck_postcleanup_bindings", recheck)
+    original_rank = runtime.build_provisional_pool
+
+    def rank(*args):
+        events.append("rank_phase_B")
+        return original_rank(*args)
+
+    monkeypatch.setattr(runtime, "build_provisional_pool", rank)
+    if failure == "report":
+        original_write = runtime.runtime_v23a._exclusive_write_json_v23a
+
+        def fail_report(path, value):
+            if Path(path).resolve() == report_path.resolve():
+                raise RuntimeError("secret report failure details")
+            return original_write(path, value)
+
+        monkeypatch.setattr(
+            runtime.runtime_v23a, "_exclusive_write_json_v23a", fail_report
+        )
+    error = None
+    result = None
+    try:
+        result = runtime.run_exact_v35a(
+            preregistration, manifest, [], source_audit, {}, implementation,
+            recipe, committed,
+        )
+    except RuntimeError as caught:
+        error = caught
+    return {
+        "events": events,
+        "attempt_path": attempt,
+        "report_path": report_path,
+        "result": result,
+        "error": error,
+    }
+
+
 def test_v35a_frozen_preregistration_protocol_manifest_and_source_bindings():
     preregistration = runtime.load_preregistration()
     manifest = runtime.load_manifest(preregistration)
@@ -220,6 +328,8 @@ def test_v35a_content_free_schema_rejects_payloads_and_misplaced_row_ids():
     for key in (
         "question", "answer", "prompt_token_ids", "scores", "logprobs",
         "outputs", "pid", "memory_used", "manual_review_text",
+        "raw_rewards", "rewards", "unit_scores", "value_matrix",
+        "traceback", "timings", "memory_samples", "exception_message",
     ):
         with pytest.raises(RuntimeError, match="forbidden keys"):
             runtime.assert_content_free({key: "secret"})
@@ -234,7 +344,7 @@ def test_v35a_content_free_schema_rejects_payloads_and_misplaced_row_ids():
 
 
 def test_v35a_recipe_and_budget_are_exact_and_close_authority():
-    _prereg, _manifest, _layer, _implementation, recipe = _foundation()
+    prereg, _manifest, _layer, _implementation, recipe = _foundation()
     assert recipe["request_accounting"] == {
         "requests_per_engine_per_phase": 168,
         "engines": 4,
@@ -251,6 +361,13 @@ def test_v35a_recipe_and_budget_are_exact_and_close_authority():
         for key, value in recipe["authority"].items()
         if key != "manual_review_of_provisional_training_rows"
     )
+    certificate = recipe["frozen_binding_certificate"]
+    assert certificate["bound_file_sha256"] == {
+        name: item["file_sha256"]
+        for name, item in sorted(prereg["bound_inputs"]["files"].items())
+    }
+    assert certificate["source_file_sha256"] == runtime.SOURCE_FILE_SHA256
+    assert certificate["model_shard_sha256"] == runtime.MODEL_SHARD_SHA256
 
 
 def test_v35a_dry_run_launches_no_GPU_or_runtime(capsys):
@@ -361,6 +478,131 @@ def test_v35a_partial_constructor_preserves_cleanup_handle(monkeypatch):
     assert partial._v35a_partial_groups == ["group"]
 
 
+def test_v35a_placement_groups_are_attached_transactionally_and_cleanable(
+    monkeypatch,
+):
+    owner = SimpleNamespace()
+    calls = []
+
+    def placement_group(*_args, **_kwargs):
+        calls.append("create")
+        if len(calls) == 2:
+            raise RuntimeError("second placement group failed")
+        return "first-group"
+
+    with pytest.raises(RuntimeError, match="second placement group"):
+        runtime.create_placement_groups_v35a(owner, placement_group)
+    assert owner._v35a_partial_groups == ["first-group"]
+
+    events = []
+    monkeypatch.setattr(
+        runtime.runtime_v23a.base, "close_trainer",
+        lambda _trainer: (_ for _ in ()).throw(RuntimeError("partial cleanup")),
+    )
+    import ray
+    import ray.util
+    monkeypatch.setattr(ray.util, "remove_placement_group", events.append)
+    monkeypatch.setattr(ray, "shutdown", lambda: events.append("shutdown"))
+    partial = SimpleNamespace(
+        _v35a_partial_groups=owner._v35a_partial_groups,
+        _v35a_partial_engines=[],
+        mp_pool=None,
+    )
+    with pytest.raises(RuntimeError, match="partial cleanup"):
+        runtime.close_trainer_fail_closed(partial)
+    assert events == ["first-group", "shutdown"]
+
+
+def test_v35a_pending_activity_rejects_idle_resident_actors():
+    idle = {
+        "physical_gpu_identity_sha256": "identity",
+        "running_process_counts": [1, 1, 1, 1],
+        "utilization_percent": [0, 0, 0, 0],
+    }
+    with pytest.raises(RuntimeError, match="completed before"):
+        runtime.certify_pending_generation_activity_v35a(
+            [object()] * 4,
+            _observer=lambda: idle,
+            _waiter=lambda futures: futures,
+            _sleeper=lambda _seconds: None,
+        )
+
+
+def test_v35a_submits_all_four_batches_before_resolve_three_times(monkeypatch):
+    events = []
+
+    class Remote:
+        def __init__(self, rank):
+            self.rank = rank
+
+        def remote(self, prompts, _sampling, use_tqdm):
+            assert use_tqdm is False
+            assert len(prompts) == 168
+            events.append(("submit", self.rank))
+            return [self.rank] * 168
+
+    instance = object.__new__(runtime.LaggedReplayCalibrationRuntimeMixinV35A)
+    instance.engines = [
+        SimpleNamespace(generate=Remote(rank)) for rank in range(4)
+    ]
+    instance._dense_sampling_params_v4 = lambda _iteration: "sampling"
+
+    def resolve(futures):
+        assert events[-4:] == [("submit", rank) for rank in range(4)]
+        events.append(("resolve", len(futures)))
+        return futures
+
+    instance._resolve = resolve
+    monkeypatch.setattr(
+        runtime, "certify_pending_generation_activity_v35a",
+        lambda futures: {
+            "content_sha256_before_self_field": runtime.canonical_sha256(
+                [len(futures), "pending-active"]
+            )
+        },
+    )
+    monkeypatch.setattr(
+        runtime, "_score_union_outputs",
+        lambda _dense, _outputs: (np.zeros(168), "same-token-trace"),
+    )
+    for _phase in runtime.PHASES:
+        phase, _activity = instance._score_phase_v35a(
+            [None] * 168, [{"prompt_token_ids": [1]}] * 168
+        )
+        assert phase[0].shape == (4, 168)
+    assert sum(event[0] == "submit" for event in events) == 12
+    assert sum(event[0] == "resolve" for event in events) == 3
+    assert 12 * 168 == 2016
+
+
+def test_v35a_model_shard_verifier_fails_on_one_mutated_shard(tmp_path):
+    model = tmp_path / "model"
+    model.mkdir()
+    (model / "one.safetensors").write_bytes(b"one")
+    (model / "two.safetensors").write_bytes(b"two")
+    index = {"weight_map": {"a": "one.safetensors", "b": "two.safetensors"}}
+    index_path = model / "model.safetensors.index.json"
+    index_path.write_text(json.dumps(index), encoding="utf-8")
+    expected = {
+        name: hashlib.sha256((model / name).read_bytes()).hexdigest()
+        for name in ("one.safetensors", "two.safetensors")
+    }
+    index_sha = hashlib.sha256(index_path.read_bytes()).hexdigest()
+    certificate = runtime.verify_model_shards(
+        model, index_path,
+        expected_index_sha256=index_sha,
+        expected_shards=expected,
+    )
+    assert certificate["shard_count"] == 2
+    (model / "two.safetensors").write_bytes(b"mutated")
+    with pytest.raises(RuntimeError, match="shard bytes changed"):
+        runtime.verify_model_shards(
+            model, index_path,
+            expected_index_sha256=index_sha,
+            expected_shards=expected,
+        )
+
+
 def test_v35a_partial_cleanup_closes_process_pool_even_if_base_cleanup_fails(
     monkeypatch,
 ):
@@ -397,6 +639,62 @@ def test_v35a_runtime_mixin_closes_update_eval_and_training_surfaces():
     ):
         with pytest.raises(RuntimeError, match="closes"):
             getattr(instance, method)()
+
+
+def test_v35a_end_to_end_success_cleans_rehashes_then_ranks(monkeypatch, tmp_path):
+    outcome = _exercise_lifecycle(monkeypatch, tmp_path)
+    assert outcome["error"] is None
+    assert outcome["events"] == [
+        "capture", "close", "final_idle", "postcleanup_rehash", "rank_phase_B",
+    ]
+    attempt = json.loads(outcome["attempt_path"].read_text(encoding="utf-8"))
+    report = json.loads(outcome["report_path"].read_text(encoding="utf-8"))
+    assert attempt["status"] == "complete"
+    assert report == outcome["result"]
+    assert report["provisional_review_pool_count"] == 87
+    assert report["hard_tier_adopted"] is False
+    assert report["content_sha256_before_self_field"] == runtime.canonical_sha256(
+        runtime._without_self(report)
+    )
+    assert attempt["content_sha256_before_self_field"] == runtime.canonical_sha256(
+        runtime._without_self(attempt)
+    )
+    runtime.assert_content_free(report)
+    runtime.assert_content_free(attempt)
+
+
+@pytest.mark.parametrize("failure", ["capture", "cleanup"])
+def test_v35a_gpu_or_cleanup_failure_has_no_report_and_sanitized_attempt(
+    monkeypatch, tmp_path, failure,
+):
+    outcome = _exercise_lifecycle(monkeypatch, tmp_path, failure=failure)
+    assert isinstance(outcome["error"], RuntimeError)
+    assert not outcome["report_path"].exists()
+    attempt = json.loads(outcome["attempt_path"].read_text(encoding="utf-8"))
+    assert attempt["status"] == "failed"
+    serialized = json.dumps(attempt, sort_keys=True)
+    assert "secret" not in serialized
+    assert "traceback" not in serialized
+    assert outcome["events"].index("close") < outcome["events"].index("final_idle")
+    assert "postcleanup_rehash" not in outcome["events"]
+    runtime.assert_content_free(attempt)
+
+
+def test_v35a_report_finalization_failure_is_sanitized_after_cleanup_and_rank(
+    monkeypatch, tmp_path,
+):
+    outcome = _exercise_lifecycle(monkeypatch, tmp_path, failure="report")
+    assert isinstance(outcome["error"], RuntimeError)
+    assert not outcome["report_path"].exists()
+    assert outcome["events"] == [
+        "capture", "close", "final_idle", "postcleanup_rehash", "rank_phase_B",
+    ]
+    attempt = json.loads(outcome["attempt_path"].read_text(encoding="utf-8"))
+    serialized = json.dumps(attempt, sort_keys=True)
+    assert attempt["status"] == "failed"
+    assert "secret" not in serialized
+    assert "traceback" not in serialized
+    runtime.assert_content_free(attempt)
 
 
 def test_v35a_fresh_paths_and_writes_are_exclusive(tmp_path, monkeypatch):

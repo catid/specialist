@@ -17,6 +17,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -96,6 +97,37 @@ FORBIDDEN_PERSISTED_KEYS = {
     "token_ids", "logprobs", "outputs", "responses", "raw_scores", "scores",
     "score", "row_content", "row_index", "pid", "pids", "process_id",
     "memory_used", "gpu_memory_used", "manual_review_text",
+    "raw_rewards", "rewards", "unit_scores", "value_matrix", "traceback",
+    "timings", "memory_samples", "exception", "exception_message",
+}
+
+MODEL_SHARD_SHA256 = {
+    "model-00001-of-00026.safetensors": "adee7bcb930aed22e0677e58d4873b48dadb1ed8001cb5c6a0487286eadb3478",
+    "model-00002-of-00026.safetensors": "88f2dfd2b9e73e4b70be533dbf61bcfa3c9a0003758900fcbc9d9b96f5751d4b",
+    "model-00003-of-00026.safetensors": "8f7d72178d3f4431864978e5bcfa4c6cb1c204bc00590644d90bb19d6d522eeb",
+    "model-00004-of-00026.safetensors": "12d7db38689ba3c8af74b23ef8523eca41e0cd95db870583d0663a3ee8a6bd60",
+    "model-00005-of-00026.safetensors": "a836047305d0f7a7b50f0815d09d5c03ec03d59ec2c763fcdc4bf7e9936bf902",
+    "model-00006-of-00026.safetensors": "c9080d718e9c5f9e337443225aa417d4c24d00ae7995d76ee3f1cc296b557d15",
+    "model-00007-of-00026.safetensors": "e8c05e23131b1dd45a455ec38cfac7db14667358268623c3938d00cf3e959a68",
+    "model-00008-of-00026.safetensors": "4b6a6d495053089f4a80e7cbc82e848fba44e2c0c60122233d8fdff79fa7b296",
+    "model-00009-of-00026.safetensors": "a31a954bb72d1c714e751bf0aabf2ff533f5a509693ebf7dd22ad6e90be46f67",
+    "model-00010-of-00026.safetensors": "246560e66570fe746653b8443e245dc334c9b8b831ea43d2d9f1b7d98623994e",
+    "model-00011-of-00026.safetensors": "7180392817fe3ecb3a27a1da43b7ff22c1a94806bac49975f9f122c3126df675",
+    "model-00012-of-00026.safetensors": "043fb525f6625c2f2acb75e65a9959ee3fa7b6e3fdd2034b5cfe1859b01d3cfb",
+    "model-00013-of-00026.safetensors": "33a20fb20a21379bf43c84a43105f9c0cc35bd50d740b1c302dcbe4b700f5425",
+    "model-00014-of-00026.safetensors": "be823e33c5cb6120ad3769d081f34a2449dc2358041fca7c29d636c1ba19130d",
+    "model-00015-of-00026.safetensors": "a89d547c6f9d0b535ee5ea2f2478f163089539f3f0dd330cb23d278a19d76123",
+    "model-00016-of-00026.safetensors": "69fc3ae0316482288afdcdd0b9eb7d626703ae26f7567e89aa3fc8d1ffd4ff5b",
+    "model-00017-of-00026.safetensors": "e356e3943cf3852b76bb8992e674f3256013e27d54b78e8250514151cdc29637",
+    "model-00018-of-00026.safetensors": "9e5e63fd1cc7d6848330c1fa363dfcb661bbc2ac87e672d0e28b71c9cb7f3c7f",
+    "model-00019-of-00026.safetensors": "708644ad34f1de727bf484f396944d8ec628645d52c183e9a992e65671685e21",
+    "model-00020-of-00026.safetensors": "ca083a1d1aa64f8e8a785998f543a43374f13436dc85d396eee4e72c7a84e1ae",
+    "model-00021-of-00026.safetensors": "ada4ae48f3d48fe01b4c53f2f82bce25e798a9631fd33959c881156fef2ccbce",
+    "model-00022-of-00026.safetensors": "def207fb42d7db31efb512755557763c23233c6e4d4c433027cb5102a7bce2f7",
+    "model-00023-of-00026.safetensors": "864d52ca7768a36f514069222e8de8626264ae124097ba8fcce5b5da2c6e2ed7",
+    "model-00024-of-00026.safetensors": "391acd27420cdce5935ff18152423c70620d19dac3c39a5ef1a81d369f82d737",
+    "model-00025-of-00026.safetensors": "778e7f76602f05042b69ba7f3ec91f1fdffef390540b16074041c258fb81d154",
+    "model-00026-of-00026.safetensors": "1a97404220077ed3d4182e10385b152004cab608377f50cec9f54a6b8d28b613",
 }
 
 canonical_sha256 = sampler_v13.canonical_sha256
@@ -339,6 +371,39 @@ def load_layer_bundle(preregistration):
     )
 
 
+def verify_model_shards(
+    model, index_path, *, expected_index_sha256, expected_shards,
+):
+    model = Path(model).resolve()
+    index_path = Path(index_path).resolve()
+    if file_sha256(index_path) != expected_index_sha256:
+        raise RuntimeError("V35A model index changed before shard verification")
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    names = sorted(set(index.get("weight_map", {}).values()))
+    if names != sorted(expected_shards) or any(
+        Path(name).name != name or Path(name).is_absolute() for name in names
+    ):
+        raise RuntimeError("V35A model shard inventory changed")
+    total_bytes = 0
+    actual = {}
+    for name in names:
+        path = model / name
+        if not path.is_file():
+            raise RuntimeError("V35A model shard is missing")
+        total_bytes += path.stat().st_size
+        actual[name] = file_sha256(path)
+        if actual[name] != expected_shards[name]:
+            raise RuntimeError(f"V35A model shard bytes changed: {name}")
+    return _seal({
+        "schema": "eggroll-es-v35a-model-shard-byte-certificate",
+        "model_index_sha256": expected_index_sha256,
+        "shard_count": len(actual),
+        "total_shard_bytes": total_bytes,
+        "shard_sha256": actual,
+        "shard_bundle_sha256": canonical_sha256(actual),
+    })
+
+
 def validate_live_model(preregistration):
     model = Path(preregistration["frozen_recipe"]["model"]).resolve()
     if (
@@ -348,11 +413,51 @@ def validate_live_model(preregistration):
         != preregistration["frozen_recipe"]["model_index_sha256"]
     ):
         raise RuntimeError("V35A live Qwen3.6-35B-A3B identity changed")
+    shards = verify_model_shards(
+        model, model / "model.safetensors.index.json",
+        expected_index_sha256=preregistration["frozen_recipe"][
+            "model_index_sha256"
+        ],
+        expected_shards=MODEL_SHARD_SHA256,
+    )
     return _seal({
         "schema": "eggroll-es-v35a-live-model-audit",
         "config_sha256": preregistration["frozen_recipe"]["model_config_sha256"],
         "index_sha256": preregistration["frozen_recipe"]["model_index_sha256"],
+        "shard_byte_certificate": shards,
     })
+
+
+def frozen_binding_certificate(preregistration, live_model=None):
+    bound_files = {
+        name: item["file_sha256"]
+        for name, item in sorted(
+            preregistration["bound_inputs"]["files"].items()
+        )
+    }
+    value = {
+        "schema": "eggroll-es-v35a-frozen-binding-certificate",
+        "preregistration_file_sha256": PREREG_FILE_SHA256,
+        "preregistration_content_sha256": PREREG_CONTENT_SHA256,
+        "bound_file_sha256": bound_files,
+        "bound_file_count": len(bound_files),
+        "source_file_sha256": SOURCE_FILE_SHA256,
+        "source_row_count": SOURCE_ROWS,
+        "model_config_sha256": preregistration["frozen_recipe"][
+            "model_config_sha256"
+        ],
+        "model_index_sha256": preregistration["frozen_recipe"][
+            "model_index_sha256"
+        ],
+        "model_shard_sha256": dict(sorted(MODEL_SHARD_SHA256.items())),
+        "model_shard_bundle_sha256": canonical_sha256(MODEL_SHARD_SHA256),
+    }
+    if live_model is not None and (
+        live_model["shard_byte_certificate"]["shard_sha256"]
+        != MODEL_SHARD_SHA256
+    ):
+        raise RuntimeError("V35A live model does not match frozen shard binding")
+    return _seal(value)
 
 
 def implementation_identity():
@@ -379,6 +484,7 @@ def implementation_identity():
 
 
 def recipe_v35a(preregistration, manifest, layer_bundle, implementation):
+    binding = frozen_binding_certificate(preregistration)
     value = {
         "schema": "eggroll-es-lagged-replay-calibration-runtime-recipe-v35a",
         "experiment_name": EXPERIMENT_NAME,
@@ -389,6 +495,7 @@ def recipe_v35a(preregistration, manifest, layer_bundle, implementation):
         "manifest_content_sha256": MANIFEST_CONTENT_SHA256,
         "source_file_sha256": SOURCE_FILE_SHA256,
         "source_row_count": SOURCE_ROWS,
+        "frozen_binding_certificate": binding,
         "model_config_sha256": preregistration["frozen_recipe"][
             "model_config_sha256"
         ],
@@ -690,6 +797,108 @@ def deterministic_manual_review_order(provisional):
     return [item["row_sha256"] for item in ordered]
 
 
+def observe_gpu_compute_v35a():
+    import pynvml
+
+    base = runtime_v33a._observe_all_four_gpus_v33a()
+    runtime_v33a._physical_gpu_identity_v33a(base)
+    pynvml.nvmlInit()
+    try:
+        utilization = [
+            int(pynvml.nvmlDeviceGetUtilizationRates(
+                pynvml.nvmlDeviceGetHandleByIndex(index)
+            ).gpu)
+            for index in range(ENGINE_COUNT)
+        ]
+    finally:
+        pynvml.nvmlShutdown()
+    return {
+        "physical_gpu_identity_sha256": canonical_sha256([
+            {
+                key: item[key] for key in (
+                    "physical_gpu_id", "name", "driver_version", "nvml_uuid",
+                    "pci_bus_id", "total_bytes",
+                )
+            }
+            for item in base["gpus"]
+        ]),
+        "running_process_counts": [
+            item["running_process_count"] for item in base["gpus"]
+        ],
+        "utilization_percent": utilization,
+    }
+
+
+def certify_pending_generation_activity_v35a(
+    futures, *, _observer=None, _waiter=None, _sleeper=None,
+):
+    if len(futures) != ENGINE_COUNT:
+        raise RuntimeError("V35A activity certification requires four futures")
+    if _observer is None or _waiter is None:
+        import ray
+    observer = observe_gpu_compute_v35a if _observer is None else _observer
+    waiter = (
+        (lambda values: ray.wait(
+            values, num_returns=ENGINE_COUNT, timeout=0.0
+        )[0])
+        if _waiter is None else _waiter
+    )
+    sleeper = time.sleep if _sleeper is None else _sleeper
+    seen = [False] * ENGINE_COUNT
+    identity = None
+    for poll_index in range(600):
+        observation = observer()
+        counts = observation.get("running_process_counts")
+        utilization = observation.get("utilization_percent")
+        if (
+            not isinstance(counts, list) or len(counts) != ENGINE_COUNT
+            or not isinstance(utilization, list) or len(utilization) != ENGINE_COUNT
+            or any(not isinstance(value, int) or value < 0 for value in utilization)
+            or any(not isinstance(value, int) or value < 0 for value in counts)
+        ):
+            raise RuntimeError("V35A GPU activity observation changed")
+        current_identity = observation.get("physical_gpu_identity_sha256")
+        if identity is None:
+            identity = current_identity
+        elif current_identity != identity:
+            raise RuntimeError("V35A GPU identity changed during generation")
+        ready = list(waiter(futures))
+        pending = len(ready) < ENGINE_COUNT
+        for index in range(ENGINE_COUNT):
+            seen[index] = seen[index] or (
+                pending and counts[index] >= 1 and utilization[index] > 0
+            )
+        if all(seen):
+            return _seal({
+                "schema": "eggroll-es-v35a-pending-generation-activity-certificate",
+                "physical_gpu_identity_sha256": identity,
+                "all_four_gpu_compute_observed_while_generation_pending": True,
+                "generation_future_count": ENGINE_COUNT,
+                "bounded_poll_contract_sha256": canonical_sha256({
+                    "maximum_polls": 600,
+                    "poll_interval_seconds": 0.05,
+                    "success_requires_pending_generation": True,
+                    "success_requires_process_and_positive_utilization": True,
+                }),
+            })
+        if not pending:
+            raise RuntimeError(
+                "V35A generation completed before all-four GPU compute certification"
+            )
+        if poll_index < 599:
+            sleeper(0.05)
+    raise RuntimeError("V35A all-four pending GPU activity was not observed")
+
+
+def create_placement_groups_v35a(owner, placement_group_function):
+    owner._v35a_partial_groups = []
+    for _rank in range(ENGINE_COUNT):
+        owner._v35a_partial_groups.append(placement_group_function(
+            [{"GPU": 1, "CPU": 0}], strategy="PACK"
+        ))
+    return owner._v35a_partial_groups
+
+
 class LaggedReplayCalibrationRuntimeMixinV35A:
     def configure_lagged_replay_calibration_v35a(
         self, preregistration, rows, layer_bundle,
@@ -785,12 +994,14 @@ class LaggedReplayCalibrationRuntimeMixinV35A:
         })
 
     def _score_phase_v35a(self, dense_items, prompt_items):
-        batches = self._resolve([
+        futures = [
             engine.generate.remote(
                 list(prompt_items), self._dense_sampling_params_v4(0), use_tqdm=False,
             )
             for engine in self.engines
-        ])
+        ]
+        activity = certify_pending_generation_activity_v35a(futures)
+        batches = self._resolve(futures)
         if len(batches) != ENGINE_COUNT or any(
             len(batch) != UNION_ROWS for batch in batches
         ):
@@ -802,21 +1013,17 @@ class LaggedReplayCalibrationRuntimeMixinV35A:
             commitments.append(digest)
         phase = (values, commitments)
         assert_phase_exact(phase)
-        return phase
+        return phase, activity
 
     def capture_calibration_v35a(self):
         dense_items, prompt_items, token_audit = self._prepare_union_v35a()
         phases = {}
         activity = {}
         for name in PHASES:
-            phases[name] = self._score_phase_v35a(dense_items, prompt_items)
-            observation = runtime_v33a._observe_all_four_gpus_v33a()
-            runtime_v33a._physical_gpu_identity_v33a(observation)
-            if any(
-                item["running_process_count"] < 1 for item in observation["gpus"]
-            ):
-                raise RuntimeError("V35A did not observe activity on every GPU")
-            activity[name] = canonical_sha256(observation)
+            phases[name], phase_activity = self._score_phase_v35a(
+                dense_items, prompt_items
+            )
+            activity[name] = phase_activity["content_sha256_before_self_field"]
         exactness = assert_cross_phase_exact(phases)
         metadata = [
             {
@@ -886,13 +1093,7 @@ def load_runtime_trainer(preregistration, layer_bundle):
             from ray.util.placement_group import placement_group
             from ray.util.scheduling_strategies import PlacementGroupSchedulingStrategy
 
-            groups = [
-                placement_group(
-                    [{"GPU": 1, "CPU": 0}], strategy="PACK"
-                )
-                for _ in range(4)
-            ]
-            self._v35a_partial_groups = groups
+            groups = create_placement_groups_v35a(self, placement_group)
             ray.get([group.ready() for group in groups])
             strategies = [
                 PlacementGroupSchedulingStrategy(
@@ -977,14 +1178,12 @@ def close_trainer_fail_closed(trainer):
         import ray
         from ray.util import remove_placement_group
 
-        engines = list(getattr(trainer, "_v35a_partial_engines", []))
-        for engine in engines:
+        for engine in list(getattr(trainer, "_v35a_partial_engines", [])):
             try:
                 ray.kill(engine, no_restart=True)
             except BaseException:
                 pass
-        groups = list(getattr(trainer, "_v35a_partial_groups", []))
-        for group in groups:
+        for group in list(getattr(trainer, "_v35a_partial_groups", [])):
             try:
                 remove_placement_group(group)
             except BaseException:
@@ -1166,6 +1365,9 @@ def run_exact_v35a(
             "status": "completed_calibration_pending_blinded_manual_review",
             "implementation_bundle_sha256": implementation["bundle_sha256"],
             "recipe_sha256": recipe["content_sha256_before_self_field"],
+            "frozen_binding_certificate": frozen_binding_certificate(
+                preregistration, live_model
+            ),
             "source_projection_audit_sha256": source_projection_audit[
                 "content_sha256_before_self_field"
             ],
