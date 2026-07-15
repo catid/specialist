@@ -89,7 +89,7 @@ def test_v23a_r2_recipe_preserves_all_scoring_mechanics():
     )
 
 
-def test_v23a_r2_paths_are_fresh_and_disjoint_from_original_and_r1():
+def test_v23a_r2_paths_are_disjoint_and_failed_attempt_is_preserved():
     r2_paths = {
         r2.OUTPUT_DIRECTORY_R2 / r2.ATTEMPT_NAME_R2,
         r2.OUTPUT_DIRECTORY_R2 / r2.EXPERIMENT_NAME_R2,
@@ -104,7 +104,14 @@ def test_v23a_r2_paths_are_fresh_and_disjoint_from_original_and_r1():
         MAIN_R1_REPORT,
     }
     assert r2_paths.isdisjoint(earlier)
-    assert all(not path.exists() for path in r2_paths)
+    attempt, run_directory, report = (
+        r2.OUTPUT_DIRECTORY_R2 / r2.ATTEMPT_NAME_R2,
+        r2.OUTPUT_DIRECTORY_R2 / r2.EXPERIMENT_NAME_R2,
+        r2.OUTPUT_DIRECTORY_R2 / r2.EXPERIMENT_NAME_R2 / r2.REPORT_NAME_R2,
+    )
+    assert attempt.exists()
+    assert run_directory.exists()
+    assert not report.exists()
 
 
 def test_v23a_r2_real_launch_hashes_are_fail_closed():
