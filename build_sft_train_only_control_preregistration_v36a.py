@@ -51,7 +51,7 @@ def _arguments():
         "--learning-rate", "1e-4",
         "--seed", "17",
         "--max-length", "1024",
-        "--save-steps", "17",
+        "--save-steps", "19",
         "--attn-implementation", "sdpa",
         "--prompt-mode", "es_exact",
         "--loss-mode", "example_mean",

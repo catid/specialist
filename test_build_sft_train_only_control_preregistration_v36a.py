@@ -13,6 +13,8 @@ class SFTControlPreregistrationV36ATest(unittest.TestCase):
         self.assertEqual(value["dataset"]["unique_documents"], 289)
         self.assertEqual(value["recipe"]["expected_optimizer_steps"], 57)
         self.assertTrue(value["recipe"]["equal_microbatch_sizes"])
+        command = value["recipe"]["command"]
+        self.assertEqual(command[command.index("--save-steps") + 1], "19")
         self.assertNotIn("--eval-data", value["recipe"]["command"])
         self.assertEqual(
             value["content_sha256_before_self_field"],
