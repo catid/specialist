@@ -1,0 +1,117 @@
+{
+  "aggregate_result": {
+    "all_eight_peak_vram_cells_passed": true,
+    "all_four_speed_noninferiority_pairs_passed": true,
+    "equivalence": {
+      "metrics": {
+        "absolute_mean_signed_logprob_delta": 0.009502541939826211,
+        "greedy_first_token_agreement": 0.9678571428571429,
+        "maximum_absolute_logprob_delta": 1.647368311882019,
+        "mean_absolute_logprob_delta": 0.15710689712839349,
+        "p99_absolute_logprob_delta": 0.8093850884027765,
+        "root_mean_square_logprob_delta": 0.234610494684071,
+        "row_logprob_pearson": 0.9951093302331562
+      },
+      "metrics_identical_across_all_four_physical_gpu_pairs": true,
+      "pass": false,
+      "passing_physical_gpu_pairs": 0,
+      "required_passing_physical_gpu_pairs": 4,
+      "thresholds": {
+        "absolute_mean_signed_logprob_delta_max": 0.02,
+        "greedy_first_token_agreement_min": 0.99,
+        "maximum_absolute_logprob_delta_max": 0.75,
+        "mean_absolute_logprob_delta_max": 0.05,
+        "p99_absolute_logprob_delta_max": 0.25,
+        "root_mean_square_logprob_delta_max": 0.1,
+        "row_logprob_pearson_min": 0.995
+      }
+    },
+    "full_fp8_peak_nvml_fraction": 0.8474874089511375,
+    "hybrid_peak_nvml_fraction": 0.8469970476161288,
+    "maximum_allowed_peak_nvml_fraction": 0.95,
+    "overall_gate_passed": false,
+    "sole_failed_gate": "behavioral_equivalence",
+    "speed": {
+      "physical_gpu_0": {
+        "familywise_lower_confidence_bound": 0.9955526216752136,
+        "load_order": "fp8_first",
+        "median_hybrid_over_fp8_throughput_ratio": 0.9991355523340215,
+        "noninferiority_ratio": 0.9,
+        "speed_and_memory_pass": true
+      },
+      "physical_gpu_1": {
+        "familywise_lower_confidence_bound": 0.9942020778675713,
+        "load_order": "hybrid_first",
+        "median_hybrid_over_fp8_throughput_ratio": 1.0018857120902784,
+        "noninferiority_ratio": 0.9,
+        "speed_and_memory_pass": true
+      },
+      "physical_gpu_2": {
+        "familywise_lower_confidence_bound": 0.986977307944782,
+        "load_order": "fp8_first",
+        "median_hybrid_over_fp8_throughput_ratio": 0.9950546090740336,
+        "noninferiority_ratio": 0.9,
+        "speed_and_memory_pass": true
+      },
+      "physical_gpu_3": {
+        "familywise_lower_confidence_bound": 1.0096913992642902,
+        "load_order": "hybrid_first",
+        "median_hybrid_over_fp8_throughput_ratio": 1.0107084554595036,
+        "noninferiority_ratio": 0.9,
+        "speed_and_memory_pass": true
+      }
+    }
+  },
+  "artifacts": {
+    "attempt": {
+      "content_sha256": "3b86d2e5b2915383ad75e85b700ae031ddda61d550042c21bc8656a9d4face03",
+      "file_sha256": "683b14b99128f2eb7d6c565cb80148c4178e614ef86d0e23760fbb40fa1f018d",
+      "phase": "after_actor_cleanup_and_compact_report",
+      "status": "complete"
+    },
+    "report": {
+      "content_sha256": "94666feedd3eb51abe6293f6d56d605ce955e36f6838f4611264a10ced60b834",
+      "file_sha256": "271821d0cfa0682fc1b5ea15b7ab65de569ddce55e0dc361119eeacd8fb9b003"
+    }
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "775e02696faead7eb777e2f9d0f482486fd3cecfc1c71390a50e326e8037610f",
+  "contracts": {
+    "implementation_bundle_sha256": "0f95c530e77247c54b3d1438c8d40d52ce7de159fc51cbf778a73bd90dfcb6b2",
+    "implementation_commit": "6b338e0af96b54353754d15465487a30440edaad",
+    "preregistration_content_sha256": "d8b3cc6f5837606f43c0fa26841b223a974d93fb4117c91fde553dae67af4767",
+    "preregistration_file_sha256": "ffe596314299b13e0691ee3eaea8df0f123dd06a767b768edeab5c0a6bf6a4cf",
+    "runtime_recipe_content_sha256": "677033c9d9efedf9d75612c405602f58ae8e22a7062f4ebe5fe90b24d8ad1b66"
+  },
+  "decision": {
+    "authorize_hybrid_training_ab": false,
+    "dataset_promotion_authorized": false,
+    "direct_model_adoption_authorized": false,
+    "model_update_or_checkpoint_authorized": false,
+    "retain_existing_full_fp8_model": true,
+    "validation_heldout_ood_or_benchmark_open_authorized": false
+  },
+  "runtime_integrity": {
+    "actors_per_wave": 4,
+    "all_runtime_integrity_audits_passed": true,
+    "all_timed_outputs_equal_deterministic_reference": true,
+    "fresh_model_loads_between_counterbalanced_waves": true,
+    "generation_calls_per_actor_per_wave": 10,
+    "interwave_cleanup_elapsed_milliseconds": 0,
+    "interwave_cleanup_poll_count": 1,
+    "physical_gpu_ids_discovered_and_verified": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "processed_tokens_per_engine_call": 15471,
+    "same_backend_outputs_exact_across_four_appearances": true,
+    "total_engine_generation_calls": 80,
+    "total_generation_requests": 22400,
+    "wave_count": 2
+  },
+  "schema": "eggroll-es-v26a-compat-speed-evidence",
+  "status": "valid_completed_train_only_gate_failed_safe"
+}
