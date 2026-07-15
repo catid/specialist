@@ -1,0 +1,319 @@
+{
+  "arms": {
+    "default_empty": {
+      "VLLM_TUNED_CONFIG_FOLDER": "fresh_exclusive_empty_directory",
+      "expected_config_source": "generic_fallback_none"
+    },
+    "v27c_tuned": {
+      "VLLM_TUNED_CONFIG_FOLDER": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+      "expected_config_source": "exact_committed_v27c_table"
+    }
+  },
+  "authorization_basis": {
+    "commit": "fe96a88cc42ed7cae4e57ccb544b26942553421d",
+    "content_sha256": "d2601ec9636fd1df100018bc96d74adbdbc9fd2d4b1e0415cb20df683ae0326f",
+    "file_sha256": "034b34166324359687398dd2825a0a602e444360144fc645c51e5e399e972041",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V28B_V27C_TUNED_RUNTIME_AB_POSITIVE_EVIDENCE.json",
+    "v28b_gate_passed": true,
+    "v28b_pass_authority": "authorize_only_a_separately_frozen_train_only_training_recipe_A_B"
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "8158f1b8bdd04fde43b48369434484473b0b7686e31b15ed9c2e501108d5c1fd",
+  "exact_equivalence_contract": {
+    "all_five_panel_coefficient_arrays_exact": true,
+    "full_diagnostic_content_commitment_equal_within_every_pair": true,
+    "no_numeric_tolerance_or_posthoc_exception": true,
+    "population_boundary_and_exact_reference_guards_exact": true,
+    "pre_post_base_probe_identity_exact": true,
+    "robust_aggregate_coefficients_exact": true
+  },
+  "experiment_name": "s6_v28c_v27c_bf16_no_update_es_train_step_ab",
+  "frozen_train_step_contract": {
+    "alpha": 0.0,
+    "apply_seed_coefficients_called": false,
+    "checkpoint_write_called": false,
+    "combined_panel_requests": 280,
+    "contains_validation_heldout_ood_or_benchmark_content": false,
+    "frozen_train_source_arrow_sha256": "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6",
+    "frozen_train_source_file_sha256": "f7127c38c7b540eaf9cf4349d1a1b8076e171da7f8ea43c11068ad1c311bb776",
+    "frozen_train_source_path": "/tmp/specialist-s6-candidate-guarded-ead1b21/train_qa_curated_v1.jsonl",
+    "implementation_file_sha256": {
+      "trainer_v13": "1a8a4145a85c183bb6121914357b7e6bce916b4f76a0693887ac41fa3a8c4c6e",
+      "worker_v13": "5596bff9174e5e94e812181a51f8cc9f9b2a73f3a4cb58c45d5346147c8d6367"
+    },
+    "model_update_applied": false,
+    "panel_bundle_content_sha256": "cc176a9b86c6447dcde8a11fd28d68c837d2119715126c57a3f37293fb0d492b",
+    "panel_manifest_content_sha256": "46cc98b694c98c1ee1c5456b855fb3b1db4534b3df2dcda69fc690a2d8a61bf5",
+    "panel_manifest_file_sha256": "e555d9d6746cde6297cd3ab523b16dd7d78d81e2674447ee46d754ebfac52da7",
+    "panel_manifest_path": "/home/catid/specialist/experiments/eggroll_es_hpo/train_panel_sampling_v13/document_balanced_train_panels_v13.json",
+    "panel_names": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "perturbation_basis_seed": 20260714,
+    "perturbation_basis_sha256": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+    "perturbation_seed_sha256": "07fa4900cd10fd17b678355389adcfa4f5ac7ec356be46088466cd32b032e6e1",
+    "population_size": 32,
+    "rows_per_panel": 56,
+    "same_fixed_panel_token_identities_seed_order_and_sampling_both_arms": true
+  },
+  "gate_and_authority": {
+    "all_runtime_integrity_exact_equivalence_activity_and_cleanup_gates_required": true,
+    "all_three_preregistered_performance_endpoints_required": true,
+    "checkpoint_write_authorized": false,
+    "dataset_promotion_authorized": false,
+    "direct_recipe_adoption_authorized": false,
+    "evaluation_authorized": false,
+    "failure_decision": "retain_empty_default_bf16_training_recipe",
+    "fp8_reuse_authorized": false,
+    "model_update_authorized": false,
+    "nontrain_runtime_reuse_authorized": false,
+    "pass_authority": "authorize_only_exact_v27c_table_in_a_separately_frozen_bf16_train_only_training_recipe",
+    "validation_heldout_ood_or_benchmark_access_authorized": false
+  },
+  "model_contract": {
+    "config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "dtype": "bfloat16",
+    "family": "Qwen3.6-35B-A3B",
+    "fp8_or_other_quantized_model_paths_authorized": false,
+    "index_sha256": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_seal": {
+      "base_all_files_fingerprint_sha256": "1a21a765e374e266037b3b7e5313a62a0de8ca37c00c0462b67c21af7e21f61e",
+      "commit": "00471e1c44b78813d02f0a8895c8e014a75dcc4e",
+      "content_sha256": "d4cf795408967aefbc77f841c47e6fe2fbe3cefc14a4a0fdb4bf73b2701326f9",
+      "file_sha256": "96eeb236ea94678f57a530a27a471467d4b3d413d2e7be397e293b695cd4c440",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V23A_INSERTION_MODEL_SEAL.json"
+    },
+    "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "quantization_config": null,
+    "weight_shard_manifest": {
+      "file_count": 26,
+      "manifest_sha256": "2b0bbae17d50cbf1a6c80ebcb0198dde8a09bbf7d3f4dec6321b1c97b4d3b2b1",
+      "total_bytes": 71903776776
+    }
+  },
+  "only_intended_arm_difference": "VLLM_TUNED_CONFIG_FOLDER",
+  "paired_counterbalanced_design": {
+    "default_first_pair_count": 6,
+    "no_posthoc_pair_or_order_adaptation": true,
+    "pair_count": 12,
+    "pair_order": [
+      "pair_00",
+      "pair_01",
+      "pair_02",
+      "pair_03",
+      "pair_04",
+      "pair_05",
+      "pair_06",
+      "pair_07",
+      "pair_08",
+      "pair_09",
+      "pair_10",
+      "pair_11"
+    ],
+    "pairs": {
+      "pair_00": {
+        "arm_order": [
+          "default_empty",
+          "v27c_tuned"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 0,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_01": {
+        "arm_order": [
+          "v27c_tuned",
+          "default_empty"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 1,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_02": {
+        "arm_order": [
+          "default_empty",
+          "v27c_tuned"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 2,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_03": {
+        "arm_order": [
+          "v27c_tuned",
+          "default_empty"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 3,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_04": {
+        "arm_order": [
+          "default_empty",
+          "v27c_tuned"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 4,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_05": {
+        "arm_order": [
+          "v27c_tuned",
+          "default_empty"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 5,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_06": {
+        "arm_order": [
+          "default_empty",
+          "v27c_tuned"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 6,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_07": {
+        "arm_order": [
+          "v27c_tuned",
+          "default_empty"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 7,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_08": {
+        "arm_order": [
+          "default_empty",
+          "v27c_tuned"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 8,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_09": {
+        "arm_order": [
+          "v27c_tuned",
+          "default_empty"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 9,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_10": {
+        "arm_order": [
+          "default_empty",
+          "v27c_tuned"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 10,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      },
+      "pair_11": {
+        "arm_order": [
+          "v27c_tuned",
+          "default_empty"
+        ],
+        "fresh_four_tp1_engine_group_per_arm": true,
+        "pair_index": 11,
+        "same_panel_tokens_perturbation_seeds_and_order_both_arms": true
+      }
+    },
+    "tuned_first_pair_count": 6
+  },
+  "performance_analysis": {
+    "absolute_peak_nvml_fraction_max": 0.95,
+    "bootstrap_draw_plan_sha256": "bed6a26d78a34cb432a5b6926e8dc1208e3b065dfdaf7ee9916a0a508d378ed8",
+    "bootstrap_repetitions": 50000,
+    "bootstrap_seed": 20261012,
+    "familywise_alpha": 0.05,
+    "familywise_method": "one_sided_bonferroni_three_endpoints",
+    "inferential_endpoints": [
+      "default_over_tuned_complete_train_step_elapsed_ratio",
+      "tuned_over_default_peak_torch_allocated_ratio",
+      "tuned_over_default_peak_torch_reserved_ratio"
+    ],
+    "lower_quantile": 0.016666666666666666,
+    "memory_point_ratio_max": 1.01,
+    "memory_ucb_ratio_max": 1.02,
+    "no_posthoc_threshold_endpoint_or_bootstrap_adaptation": true,
+    "paired_resampling_unit": "fresh_engine_group_pair",
+    "speed_lcb_ratio_strictly_greater_than": 1.0,
+    "speed_point_ratio_min": 1.01,
+    "subphase_timings_descriptive_not_inferential": true,
+    "upper_quantile": 0.9833333333333333
+  },
+  "persistence_contract": {
+    "compact_aggregate_ratios_bounds_commitments_and_booleans_only": true,
+    "raw_timings_memory_samples_pids_bootstrap_draws": false,
+    "rows_prompts_answers_text_token_ids_raw_coefficients_diagnostics": false
+  },
+  "preregistered_before_any_v28c_gpu_output": true,
+  "request_budget": {
+    "base_probe_requests_each": 280,
+    "base_probes_per_arm": 2,
+    "engines_per_signed_wave": 4,
+    "requests_per_arm": 18480,
+    "requests_per_engine_per_signed_wave": 280,
+    "requests_per_pair": 36960,
+    "signed_waves_per_arm": 16,
+    "total_generation_requests": 443520
+  },
+  "runtime_contract": {
+    "all_four_activity_observed_by_pid_bound_nvml_monitor_in_memory": true,
+    "all_four_gpus_simultaneously_active_during_every_estimator_required": true,
+    "default_directory_fresh_exclusive_and_empty_every_arm": true,
+    "descriptive_subphases": [
+      "configure_train_panels_v13",
+      "estimate_train_panels_v13",
+      "fresh_engine_launch_and_model_load_excluded_from_primary"
+    ],
+    "dtype": "bfloat16",
+    "enable_prefix_caching": false,
+    "engines_per_group": 4,
+    "exact_config_source_and_table_verified_inside_every_actor": true,
+    "final_all_four_idle_and_identity_preserving_cleanup_gate": true,
+    "fresh_actors_engines_model_and_config_environment_every_arm": true,
+    "fresh_engine_group_count": 24,
+    "gpu_memory_utilization": 0.82,
+    "interarm_all_four_idle_and_identity_preserving_cleanup_gate": true,
+    "max_model_len": 2048,
+    "moe_backend": "triton",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "placement_group_creation_order_does_not_define_gpu_identity": true,
+    "placement_groups_mapped_by_runtime_physical_gpu_probe": true,
+    "prelaunch_all_four_idle_gate": true,
+    "prelaunch_committed_clean_source_contract": true,
+    "primary_elapsed_scope": "configure_train_panels_v13_plus_estimate_train_panels_v13",
+    "tensor_parallel_size_per_engine": 1
+  },
+  "schema": "eggroll-es-v27c-bf16-train-step-ab-preregistration-v28c",
+  "status": "preregistered_future_runtime_not_launched",
+  "strict_train_only": true,
+  "table_contract": {
+    "batch_keys": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "commit": "27f5aae6d1e9cfd3c53dc4f01b92a5414da5c5c8",
+    "content_sha256": "a4f82f53b037f766536013bdc10c8ca1e49873603a8f44972ef8007ed406de84",
+    "directory": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "directory_contains_exactly_one_file": true,
+    "file_sha256": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "filename": "E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition.json",
+    "triton_version": "3.6.0"
+  }
+}
