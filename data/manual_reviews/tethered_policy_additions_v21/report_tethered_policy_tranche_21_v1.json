@@ -1,0 +1,29 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/tethered_policy_additions_v21/pending_additions_tethered_policy_tranche_21_v1.jsonl",
+    "rows": 3,
+    "sha256": "a270e1943b4a3d5d9cdf0f03248054c0a6b9584dfb621794a363e1181e5944af"
+  },
+  "baseline": {
+    "rows": 551,
+    "sha256": "7b4d4985605d2b3454bef76015de9ccb3aa1ae06a9d8d763c44f96755cca8b4a"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v309 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "three distinct, explicitly year-attributed rules from one fully reviewed event-policy document",
+    "temporal_handling": "Questions identify the collected policy as 2025; answers do not present it as current universal policy."
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 1,
+    "expected_strata": {
+      "resources_general": 1,
+      "safety_consent": 2
+    },
+    "urls": 1
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-tethered-policy-additions-v21",
+  "schema": "manual-tethered-policy-additions-report-v21",
+  "status": "segregated_pending_integration"
+}
