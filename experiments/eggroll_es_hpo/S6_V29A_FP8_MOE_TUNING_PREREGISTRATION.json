@@ -1,0 +1,205 @@
+{
+  "authority": {
+    "checkpoint_write_authorized": false,
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "fp8_tuning_selection_launch_authorized": true,
+    "model_update_authorized": false,
+    "selected_table_direct_adoption_authorized": false,
+    "successful_selection_authorizes_only_separate_fp8_table_evaluation_preregistration": true,
+    "training_authorized": false,
+    "validation_heldout_ood_or_benchmark_open_authorized": false
+  },
+  "basis": {
+    "bf16_v27c_table_reuse_for_fp8_forbidden": true,
+    "bf16_v27c_table_validated_only_for_bf16_runtime": true,
+    "v28b_positive_evidence_commit": "ba87095d71e4b0f94a44cb9dfaaf2e34e43f6283",
+    "v28b_positive_evidence_content_sha256": "d2601ec9636fd1df100018bc96d74adbdbc9fd2d4b1e0415cb20df683ae0326f",
+    "v28b_positive_evidence_file_sha256": "034b34166324359687398dd2825a0a602e444360144fc645c51e5e399e972041"
+  },
+  "compiler_error_policy": {
+    "additional_CompilationError_skip_authorized": false,
+    "additional_RuntimeError_skip_authorized": false,
+    "any_non_OutOfResources_exception_fails_run": true,
+    "failure_requires_separate_evidence_and_preregistration_before_retry": true,
+    "known_bf16_compiler_failures_do_not_pre_authorize_fp8_exception_filters": true,
+    "official_OutOfResources_skip_unchanged": true
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "bf605c113bec2730599160618bd8e1b483a4317b024f68a309b80c7ed436f8cb",
+  "hardware_contract": {
+    "all_four_must_be_idle_immediately_before_attempt_claim": true,
+    "all_four_workers_tune_concurrently": true,
+    "driver_version": "610.43.02",
+    "final_bounded_cleanup_requires_all_four_idle": true,
+    "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "identities": {
+      "0": {
+        "pci_bus_id": "00000000:01:00.0",
+        "total_bytes": 102641958912,
+        "uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927"
+      },
+      "1": {
+        "pci_bus_id": "00000000:21:00.0",
+        "total_bytes": 102641958912,
+        "uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded"
+      },
+      "2": {
+        "pci_bus_id": "00000000:C1:00.0",
+        "total_bytes": 102641958912,
+        "uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640"
+      },
+      "3": {
+        "pci_bus_id": "00000000:F1:00.0",
+        "total_bytes": 102641958912,
+        "uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999"
+      }
+    },
+    "one_non_detached_one_gpu_official_worker_per_physical_gpu": true,
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "placement_group_bundle_per_worker": {
+      "CPU": 1,
+      "GPU": 1
+    },
+    "placement_group_creation_order_never_defines_physical_gpu": true,
+    "placement_groups_mapped_by_string_int_canonicalized_probe": true,
+    "simultaneous_all_four_actor_pid_and_positive_utilization_observation_required": true
+  },
+  "model_contract": {
+    "all_files": {
+      "file_count": 56,
+      "fingerprint_sha256": "b3307a2ce16d029a5ca0b7fb2828070c1fe07c232d396f877ea6d9a3cc9d22c9",
+      "real_launch_rehashes_every_file_before_gpu_claim": true,
+      "size_manifest_sha256": "46b80dca12b6cedfa9444cf7e7d13b03175a9e75a6abd775d235b9ad658737b0",
+      "total_bytes": 37493015668
+    },
+    "config_sha256": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+    "geometry": {
+      "experts": 256,
+      "experts_per_token": 8,
+      "hidden_size": 2048,
+      "moe_intermediate_size": 512,
+      "official_config_N": 512,
+      "official_shard_intermediate_size": 1024
+    },
+    "index_sha256": "6f176f344e41d35b17af12904e33401da5ebff3b49fccb8bfa0185bc2d50f9d6",
+    "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+    "quantization": {
+      "activation_scheme": "dynamic",
+      "block_shape_auto_detected": [
+        128,
+        128
+      ],
+      "block_shape_must_equal": [
+        128,
+        128
+      ],
+      "block_shape_source": "config.quantization_config.weight_block_size",
+      "dtype_cli": "fp8_w8a8",
+      "format": "e4m3",
+      "quant_method": "fp8",
+      "resolved_activation_dtype": "bfloat16"
+    },
+    "tensor_metadata_manifest_sha256": "76ace9582b6502d99577391aad378b83b99872fb92d91303843bbe5a7e3bdb4e",
+    "weight_shards": {
+      "file_count": 42,
+      "manifest_sha256": "25ae972a0ac80b7875b5e041172d5ad572b522619040f4786a9facdf0e36e5dd",
+      "total_bytes": 37463662160
+    }
+  },
+  "official_source_contract": {
+    "file_sha256": "230151de56d177ac22920ff9dada010f4361933b34b54e18d5981367723a8bcf",
+    "installed_fused_moe_config_path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/config.py",
+    "installed_fused_moe_config_sha256": "4090ec9e367fee4344c9d06f12e083ff37df427784e6736847e092222c9e1415",
+    "installed_fused_moe_path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/fused_moe.py",
+    "installed_fused_moe_sha256": "72811a4e543cc6f415f184cb951b61522643cddc4d6456f61a2f8c1a53b2cf79",
+    "installed_vllm_envs_path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/envs.py",
+    "installed_vllm_envs_sha256": "15ab853b73b26da5dc2808699138dff7217b72b9f661da274cc0c9f6c262f631",
+    "local_path": "/tmp/benchmark_moe_v025_official.py",
+    "runner_calls_official_BenchmarkWorker_tune_and_save_configs": true,
+    "url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.25.0/benchmarks/kernels/benchmark_moe.py",
+    "vllm_version": "0.25.0"
+  },
+  "persistence_contract": {
+    "attempt_and_report_are_compact_hashes_identities_counts_and_configs_only": true,
+    "contains_train_or_evaluation_rows": false,
+    "raw_progress_timing_vectors_compiler_logs_or_search_results_persisted": false,
+    "selected_official_table_is_the_only_tuning_payload": true
+  },
+  "runtime_environment_contract": {
+    "cuda_visible_devices": "0,1,2,3",
+    "external_moe_backend_tuning_and_batch_invariance_overrides_empty": true,
+    "sys_executable": "/home/catid/specialist/es-at-scale/.venv/bin/python",
+    "sys_prefix": "/home/catid/specialist/es-at-scale/.venv",
+    "versions": {
+      "ray": "2.56.0",
+      "torch": "2.11.0+cu130",
+      "triton": "3.6.0",
+      "vllm": "0.25.0"
+    },
+    "vllm_moe_tune_cache_clear_interval": 50
+  },
+  "schema": "vllm-moe-fp8-tuning-preregistration-v29a",
+  "status": "preregistered_before_fp8_tuning_output_tuner_not_launched",
+  "strict_selection_only": true,
+  "tuning_contract": {
+    "batch_assignment_by_physical_gpu": {
+      "0": {
+        "batch_size": 256,
+        "physical_gpu_id": 0,
+        "search_space_configuration_count": 1920,
+        "search_space_sha256": "e9a5db2e566fab0e43bc47f7e92682debc830617199f15f9e0275e7eaed81c98"
+      },
+      "1": {
+        "batch_size": 512,
+        "physical_gpu_id": 1,
+        "search_space_configuration_count": 1920,
+        "search_space_sha256": "e9a5db2e566fab0e43bc47f7e92682debc830617199f15f9e0275e7eaed81c98"
+      },
+      "2": {
+        "batch_size": 1024,
+        "physical_gpu_id": 2,
+        "search_space_configuration_count": 1920,
+        "search_space_sha256": "e9a5db2e566fab0e43bc47f7e92682debc830617199f15f9e0275e7eaed81c98"
+      },
+      "3": {
+        "batch_size": 2048,
+        "physical_gpu_id": 3,
+        "search_space_configuration_count": 1920,
+        "search_space_sha256": "e9a5db2e566fab0e43bc47f7e92682debc830617199f15f9e0275e7eaed81c98"
+      }
+    },
+    "batch_sizes": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "block_shape_argument_to_every_official_worker": [
+      128,
+      128
+    ],
+    "dtype_cli": "fp8_w8a8",
+    "enable_expert_parallel": false,
+    "exhaustive_search_space_configurations_per_batch": 1920,
+    "expected_official_output_filename": "E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition,dtype=fp8_w8a8,block_shape=[128,128].json",
+    "expected_output_file_count": 1,
+    "filename_with_python_list_space_is_rejected": true,
+    "fresh_exclusive_output_directory": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_fp8_w8a8_block128_tp1_exhaustive_v29a",
+    "official_filename_removes_spaces_from_python_block_shape_list": true,
+    "official_num_iters_per_configuration": 20,
+    "output_must_contain_exactly_four_batch_keys": true,
+    "search_space_sha256": "e9a5db2e566fab0e43bc47f7e92682debc830617199f15f9e0275e7eaed81c98",
+    "selection_seed": 20260929,
+    "tensor_parallel_size": 1,
+    "total_configurations_across_four_concurrent_workers": 7680,
+    "tune": true,
+    "use_deep_gemm": false
+  }
+}
