@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""Drop a Scott duplicate and clarify three release/monitoring mechanisms."""
+from __future__ import annotations
+import hashlib,json,sys,tempfile
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3];DATA=ROOT/"data";V327=DATA/"manual_reviews/context_merit_audit_v327";V290=DATA/"manual_reviews/context_merit_audit_v290";sys.path[:0]=[str(ROOT),str(V327),str(V290)]
+import build_context_merit_audit_v327 as previous
+import build_context_merit_audit_v290 as core
+OUT_DIR=Path(__file__).resolve().parent;AUDIT=OUT_DIR/"context_merit_audit_v328.jsonl";CURATION=OUT_DIR/"pending_curation_context_merit_v328.jsonl";REPORT=OUT_DIR/"report_context_merit_v328.json";BASELINE_ROWS=537;BASELINE_SHA256="46e4d4e1227a025d4ffcc1c0d0981d4ea49b4275b1b59be4941bc076d9bc91e8";EXPECTED_OUTPUT_SHA256="4fb60c9e28afef9aef7719e3708b36a1bbbce99a12cd7d39f9c65bdf2f2cf89a"
+EXPECTED_CAPACITY_BEFORE={"conflict_units":260,"equipment_material":23,"resources_general":84,"safety_consent":82,"technique":71};EXPECTED_CAPACITY_AFTER={"conflict_units":260,"equipment_material":23,"resources_general":84,"safety_consent":81,"technique":72}
+RESOURCE_MANIFEST=previous.RESOURCE_MANIFEST;file_sha256=previous.file_sha256;text_sha256=previous.text_sha256;read_jsonl=previous.read_jsonl;write_jsonl=previous.write_jsonl;conservative_capacity=previous.conservative_capacity;portable=previous.portable;PRIOR=(V327/"context_merit_audit_v327.jsonl",V327/"pending_curation_context_merit_v327.jsonl",V327/"report_context_merit_v327.json")
+SPECS=(
+ {"action":"edit","fact_id":"fact-88f77d5c78337637555c","active_index":200,"expected_question":"What distinguishes Rope365’s exploding knots from an ordinary quick release?","expected_answer":"They disappear completely without leaving a tangle.","question":"What capability does Rope365 use to distinguish an exploding knot from an ordinary quick release?","answer":"An exploding knot releases without leaving a tangle; designs such as the lapp knot can let the rope detach even when tying continued with the working end.","reason_code":"expand_exploding_knot_slogan_to_detachment_behavior","reason":"The replacement retains the no-tangle distinction and adds the evidence's concrete lapp-knot behavior when the working end has continued into the tie."},
+ {"action":"edit","fact_id":"fact-ada06c08d91a1d39a9a3","active_index":231,"expected_question":"What does Rope365 say about the unlocked entry and locked exit of its slipped-half-hitch quick release?","expected_answer":"You’ll need to start from a change of direction or some friction on the hitch’s origin as the entry point will not be locked. Then we make a half hitch on the loop created by the first half hitch to lock the exit into place.","question":"How does Rope365 compensate for the unlocked entry of a slipped-half-hitch quick release and then lock its exit?","answer":"Start at a change of direction or with friction at the hitch's origin because the entry is not locked, then place a second half hitch around the first hitch's loop to lock the exit.","reason_code":"replace_slipped_hitch_first_person_copy_with_mechanical_steps","reason":"The replacement converts copied first-person instructions into a concise explanation of the distinct entry-friction and exit-locking mechanisms."},
+ {"action":"drop","fact_id":"fact-f3a156903c970caf233d","active_index":234,"expected_question":"What does Scott identify as the underlying strength of Osada-ryu training?","expected_answer":"For me, the underlying strength of Osada-ryu is not that it produces people who tie the same, but rather it gives people the skill, both technically and in terms of being able to fully connect with the person they are tying, to create their own “voice”, so they tie quite differently.","retained_fact":"fact-e387abbd788f01557301","reason_code":"drop_scott_forms_connection_individual_voice_duplicate","reason":"The retained same-document row covers technical skill, connection, presence, moving beyond conscious pattern-following, and individual voice in a clearer applied-learning answer."},
+ {"action":"edit","fact_id":"fact-7a052215e24d317104eb","active_index":285,"expected_question":"What monitoring and exit preparation does Rope365 recommend for predicament bondage?","expected_answer":"Watch for unpredictable movement, keep checking that the ties remain safe, and be ready to untie or cut the rope quickly.","question":"How does Rope365 recommend monitoring and preparing to exit a predicament tie?","answer":"Because movement can change the situation unpredictably, watch the ties continuously and be ready to untie or cut the rope quickly.","reason_code":"replace_predicament_safe_tautology_with_movement_monitoring","reason":"The replacement removes the circular instruction to ensure ties 'remain safe' while preserving the evidence's observable movement risk and rapid-release preparation."},
+)
+def build_baseline(out,report):
+ previous.build_projection(out,report)
+ if (len(read_jsonl(out)),file_sha256(out))!=(BASELINE_ROWS,BASELINE_SHA256):raise ValueError("v327 drift")
+def build_projection(out,report):
+ d=out.parent/f".{out.name}.v328-input";d.mkdir(parents=True,exist_ok=True);base=d/"v327.jsonl";build_baseline(base,d/"v327.report.json");core.build_projection_with_inputs(out,report,(CURATION,),(base,))
+def observe(before):
+ with tempfile.TemporaryDirectory(prefix=".v328-observe-",dir=OUT_DIR) as t:
+  d=Path(t);out=d/"out.jsonl";rep=d/"out.report.json";ds=[];rs=[]
+  for _ in (1,2):build_projection(out,rep);ds.append(out.read_bytes());rs.append(rep.read_bytes())
+  rows=read_jsonl(out);return{"rows":len(rows),"sha":hashlib.sha256(ds[0]).hexdigest(),"eval":json.loads(rs[0])["eval_fact_count"],"de":ds[0]==ds[1],"re":rs[0]==rs[1],"before":conservative_capacity(before),"after":conservative_capacity(rows)}
+def main():
+ OUT_DIR.mkdir(parents=True,exist_ok=True)
+ with tempfile.TemporaryDirectory(prefix=".v328-base-",dir=OUT_DIR) as t:d=Path(t);base=d/"v327.jsonl";build_baseline(base,d/"v327.report.json");before=read_jsonl(base)
+ by_fact={r["fact_id"]:(i,r) for i,r in enumerate(before,1)};audits=[];curations=[]
+ for audit_index,s in enumerate(SPECS,1):
+  index,active=by_fact[s["fact_id"]]
+  if index!=s["active_index"] or (active["question"],active["answer"])!=(s["expected_question"],s["expected_answer"]):raise ValueError(f"candidate drift {s['fact_id']}")
+  evidence=active.get("evidence")
+  if not evidence:raise ValueError("missing evidence")
+  common={"action":s["action"],"document_sha256":active["document_sha256"],"evidence":evidence,"evidence_url":active["url"],"expected_answer":active["answer"],"expected_question":active["question"],"fact_id":active["fact_id"],"reason":s["reason"],"reason_code":s["reason_code"],"reviewed_at":"2026-07-15","reviewer":"codex-context-merit-audit-v328","source_lineage":active["source_lineage"]}
+  audit={"active_answer":active["answer"],"active_index":index,"active_question":active["question"],"audit_index":audit_index,"decision":s["action"],"document_sha256":active["document_sha256"],"fact_id":active["fact_id"],"projection_lineage":{"active_index":index,"baseline_rows":BASELINE_ROWS,"baseline_sha256":BASELINE_SHA256},"reason":s["reason"],"reason_code":s["reason_code"],"review_pass":"release_mechanism_and_semantic_duplicate_train_only_cleanup","reviewed_at":"2026-07-15","reviewer":"codex-context-merit-audit-v328","schema":"context-merit-audit-v328","source":active["source"],"source_support":"manual_source_and_dataset_context_review","support_evidence":evidence,"support_evidence_sha256":text_sha256(evidence),"url":active["url"]}
+  if s["action"]=="edit":common.update({"answer":s["answer"],"paraphrase_rationale":s["reason"],"question":s["question"],"support_type":"manual_paraphrase"});audit.update({"edited_answer":s["answer"],"edited_question":s["question"],"paraphrase_rationale":s["reason"]})
+  else:
+   if s["retained_fact"] not in by_fact:raise ValueError("retained fact drift")
+   audit["retained_fact_id"]=s["retained_fact"]
+  curations.append(common);audits.append(audit)
+ write_jsonl(AUDIT,audits);write_jsonl(CURATION,curations);o=observe(before)
+ if not o["de"] or not o["re"] or (o["rows"],o["eval"])!=(536,612) or o["before"]!=EXPECTED_CAPACITY_BEFORE:raise ValueError(f"projection drift {o}")
+ if EXPECTED_CAPACITY_AFTER!="PENDING" and o["after"]!=EXPECTED_CAPACITY_AFTER:raise ValueError(f"capacity drift {o}")
+ if EXPECTED_OUTPUT_SHA256!="PENDING" and o["sha"]!=EXPECTED_OUTPUT_SHA256:raise ValueError("output drift")
+ REPORT.write_text(json.dumps({"audit":{"by_decision":{"drop":1,"edit":3,"keep":0},"path":portable(AUDIT),"rows":4,"sha256":file_sha256(AUDIT)},"conservative_capacity":{"after":o["after"],"before":o["before"],"delta":{k:o["after"][k]-o["before"][k] for k in o["before"]},"grouping":"shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"},"prior_checkpoint":{"candidate":{"rows":BASELINE_ROWS,"sha256":BASELINE_SHA256},"artifacts":[{"path":portable(p),"sha256":file_sha256(p)} for p in PRIOR]},"isolated_build_projection":{"automated_projection_runs":2,"new_additions_applied":0,"output_rows":o["rows"],"output_sha256":o["sha"],"repeat_dataset_byte_identical":o["de"],"repeat_projection_report_byte_identical":o["re"],"sealed_eval_fact_count_reported_by_tooling":o["eval"]},"new_pending_curation":{"decisions":4,"path":portable(CURATION),"sha256":file_sha256(CURATION)},"schema":"context-merit-audit-report-v328","sealed_evaluation_policy":{"automated_collision_tool_reads_sealed_content":True,"automated_read_scope":"fact-ID collision exclusion and aggregate eval_fact_count reporting only","manual_worker_opened_eval_or_heldout_content":False,"manual_worker_received_eval_or_heldout_content":False}},ensure_ascii=False,indent=2,sort_keys=True)+"\n")
+if __name__=="__main__":main()
