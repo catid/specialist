@@ -1,0 +1,47 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/technique_additions_v2/pending_additions_technique_tranche_02_v1.jsonl",
+    "rows": 3,
+    "sha256": "3125b51e446ee47b708d155b7fbb4fa0640476b422a29d897429e2e0525917d7"
+  },
+  "baseline": {
+    "rows": 495,
+    "sha256": "1afd8517320e5465ad3f52d915bc9391b19ca56a32a2db3ffcd713f88442acf1"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v290 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one useful technique fact from each of three distinct, previously unrepresented source documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "technique": 3
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-technique-additions-v2",
+  "schema": "manual-technique-additions-report-v2",
+  "sources": {
+    "cinch_structure": {
+      "document_sha256": "7ca2cd8184ce40a87bf174138af5769ed0f8d459a30ef5e356ecb0b56beda571",
+      "file_sha256": "fe120f0bba58d42fc8b3d778e3b4be464f400afa636dc729e1fbd2dca15248f8",
+      "path": "data/raw/rope_resources_v1/rope365__e156eea7b8dfda8b39a9.json",
+      "url": "https://rope365.com/cinches/"
+    },
+    "clove_hitch_lock": {
+      "document_sha256": "8e9b8f3bd7e68050d465f0cad337e0f0f332c1f14011ce72e2df25752da6398f",
+      "file_sha256": "24d8a80136590ab24ca108bec1339499d40c0a4a91555310de257544f3c4a4d4",
+      "path": "data/raw/rope_resources_v1/rope365__46835d0ae181726e3e3a.json",
+      "url": "https://rope365.com/clove-hitch-lock/"
+    },
+    "tension_control": {
+      "document_sha256": "559d1c29c6bb09e09b5111acb8fe466e51cad0ad48295ebfa67c1575b56f9864",
+      "file_sha256": "c9be48d7eef142f161b7c1692feb8851956ce9b568e7c79d4c8a04157e312321",
+      "path": "data/raw/rope_resources_v1/rope365__1f02fa6488558b05bf1f.json",
+      "url": "https://rope365.com/tension/"
+    }
+  },
+  "status": "segregated_pending_integration"
+}
