@@ -1,0 +1,61 @@
+{
+  "groups": [
+    "dense"
+  ],
+  "include_regex": "^(?:model\\.language_model\\.layers\\.4\\.linear_attn\\.in_proj_a\\.weight|model\\.language_model\\.layers\\.4\\.linear_attn\\.in_proj_b\\.weight|model\\.language_model\\.layers\\.4\\.linear_attn\\.in_proj_qkv\\.weight|model\\.language_model\\.layers\\.4\\.linear_attn\\.in_proj_z\\.weight|model\\.language_model\\.layers\\.4\\.linear_attn\\.out_proj\\.weight|model\\.language_model\\.layers\\.4\\.mlp\\.gate\\.weight|model\\.language_model\\.layers\\.4\\.mlp\\.shared_expert\\.down_proj\\.weight|model\\.language_model\\.layers\\.4\\.mlp\\.shared_expert\\.gate_proj\\.weight|model\\.language_model\\.layers\\.4\\.mlp\\.shared_expert\\.up_proj\\.weight|model\\.language_model\\.layers\\.5\\.linear_attn\\.in_proj_a\\.weight|model\\.language_model\\.layers\\.5\\.linear_attn\\.in_proj_b\\.weight|model\\.language_model\\.layers\\.5\\.linear_attn\\.in_proj_qkv\\.weight|model\\.language_model\\.layers\\.5\\.linear_attn\\.in_proj_z\\.weight|model\\.language_model\\.layers\\.5\\.linear_attn\\.out_proj\\.weight|model\\.language_model\\.layers\\.5\\.mlp\\.gate\\.weight|model\\.language_model\\.layers\\.5\\.mlp\\.shared_expert\\.down_proj\\.weight|model\\.language_model\\.layers\\.5\\.mlp\\.shared_expert\\.gate_proj\\.weight|model\\.language_model\\.layers\\.5\\.mlp\\.shared_expert\\.up_proj\\.weight|model\\.language_model\\.layers\\.6\\.linear_attn\\.in_proj_a\\.weight|model\\.language_model\\.layers\\.6\\.linear_attn\\.in_proj_b\\.weight|model\\.language_model\\.layers\\.6\\.linear_attn\\.in_proj_qkv\\.weight|model\\.language_model\\.layers\\.6\\.linear_attn\\.in_proj_z\\.weight|model\\.language_model\\.layers\\.6\\.linear_attn\\.out_proj\\.weight|model\\.language_model\\.layers\\.6\\.mlp\\.gate\\.weight|model\\.language_model\\.layers\\.6\\.mlp\\.shared_expert\\.down_proj\\.weight|model\\.language_model\\.layers\\.6\\.mlp\\.shared_expert\\.gate_proj\\.weight|model\\.language_model\\.layers\\.6\\.mlp\\.shared_expert\\.up_proj\\.weight|model\\.language_model\\.layers\\.7\\.mlp\\.gate\\.weight|model\\.language_model\\.layers\\.7\\.mlp\\.shared_expert\\.down_proj\\.weight|model\\.language_model\\.layers\\.7\\.mlp\\.shared_expert\\.gate_proj\\.weight|model\\.language_model\\.layers\\.7\\.mlp\\.shared_expert\\.up_proj\\.weight|model\\.language_model\\.layers\\.7\\.self_attn\\.k_proj\\.weight|model\\.language_model\\.layers\\.7\\.self_attn\\.o_proj\\.weight|model\\.language_model\\.layers\\.7\\.self_attn\\.q_proj\\.weight|model\\.language_model\\.layers\\.7\\.self_attn\\.v_proj\\.weight)$",
+  "layer_types": {
+    "4": "linear_attention",
+    "5": "linear_attention",
+    "6": "linear_attention",
+    "7": "full_attention"
+  },
+  "layers": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "model_config": "/home/catid/specialist/models/Qwen3.6-35B-A3B-depth-front-e005/config.json",
+  "model_config_sha256": "70710d6076ffc2e3e993de84826f3f6b85dc77eb4d3100a38556c4197bfce72e",
+  "num_units": 35,
+  "plan": "v23a_insert_front_e005",
+  "plan_sha256": "3197998ea32ed4c36be64353e699d7b18c9c08c7211f544461d65c3eb847e354",
+  "schema": "qwen36-es-layer-plan-v1",
+  "units": [
+    "model.language_model.layers.4.linear_attn.in_proj_a.weight",
+    "model.language_model.layers.4.linear_attn.in_proj_b.weight",
+    "model.language_model.layers.4.linear_attn.in_proj_qkv.weight",
+    "model.language_model.layers.4.linear_attn.in_proj_z.weight",
+    "model.language_model.layers.4.linear_attn.out_proj.weight",
+    "model.language_model.layers.4.mlp.gate.weight",
+    "model.language_model.layers.4.mlp.shared_expert.down_proj.weight",
+    "model.language_model.layers.4.mlp.shared_expert.gate_proj.weight",
+    "model.language_model.layers.4.mlp.shared_expert.up_proj.weight",
+    "model.language_model.layers.5.linear_attn.in_proj_a.weight",
+    "model.language_model.layers.5.linear_attn.in_proj_b.weight",
+    "model.language_model.layers.5.linear_attn.in_proj_qkv.weight",
+    "model.language_model.layers.5.linear_attn.in_proj_z.weight",
+    "model.language_model.layers.5.linear_attn.out_proj.weight",
+    "model.language_model.layers.5.mlp.gate.weight",
+    "model.language_model.layers.5.mlp.shared_expert.down_proj.weight",
+    "model.language_model.layers.5.mlp.shared_expert.gate_proj.weight",
+    "model.language_model.layers.5.mlp.shared_expert.up_proj.weight",
+    "model.language_model.layers.6.linear_attn.in_proj_a.weight",
+    "model.language_model.layers.6.linear_attn.in_proj_b.weight",
+    "model.language_model.layers.6.linear_attn.in_proj_qkv.weight",
+    "model.language_model.layers.6.linear_attn.in_proj_z.weight",
+    "model.language_model.layers.6.linear_attn.out_proj.weight",
+    "model.language_model.layers.6.mlp.gate.weight",
+    "model.language_model.layers.6.mlp.shared_expert.down_proj.weight",
+    "model.language_model.layers.6.mlp.shared_expert.gate_proj.weight",
+    "model.language_model.layers.6.mlp.shared_expert.up_proj.weight",
+    "model.language_model.layers.7.mlp.gate.weight",
+    "model.language_model.layers.7.mlp.shared_expert.down_proj.weight",
+    "model.language_model.layers.7.mlp.shared_expert.gate_proj.weight",
+    "model.language_model.layers.7.mlp.shared_expert.up_proj.weight",
+    "model.language_model.layers.7.self_attn.k_proj.weight",
+    "model.language_model.layers.7.self_attn.o_proj.weight",
+    "model.language_model.layers.7.self_attn.q_proj.weight",
+    "model.language_model.layers.7.self_attn.v_proj.weight"
+  ]
+}

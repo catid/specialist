@@ -1,0 +1,321 @@
+{
+  "aggregate_evidence": {
+    "v13_train_panel_aggregate": {
+      "content_sha256": "06f662574013345a6c777af8688a38f3941286d9e11a427ed3342de53451b1e3",
+      "file_sha256": "d367c9c4de1e1f3526ddb3dfba2f5bf24efc77cbccf951f7359eb1969fcd7b54",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V13B_TRAIN_PANEL_AGGREGATE_EVIDENCE_V14A.json",
+      "schema": "eggroll-es-v13b-train-panel-aggregate-evidence-v14a"
+    },
+    "v15a_back_positive_aggregate": {
+      "content_sha256": "c9ab854c8417c4f6c74e5fe54de29e2f6a8b222b4c7fc454b5f22b183c3b08b2",
+      "file_sha256": "1e14abee9e1514915bc241c8f6caacbe1bb7103e1c69a9afdde1f9ce13661ae1",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V15A_BACK_PLAN_POSITIVE_AGGREGATE_EVIDENCE_V15B.json",
+      "schema": "eggroll-es-v15a-back-plan-positive-aggregate-evidence-v15b"
+    },
+    "v15b_back_negative_aggregate": {
+      "content_sha256": "5e96588eb9fcacebfac48211a63d6ee9a106033a696ee6d21afc6d07b231bd28",
+      "file_sha256": "1d5dac57a8fdf9e117d4c0c0f90a5eb98f4d08eea9662df92849fdbcd18c9099",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V15B_BACK_PLAN_CONFIRMATION_NEGATIVE_AGGREGATE_EVIDENCE_V16.json",
+      "schema": "eggroll-es-v15b-back-plan-confirmation-negative-aggregate-evidence-v16"
+    },
+    "v22a_dataset_negative_aggregate": {
+      "content_sha256": "67eb3c39aa8d13a8924a2880c04f021f8ad27b9fcfb82eba9731ab195f5d3318",
+      "file_sha256": "408d48a8eb9a63da9f12062d94b5249c88cc04d254eb553230e23cae516a1955",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V22A_V341_MATCHED_REPLACEMENT_NEGATIVE_EVIDENCE.json",
+      "schema": "eggroll-es-v341-matched-replacement-negative-evidence-v22a"
+    }
+  },
+  "analysis": {
+    "bootstrap_repetitions": 50000,
+    "bootstrap_seed": 20260827,
+    "candidate_location_count": 3,
+    "endpoint_count_per_location": 16,
+    "family_hypothesis_count": 48,
+    "gradient_endpoint_count_per_location": 12,
+    "gradient_endpoints": [
+      "optimization_pairwise_cosine_median",
+      "optimization_pairwise_cosine_worst",
+      "optimization_pairwise_sign_agreement_median",
+      "optimization_pairwise_sign_agreement_worst",
+      "aggregate_to_optimization_cosine_median",
+      "aggregate_to_optimization_cosine_worst",
+      "aggregate_to_optimization_sign_agreement_median",
+      "aggregate_to_optimization_sign_agreement_worst",
+      "train_screen_cosine_median",
+      "train_screen_cosine_worst",
+      "train_screen_sign_agreement_median",
+      "train_screen_sign_agreement_worst"
+    ],
+    "multiplicity_covers_all_three_locations_and_all_endpoints": true,
+    "noninferiority_margin": 0.0,
+    "one_sided_familywise_quantile": 0.0010416666666666667,
+    "paired_same_direction_and_train_row_draws_all_arms": true,
+    "reference_endpoint_count_per_location": 4,
+    "reference_endpoints": [
+      "unperturbed_reward_delta_median",
+      "unperturbed_reward_delta_worst",
+      "unperturbed_loss_compatibility_median",
+      "unperturbed_loss_compatibility_worst"
+    ]
+  },
+  "arms": {
+    "base_middle_late": {
+      "engine_rank": 0,
+      "epsilon": 0.0,
+      "expected_gpu_id": 0,
+      "layer_plan": {
+        "file_sha256": "4dca69212f2eee1c5882a7f3de944e3dadd8de94b42e58e7d7495547e8b1c747",
+        "layers": [
+          20,
+          21,
+          22,
+          23
+        ],
+        "logical_shape_order_sha256": "50f421bd54a01bb1a7399743d57b09d816bad2d729ec5d5971d80849d3d572dc",
+        "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+        "num_units": 35,
+        "path": "/home/catid/specialist/experiments/layer_plans/v23a_base_middle_late_dense.json",
+        "plan_sha256": "07a155d1217b27ba1bf30e057024247236a812841c52bab401d465c9fdb5273f",
+        "selected_element_count": 142999552
+      },
+      "model_directory_fingerprint_sha256": "1a21a765e374e266037b3b7e5313a62a0de8ca37c00c0462b67c21af7e21f61e",
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+      "target_layers": [
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    "insert_back_e005": {
+      "engine_rank": 3,
+      "epsilon": 0.05,
+      "expected_gpu_id": 3,
+      "layer_plan": {
+        "file_sha256": "21a0100d2bf729ce5ce88ea83ea668086cfb512ff5684413050d03d796c7820e",
+        "layers": [
+          40,
+          41,
+          42,
+          43
+        ],
+        "logical_shape_order_sha256": "50f421bd54a01bb1a7399743d57b09d816bad2d729ec5d5971d80849d3d572dc",
+        "model_config_sha256": "70710d6076ffc2e3e993de84826f3f6b85dc77eb4d3100a38556c4197bfce72e",
+        "num_units": 35,
+        "path": "/home/catid/specialist/experiments/layer_plans/v23a_insert_back_e005_dense.json",
+        "plan_sha256": "b539e4e70710ade7ae5b1dbf21814c728514e5a1e3f0a3cf36945821bd06c77e",
+        "selected_element_count": 142999552
+      },
+      "model_directory_fingerprint_sha256": "09e90cea3634bfd566657128ef1e49d274e3dd32e833d9ea9f0d94014b0e8815",
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-depth-back-e005",
+      "target_layers": [
+        40,
+        41,
+        42,
+        43
+      ]
+    },
+    "insert_front_e005": {
+      "engine_rank": 1,
+      "epsilon": 0.05,
+      "expected_gpu_id": 1,
+      "layer_plan": {
+        "file_sha256": "4c0f451545f01ec53cc17800e24f331d1038bbc3ce96fe352a9cc2b96c822e29",
+        "layers": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "logical_shape_order_sha256": "50f421bd54a01bb1a7399743d57b09d816bad2d729ec5d5971d80849d3d572dc",
+        "model_config_sha256": "70710d6076ffc2e3e993de84826f3f6b85dc77eb4d3100a38556c4197bfce72e",
+        "num_units": 35,
+        "path": "/home/catid/specialist/experiments/layer_plans/v23a_insert_front_e005_dense.json",
+        "plan_sha256": "3197998ea32ed4c36be64353e699d7b18c9c08c7211f544461d65c3eb847e354",
+        "selected_element_count": 142999552
+      },
+      "model_directory_fingerprint_sha256": "13a3c49f92b7d04ee37205ab1049085ebe761c81f0eee584828cdd9c00c7edf0",
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-depth-front-e005",
+      "target_layers": [
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "insert_middle_e005": {
+      "engine_rank": 2,
+      "epsilon": 0.05,
+      "expected_gpu_id": 2,
+      "layer_plan": {
+        "file_sha256": "9f343cb136a5d4883ae81878ecec005e028b7f5e492ca0cc64b1f9e1945c112a",
+        "layers": [
+          20,
+          21,
+          22,
+          23
+        ],
+        "logical_shape_order_sha256": "50f421bd54a01bb1a7399743d57b09d816bad2d729ec5d5971d80849d3d572dc",
+        "model_config_sha256": "70710d6076ffc2e3e993de84826f3f6b85dc77eb4d3100a38556c4197bfce72e",
+        "num_units": 35,
+        "path": "/home/catid/specialist/experiments/layer_plans/v23a_insert_middle_e005_dense.json",
+        "plan_sha256": "395796311319ed63d033131996e77dcd5faf636cdb940d49ea5fe463369edc8d",
+        "selected_element_count": 142999552
+      },
+      "model_directory_fingerprint_sha256": "3d88f1fc23ab470efa2397eecee6e5e3a489fc14fe033bff7ae26011931770fc",
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-depth-middle-e005",
+      "target_layers": [
+        20,
+        21,
+        22,
+        23
+      ]
+    }
+  },
+  "authority": {
+    "checkpoint_write_allowed": false,
+    "dataset_promotion_allowed": false,
+    "evaluation_allowed": false,
+    "model_update_allowed": false,
+    "train_only_raw_scoring": true
+  },
+  "content_sha256_before_self_field": "de43c14ae4fc325dfd23351fd1021dd029282b93f6cb6a17c4073c2ac72cc281",
+  "cross_arm_perturbation_contract": {
+    "logical_shape_order_sha256": "50f421bd54a01bb1a7399743d57b09d816bad2d729ec5d5971d80849d3d572dc",
+    "runtime_selected_parameter_count_per_arm": 23,
+    "same_direction_seed_all_arms_every_signed_wave": true,
+    "same_logical_tensor_shape_and_order_all_arms": true,
+    "selected_element_count_per_arm": 142999552,
+    "source_unit_count_per_arm": 35
+  },
+  "excluded_inputs": {
+    "gen20_or_gen30_fp32_masters": true,
+    "heldout_validation_ood_or_benchmarks": true,
+    "old_eval_reports": true,
+    "old_insert_probe_rows_or_details": true,
+    "old_insert_training_journals": true,
+    "persisted_response_vectors_or_unit_scores": true
+  },
+  "experiment_name": "insertion_location_stability_v23a_authoritative_raw",
+  "fresh_basis": {
+    "basis_content_sha256": "aad4ac2e82b55b13fc7a1019b89425d164e7ac8d0e6a8e4fd23c4bcc3f0757eb",
+    "basis_seed": 20260826,
+    "direction_seed_list_sha256": "03aeeb630f27c865cb222c04d4e8ee4d3de3385f426634e660454b6922cad178",
+    "distinct_from_every_listed_prior_basis": true,
+    "population_size": 32,
+    "prior_basis_content_sha256": {
+      "v13_v14_v16_v17_v18": "29e7ceb1753c39b310a176d827e222b9a5b2c85edf9f2fef5c68b630b8fabc11",
+      "v15a": "6c358060c5f9a0a7b00e953bd230b18f915950f0233f38321e0e048a67ea05e7",
+      "v15b": "97e9c5687677bd02365f77671141031ba2739018ed07ccd1bbb3eaabbc0a94f8",
+      "v19a": "d4e46d7d51d5c82cfc981dad3b33db8a1766c70ad570ef931b12550d1bc7bf6c",
+      "v20a": "b6d667c2f125f9d0be4d74ef536af03546fecb6c03f2838679f5a315a1ec9852",
+      "v21a": "65970861cd06b53e52cf848b2c8b8961160bf9c68f6b1b9f4935a88ba8d314d2",
+      "v22a": "f68624388ac0549ac82ba3d1e64a317233c42f900502a6f5c6d6f07071b4c60e"
+    },
+    "signed_wave_count": 64,
+    "signed_wave_schedule_sha256": "c1875a188c91b81623d8242cdfc3b3737329b77329756e2b892acdb47b0f4ede"
+  },
+  "gate": {
+    "checkpoint_write_authorized": false,
+    "confirmation_engine_arm_mapping": {
+      "0": "insert_back_e005",
+      "1": "base_middle_late",
+      "2": "insert_front_e005",
+      "3": "insert_middle_e005"
+    },
+    "confirmation_requires_permuted_arm_gpu_mapping": true,
+    "dataset_promotion_authorized": false,
+    "direct_model_update_authorized": false,
+    "eligible_location_selection": "among passing locations maximize minimum of 16 familywise LCBs; then mean LCB; then fixed front,middle,back order",
+    "evaluation_authorized": false,
+    "no_location_pass_decision": "retain_v13_base_middle_late_recipe",
+    "pass_authority": "authorize_only_separate_fresh_basis_train_only_confirmation",
+    "per_location_pass": "all 12 gradient and all 4 unperturbed reference familywise LCBs are >= 0 with every runtime integrity audit true"
+  },
+  "model_seal": {
+    "commit": "00471e1c44b78813d02f0a8895c8e014a75dcc4e",
+    "content_sha256": "d4cf795408967aefbc77f841c47e6fe2fbe3cefc14a4a0fdb4bf73b2701326f9",
+    "file_sha256": "96eeb236ea94678f57a530a27a471467d4b3d413d2e7be397e293b695cd4c440",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V23A_INSERTION_MODEL_SEAL.json"
+  },
+  "panel_contract": {
+    "all_panels_pinned_before_results": true,
+    "manifest_content_sha256": "46cc98b694c98c1ee1c5456b855fb3b1db4534b3df2dcda69fc690a2d8a61bf5",
+    "manifest_file_sha256": "e555d9d6746cde6297cd3ab523b16dd7d78d81e2674447ee46d754ebfac52da7",
+    "optimization_panels": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2"
+    ],
+    "panel_bundle_content_sha256": "cc176a9b86c6447dcde8a11fd28d68c837d2119715126c57a3f37293fb0d492b",
+    "panel_count": 5,
+    "panel_names": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "requests_per_arm_per_signed_wave": 280,
+    "rows_per_panel": 56,
+    "train_only": true,
+    "train_source_arrow_sha256": "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6",
+    "train_source_file_sha256": "f7127c38c7b540eaf9cf4349d1a1b8076e171da7f8ea43c11068ad1c311bb776",
+    "untouched_train_screen_panels": [
+      "train_screen_0",
+      "train_screen_1"
+    ]
+  },
+  "preregistered_before_results": true,
+  "reference_compatibility": {
+    "detokenize": false,
+    "endpoints": [
+      "unperturbed_reward_delta_median",
+      "unperturbed_reward_delta_worst",
+      "unperturbed_loss_compatibility_median",
+      "unperturbed_loss_compatibility_worst"
+    ],
+    "location_cannot_advance_if_any_reference_endpoint_fails": true,
+    "loss": "negative_weighted_panel_mean_gold_answer_token_logprob",
+    "max_tokens": 1,
+    "paired_candidate_minus_base_same_train_requests": true,
+    "prompt_logprobs": 1,
+    "reward": "weighted_panel_mean_gold_answer_token_logprob",
+    "teacher_forced_gold_answer_logprobs": true,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "zero_noninferiority_margin": true
+  },
+  "runtime": {
+    "all_four_gpus_score_every_signed_wave": true,
+    "alpha": 0.0,
+    "engine_arm_mapping": {
+      "0": "base_middle_late",
+      "1": "insert_front_e005",
+      "2": "insert_middle_e005",
+      "3": "insert_back_e005"
+    },
+    "engine_count": 4,
+    "exact_restore_and_unselected_identity_required_per_arm": true,
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "one_distinct_model_arm_resident_per_gpu": true,
+    "pre_post_unperturbed_reference_probe_equal_per_arm": true,
+    "requests_all_engines_all_signed_waves": 71680,
+    "requests_all_engines_per_signed_wave": 1120,
+    "requests_per_engine_all_signed_waves": 17920,
+    "requests_per_engine_per_signed_wave": 280,
+    "restore_once_per_arm_per_signed_wave": true,
+    "same_fixed_requests_all_arms_and_waves": true,
+    "sigma": 0.0003,
+    "tp_per_engine": 1,
+    "unperturbed_reference_requests_all_engines": 1120,
+    "unperturbed_reference_requests_per_engine": 280
+  },
+  "schema": "eggroll-es-insertion-location-stability-preregistration-v23a",
+  "strict_train_only": true
+}
