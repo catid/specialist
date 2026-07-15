@@ -1,0 +1,51 @@
+{
+  "authority": {
+    "evaluation_or_dataset_access_allowed": false,
+    "infrastructure_failure_diagnosis_only": true,
+    "retry_preregistration_allowed": true,
+    "selected_table_adoption_allowed": false,
+    "training_or_model_update_allowed": false
+  },
+  "closed_surfaces": {
+    "evaluation_or_dataset_surface_opened": false,
+    "official_tuner_search_reached": false,
+    "selected_table_adopted": false,
+    "training_or_model_update_applied": false
+  },
+  "content_sha256_before_self_field": "643c3a0eebb4953fe40e92ef7bd48f0d95d15511b44315308043ffb2388ad6d3",
+  "failed_attempt": {
+    "content_sha256": "0c6fc60eecb0bd730c18fae66c36e7071080fae08511aadcd51540ea186cef2a",
+    "failure_integrity": {
+      "exception_class": "ServerUnavailable",
+      "message_sha256": "fa15e5000aa7aea753bf68526312eded1a75026e9752ec130356d99207ca712a",
+      "raw_message_or_traceback_persisted": false
+    },
+    "file_sha256": "1c19e5f924ca4839a84d71bfd1af2e44945ef4871ca657e2c6d2bd7af71db7ee",
+    "final_idle_certificate_sha256": "505b96d3754a97ac2796c43987e16c9d7b2a54db8397b20622d668a468d7c8ce",
+    "implementation_bundle_sha256": "f4a282659dd899f9b9be1c4ecd6c55f07f5e2126f26179d48d91dc9940aafba3",
+    "live_cpu_disk_audit_content_sha256": "7285cda7663a42be6f41aacb2fe92a56df5ccb076e269f940252dea01322b806",
+    "phase": "after_worker_cleanup_or_finalization_failure",
+    "prelaunch_idle_certificate_sha256": "491036be54f8230baec0ea7f173d7d7c20f537ab7fc8eb44f5b91cf80b37a931",
+    "preregistration_content_sha256": "bf605c113bec2730599160618bd8e1b483a4317b024f68a309b80c7ed436f8cb",
+    "preregistration_file_sha256": "3fabaef03dde9944005937d4d975b4d546f330d66a426580720d0e3da5dc768d",
+    "recipe_content_sha256": "3fb6256df6f8f3b46808ef0649ff0d16505fd6fc4f5010441c3b184d8ed3c558",
+    "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v29a_fp8_w8a8_block128_moe_tuning_selection.launch_attempt.json",
+    "runtime_environment_certificate_sha256": "7acc87ffb6a50682f19309ea3059823d0fc96dfc459e30cb66d64e157a76f52a",
+    "status": "failed"
+  },
+  "failure_boundary": {
+    "all_four_gpus_finally_idle": true,
+    "cause_classification": "dashboard_dependent_ray_state_api_unavailable_before_tuning",
+    "compact_report_absent": true,
+    "compact_report_relative_path": "experiments/eggroll_es_hpo/runs/s6_v29a_fp8_w8a8_block128_moe_tuning_selection/fp8_moe_tuning_selection_report_v29a.json",
+    "dashboard_dependent_state_api_used_for_actor_pid": true,
+    "failure_before_official_tune_future_submission": true,
+    "ray_dashboard_disabled": true,
+    "runtime_file_sha256": "532c06fe1a5c16ec4c85f8dda0ff0415a824ab488ff625a69823fc45706a2166",
+    "runtime_relative_path": "run_vllm_moe_fp8_tuning_v29a.py",
+    "selected_output_directory_empty": true,
+    "selected_table_written": false
+  },
+  "raw_failure_payload_persisted": false,
+  "schema": "vllm-moe-fp8-tuning-infrastructure-failure-evidence-v29a"
+}
