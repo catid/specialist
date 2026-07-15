@@ -1,0 +1,444 @@
+{
+  "arms": {
+    "default_empty": {
+      "VLLM_TUNED_CONFIG_FOLDER": "fresh_dedicated_empty_directory",
+      "expected_config_source": "generic_fallback_none"
+    },
+    "v27c_tuned": {
+      "VLLM_TUNED_CONFIG_FOLDER": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+      "expected_config_source": "exact_committed_v27c_table",
+      "table_content_sha256": "a4f82f53b037f766536013bdc10c8ca1e49873603a8f44972ef8007ed406de84",
+      "table_file_sha256": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562"
+    }
+  },
+  "authorization_basis": {
+    "authorizes_only_this_separate_train_only_runtime_ab_preregistration": true,
+    "committed_at": "76e3b10730e5a7be9c5f2c298bc75095abf5a9c8",
+    "content_sha256": "c6a58230dd221fbf1f18baa67144672fa37ad1fcb81e81af12cca9eaf0ec8b20",
+    "file_sha256": "f99fee6719d3ccb1d7973d540bca844c645d21ff36e6608c8a9293cfaa91ee4c",
+    "kernel_global_geometric_mean_speedup": 1.0534625119555665,
+    "positive_evidence_path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V27D_MOE_TUNING_EVALUATION_POSITIVE_EVIDENCE.json"
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "ca59ca74e63aef9855b8e88d16b392ccb3c0b342c7a4a7d865b544fbef704468",
+  "exact_output_equivalence": {
+    "default_and_tuned_exact_on_every_physical_gpu_pair": true,
+    "full_gold_answer_dense_prompt_logprob_payload_exact": true,
+    "generated_cumulative_logprob_exact": true,
+    "generated_selected_token_logprob_exact": true,
+    "generated_text_exact": true,
+    "generated_token_id_lists_exact": true,
+    "no_numeric_tolerance_or_posthoc_exception": true,
+    "same_arm_exact_across_all_four_physical_gpu_appearances": true,
+    "within_cell_determinism_and_all_timed_calls_exact": true
+  },
+  "experiment_name": "s6_v28a_v27c_tuned_vs_empty_default_train_runtime_ab",
+  "gate": {
+    "all_eight_absolute_peak_vram_gates_required": true,
+    "all_exact_output_equivalence_checks_required": true,
+    "all_four_per_gpu_throughput_nonregression_gates_required": true,
+    "all_four_per_gpu_vram_nonregression_gates_required": true,
+    "checkpoint_write_authorized": false,
+    "dataset_promotion_authorized": false,
+    "direct_recipe_adoption_authorized": false,
+    "evaluation_authorized": false,
+    "failure_decision": "retain_empty_default_config_training_recipe",
+    "global_task_throughput_improvement_gate_required": true,
+    "model_update_authorized": false,
+    "pass_authority": "authorize_only_a_separately_frozen_train_only_training_recipe_A_B"
+  },
+  "model_contract": {
+    "committed_full_shard_model_seal": {
+      "base_all_files_fingerprint_sha256": "1a21a765e374e266037b3b7e5313a62a0de8ca37c00c0462b67c21af7e21f61e",
+      "base_shards": {
+        "model-00001-of-00026.safetensors": {
+          "bytes": 3996199712,
+          "sha256": "adee7bcb930aed22e0677e58d4873b48dadb1ed8001cb5c6a0487286eadb3478"
+        },
+        "model-00002-of-00026.safetensors": {
+          "bytes": 1284907696,
+          "sha256": "88f2dfd2b9e73e4b70be533dbf61bcfa3c9a0003758900fcbc9d9b96f5751d4b"
+        },
+        "model-00003-of-00026.safetensors": {
+          "bytes": 3357898360,
+          "sha256": "8f7d72178d3f4431864978e5bcfa4c6cb1c204bc00590644d90bb19d6d522eeb"
+        },
+        "model-00004-of-00026.safetensors": {
+          "bytes": 3370808712,
+          "sha256": "12d7db38689ba3c8af74b23ef8523eca41e0cd95db870583d0663a3ee8a6bd60"
+        },
+        "model-00005-of-00026.safetensors": {
+          "bytes": 3357898360,
+          "sha256": "a836047305d0f7a7b50f0815d09d5c03ec03d59ec2c763fcdc4bf7e9936bf902"
+        },
+        "model-00006-of-00026.safetensors": {
+          "bytes": 3959424904,
+          "sha256": "c9080d718e9c5f9e337443225aa417d4c24d00ae7995d76ee3f1cc296b557d15"
+        },
+        "model-00007-of-00026.safetensors": {
+          "bytes": 1096788232,
+          "sha256": "e8c05e23131b1dd45a455ec38cfac7db14667358268623c3938d00cf3e959a68"
+        },
+        "model-00008-of-00026.safetensors": {
+          "bytes": 3946842008,
+          "sha256": "4b6a6d495053089f4a80e7cbc82e848fba44e2c0c60122233d8fdff79fa7b296"
+        },
+        "model-00009-of-00026.safetensors": {
+          "bytes": 1096460848,
+          "sha256": "a31a954bb72d1c714e751bf0aabf2ff533f5a509693ebf7dd22ad6e90be46f67"
+        },
+        "model-00010-of-00026.safetensors": {
+          "bytes": 3946841992,
+          "sha256": "246560e66570fe746653b8443e245dc334c9b8b831ea43d2d9f1b7d98623994e"
+        },
+        "model-00011-of-00026.safetensors": {
+          "bytes": 1096460752,
+          "sha256": "7180392817fe3ecb3a27a1da43b7ff22c1a94806bac49975f9f122c3126df675"
+        },
+        "model-00012-of-00026.safetensors": {
+          "bytes": 3409971080,
+          "sha256": "043fb525f6625c2f2acb75e65a9959ee3fa7b6e3fdd2034b5cfe1859b01d3cfb"
+        },
+        "model-00013-of-00026.safetensors": {
+          "bytes": 1633331664,
+          "sha256": "33a20fb20a21379bf43c84a43105f9c0cc35bd50d740b1c302dcbe4b700f5425"
+        },
+        "model-00014-of-00026.safetensors": {
+          "bytes": 3422553872,
+          "sha256": "be823e33c5cb6120ad3769d081f34a2449dc2358041fca7c29d636c1ba19130d"
+        },
+        "model-00015-of-00026.safetensors": {
+          "bytes": 1633659224,
+          "sha256": "a89d547c6f9d0b535ee5ea2f2478f163089539f3f0dd330cb23d278a19d76123"
+        },
+        "model-00016-of-00026.safetensors": {
+          "bytes": 3946842136,
+          "sha256": "69fc3ae0316482288afdcdd0b9eb7d626703ae26f7567e89aa3fc8d1ffd4ff5b"
+        },
+        "model-00017-of-00026.safetensors": {
+          "bytes": 1096460608,
+          "sha256": "e356e3943cf3852b76bb8992e674f3256013e27d54b78e8250514151cdc29637"
+        },
+        "model-00018-of-00026.safetensors": {
+          "bytes": 3946841992,
+          "sha256": "9e5e63fd1cc7d6848330c1fa363dfcb661bbc2ac87e672d0e28b71c9cb7f3c7f"
+        },
+        "model-00019-of-00026.safetensors": {
+          "bytes": 1096460808,
+          "sha256": "708644ad34f1de727bf484f396944d8ec628645d52c183e9a992e65671685e21"
+        },
+        "model-00020-of-00026.safetensors": {
+          "bytes": 3409971072,
+          "sha256": "ca083a1d1aa64f8e8a785998f543a43374f13436dc85d396eee4e72c7a84e1ae"
+        },
+        "model-00021-of-00026.safetensors": {
+          "bytes": 1633331744,
+          "sha256": "ada4ae48f3d48fe01b4c53f2f82bce25e798a9631fd33959c881156fef2ccbce"
+        },
+        "model-00022-of-00026.safetensors": {
+          "bytes": 3370808752,
+          "sha256": "def207fb42d7db31efb512755557763c23233c6e4d4c433027cb5102a7bce2f7"
+        },
+        "model-00023-of-00026.safetensors": {
+          "bytes": 3357898392,
+          "sha256": "864d52ca7768a36f514069222e8de8626264ae124097ba8fcce5b5da2c6e2ed7"
+        },
+        "model-00024-of-00026.safetensors": {
+          "bytes": 3370808752,
+          "sha256": "391acd27420cdce5935ff18152423c70620d19dac3c39a5ef1a81d369f82d737"
+        },
+        "model-00025-of-00026.safetensors": {
+          "bytes": 3832888256,
+          "sha256": "778e7f76602f05042b69ba7f3ec91f1fdffef390540b16074041c258fb81d154"
+        },
+        "model-00026-of-00026.safetensors": {
+          "bytes": 2231416848,
+          "sha256": "1a97404220077ed3d4182e10385b152004cab608377f50cec9f54a6b8d28b613"
+        }
+      },
+      "commit": "00471e1c44b78813d02f0a8895c8e014a75dcc4e",
+      "content_sha256": "d4cf795408967aefbc77f841c47e6fe2fbe3cefc14a4a0fdb4bf73b2701326f9",
+      "file_sha256": "96eeb236ea94678f57a530a27a471467d4b3d413d2e7be397e293b695cd4c440",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V23A_INSERTION_MODEL_SEAL.json"
+    },
+    "config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "index_sha256": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "metadata_file_sha256": {
+      "chat_template.jinja": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+      "config.json": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "generation_config.json": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e",
+      "model.safetensors.index.json": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+      "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "tokenizer_config.json": "5186f0defcd7f232382c7f0aebcd2252d073bb921ab240e407b7ae8745d2b29b"
+    },
+    "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "same_exact_model_all_eight_wave_gpu_cells": true,
+    "weight_shard_manifest": {
+      "file_count": 26,
+      "manifest_sha256": "2b0bbae17d50cbf1a6c80ebcb0198dde8a09bbf7d3f4dec6321b1c97b4d3b2b1",
+      "total_bytes": 71903776776
+    }
+  },
+  "only_intended_arm_difference": "VLLM_TUNED_CONFIG_FOLDER",
+  "pairing": {
+    "default_first_physical_gpu_ids": [
+      0,
+      2
+    ],
+    "pair_order": [
+      "physical_gpu_0",
+      "physical_gpu_1",
+      "physical_gpu_2",
+      "physical_gpu_3"
+    ],
+    "physical_gpu_pairs": {
+      "physical_gpu_0": {
+        "candidate_arm": "v27c_tuned",
+        "candidate_cell": "wave_b_gpu_0",
+        "candidate_wave": "wave_b",
+        "load_order": "default_first",
+        "physical_gpu_id": 0,
+        "reference_arm": "default_empty",
+        "reference_cell": "wave_a_gpu_0",
+        "reference_wave": "wave_a"
+      },
+      "physical_gpu_1": {
+        "candidate_arm": "v27c_tuned",
+        "candidate_cell": "wave_a_gpu_1",
+        "candidate_wave": "wave_a",
+        "load_order": "tuned_first",
+        "physical_gpu_id": 1,
+        "reference_arm": "default_empty",
+        "reference_cell": "wave_b_gpu_1",
+        "reference_wave": "wave_b"
+      },
+      "physical_gpu_2": {
+        "candidate_arm": "v27c_tuned",
+        "candidate_cell": "wave_b_gpu_2",
+        "candidate_wave": "wave_b",
+        "load_order": "default_first",
+        "physical_gpu_id": 2,
+        "reference_arm": "default_empty",
+        "reference_cell": "wave_a_gpu_2",
+        "reference_wave": "wave_a"
+      },
+      "physical_gpu_3": {
+        "candidate_arm": "v27c_tuned",
+        "candidate_cell": "wave_a_gpu_3",
+        "candidate_wave": "wave_a",
+        "load_order": "tuned_first",
+        "physical_gpu_id": 3,
+        "reference_arm": "default_empty",
+        "reference_cell": "wave_b_gpu_3",
+        "reference_wave": "wave_b"
+      }
+    },
+    "same_request_tokens_sampling_and_repetition_index_all_cells": true,
+    "tuned_first_physical_gpu_ids": [
+      1,
+      3
+    ]
+  },
+  "performance_analysis": {
+    "all_eight_cell_peak_nvml_fraction_max": 0.95,
+    "bootstrap_draw_plan_sha256": "1077b8209d5f047ad4e34b2a05e07f40774b9bb953c66e69b615505fefb2a416",
+    "bootstrap_repetitions": 20000,
+    "bootstrap_seed": 20260928,
+    "default_first_and_tuned_first_strata_reported_separately": true,
+    "global_bootstrap_lcb_throughput_improvement_ratio": 1.0,
+    "global_observed_median_throughput_improvement_ratio": 1.01,
+    "per_gpu_familywise_lower_quantile": 0.0125,
+    "per_gpu_familywise_upper_quantile": 0.9875,
+    "per_gpu_observed_median_peak_vram_ratio_max": 1.01,
+    "per_gpu_observed_median_throughput_ratio_min": 1.0,
+    "per_gpu_peak_vram_ratio_familywise_ucb_max": 1.02,
+    "per_gpu_throughput_lcb_nonregression_ratio": 0.98,
+    "threshold_justification": {
+      "selected_before_outputs": true,
+      "throughput": "each GPU may lose at most 2% at the familywise lower bound, no GPU may have a slower point estimate, and the global task median must improve at least 1% with a nonnegative one-sided bootstrap lower bound",
+      "vram": "each GPU allows at most 2% familywise sampling noise and 1% observed peak increase while every cell remains below 95% of physical capacity"
+    },
+    "timings_memory_samples_and_bootstrap_replicates_memory_only": true,
+    "wave_summaries_reported_to_expose_load_order_effects": true
+  },
+  "persistence_contract": {
+    "aggregate_metrics_hashes_and_integrity_booleans_only": true,
+    "raw_rows_prompts_answers_token_ids_text_logprobs_timings_memory_samples_or_bootstrap_replicates": false
+  },
+  "positive_evidence_commit": "76e3b10730e5a7be9c5f2c298bc75095abf5a9c8",
+  "preregistered_before_any_v28a_task_runtime_output": true,
+  "runtime_contract": {
+    "actor_must_verify_generic_none_or_exact_table_config_source": true,
+    "default_directory_must_be_fresh_dedicated_and_empty": true,
+    "determinism_repetitions": 2,
+    "dtype": "bfloat16",
+    "enable_prefix_caching": false,
+    "engines_per_wave": 4,
+    "final_cleanup_poll_interval_seconds": 0.5,
+    "final_cleanup_poll_timeout_seconds": 30.0,
+    "final_poll_preserves_exact_physical_gpu_identity": true,
+    "fresh_actors_engines_model_load_and_config_environment_each_wave": true,
+    "generation_calls_per_engine_per_wave": 13,
+    "gpu_memory_utilization": 0.82,
+    "interwave_cleanup_poll_interval_seconds": 0.5,
+    "interwave_cleanup_poll_timeout_seconds": 30.0,
+    "interwave_poll_preserves_exact_physical_gpu_identity": true,
+    "limit_mm_per_prompt": {
+      "image": 0,
+      "video": 0
+    },
+    "max_model_len": 2048,
+    "mm_processor_cache_gb": 0,
+    "model_load_compile_warmup_and_teardown_excluded_from_timing": true,
+    "moe_backend": "triton",
+    "nvml_index_uuid_pci_and_total_memory_bound_across_both_waves": true,
+    "one_actor_and_complete_model_per_physical_gpu_per_wave": true,
+    "parent_moe_override_environment_must_be_empty": true,
+    "peak_vram": "maximum post-warmup resident audit and 10ms actor-local NVML samples during each timed task generation",
+    "per_actor_runtime_environment_differs_only_by_tuned_config_folder": true,
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "placement_group_creation_order_never_defines_physical_gpu": true,
+    "placement_groups_discovered_by_lightweight_string_int_gpu_probe": true,
+    "placement_groups_non_detached_and_removed_after_each_wave": true,
+    "prelaunch_idle_check_after_all_cpu_disk_audits_immediately_before_claim": true,
+    "runtime_versions": {
+      "ray": "2.56.0",
+      "torch": "2.11.0+cu130",
+      "vllm": "0.25.0"
+    },
+    "skip_mm_profiling": true,
+    "successful_report_requires_all_four_gpus_idle_after_wave_b_cleanup": true,
+    "tensor_parallel_size_per_engine": 1,
+    "throughput_definition": "fixed aggregate prompt tokens plus one generated token per request divided by actor-local synchronized task-generation seconds",
+    "timing_and_memory_paired_by_physical_gpu_and_repetition_across_waves": true,
+    "timing_clock": "actor-local perf_counter_ns bracketed by CUDA synchronization",
+    "timing_repetitions": 9,
+    "total_engine_generation_calls_all_waves": 104,
+    "total_generation_requests_all_engines_all_waves": 29120,
+    "vllm_batch_invariant": false,
+    "warmup_repetitions": 2,
+    "wave_count": 2
+  },
+  "sampling_contract": {
+    "detokenize": true,
+    "enforce_eager": true,
+    "logprobs": 1,
+    "max_tokens": 1,
+    "n": 1,
+    "prefix_caching": false,
+    "prompt_logprobs": 1,
+    "seed": 43,
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "schema": "eggroll-es-v27c-tuned-runtime-ab-preregistration-v28a",
+  "status": "preregistered_future_runtime_not_launched",
+  "strict_train_only": true,
+  "train_request_contract": {
+    "all_row_content_and_token_ids_memory_only": true,
+    "contains_validation_heldout_ood_or_benchmark_content": false,
+    "driver_materializes_and_tokenizes_once_then_passes_identical_prompt_token_ids": true,
+    "frozen_train_source_arrow_sha256": "6b6fdfdd082f1de2bf1b4c78bd0a4154af5c709b26e46b0677dcde695d3b4cb6",
+    "frozen_train_source_file_sha256": "f7127c38c7b540eaf9cf4349d1a1b8076e171da7f8ea43c11068ad1c311bb776",
+    "frozen_train_source_path": "/tmp/specialist-s6-candidate-guarded-ead1b21/train_qa_curated_v1.jsonl",
+    "maximum_prompt_plus_answer_tokens": 1024,
+    "panel_bundle_content_sha256": "cc176a9b86c6447dcde8a11fd28d68c837d2119715126c57a3f37293fb0d492b",
+    "panel_manifest_content_sha256": "46cc98b694c98c1ee1c5456b855fb3b1db4534b3df2dcda69fc690a2d8a61bf5",
+    "panel_manifest_file_sha256": "e555d9d6746cde6297cd3ab523b16dd7d78d81e2674447ee46d754ebfac52da7",
+    "panel_manifest_path": "/home/catid/specialist/experiments/eggroll_es_hpo/train_panel_sampling_v13/document_balanced_train_panels_v13.json",
+    "panel_names": [
+      "optimization_0",
+      "optimization_1",
+      "optimization_2",
+      "train_screen_0",
+      "train_screen_1"
+    ],
+    "request_count_per_engine_call": 280,
+    "rows_per_panel": 56
+  },
+  "tuned_table_contract": {
+    "batch_keys": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "commit": "27f5aae6d1e9cfd3c53dc4f01b92a5414da5c5c8",
+    "content_sha256": "a4f82f53b037f766536013bdc10c8ca1e49873603a8f44972ef8007ed406de84",
+    "directory": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "directory_contains_exactly_one_file": true,
+    "file_sha256": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "filename": "E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition.json",
+    "triton_version": "3.6.0"
+  },
+  "waves": {
+    "wave_a": {
+      "all_four_gpus_active_concurrently": true,
+      "fresh_ray_actors_engines_and_model_loads_before_wave": true,
+      "gpu_assignments": {
+        "0": {
+          "arm": "default_empty",
+          "cell": "wave_a_gpu_0",
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+          "physical_gpu_id": 0
+        },
+        "1": {
+          "arm": "v27c_tuned",
+          "cell": "wave_a_gpu_1",
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+          "physical_gpu_id": 1
+        },
+        "2": {
+          "arm": "default_empty",
+          "cell": "wave_a_gpu_2",
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+          "physical_gpu_id": 2
+        },
+        "3": {
+          "arm": "v27c_tuned",
+          "cell": "wave_a_gpu_3",
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+          "physical_gpu_id": 3
+        }
+      },
+      "wave_index": 0
+    },
+    "wave_b": {
+      "all_four_gpus_active_concurrently": true,
+      "fresh_ray_actors_engines_and_model_loads_before_wave": true,
+      "gpu_assignments": {
+        "0": {
+          "arm": "v27c_tuned",
+          "cell": "wave_b_gpu_0",
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+          "physical_gpu_id": 0
+        },
+        "1": {
+          "arm": "default_empty",
+          "cell": "wave_b_gpu_1",
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+          "physical_gpu_id": 1
+        },
+        "2": {
+          "arm": "v27c_tuned",
+          "cell": "wave_b_gpu_2",
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+          "physical_gpu_id": 2
+        },
+        "3": {
+          "arm": "default_empty",
+          "cell": "wave_b_gpu_3",
+          "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+          "physical_gpu_id": 3
+        }
+      },
+      "wave_index": 1
+    }
+  }
+}
