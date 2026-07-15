@@ -1,0 +1,137 @@
+{
+  "aggregate_result": {
+    "all_16_fresh_four_worker_arms_passed": true,
+    "all_four_exact_gpus_finally_idle": true,
+    "arm_integrity_commitment_sha256": "e41eef0317befc6d1fff5aa7f90b5dda8264b728eac1ed4aea61299c48b61c8a",
+    "batch_by_physical_gpu": {
+      "0": 256,
+      "1": 512,
+      "2": 1024,
+      "3": 2048
+    },
+    "between_arm_and_final_idle_commitment_sha256": "e3d008f563d3a6a371dbef3f62a979e98921e2bf62c617f8f1b2f75fbae3295c",
+    "counterbalanced_arm_count": 16,
+    "endpoint_count": 10,
+    "exact_output_equivalence": {
+      "matched_pairs": 32,
+      "paired_output_digest_commitment_sha256": "8da022a39b9ce1c46b839bd9add4b65955b5b1c4942db5bb29ba3ba3886a0a89",
+      "pass": true,
+      "required_pairs": 32
+    },
+    "familywise_alpha": 0.05,
+    "global": {
+      "familywise_latency_lower_bound": 1.0391777692961988,
+      "familywise_peak_vram_upper_bound": 1.0,
+      "latency_gate_pass": true,
+      "latency_geometric_mean_speedup": 1.0435030576977902,
+      "peak_vram_gate_pass": true,
+      "peak_vram_max_ratio": 1.0
+    },
+    "minimum_one_simultaneous_all_four_positive_observation_per_arm": true,
+    "official_iterations_per_arm": 1000,
+    "pass": true,
+    "per_gpu": {
+      "0": {
+        "batch_size": 256,
+        "familywise_latency_lower_bound": 1.0945357835730134,
+        "familywise_peak_vram_upper_bound": 1.0,
+        "latency_gate_pass": true,
+        "median_latency_speedup": 1.1032971085776004,
+        "median_peak_vram_ratio": 1.0,
+        "peak_vram_gate_pass": true
+      },
+      "1": {
+        "batch_size": 512,
+        "familywise_latency_lower_bound": 1.0573538139307819,
+        "familywise_peak_vram_upper_bound": 1.0,
+        "latency_gate_pass": true,
+        "median_latency_speedup": 1.0602364900047896,
+        "median_peak_vram_ratio": 1.0,
+        "peak_vram_gate_pass": true
+      },
+      "2": {
+        "batch_size": 1024,
+        "familywise_latency_lower_bound": 1.0022116378923651,
+        "familywise_peak_vram_upper_bound": 1.0,
+        "latency_gate_pass": true,
+        "median_latency_speedup": 1.0053126775180914,
+        "median_peak_vram_ratio": 1.0,
+        "peak_vram_gate_pass": true
+      },
+      "3": {
+        "batch_size": 2048,
+        "familywise_latency_lower_bound": 1.0048976158835112,
+        "familywise_peak_vram_upper_bound": 1.0,
+        "latency_gate_pass": true,
+        "median_latency_speedup": 1.0082738818499424,
+        "median_peak_vram_ratio": 1.0,
+        "peak_vram_gate_pass": true
+      }
+    },
+    "physical_gpu_count": 4,
+    "repetitions": 8,
+    "strict_synthetic_kernel_only": true
+  },
+  "artifacts": {
+    "committed_preregistration": {
+      "content_sha256": "5a8bb93c60631f5a1acb22d729c942a6f2630f8ad72b0698bc7c32ee5c3f089f",
+      "file_sha256": "853a38e75bfe91baa21d0d4331dcfbd298f7828da529920dc3c244c81f908a1f",
+      "relative_path": "experiments/eggroll_es_hpo/S6_V29E_FP8_SELECTED_TABLE_EVALUATION_RETRY_PREREGISTRATION.json"
+    },
+    "committed_retry_failure_evidence": {
+      "content_sha256": "b9f9413e1dc4f174999c27b36287002f6de128fef0f378f805ae0392ab6127d4",
+      "file_sha256": "9320d617a93527f6005a91156cbef58c174619df496f44a1dc552c8673ac34e0",
+      "relative_path": "experiments/eggroll_es_hpo/S6_V29E_V29D_FP8_SELECTED_TABLE_INFRASTRUCTURE_FAILURE_EVIDENCE.json"
+    },
+    "committed_selected_table": {
+      "content_sha256": "d4a49735ccfd094d6e5a3ee763eca99ed355a51fd11a7c835bfecf9fafeaa50d",
+      "file_sha256": "1a4ed0f44c6d7cc788baecd073107b4634db4c769f0820d10174f61117b25618",
+      "relative_path": "experiments/vllm_moe_tuning/v025_rtx_pro_6000_fp8_w8a8_block128_tp1_exhaustive_v29b/E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition,dtype=fp8_w8a8,block_shape=[128,128].json"
+    },
+    "committed_selection_evidence": {
+      "content_sha256": "dc4d3b6d2b090e4e740f63de573875f331a456d6951b62cf49a003b1114ee02e",
+      "file_sha256": "47d1b09fb188dd1f8ff16314f1c20fe614f02b1cff067a1615a0d6f0f5ce2a7b",
+      "relative_path": "experiments/eggroll_es_hpo/S6_V29C_FP8_MOE_TUNING_SELECTION_POSITIVE_EVIDENCE.json"
+    },
+    "ignored_live_attempt": {
+      "content_sha256": "742a724ed8d280bfd5c6def451b266155515965410560c9e6fb0df7f9c123a1a",
+      "file_sha256": "a067795e34e15cdf1a7b6142d78c07c4b954f557c325a4e2d3eafd9896ec0f47",
+      "phase": "after_compact_report_and_final_gpu_cleanup",
+      "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v29e_fp8_selected_table_paired_synthetic_kernel_evaluation_retry.launch_attempt.json",
+      "status": "complete"
+    },
+    "ignored_live_report": {
+      "content_sha256": "b9e11f6c433d31cb32399329ba9d852a86464fdd1f889fb52ffcdf33232b4afb",
+      "file_sha256": "ee341a270607d0ec022f21d9a0fdce0d4dd32f3eeecce6547e6e629cb975eeef",
+      "relative_path": "experiments/eggroll_es_hpo/runs/s6_v29e_fp8_selected_table_paired_synthetic_kernel_evaluation_retry/fp8_selected_table_evaluation_report_v29e.json",
+      "summary_content_sha256": "666d2213cedfdb23fe86e230a5f3a248fb25a37fa0cd1530ddd869fd581ca5fa"
+    }
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "1d3bd12b9b447303fb4f46083567c1ae7db723dddee261fbf36a76928de3a7f9",
+  "contracts": {
+    "live_cpu_disk_audit_content_sha256": "0bfb28bdb233c7b0c346466d8d992b8e53eaf228b7e024cd07663276abd00f87",
+    "runtime_environment_certificate_sha256": "7acc87ffb6a50682f19309ea3059823d0fc96dfc459e30cb66d64e157a76f52a",
+    "v29c_selection_commit": "a203f4821c4a737310df75543353d21ce6cea978",
+    "v29d_failure_evidence_commit": "756b026d6694ff5a379e3212e7a592ccf5c9981b",
+    "v29e_implementation_bundle_sha256": "86e4aa8f93eab8b0e8c37ddc549406990469af456f6aaec010ac2b4ab84ad63e",
+    "v29e_preregistration_commit": "02ee7b7a7a1b0fd33b1e5f3db5c95ea2b32a11e6",
+    "v29e_preregistration_content_sha256": "5a8bb93c60631f5a1acb22d729c942a6f2630f8ad72b0698bc7c32ee5c3f089f",
+    "v29e_preregistration_file_sha256": "853a38e75bfe91baa21d0d4331dcfbd298f7828da529920dc3c244c81f908a1f",
+    "v29e_recipe_content_sha256": "907cd4c97bf6650e46383efb56851316d02ceddc37db2ff07234ee5114e3f7d2"
+  },
+  "decision": {
+    "authorize_only_separate_fp8_runtime_or_training_ab_preregistration": true,
+    "checkpoint_write_authorized": false,
+    "dataset_evaluation_validation_heldout_ood_or_benchmark_open_authorized": false,
+    "dataset_promotion_authorized": false,
+    "direct_selected_table_adoption_authorized": false,
+    "full_model_or_bf16_training_path_integration_demonstrated": false,
+    "synthetic_kernel_positive_evidence_valid": true,
+    "training_or_model_update_authorized": false
+  },
+  "raw_timing_memory_input_output_vectors_or_pids_persisted": false,
+  "schema": "vllm-moe-fp8-selected-table-evaluation-positive-evidence-v29f",
+  "status": "valid_completed_synthetic_kernel_evaluation_passed"
+}
