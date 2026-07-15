@@ -1,0 +1,337 @@
+{
+  "authority": {
+    "dataset_evaluation_validation_heldout_ood_or_benchmark_access_authorized": false,
+    "direct_table_adoption_authorized": false,
+    "model_update_training_checkpoint_write_dataset_promotion_authorized": false,
+    "pass_authorizes_only_separate_runtime_or_training_ab_preregistration": true
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "5a8bb93c60631f5a1acb22d729c942a6f2630f8ad72b0698bc7c32ee5c3f089f",
+  "hardware_contract": {
+    "activity_witness_exact_actor_pid_and_uuid_required": true,
+    "activity_witness_excluded_from_timing_and_peak_memory": true,
+    "all_four_idle_before_claim_between_arms_and_after_final_cleanup": true,
+    "driver_version": "610.43.02",
+    "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "identities": {
+      "0": {
+        "pci_bus_id": "00000000:01:00.0",
+        "total_bytes": 102641958912,
+        "uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927"
+      },
+      "1": {
+        "pci_bus_id": "00000000:21:00.0",
+        "total_bytes": 102641958912,
+        "uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded"
+      },
+      "2": {
+        "pci_bus_id": "00000000:C1:00.0",
+        "total_bytes": 102641958912,
+        "uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640"
+      },
+      "3": {
+        "pci_bus_id": "00000000:F1:00.0",
+        "total_bytes": 102641958912,
+        "uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999"
+      }
+    },
+    "minimum_simultaneous_all_four_positive_observations_per_arm": 1,
+    "one_distinct_worker_pid_per_exact_uuid": true,
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "simultaneous_all_four_assigned_pids_and_positive_utilization_required_per_arm": true
+  },
+  "kernel_contract": {
+    "activation_dtype": "bfloat16",
+    "batch_by_exact_physical_gpu": {
+      "0": 256,
+      "1": 512,
+      "2": 1024,
+      "3": 2048
+    },
+    "batches": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "block_shape": [
+      128,
+      128
+    ],
+    "default_arm_uses_verified_empty_config_folder_then_official_default": true,
+    "dtype": "fp8_w8a8",
+    "experts": 256,
+    "hidden_size": 2048,
+    "official_num_iters": 1000,
+    "official_shard_intermediate_size": 1024,
+    "output_equivalence": "exact_dtype_shape_and_byte_sha256",
+    "peak_vram_metric": "max(tuned/default torch.cuda.max_memory_allocated ratio, tuned/default torch.cuda.max_memory_reserved ratio)",
+    "same_seed_and_official_tensor_constructor_for_both_paired_arms": true,
+    "topk": 8,
+    "tuned_arm_uses_exact_selected_config": true,
+    "use_deep_gemm": false
+  },
+  "model_identity": {
+    "all_files_fingerprint_sha256": "b3307a2ce16d029a5ca0b7fb2828070c1fe07c232d396f877ea6d9a3cc9d22c9",
+    "config_sha256": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+    "index_sha256": "6f176f344e41d35b17af12904e33401da5ebff3b49fccb8bfa0185bc2d50f9d6",
+    "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+    "weight_shards": {
+      "file_count": 42,
+      "manifest_sha256": "25ae972a0ac80b7875b5e041172d5ad572b522619040f4786a9facdf0e36e5dd",
+      "total_bytes": 37463662160
+    }
+  },
+  "persistence_contract": {
+    "compact_aggregate_hashes_counts_bounds_and_decision_only": true,
+    "fresh_exclusive_attempt_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.s6_v29e_fp8_selected_table_paired_synthetic_kernel_evaluation_retry.launch_attempt.json",
+    "fresh_exclusive_empty_default_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.s6_v29e_fp8_selected_table_paired_synthetic_kernel_evaluation_retry.empty_default_config",
+    "fresh_exclusive_report_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/s6_v29e_fp8_selected_table_paired_synthetic_kernel_evaluation_retry/fp8_selected_table_evaluation_report_v29e.json",
+    "raw_input_output_tensors_timing_vectors_or_pids_persisted": false
+  },
+  "retry_of": {
+    "v29d_failed_attempt_content_sha256": "3d7f133610cb8eca9a0ce5ffb930170f627b746d18ff56fce04f73c9c0a76142",
+    "v29d_failed_attempt_file_sha256": "1dabc51d07b0728f2f0492a4404fdd3b8ab61127d26d2c5f693dd8bcca4bb08f",
+    "v29d_failure_evidence_commit": "756b026d6694ff5a379e3212e7a592ccf5c9981b",
+    "v29d_failure_evidence_content_sha256": "b9f9413e1dc4f174999c27b36287002f6de128fef0f378f805ae0392ab6127d4",
+    "v29d_failure_evidence_file_sha256": "9320d617a93527f6005a91156cbef58c174619df496f44a1dc552c8673ac34e0",
+    "v29d_failure_evidence_path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V29E_V29D_FP8_SELECTED_TABLE_INFRASTRUCTURE_FAILURE_EVIDENCE.json",
+    "v29d_failure_was_activity_observability_only": true,
+    "v29d_final_idle_certificate_present": true,
+    "v29d_preregistration_commit": "23d6bd0f7d90a7438488e55eb796928b9a0bfd31",
+    "v29d_preregistration_content_sha256": "8bb3ecd02992f46cc2eb8a7f3144966ab5139f4b59fd1e179ef021a5d5687061",
+    "v29d_preregistration_file_sha256": "55519ce1150f3466817cbe3b7f6d22b4b79553755fc35c7e28a45b038dba7f42",
+    "v29d_report_absent": true
+  },
+  "schedule": {
+    "activity_witness_recipe_sha256": "c131a7eb3402f35545e36d2e46665f360a50246ca6c205e24e06af467518f405",
+    "common_start_activity_witness_before_every_official_measurement": true,
+    "default_first_count": 4,
+    "fixed_seeds": [
+      2026100500,
+      2026100501,
+      2026100502,
+      2026100503,
+      2026100504,
+      2026100505,
+      2026100506,
+      2026100507
+    ],
+    "fresh_four_worker_ray_wave_per_arm": true,
+    "nvml_poll_interval_seconds": 0.05,
+    "one_exact_batch_per_exact_physical_gpu": true,
+    "paired_counterbalanced_schedule": [
+      {
+        "arm_order": [
+          "default",
+          "tuned"
+        ],
+        "repetition": 0,
+        "seed": 2026100500
+      },
+      {
+        "arm_order": [
+          "tuned",
+          "default"
+        ],
+        "repetition": 1,
+        "seed": 2026100501
+      },
+      {
+        "arm_order": [
+          "default",
+          "tuned"
+        ],
+        "repetition": 2,
+        "seed": 2026100502
+      },
+      {
+        "arm_order": [
+          "tuned",
+          "default"
+        ],
+        "repetition": 3,
+        "seed": 2026100503
+      },
+      {
+        "arm_order": [
+          "default",
+          "tuned"
+        ],
+        "repetition": 4,
+        "seed": 2026100504
+      },
+      {
+        "arm_order": [
+          "tuned",
+          "default"
+        ],
+        "repetition": 5,
+        "seed": 2026100505
+      },
+      {
+        "arm_order": [
+          "default",
+          "tuned"
+        ],
+        "repetition": 6,
+        "seed": 2026100506
+      },
+      {
+        "arm_order": [
+          "tuned",
+          "default"
+        ],
+        "repetition": 7,
+        "seed": 2026100507
+      }
+    ],
+    "repetitions": 8,
+    "tuned_first_count": 4
+  },
+  "schema": "vllm-moe-fp8-selected-table-evaluation-retry-preregistration-v29e",
+  "selected_table": {
+    "content_sha256": "d4a49735ccfd094d6e5a3ee763eca99ed355a51fd11a7c835bfecf9fafeaa50d",
+    "exact_configs": {
+      "1024": {
+        "BLOCK_SIZE_K": 128,
+        "BLOCK_SIZE_M": 64,
+        "BLOCK_SIZE_N": 256,
+        "GROUP_SIZE_M": 16,
+        "num_stages": 3,
+        "num_warps": 8
+      },
+      "2048": {
+        "BLOCK_SIZE_K": 128,
+        "BLOCK_SIZE_M": 64,
+        "BLOCK_SIZE_N": 256,
+        "GROUP_SIZE_M": 64,
+        "num_stages": 3,
+        "num_warps": 8
+      },
+      "256": {
+        "BLOCK_SIZE_K": 128,
+        "BLOCK_SIZE_M": 16,
+        "BLOCK_SIZE_N": 128,
+        "GROUP_SIZE_M": 64,
+        "num_stages": 3,
+        "num_warps": 4
+      },
+      "512": {
+        "BLOCK_SIZE_K": 128,
+        "BLOCK_SIZE_M": 32,
+        "BLOCK_SIZE_N": 128,
+        "GROUP_SIZE_M": 64,
+        "num_stages": 2,
+        "num_warps": 4
+      }
+    },
+    "file_sha256": "1a4ed0f44c6d7cc788baecd073107b4634db4c769f0820d10174f61117b25618",
+    "path": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_fp8_w8a8_block128_tp1_exhaustive_v29b/E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition,dtype=fp8_w8a8,block_shape=[128,128].json",
+    "triton_version": "3.6.0"
+  },
+  "selection_evidence": {
+    "authorizes_only_this_separate_evaluation_preregistration": true,
+    "commit": "a203f4821c4a737310df75543353d21ce6cea978",
+    "content_sha256": "dc4d3b6d2b090e4e740f63de573875f331a456d6951b62cf49a003b1114ee02e",
+    "file_sha256": "47d1b09fb188dd1f8ff16314f1c20fe614f02b1cff067a1615a0d6f0f5ce2a7b",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V29C_FP8_MOE_TUNING_SELECTION_POSITIVE_EVIDENCE.json"
+  },
+  "software_identity": {
+    "installed_fused_moe_config_sha256": "4090ec9e367fee4344c9d06f12e083ff37df427784e6736847e092222c9e1415",
+    "installed_fused_moe_sha256": "72811a4e543cc6f415f184cb951b61522643cddc4d6456f61a2f8c1a53b2cf79",
+    "installed_vllm_envs_sha256": "15ab853b73b26da5dc2808699138dff7217b72b9f661da274cc0c9f6c262f631",
+    "official_tuner_path": "/tmp/benchmark_moe_v025_official.py",
+    "official_tuner_sha256": "230151de56d177ac22920ff9dada010f4361933b34b54e18d5981367723a8bcf",
+    "pinned_ray_actor_sha256": "c7af32157f768ed104dd80311b1ae67a275183bb32836b19c987561e7cc0562a",
+    "versions": {
+      "ray": "2.56.0",
+      "torch": "2.11.0+cu130",
+      "triton": "3.6.0",
+      "vllm": "0.25.0"
+    }
+  },
+  "sole_infrastructure_correction": {
+    "common_start_activity_witness_recipe": {
+      "common_controller_target_offset_seconds": 5.0,
+      "delete_all_witness_tensors_then_gc_empty_cache_and_synchronize": true,
+      "minimum_cuda_activity_seconds": 0.75,
+      "operation": "torch.mm(left,right,out=output)",
+      "reset_peak_memory_stats_immediately_before_official_benchmark": true,
+      "schema": "vllm-moe-fp8-common-start-cuda-activity-witness-v29e",
+      "synchronize_after_each_measured_iteration": true,
+      "synchronize_after_warmup_and_after_witness": true,
+      "tensor_dtype": "torch.bfloat16",
+      "tensor_initialization": "torch.ones_without_rng",
+      "tensor_shape": [
+        4096,
+        4096
+      ],
+      "warmup_iterations_before_common_target": 1,
+      "witness_excluded_from_latency_and_peak_vram_measurement": true
+    },
+    "common_start_activity_witness_recipe_sha256": "c131a7eb3402f35545e36d2e46665f360a50246ca6c205e24e06af467518f405",
+    "max_batch_memory_audit": {
+      "audited_persistent_tensor_upper_bound_bytes": 2997026824,
+      "audited_persistent_tensor_upper_bound_gib": 2.7911987379193306,
+      "batch_size": 2048,
+      "excludes_transient_kernel_workspace_measured_by_runtime_peak_gate": true,
+      "fp8_scale_and_scalar_bytes": 196616,
+      "gating_output_bytes": 2097152000,
+      "input_gating_bytes": 2097152,
+      "official_num_iters": 1000,
+      "passes_required_upper_bound": true,
+      "required_upper_bound_gib": 5.0,
+      "ten_graph_outputs_upper_bound_bytes": 83886080,
+      "w1_fp8_bytes": 536870912,
+      "w2_fp8_bytes": 268435456,
+      "x_bytes": 8388608
+    },
+    "nvml_poll_interval_seconds_after": 0.05,
+    "nvml_poll_interval_seconds_before": 0.25,
+    "official_num_iters_after": 1000,
+    "official_num_iters_before": 100,
+    "selected_table_seeds_repetitions_arm_order_statistics_output_equivalence_latency_vram_and_authority_changed": false
+  },
+  "statistical_contract": {
+    "all_exact_outputs_must_match": true,
+    "all_four_per_gpu_latency_familywise_lower_bounds_must_be_at_least": 1.0,
+    "all_four_per_gpu_peak_vram_familywise_upper_bounds_must_be_at_most": 1.0,
+    "all_gates_are_conjunctive": true,
+    "bootstrap_resamples": 50000,
+    "bootstrap_seed": 20261005,
+    "bootstrap_statistic": "median_with_shared_paired_indices",
+    "endpoints": [
+      "gpu0_latency_speedup",
+      "gpu1_latency_speedup",
+      "gpu2_latency_speedup",
+      "gpu3_latency_speedup",
+      "gpu0_peak_vram_ratio",
+      "gpu1_peak_vram_ratio",
+      "gpu2_peak_vram_ratio",
+      "gpu3_peak_vram_ratio",
+      "global_latency_geometric_mean_speedup",
+      "global_peak_vram_max_ratio"
+    ],
+    "familywise_alpha": 0.05,
+    "global_latency_familywise_lower_bound_must_be_at_least": 1.0,
+    "global_latency_statistic": "geometric mean of four per-GPU median latency speedups",
+    "global_peak_vram_familywise_upper_bound_must_be_at_most": 1.0,
+    "global_peak_vram_statistic": "maximum of four per-GPU median peak-VRAM ratios",
+    "latency_noninferiority_margin": 0.0,
+    "latency_speedup_definition": "default_microseconds/tuned_microseconds",
+    "multiplicity": "Bonferroni across all 10 one-sided endpoints",
+    "paired_unit": "repetition_with_same_seed_and_gpu",
+    "peak_vram_ratio_definition": "max(tuned_peak_allocated/default_peak_allocated,tuned_peak_reserved/default_peak_reserved)",
+    "peak_vram_regression_margin": 0.0,
+    "per_endpoint_one_sided_alpha": 0.005
+  },
+  "status": "preregistered_before_exact_observability_retry_not_launched",
+  "strict_synthetic_kernel_only": true
+}
