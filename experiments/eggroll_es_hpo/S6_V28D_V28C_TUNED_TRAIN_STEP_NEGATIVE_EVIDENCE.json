@@ -1,0 +1,99 @@
+{
+  "aggregate_execution": {
+    "all_24_fresh_group_cleanup_gates_passed": true,
+    "all_24_groups_observed_all_four_active": true,
+    "all_equivalence_components_exact_for_all_pairs": true,
+    "all_four_activity_group_count": 24,
+    "equivalence_component_count": 8,
+    "equivalence_pair_count": 12,
+    "exact_equivalence_pair_count": 12,
+    "final_all_four_idle": true,
+    "fresh_engine_group_count": 24,
+    "group_audit_bundle_sha256": "cd6af184a48bb6102e3ac0277c70374f93a5360e7fc84348c5773bc177f5afbc",
+    "minimum_activity_sample_count": 3269,
+    "minimum_qualifying_activity_sample_count": 2947,
+    "physical_gpu_identity_preserved": true
+  },
+  "aggregate_performance": {
+    "absolute_peak_nvml_fraction_limit": 0.95,
+    "absolute_peak_nvml_fraction_observed": 0.8575398163188166,
+    "absolute_peak_nvml_gate_passed": true,
+    "bootstrap_draw_plan_sha256": "bed6a26d78a34cb432a5b6926e8dc1208e3b065dfdaf7ee9916a0a508d378ed8",
+    "complete_train_step": {
+      "endpoint_passed": false,
+      "familywise_lower_confidence_bound": 0.9945921239188809,
+      "lower_bound_gate_passed": false,
+      "lower_bound_strict_threshold": 1.0,
+      "median_default_over_tuned_ratio": 1.003176690951185,
+      "point_gate_passed": false,
+      "point_threshold": 1.01
+    },
+    "failing_endpoint_count": 1,
+    "inferential_endpoint_count": 3,
+    "memory_ratio_and_familywise_upper_bound_gates_passed": true,
+    "passing_endpoint_count": 2,
+    "peak_torch_allocated": {
+      "familywise_upper_confidence_bound": 1.0,
+      "median_tuned_over_default_ratio": 1.0,
+      "pass": true,
+      "point_threshold": 1.01,
+      "upper_bound_threshold": 1.02
+    },
+    "peak_torch_reserved": {
+      "familywise_upper_confidence_bound": 1.0,
+      "median_tuned_over_default_ratio": 1.0,
+      "pass": true,
+      "point_threshold": 1.01,
+      "upper_bound_threshold": 1.02
+    },
+    "sole_failure": "complete_train_step_speed"
+  },
+  "artifacts": {
+    "compact_report": {
+      "content_sha256": "066ddddc704e2fffea4354b26b875bbb893cd1ff2d27c0e5f1b79d6540c876b9",
+      "file_sha256": "59cfb5fe4768202d23f4918f9327ba539975f246f217f7c03cac39bcf9f0b7ac",
+      "relative_path": "experiments/eggroll_es_hpo/runs/s6_v28c_v27c_bf16_no_update_es_train_step_ab/v27c_bf16_train_step_ab_report_v28c.json"
+    },
+    "durable_attempt": {
+      "content_sha256": "8de598e472557fc088c599c1915e3ed44f7a524f67e5605a482efffcf0f29262",
+      "file_sha256": "c9c70a8e9a0b1674145462a333006bdd2fca74a9f2326f65363df9a42135f44b",
+      "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v28c_v27c_bf16_no_update_es_train_step_ab.launch_attempt.json"
+    }
+  },
+  "content_sha256_before_self_field": "9da87bb7371b641a65b5b2884f010e72ee3e64a99788f5065f14c94337ce1c40",
+  "decision": {
+    "checkpoint_write_authority": false,
+    "dataset_authority": false,
+    "evaluation_authority": false,
+    "fp8_authority": false,
+    "model_update_authority": false,
+    "nontrain_authority": false,
+    "retain_empty_default_bf16_training_recipe": true,
+    "v27c_tuned_recipe_direct_adoption_authority": false
+  },
+  "frozen_bindings": {
+    "authorization_gate_content_sha256": "a7c1e170f53b7de405896c51989f973b7b63fd950da0a2d8ac01bb34fb22475d",
+    "committed_clean_source_content_sha256": "3eeeded854e5c87918aa5073e32db8c78c460ede5794fc0bb5a43dbc56ca43ed",
+    "final_idle_content_sha256": "93e9514dfdf46c6030886f9fe6e46ef660bd5de48049b3755a2d21ce2c2ef54a",
+    "implementation_bundle_sha256": "6674125d772e1fff2d6e096d12e05d8d21ab1a1f139b51a88a32d770ae7f4251",
+    "live_cpu_disk_audit_content_sha256": "9fae01835f523bcccf2eafab1f03639c96c21882331bb9847f378382d6e8527c",
+    "prelaunch_idle_content_sha256": "ee23ef349d191926577082ba9c88bf23cfc33598794c91b38331c3cd8e7960ce",
+    "recipe_content_sha256": "d96dbae6fe5904d7d827b20403089484aa02785e6c24993cdb3eabf2c71707f1",
+    "runtime_environment_content_sha256": "7acc87ffb6a50682f19309ea3059823d0fc96dfc459e30cb66d64e157a76f52a"
+  },
+  "input_scope": {
+    "compact_attempt_and_report_aggregates_only": true,
+    "dataset_or_semantic_content_opened": false,
+    "detailed_runtime_payloads_persisted": false,
+    "raw_stdout_or_runtime_logs_opened": false
+  },
+  "schema": "eggroll-es-v28c-negative-evidence-v28d",
+  "side_effects": {
+    "checkpoint_written": false,
+    "dataset_promotion_applied": false,
+    "evaluation_opened": false,
+    "model_update_applied": false,
+    "nontrain_surface_opened": false
+  },
+  "status": "sealed_completed_compact_negative_evidence"
+}
