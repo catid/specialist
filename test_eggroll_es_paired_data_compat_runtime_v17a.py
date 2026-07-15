@@ -146,6 +146,7 @@ def runtime_inputs():
     preregistration, panels = driver_v17a._load_bound_inputs_v17a(layer)
     recipe = driver_v17a.recipe_v17a(
         layer, preregistration, panels, implementation,
+        driver_v17a._declared_moe_backend_v17a(),
     )
     return layer, panels, implementation, recipe
 
@@ -250,9 +251,66 @@ def test_v17a_dry_run_is_deterministic_and_constructs_no_trainer(
     assert first["recipe"]["model_update_allowed"] is False
     assert first["recipe"]["checkpoint_write_allowed"] is False
     assert first["recipe"]["evaluation_surfaces_opened"] is False
+    assert first["recipe"]["moe_backend"] == {
+        "moe_backend": "default_triton",
+        "override_environment": {
+            name: None for name in driver_v17a.MOE_OVERRIDE_ENVIRONMENT_V17A
+        },
+        "v16_task_ab_decision_retained": "default_triton",
+    }
     assert first["implementation_bundle_sha256"] in first_output
     assert first["recipe_sha256"] in first_output
     assert first_output == second_output
+
+
+@pytest.mark.parametrize(
+    "name", driver_v17a.MOE_OVERRIDE_ENVIRONMENT_V17A,
+)
+def test_v17a_rejects_every_moe_backend_override_before_runtime_assembly(
+    name, monkeypatch,
+):
+    monkeypatch.setenv(name, "synthetic-confound")
+    monkeypatch.setattr(
+        driver_v17a, "implementation_identity_v17a",
+        lambda: (_ for _ in ()).throw(
+            AssertionError("override reached runtime assembly")
+        ),
+    )
+    with pytest.raises(ValueError, match="every MoE backend override unset"):
+        driver_v17a.main(cli())
+
+
+def test_v17a_accepts_only_absent_or_empty_moe_override_environment(monkeypatch):
+    for name in driver_v17a.MOE_OVERRIDE_ENVIRONMENT_V17A:
+        monkeypatch.setenv(name, "")
+    assert driver_v17a._validate_moe_backend_environment_v17a() == (
+        driver_v17a._declared_moe_backend_v17a()
+    )
+
+
+def test_v17a_real_path_rechecks_moe_environment_before_source_or_trainer(
+    tmp_path, monkeypatch,
+):
+    monkeypatch.setattr(driver_v17a, "FROZEN_OUTPUT_DIRECTORY_V17A", tmp_path)
+    layer, panels, implementation, recipe = runtime_inputs()
+    monkeypatch.setenv("VLLM_USE_DEEP_GEMM", "1")
+    monkeypatch.setattr(
+        driver_v17a, "_source_provenance_v17a",
+        lambda _value: (_ for _ in ()).throw(
+            AssertionError("override reached source assembly")
+        ),
+    )
+    monkeypatch.setattr(
+        driver_v17a, "_make_trainer_v17a",
+        lambda _value: (_ for _ in ()).throw(
+            AssertionError("override constructed trainer")
+        ),
+    )
+    with pytest.raises(ValueError, match="every MoE backend override unset"):
+        driver_v17a.run_exact_v17a(
+            layer, panels, implementation, recipe,
+        )
+    assert not driver_v17a._attempt_path_v17a().exists()
 
 
 def test_v17a_runtime_rejects_source_recipe_and_nontrain_surface_changes(

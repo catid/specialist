@@ -101,6 +101,13 @@ FORBIDDEN_PERSISTED_KEYS_V17A = {
     "prompt_token_ids", "unit_scores", "responses", "coefficients",
     "bootstrap_replicates", "bootstrap_draws", "row_content",
 }
+MOE_OVERRIDE_ENVIRONMENT_V17A = (
+    "VLLM_TUNED_CONFIG_FOLDER",
+    "VLLM_ROCM_USE_AITER",
+    "VLLM_ROCM_USE_AITER_MOE",
+    "VLLM_USE_DEEP_GEMM",
+    "VLLM_MOE_USE_DEEP_GEMM",
+)
 
 canonical_sha256 = prereg_v17a.canonical_sha256
 file_sha256 = prereg_v17a.file_sha256
@@ -185,6 +192,27 @@ def _parser_v17a():
     return parser
 
 
+def _declared_moe_backend_v17a():
+    return {
+        "moe_backend": "default_triton",
+        "override_environment": {
+            name: None for name in MOE_OVERRIDE_ENVIRONMENT_V17A
+        },
+        "v16_task_ab_decision_retained": "default_triton",
+    }
+
+
+def _validate_moe_backend_environment_v17a():
+    conflicts = {
+        name: os.environ.get(name)
+        for name in MOE_OVERRIDE_ENVIRONMENT_V17A
+        if os.environ.get(name) not in (None, "")
+    }
+    if conflicts:
+        raise ValueError("v17a requires every MoE backend override unset")
+    return _declared_moe_backend_v17a()
+
+
 def _load_bound_inputs_v17a(layer_bundle):
     anchor_v13.validate_frozen_layer_plan_bundle_v13(layer_bundle)
     plan = anchor_v11.FROZEN_STABILITY_PLANS_V11[
@@ -213,7 +241,11 @@ def _load_bound_inputs_v17a(layer_bundle):
     return preregistration, panel_bundle
 
 
-def recipe_v17a(layer_bundle, preregistration, panel_bundle, implementation):
+def recipe_v17a(
+    layer_bundle, preregistration, panel_bundle, implementation, moe_backend,
+):
+    if moe_backend != _declared_moe_backend_v17a():
+        raise RuntimeError("v17a default Triton backend declaration changed")
     panel_contract = {}
     for panel_name in mechanics_v17a.PANEL_NAMES_V17A:
         panel = panel_bundle["panels"][panel_name]
@@ -279,6 +311,7 @@ def recipe_v17a(layer_bundle, preregistration, panel_bundle, implementation):
             "gpu_ids": [0, 1, 2, 3],
             "all_engines_every_signed_wave": True,
         },
+        "moe_backend": copy.deepcopy(moe_backend),
         "implementation_bundle_sha256": implementation["bundle_sha256"],
         "trainer_phase_bundle_sha256": implementation[
             "trainer_phase_bundle_sha256"
@@ -302,6 +335,7 @@ def validate_runtime_v17a(args, layer_bundle, implementation, recipe):
         or recipe.get("model_update_allowed") is not False
         or recipe.get("checkpoint_write_allowed") is not False
         or recipe.get("evaluation_surfaces_opened") is not False
+        or recipe.get("moe_backend") != _declared_moe_backend_v17a()
         or recipe.get("hardware") != {
             "engine_count": 4, "tp_per_engine": 1,
             "gpu_ids": [0, 1, 2, 3],
@@ -823,6 +857,11 @@ def validate_compact_report_v17a(
 def run_exact_v17a(
     layer_bundle, panel_bundle, implementation, recipe,
 ):
+    if (
+        _validate_moe_backend_environment_v17a()
+        != recipe.get("moe_backend")
+    ):
+        raise ValueError("v17a runtime MoE backend differs from sealed recipe")
     attempt_path = _attempt_path_v17a().resolve()
     run_dir = (FROZEN_OUTPUT_DIRECTORY_V17A / EXPERIMENT_NAME_V17A).resolve()
     report_path = run_dir / REPORT_NAME_V17A
@@ -940,12 +979,14 @@ def run_exact_v17a(
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     _assert_train_only_argv_v17a(argv)
+    moe_backend = _validate_moe_backend_environment_v17a()
     layer_bundle, remaining = anchor_v13.parse_frozen_layer_plan_cli_v13(argv)
     args = _parser_v17a().parse_args(remaining)
     implementation = implementation_identity_v17a()
     preregistration, panel_bundle = _load_bound_inputs_v17a(layer_bundle)
     recipe = recipe_v17a(
         layer_bundle, preregistration, panel_bundle, implementation,
+        moe_backend,
     )
     validate_runtime_v17a(args, layer_bundle, implementation, recipe)
     if args.v17a_dry_run:
