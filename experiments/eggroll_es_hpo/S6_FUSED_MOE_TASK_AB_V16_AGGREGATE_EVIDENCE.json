@@ -1,0 +1,127 @@
+{
+  "arm_results": {
+    "default_triton": {
+      "all_integrity_audits_passed": true,
+      "compact_estimator_sha256": "724515086903794628795c773d613911015593a8056b670394ded02d1bc766a7",
+      "dense_result_manifest_sha256": "c341b4c979b7e06ca0874bb23082c41b28413bbd8a659113affa1cee7153c0d3",
+      "diagnostic_content_sha256": "fedc217e313cd7b9ea982760983b836dadc8e729669fcfbb0db635ba9957c5dd",
+      "envelope_content_sha256": "5ce98354f72c73d194e94e8eff01a841a407efe78f6beae384e25f04562b0455",
+      "persisted_raw_content": false,
+      "signed_wave_count": 16,
+      "task_output_sha256": "fea91d4073bd96612da6d3019e80d091befa95e404bc27bf94a14ba98c69a8ce",
+      "total_seconds": 18.323416899,
+      "vllm_tuned_config_folder": null
+    },
+    "tuned_triton": {
+      "all_integrity_audits_passed": true,
+      "compact_estimator_sha256": "724515086903794628795c773d613911015593a8056b670394ded02d1bc766a7",
+      "dense_result_manifest_sha256": "c341b4c979b7e06ca0874bb23082c41b28413bbd8a659113affa1cee7153c0d3",
+      "diagnostic_content_sha256": "fedc217e313cd7b9ea982760983b836dadc8e729669fcfbb0db635ba9957c5dd",
+      "envelope_content_sha256": "e1d6575cfe9e4dd3e6754122a50789ebf4c5c0f87323f40721cca8f1c44c29ca",
+      "persisted_raw_content": false,
+      "signed_wave_count": 16,
+      "task_output_sha256": "fea91d4073bd96612da6d3019e80d091befa95e404bc27bf94a14ba98c69a8ce",
+      "total_seconds": 18.049274957,
+      "vllm_tuned_config_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v026_rtx_pro_6000_bf16_tp1_pruned"
+    }
+  },
+  "contains_evaluation_content": false,
+  "contains_response_vectors_or_row_content": false,
+  "content_sha256_before_self_field": "243111002e246c2d78a9a430a1b8d2766e208d90da39bdce9684095ff58382d5",
+  "decision": {
+    "authorize_evaluation": false,
+    "authorize_later_opt_in_training_preregistration": false,
+    "authorize_model_update": false,
+    "enable_tuned_config": false,
+    "retain_default_triton_v13": true
+  },
+  "experiment_name": "snapshot794_system_v16_fused_moe_default_vs_tuned_v13_five_panels_alpha_zero_basis20260714",
+  "gate_replay": {
+    "eligible_for_later_opt_in_training_preregistration": false,
+    "eligible_for_model_update": false,
+    "eligible_to_open_evaluation": false,
+    "failure_decision": "keep_tuned_config_disabled_and_retain_default_triton_v13",
+    "independently_recomputed_gate_equal_to_report": true
+  },
+  "input_bindings": {
+    "attempt": {
+      "content_sha256": "c9eb80087b01697d1b3df4a8c38859b01c8c8bb9ea70a71f12fe4e685fc259ef",
+      "file_sha256": "b41149da183bccd26d86990953e51825459bdfc4471e8c7caefb39cb20119d84",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.snapshot794_system_v16_fused_moe_default_vs_tuned_v13_five_panels_alpha_zero_basis20260714.launch_attempt.json"
+    },
+    "default_triton": {
+      "content_sha256": "5ce98354f72c73d194e94e8eff01a841a407efe78f6beae384e25f04562b0455",
+      "file_sha256": "be86d8ab910d6458f923a28cb67923ddb17d2c0b9c3028110faf723028c5cce1",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_system_v16_fused_moe_default_vs_tuned_v13_five_panels_alpha_zero_basis20260714/default_triton.compact.json"
+    },
+    "report": {
+      "content_sha256": "d548306711d554d5d0d9e5ac93b67b228c58349b942e2ca26d122e7c0d61129f",
+      "file_sha256": "baa08e130795fc6fc7518de284b677b0489721541cd065dfaf21bdaefbc8fa6d",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_system_v16_fused_moe_default_vs_tuned_v13_five_panels_alpha_zero_basis20260714/fused_moe_task_ab_v16.json"
+    },
+    "tuned_triton": {
+      "content_sha256": "e1d6575cfe9e4dd3e6754122a50789ebf4c5c0f87323f40721cca8f1c44c29ca",
+      "file_sha256": "bd81a1a0bb351cf40248021c60d100ef55bd917aed4cdfd846b2ad4b061cc245",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/snapshot794_system_v16_fused_moe_default_vs_tuned_v13_five_panels_alpha_zero_basis20260714/tuned_triton.compact.json"
+    }
+  },
+  "negative_compact_evidence": {
+    "default_total_seconds": 18.323416899,
+    "median_paired_wave_speedup": 1.0155962902048992,
+    "median_speedup_passed": false,
+    "minimum_median_paired_wave_speedup": 1.05,
+    "minimum_total_speedup": 1.05,
+    "preregistered_material_speed_gate_passed": false,
+    "total_generation_time_speedup": 1.0151885293261422,
+    "total_speedup_passed": false,
+    "tuned_total_seconds": 18.049274957
+  },
+  "positive_compact_evidence": {
+    "all_integrity_audits_passed": true,
+    "all_signed_waves_nonregressive": true,
+    "exact_equivalence": {
+      "compact_estimator_equal": true,
+      "dense_result_manifest_sha256_equal": true,
+      "diagnostic_content_sha256_equal": true,
+      "task_output_sha256_equal": true
+    },
+    "nonregressive_wave_count": 16,
+    "persisted_raw_content": false,
+    "required_wave_count": 16
+  },
+  "schema": "eggroll-es-fused-moe-task-ab-aggregate-evidence-v16",
+  "source_binding": {
+    "candidate_sha256": "0f6fd82c30542a170678eea1248ea0556a262986ef7cb676be9776862a1fe405",
+    "gate_sha256": "10ab5bf5bd3759bd30fa62b926a4f1ba07bb963f1cc3c8501e73dc99e3f2f0da",
+    "git_head": "808cafbd472f66e66c2fce7c28fee028debb2bc4",
+    "implementation_bundle_sha256": "c157306fefd2efcba597d082a753328e5e459800598bde17003e69ab081d118b",
+    "recipe_sha256": "889f01b53bda88a77e7acd2d090d0b5d34d0e3e71534f3ad6d90c3843aca2fc5",
+    "source_provenance_content_sha256": "55c7b23ba2ec746129dfae5963ad411ad4b4dff5639326121bf3b10eca014f8f"
+  },
+  "status": "negative_material_speed_gate_exact_equivalence_retain_default",
+  "systems_binding": {
+    "environment_binding": {
+      "default": null,
+      "exact_difference_verified": true,
+      "only_difference": "VLLM_TUNED_CONFIG_FOLDER",
+      "tuned": "/home/catid/specialist/experiments/vllm_moe_tuning/v026_rtx_pro_6000_bf16_tp1_pruned"
+    },
+    "fresh_process_per_arm": true,
+    "hardware": {
+      "all_four_gpus_required_every_signed_wave": true,
+      "engine_count": 4,
+      "gpu_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "partial_waves_allowed": false,
+      "population_waves": 8,
+      "signed_waves": 16,
+      "tp_per_engine": 1
+    },
+    "moe_backend": "triton",
+    "tuned_config_file_sha256": "a6fbb265df9527d0024d531a1779dc19ecb416f80c873036d9713a2fdce9df2d"
+  }
+}
