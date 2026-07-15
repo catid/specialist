@@ -1,0 +1,595 @@
+{
+  "arm_order": [
+    "production_control",
+    "v341_matched_replacement"
+  ],
+  "bound_input_content_sha256": {
+    "candidate_manifest": "a93278d011495d3d1f95894a505cd38e5408fed6510f60f12df6079fb1cab77a",
+    "prior_frame": "59e3352aabe851e31cf9e5ee47559051373f397d7354d3125ace821c65b118c6"
+  },
+  "content_sha256_before_self_field": "f34a003a77e9e978e244f8bced8d6550675603d891f386684e288958871cc5ce",
+  "estimand": {
+    "arm_population_denominators": {
+      "production_control": 272,
+      "v341_matched_replacement": 272
+    },
+    "arm_requests_per_panel": {
+      "production_control": 24,
+      "v341_matched_replacement": 24
+    },
+    "base_population_ht_strata": {
+      "fallback": {
+        "horvitz_thompson_weight": 11.666666666666666,
+        "per_panel_quota": 6,
+        "population": 70
+      },
+      "paired_tier_1": {
+        "horvitz_thompson_weight": 11.166666666666666,
+        "per_panel_quota": 6,
+        "population": 67
+      },
+      "paired_tier_2": {
+        "horvitz_thompson_weight": 11.333333333333334,
+        "per_panel_quota": 6,
+        "population": 68
+      },
+      "paired_tier_3": {
+        "horvitz_thompson_weight": 11.166666666666666,
+        "per_panel_quota": 6,
+        "population": 67
+      }
+    },
+    "candidate_only_additions_excluded": 54,
+    "plain_request_mean_used": false,
+    "same_components_panels_ht_weights_and_denominator_both_arms": true,
+    "sampled_matched_replacements": 184,
+    "sampled_production_only_unchanged": 56,
+    "semantics": "same_frozen_production_components_with_v341_candidate_representative_only_when_exactly_paired"
+  },
+  "firewall": {
+    "checkpoint_write_authorized": false,
+    "contains_evaluation_content": false,
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "foreground_builder_opened_or_parsed_jsonl_rows": false,
+    "gpu_launch_authorized": false,
+    "heldout_validation_ood_eval_or_benchmark_content_opened": false,
+    "isolated_projection_worker_read_train_rows": true,
+    "model_update_authorized": false,
+    "projection_contains_question_answer_prompt_response_or_row_content": false,
+    "runtime_launch_authorized": false
+  },
+  "frozen_production_base": {
+    "base_category_quota_per_panel": {
+      "fallback": 6,
+      "paired_tier_1": 6,
+      "paired_tier_2": 6,
+      "paired_tier_3": 6
+    },
+    "excluded_candidate_only_count": 54,
+    "globally_panel_disjoint": true,
+    "matched_candidate_replacement_count": 184,
+    "matched_replacement_component_identity_root_sha256": "4e7b5da1a43e063a5454e793aa476baa236727e83ca962c2fd007856ee8899de",
+    "panel_count": 10,
+    "population_component_count": 272,
+    "production_topic_quota_per_panel": {
+      "equipment_material": 2,
+      "resources_general": 11,
+      "safety_consent": 3,
+      "technique": 8
+    },
+    "quota_seed_or_solver_relaxation_used": false,
+    "sampled_component_count": 240,
+    "sampled_component_identity_root_sha256": "1c1971fae6b8c3e186515ba42c16f79b580a5da8caed8577e269f7123687ce47",
+    "source": "exact_frozen_v19a_ten_panel_base_flow",
+    "unchanged_component_identity_root_sha256": "8dc9193d273bc9ab3ada33e448414343255e76c6ae31964c2b693f53292de31a",
+    "unchanged_production_only_count": 56
+  },
+  "inputs": {
+    "candidate_v341": {
+      "file_sha256": "40f4b73c25cccfddc49da039b40483b469b9858deec9d00ca399cb490f5aa47a",
+      "manifest_content_sha256": "a93278d011495d3d1f95894a505cd38e5408fed6510f60f12df6079fb1cab77a",
+      "manifest_file_sha256": "2e766332f2686ad312f92f37fd7d457bd88c9d9c309498fc965cb6301483a9ac",
+      "manifest_path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v341/manifest.json",
+      "ongoing_curation_used": false,
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v341/train_qa_context_merit_v341.jsonl",
+      "rows": 528,
+      "sealed_snapshot_commit": "01ca5809321d00a904f5bb8fff1b3d8dd402db25",
+      "source_commit": "162e39408f4af0feee694dd4c128e9bb10dac057"
+    },
+    "frozen_v19a_panel_source": {
+      "via_v21a_frame_commit": "32bd189372a14b0c7db155d8986dcc6d4928b93b",
+      "via_v21a_frame_content_sha256": "59e3352aabe851e31cf9e5ee47559051373f397d7354d3125ace821c65b118c6",
+      "via_v21a_frame_file_sha256": "9dea3ff4eb970087a17daf2dbbeb1a0f49985330b515160fcb0c0db87216fee9"
+    },
+    "production": {
+      "commit": "a21de35748054c3ae8737a767606234952f9561e",
+      "file_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
+      "path": "/home/catid/specialist/data/train_qa_curated_v1.jsonl",
+      "rows": 784
+    }
+  },
+  "isolated_projection_content_sha256": "34609ae59c527f1e131654fb1e43506a009c1c0b03ec2bb7490f6545d1183ecd",
+  "joint_frame": {
+    "candidate_component_count": 259,
+    "candidate_only_topic_counts": {
+      "equipment_material": 10,
+      "resources_general": 8,
+      "safety_consent": 19,
+      "technique": 17
+    },
+    "candidate_topic_component_counts": {
+      "equipment_material": 23,
+      "resources_general": 84,
+      "safety_consent": 81,
+      "technique": 71
+    },
+    "joint_component_count": 326,
+    "joint_component_identity_root_sha256": "880396628b5c128cec75b3d01846c1294108090fab353487dbc968e700b16d84",
+    "match_class_counts": {
+      "candidate_only": 54,
+      "production_only": 67,
+      "shared_document": 203,
+      "shared_url_without_shared_document": 2
+    },
+    "production_component_count": 272,
+    "relation_counts": {
+      "candidate_only": 54,
+      "paired": 205,
+      "production_only": 67
+    }
+  },
+  "panels": [
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "06a9fabec7d9784ac901bc3b792cb7fc7266f5f878418a6b8b6daa1af6ab2c09",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "05409abd3a54177932948bff6f61932f934502476c3699e56c0d8f40888c5168",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "06a9fabec7d9784ac901bc3b792cb7fc7266f5f878418a6b8b6daa1af6ab2c09",
+          "candidate_representatives": 18,
+          "population_denominator": 272,
+          "production_representatives": 6,
+          "representative_assignment_root_sha256": "e35dee024b84d5ff3ef37b74924cf62e17e3bf04695a8ec7cfd41cd246cae9da",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "05409abd3a54177932948bff6f61932f934502476c3699e56c0d8f40888c5168",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 18,
+      "matched_replacement_component_identity_root_sha256": "f2681fcf39ebccffb42f0abaa88ca518f0b3dcfb416c61b4a181ef3cd1c9ed9f",
+      "name": "optimization_0",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "optimization",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "06a9fabec7d9784ac901bc3b792cb7fc7266f5f878418a6b8b6daa1af6ab2c09",
+      "treatment_representative_assignment_root_sha256": "e35dee024b84d5ff3ef37b74924cf62e17e3bf04695a8ec7cfd41cd246cae9da",
+      "unchanged_component_identity_root_sha256": "619a6bcb509add97177df85acaf910c2d6757b58bc2207d2f25ea5a18f88ccf9",
+      "unchanged_production_only_count": 6
+    },
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "047b6b08782784dec4dec8c1f35d2d590c8b970c94f235fe0aa75cbf54a3d920",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "9980a2e37fd8fc38096ea97ac47b9dbf56dad87a6714854ce0a6fac0f84f4deb",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "047b6b08782784dec4dec8c1f35d2d590c8b970c94f235fe0aa75cbf54a3d920",
+          "candidate_representatives": 18,
+          "population_denominator": 272,
+          "production_representatives": 6,
+          "representative_assignment_root_sha256": "c8b8c5f48696f8b4945c16753e5840569fbe5b8bd2cc0a6cec96797bb9a808ec",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "9980a2e37fd8fc38096ea97ac47b9dbf56dad87a6714854ce0a6fac0f84f4deb",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 18,
+      "matched_replacement_component_identity_root_sha256": "11ceb4dcc734f7760723639c00ccbbddd7157519b213d5e27bf27c0ca0022458",
+      "name": "optimization_1",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "optimization",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "047b6b08782784dec4dec8c1f35d2d590c8b970c94f235fe0aa75cbf54a3d920",
+      "treatment_representative_assignment_root_sha256": "c8b8c5f48696f8b4945c16753e5840569fbe5b8bd2cc0a6cec96797bb9a808ec",
+      "unchanged_component_identity_root_sha256": "6a605d0e76935dcf5fb6186b524f16afdada74fbe3ecf58a4cadd7e1fc47d2ec",
+      "unchanged_production_only_count": 6
+    },
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "31fb2b819ff1d4501f308825c44990c4df0c98f282a4bb19e8fb9637d25df1fc",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "cb561eee98c795f65fd3f65a82eae7f481fb63903501084cbccce120ac507c9d",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "31fb2b819ff1d4501f308825c44990c4df0c98f282a4bb19e8fb9637d25df1fc",
+          "candidate_representatives": 18,
+          "population_denominator": 272,
+          "production_representatives": 6,
+          "representative_assignment_root_sha256": "60effbc3a8c4feaccb75ac8ddf34e303e2060e15d0dab14012abfcf0bd73ce23",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "cb561eee98c795f65fd3f65a82eae7f481fb63903501084cbccce120ac507c9d",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 18,
+      "matched_replacement_component_identity_root_sha256": "701518a749481fcf9d560e916219f731c0f3f5c4e5ac1ddd9e759b0ea5a355d3",
+      "name": "optimization_2",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "optimization",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "31fb2b819ff1d4501f308825c44990c4df0c98f282a4bb19e8fb9637d25df1fc",
+      "treatment_representative_assignment_root_sha256": "60effbc3a8c4feaccb75ac8ddf34e303e2060e15d0dab14012abfcf0bd73ce23",
+      "unchanged_component_identity_root_sha256": "b420ffc9237be292cfbcce9e28ad5723af98b11c27703805c0be8ee43f33d89f",
+      "unchanged_production_only_count": 6
+    },
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "9b0e49f91403478e78c8de0938e952b7b203191c69416e18b42b35456455cd1e",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "de3c6a6688ebb6b968e4cc13279b6e519018c91a5d6780f1fa07420e7d5a3829",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "9b0e49f91403478e78c8de0938e952b7b203191c69416e18b42b35456455cd1e",
+          "candidate_representatives": 17,
+          "population_denominator": 272,
+          "production_representatives": 7,
+          "representative_assignment_root_sha256": "472572b24fc91d3c307b809d399ab4b5d9b77b778217625151fba48a8ade1b0d",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "de3c6a6688ebb6b968e4cc13279b6e519018c91a5d6780f1fa07420e7d5a3829",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 17,
+      "matched_replacement_component_identity_root_sha256": "3f4486213e0d058e62791d55dda743bc4bc8b84ecbf0ff69211e402edf230272",
+      "name": "optimization_3",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "optimization",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "9b0e49f91403478e78c8de0938e952b7b203191c69416e18b42b35456455cd1e",
+      "treatment_representative_assignment_root_sha256": "472572b24fc91d3c307b809d399ab4b5d9b77b778217625151fba48a8ade1b0d",
+      "unchanged_component_identity_root_sha256": "1c17c9453f11583bf5146cc5a4fe00816cfba94324978522d30785abc28c03aa",
+      "unchanged_production_only_count": 7
+    },
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "85eca21f148e4b25c1a70ac6f3601c018157521c6560d1f0a61fe85f99a111f8",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "a1facf833b43cf9f39a3454db6ccd27c408376a4a9c5e8e9ef0d7f4e6b01d8d5",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "85eca21f148e4b25c1a70ac6f3601c018157521c6560d1f0a61fe85f99a111f8",
+          "candidate_representatives": 18,
+          "population_denominator": 272,
+          "production_representatives": 6,
+          "representative_assignment_root_sha256": "3c3f833a45b879768aeff353b5699500ba247c5e2909ef1a70120d87735fa3e8",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "a1facf833b43cf9f39a3454db6ccd27c408376a4a9c5e8e9ef0d7f4e6b01d8d5",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 18,
+      "matched_replacement_component_identity_root_sha256": "de452e576205825c8ad207920c1c9715eddfffaba55e4f71fedb84ea8d708777",
+      "name": "optimization_4",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "optimization",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "85eca21f148e4b25c1a70ac6f3601c018157521c6560d1f0a61fe85f99a111f8",
+      "treatment_representative_assignment_root_sha256": "3c3f833a45b879768aeff353b5699500ba247c5e2909ef1a70120d87735fa3e8",
+      "unchanged_component_identity_root_sha256": "44ce44aa3dbcc2e224fcc07259e028ffe63d149704720dfdd499c765ca440249",
+      "unchanged_production_only_count": 6
+    },
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "684e21b6b2fbfd70de3ea03fa6c98af6f92945a9d73020d8ac7c12c28296a561",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "dadaac4dd24f2a76934553558ed6498d9da0927b9ba8c314df86c9bdbd52d770",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "684e21b6b2fbfd70de3ea03fa6c98af6f92945a9d73020d8ac7c12c28296a561",
+          "candidate_representatives": 18,
+          "population_denominator": 272,
+          "production_representatives": 6,
+          "representative_assignment_root_sha256": "5bdfed307b1fda99ef22007501c0ee20528fd1c57d0c2c2a7feeec0e0c593437",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "dadaac4dd24f2a76934553558ed6498d9da0927b9ba8c314df86c9bdbd52d770",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 18,
+      "matched_replacement_component_identity_root_sha256": "aa7a2331ca35e540a2566ef314165d5f55efb3613e9e86663390977a1e92aa39",
+      "name": "optimization_5",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "optimization",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "684e21b6b2fbfd70de3ea03fa6c98af6f92945a9d73020d8ac7c12c28296a561",
+      "treatment_representative_assignment_root_sha256": "5bdfed307b1fda99ef22007501c0ee20528fd1c57d0c2c2a7feeec0e0c593437",
+      "unchanged_component_identity_root_sha256": "36ddc063fd4921191393a51457059d98521ee0719ac9203c2dc4ebc3ad40d928",
+      "unchanged_production_only_count": 6
+    },
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "3f03b47469ebea2626db2617d2d630a4bec3bcdd760bc80abe201d5b8b9dcf7e",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "bceb373655404e0276b1bbadd3636651106293d345193753f74e779d930e7b31",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "3f03b47469ebea2626db2617d2d630a4bec3bcdd760bc80abe201d5b8b9dcf7e",
+          "candidate_representatives": 18,
+          "population_denominator": 272,
+          "production_representatives": 6,
+          "representative_assignment_root_sha256": "2e23cfd59b9aa3f70b0828a7eee2e0bb7678034bb551482923f988873893345b",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "bceb373655404e0276b1bbadd3636651106293d345193753f74e779d930e7b31",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 18,
+      "matched_replacement_component_identity_root_sha256": "d2b73f174584f5dd87b0115310e256cc359020176dce99e796a1790b99a59eb9",
+      "name": "train_screen_0",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "train_only_screen",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "3f03b47469ebea2626db2617d2d630a4bec3bcdd760bc80abe201d5b8b9dcf7e",
+      "treatment_representative_assignment_root_sha256": "2e23cfd59b9aa3f70b0828a7eee2e0bb7678034bb551482923f988873893345b",
+      "unchanged_component_identity_root_sha256": "82a89b5ce35a4f15092d62734fcaa5b6a15dcf8209ab76df7949fc50a5169104",
+      "unchanged_production_only_count": 6
+    },
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "3ff87d635f313a04b426e7b4405e3a89f49c48f14097744c489854903ebe5de2",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "518936fd1c5af3691e16d3b6a4c9e0e771936de84f5c6850f7bd10d0adab286b",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "3ff87d635f313a04b426e7b4405e3a89f49c48f14097744c489854903ebe5de2",
+          "candidate_representatives": 20,
+          "population_denominator": 272,
+          "production_representatives": 4,
+          "representative_assignment_root_sha256": "7ee81f2538356443c4f7f9f3f2ab289ce8d509acb54c56ddba97cc3198cb9667",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "518936fd1c5af3691e16d3b6a4c9e0e771936de84f5c6850f7bd10d0adab286b",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 20,
+      "matched_replacement_component_identity_root_sha256": "d7c5dbaef73e762d08e7b888a9e7307c56cc00d3283db2d3ff1007f152eb2976",
+      "name": "train_screen_1",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "train_only_screen",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "3ff87d635f313a04b426e7b4405e3a89f49c48f14097744c489854903ebe5de2",
+      "treatment_representative_assignment_root_sha256": "7ee81f2538356443c4f7f9f3f2ab289ce8d509acb54c56ddba97cc3198cb9667",
+      "unchanged_component_identity_root_sha256": "f0d743719e61975144267921f8c6d8187e646c3dcee8cf3e08f7c8bda4fece62",
+      "unchanged_production_only_count": 4
+    },
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "8c23e890b881a40a048cf4736b498aa5db6ced4e5bf95d797e9df3118d18649b",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "e055d2125fe582f189f9eba9676088eb6a432034bb86f5623850144cb43d349f",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "8c23e890b881a40a048cf4736b498aa5db6ced4e5bf95d797e9df3118d18649b",
+          "candidate_representatives": 20,
+          "population_denominator": 272,
+          "production_representatives": 4,
+          "representative_assignment_root_sha256": "7e33994e191844f1d574e3be7788a1267ebcb7247871ddd6bf393e23b70ec1df",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "e055d2125fe582f189f9eba9676088eb6a432034bb86f5623850144cb43d349f",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 20,
+      "matched_replacement_component_identity_root_sha256": "33f17f8fc4766290a76e988a9f6310e244475519b38f917851f1fe1d8221a8e8",
+      "name": "train_screen_2",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "train_only_screen",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "8c23e890b881a40a048cf4736b498aa5db6ced4e5bf95d797e9df3118d18649b",
+      "treatment_representative_assignment_root_sha256": "7e33994e191844f1d574e3be7788a1267ebcb7247871ddd6bf393e23b70ec1df",
+      "unchanged_component_identity_root_sha256": "f5a630bdcec7705faf65769ba996d419e59afcc5d2240f8b6473cea43df2242c",
+      "unchanged_production_only_count": 4
+    },
+    {
+      "arms": {
+        "production_control": {
+          "active_component_identity_root_sha256": "efe544ba8c89a37aa172bfab5e9a9b10e3fa7ea47973d7bb1219a21eadcd20cc",
+          "candidate_representatives": 0,
+          "population_denominator": 272,
+          "production_representatives": 24,
+          "representative_assignment_root_sha256": "b309ac58bee1b105ac1861dca8de0ef205743a56bf840259b0cc2b177bd3fbfa",
+          "requests": 24
+        },
+        "v341_matched_replacement": {
+          "active_component_identity_root_sha256": "efe544ba8c89a37aa172bfab5e9a9b10e3fa7ea47973d7bb1219a21eadcd20cc",
+          "candidate_representatives": 19,
+          "population_denominator": 272,
+          "production_representatives": 5,
+          "representative_assignment_root_sha256": "abdbed58e674bd0403d5cda83b22481da50cb9a73aef3ca32469ae98fe3d41d2",
+          "requests": 24
+        }
+      },
+      "base_category_counts": {
+        "fallback": 6,
+        "paired_tier_1": 6,
+        "paired_tier_2": 6,
+        "paired_tier_3": 6
+      },
+      "control_representative_assignment_root_sha256": "b309ac58bee1b105ac1861dca8de0ef205743a56bf840259b0cc2b177bd3fbfa",
+      "excluded_candidate_only_count": 0,
+      "matched_candidate_replacement_count": 19,
+      "matched_replacement_component_identity_root_sha256": "cb71c4d5751f51ac386311d2148797a6e0a84f53dd0e24cc5f5511a79da2e5f5",
+      "name": "train_screen_3",
+      "production_topic_counts": {
+        "equipment_material": 2,
+        "resources_general": 11,
+        "safety_consent": 3,
+        "technique": 8
+      },
+      "role": "train_only_screen",
+      "sampled_component_count": 24,
+      "sampled_component_identity_root_sha256": "efe544ba8c89a37aa172bfab5e9a9b10e3fa7ea47973d7bb1219a21eadcd20cc",
+      "treatment_representative_assignment_root_sha256": "abdbed58e674bd0403d5cda83b22481da50cb9a73aef3ca32469ae98fe3d41d2",
+      "unchanged_component_identity_root_sha256": "4c6249e3317c2361083cf2b86ed1c5b154707b02c7bc536a63e9dc78bdb2e392",
+      "unchanged_production_only_count": 5
+    }
+  ],
+  "preregistration_time_correction": {
+    "affected_frozen_sample_panel": "train_screen_0",
+    "cause": "exact_v341_correctness_removal_eliminated_one_v331_pair",
+    "correction_made_before_runtime_or_result_observation": true,
+    "exact_v341_relation_counts": {
+      "candidate_only": 54,
+      "paired": 205,
+      "production_only": 67
+    },
+    "exact_v341_sampled_replacements": 184,
+    "fabricated_or_substituted_candidate_representative": false,
+    "post_result_adaptation": false,
+    "prior_assumed_relation_counts": {
+      "candidate_only": 54,
+      "paired": 206,
+      "production_only": 66
+    },
+    "prior_expected_sampled_replacements": 185
+  },
+  "schema": "eggroll-es-v341-matched-replacement-flow-certificate-v22a",
+  "status": "feasible_offline_frame_only_no_runtime_or_update_authority"
+}
