@@ -17,7 +17,7 @@ OUTPUT = (
     "equal_unit_fold3_nonzero_v38a.json"
 ).resolve()
 EXPECTED_BINDINGS = {
-    "runtime": "7c17ffab646f4408f76eed7202d1a44768238b6993fe8768f8129abc406324bc",
+    "runtime": "221faaf0aeaaa9c3ffef91acbc98f21f7927e26bb09bb5fa72297331d7b2aba5",
     "trainer": "0afa022ab91f1e31d2077295e67864095656952086e265153a75e953d31a4fdd",
     "worker": "69bd20ffac1dc05ba75c6bdf91588079f48ca40e78271893578f613a76a5feaf",
     "dataset": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
@@ -74,6 +74,17 @@ def build() -> dict:
         "status": "preregistered_not_yet_run",
         "experiment_name": runtime.EXPERIMENT,
         "shadow_dev_external_eval_ood_or_holdout_opened": False,
+        "prelaunch_integrity_revision": {
+            "prior_preregistration_file_sha256": (
+                "78fa2979d28e6b7cca6cdcf50c262d774851b066852267e0eddfa70ba860b322"
+            ),
+            "prior_attempt_launched": False,
+            "change": (
+                "require successful Ray cleanup and final GPU-idle certificate, "
+                "and explicitly gate nonzero coefficients, changed selected state, "
+                "unchanged complement, four-rank commit, and snapshot inventory"
+            ),
+        },
         "implementation_bindings": observed,
         "artifacts": {
             "run_directory": str(runtime.RUN_DIR),
@@ -164,10 +175,22 @@ def build() -> dict:
 
 
 def main() -> None:
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--migrate-prelaunch-integrity-revision", action="store_true")
+    arguments = parser.parse_args()
     value = build()
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     if OUTPUT.exists():
-        raise RuntimeError("v38a preregistration already exists")
+        if not arguments.migrate_prelaunch_integrity_revision:
+            raise RuntimeError("v38a preregistration already exists")
+        if (
+            hashing.file_sha256(OUTPUT)
+            != "78fa2979d28e6b7cca6cdcf50c262d774851b066852267e0eddfa70ba860b322"
+            or runtime.ATTEMPT.exists()
+            or runtime.RUN_DIR.exists()
+        ):
+            raise RuntimeError("v38a prelaunch preregistration cannot migrate")
     hashing.atomic_write_json(OUTPUT, value)
     print(OUTPUT)
     print(value["content_sha256_before_self_field"])

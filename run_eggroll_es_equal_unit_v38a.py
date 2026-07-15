@@ -228,6 +228,59 @@ def summarize_gpu_log(path: Path) -> dict:
     return {"all_four_attributed_positive": True, "by_gpu": result}
 
 
+def validate_sealed_update(update: dict) -> dict:
+    application = update.get("application", {})
+    manifest = application.get("manifest", {})
+    final = application.get("final_identity", {})
+    snapshot_reports = update.get("snapshot_reports", [])
+    written = [item for item in snapshot_reports if item.get("written") is True]
+    coefficients = update.get("coefficients", [])
+    if (
+        update.get("status") != "one_nonzero_update_sealed_train_only"
+        or update.get("alpha") != 0.00015
+        or update.get("sigma") != 0.0003
+        or len(coefficients) != 32
+        or not any(value != 0.0 for value in coefficients)
+        or update.get("standardization", {}).get("zero_spread") is not False
+        or application.get("target_alpha") != 0.00015
+        or application.get("update_sequence") != 1
+        or final.get("sha256") == manifest.get("expected_base_sha256")
+        or final.get("unselected", {}).get("sha256")
+        != manifest.get("unselected_origin_sha256")
+        or len(application.get("commits", [])) != 4
+        or any(item.get("committed") is not True for item in application["commits"])
+        or len(application.get("post_commit_states", [])) != 4
+        or len(written) != 1
+        or written[0].get("rank") != 0
+        or written[0].get("tensor_count") != 23
+        or written[0].get("tensor_elements") != 142_999_552
+    ):
+        raise RuntimeError("v38a sealed update gate failed")
+    return {
+        "coefficient_spread_nonzero": True,
+        "selected_final_identity_differs_from_base": True,
+        "unselected_identity_equals_origin": True,
+        "four_rank_commit_consensus": True,
+        "selected_snapshot_inventory_exact": True,
+    }
+
+
+def wait_for_gpu_idle(timeout_seconds: float = 30.0) -> dict:
+    deadline = time.monotonic() + timeout_seconds
+    last = None
+    while time.monotonic() < deadline:
+        last = subprocess.run(
+            [
+                "nvidia-smi", "--query-compute-apps=gpu_uuid,pid,used_memory",
+                "--format=csv,noheader,nounits",
+            ], text=True, capture_output=True, check=True,
+        ).stdout.strip()
+        if not last:
+            return {"all_four_compute_process_lists_empty": True}
+        time.sleep(0.5)
+    raise RuntimeError(f"v38a GPU processes survived cleanup: {last}")
+
+
 def make_trainer(bundle):
     trainer_class = trainer_v38a.load_trainer(bundle)
     return trainer_class(
@@ -316,6 +369,12 @@ def main(argv: list[str] | None = None) -> int:
         gpu = summarize_gpu_log(GPU_LOG)
         if update["snapshot_file_sha256"] != evidence.file_sha256(SNAPSHOT):
             raise RuntimeError("v38a selected snapshot changed after save")
+        update_gates = validate_sealed_update(update)
+        base.close_trainer(trainer)
+        trainer = None
+        import ray
+        ray.shutdown()
+        final_idle = wait_for_gpu_idle()
         report = evidence.self_hashed({
             "schema": "eggroll-es-equal-unit-runtime-report-v38a",
             "status": "complete_one_nonzero_update_state_sealed",
@@ -330,8 +389,10 @@ def main(argv: list[str] | None = None) -> int:
             },
             "configuration": configured,
             "update": update,
+            "update_gates": update_gates,
             "gpu_activity": gpu,
             "preflight": preflight,
+            "final_idle": final_idle,
             "artifacts": {
                 "selected_runtime_snapshot": str(SNAPSHOT),
                 "selected_runtime_snapshot_sha256": evidence.file_sha256(SNAPSHOT),

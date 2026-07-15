@@ -6,7 +6,7 @@
     "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v38a_equal_unit_fold3_pop32_antithetic_nonzero",
     "selected_runtime_snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v38a_equal_unit_fold3_pop32_antithetic_nonzero/selected_runtime_snapshot_v38a.safetensors"
   },
-  "content_sha256_before_self_field": "90d0fbe406c29a5c56d1ec7656e54768f6a86d426aa7815e9df308b887d549a0",
+  "content_sha256_before_self_field": "f01dc273ca82f335be02515be895ecee9af7c9afb6999721319ecd0c11a942c0",
   "decision_firewall": {
     "authorized": "train-only state seal and runtime comparison",
     "forbidden": [
@@ -25,7 +25,7 @@
     "layer_plan": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
     "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
     "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
-    "runtime": "7c17ffab646f4408f76eed7202d1a44768238b6993fe8768f8129abc406324bc",
+    "runtime": "221faaf0aeaaa9c3ffef91acbc98f21f7927e26bb09bb5fa72297331d7b2aba5",
     "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
     "trainer": "0afa022ab91f1e31d2077295e67864095656952086e265153a75e953d31a4fdd",
     "trainer_v11c": "c663b62f9d7990a2c59d8b46ad6258209b590bb29aa48946755a7d263a3d0799",
@@ -35,6 +35,11 @@
     "worker_v11c": "d75951483058de340185fc81f6ed050deeac1551107c0357349a1f311cdb2c22",
     "worker_v3": "636698c7ea8e8155ea08298e428b5c40c01141ff10db59290d74831db360e5b1",
     "worker_v4": "876033b6b2ac8a869f0f82656c7e49434b7ba25789c1ddf776ac433659f72f59"
+  },
+  "prelaunch_integrity_revision": {
+    "change": "require successful Ray cleanup and final GPU-idle certificate, and explicitly gate nonzero coefficients, changed selected state, unchanged complement, four-rank commit, and snapshot inventory",
+    "prior_attempt_launched": false,
+    "prior_preregistration_file_sha256": "78fa2979d28e6b7cca6cdcf50c262d774851b066852267e0eddfa70ba860b322"
   },
   "recipe": {
     "alpha": 0.00015,
