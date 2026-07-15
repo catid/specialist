@@ -1,0 +1,86 @@
+{
+  "aggregate_execution": {
+    "all_runtime_integrity_guards_and_idle_boundaries_passed": true,
+    "configuration_content_sha256": "5b0736a6245dfd036ea1ddcff9e6fb99258df82b1e44a068fc172f4f6007bd26",
+    "direction_count": 64,
+    "engine_signed_direction_evaluation_count": 128,
+    "final_idle_certificate_sha256": "08e2eb8f27dccc599d217bf98b4fe4f5744320ecc62c8b60dd017720ac3e0242",
+    "full_context_request_count_all_engines": 4680,
+    "gate_content_sha256": "fcf0f66da80a52512b4f020e89c1610ff4304c20577d013dfc415fc58c3038cb",
+    "live_model_audit_content_sha256": "5950046f10d32625cef45f7bce58f3dee87171c59900deb396333b97e0854c1e",
+    "pairs_per_panel": 39,
+    "panel_count": 5,
+    "perturbed_request_count_all_engines": 49920,
+    "population_boundary_audit_sha256": "0fafb9834bbc724795b72a2bfa7da36c3539f3ee093995180f8c3f7bd2087988",
+    "prelaunch_idle_certificate_sha256": "63436f339c5aa2430289d200b59ecd6043298981e79dcb7c89d0346be8a78de6",
+    "reserve_pair_count": 10,
+    "restore_checks_sha256": "cc30e99c9412ed683c342e00bf659bb9e49f4ba8dc6cca13d6d0f9ae177ae903",
+    "runtime_audit_content_sha256": "1130d6546aebfb3aaac17493cc2d735d3928c2692e62c177ae6413858c7e2475",
+    "runtime_environment_content_sha256": "7acc87ffb6a50682f19309ea3059823d0fc96dfc459e30cb66d64e157a76f52a",
+    "selected_pair_count": 195,
+    "summary_content_sha256": "a0fa615ae1d050a14792a5a8491f24f6fa87713a65d5e1859f6ad639fd6f17f8",
+    "synchronized_four_engine_signed_wave_count": 32,
+    "total_generation_request_count": 54600
+  },
+  "aggregate_result": {
+    "all_familywise_lcbs_nonnegative": false,
+    "all_observed_point_deltas_nonnegative": false,
+    "best_familywise_lcb": -0.078125,
+    "endpoint_count": 12,
+    "gate_pass": false,
+    "negative_familywise_lcb_count": 12,
+    "negative_point_estimate_count": 1,
+    "positive_point_estimate_count": 11,
+    "worst_familywise_lcb": -0.2749971566674678,
+    "zero_point_estimate_count": 0
+  },
+  "artifacts": {
+    "compact_report": {
+      "content_sha256": "b5fc3b27e0b9703c5f0b62f02fc513e3ce6f57a5cd7aad5788b048ad0c44210d",
+      "file_sha256": "278b1900e71147d713a38ce554981b3a04dd38f7de031175f5b314b068356144",
+      "relative_path": "experiments/eggroll_es_hpo/runs/s6_v33a_paired_production_v364_train_only_runtime_basis20261008/paired_production_v364_compatibility_v33a.json"
+    },
+    "durable_attempt": {
+      "content_sha256": "894bd2393b7052c3881d9dad9a0e221d7779f6c3254a2d866a66a1f5bab22e20",
+      "file_sha256": "a8f41e2d90a9e9a92cecabdac402beb23a16e2b1a2746c166794c4ca5f81236e",
+      "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v33a_paired_production_v364_train_only_runtime_basis20261008.launch_attempt.json"
+    }
+  },
+  "content_sha256_before_self_field": "65ba6fbe7a00ba1ea3a0a3fd9d6df9d02158744b086668d7bf504962fecac771",
+  "decision": {
+    "checkpoint_write_authority": false,
+    "dataset_promotion_authority": false,
+    "direct_confirmation_authority": false,
+    "direct_followup_authority": false,
+    "evaluation_authority": false,
+    "model_update_authority": false,
+    "nontrain_data_surface_authority": false,
+    "retain_production_dataset": true,
+    "retain_v13_recipe": true,
+    "v364_replacement_authorized": false
+  },
+  "detailed_payloads_persisted": false,
+  "nontrain_data_content_persisted": false,
+  "schema": "eggroll-es-v33a-paired-v364-negative-evidence-v33b",
+  "side_effects": {
+    "checkpoint_written": false,
+    "dataset_promotion_applied": false,
+    "direct_action_taken": false,
+    "model_mutation_applied": false,
+    "nontrain_data_surface_opened": false
+  },
+  "source_history": {
+    "candidate_input_freeze_commit": "de0d5518f5cffe2ee71d8fc6884e506f3c1f3272",
+    "committed_clean_source_content_sha256": "6b4432404875ba6c2a3611f97d07a4e2ffac1e6039fa29ec365b8687415cff93",
+    "immutable_bound_file_count": 12,
+    "implementation_bundle_sha256": "a37ec4758df1ab8fbf92229ecefef8515f1243667ae84ee88ebcbe184939a444",
+    "implementation_file_count": 68,
+    "preregistration_and_clean_launch_source_commit": "59d9f873f7281ab821e69b5f070527f67a37ce16",
+    "preregistration_content_sha256": "f053c686721401d08b31f2619ba23511159e0a85cfbda2df606e0b00fa98bc61",
+    "preregistration_file_sha256": "c83e11376922ac273b5b6496ef60126a2cdc6ae044f6a9ab05d9481dc539bcda",
+    "recipe_content_sha256": "045bc6b732d4ba1a1c4096d473a5d8f4fb953b47a0bc2e227f4bb45536e8f429",
+    "runtime_file_sha256": "4197fa48d9d719b55548bbdccbff6c22eeb7b0e6dec359bbff007463ad36eb38",
+    "source_provenance_content_sha256": "9ae915e05b77033f889094a09a88c3d7227cf7810613ff7295fe0cd8f026d76b"
+  },
+  "status": "valid_completed_negative_gate_no_action"
+}
