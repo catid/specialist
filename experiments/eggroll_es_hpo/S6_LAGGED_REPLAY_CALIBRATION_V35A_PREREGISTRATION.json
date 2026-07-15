@@ -28,7 +28,7 @@
     "selection_after_audit": "for_each_panel_and_stratum_take_the_lowest_calibration_ranked_eligible_rows_until_the_frozen_required_count"
   },
   "bound_inputs": {
-    "file_bundle_sha256": "d9bc89b5c26842c98ca684ad909dda347d8310ac3b975a52a174676bc31cf8cc",
+    "file_bundle_sha256": "b2c38895aea0e093ab9bb16909707c929e01d9b94363f99219db7b4bab3c3686",
     "files": {
       "layer_plan": {
         "file_sha256": "4dca69212f2eee1c5882a7f3de944e3dadd8de94b42e58e7d7495547e8b1c747",
@@ -47,7 +47,7 @@
         "path": "/home/catid/specialist/experiments/eggroll_es_hpo/train_panel_sampling_v13/document_balanced_train_panels_v13.json"
       },
       "protocol_v35a": {
-        "file_sha256": "d200204b54f578bf6f0e8c1d2c00f3ffb5b49f8eaa8e612efb32065d5e666e2a",
+        "file_sha256": "c5fb01bf5b858d8ad418c4b8cc339d6df53b2ea31e7241286f2d2f9b5661ebf3",
         "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_LAGGED_REPLAY_CALIBRATION_V35A_PROTOCOL.md"
       },
       "sampler_v13": {
@@ -73,33 +73,35 @@
     "v14a_negative_content_sha256": "ee4ded3d974dfd0becaedb1007f96888e133db51e62130d2844ab9c25e2ccf2b",
     "v14b_negative_content_sha256": "440504e6c81673ea8de89f336d587a0c57408ea21d3a925ed73b73ecfbeaa7b8"
   },
-  "content_sha256_before_self_field": "ea50107652a1249de447e63c2891c4ef2ce61691772eb5c0dff76d3843f90127",
+  "content_sha256_before_self_field": "c6c6968680b6c4c1ffc9df821522f034afc0ea21cc95ef2fb80de28433b1c07f",
   "difficulty_calibration": {
     "final_hard_tier_cap": 0.25,
+    "final_hard_tier_count_rule": "floor(0.25*panel_stratum_rows);_never_exceeds_the_cap",
     "no_candidate_response_or_fresh_HPO_basis_observed_before_tier_freeze": true,
-    "provisional_candidate_fraction": 0.5,
+    "provisional_candidate_count_rule": "ceil(0.50*panel_stratum_rows);_a_discrete_review_pool_allocation_that_may_exceed_50_percent",
+    "provisional_candidate_target_fraction": 0.5,
     "provisional_candidates_per_panel": 29,
     "provisional_candidates_total": 87,
     "ranking_unit": "within_each_optimization_panel_and_stratum",
-    "required_final_hard_rows_per_panel": 16,
-    "required_final_hard_rows_total": 48,
+    "required_final_hard_rows_per_panel": 13,
+    "required_final_hard_rows_total": 39,
     "score_direction": "lower_mean_gold_answer_token_logprob_is_harder",
     "tie_break": "ascending_row_sha256",
     "tier_counts_per_panel": {
       "equipment_material": {
         "panel_rows": 6,
         "provisional_candidates": 3,
-        "required_final_hard_rows": 2
+        "required_final_hard_rows": 1
       },
       "resources_general": {
         "panel_rows": 25,
         "provisional_candidates": 13,
-        "required_final_hard_rows": 7
+        "required_final_hard_rows": 6
       },
       "safety_consent": {
         "panel_rows": 9,
         "provisional_candidates": 5,
-        "required_final_hard_rows": 3
+        "required_final_hard_rows": 2
       },
       "technique": {
         "panel_rows": 16,

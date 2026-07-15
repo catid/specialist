@@ -12,15 +12,18 @@ requests, interpreted, generated, scored, ranked, selected, or used.
 
 Within each optimization panel and stratum, rows are ranked from lowest to
 highest mean gold-answer token log-probability, with row SHA-256 as the frozen
-tie-breaker. The lowest 50% form a provisional manual-review pool. Reviewers
-receive a deterministic shuffle without scores, ranks, or future HPO results.
+tie-breaker. The provisional manual-review pool uses `ceil(0.50 * q)` rows for
+stratum size `q`; this is a discrete allocation targeting at least 50%, not a
+literal 50% cap. Reviewers receive a deterministic shuffle without scores,
+ranks, or future HPO results.
 A row is eligible only when its question is useful and clear, its answer is
 source-supported and direct, it contains no protocol/control leakage, and it
 does not omit material safety context. Review cannot rewrite or substitute a
 row inside this experiment.
 
-After audit, the lowest-ranked eligible 25% per panel/stratum form the hard
-tier. Insufficient eligible rows fail the calibration and authorize nothing.
+After audit, the lowest-ranked eligible rows form a hard tier capped at 25%
+per panel/stratum, with counts rounded down so the cap is never exceeded.
+Insufficient eligible rows fail the calibration and authorize nothing.
 Runtime artifacts contain hashes, ranks, and eligibility enums only—never row
 content, raw scores, tokens, log-probabilities, or outputs.
 

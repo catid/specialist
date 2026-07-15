@@ -53,7 +53,7 @@ PROTOCOL_PATH = (
 BOUND_FILES = {
     "protocol_v35a": (
         PROTOCOL_PATH,
-        "d200204b54f578bf6f0e8c1d2c00f3ffb5b49f8eaa8e612efb32065d5e666e2a",
+        "c5fb01bf5b858d8ad418c4b8cc339d6df53b2ea31e7241286f2d2f9b5661ebf3",
     ),
     "sampler_v13": (
         Path(sampler_v13.__file__).resolve(),
@@ -191,7 +191,9 @@ def _tier_counts() -> dict:
             "provisional_candidates": math.ceil(
                 PROVISIONAL_POOL_FRACTION * count
             ),
-            "required_final_hard_rows": math.ceil(FINAL_HARD_TIER_CAP * count),
+            # A cap must round down.  Ceil would exceed 25% for the 9-row
+            # safety and 6-row equipment strata.
+            "required_final_hard_rows": math.floor(FINAL_HARD_TIER_CAP * count),
         }
         for stratum, count in sampler_v13.STRATUM_QUOTAS.items()
     }
@@ -307,8 +309,15 @@ def build_preregistration() -> dict:
             "score_direction": "lower_mean_gold_answer_token_logprob_is_harder",
             "ranking_unit": "within_each_optimization_panel_and_stratum",
             "tie_break": "ascending_row_sha256",
-            "provisional_candidate_fraction": PROVISIONAL_POOL_FRACTION,
+            "provisional_candidate_target_fraction": PROVISIONAL_POOL_FRACTION,
+            "provisional_candidate_count_rule": (
+                "ceil(0.50*panel_stratum_rows);_a_discrete_review_pool_"
+                "allocation_that_may_exceed_50_percent"
+            ),
             "final_hard_tier_cap": FINAL_HARD_TIER_CAP,
+            "final_hard_tier_count_rule": (
+                "floor(0.25*panel_stratum_rows);_never_exceeds_the_cap"
+            ),
             "tier_counts_per_panel": tier_counts,
             "provisional_candidates_per_panel": candidate_rows_per_panel,
             "required_final_hard_rows_per_panel": hard_rows_per_panel,

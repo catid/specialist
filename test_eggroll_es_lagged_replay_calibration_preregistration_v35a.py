@@ -9,7 +9,7 @@ import eggroll_es_lagged_replay_calibration_preregistration_v35a as prereg
 def test_build_is_self_hashed_and_train_only():
     value = prereg.build_preregistration()
     assert value["content_sha256_before_self_field"] == (
-        "ea50107652a1249de447e63c2891c4ef2ce61691772eb5c0dff76d3843f90127"
+        "c6c6968680b6c4c1ffc9df821522f034afc0ea21cc95ef2fb80de28433b1c07f"
     )
     assert value["content_sha256_before_self_field"] == prereg.canonical_sha256(
         prereg.without_self(value)
@@ -34,7 +34,7 @@ def test_build_is_self_hashed_and_train_only():
 def test_materialized_preregistration_is_exact_rebuild():
     materialized = json.loads(prereg.OUTPUT_PATH.read_text(encoding="utf-8"))
     assert prereg.file_sha256(prereg.OUTPUT_PATH) == (
-        "9f2a33a5ba4c6e2ee895322fc93de1482f607ebd3013e2cf5e47eaf4ebde8773"
+        "f8054b98e6dfc2ea4e834e47060672ce0e5b3bfb4acb76d59807716b65b80bfb"
     )
     assert materialized == prereg.build_preregistration()
 
@@ -54,16 +54,18 @@ def test_calibration_uses_all_four_gpus_and_exact_equivalence():
 def test_tier_counts_are_stratified_capped_and_have_audit_slack():
     value = prereg.build_preregistration()
     calibration = value["difficulty_calibration"]
-    assert calibration["provisional_candidate_fraction"] == 0.5
+    assert calibration["provisional_candidate_target_fraction"] == 0.5
+    assert calibration["provisional_candidate_count_rule"].startswith("ceil(")
     assert calibration["final_hard_tier_cap"] == 0.25
+    assert calibration["final_hard_tier_count_rule"].startswith("floor(")
     assert calibration["provisional_candidates_per_panel"] == 29
-    assert calibration["required_final_hard_rows_per_panel"] == 16
+    assert calibration["required_final_hard_rows_per_panel"] == 13
     assert calibration["provisional_candidates_total"] == 87
-    assert calibration["required_final_hard_rows_total"] == 48
+    assert calibration["required_final_hard_rows_total"] == 39
     assert calibration["tier_counts_per_panel"] == {
         "safety_consent": {
             "panel_rows": 9, "provisional_candidates": 5,
-            "required_final_hard_rows": 3,
+            "required_final_hard_rows": 2,
         },
         "technique": {
             "panel_rows": 16, "provisional_candidates": 8,
@@ -71,13 +73,17 @@ def test_tier_counts_are_stratified_capped_and_have_audit_slack():
         },
         "equipment_material": {
             "panel_rows": 6, "provisional_candidates": 3,
-            "required_final_hard_rows": 2,
+            "required_final_hard_rows": 1,
         },
         "resources_general": {
             "panel_rows": 25, "provisional_candidates": 13,
-            "required_final_hard_rows": 7,
+            "required_final_hard_rows": 6,
         },
     }
+    assert all(
+        item["required_final_hard_rows"] / item["panel_rows"] <= 0.25
+        for item in calibration["tier_counts_per_panel"].values()
+    )
 
 
 def test_manual_gate_is_blinded_and_fail_closed():
