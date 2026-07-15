@@ -12,7 +12,17 @@ def journal(seed, train_delta, ood_delta, name="candidate"):
     return {
         "seed": seed,
         "trainer_sha256": "trainer",
-        "dataset": {"train_arrow_sha256": "dataset"},
+        "dataset": {
+            "train_arrow_sha256": "dataset",
+            "snapshot": {
+                "train_arrow": {"sha256": "dataset"},
+                "eval_arrows": {
+                    "validation": {"sha256": "validation"},
+                    "ood_qa": {"sha256": "ood"},
+                },
+                "ood_prose_jsonl": {"sha256": "prose"},
+            },
+        },
         "baseline": {
             "validation_score": baseline["validation"],
             "evaluation_scores": baseline,
@@ -96,13 +106,51 @@ def test_rejects_nonfinite_scores_and_policy_values(value):
 def test_refuses_mixed_dataset_hashes():
     journals = [journal(1, 0.1, 0.0), journal(2, 0.1, 0.0)]
     journals[1]["dataset"]["train_arrow_sha256"] = "changed"
-    with pytest.raises(ValueError, match="dataset/trainer"):
+    with pytest.raises(ValueError, match="flat train Arrow hash disagrees"):
         aggregate(journals, "validation", ["ood_qa"])
+
+
+def test_complete_dataset_snapshot_is_required_by_default():
+    journals = [journal(1, 0.1, 0.0), journal(2, 0.1, 0.0)]
+    for item in journals:
+        item["dataset"].pop("snapshot")
+
+    with pytest.raises(ValueError, match="complete dataset snapshot"):
+        aggregate(journals, "validation", ["ood_qa"])
+
+    result = aggregate(
+        journals, "validation", ["ood_qa"],
+        require_dataset_snapshot=False,
+    )
+    assert result["selected"] == "candidate"
+    assert result["complete_dataset_snapshot_required"] is False
+
+
+def test_snapshot_must_pin_every_selection_guard_and_prose_artifact():
+    journals = [
+        add_prose_gate(journal(1, 0.1, 0.0)),
+        add_prose_gate(journal(2, 0.1, 0.0)),
+    ]
+    journals[0]["dataset"]["snapshot"]["eval_arrows"].pop("ood_qa")
+    with pytest.raises(ValueError, match="ood_qa.*Arrow identity"):
+        aggregate(
+            journals, "validation", ["ood_qa"],
+            require_ood_prose_guard=True,
+        )
+
+    journals[0] = add_prose_gate(journal(1, 0.1, 0.0))
+    journals[0]["dataset"]["snapshot"].pop("ood_prose_jsonl")
+    with pytest.raises(ValueError, match="OOD prose identity"):
+        aggregate(
+            journals, "validation", ["ood_qa"],
+            require_ood_prose_guard=True,
+        )
 
 
 def test_refuses_mixed_guard_eval_snapshots_even_with_same_train_hash():
     journals = [journal(1, 0.1, 0.0), journal(2, 0.1, 0.0)]
     for item in journals:
+        item["dataset"]["train_arrow_sha256"] = "same"
         item["dataset"]["snapshot"] = {
             "train_arrow": {"sha256": "same"},
             "eval_arrows": {"validation": {"sha256": "validation"},

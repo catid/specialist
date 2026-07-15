@@ -45,6 +45,48 @@ def candidate_identity(item):
     }
 
 
+def validate_dataset_snapshot(
+    journal, selection_split, guard_splits, require_ood_prose_guard,
+):
+    dataset = journal.get("dataset")
+    if not isinstance(dataset, dict):
+        raise ValueError("seed journal dataset is not an object")
+    snapshot = dataset.get("snapshot")
+    if not isinstance(snapshot, dict):
+        raise ValueError("seed journal lacks a complete dataset snapshot")
+    train_arrow = snapshot.get("train_arrow")
+    if (
+        not isinstance(train_arrow, dict)
+        or not isinstance(train_arrow.get("sha256"), str)
+        or not train_arrow["sha256"]
+    ):
+        raise ValueError("dataset snapshot lacks train Arrow identity")
+    flat_train_sha = dataset.get("train_arrow_sha256")
+    if flat_train_sha not in (None, train_arrow["sha256"]):
+        raise ValueError("flat train Arrow hash disagrees with snapshot")
+    eval_arrows = snapshot.get("eval_arrows")
+    if not isinstance(eval_arrows, dict):
+        raise ValueError("dataset snapshot lacks eval Arrow identities")
+    for split in [selection_split, *guard_splits]:
+        identity = eval_arrows.get(split)
+        if (
+            not isinstance(identity, dict)
+            or not isinstance(identity.get("sha256"), str)
+            or not identity["sha256"]
+        ):
+            raise ValueError(
+                f"dataset snapshot lacks {split!r} Arrow identity")
+    if require_ood_prose_guard:
+        prose = snapshot.get("ood_prose_jsonl")
+        if (
+            not isinstance(prose, dict)
+            or not isinstance(prose.get("sha256"), str)
+            or not prose["sha256"]
+        ):
+            raise ValueError("dataset snapshot lacks OOD prose identity")
+    return snapshot
+
+
 def inspect_journal_ood_prose_policy(journal, expected_max_degradation):
     """Require the seed journal itself to pin the requested prose policy."""
     issues = []
@@ -78,7 +120,8 @@ def aggregate(journals, selection_split, guard_splits,
               max_guard_degradation=0.0, min_positive_seed_fraction=0.6,
               risk_penalty=0.5, max_guard_exact_loss=None,
               require_ood_prose_guard=False,
-              expected_ood_prose_max_degradation=0.0):
+              expected_ood_prose_max_degradation=0.0,
+              require_dataset_snapshot=True):
     if not journals:
         raise ValueError("at least one seed journal is required")
     if not 0 <= min_positive_seed_fraction <= 1:
@@ -112,6 +155,12 @@ def aggregate(journals, selection_split, guard_splits,
     if selection_split in guard_splits:
         raise ValueError("selection split cannot also be a guard split")
 
+    if require_dataset_snapshot:
+        for journal in journals:
+            validate_dataset_snapshot(
+                journal, selection_split, guard_splits,
+                require_ood_prose_guard,
+            )
     dataset_identities = {
         canonical_sha256(dataset_identity(journal)) for journal in journals
     }
@@ -269,6 +318,7 @@ def aggregate(journals, selection_split, guard_splits,
         "expected_ood_prose_max_degradation": (
             expected_ood_prose_max_degradation
         ),
+        "complete_dataset_snapshot_required": require_dataset_snapshot,
         "min_positive_seed_fraction": min_positive_seed_fraction,
         "risk_penalty": risk_penalty,
         "seeds": seeds,
@@ -297,6 +347,13 @@ def main():
             "different margin are ineligible"
         ),
     )
+    parser.add_argument(
+        "--allow-legacy-train-only-snapshot", action="store_true",
+        help=(
+            "Allow historical journals that pin only the train Arrow; "
+            "unsafe for promotion-grade selection"
+        ),
+    )
     parser.add_argument("--min-positive-seed-fraction", type=float,
                         default=0.6)
     parser.add_argument("--risk-penalty", type=float, default=0.5)
@@ -311,6 +368,7 @@ def main():
         args.risk_penalty, args.max_guard_exact_loss,
         args.require_ood_prose_guard,
         args.expected_ood_prose_max_degradation,
+        not args.allow_legacy_train_only_snapshot,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
