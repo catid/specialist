@@ -1,0 +1,64 @@
+{
+  "authority": {
+    "direct_recipe_adoption_model_update_checkpoint_dataset_promotion": false,
+    "retry_selection_launch_authorized": true,
+    "validation_heldout_ood_or_benchmark_open": false
+  },
+  "contains_dataset_rows_questions_answers_or_document_content": false,
+  "contains_validation_heldout_ood_or_benchmark_content": false,
+  "content_sha256_before_self_field": "c713f651482ee99bfbc98dfc91ebb0ea5e6d9f45b3f41470c0ff55720c2e4ac2",
+  "evaluation": {
+    "evaluation_contract_commit": "2572204429cf2b016d0a001086d309b582b97724",
+    "evaluation_gate_unchanged_from_v27a": true,
+    "evaluation_not_launched_by_this_artifact": true,
+    "evaluation_runtime_commit": "4a7a22b",
+    "output_must_be_committed_and_hash_frozen_before_evaluation": true,
+    "retry_output_is_selection_not_evaluation": true
+  },
+  "exact_retry": {
+    "batch_sizes": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "dtype": "auto_bfloat16",
+    "fresh_output_directory": "/tmp/vllm_moe_tuned_v27b",
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "output_must_not_exist_before_retry": true,
+    "search_space_configurations_per_batch": 1920,
+    "selection_seed": 20260715,
+    "tp_size": 1
+  },
+  "failed_selection_attempt": {
+    "error_class_to_admit_on_retry": "triton.compiler.errors.CompilationError",
+    "error_pass": "TritonGPURemoveLayoutConversions",
+    "error_target": "cuda:120",
+    "exit_code": 1,
+    "model_update_checkpoint_dataset_or_nontrain_surface_opened": false,
+    "official_tuner_sha256": "230151de56d177ac22920ff9dada010f4361933b34b54e18d5981367723a8bcf",
+    "output_table_written": false,
+    "v27a_preregistration_commit": "2572204429cf2b016d0a001086d309b582b97724",
+    "worker_error_file_bytes": 12517,
+    "worker_error_file_sha256": "47ebb5c98e8db695bcc17103cd0846f6d1119e6ac1274621d277b7dc91541330",
+    "workers_with_identical_compiler_error": 3
+  },
+  "retry_overlay": {
+    "all_other_exceptions_fail_closed": true,
+    "base_official_tuner_sha256": "230151de56d177ac22920ff9dada010f4361933b34b54e18d5981367723a8bcf",
+    "benchmark_timing_config_generation_and_selection_unchanged": true,
+    "newly_skipped_exception_class": "triton.compiler.errors.CompilationError",
+    "newly_skipped_exception_class_count": 1,
+    "only_change": "extend the existing invalid-config exception tuple from OutOfResources to OutOfResources plus CompilationError",
+    "patched_tuner_sha256": "2a9c31063532c0572500d9ed19db7df18d82cd8dad85cefb41eab2a6269df25e"
+  },
+  "schema": "vllm-moe-tuning-compiler-retry-preregistration-v27b",
+  "status": "preregistered_before_retry_output_retry_not_launched"
+}
