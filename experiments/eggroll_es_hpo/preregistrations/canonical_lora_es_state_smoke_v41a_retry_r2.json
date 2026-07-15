@@ -1,0 +1,85 @@
+{
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v41a_canonical_lora_es_state_smoke_retry_r2.attempt.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v41a_canonical_lora_es_state_smoke_retry_r2/gpu_activity_v41a_retry_r2.jsonl",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v41a_canonical_lora_es_state_smoke_retry_r2/lora_es_state_smoke_report_v41a_retry_r2.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v41a_canonical_lora_es_state_smoke_retry_r2",
+    "snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v41a_canonical_lora_es_state_smoke_retry_r2/canonical_adapter_snapshot_v41a_retry_r2"
+  },
+  "content_sha256_before_self_field": "671b1a39845ae001df1704d3fd31f0be44c3356b0e5272dae0e2d9fb9014b6a1",
+  "created_at_utc": "2026-07-15T21:56:51.900715+00:00",
+  "dataset_or_evaluation_access_authorized": false,
+  "implementation_bindings": {
+    "adapter_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "adapter_weights": "9336ee124c9bab7ec95ecfc68b80e20d28c38a777e7408f81584eb294c45b0dc",
+    "base_runtime": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+    "builder": "8e6c2caba6d34a8f30c1265480b99ad95d239b2ba9f6da549e7572846721cc58",
+    "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "resolver_runtime_v40c": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+    "runtime": "6dbebda32b3c12a6c81b06dfa569d5b3f6fd37fb578f9733a2c2af1e7ad50125",
+    "runtime_v40a": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+    "stage_manifest": "de33074de105c93677722b14274358006369d4ac28a99d17b75ee43b73d6a7e9",
+    "staged_adapter_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "staged_adapter_weights": "96c35d4954a4c53f6001166ed3d1e9eb627d06c5d760ca2a00e6ef38a7950402",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "worker": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c"
+  },
+  "parent_v40c": {
+    "content_sha256": "c385188917c3c43aa1322818f81eb4250666a328186dfafde524cc5dba70a33d",
+    "file_sha256": "9118cca0bdd59f0877068f9102c0c7dfbc448e269b9a927619481d46f8057ca3",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/v37_lora_topology_probe_tuned_projection_retry_v40c.json",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "purpose": "Prove canonical FP32 LoRA state materialization, antithetic forward effect, exact restore, base immutability, and PEFT snapshot readback on four concurrent TP1 actors before any LoRA-ES training run.",
+  "required_gates": {
+    "all_four_gpus_have_attributed_positive_activity": true,
+    "exact_restore_recovers_source_forward_after_each_sign": true,
+    "final_all_gpu_idle_cleanup": true,
+    "one_rank_writes_snapshot_and_exact_readback_passes": true,
+    "plus_and_minus_are_distinguishable": true,
+    "plus_and_minus_each_change_forward": true,
+    "relevant_base_weights_unchanged_at_every_state_boundary": true,
+    "source_forward_equals_canonical_install_forward": true
+  },
+  "runtime": {
+    "adapter_alpha": 64,
+    "adapter_rank": 32,
+    "all_four_actors_concurrent": true,
+    "canonical_dtype": "float32",
+    "canonical_elements": 4528128,
+    "canonical_tensor_count": 70,
+    "engine_count": 4,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "runtime_dtype": "bfloat16",
+    "runtime_elements": 4921344,
+    "runtime_module_count": 23,
+    "runtime_view_count": 82,
+    "seed": 4120260715,
+    "sigma": 0.0003,
+    "sign_order": [
+      1,
+      -1
+    ],
+    "snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v41a_canonical_lora_es_state_smoke_retry_r2/canonical_adapter_snapshot_v41a_retry_r2",
+    "source_adapter": "/home/catid/specialist/experiments/sft_controls/v37a_equal_unit_fold3_v412/middle_late_r32_seed17/final",
+    "staged_adapter": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v37a_qwen35_vllm_namespace_v40a",
+    "synthetic_prompt_sha256": "93c4551102b1e8a2c578258fdab0d3c8c62370e057b9d674cc9be2e8d7bfb870",
+    "tensor_parallel_size": 1,
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d",
+    "worker_extension": "eggroll_es_worker_lora_v41a.LoRAAdapterStateWorkerExtensionV41A"
+  },
+  "schema": "canonical-lora-es-state-preregistration-v41a",
+  "sealed_holdout_opened": false,
+  "selection_or_quality_claim_authorized": false,
+  "status": "preregistered_before_four_gpu_smoke"
+}

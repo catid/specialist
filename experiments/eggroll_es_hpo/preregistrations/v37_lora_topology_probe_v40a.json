@@ -1,0 +1,70 @@
+{
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v40a_v37_lora_topology_probe.attempt.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v40a_v37_lora_topology_probe/gpu_activity_v40a.jsonl",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v40a_v37_lora_topology_probe/lora_topology_report_v40a.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v40a_v37_lora_topology_probe"
+  },
+  "content_sha256_before_self_field": "536fe61d2577f11aa2133be2eec37358f983bb2f0a26a8cb732b372f404817b2",
+  "created_at_utc": "2026-07-15T21:34:54.972186+00:00",
+  "dataset_or_evaluation_access_authorized": false,
+  "dataset_shadow_ood_holdout_or_heldout_paths_bound": false,
+  "implementation_bindings": {
+    "adapter_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "adapter_weights": "9336ee124c9bab7ec95ecfc68b80e20d28c38a777e7408f81584eb294c45b0dc",
+    "base_runtime": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+    "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "runtime": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+    "stage_manifest": "de33074de105c93677722b14274358006369d4ac28a99d17b75ee43b73d6a7e9",
+    "stage_runtime": "e26e545ca0a121e92cf667bc3eaa640d5e36d10e9f28fe9595cc136a3baf6ee3",
+    "staged_adapter_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "staged_adapter_weights": "96c35d4954a4c53f6001166ed3d1e9eb627d06c5d760ca2a00e6ef38a7950402",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "worker": "d487ff4657a2a6fbd7d2d0f9200a63547dd79b258cc488b93382fdf26b52cf05"
+  },
+  "no_quality_claim_authorized": true,
+  "objective": "Map the exact V37A PEFT tensor surface into resident vLLM LoRA GPU buffers and prove reversible in-place forward effect.",
+  "probe": {
+    "base_audit": "hash every relevant wrapper base_layer.weight before/after",
+    "mapping": "PEFT key to wrapper, slot, packed slice and exact GPU view",
+    "mutation": {
+      "forward_without_adapter_reload_required": true,
+      "one_element_only": true,
+      "requested_delta": 1.0,
+      "restore_exact_original_value": true,
+      "target": "model.layers.23.self_attn.o_proj.lora_B[0,0]"
+    },
+    "namespace_stage": "key-only exact-value rename into Qwen3.5 vLLM language_model namespace",
+    "peft_elements_expected": 4528128,
+    "peft_tensor_count_expected": 70
+  },
+  "runtime": {
+    "adapter": "/home/catid/specialist/experiments/sft_controls/v37a_equal_unit_fold3_v412/middle_late_r32_seed17/final",
+    "adapter_alpha": 64,
+    "adapter_rank": 32,
+    "all_four_actors_concurrent": true,
+    "enable_lora": true,
+    "engine_count": 4,
+    "lora_dtype": "auto_from_bfloat16_base",
+    "max_cpu_loras": 1,
+    "max_loras": 1,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "staged_adapter": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v37a_qwen35_vllm_namespace_v40a",
+    "synthetic_prompt_sha256": "93c4551102b1e8a2c578258fdab0d3c8c62370e057b9d674cc9be2e8d7bfb870",
+    "tensor_parallel_size": 1,
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "a4f82f53b037f766536013bdc10c8ca1e49873603a8f44972ef8007ed406de84"
+  },
+  "schema": "lora-topology-preregistration-v40a",
+  "status": "preregistered_before_gpu_launch",
+  "synthetic_prompt_only": true
+}
