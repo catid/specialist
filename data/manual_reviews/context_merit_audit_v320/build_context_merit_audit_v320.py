@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+"""Replace blame and incident slogans with self-audit and consent-pressure guidance."""
+from __future__ import annotations
+import hashlib,json,sys,tempfile
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3];DATA=ROOT/"data";V319=DATA/"manual_reviews/context_merit_audit_v319";V290=DATA/"manual_reviews/context_merit_audit_v290";sys.path[:0]=[str(ROOT),str(V319),str(V290)]
+import build_context_merit_audit_v319 as previous
+import build_context_merit_audit_v290 as core
+OUT_DIR=Path(__file__).resolve().parent;AUDIT=OUT_DIR/"context_merit_audit_v320.jsonl";CURATION=OUT_DIR/"pending_curation_context_merit_v320.jsonl";REPORT=OUT_DIR/"report_context_merit_v320.json";BASELINE_ROWS=548;BASELINE_SHA256="1a702020d42d10f7179e0e73372574f6c2fd768083c969fa0329798bcf4f55dc";EXPECTED_OUTPUT_SHA256="47f670b199d5af5b2545ebde1453241c54c23225539890026f2d3a9b12550701"
+EXPECTED_CAPACITY_BEFORE={"conflict_units":261,"equipment_material":23,"resources_general":84,"safety_consent":86,"technique":68};EXPECTED_CAPACITY_AFTER={"conflict_units":260,"equipment_material":23,"resources_general":84,"safety_consent":86,"technique":67}
+RESOURCE_MANIFEST=previous.RESOURCE_MANIFEST;file_sha256=previous.file_sha256;text_sha256=previous.text_sha256;read_jsonl=previous.read_jsonl;write_jsonl=previous.write_jsonl;conservative_capacity=previous.conservative_capacity;portable=previous.portable;PRIOR=(V319/"context_merit_audit_v319.jsonl",V319/"pending_curation_context_merit_v319.jsonl",V319/"report_context_merit_v319.json")
+SPECS=(
+ {"action":"edit","fact_id":"fact-1d6c210207e6881077f5","active_index":22,"expected_question":"According to WykD’s injury-responsibility article, what common factor is likely when injuries recur across multiple models and sessions?","expected_answer":"the person tying","question":"What self-audit does WykD recommend when similar injuries recur across multiple partners and sessions?","answer":"Look for the common factor across the incidents, including the tying practices of the person present in each case.","reason_code":"replace_blame_lookup_with_recurring_injury_self_audit","reason":"The replacement preserves the source's responsibility argument while teaching a review process instead of reducing it to a blame-shaped two-word answer."},
+ {"action":"drop","fact_id":"fact-0b7c81c0a940439bd790","active_index":25,"expected_question":"Besides how often it is tied, what does Kinbaku Today say contributes to takate kote’s higher incident rate?","expected_answer":"the attitude with which it is frequently taught","reason_code":"drop_unexplained_incident_attitude_fragment","reason":"The evidence names an unspecified teaching attitude without describing it or giving actionable guidance; stronger rows teach how to vet instruction and assess concrete risks."},
+ {"action":"edit","fact_id":"fact-698064ad67fe6e2feccd","active_index":261,"expected_question":"What fears does Tessin Doyama say can make it hard to stop in the middle of a rope session?","expected_answer":"“maybe he/ she won’t tie me anymore” or “they won’t think i’m a real submissive”","question":"What status pressures does Tessin Doyama say can make it harder for a tied person to stop a scene?","answer":"They may fear that an admired or famous partner will not tie them again, or that stopping means others will not see them as a “real” submissive.","reason_code":"replace_raw_quote_fragment_with_status_pressure_explanation","reason":"The replacement keeps the source's two examples while explaining the social-pressure mechanism in complete language."},
+ {"action":"edit","fact_id":"fact-21349d9c093b6f7cccfb","active_index":263,"expected_question":"What first lesson does the author say injuries and mistakes can teach a rigger?","expected_answer":"injuries and mistakes are telling you that you may not know as much as you think you know","question":"What two limits of assumed mastery can injuries or mistakes reveal, according to “On Not Teaching Rope”?","answer":"They can show that the person tying knows less than assumed and does not understand a frequently repeated tie as well as believed.","reason_code":"expand_injury_fragment_to_two_mastery_limits","reason":"The replacement captures both lessons in the evidence rather than retaining only its first sentence fragment."},
+ {"action":"drop","fact_id":"fact-b6e3f5db2bc139c58e67","active_index":334,"expected_question":"What safety warning does the article connect to the temptation to think a small problem is acceptable?","expected_answer":"The feeling of “this degree should be OK” can lead to a big accident","reason_code":"drop_small_problem_big_accident_slogan","reason":"This one-line slogan provides no observable threshold or response and is weaker than the same article's retained direct check-in, stop-pressure, and stopping guidance."},
+)
+def build_baseline(out,report):
+ previous.build_projection(out,report)
+ if (len(read_jsonl(out)),file_sha256(out))!=(BASELINE_ROWS,BASELINE_SHA256):raise ValueError("v319 drift")
+def build_projection(out,report):
+ d=out.parent/f".{out.name}.v320-input";d.mkdir(parents=True,exist_ok=True);base=d/"v319.jsonl";build_baseline(base,d/"v319.report.json");core.build_projection_with_inputs(out,report,(CURATION,),(base,))
+def observe(before):
+ with tempfile.TemporaryDirectory(prefix=".v320-observe-",dir=OUT_DIR) as t:
+  d=Path(t);out=d/"out.jsonl";rep=d/"out.report.json";ds=[];rs=[]
+  for _ in (1,2):build_projection(out,rep);ds.append(out.read_bytes());rs.append(rep.read_bytes())
+  rows=read_jsonl(out);return{"rows":len(rows),"sha":hashlib.sha256(ds[0]).hexdigest(),"eval":json.loads(rs[0])["eval_fact_count"],"de":ds[0]==ds[1],"re":rs[0]==rs[1],"before":conservative_capacity(before),"after":conservative_capacity(rows)}
+def main():
+ OUT_DIR.mkdir(parents=True,exist_ok=True)
+ with tempfile.TemporaryDirectory(prefix=".v320-base-",dir=OUT_DIR) as t:d=Path(t);base=d/"v319.jsonl";build_baseline(base,d/"v319.report.json");before=read_jsonl(base)
+ by_fact={r["fact_id"]:(i,r) for i,r in enumerate(before,1)};audits=[];curations=[]
+ for audit_index,s in enumerate(SPECS,1):
+  index,active=by_fact[s["fact_id"]]
+  if index!=s["active_index"] or (active["question"],active["answer"])!=(s["expected_question"],s["expected_answer"]):raise ValueError(f"candidate drift {s['fact_id']}")
+  evidence=active.get("evidence")
+  if not evidence:raise ValueError("missing evidence")
+  common={"action":s["action"],"document_sha256":active["document_sha256"],"evidence":evidence,"evidence_url":active["url"],"expected_answer":active["answer"],"expected_question":active["question"],"fact_id":active["fact_id"],"reason":s["reason"],"reason_code":s["reason_code"],"reviewed_at":"2026-07-15","reviewer":"codex-context-merit-audit-v320","source_lineage":active["source_lineage"]}
+  if s["action"]=="edit":common.update(answer=s["answer"],paraphrase_rationale=s["reason"],question=s["question"],support_type="manual_paraphrase")
+  curations.append(common);audit={"active_answer":active["answer"],"active_index":index,"active_question":active["question"],"audit_index":audit_index,"decision":s["action"],"document_sha256":active["document_sha256"],"fact_id":active["fact_id"],"projection_lineage":{"active_index":index,"baseline_rows":BASELINE_ROWS,"baseline_sha256":BASELINE_SHA256},"reason":s["reason"],"reason_code":s["reason_code"],"review_pass":"injury_self_audit_and_status_pressure_train_only_cleanup","reviewed_at":"2026-07-15","reviewer":"codex-context-merit-audit-v320","schema":"context-merit-audit-v320","source":active["source"],"source_support":"manual_source_and_dataset_context_review","support_evidence":evidence,"support_evidence_sha256":text_sha256(evidence),"url":active["url"]}
+  if s["action"]=="edit":audit.update(edited_answer=s["answer"],edited_question=s["question"],paraphrase_rationale=s["reason"])
+  audits.append(audit)
+ write_jsonl(AUDIT,audits);write_jsonl(CURATION,curations);o=observe(before)
+ if not o["de"] or not o["re"] or (o["rows"],o["eval"])!=(546,612) or o["before"]!=EXPECTED_CAPACITY_BEFORE:raise ValueError(f"projection drift {o}")
+ if EXPECTED_CAPACITY_AFTER!="PENDING" and o["after"]!=EXPECTED_CAPACITY_AFTER:raise ValueError(f"capacity drift {o}")
+ if EXPECTED_OUTPUT_SHA256!="PENDING" and o["sha"]!=EXPECTED_OUTPUT_SHA256:raise ValueError("output drift")
+ REPORT.write_text(json.dumps({"audit":{"by_decision":{"drop":2,"edit":3,"keep":0},"path":portable(AUDIT),"rows":5,"sha256":file_sha256(AUDIT)},"conservative_capacity":{"after":o["after"],"before":o["before"],"delta":{k:o["after"][k]-o["before"][k] for k in o["before"]},"grouping":"shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"},"prior_checkpoint":{"candidate":{"rows":BASELINE_ROWS,"sha256":BASELINE_SHA256},"artifacts":[{"path":portable(p),"sha256":file_sha256(p)} for p in PRIOR]},"isolated_build_projection":{"automated_projection_runs":2,"new_additions_applied":0,"output_rows":o["rows"],"output_sha256":o["sha"],"repeat_dataset_byte_identical":o["de"],"repeat_projection_report_byte_identical":o["re"],"sealed_eval_fact_count_reported_by_tooling":o["eval"]},"new_pending_curation":{"decisions":5,"path":portable(CURATION),"sha256":file_sha256(CURATION)},"schema":"context-merit-audit-report-v320","sealed_evaluation_policy":{"automated_collision_tool_reads_sealed_content":True,"automated_read_scope":"fact-ID collision exclusion and aggregate eval_fact_count reporting only","manual_worker_opened_eval_or_heldout_content":False,"manual_worker_received_eval_or_heldout_content":False}},ensure_ascii=False,indent=2,sort_keys=True)+"\n")
+if __name__=="__main__":main()
