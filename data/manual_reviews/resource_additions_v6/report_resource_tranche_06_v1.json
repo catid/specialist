@@ -1,0 +1,47 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/resource_additions_v6/pending_additions_resource_tranche_06_v1.jsonl",
+    "rows": 3,
+    "sha256": "3c552115a93015bdf90cfb69c98449a0e1060f2d8e5d42878ab3ff0dbd8f1589"
+  },
+  "baseline": {
+    "rows": 507,
+    "sha256": "b9768507b55aa6650f86b1cc4cf849d268f4d0c619f53384b3b74eca2af61c5b"
+  },
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v294 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one navigation fact from each of three distinct, previously unrepresented source documents and URLs"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "resources_general": 3
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-resource-additions-v6",
+  "schema": "manual-resource-additions-report-v6",
+  "sources": {
+    "artist_reference_coverage": {
+      "document_sha256": "4d1f83931a3d68a617d6166d2684f4e575e9999fe8bf49393c68ba32e9674537",
+      "file_sha256": "00649e5d0827680e2d5a36579f34d1c7b9bd817e871041c5e980786aa20b3661",
+      "path": "data/raw/rope_resources_v1/rope365__d99c6a7fa089567b35e6.json",
+      "url": "https://rope365.com/rope-artists-references/"
+    },
+    "book_selection": {
+      "document_sha256": "cddbb4a99e637b11213b2b853401472bbeb5d022834fde125c4d4a3ba2637275",
+      "file_sha256": "00504ec11f364d70dde30fe14ce23017426f40b62cba57f24f5d2f193f6b3c66",
+      "path": "data/raw/rope_resources_v1/rope365__b2d86cf0a71999889698.json",
+      "url": "https://rope365.com/books/"
+    },
+    "community_search": {
+      "document_sha256": "8e188b368a79bc4c6b73171773c1bf6fb829aa2a5327b994755c40a7ac1efbd3",
+      "file_sha256": "ebbd7347f0e2ded5b82bfb8c74c1004f81f5107dd3daccb4bfcadb1bf9cbfc2e",
+      "path": "data/raw/rope_resources_v1/rope365__d386503129844bc811bd.json",
+      "url": "https://rope365.com/communities/"
+    }
+  },
+  "status": "segregated_pending_integration"
+}
