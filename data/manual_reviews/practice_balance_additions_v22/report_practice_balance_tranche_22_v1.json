@@ -1,0 +1,45 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/practice_balance_additions_v22/pending_additions_practice_balance_tranche_22_v1.jsonl",
+    "rows": 3,
+    "sha256": "360f2cae907f02ab328c19e1a96275ac24ee98d530b49aff41f45201ee9fba83"
+  },
+  "baseline": {
+    "rows": 554,
+    "sha256": "3e1de39bb4f5bb6e3de7a8b03f04e40bfdd80066fb87d6ff8c3b5cf1870fc1e7"
+  },
+  "excluded_source": [
+    {
+      "decision": "partial_use",
+      "reason": "Only the non-dominant-hand exercise was retained; mouth use and neck-start prompts were excluded.",
+      "url": "https://rope365.com/multitasking/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only gradual post-tie readjustment was retained; intentional pinch and excessive-rope prompts were excluded.",
+      "url": "https://rope365.com/frog-chaos/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the nearby-catcher precaution was retained; combat, loaded-strength, and deep-stretch prompts were excluded.",
+      "url": "https://rope365.com/work-out/"
+    }
+  ],
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v310 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded practice or safety fact from each of three distinct new documents"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "safety_consent": 2,
+      "technique": 1
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-practice-balance-additions-v22",
+  "schema": "manual-practice-balance-additions-report-v22",
+  "status": "segregated_pending_integration"
+}

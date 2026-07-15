@@ -1,0 +1,100 @@
+{
+  "addition_artifact": {
+    "path": "data/manual_reviews/practice_balance_additions_v22/pending_additions_practice_balance_tranche_22_v1.jsonl",
+    "rows": 3,
+    "sha256": "360f2cae907f02ab328c19e1a96275ac24ee98d530b49aff41f45201ee9fba83"
+  },
+  "audit": {
+    "by_decision": {
+      "add": 3,
+      "drop": 0,
+      "edit": 0,
+      "keep": 0
+    },
+    "path": "data/manual_reviews/context_merit_audit_v311/context_merit_audit_v311.jsonl",
+    "rows": 3,
+    "sha256": "a6b3de0368b2fec6f3e66ac22fde8c1ad5eb6b51973c7c4a561de2fb0d1d6744"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 260,
+      "equipment_material": 22,
+      "resources_general": 82,
+      "safety_consent": 89,
+      "technique": 67
+    },
+    "before": {
+      "conflict_units": 257,
+      "equipment_material": 22,
+      "resources_general": 82,
+      "safety_consent": 87,
+      "technique": 66
+    },
+    "delta": {
+      "conflict_units": 3,
+      "equipment_material": 0,
+      "resources_general": 0,
+      "safety_consent": 2,
+      "technique": 1
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "excluded_source": [
+    {
+      "decision": "partial_use",
+      "reason": "Only the non-dominant-hand exercise was retained; mouth use and neck-start prompts were excluded.",
+      "url": "https://rope365.com/multitasking/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only gradual post-tie readjustment was retained; intentional pinch and excessive-rope prompts were excluded.",
+      "url": "https://rope365.com/frog-chaos/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the nearby-catcher precaution was retained; combat, loaded-strength, and deep-stretch prompts were excluded.",
+      "url": "https://rope365.com/work-out/"
+    }
+  ],
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 3,
+    "output_rows": 557,
+    "output_sha256": "a2aea845d6b13e0b7cd15ae9577eae88e3461e481cf5fa37eb7e31fb1681a00d",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "decisions": 0,
+    "path": "data/manual_reviews/context_merit_audit_v311/pending_curation_context_merit_v311.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prior_checkpoint": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v310/context_merit_audit_v310.jsonl",
+        "sha256": "ad5c91179b3748ef118a4f9c599534858456414872ee4a80ebdbfb01fdfea3d9"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v310/pending_curation_context_merit_v310.jsonl",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v310/report_context_merit_v310.json",
+        "sha256": "6a1de4eec9bdcfa619c5f3eafc2e43cdf5e48816f945799c862c56bdd0ab8e65"
+      }
+    ],
+    "candidate": {
+      "rows": 554,
+      "sha256": "3e1de39bb4f5bb6e3de7a8b03f04e40bfdd80066fb87d6ff8c3b5cf1870fc1e7"
+    }
+  },
+  "schema": "context-merit-audit-report-v311",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  }
+}
