@@ -1,0 +1,190 @@
+{
+  "aggregate_execution": {
+    "all_16_groups_activity_config_identity_and_cleanup_passed": true,
+    "all_equivalence_components_exact_for_all_pairs": true,
+    "all_four_activity_group_count": 16,
+    "all_four_finally_idle": true,
+    "equivalence_component_count": 4,
+    "equivalence_pair_count": 8,
+    "exact_equivalence_pair_count": 8,
+    "fresh_four_engine_group_count": 16,
+    "group_audit_bundle_sha256": "51d0dd93451b3526cbca5f98173b7a719dd21f632899f1dba8c755b7d2894a6b",
+    "minimum_activity_sample_count": 116,
+    "minimum_simultaneous_positive_sample_count": 7,
+    "paired_output_commitment_sha256": "52e1fc289e24a88f8b397d49e5c438341cbf6a0bd64d41c26c8cbd6490eea258",
+    "request_audit_bundle_sha256": "bd3b8e7fb0318814a67ce53f14b2758f5eeb7dbddb95a962eddcdc5426e71433",
+    "serialized_fp8_tp1_model_load_count": 64
+  },
+  "aggregate_performance": {
+    "absolute_nvml_fraction_limit": 0.95,
+    "absolute_nvml_gate_passed": true,
+    "all_five_latency_endpoints_failed": true,
+    "all_five_vram_endpoints_passed": true,
+    "bootstrap_draw_plan_sha256": "34c02441fd2be849c5d5f240aa64e22311f32bd5527e9f12bbc42217b5c30789",
+    "failing_endpoint_count": 5,
+    "global_full_model_latency": {
+      "familywise_lower_confidence_bound": 0.9633065683884765,
+      "geometric_mean_speedup": 0.9813847810295329,
+      "lower_bound_threshold": 0.99,
+      "pass": false,
+      "point_threshold": 1.002
+    },
+    "global_peak_vram": {
+      "familywise_upper_confidence_bound": 1.0,
+      "max_per_gpu_median_ratio": 1.0,
+      "pass": true,
+      "point_threshold": 1.01,
+      "upper_bound_threshold": 1.02
+    },
+    "inferential_endpoint_count": 10,
+    "latency_by_physical_gpu": {
+      "0": {
+        "familywise_lower_confidence_bound": 0.9675451811685479,
+        "lower_bound_threshold": 0.98,
+        "median_default_over_tuned_ratio": 0.9897305259896474,
+        "pass": false,
+        "point_threshold": 0.99,
+        "prompt_tokens": 256
+      },
+      "1": {
+        "familywise_lower_confidence_bound": 0.9587325096052549,
+        "lower_bound_threshold": 0.98,
+        "median_default_over_tuned_ratio": 0.9864909829994344,
+        "pass": false,
+        "point_threshold": 0.99,
+        "prompt_tokens": 512
+      },
+      "2": {
+        "familywise_lower_confidence_bound": 0.9377510410145846,
+        "lower_bound_threshold": 0.98,
+        "median_default_over_tuned_ratio": 0.9830635536075408,
+        "pass": false,
+        "point_threshold": 0.99,
+        "prompt_tokens": 1024
+      },
+      "3": {
+        "familywise_lower_confidence_bound": 0.9595379002955822,
+        "lower_bound_threshold": 0.98,
+        "median_default_over_tuned_ratio": 0.9664193005888292,
+        "pass": false,
+        "point_threshold": 0.99,
+        "prompt_tokens": 2048
+      }
+    },
+    "maximum_absolute_nvml_fraction": 0.7951821998835392,
+    "passing_endpoint_count": 5,
+    "peak_vram_by_physical_gpu": {
+      "0": {
+        "familywise_upper_confidence_bound": 1.0,
+        "median_tuned_over_default_ratio": 1.0,
+        "pass": true,
+        "point_threshold": 1.01,
+        "upper_bound_threshold": 1.02
+      },
+      "1": {
+        "familywise_upper_confidence_bound": 1.0,
+        "median_tuned_over_default_ratio": 1.0,
+        "pass": true,
+        "point_threshold": 1.01,
+        "upper_bound_threshold": 1.02
+      },
+      "2": {
+        "familywise_upper_confidence_bound": 1.0,
+        "median_tuned_over_default_ratio": 1.0,
+        "pass": true,
+        "point_threshold": 1.01,
+        "upper_bound_threshold": 1.02
+      },
+      "3": {
+        "familywise_upper_confidence_bound": 1.0,
+        "median_tuned_over_default_ratio": 1.0,
+        "pass": true,
+        "point_threshold": 1.01,
+        "upper_bound_threshold": 1.02
+      }
+    }
+  },
+  "artifacts": {
+    "compact_report": {
+      "content_sha256": "5d0ff6783f4b0fb104965a2fcee2141b803571cc46e42e3821fa61802bd35360",
+      "file_sha256": "126212f8cd2e1ea400eb4036b96b1c8c71dcddd10c03e17ac1fc6b1035846e9e",
+      "relative_path": "experiments/eggroll_es_hpo/runs/s6_v29h_serialized_fp8_full_model_runtime_ab/serialized_fp8_full_model_runtime_ab_report_v29h.json"
+    },
+    "durable_attempt": {
+      "content_sha256": "0951f7be51736f40713b196165f0f1ffd6cd6f864fa4265eb32553854a29713d",
+      "file_sha256": "0d3a176e75a9a947db92cee71e4294fd15ee273a2e516b15a9ab62d37557d9e1",
+      "relative_path": "experiments/eggroll_es_hpo/runs/.s6_v29h_serialized_fp8_full_model_runtime_ab.launch_attempt.json"
+    }
+  },
+  "content_sha256_before_self_field": "24c269796194fe997f8e641ff25e7702b775e45449022917f5a498db354d204c",
+  "decision": {
+    "checkpoint_write_authority": false,
+    "dataset_promotion_authority": false,
+    "direct_table_or_recipe_adoption_authority": false,
+    "evaluation_validation_heldout_ood_or_benchmark_access_authority": false,
+    "model_update_or_training_authority": false,
+    "nontrain_runtime_reuse_authority": false,
+    "retain_empty_default_serialized_fp8_runtime": true
+  },
+  "frozen_bindings": {
+    "authorization_gate_content_sha256": "087754b7a46cf2635ee4947ce99cbf13a1395b0e25223c8f9ac4c3aea4b2919d",
+    "committed_source_sha256": "00043862eb6ffe88fb0e9d31c934d995499ee00e4f5672a35dc9268e84a8d2d1",
+    "cpu_disk_audit_sha256": "90b65c166a1d8a781aa3e5a0cf3320103ee0024df09bf7b7feb36593637b58fa",
+    "final_idle_sha256": "2277bf71241b6062d994dda5d09dc815898beba3cdf150bdb40351213fafb183",
+    "implementation_bundle_sha256": "f6792ec94b9f3be36b528941301cfd7a41394089d9e90c1735bf59d13f6f4b6d",
+    "prelaunch_idle_sha256": "942aafe70a29196f650e8abf5e565690f56a72c5b3807e395a61baafde65f87a",
+    "recipe_content_sha256": "cac7e02d1b58ffdb67adf47ecf45c06a12b2b68d6317e101f0f777d905fbec2a",
+    "runtime_environment_sha256": "7acc87ffb6a50682f19309ea3059823d0fc96dfc459e30cb66d64e157a76f52a"
+  },
+  "input_scope": {
+    "compact_attempt_and_report_aggregates_only": true,
+    "dataset_or_semantic_content_opened": false,
+    "gpu_launched": false,
+    "preregistration_table_or_checkpoint_content_opened": false,
+    "raw_stdout_or_runtime_logs_opened": false
+  },
+  "schema": "vllm-moe-fp8-full-model-negative-evidence-v29i",
+  "side_effects": {
+    "dataset_tokenizer_decoding_or_semantic_content_opened": false,
+    "detailed_runtime_payloads_persisted": false,
+    "model_update_training_checkpoint_evaluation_or_dataset_action_applied": false
+  },
+  "status": "sealed_completed_compact_negative_evidence",
+  "transitively_frozen_contract_identities": {
+    "binding_basis": {
+      "committed_source_sha256": "00043862eb6ffe88fb0e9d31c934d995499ee00e4f5672a35dc9268e84a8d2d1",
+      "cpu_disk_audit_sha256": "90b65c166a1d8a781aa3e5a0cf3320103ee0024df09bf7b7feb36593637b58fa",
+      "implementation_bundle_sha256": "f6792ec94b9f3be36b528941301cfd7a41394089d9e90c1735bf59d13f6f4b6d",
+      "recipe_content_sha256": "cac7e02d1b58ffdb67adf47ecf45c06a12b2b68d6317e101f0f777d905fbec2a"
+    },
+    "selected_table": {
+      "commit": "a203f4821c4a737310df75543353d21ce6cea978",
+      "content_sha256": "d4a49735ccfd094d6e5a3ee763eca99ed355a51fd11a7c835bfecf9fafeaa50d",
+      "file_sha256": "1a4ed0f44c6d7cc788baecd073107b4634db4c769f0820d10174f61117b25618",
+      "loaded_config_sha256": "ebf00590ac51e66e52f5e99b933d1be72703fbbcc809cc2d585eca8d6b0c0a5d",
+      "relative_path": "experiments/vllm_moe_tuning/v025_rtx_pro_6000_fp8_w8a8_block128_tp1_exhaustive_v29b/E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition,dtype=fp8_w8a8,block_shape=[128,128].json"
+    },
+    "serialized_fp8_checkpoint": {
+      "all_files": {
+        "file_count": 56,
+        "fingerprint_sha256": "b3307a2ce16d029a5ca0b7fb2828070c1fe07c232d396f877ea6d9a3cc9d22c9",
+        "size_manifest_sha256": "46b80dca12b6cedfa9444cf7e7d13b03175a9e75a6abd775d235b9ad658737b0",
+        "total_bytes": 37493015668
+      },
+      "config_sha256": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+      "index_sha256": "6f176f344e41d35b17af12904e33401da5ebff3b49fccb8bfa0185bc2d50f9d6",
+      "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+      "quantization": "fp8_block_128x128",
+      "weight_shards": {
+        "file_count": 42,
+        "manifest_sha256": "25ae972a0ac80b7875b5e041172d5ad572b522619040f4786a9facdf0e36e5dd",
+        "total_bytes": 37463662160
+      }
+    },
+    "v29h_preregistration": {
+      "content_sha256": "17e0cf1b7ea560e8e446d50bffcd97f6f110cda4ff0624abd5b37e6ce83908d8",
+      "file_sha256": "1fd08762b4e4926af9b9614768debe57177788bccf621d8d17ab83fe8393d7f2",
+      "relative_path": "experiments/eggroll_es_hpo/S6_V29H_FP8_FULL_MODEL_RUNTIME_AB_PREREGISTRATION.json"
+    }
+  }
+}
