@@ -1,0 +1,41 @@
+{
+  "artifact": {
+    "path": "data/manual_reviews/rope365_learning_safety_additions_v17/pending_additions_rope365_learning_safety_tranche_17_v1.jsonl",
+    "rows": 3,
+    "sha256": "64f8573ae90d544bced28945af616f5299c5113ac597c1dcf42d0f886957226d"
+  },
+  "baseline": {
+    "rows": 539,
+    "sha256": "80eba8b89487052c10e046328211282e159ae334661b6776efba571d4e2824bc"
+  },
+  "excluded_source": [
+    {
+      "decision": "reject",
+      "reason": "Its safe small-steps and prior-risk-research lesson duplicates the stronger new-technique risk-reduction sequence already in v305; hazardous later prompts were not operationalized.",
+      "url": "https://rope365.com/pain/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the opening monitoring and fast-exit guidance was retained; later self-choking and other high-risk prompts were explicitly excluded.",
+      "url": "https://rope365.com/predicaments/"
+    }
+  ],
+  "method": {
+    "authoring": "manual full-source review and hand-authored Q&A",
+    "collision_scope": "v305 train-only projection; sealed collisions delegated to integration tooling",
+    "selection": "one bounded fact from each of three distinct new documents"
+  },
+  "new_independent_inputs": {
+    "document_sha256s": 3,
+    "expected_strata": {
+      "resources_general": 1,
+      "safety_consent": 1,
+      "technique": 1
+    },
+    "urls": 3
+  },
+  "reviewed_at": "2026-07-15",
+  "reviewer": "codex-rope365-learning-safety-additions-v17",
+  "schema": "manual-rope365-learning-safety-additions-report-v17",
+  "status": "segregated_pending_integration"
+}

@@ -1,0 +1,95 @@
+{
+  "addition_artifact": {
+    "path": "data/manual_reviews/rope365_learning_safety_additions_v17/pending_additions_rope365_learning_safety_tranche_17_v1.jsonl",
+    "rows": 3,
+    "sha256": "64f8573ae90d544bced28945af616f5299c5113ac597c1dcf42d0f886957226d"
+  },
+  "audit": {
+    "by_decision": {
+      "add": 3,
+      "drop": 0,
+      "edit": 0,
+      "keep": 0
+    },
+    "path": "data/manual_reviews/context_merit_audit_v306/context_merit_audit_v306.jsonl",
+    "rows": 3,
+    "sha256": "339f525c4d72d0e09a11a20bc13d8bd4d182c651b8bd49bed4952e17b859aec3"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 249,
+      "equipment_material": 22,
+      "resources_general": 82,
+      "safety_consent": 82,
+      "technique": 63
+    },
+    "before": {
+      "conflict_units": 246,
+      "equipment_material": 22,
+      "resources_general": 81,
+      "safety_consent": 81,
+      "technique": 62
+    },
+    "delta": {
+      "conflict_units": 3,
+      "equipment_material": 0,
+      "resources_general": 1,
+      "safety_consent": 1,
+      "technique": 1
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "excluded_source": [
+    {
+      "decision": "reject",
+      "reason": "Its safe small-steps and prior-risk-research lesson duplicates the stronger new-technique risk-reduction sequence already in v305; hazardous later prompts were not operationalized.",
+      "url": "https://rope365.com/pain/"
+    },
+    {
+      "decision": "partial_use",
+      "reason": "Only the opening monitoring and fast-exit guidance was retained; later self-choking and other high-risk prompts were explicitly excluded.",
+      "url": "https://rope365.com/predicaments/"
+    }
+  ],
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 3,
+    "output_rows": 542,
+    "output_sha256": "ca43bcbd324a267afaef20aa69f1d2b8859b633335f6242133ac4e0233deccb4",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "decisions": 0,
+    "path": "data/manual_reviews/context_merit_audit_v306/pending_curation_context_merit_v306.jsonl",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prior_checkpoint": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v305/context_merit_audit_v305.jsonl",
+        "sha256": "ea8aa43a57c5ae632cb3019cdc4a1d13d0d7409e87e49accfc3524f08e0b919a"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v305/pending_curation_context_merit_v305.jsonl",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v305/report_context_merit_v305.json",
+        "sha256": "1e84f9cafefc5e5440c0ccb8f4ae319609a180f0b8d1b7769754f014c0172bb8"
+      }
+    ],
+    "candidate": {
+      "rows": 539,
+      "sha256": "80eba8b89487052c10e046328211282e159ae334661b6776efba571d4e2824bc"
+    }
+  },
+  "schema": "context-merit-audit-report-v306",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  }
+}
