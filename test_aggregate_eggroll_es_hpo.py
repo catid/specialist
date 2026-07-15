@@ -31,9 +31,20 @@ def add_prose_gate(item, delta=0.0, lower=0.0, upper=0.0,
     item["max_ood_prose_degradation"] = threshold
     gate_passed = lower >= -threshold
     item["results"][0]["ood_prose_gate"] = {
+        "metric": "mean_token_logprob",
+        "higher_is_better": True,
+        "baseline": 0.0,
+        "final": delta,
         "delta": delta,
         "max_degradation": threshold,
         "paired_document_bootstrap_95_ci": [lower, upper],
+        "bootstrap": {
+            "unit": "normalized_source_url",
+            "document_count": 16,
+            "samples": 20000,
+            "seed": 20260714,
+            "percentiles": [0.025, 0.975],
+        },
         "passed": gate_passed,
     }
     item["results"][0]["ood_prose_guard_passed"] = (

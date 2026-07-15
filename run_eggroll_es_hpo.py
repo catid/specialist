@@ -17,6 +17,8 @@ DEFAULT_DATASET_ROOT = ROOT / "data/eggroll_es_specialist"
 DEFAULT_TRAIN_DATASET = DEFAULT_DATASET_ROOT / "train"
 DEFAULT_EVAL_DATASET = DEFAULT_DATASET_ROOT / "eval"
 TRAINER = ROOT / "train_eggroll_es_specialist.py"
+OOD_PROSE_BOOTSTRAP_SAMPLES = 20_000
+OOD_PROSE_BOOTSTRAP_SEED = 20_260_714
 CANDIDATES = [
     {"name": "sigma3e-4_alpha1.5e-4", "sigma": 0.0003, "alpha": 0.00015},
     {"name": "sigma5e-4_alpha2.5e-4", "sigma": 0.0005, "alpha": 0.00025},
@@ -364,6 +366,31 @@ def inspect_ood_prose_gate(gate, expected_max_degradation):
     if not isinstance(recorded_passed, bool):
         issues.append("passed is not boolean")
 
+    if gate.get("metric") != "mean_token_logprob":
+        issues.append("metric is not mean_token_logprob")
+    if gate.get("higher_is_better") is not True:
+        issues.append("higher_is_better is not true")
+
+    bootstrap = gate.get("bootstrap")
+    if not isinstance(bootstrap, dict):
+        issues.append("bootstrap is not an object")
+    else:
+        document_count = bootstrap.get("document_count")
+        if (
+            isinstance(document_count, bool)
+            or not isinstance(document_count, int)
+            or document_count <= 0
+        ):
+            issues.append("bootstrap document_count is not a positive integer")
+        if bootstrap.get("unit") != "normalized_source_url":
+            issues.append("bootstrap unit changed")
+        if bootstrap.get("samples") != OOD_PROSE_BOOTSTRAP_SAMPLES:
+            issues.append("bootstrap sample count changed")
+        if bootstrap.get("seed") != OOD_PROSE_BOOTSTRAP_SEED:
+            issues.append("bootstrap seed changed")
+        if bootstrap.get("percentiles") != [0.025, 0.975]:
+            issues.append("bootstrap percentiles changed")
+
     if recorded_max is not None:
         if recorded_max < 0:
             issues.append("max_degradation is negative")
@@ -381,21 +408,20 @@ def inspect_ood_prose_gate(gate, expected_max_degradation):
 
     baseline = gate.get("baseline")
     final = gate.get("final")
-    if baseline is not None or final is not None:
-        if (
-            isinstance(baseline, bool)
-            or not isinstance(baseline, (int, float))
-            or not math.isfinite(baseline)
-            or isinstance(final, bool)
-            or not isinstance(final, (int, float))
-            or not math.isfinite(final)
-        ):
-            issues.append("baseline/final are not finite numbers")
-        elif delta is not None and not math.isclose(
-            float(final) - float(baseline), delta,
-            rel_tol=1e-12, abs_tol=1e-12,
-        ):
-            issues.append("delta disagrees with baseline and final")
+    if (
+        isinstance(baseline, bool)
+        or not isinstance(baseline, (int, float))
+        or not math.isfinite(baseline)
+        or isinstance(final, bool)
+        or not isinstance(final, (int, float))
+        or not math.isfinite(final)
+    ):
+        issues.append("baseline/final are not finite numbers")
+    elif delta is not None and not math.isclose(
+        float(final) - float(baseline), delta,
+        rel_tol=1e-12, abs_tol=1e-12,
+    ):
+        issues.append("delta disagrees with baseline and final")
 
     valid = not issues
     policy_passed = (

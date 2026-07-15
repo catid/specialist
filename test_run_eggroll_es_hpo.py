@@ -250,9 +250,20 @@ def test_summary_requires_matching_ood_prose_gate(tmp_path):
     summary["ood_prose"] = {
         "dataset": {"sha256": dataset["ood_prose_jsonl"]["sha256"]},
         "gate": {
+            "metric": "mean_token_logprob",
+            "higher_is_better": True,
+            "baseline": 0.0,
+            "final": 0.0,
             "delta": 0.0,
             "max_degradation": 0.0,
             "paired_document_bootstrap_95_ci": [0.0, 0.0],
+            "bootstrap": {
+                "unit": "normalized_source_url",
+                "document_count": 16,
+                "samples": 20000,
+                "seed": 20260714,
+                "percentiles": [0.025, 0.975],
+            },
             "passed": True,
         },
     }
@@ -273,9 +284,20 @@ def test_summary_rejects_true_prose_gate_from_looser_policy(tmp_path):
     summary["ood_prose"] = {
         "dataset": {"sha256": dataset["ood_prose_jsonl"]["sha256"]},
         "gate": {
+            "metric": "mean_token_logprob",
+            "higher_is_better": True,
+            "baseline": 0.0,
+            "final": -0.004,
             "delta": -0.004,
             "max_degradation": 0.02,
             "paired_document_bootstrap_95_ci": [-0.007, -0.001],
+            "bootstrap": {
+                "unit": "normalized_source_url",
+                "document_count": 16,
+                "samples": 20000,
+                "seed": 20260714,
+                "percentiles": [0.025, 0.975],
+            },
             "passed": True,
         },
     }
@@ -298,9 +320,20 @@ def test_guarded_selection_recomputes_strict_prose_policy():
         "evaluation_scores": {"train": 0.6, "ood": 0.4},
         "ood_prose_guard_passed": True,
         "ood_prose_gate": {
+            "metric": "mean_token_logprob",
+            "higher_is_better": True,
+            "baseline": 0.0,
+            "final": -0.004,
             "delta": -0.004,
             "max_degradation": 0.02,
             "paired_document_bootstrap_95_ci": [-0.007, -0.001],
+            "bootstrap": {
+                "unit": "normalized_source_url",
+                "document_count": 16,
+                "samples": 20000,
+                "seed": 20260714,
+                "percentiles": [0.025, 0.975],
+            },
             "passed": True,
         },
     }]
@@ -312,6 +345,25 @@ def test_guarded_selection_recomputes_strict_prose_policy():
     assert best_guarded is None
     assert selected["name"] == "baseline"
     assert results[0]["ood_prose_gate_inspection"]["valid"] is False
+
+
+def test_ood_prose_gate_requires_full_bootstrap_contract():
+    gate = {
+        "metric": "mean_token_logprob",
+        "higher_is_better": True,
+        "baseline": 0.0,
+        "final": 0.0,
+        "delta": 0.0,
+        "max_degradation": 0.0,
+        "paired_document_bootstrap_95_ci": [0.0, 0.0],
+        "passed": True,
+    }
+
+    inspection = hpo.inspect_ood_prose_gate(gate, 0.0)
+
+    assert inspection["valid"] is False
+    assert inspection["policy_passed"] is False
+    assert "bootstrap is not an object" in inspection["issues"]
 
 
 def test_evaluation_details_pin_exact_nonzero_and_raw_hash(tmp_path):
