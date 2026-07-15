@@ -11,7 +11,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
+import tempfile
 from collections import Counter, defaultdict
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
@@ -34,7 +36,10 @@ FOLD_COUNT = 5
 MASTER_SEED = "specialist-v37a-train-shadow-conflict-folds-20260715"
 EXPECTED_CONFLICT_UNITS = 259
 EXPECTED_MANIFEST_CONTENT_SHA256 = (
-    "417ba17e0cbaad30ac8d60fa1ce58acdbbffbff1052695ae3e2005bd43504b5a"
+    "3fcc2820e8dffe6a21198d0520365aace049735ac84bda179ea44bc8ad0881eb"
+)
+PRE_COMMITMENT_MANIFEST_FILE_SHA256 = (
+    "4cf8d271b928cb4540ccdd96d0a5c0cc4971b31651a43e526f8df16249811332"
 )
 
 
@@ -69,6 +74,15 @@ def row_urls(row: dict) -> set[str]:
         url for key in arrays for url in row.get(key, ()) if url
     )
     return {normalize_url(value) for value in values}
+
+
+def row_lineage_identities(row: dict) -> set[str]:
+    lineage = row.get("source_lineage") or {}
+    return {
+        f"{key}:{json.dumps(lineage[key], sort_keys=True)}"
+        for key in ("raw", "raw_document", "raw_successor_document")
+        if lineage.get(key)
+    }
 
 
 class DisjointSet:
@@ -108,13 +122,8 @@ def build_conflict_units(rows: list[dict]) -> list[dict]:
         connect(f"document:{row['document_sha256']}", index)
         for url in row_urls(row):
             connect(f"url:{url}", index)
-        lineage = row.get("source_lineage") or {}
-        for key in ("raw", "raw_document", "raw_successor_document"):
-            if lineage.get(key):
-                connect(
-                    f"lineage:{key}:{json.dumps(lineage[key], sort_keys=True)}",
-                    index,
-                )
+        for lineage_identity in row_lineage_identities(row):
+            connect(f"lineage:{lineage_identity}", index)
         connect(f"semantic:{semantic_id}", index)
 
     components = defaultdict(list)
@@ -162,14 +171,47 @@ def assign_folds(units: list[dict]) -> list[list[dict]]:
     return folds
 
 
-def write_jsonl(path: Path, rows: list[dict]) -> None:
-    path.write_text(
-        "".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows),
-        encoding="utf-8",
+def jsonl_bytes(rows: list[dict]) -> bytes:
+    return "".join(
+        json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows
+    ).encode("utf-8")
+
+
+def bytes_sha256(value: bytes) -> str:
+    return hashlib.sha256(value).hexdigest()
+
+
+def identity_set(rows: list[dict], domain: str, semantic_ids: dict[str, str]) -> set[str]:
+    if domain == "document_sha256":
+        return {row["document_sha256"] for row in rows}
+    if domain == "normalized_url":
+        return {value for row in rows for value in row_urls(row)}
+    if domain == "raw_lineage":
+        return {
+            value for row in rows for value in row_lineage_identities(row)
+        }
+    if domain == "semantic_cluster":
+        return {semantic_ids[row_sha256(row)] for row in rows}
+    raise ValueError(f"unsupported edge domain: {domain}")
+
+
+def _atomic_exclusive_write(path: Path, payload: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.tmp-", dir=path.parent,
     )
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.link(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
-def build() -> dict:
+def construct() -> tuple[dict, dict[Path, bytes]]:
     if runtime.file_sha256(SOURCE) != SOURCE_SHA256:
         raise RuntimeError("v37a frozen v412 source changed")
     rows = [json.loads(line) for line in SOURCE.read_text().splitlines() if line]
@@ -179,11 +221,20 @@ def build() -> dict:
     if len(units) != EXPECTED_CONFLICT_UNITS:
         raise RuntimeError("v37a conservative conflict-unit count changed")
     folds = assign_folds(units)
+    fold_by_unit = {
+        unit["identity_sha256"]: fold_index
+        for fold_index, fold in enumerate(folds) for unit in fold
+    }
     if sorted(
         unit["identity_sha256"] for fold in folds for unit in fold
     ) != sorted(unit["identity_sha256"] for unit in units):
         raise RuntimeError("v37a fold assignment is not a partition")
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    semantic_values = panel_rules.build_semantic_clusters(rows)
+    semantic_ids = {
+        row_sha256(row): semantic_id
+        for row, semantic_id in zip(rows, semantic_values)
+    }
+    payloads: dict[Path, bytes] = {}
     fold_records = []
     all_dev_rows = Counter()
     for fold_index, dev_units in enumerate(folds):
@@ -207,21 +258,47 @@ def build() -> dict:
         dev_rows = [rows[index] for index in sorted(dev_indices)]
         train_path = OUTPUT_DIR / f"fold_{fold_index}_train.jsonl"
         dev_path = OUTPUT_DIR / f"fold_{fold_index}_shadow_dev.jsonl"
-        write_jsonl(train_path, train_rows)
-        write_jsonl(dev_path, dev_rows)
+        train_payload = jsonl_bytes(train_rows)
+        dev_payload = jsonl_bytes(dev_rows)
+        payloads[train_path] = train_payload
+        payloads[dev_path] = dev_payload
+        edge_intersections = {
+            domain: len(
+                identity_set(train_rows, domain, semantic_ids)
+                & identity_set(dev_rows, domain, semantic_ids)
+            )
+            for domain in (
+                "document_sha256", "normalized_url", "raw_lineage",
+                "semantic_cluster",
+            )
+        }
+        if any(edge_intersections.values()):
+            raise RuntimeError("v37a component edge crossed a fold boundary")
         fold_records.append({
             "fold": fold_index,
             "train": {
                 "path": str(train_path),
                 "rows": len(train_rows),
-                "sha256": runtime.file_sha256(train_path),
+                "sha256": bytes_sha256(train_payload),
                 "conflict_units": len(train_units),
+                "ordered_row_identity_sha256": runtime.canonical_sha256([
+                    row_sha256(row) for row in train_rows
+                ]),
+                "ordered_unit_identity_sha256": runtime.canonical_sha256([
+                    unit["identity_sha256"] for unit in train_units
+                ]),
             },
             "shadow_dev": {
                 "path": str(dev_path),
                 "rows": len(dev_rows),
-                "sha256": runtime.file_sha256(dev_path),
+                "sha256": bytes_sha256(dev_payload),
                 "conflict_units": len(dev_units),
+                "ordered_row_identity_sha256": runtime.canonical_sha256([
+                    row_sha256(row) for row in dev_rows
+                ]),
+                "ordered_unit_identity_sha256": runtime.canonical_sha256([
+                    unit["identity_sha256"] for unit in dev_units
+                ]),
             },
             "shadow_dev_unit_strata": {
                 name: sum(unit["stratum"] == name for unit in dev_units)
@@ -233,10 +310,7 @@ def build() -> dict:
                 ) for name in panel_rules.STRATA
             },
             "train_dev_conflict_unit_intersection": 0,
-            "train_dev_document_sha256_intersection": len(
-                {row["document_sha256"] for row in train_rows}
-                & {row["document_sha256"] for row in dev_rows}
-            ),
+            "train_dev_edge_identity_intersections": edge_intersections,
         })
     if all_dev_rows != Counter({index: 1 for index in range(len(rows))}):
         raise RuntimeError("v37a each row must appear in exactly one shadow dev fold")
@@ -267,6 +341,18 @@ def build() -> dict:
             name: sum(unit["stratum"] == name for unit in units)
             for name in panel_rules.STRATA
         },
+        "content_free_unit_commitments": [
+            {
+                "unit_identity_sha256": unit["identity_sha256"],
+                "row_count": unit["rows"],
+                "dominant_stratum": unit["stratum"],
+                "fold": fold_by_unit[unit["identity_sha256"]],
+                "row_sha256": sorted(
+                    row_sha256(rows[index]) for index in unit["indices"]
+                ),
+            }
+            for unit in units
+        ],
         "folds": fold_records,
         "coverage": {
             "each_source_row_shadow_dev_count": 1,
@@ -283,7 +369,18 @@ def build() -> dict:
             "forbidden": [
                 "external validation", "OOD", "holdout", "judge feedback",
                 "benchmark feedback", "moving a conflict unit between folds",
+                "training or recipe selection on folds 0, 1, 2, or 4 before the "
+                "terminal fold-3 score",
             ],
+            "confirmatory_fold": 3,
+            "confirmatory_fold_selection_rule": (
+                "lowest fold index with train_rows divisible by 28, at least 50 "
+                "shadow-dev conflict units, and zero edge intersections"
+            ),
+            "shadow_dev_access": (
+                "exactly once after both SFT and ES recipes and states are sealed; "
+                "never an HPO, dataset, or future-recipe selection surface"
+            ),
         },
     }
     result["content_sha256_before_self_field"] = runtime.canonical_sha256(result)
@@ -293,15 +390,68 @@ def build() -> dict:
         != EXPECTED_MANIFEST_CONTENT_SHA256
     ):
         raise RuntimeError("v37a frozen shadow-fold manifest changed")
-    return result
+    manifest_payload = (
+        json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    ).encode("utf-8")
+    payloads[MANIFEST] = manifest_payload
+    return result, payloads
+
+
+def build() -> dict:
+    """Pure construction used by tests; never writes an artifact."""
+    return construct()[0]
+
+
+def verify_existing(payloads: dict[Path, bytes]) -> None:
+    for path, expected in payloads.items():
+        if not path.is_file() or path.read_bytes() != expected:
+            raise RuntimeError(f"v37a frozen artifact verification failed: {path}")
+
+
+def write_new(payloads: dict[Path, bytes]) -> None:
+    existing = [str(path) for path in payloads if path.exists()]
+    if existing:
+        raise RuntimeError(f"v37a refuses to overwrite artifacts: {existing}")
+    for path, payload in payloads.items():
+        _atomic_exclusive_write(path, payload)
+
+
+def migrate_pre_commitment_manifest(payloads: dict[Path, bytes]) -> None:
+    """One-way migration after verifying every immutable split byte."""
+    verify_existing({path: value for path, value in payloads.items() if path != MANIFEST})
+    if runtime.file_sha256(MANIFEST) != PRE_COMMITMENT_MANIFEST_FILE_SHA256:
+        raise RuntimeError("v37a pre-commitment manifest identity changed")
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{MANIFEST.name}.migrate-", dir=MANIFEST.parent,
+    )
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payloads[MANIFEST])
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, MANIFEST)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def main():
-    result = build()
-    MANIFEST.write_text(
-        json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--mode", choices=(
+            "verify-existing", "write-new", "migrate-pre-commitment-manifest",
+        ),
+        default="verify-existing",
     )
+    arguments = parser.parse_args()
+    result, payloads = construct()
+    if arguments.mode == "write-new":
+        write_new(payloads)
+    elif arguments.mode == "migrate-pre-commitment-manifest":
+        migrate_pre_commitment_manifest(payloads)
+    else:
+        verify_existing(payloads)
     print(MANIFEST)
     print(result["content_sha256_before_self_field"])
 
