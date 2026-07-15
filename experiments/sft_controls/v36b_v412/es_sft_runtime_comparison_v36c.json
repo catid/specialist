@@ -1,0 +1,49 @@
+{
+  "comparison": {
+    "es_calls_per_gpu": 16,
+    "es_dense_over_sft_lora_element_ratio": 31.58028041610131,
+    "es_over_sft_nominal_token_ratio": 8.288914561253705,
+    "es_over_sft_padded_sequence_ratio": 11.228070175438596,
+    "es_peak_memory_mib": 82944.0,
+    "es_scoring_critical_path_seconds": 18.48047896,
+    "es_scoring_timing_scope": "optimistic resident inference critical path; excludes perturbation install/restore, reduction/update, model load, compile, and warmup",
+    "es_sequence_presentations": 17920,
+    "es_token_presentations": 990144,
+    "sft_nominal_sequence_presentations": 1593,
+    "sft_nominal_token_presentations": 119454,
+    "sft_optimizer_steps": 57,
+    "sft_over_es_peak_memory_ratio": 0.8999324845679012,
+    "sft_padded_sequence_presentations": 1596,
+    "sft_peak_memory_mib": 74644,
+    "sft_train_runtime_over_es_scoring_path": 3.1606323692381184,
+    "sft_train_runtime_seconds": 58.41,
+    "sft_wall_runtime_over_es_scoring_path": 4.205213215210497,
+    "sft_wall_runtime_seconds": 77.71435434601153
+  },
+  "contains_validation_ood_or_holdout_content": false,
+  "content_sha256_before_self_field": "c2135640d119f8c2ccb183d8efc017a408d01a7191700a56af28001d90df789f",
+  "interpretation": {
+    "next_gate": "document/conflict-unit-disjoint train shadow comparison under equal wall-clock budgets before any sealed evaluation",
+    "not_supported": "The ES 18.5-second value is not an end-to-end update measurement, and train loss does not establish validation or OOD quality.",
+    "supported": "The sparse-LoRA control produced 57 first-order steps while using 8.29x fewer nominal token presentations and 11.23x fewer padded sequence presentations than one population-32 ES update."
+  },
+  "schema": "specialist-train-only-es-sft-runtime-comparison-v36c",
+  "sources": {
+    "es_recipe_attempt": {
+      "content_sha256": "188c972e97d531d9ace9e3ae3ca17dee943e449795c6731552b8039cf04285c4",
+      "file_sha256": "00513c2e32d839c895a2cac5d4d00717be88b89bccfc9f841265c8cff9be6b6c",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.snapshot794_layer_v13b_document_balanced_five_panel_alpha_zero_runtime_forwarded_resident_sign_basis20260714.launch_attempt.json"
+    },
+    "es_runtime_report": {
+      "content_sha256": "892205cb9d807e8a47be6b74e55cb69d8167aabd2565bb963e11c4ff463a73cd",
+      "file_sha256": "94f2bf79633d4fedac6918e505985933623f213c4143a0d374748456b5a02f0a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/s6_v28a_v27c_tuned_vs_empty_default_train_runtime_ab/v27c_tuned_runtime_ab_report_v28a.json"
+    },
+    "sft_report": {
+      "content_sha256": "739bc80b6536197d29a855ef3723934888b3d9c0ef38354ee5c6968f1e9bd16d",
+      "file_sha256": "00c9790935f970d9b14fd8335c737a079b48125562c38655e6ecdcdfe9f1bbc9",
+      "path": "/home/catid/specialist/experiments/sft_controls/v36b_v412/runtime_report_v36b.json"
+    }
+  },
+  "status": "complete_train_only_runtime_comparison"
+}
