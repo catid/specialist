@@ -1,0 +1,33 @@
+{
+  "candidate": {
+    "file_sha256": "29889e18fd7a8bf313021ec4e8ad18adcc1752529fba247fdbde006513f7866b",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/dataset_candidates/v331/train_qa_context_merit_v331.jsonl",
+    "rows": 527
+  },
+  "content_sha256_before_self_field": "64900f822d619aa3c4c9fb9652a14dd9b4abf964a8946a2655214790a26c31b5",
+  "firewall": {
+    "candidate_row_content_in_manifest": false,
+    "checkpoint_write_authorized": false,
+    "dataset_promotion_authorized": false,
+    "evaluation_authorized": false,
+    "model_update_authorized": false,
+    "runtime_launch_authorized": false,
+    "source_projection_automated_collision_filter_read_sealed_content": true,
+    "v21a_builder_opened_heldout_validation_ood_eval_or_benchmark_content": false
+  },
+  "provenance": {
+    "ongoing_working_tree_curation_used": false,
+    "retrieval": "detached_source_commit_projection_replay_then_exact_output_sha256_capture",
+    "source_artifact_file_sha256": {
+      "data/manual_reviews/context_merit_audit_v331/build_context_merit_audit_v331.py": "a679766c0b017504c937371e60162c9d44719a544d470c7f7d9b36521a865434",
+      "data/manual_reviews/context_merit_audit_v331/context_merit_audit_v331.jsonl": "b468570c60c1c34814ae99321bb9ba5f3ff77fa2060fabd00f1acb258122a61b",
+      "data/manual_reviews/context_merit_audit_v331/pending_curation_context_merit_v331.jsonl": "120d2515286df3035cfd6d0119db4d6fea70f1d3768f0e85e1e4a62a2dcb94f8",
+      "data/manual_reviews/context_merit_audit_v331/report_context_merit_v331.json": "aa208207b0f03ad20d22d7d30ab151db99ba61f6844b04a7f2498369edf9a8cb",
+      "data/manual_reviews/context_merit_audit_v331/test_context_merit_audit_v331.py": "25867815e05cb967935c3760b6d7ead45d72802dd3d9d9540b527ba46ff91f8b"
+    },
+    "source_artifact_inventory_sha256": "d0824f41e8266ed74c3135ac4d62236308e2a02df69b6f070405ed91bf48d92f",
+    "source_commit": "9d31e3407dd96f80011bdb2202e8aa9689b1d193"
+  },
+  "schema": "eggroll-es-immutable-train-candidate-manifest-v331",
+  "status": "sealed_train_only_snapshot_no_runtime_or_evaluation_authority"
+}
