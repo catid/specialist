@@ -413,13 +413,30 @@ def validate_evidence_v20a(evidence):
     contrasts_valid = (
         set(contrasts) == set(EXPECTED_OBSERVED_PASS_COUNTS_V20A)
         and all(
-            value["observed_pass_count"]
+            set(value) == {
+                "treatment", "control", "purpose", "endpoints",
+                "observed_pass_count", "bootstrap_pass_count",
+                "preregistered_contrast_gate_passed",
+            }
+            and value["treatment"]
+            == prereg_v20a.CONTRASTS_V20A[name]["treatment"]
+            and value["control"]
+            == prereg_v20a.CONTRASTS_V20A[name]["control"]
+            and value["purpose"]
+            == prereg_v20a.CONTRASTS_V20A[name]["purpose"]
+            and set(value["endpoints"]) == set(prereg_v20a.ENDPOINT_NAMES_V20A)
+            and value["observed_pass_count"]
             == EXPECTED_OBSERVED_PASS_COUNTS_V20A[name]
             and value["bootstrap_pass_count"] == 0
             and value["preregistered_contrast_gate_passed"] is False
             and len(value["endpoints"]) == 12
             and all(
-                item["observed_noninferiority_pass"]
+                set(item) == {
+                    "treatment_minus_control", "familywise_lcb",
+                    "observed_noninferiority_pass",
+                    "bootstrap_noninferiority_pass",
+                }
+                and item["observed_noninferiority_pass"]
                 is (float(item["treatment_minus_control"]) >= 0.0)
                 and item["bootstrap_noninferiority_pass"]
                 is (float(item["familywise_lcb"]) >= 0.0)
@@ -430,6 +447,14 @@ def validate_evidence_v20a(evidence):
     )
     if (
         not isinstance(evidence, dict)
+        or set(evidence) != {
+            "schema", "status", "input_artifacts", "source_provenance",
+            "bootstrap", "contrasts", "gate_summary", "runtime_integrity",
+            "backend", "hardware", "decision",
+            "contains_response_vectors_or_row_content",
+            "contains_validation_ood_heldout_or_benchmark_content",
+            "interpretation", "content_sha256_before_self_field",
+        }
         or evidence.get("schema")
         != "eggroll-es-nested-tier-attribution-negative-evidence-v20a"
         or evidence.get("status")

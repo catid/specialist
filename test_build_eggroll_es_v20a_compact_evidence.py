@@ -101,3 +101,12 @@ def test_v20a_negative_evidence_never_authorizes_update_or_eval_and_is_compact()
     })
     with pytest.raises(RuntimeError, match="negative evidence changed"):
         evidence_v20a.validate_evidence_v20a(tampered)
+
+    extra_key = copy.deepcopy(value)
+    extra_key["unpreregistered_note"] = "must be rejected even after rehash"
+    extra_key["content_sha256_before_self_field"] = evidence_v20a.canonical_sha256({
+        key: item for key, item in extra_key.items()
+        if key != "content_sha256_before_self_field"
+    })
+    with pytest.raises(RuntimeError, match="negative evidence changed"):
+        evidence_v20a.validate_evidence_v20a(extra_key)
