@@ -1,0 +1,175 @@
+{
+  "access_contract": {
+    "dry_run_loads_model_or_gpu": false,
+    "dry_run_reads_train_rows": false,
+    "only_live_semantic_paths_may_open": [
+      "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/train_v434_fold3_v49d.jsonl",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v52_v434_train_row_conflict_unit_membership.json"
+    ],
+    "preregistration_builder_reads_model_or_adapter_artifacts": false,
+    "preregistration_builder_reads_train_rows": false,
+    "prose_qa_proxy_eval_ood_shadow_holdout_or_benchmark_opened": false
+  },
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v61a_v434_train_only_baseline_census.attempt.json",
+    "evidence": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v61a_v434_train_only_baseline_census/baseline_census_evidence_v61a.json",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v61a_v434_train_only_baseline_census/failure_v61a.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v61a_v434_train_only_baseline_census/gpu_activity_v61a.jsonl",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v61a_v434_train_only_baseline_census/baseline_census_report_v61a.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v61a_v434_train_only_baseline_census",
+    "strata": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v61a_v434_train_only_baseline_census/baseline_census_strata_v61a.json"
+  },
+  "candidate_selection_update_or_promotion_authorized": false,
+  "content_sha256_before_self_field": "8138e82654792899f48ea2f110de5a846a81146455e08779fb0e92df63ee30d3",
+  "created_at_utc": "2026-07-16T09:24:56.061731+00:00",
+  "current_fixed_holdout_cycle_eligible": false,
+  "eval_ood_shadow_holdout_access_authorized": false,
+  "eval_ood_shadow_or_holdout_opened": false,
+  "evidence_contract": {
+    "all_448_rows_and_208_units_required": true,
+    "all_four_actor_metrics_per_row_required": true,
+    "numeric_row_and_unit_manifests_sha256_persisted": true,
+    "persisted_per_actor_fields": [
+      "actor_rank",
+      "generation_seed",
+      "f1",
+      "exact",
+      "nonzero"
+    ],
+    "persisted_row_identity_fields": [
+      "row_index",
+      "row_sha256",
+      "unit_identity_sha256",
+      "row_count"
+    ],
+    "question_answer_generation_or_output_hash_persisted": false
+  },
+  "fixed_census_recipe": {
+    "actor_generation_seeds": [
+      2026071601,
+      2026071602,
+      2026071603,
+      2026071604
+    ],
+    "all_four_actors_score_identical_ordered_448_rows": true,
+    "base_model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+    "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+    "engine_count": 4,
+    "generation_params_without_seed": {
+      "detokenize": true,
+      "max_tokens": 64,
+      "n": 1,
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "greedy_completions": 1792,
+    "membership": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v52_v434_train_row_conflict_unit_membership.json",
+    "membership_content_sha256": "a8870fdce8fbf631b3d3472fd03690f6987590ee6e8758dc8fdcb4556dcc9096",
+    "membership_file_sha256": "e9b073369966e21912a0bda86da501ab0975646df2a7d80bf5675c3dfec8c121",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "source_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "source_v434": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/v434_equal_r32_seed17_init20260715041/final",
+    "source_weights_file_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+    "staged_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "staged_manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+    "staged_v434": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d",
+    "staged_weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "c94a7e8e8c30dbc2586351c4ef0ff13e3e9cc8551a21b9e055d34fbfa94bf44a",
+    "train_conflict_units": 208,
+    "train_dataset": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/train_v434_fold3_v49d.jsonl",
+    "train_dataset_file_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+    "train_rows": 448,
+    "worker_extension": "eggroll_es_worker_lora_v52.LoRAAdapterStateWorkerExtensionV52",
+    "worst_case_decode_tokens": 114688
+  },
+  "frozen_stratification_and_partition": {
+    "actor_f1_stability_atol": 1e-12,
+    "holdback_fraction_per_stratum": 0.25,
+    "holdback_seed": "v61a-v434-baseline-census-holdback-20260716",
+    "partial_f1_minimum": 0.25,
+    "quota_or_threshold_relaxation_after_outcomes": false,
+    "representative_seed": "v61a-v434-baseline-census-representative-20260716",
+    "selection_seed": "v61a-v434-baseline-census-selection-20260716",
+    "stable_exact_fail_closed_minima": {
+      "holdback": 2,
+      "selection_pool": 4,
+      "total": 8
+    },
+    "stable_exact_shortfall_action": "persist_complete_content_free_census_and_strata_then_set_later_v61_hpo_authorized_false",
+    "strata": [
+      "stable_exact",
+      "stable_partial",
+      "difficult",
+      "actor_unstable"
+    ]
+  },
+  "gpu_launch_authorized": true,
+  "implementation_bindings": {
+    "code_file_sha256": {
+      "builder_v61a": "8d14a8953e93ef2ac600f80513a90893dd71e281bfa2416e92adf6cf0d0cc065",
+      "design_v52": "25a385911b24177630a9449c65b40d4eeccda5f6bbff3d67734e795efadb6f08",
+      "runtime_v52": "1f433e4b484846c02135fb25f3c3d05655de365e438c2a945829063d2e1a4f27",
+      "runtime_v61a": "5a32372e236ca877ed72b57fcfe0886b8fffbddfdd197bdf6b098612e9458e45",
+      "strata_math_v61a": "b180c0bf9ef4996b24662eba604b396e2d33a0e32fb4c8305be8cc34b7dd7569",
+      "tests_v61a": "7982b8aaf71b25d5f4a52e879db98c17410357b253c1a813f8eea9c415528d2e",
+      "topology_runtime_v40a": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+      "topology_runtime_v40c": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+      "worker_v41a": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+      "worker_v51": "57c7e9356b45f330b2e0ea1b0f814482aff71fc93cccc13b4b956376e3252389",
+      "worker_v52": "f5e04e752e6b20fc7e380d366bcd282c519ea7aa4d280345671ec428ff39356a"
+    },
+    "pinned_v52_artifact_identities_without_reopening": {
+      "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+      "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "membership_content_sha256": "a8870fdce8fbf631b3d3472fd03690f6987590ee6e8758dc8fdcb4556dcc9096",
+      "membership_file_sha256": "e9b073369966e21912a0bda86da501ab0975646df2a7d80bf5675c3dfec8c121",
+      "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+      "source_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "source_weights_file_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+      "staged_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "staged_manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+      "staged_weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+      "train_bundle_content_sha256": "c94a7e8e8c30dbc2586351c4ef0ff13e3e9cc8551a21b9e055d34fbfa94bf44a",
+      "train_dataset_file_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a"
+    },
+    "train_semantics_or_model_artifacts_opened_to_build_bindings": false
+  },
+  "protected_semantics_opened": false,
+  "purpose": "Characterize exact, partial, difficult, and actor-unstable generation support at the unchanged V434 LoRA state so a later, separately preregistered V61 document-block/bootstrap HPO can use a nondegenerate train-only generation panel.",
+  "raw_question_answer_or_generation_text_may_be_persisted": false,
+  "required_gates": {
+    "448_completions_per_actor": true,
+    "all_four_gpus_attributed_positive": true,
+    "candidate_selection_update_commit_or_promotion_zero": true,
+    "eval_ood_shadow_holdout_access_zero": true,
+    "exact_v434_artifact_identities": true,
+    "exact_v434_master_same_on_all_four_actors": true,
+    "exclusive_idle_four_gpu_preflight": true,
+    "four_independent_fixed_actor_seeds": true,
+    "numeric_hash_only_evidence": true,
+    "strict_four_engine_cleanup_and_idle": true
+  },
+  "required_python": "/home/catid/specialist/es-at-scale/.venv/bin/python",
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "v61a-v434-train-baseline-census-preregistration",
+  "scientific_scope": {
+    "adapter_update_or_master_commit": false,
+    "candidate_comparison_or_ranking": false,
+    "characterization_only": true,
+    "complete_census_even_if_stable_exact_support_fails": true,
+    "later_panel_or_hpo_launch_authorized_by_this_preregistration": false,
+    "stable_exact_shortfall_only_disables_later_panel_hpo_eligibility": true
+  },
+  "status": "preregistered_before_v61a_model_gpu_or_train_row_access",
+  "train_semantic_access_authorized": true
+}
