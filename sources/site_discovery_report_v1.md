@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T14:00:24Z
-Latest batch: `discovery_batch_016`
+Latest review at: 2026-07-16T14:18:38Z
+Latest batch: `discovery_batch_017`
 
 ## Outcome
 
@@ -1142,3 +1142,79 @@ body or unrelated repository artifact was read. No login, paywall, challenge,
 robots restriction, mirror, cache, archive or snippet reconstruction was
 bypassed, and no reviewed source body entered a training artifact during
 discovery.
+
+## Discovery batch 017 outcome
+
+`discovery_batch_017` reviewed 12 exact-new source identities after normalized
+title, DOI, PMID, PMCID, report, document and source-identity comparison with
+the existing ledger and queue. After a contractor-rights correction, it
+produced 0 `accept_high_priority`, 11 `accept_targeted_scope`, 1 `defer`, and 0
+`reject` decisions. The eleven accepted sources expand the canonical Markdown
+queue from 130 to 141 resources.
+
+This batch fills concrete and tree-anchor evaluation, anchor governance,
+natural-fiber mechanisms, capstan-model limits, cross-cultural knot methods,
+bottoming accessibility and skill pedagogy. It deliberately does not produce
+an anchor rating, hardpoint design, proof-test recipe, natural-rope care
+schedule, secure-knot ranking, pain treatment or Japanese kinbaku lineage
+claim. Each accepted source remains in its original civil-infrastructure,
+workplace, rope-access, forestry, arboriculture, materials-science,
+mathematical, archaeological, health-survey or surgical-education domain.
+
+### Newly accepted sources
+
+| Source | Score | Exact useful scope and boundary |
+|---|---:|---|
+| [FHWA adhesive-anchor advisory T5140.34](https://www.fhwa.dot.gov/Bridge/t514034.pdf) | 41 | Eligible federal text preserves a fatal suspended-ceiling failure chain, sustained-tension and overhead adhesive-anchor creep, installation sensitivity, system qualification, trained installation and continuous inspection. Exclude standards, loads, recipes and products; never treat it as a DIY hardpoint or human-suspension qualification. |
+| [USBR testing and verifying rope-access anchors](https://usbr.gov/research/projects/detail.cfm?id=6390) | 39 | Eligible federal project-page and two-page bulletin text adds simulated installation defects, substrate variation, failure-mode diversity and angle-sensitive non-additive load sharing. Protected final report Document 1018 must not be requested, inferred or reconstructed; exclude every capacity, proof-load and procedure. |
+| [USACE EP 385-1-101 fall prevention and protection](https://www.publications.usace.army.mil/USACE-Publications/Engineer-Pamphlets/) | 35 | Current federal governance supports hierarchy of controls, documented authorized/competent/qualified roles, qualified-person anchorage decisions, inspection, site-specific rescue plans and drills. Use only the targeted public-library PDF; exclude incorporated standards, numbers, forms and operational procedures. |
+| [Trees as supports and anchors in forest operations](https://www.mdpi.com/1999-4907/9/8/467) | 37 | CC BY 4.0 review preserves interacting root plate, stem, decay, soil, root architecture, slope, wind, species and dynamic-load factors plus sparse-evidence and model-calibration limits. It cannot identify a safe tree, branch or human-suspension anchor. |
+| [Nondestructive tree-anchorage assessment experiment](https://www.mdpi.com/1999-4907/14/3/533) | 37 | CC BY 4.0 comparison across more than 280 trees adds small-tree errors, algorithm failures and soil/species inference limits. Preserve the relevant Arbosafe hardware/software conflict prominently; exclude pulling procedures, factors, thresholds and DIY assessment. |
+| [Hemp-rope constituent environmental-aging experiment](https://www.sciencedirect.com/science/article/pii/S2352710224011392) | 41 | Article-level CC BY 4.0 supports only the bounded result that combined accelerated ultraviolet and hygrothermal exposure reduced measured properties in one commercial hemp-rope constituent context. No calendar-life, jute equivalence, care, retirement, remaining-strength or suspension inference is allowed. |
+| [Hemp fibre properties and textile processing review](https://www.mdpi.com/1996-1944/15/5/1901) | 32 | CC BY 4.0 narrative review adds bast-fibre heterogeneity, plant/process/batch variability, moisture sorption, swelling, hysteresis and retting as controlled biological degradation. Raw-fibre/textile evidence is not finished-rope testing; recipes and schedules are excluded. |
+| [Cross-cultural computational knot study](https://www.cambridge.org/core/journals/cambridge-archaeological-journal/article/ties-that-bind-computational-crosscultural-analyses-of-knots-reveal-their-cultural-evolutionary-history-and-significance/B35E9C2DB89FA3C81F58F309B8F754FA) | 41 | CC BY 4.0 article covers 338 visually evidenced knots from 86 traditions and distinguishes visual resemblance, topology, orientation/material/tightness and historical transmission. Preserve source and preservation biases; exclude images, HRAF/ABoK bodies and unaudited OSF data. It is not security evidence or kinbaku-lineage proof. |
+| [Elastic-rod capstan equilibria](https://infoscience.epfl.ch/entities/publication/b8b8fb31-a6b4-43b3-a4a0-1e21b633fe6c) | 33 | CC BY 4.0 conceptual digest may contrast the classical perfectly flexible filament with finite bending stiffness, thickness, length, contact and boundary geometry. Idealized planar rod equilibria are not an operational textile-rope, redirect, anchor or safety calculator. |
+| [Chronic pain and BDSM exploratory study](https://pmc.ncbi.nlm.nih.gov/articles/PMC12435486/) | 37 | CC BY 4.0 methods-first digest may retain non-universal participant-reported benefits and challenges while preserving the 525-person convenience sample, 201 self-reported pain subset, demographic skew, missing pain type/severity and selection bias. BDSM or rope is not pain treatment or clinical advice. |
+| [Instructional video and knot proficiency RCT](https://mededu.jmir.org/2018/1/e9/) | 33 | Final CC BY 4.0 article supports randomized pre/post, physical practice, blinded structured assessment and the negative result that video was not established as superior. Exclude the all-rights-reserved preprint, surgical steps and media; no retention or rope outcome was tested. |
+
+### Permission-gated reference
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [FHWA-HRT-14-071 concrete-barrier NDE TechBrief](https://www.fhwa.dot.gov/publications/research/infrastructure/structures/14071/index.cfm) | 37 | The useful negative NDE results are in research funded by FHWA but performed under contract by Engineering Software Consultants. The first-party page supplies no federal authorship, copyright assignment or reuse grant. Federal funding and hosting are insufficient, so body transformation waits for written FHWA or contractor confirmation. |
+
+### Batch 017 rights, evidence, and safety controls
+
+The initial federal-public-domain classification of FHWA-HRT-14-071 was
+reversed after its contractor credit was checked. Distribution, availability,
+government sponsorship, disclaimer and quality-assurance notices do not prove
+government authorship or a reuse grant. The USBR public project page and
+bulletin remain distinct from its explicitly protected detailed report. USACE
+use is limited to the targeted official public-library document because its
+index access route is crawler-blocked.
+
+Article-level CC BY licenses apply only to the named open works. Publisher-wide
+TDM reservations, robots failures or rate limits were honored by allowing only
+targeted official acquisition, never a site crawl. Figures, tables, raw data,
+preprints, incorporated standards, ethnographic databases, commercial
+products, participant narratives and third-party components remain excluded or
+separately gated.
+
+Anchor and tree sources preserve uncertainty, qualified roles and evaluation
+process—not capacities or selection rules. Materials evidence preserves exact
+fiber, construction, specimen and exposure boundaries. Mathematical and
+topological studies do not prove friction security, load behavior, safe knots
+or lineage. The chronic-pain study supplies participant perceptions rather
+than treatment evidence, and the teaching trial supplies no retention or rope
+validation.
+
+### Batch 017 access and clean-room statement
+
+Discovery read only the governing candidate ledger, queue, report and tests
+plus ordinary first-party public sources, targeted official documents and
+their explicit license, terms or robots routes. No QA, trainer, projection,
+evaluation, heldout, holdout, OOD, shadow, benchmark, probe, unrelated corpus
+body or unrelated repository artifact was read. No login, protected report,
+paywall, challenge, robots restriction, mirror, cache, archive or snippet
+reconstruction was bypassed, and no reviewed source body entered a training
+artifact during discovery.

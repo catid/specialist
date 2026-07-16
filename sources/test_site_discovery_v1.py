@@ -2643,12 +2643,156 @@ class SourceCorpusContractTest(unittest.TestCase):
             for marker in required:
                 self.assertIn(marker, text, candidate_id)
 
+    def test_batch_017_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_017"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_targeted_scope": {
+                "fhwa_t5140_34_adhesive_anchors",
+                "usace_ep_385_1_101_fall_protection",
+                "usbr_testing_verifying_rope_access_anchors",
+                "marchi_trees_supports_anchors_review",
+                "detter_nondestructive_tree_anchorage",
+                "gioffre_hemp_rope_environmental_aging",
+                "zimniewska_hemp_fibre_review",
+                "kaaronen_cross_cultural_knots",
+                "singh_elastic_rod_capstan",
+                "forer_westlake_chronic_pain_bdsm",
+                "bochenska_knot_tying_instruction_video_rct",
+            },
+            "defer": {
+                "fhwa_hrt_14_071_concrete_barrier_nde",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_017_accepts_preserve_domain_and_method_limits(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "fhwa_t5140_34_adhesive_anchors": {
+                "fatal tunnel",
+                "continuous inspection",
+                "diy ceiling",
+                "human-suspension",
+            },
+            "usace_ep_385_1_101_fall_protection": {
+                "qualified-person",
+                "site-specific fall and rescue",
+                "targeted official public-library",
+                "intentional human suspension",
+            },
+            "usbr_testing_verifying_rope_access_anchors": {
+                "protected final report document 1018",
+                "non-additive",
+                "diy proof-test",
+                "human-suspension",
+            },
+            "marchi_trees_supports_anchors_review": {
+                "root-plate",
+                "empirical calibration",
+                "non-bondage forestry",
+                "human-suspension",
+            },
+            "detter_nondestructive_tree_anchorage": {
+                "greater-than-280-tree",
+                "arbosafe gmbh",
+                "diy pulling test",
+                "human-suspension",
+            },
+            "gioffre_hemp_rope_environmental_aging": {
+                "one-commercial-rope",
+                "no-calendar-life",
+                "jute",
+                "retirement threshold",
+            },
+            "zimniewska_hemp_fibre_review": {
+                "narrative-not-systematic",
+                "raw-fibre",
+                "hemp-to-jute",
+                "human-suspension",
+            },
+            "kaaronen_cross_cultural_knots": {
+                "338",
+                "86",
+                "direct transmission",
+                "kinbaku-lineage proof",
+            },
+            "singh_elastic_rod_capstan": {
+                "perfectly flexible filament",
+                "even without friction",
+                "not a textile-rope experiment",
+                "operational load",
+            },
+            "forer_westlake_chronic_pain_bdsm": {
+                "525-person",
+                "201 self-reported",
+                "84.4-percent-white",
+                "pain treatment",
+            },
+            "bochenska_knot_tying_instruction_video_rct": {
+                "video alone was not established as superior",
+                "all-rights-reserved preprint",
+                "no retention",
+                "rope teaching",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_017_contractor_rights_correction_is_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        source = by_id["fhwa_hrt_14_071_concrete_barrier_nde"]
+        self.assertEqual(source["decision"], "defer")
+        self.assertNotIn(source["candidate_id"], queued)
+        text = json.dumps(source, sort_keys=True).lower()
+        for marker in {
+            "performed under contract",
+            "no explicit federal authorship",
+            "metadata only",
+            "written fhwa or contractor",
+            "federal funding and hosting do not establish public-domain status",
+        }:
+            self.assertIn(marker, text)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_016`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_017`", self.report)
 
 
 if __name__ == "__main__":
