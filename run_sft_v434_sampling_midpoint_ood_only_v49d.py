@@ -16,6 +16,7 @@ import run_eggroll_es_equal_unit_v38a as cleanup
 import run_lora_topology_probe_v40a as topology
 import run_matched_lora_candidate_eval_v44a as core
 import run_matched_lora_candidate_eval_v45a as ood_first
+import run_matched_lora_candidate_eval_v44c as parser_fix
 import run_sealed_candidate_eval_v39a as metrics
 import stage_v49d_adapters_vllm as stage
 import train_eggroll_es_specialist as base
@@ -75,18 +76,34 @@ FUTURE_TEMPLATE_FILE_SHA256 = (
 FUTURE_TEMPLATE_CONTENT_SHA256 = (
     "03b1e989810c836186898f01480389d592b1357f1d46f94f4a45110f60e495de"
 )
-EXPERIMENT = "v49d_v434_equal_vs_source50_replicated_ood_only"
+FAILED_EXPERIMENT = "v49d_v434_equal_vs_source50_replicated_ood_only"
+FAILED_RUN_DIR = (
+    ROOT / "experiments/eggroll_es_hpo/runs" / FAILED_EXPERIMENT
+).resolve()
+FAILED_ATTEMPT = (FAILED_RUN_DIR.parent / f".{FAILED_EXPERIMENT}.attempt.json").resolve()
+FAILED_FAILURE = (FAILED_RUN_DIR / "failure_v49d.json").resolve()
+FAILED_GPU_LOG = (FAILED_RUN_DIR / "gpu_activity_v49d.jsonl").resolve()
+FAILED_EXPECTED = {
+    "attempt_file": "c03eefacbfb2f1f51573b4bb48a573290bd6eb8ba60803c61b6ae2097575006e",
+    "attempt_content": "aede794e73c5b17c6f6ea1e0c343fcbc99f3c95bbf3d7d2e3e7af4dd7e1aa4a3",
+    "failure_file": "870ac4b3bc753b531d36a9ff6832f8ac6d226cdc46f9bdf26aff2f24c99bbe5f",
+    "failure_content": "77f09a337ff9ae89dae7f9cffa3e5042ead01672f0c708162f2f3d4ab832f12b",
+    "gpu_log_file": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preregistration_file": "60116e6e7928a61678a8a54b4ffb7b18d41a2dc745301cd8d832caf98650bb3c",
+    "preregistration_content": "901e4c04fcb0700578867a26bd87674fa20f33a32bf89171a49b76f2aef12e35",
+}
+EXPERIMENT = "v49d_v434_equal_vs_source50_replicated_ood_only_retry1"
 RUN_DIR = (ROOT / "experiments/eggroll_es_hpo/runs" / EXPERIMENT).resolve()
 ATTEMPT = (RUN_DIR.parent / f".{EXPERIMENT}.attempt.json").resolve()
 RAW = (RUN_DIR / "raw_items_v49d.json").resolve()
 GPU_LOG = (RUN_DIR / "gpu_activity_v49d.jsonl").resolve()
 REPORT = (
     ROOT / "experiments/eval_reports/"
-    "sft_v434_equal_vs_source50_replicated_ood_only_v49d.json"
+    "sft_v434_equal_vs_source50_replicated_ood_only_retry1_v49d.json"
 ).resolve()
 DEFAULT_PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "sft_v434_equal_vs_source50_replicated_ood_only_v49d.json"
+    "sft_v434_equal_vs_source50_replicated_ood_only_retry1_v49d.json"
 ).resolve()
 BOOTSTRAP_SAMPLES = 20_000
 BOOTSTRAP_SEED = 20_260_715
@@ -159,9 +176,13 @@ def implementation_bindings_v49d() -> dict:
         "core_runtime": Path(core.__file__).resolve(),
         "metric_runtime": Path(metrics.__file__).resolve(),
         "ood_gate_runtime": Path(ood_first.__file__).resolve(),
+        "source_faithful_parser_runtime": Path(parser_fix.__file__).resolve(),
         "topology_runtime": Path(topology.__file__).resolve(),
         "cleanup_runtime": Path(cleanup.__file__).resolve(),
         "future_template": FUTURE_TEMPLATE,
+        "failed_attempt": FAILED_ATTEMPT,
+        "failed_failure": FAILED_FAILURE,
+        "failed_gpu_log": FAILED_GPU_LOG,
         "model_config": core.MODEL / "config.json",
         "model_index": core.MODEL / "model.safetensors.index.json",
         "tuned_table": core.TUNED_FILE,
@@ -197,7 +218,8 @@ def load_preregistration_v49d(args) -> dict:
         })
         or value.get("schema")
         != "sft-v434-equal-vs-source50-replicated-ood-only-v49d"
-        or value.get("status") != "preregistered_before_fresh_ood_only_evaluation"
+        or value.get("status")
+        != "preregistered_after_parser_failure_before_fresh_ood_only_retry"
         or value.get("evaluation_launch_authorized") is not True
         or value.get("heldout_or_holdout_access_authorized") is not False
         or value.get("shadow_access_authorized") is not False
@@ -210,6 +232,7 @@ def load_preregistration_v49d(args) -> dict:
         != FUTURE_TEMPLATE_FILE_SHA256
         or value.get("extends_future_template", {}).get("content_sha256")
         != FUTURE_TEMPLATE_CONTENT_SHA256
+        or value.get("retry_of") != FAILED_EXPECTED
     ):
         raise RuntimeError("V49D OOD preregistration content changed")
     core._forbid_holdout_v44a(item["path"] for item in OOD_INPUTS.values())
@@ -343,12 +366,28 @@ def main(argv: list[str] | None = None) -> int:
     core.atomic_json(ATTEMPT, attempt)
     RUN_DIR.mkdir(parents=True)
     trainer = monitor = saved = firewall = None
+    ood_qa_bundle = ood_prose_rows = None
     stop = threading.Event()
     failures: queue.Queue = queue.Queue()
     phase = Phase()
     raw_sink = {"schema": "v49d-ood-only-raw-local"}
     started = time.monotonic()
     try:
+        # Parse the only two authorized inputs before model creation.  This is
+        # the source-faithful repair for the sealed legacy-parser failure.
+        saved_inputs = core.PROTECTED_INPUTS_V44A
+        core.PROTECTED_INPUTS_V44A = OOD_INPUTS
+        try:
+            firewall = core.SingleSemanticAccessV44A(OOD_INPUTS)
+            ood_qa_bundle, _qa_schema = parser_fix.ood_qa_bundle_v44c(
+                firewall.jsonl("ood_qa")
+            )
+            ood_prose_rows = firewall.jsonl("ood_prose")
+            _prose_schema = parser_fix.ood_prose_preflight_v44c(ood_prose_rows)
+        finally:
+            core.PROTECTED_INPUTS_V44A = saved_inputs
+        if set(firewall.receipts) != set(OOD_INPUTS):
+            raise RuntimeError("V49D OOD parser preflight coverage changed")
         base.set_seed(core.GENERATION_SEED)
         with patched_arm_globals_v49d():
             trainer, saved = core.make_trainer_v44a(prereg)
@@ -362,21 +401,14 @@ def main(argv: list[str] | None = None) -> int:
                 args=(stop, phase, pid_map, GPU_LOG, failures), daemon=True,
             )
             monitor.start()
-            saved_inputs = core.PROTECTED_INPUTS_V44A
-            core.PROTECTED_INPUTS_V44A = OOD_INPUTS
-            try:
-                firewall = core.SingleSemanticAccessV44A(OOD_INPUTS)
-                phase.value = "ood_qa"
-                ood_qa = core.evaluate_qa_v44a(
-                    trainer, metrics.qa_bundle(firewall.jsonl("ood_qa")),
-                    raw_sink, "ood_qa",
-                )
-                phase.value = "ood_prose"
-                ood_prose, prose_details = core.evaluate_prose_v44a(
-                    trainer, firewall.jsonl("ood_prose"), raw_sink
-                )
-            finally:
-                core.PROTECTED_INPUTS_V44A = saved_inputs
+            phase.value = "ood_qa"
+            ood_qa = core.evaluate_qa_v44a(
+                trainer, ood_qa_bundle, raw_sink, "ood_qa",
+            )
+            phase.value = "ood_prose"
+            ood_prose, prose_details = core.evaluate_prose_v44a(
+                trainer, ood_prose_rows, raw_sink
+            )
         if set(firewall.receipts) != set(OOD_INPUTS):
             raise RuntimeError("V49D OOD single-access coverage changed")
         base_equivalence = {

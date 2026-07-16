@@ -1,0 +1,14 @@
+{
+  "content_sha256_before_self_field": "77f09a337ff9ae89dae7f9cffa3e5042ead01672f0c708162f2f3d4ab832f12b",
+  "failed_at_utc": "2026-07-16T04:01:29.586067+00:00",
+  "heldout_or_holdout_opened": false,
+  "message": "text field is not a supported QA serialization",
+  "protected_semantic_access_count": 1,
+  "protected_semantic_access_labels": [
+    "ood_qa"
+  ],
+  "schema": "v49d-ood-only-failure",
+  "shadow_opened": false,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_sft_v434_sampling_midpoint_ood_only_v49d.py\", line 371, in main\n    trainer, metrics.qa_bundle(firewall.jsonl(\"ood_qa\")),\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_sealed_candidate_eval_v39a.py\", line 454, in qa_bundle\n    pairs = [qa_pair(row) for row in rows]\n             ^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_sealed_candidate_eval_v39a.py\", line 421, in qa_pair\n    pair = qa_quality.qa_pair_from_record(row)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/qa_quality.py\", line 177, in qa_pair_from_record\n    raise ValueError(\"text field is not a supported QA serialization\")\nValueError: text field is not a supported QA serialization\n",
+  "type": "ValueError"
+}

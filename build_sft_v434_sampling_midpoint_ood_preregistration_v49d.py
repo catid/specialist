@@ -62,7 +62,12 @@ def build() -> dict:
         })
     value = {
         "schema": "sft-v434-equal-vs-source50-replicated-ood-only-v49d",
-        "status": "preregistered_before_fresh_ood_only_evaluation",
+        "status": "preregistered_after_parser_failure_before_fresh_ood_only_retry",
+        "retry_of": dict(runtime.FAILED_EXPECTED),
+        "retry_reason": (
+            "replace the legacy QA bundle parser with the proven source-faithful "
+            "explicit-field parser before model creation; no gate or input changed"
+        ),
         "evaluation_launch_authorized": True,
         "heldout_or_holdout_access_authorized": False,
         "shadow_access_authorized": False,
