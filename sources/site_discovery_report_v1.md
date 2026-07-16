@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T18:14:12Z
-Latest batch: `discovery_batch_026`
+Latest review at: 2026-07-16T18:31:02Z
+Latest batch: `discovery_batch_027`
 
 ## Outcome
 
@@ -1894,3 +1894,75 @@ body or unrelated repository artifact was read. No login, checkout, paywall,
 challenge, cache, archive-service or access-control bypass was used. The worker
 did not inspect museum images or retrieve gated bundle bodies, and no reviewed
 source body entered a training artifact during discovery.
+
+## Discovery batch 027 outcome
+
+`discovery_batch_027` manually reviewed 10 exact-new source identities after
+canonical-URL, title, author, organization and document deduplication. It
+records 0 `accept_high_priority`, 1 `accept_targeted_scope`, 9 `defer`, and 0
+`reject` decisions. The accepted rights-clear guidelines expand the canonical
+Markdown queue from 176 to 177 resources; the discovery ledger grows from 318
+to 328 records.
+
+This batch focuses on the relationship among rope performance, declared
+lineage, audience or performer limits, consent-based choreography, production
+privacy, access needs and process evaluation. It deliberately separates three
+evidence domains: first-party descriptions of a particular rope style or
+artwork, performance-art case studies, and professional stage or screen
+practice. None is silently converted into tying, anatomy, load, hardpoint,
+upline, emergency or suspension guidance.
+
+### Newly accepted source
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Ita O'Brien's Intimacy On Set Guidelines](https://www.intimacyonset.com/intimacy-on-set-guidelines/) | `accept_targeted_scope` | 38 | The exact English guidelines body is explicitly CC BY-SA 4.0 and supports advance disclosure, consent each time, explicit boundaries, a halt strategy, third-party presence, blocking, plain-language choreography, closed rehearsals or sets, pre-performance check-ins and change control. Attribution, change indication and ShareAlike are mandatory. Images, translations, acknowledgements, services and surrounding site content are excluded. Any rope application must be labeled as an inference; the source does not certify a rope scene or teach rope safety. |
+
+### Permission- or rights-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [LA Rope Yukimura-style concepts](https://www.lashibaridojo.com/core-concepts-in-yukimura-style-shibari/) | 24 | The pages provide unusually specific first-party declared-lineage and terminology evidence, but are all rights reserved. Permission, Japanese review and independent historical review are required. Passages treating resistance, hesitation or bodily response as communication need explicit-consent correction and cannot enter training as written. |
+| [being surface](https://www.performancephilosophy.org/journal/article/view/360) | 32 | The peer-reviewed article documents durational rope performance, audience relation, corporeal trace and care, but is CC BY-NC-SA rather than commercially reusable. Credited images and violent-performance components are separately excluded; the work cannot become actionable body-marking or rope instruction. |
+| [Tender Container: How to Self-Suspend](https://www.tendercontainer.com/how-to-self-suspend) | 28 | This first-party production record identifies a collaborative interactive rope performance, its creative roles and its audience-consent question. No open text license was found, photographs have separate rights and sensitive autobiography or trauma remains outside scope. |
+| [Kinbaku Society of Berlin magazine archive](https://www.kinbaku-society.org/) | 6 | Public issue pages preserve a small amount of project history and aesthetics, but the knowledge-rich multi-contributor magazines are unavailable or purchase-gated, the site is copyrighted and commerce noise is high. Named influence and origin claims need independent corroboration. No cart or issue body was accessed. |
+| [Caring for Limits in Sex Worker's Opera](https://www.royalholloway.ac.uk/media/20087/1-full%20issue.pdf.pdf) | 34 | The peer-reviewed case study is strong on member-set limits, anonymity, access needs, collaborative support and creating an alternative rather than overriding a performer's boundary. The issue explicitly says all rights reserved; participant quotations, trauma material and photographs need separate clearance. |
+| [UK National Occupational Standards for Intimacy Coordination](https://www.ukstandards.org.uk/en/nos-finder/SKSIC2/liaise-with-performers-during-intimacy-planning) | 35 | The current 2025 suite is a dense professional competency map for disclosure, power, ongoing consent, choreography, access support, documentation and evaluation. The database is freely accessible, but no clear open derivative-reuse license was found; permission from the standards and database owners is required. |
+| [EDIT Media Teaching Intimacy guide](https://editmedia.org/intimacy-coordination-guide/) | 33 | The multi-author classroom guide is rich and explicitly non-prescriptive, but the site is all rights reserved and much of the text summarizes or quotes separately protected professional sources. Author permission and sentence-level component provenance are required. |
+| [Intimacy Practitioners South Africa protocols](https://www.intimacysouthafrica.com/protocols/) | 33 | The first-party framework adds a South African film-production perspective across planning, production and post-production, but it is explicitly all rights reserved. Its labor, legal and film context cannot be generalized into rope rules. |
+| [UT Austin staging-intimacy policies](https://theatredance.utexas.edu/policies-staging-intimacy) | 31 | The operational policy covers disclosure, confidential communication, boundaries, exit cues, written choreography, recording restrictions, alternatives and revocable consent. University copyright applies, and the document states that it is based on Theatrical Intimacy Education work, so both permission and component resolution are needed. |
+
+### Batch 027 rights, evidence, and safety controls
+
+The accepted job is confined to one exactly licensed English work. CC BY-SA
+attribution, license linking, change indication and ShareAlike obligations must
+travel with the transformed Markdown. The surrounding Intimacy On Set site,
+its photographs, translations, biographies, courses, services,
+acknowledgements and related articles do not inherit the guideline's license.
+
+Open access, free download, free occupational-standard access and public
+product descriptions were not treated as training permission. The remaining
+nine candidates are metadata and permission leads only. The Performance
+Philosophy noncommercial license, Platform's explicit no-reproduction notice,
+institutional copyright, multi-author or participant components and
+third-party foundations were recorded at page or document level.
+
+Rope aesthetics and performance evidence remains source-attributed. A
+self-reported teaching license is not independent lineage verification; a
+project's named influences do not establish a universal genealogy; and an
+artist's use of rope does not establish ordinary practice, therapeutic value,
+consent or safety. Hesitation, resistance, facial expression, stillness,
+embarrassment and other nonverbal responses are never substitutes for prior
+explicit agreement, ongoing check-ins or an unambiguous stop mechanism.
+
+### Batch 027 access and clean-room statement
+
+The source worker read only the governing discovery ledger, queue, report and
+tests plus the exact first-party articles, policies, standards, production
+records, official journal documents, rights pages and robots policies needed
+to resolve identity, evidence and reuse gates. No QA, trainer, projection,
+evaluation, heldout, holdout, OOD, shadow, benchmark, probe, experiment,
+existing corpus body or unrelated repository artifact was read. No login,
+cart, purchase, paywall, challenge, cache, archive-service or access-control
+bypass was used; no source body or image entered a training artifact during
+discovery.

@@ -4052,12 +4052,109 @@ class SourceCorpusContractTest(unittest.TestCase):
         self.assertIn("keyword coincidence", rejected_text)
         self.assertIn("does not teach bondage-relevant", rejected_text)
 
+    def test_batch_027_accepts_only_the_exact_cc_by_sa_guidelines_work(self) -> None:
+        batch = [
+            row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_027"
+        ]
+        self.assertEqual(len(batch), 10)
+        self.assertEqual(
+            Counter(row["decision"] for row in batch),
+            Counter({"accept_targeted_scope": 1, "defer": 9}),
+        )
+
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {
+            row["discovery_candidate_id"]: row
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        source = by_id["intimacy_on_set_guidelines_2019"]
+        queued = queue_by_id[source["candidate_id"]]
+        self.assertEqual(source["decision"], "accept_targeted_scope")
+        self.assertEqual(source["priority_score"], 38)
+        self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+        self.assertEqual(queued["training_use"], source["training_use"])
+        self.assertEqual(queued["rights_basis"], source["rights_basis"])
+        text = json.dumps(source, sort_keys=True).lower()
+        for marker in {
+            "cc by-sa 4.0",
+            "sharealike",
+            "surrounding site content",
+            "rope-scene application as an inference",
+            "does not teach tying",
+        }:
+            self.assertIn(marker, text)
+
+    def test_batch_027_permission_and_component_gates_are_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        markers = {
+            "la_rope_yukimura_style_lineage_and_concepts": {
+                "all rights reserved",
+                "self-identification",
+                "nonverbal response as consent",
+            },
+            "performance_philosophy_being_surface_2022": {
+                "cc by-nc-sa 4.0",
+                "noncommercial",
+                "violent or self-injury method",
+            },
+            "tender_container_how_to_self_suspend_performance": {
+                "no open license",
+                "photograph",
+                "title is instructional",
+            },
+            "kinbaku_society_berlin_magazine_archive": {
+                "purchase-gated",
+                "do not enter a cart",
+                "independently corroborated",
+            },
+            "platform_caring_for_limits_sex_workers_opera_2022": {
+                "all rights reserved",
+                "participant quotations",
+                "alternative role",
+            },
+            "uk_nos_intimacy_coordination_productions_2025": {
+                "no clear open license",
+                "standard owner",
+                "competence outcomes and a curriculum",
+            },
+            "edit_media_teaching_intimacy_coordination_guide": {
+                "all rights reserved",
+                "sentence-level provenance",
+                "third-party quotations",
+            },
+            "intimacy_practitioners_sa_protocols_2021": {
+                "all rights reserved",
+                "south african film",
+                "cannot be silently converted into rope rules",
+            },
+            "ut_austin_staging_intimacy_policies": {
+                "theatrical intimacy education",
+                "component-level provenance",
+                "no open reuse license",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_026`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_027`", self.report)
 
 
 if __name__ == "__main__":
