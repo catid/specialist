@@ -1,0 +1,93 @@
+{
+  "audit": {
+    "by_decision": {
+      "edit": 5
+    },
+    "by_review_class": {
+      "bounded_existing_qa_history_lineage_repair": 5
+    },
+    "path": "data/manual_reviews/context_merit_audit_v445/context_merit_audit_v445.jsonl",
+    "rows": 5,
+    "sha256": "4ea32830a63d22e7216041688a289cee07d7db31ccabfb394c42da5f8916b30f"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 261,
+      "equipment_material": 22,
+      "resources_general": 80,
+      "safety_consent": 86,
+      "technique": 73
+    },
+    "before": {
+      "conflict_units": 261,
+      "equipment_material": 22,
+      "resources_general": 81,
+      "safety_consent": 86,
+      "technique": 72
+    },
+    "delta": {
+      "conflict_units": 0,
+      "equipment_material": 0,
+      "resources_general": -1,
+      "safety_consent": 0,
+      "technique": 1
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "domain_gap_notes": {
+    "filled_by_this_pass": false,
+    "remaining": [
+      "Step-by-step knot and friction construction is thinner than conceptual and safety coverage.",
+      "Upline routing, lockoffs, load sharing, and force-path reasoning remain sparse.",
+      "Hardpoint assessment for trees, indoor structures, and ceiling-tension systems remains sparse.",
+      "Rig-type selection and evaluation remain sparse."
+    ]
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 0,
+    "output_rows": 518,
+    "output_sha256": "0f3f5f17cae500edfad26a359d436d3e7609815f76b9d19bf37f8a24fdbc8b5c",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "edit": 5
+    },
+    "decisions": 5,
+    "path": "data/manual_reviews/context_merit_audit_v445/pending_curation_context_merit_v445.jsonl",
+    "sha256": "fbae2b900b1689140745a56dca2011319a666d27f9bfada14681084152c5a789"
+  },
+  "schema": "context-merit-audit-report-v445",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  },
+  "source_snapshot_inventory": {
+    "documents": 5,
+    "paths": [
+      "data/raw/kinbakutoday_490a87ec78c3d64b.json",
+      "data/raw/kinbakutoday_f57559bbb4c8b826.json",
+      "data/raw/kinbakutoday_381214111022a952.json",
+      "data/raw/kinbakutoday_938724eb415ca5c0.json",
+      "data/raw/kinbakutoday_c799ecf7b51f866b.json"
+    ],
+    "total_characters": 35223
+  },
+  "training_layer_contract": {
+    "cleaned_markdown_site_corpora": "Distinct first-class future training artifacts; unfinished corpus output was neither read nor ingested by v445.",
+    "deduplication_policy": "Do not collapse a cleaned Markdown document and its derived Q&A merely because they express the same source knowledge.",
+    "derived_qa": "Distinct first-class training layer; v445 changes only existing sealed Q&A using attached evidence and pinned raw snapshots.",
+    "provenance_requirement": "Link future derived Q&A to the cleaned source document through stable source URL and document or snapshot hashes."
+  },
+  "v52_isolation": {
+    "active_v52_inputs_modified": false,
+    "candidate_status": "isolated_pending_not_promoted"
+  }
+}
