@@ -1,0 +1,95 @@
+{
+  "schema": "site-corpus-manifest",
+  "schema_version": "1.0",
+  "corpus_schema": "non-operational-historical-manila-rope-test-design-markdown",
+  "corpus_schema_version": "1.0",
+  "package_id": "nist_manila_rope_tests_t198_1921",
+  "title": "NBS T198 historical Manila-rope construction and test-design evidence",
+  "direct_training_ready": true,
+  "evidence_domain": "non-operational historical commercial three-strand regular-lay Manila-rope construction and test-design evidence",
+  "historical_status": "primary Bureau of Standards report issued in 1921 from commercial procurement-test data accumulated around its study period",
+  "authors": [
+    "Ambrose H. Stang",
+    "Lory R. Strickenberg"
+  ],
+  "source_ids": [
+    "NIST-CATALOG-T198",
+    "NBS-T198-1921",
+    "NIST-TECHSERIES-RIGHTS"
+  ],
+  "rights_status": "public_domain_us_federal_work_with_nist_residual_foreign_rights_grant",
+  "rights_scope": "eligible employee-authored historical text only; catalog supports identity; rights page supports rights provenance; every third-party or uncertain component excluded",
+  "modification_notice": "Manually rewritten, narrowed and safety-bounded on 2026-07-16; republished courtesy of the National Institute of Standards and Technology.",
+  "retained_scope": [
+    "T198 identity, authorship, historical status and bounded sample identity",
+    "historical yarn, strand, rope-lay, strand-lay, regular-lay and hard/soft-laid vocabulary",
+    "sampling, observation-coverage, specimen-preparation and measurement distinctions at non-operational resolution",
+    "manufacturer, purchase-specification and uncontrolled-variable limitations",
+    "termination-region failure, incomplete provenance, measurement limits and other negative evidence",
+    "absolute prohibition on modern material, operational, bondage or human-suspension transfer"
+  ],
+  "excluded_scope": [
+    "every raw breaking-load or strength value, fitted or calculated result, force, dimension, coefficient and unit-bearing performance value",
+    "every formula, equation, numerical table, plot, tolerance, ranking, acceptance threshold, procurement rule and period safe-use claim",
+    "all photographs, figures, captions, labels, visual marks and image-derived claims",
+    "all specimen-preparation dimensions, conditioning duration, fastening, machine, preload, measuring and handling recipes",
+    "standards, purchase specifications, commercial labels, manufacturer remarks and external source bodies",
+    "modern rope selection, care, hygiene, retirement, knots, working loads, body contact, uplines, anchors, bondage and human suspension"
+  ],
+  "statistics": {
+    "allowed_source_bodies": 3,
+    "corpus_bytes": 13506,
+    "corpus_words": 1829,
+    "corpus_claim_paragraphs": 32,
+    "corpus_claim_citations": 32,
+    "html_surfaces": 14,
+    "pdf_pages": 13,
+    "pdf_pages_partially_retained": 9,
+    "pdf_pages_excluded": 4,
+    "blank_pdf_pages": 1,
+    "figures_excluded": 5,
+    "photographs_excluded": 2,
+    "plots_excluded": 3,
+    "tables_excluded": 3,
+    "controlled_exclusion_blocks": 8,
+    "component_records": 16
+  },
+  "artifacts": [
+    {
+      "path": "CORPUS.md",
+      "sha256": "b58c0888460e5ceafb69f5ca7afe1790b2cf66512794977bceddac069f79fc55"
+    },
+    {
+      "path": "README.md",
+      "sha256": "c759fbb4084776b7f7e777480f684c52a63e0b4c7e61fabf04e129aca1c3466a"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "3c369f8939486c1f99def296f7f02e99e1dad8398da1b12611e4b07ac9be2e55"
+    },
+    {
+      "path": "components.jsonl",
+      "sha256": "8299c8298fe4733c059128a29af08c9d2a6ebc4bbd351bc3a2af55da3d0c021d"
+    },
+    {
+      "path": "dispositions.jsonl",
+      "sha256": "49203e9f38ce635af5ebe10e1010e170311e4710c3a67f670528340c546277a3"
+    },
+    {
+      "path": "source_snapshot/provenance.json",
+      "sha256": "c79f04c06d2c108bde0aa89d12d2ee870ff65f2f4e6ab45551b0d4d3540a7a25"
+    },
+    {
+      "path": "sources.jsonl",
+      "sha256": "095e8410df833087c521c19f613a398797aa42f1dc977a51a4780eadb35b1082"
+    },
+    {
+      "path": "surfaces.jsonl",
+      "sha256": "43d4c84c9787dbf0fa66d3f7eaa87e87aa748e708f6939af990cb7d13e3df992"
+    },
+    {
+      "path": "tests/test_corpus.py",
+      "sha256": "6165d18f55156461e65734ed088094c2fbb16cfcb3707d7f023aa300585eeb49"
+    }
+  ]
+}

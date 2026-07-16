@@ -1,0 +1,147 @@
+{
+  "schema": "site-corpus-provenance",
+  "schema_version": "1.0",
+  "package_id": "nist_manila_rope_tests_t198_1921",
+  "retrieved_at": "2026-07-16T15:53:00Z",
+  "retrieval_policy": {
+    "allowed_urls": [
+      "https://www.nist.gov/nist-research-library/technologic-papers-1921",
+      "https://nvlpubs.nist.gov/nistpubs/nbstechnologic/nbstechnologicpaperT198.pdf",
+      "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications"
+    ],
+    "allowed_bodies_retrieved": 3,
+    "site_crawl_performed": false,
+    "mirrors_or_archives_used": false,
+    "search_snippets_used_as_evidence": false,
+    "linked_source_bodies_retrieved": 0,
+    "source_bodies_redistributed": false
+  },
+  "bodies": [
+    {
+      "source_id": "NIST-CATALOG-T198",
+      "source_url": "https://www.nist.gov/nist-research-library/technologic-papers-1921",
+      "retrieved_at": "2026-07-16T15:51:12Z",
+      "http_status": 200,
+      "media_type": "text/html; charset=UTF-8",
+      "body_bytes": 83289,
+      "body_sha256": "41af780343b7be8bb12fab9c41742eab7492f11562dd809c804356af57d18df6",
+      "body_sha512": "6e9efb85d839b2df50bf533e316f4dd5f19c1b9ef881dbeaf16cbb410628ecc5ec776847b44f9b124939ccc887764224279f3c2ae9d7a0220ed3b614a9ef4081"
+    },
+    {
+      "source_id": "NBS-T198-1921",
+      "source_url": "https://nvlpubs.nist.gov/nistpubs/nbstechnologic/nbstechnologicpaperT198.pdf",
+      "retrieved_at": "2026-07-16T15:50:41Z",
+      "http_status": 200,
+      "media_type": "application/pdf",
+      "body_bytes": 1207742,
+      "body_sha256": "bceb261d3ac009b71046b67a0ad400c632360bb7a61ba0c88c222ca31beb1f32",
+      "body_sha512": "c0f521ef8080a0a309a0a26abe914d315f2d9ebe37e8f297e5aebb83e893691b441b97cd938c08d66611e05d2ed0d35a4c7576552506f3f2144db3b976f6f840",
+      "last_modified": "2012-10-16T18:32:20Z"
+    },
+    {
+      "source_id": "NIST-TECHSERIES-RIGHTS",
+      "source_url": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+      "retrieved_at": "2026-07-16T15:50:48Z",
+      "http_status": 200,
+      "media_type": "text/html; charset=UTF-8",
+      "body_bytes": 66782,
+      "body_sha256": "35fc175a4a334c5a108b51fb5e098916a9cd2e842478bc5a426a6fb3e96f83f2",
+      "body_sha512": "d4a9c2abcab62bc55501d8ee3d07930fdd6cebc116c48bdf8ec22ba1c9bbbbc5f36e95e714d62ab1fe75aaa39f6c7329977624bfd11d2a2cd4f07c89d74e9db8",
+      "use_scope": "rights provenance only"
+    }
+  ],
+  "robots_audit": [
+    {
+      "host": "www.nist.gov",
+      "robots_url": "https://www.nist.gov/robots.txt",
+      "retrieved_at": "2026-07-16T15:50:48Z",
+      "http_status": 200,
+      "media_type": "text/plain; charset=utf-8",
+      "body_bytes": 2425,
+      "body_sha256": "0fed8806709b6ff2716921723b5077d1c19d152f760db983af60988cae0031dd",
+      "body_sha512": "c066fc8ff7d2951231c3092837953fb29d8ee17d074ef50bf06ab191448350f26baa214cd6bf39d8b24a1ea906377e70970573e1be1315c6453bc6ca5530b3a8",
+      "last_modified": "2026-06-17T22:45:47Z",
+      "target_paths_disallowed": false,
+      "robots_body_redistributed": false
+    },
+    {
+      "host": "nvlpubs.nist.gov",
+      "robots_url": "https://nvlpubs.nist.gov/robots.txt",
+      "retrieved_at": "2026-07-16T15:53:00Z",
+      "http_status": 404,
+      "media_type": "text/html",
+      "body_bytes": 1380,
+      "body_sha256": "6d219a49a0b5c00cb8245fb679d96f80ca4c89b0fae870ee3cd8d0eac09f4dff",
+      "body_sha512": "9bb1f410d43329f36db2f49eb2b3871b898e57e2229813d3a9ff036236b418bb89dd551d6a7730f641063c88aa0c2dfbffd9e32425bb5bc6851968fbf7f76b3e",
+      "policy_available_at_host_root": false,
+      "retrieval_constraint": "exact already-known PDF URL only; no host crawl or path discovery",
+      "robots_body_redistributed": false
+    }
+  ],
+  "doi_resolution": {
+    "requested_url": "https://doi.org/10.6028/nbst.6078",
+    "initial_http_status": 302,
+    "location": "https://nvlpubs.nist.gov/nistpubs/nbstechnologic/nbstechnologicpaperT198.pdf",
+    "final_http_status": 200,
+    "redirect_count": 1,
+    "final_body_matches_direct_pdf_sha256": true
+  },
+  "pdf_metadata": {
+    "source_id": "NBS-T198-1921",
+    "pages": 13,
+    "format": "PDF 1.6",
+    "encrypted": false,
+    "tagged": false,
+    "page_size_points": "variable; pdfinfo reports 461 x 677 points for the current page",
+    "text_layer": true,
+    "text_layer_description": "hidden OCR text over scanned page images",
+    "title": "Results of some tests of manila rope.",
+    "author_metadata": "Stang, A.H.; Strickenberg, L.R.",
+    "creator": "Digitized by the Internet Archive",
+    "producer": "Recoded by LuraDocument PDF v2.53",
+    "created_at": "2012-05-31T11:02:31Z",
+    "modified_at": "2012-10-16T18:32:20Z"
+  },
+  "bibliographic_resolution": {
+    "report_series": "Technologic Papers of the Bureau of Standards",
+    "report_number": "T198",
+    "title": "Results of Some Tests of Manila Rope",
+    "authors": [
+      "Ambrose H. Stang",
+      "Lory R. Strickenberg"
+    ],
+    "publication_year": 1921,
+    "issue_date": "1921-09-15",
+    "report_date": "1921-02-26",
+    "doi": "10.6028/nbst.6078",
+    "evidence": "The official NIST year catalog supplies series identity, T198, abbreviated authors and DOI; the report cover supplies full names, Bureau positions and issue date; the closing line supplies the report date. Later digitization and hosting dates are file provenance only."
+  },
+  "rights": {
+    "rights_status": "public_domain_us_federal_work_with_nist_residual_foreign_rights_grant",
+    "employee_authorship_evidence": "The report cover identifies Ambrose H. Stang as Associate Physicist and Lory R. Strickenberg as Assistant Mechanical Engineer, both of the Bureau of Standards.",
+    "series_evidence": "The official NIST 1921 catalog places the report in Technologic Papers of the Bureau of Standards and resolves T198 to DOI 10.6028/nbst.6078.",
+    "domestic_basis": "NIST technical-series policy states that employee-authored works are not subject to United States copyright; 17 U.S.C. 105.",
+    "foreign_rights_basis": "NIST technical-series policy provides a non-exclusive perpetual paid-up royalty-free worldwide grant for reprints and derivative works to the extent NIST asserts foreign rights.",
+    "third_party_caveat": "The policy warns that NIST publications may contain protected third-party work. Every photograph, visual mark, standard, purchase-specification body, manufacturer-specific remark and uncertain component is excluded.",
+    "rights_page_use": "rights provenance only",
+    "modification_notice": "Manually rewritten, narrowed and safety-bounded on 2026-07-16.",
+    "attribution": "Republished courtesy of the National Institute of Standards and Technology."
+  },
+  "audit": {
+    "html_surfaces": 14,
+    "pdf_pages": 13,
+    "pdf_pages_partially_retained": 9,
+    "pdf_pages_excluded": 4,
+    "blank_pages": 1,
+    "figures_excluded": 5,
+    "photographs_excluded": 2,
+    "plots_excluded": 3,
+    "tables_excluded": 3,
+    "controlled_exclusion_blocks": 8,
+    "component_records": 16,
+    "text_review": "all 13 pages OCR-screened and manually read against the scan; all catalog and rights-page surfaces manually reviewed",
+    "visual_review": "all 13 rendered PDF pages manually inspected in two ordered contact sheets; every substantive page checked at page resolution",
+    "source_body_retained": false,
+    "direct_training_ready": true
+  }
+}
