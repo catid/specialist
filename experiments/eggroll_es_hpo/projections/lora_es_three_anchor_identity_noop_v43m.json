@@ -1,0 +1,53 @@
+{
+  "already_evaluated_state": {
+    "all_four_ranks_exactly_restored": true,
+    "candidate_gate_content_sha256": "070d225fd279de5cb969c9c74d2200bf1978fbbf7e0ea2967be24688234f70b1",
+    "candidate_gate_file_sha256": "fc6ed9fc2908cd33975a21877e22269dfc1cdd4c5f89a7d14b51d5b0823bdc6a",
+    "candidate_gate_passed": false,
+    "candidate_state_sha256": "291027e22afc08a106e44675c73954ca5d4b0c2f1a2f5f946a82cc738748dfb3",
+    "exact_abort_content_sha256": "039f6c8d122c1d06aa06d42671631a604d8599af9873cabb11c60b2c97371de8",
+    "exact_abort_file_sha256": "83cc533e72100018a0498c4555c7f4f543bf78cf2c6bc2bdc248a6918ceea9b5",
+    "revision": "v43i"
+  },
+  "content_sha256_before_self_field": "b7d89edda779846efdb3ee9c8b0ac3dcb00953b751fe8de9654ad0b977ec9f91",
+  "current_fixed_holdout_cycle_eligible": false,
+  "decision": "do_not_launch_duplicate_gpu_evaluation",
+  "gpu_model_or_dataset_accessed": false,
+  "identity_basis": {
+    "coefficient_lists_equal_exactly": true,
+    "deterministic_scaled_tensor_update_equal_exactly": true,
+    "same_alpha": 0.00015,
+    "same_coefficient_sha256": "b090190a86f3219973255a7f1e8f5d652e661b380a819c6256a562edaa57bb8f",
+    "same_fp32_coefficients": [
+      -0.25657388823684996,
+      0.08436889117698224,
+      0.15486892353035092,
+      0.4206887176496099,
+      -0.1791394264716745,
+      -0.05200822058855066,
+      -0.11326234705951034,
+      0.3409427794138321
+    ],
+    "same_initial_master_sha256": "dfb8ef8981cd4a21bd8d342353fc3d9c84c5d4759c38973e1528245f2baff192",
+    "same_population_size": 8,
+    "same_seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570
+    ]
+  },
+  "protected_semantics_opened": false,
+  "schema": "lora-es-three-anchor-identity-noop-v43m",
+  "shadow_ood_holdout_or_heldout_opened": false,
+  "status": "cpu_only_noop_identical_to_rejected_v43i_candidate",
+  "three_anchor_result": {
+    "f1_anchor_added": true,
+    "f1_halfspace_nonbinding": true,
+    "projection_coefficients_changed_from_v43i": false
+  }
+}
