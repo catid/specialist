@@ -169,7 +169,10 @@ def build_panels_v61(strata: dict) -> dict:
         "unused_reserve": [compact(item, "unused_reserve", index)
                            for index, item in enumerate(reserve_source)],
         "conflict_units_are_connected_components_over_document_url_lineage_and_semantic_identity": True,
-        "candidate_or_model_outcomes_used": False,
+        "v61a_baseline_model_outcomes_used_for_train_only_stratification": True,
+        "future_candidate_outcomes_used_for_panel_selection": False,
+        "protected_or_holdback_outcomes_used": False,
+        "train_only_adaptive_design": True,
         "protected_semantics_opened": False,
         "panel_manifest_sha256": canonical_sha256_v61({
             "ranking": sorted(ranking_ids),

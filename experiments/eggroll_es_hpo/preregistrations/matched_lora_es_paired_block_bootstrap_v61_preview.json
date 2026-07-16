@@ -1,4 +1,10 @@
 {
+  "adaptive_design_provenance": {
+    "future_candidate_outcomes_used_for_panel_selection": false,
+    "protected_or_holdback_outcomes_used": false,
+    "train_only_adaptive_design": true,
+    "v61a_baseline_model_outcomes_used_for_train_only_stratification": true
+  },
   "calibration_from_v61b": {
     "all_actor_row_comparison_threshold_counts": {
       "0.01": 543,
@@ -21,8 +27,8 @@
       0.02131775845229112
     ]
   },
-  "content_sha256_before_self_field": "3e5e79e158e20bc8d5d37a15097e786fa5b03d702b03f036962d276c47c1b0f8",
-  "created_at_utc": "2026-07-16T09:48:46.543618+00:00",
+  "content_sha256_before_self_field": "1b25f3c667fc0e9eeddc19f1d20aebc70c2a0127db0c3eafe11c2f19fb35a0f0",
+  "created_at_utc": "2026-07-16T09:57:30.837184+00:00",
   "fixed_model_optimizer_recipe": {
     "actors": 4,
     "alpha": 0.00015,
@@ -75,9 +81,9 @@
   },
   "gpu_launch_authorized": false,
   "implementation_bindings": {
-    "preview_builder": "b3661f2a7130003b28fc9c0cd39a6c2b00d4f38fda3e54bfcdc49d0438b987b8",
-    "preview_tests": "56558eb5409a7ee7bda034a4a1a7a21538457949e7edebc60a053c2d473f303c",
-    "pure_design": "68e415e42fecb02912bc85f7389d4224980f62fb8b6f167af90854a6f69d69d5",
+    "preview_builder": "32fdac07dd0f9ea33933b2170feb9be9e2ea1f11a4791821d51dce2f8e13c072",
+    "preview_tests": "e8b39b9fa83e231af61f36bee70d55a3b769b83c32bf2999927ca7796b979287",
+    "pure_design": "a15f8566776e65fdf68875608c184b57091251ae5dd082e5b9aab2802bcdc525",
     "v52_design": "25a385911b24177630a9449c65b40d4eeccda5f6bbff3d67734e795efadb6f08"
   },
   "model_or_gpu_accessed_by_preview_builder": false,
@@ -122,9 +128,8 @@
     "zero_spread_or_failed_halfspace_action": "abort_before_update"
   },
   "panels": {
-    "candidate_or_model_outcomes_used": false,
     "conflict_units_are_connected_components_over_document_url_lineage_and_semantic_identity": true,
-    "content_sha256_before_self_field": "0c0095178890a319ee2e382b60faf4085d83baf99cf485b8e901290c21886f9c",
+    "content_sha256_before_self_field": "da71dc84ebebb500afee6158a1d16e0e364d32826557767ccf4bf5ef920f8eb4",
     "exact_sentinel": [
       {
         "base_exact_actor_count": 4,
@@ -171,8 +176,10 @@
         "unit_identity_sha256": "aa2af8f5c0eaede64c3acd990852475c441587c29bfa50fab0f30b2ed0061a66"
       }
     ],
+    "future_candidate_outcomes_used_for_panel_selection": false,
     "gpu_launch_authorized": false,
     "panel_manifest_sha256": "8162887547a7b1a821aa8a8cf8bf17600afd032e8180d7147d8e966b1896af39",
+    "protected_or_holdback_outcomes_used": false,
     "protected_semantics_opened": false,
     "ranking": [
       {
@@ -888,6 +895,7 @@
     "schema": "v61-content-free-ranking-holdback-sentinel-panels",
     "source_v61a_gate_passed": false,
     "status": "cpu_only_preview_launch_ineligible",
+    "train_only_adaptive_design": true,
     "untouched_holdback": [
       {
         "base_exact_actor_count": 0,
@@ -2431,7 +2439,8 @@
         "stratum": "actor_unstable",
         "unit_identity_sha256": "ffa65f0cb45bb896b37dd543b78bf246a2c6502835c475829652bdd72e8636ce"
       }
-    ]
+    ],
+    "v61a_baseline_model_outcomes_used_for_train_only_stratification": true
   },
   "protected_phase_contract": {
     "eval_ood_shadow_terminal_access_authorized": false,

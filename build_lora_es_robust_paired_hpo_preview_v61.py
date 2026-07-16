@@ -118,6 +118,12 @@ def build_preview_v61() -> dict:
             "V61A preregistered stable-exact 8/4/2 gate failed at 3/3/0; "
             "this preview does not relax or override that gate"
         ),
+        "adaptive_design_provenance": {
+            "v61a_baseline_model_outcomes_used_for_train_only_stratification": True,
+            "future_candidate_outcomes_used_for_panel_selection": False,
+            "protected_or_holdback_outcomes_used": False,
+            "train_only_adaptive_design": True,
+        },
         "new_launchable_preregistration_required": True,
         "scientific_change": (
             "Replace absolute signed-state generation ranks with antithetic, "

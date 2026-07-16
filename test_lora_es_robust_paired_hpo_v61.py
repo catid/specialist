@@ -36,6 +36,12 @@ def test_v61_panels_are_conflict_unit_disjoint_and_exact_is_sentinel_only():
     assert all(item["base_exact_actor_count"] == 0 for item in panels["ranking"])
     assert sorted(item["base_exact_actor_count"] for item in panels["exact_sentinel"]) == [2, 4, 4, 4]
     assert panels["gpu_launch_authorized"] is False
+    assert panels[
+        "v61a_baseline_model_outcomes_used_for_train_only_stratification"
+    ] is True
+    assert panels["future_candidate_outcomes_used_for_panel_selection"] is False
+    assert panels["protected_or_holdback_outcomes_used"] is False
+    assert panels["train_only_adaptive_design"] is True
 
 
 def test_v61_paired_bootstrap_is_deterministic_and_zero_for_identical_states():
@@ -81,5 +87,11 @@ def test_v61_preview_binds_censuses_and_cannot_launch():
     assert value["fixed_model_optimizer_recipe"]["population_size"] == 16
     assert value["paired_population_fitness"]["exact_in_population_composite"] is False
     assert value["protected_phase_contract"]["protected_path_open_count"] == 0
+    assert value["adaptive_design_provenance"] == {
+        "v61a_baseline_model_outcomes_used_for_train_only_stratification": True,
+        "future_candidate_outcomes_used_for_panel_selection": False,
+        "protected_or_holdback_outcomes_used": False,
+        "train_only_adaptive_design": True,
+    }
     encoded = json.dumps(value, sort_keys=True)
     assert '"question"' not in encoded and '"answer"' not in encoded
