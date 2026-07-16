@@ -1,0 +1,15 @@
+{
+  "content_sha256_before_self_field": "cd1930b49b5fe4b0592fcb7edcde07e476c29bf21798ad7da7ebe9ad03d221b7",
+  "failed_at_utc": "2026-07-16T04:06:09.382262+00:00",
+  "heldout_or_holdout_opened": false,
+  "message": "v39a GPU 0 inactive in shadow",
+  "protected_semantic_access_count": 2,
+  "protected_semantic_access_labels": [
+    "ood_prose",
+    "ood_qa"
+  ],
+  "schema": "v49d-ood-only-failure",
+  "shadow_opened": false,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_sft_v434_sampling_midpoint_ood_only_v49d.py\", line 425, in main\n    gpu = metrics.summarize_gpu(GPU_LOG, pid_map)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_sealed_candidate_eval_v39a.py\", line 407, in summarize_gpu\n    raise RuntimeError(f\"v39a GPU {gpu} inactive in {label}\")\nRuntimeError: v39a GPU 0 inactive in shadow\n",
+  "type": "RuntimeError"
+}
