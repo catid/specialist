@@ -1,0 +1,78 @@
+{
+  "artifacts": {
+    "manifest_sha256": "f1c51e15d5201ce224b383758a58225d22f370a544eeebea1b91cd69d98a141e",
+    "markdown_sha256": "a7550a53ff259c12f696c03ce4131b83c2d01c773e43892de406e25bf22304e0",
+    "snapshot_sha256": "b2c7257571994214d745a3be6140f0721228ab1028ee6ce4ecb88a0208ff5481"
+  },
+  "content": {
+    "external_reference_records": 4794,
+    "factual_image_descriptions": 0,
+    "headings": 5457,
+    "list_items": 16192,
+    "semantic_blocks": 30703,
+    "unique_external_reference_urls": 4722,
+    "word_counts": {
+      "machine_provenance_reference_titles": 25814,
+      "markdown_core_before_provenance_appendix": 430675,
+      "markdown_provenance_appendix": 2066,
+      "profile_and_event_fact_blocks": 191503,
+      "profile_reference_and_source_blocks": 157387
+    }
+  },
+  "coverage": {
+    "discovered_urls": 2078,
+    "excluded_by_reason": {
+      "duplicate_index": 362,
+      "navigation_shell": 2
+    },
+    "excluded_urls": 364,
+    "gated_urls": 0,
+    "included_by_category": {
+      "core": 4,
+      "event_occurrence": 222,
+      "lineage_profile": 1421,
+      "source_catalogue": 67
+    },
+    "included_records": 1714,
+    "media_only_urls": 0,
+    "substantive_included_urls": 1714
+  },
+  "errors": [],
+  "manual_quality_review": {
+    "checks": [
+      "heading, list, programme, evidence, date, and caution structure",
+      "grammatical paraphrase and sentence capitalization",
+      "absence of search and interactive-interface prompts",
+      "citation appendix compactness and machine-readable retention"
+    ],
+    "outcome": "passed after manual cleanup",
+    "reviewed_sections": [
+      "https://shibariatlas.org/",
+      "https://shibariatlas.org/about/",
+      "https://shibariatlas.org/methodology/",
+      "https://shibariatlas.org/updates/",
+      "https://shibariatlas.org/lineage/contexts/safety-consent-rope-bottom-pedagogy/",
+      "https://shibariatlas.org/lineage/contexts/rope-material-globalization/",
+      "https://shibariatlas.org/lineage/people/denki-akechi/",
+      "https://shibariatlas.org/lineage/studios/voxbody-studio/",
+      "https://shibariatlas.org/events/2026/tying-in-the-tropics-2026/",
+      "https://shibariatlas.org/events/2026/zagreb-in-ropes-2026/",
+      "https://shibariatlas.org/sources/",
+      "https://shibariatlas.org/sources/page/34/",
+      "https://shibariatlas.org/sources/page/67/"
+    ]
+  },
+  "quality": {
+    "deterministic_offline_build": true,
+    "external_site_content_copied": false,
+    "navigation_cookie_footer_seo_removed": true,
+    "original_dense_paraphrase": true,
+    "sealed_eval_ood_shadow_holdout_accessed": false,
+    "source_url_per_included_page": true,
+    "verbatim_site_mirror": false
+  },
+  "resource_id": "shibari_atlas",
+  "retrieved_at": "2026-07-16",
+  "schema": "site-corpus-report-v1",
+  "status": "complete"
+}
