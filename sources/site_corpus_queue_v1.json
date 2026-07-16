@@ -153,7 +153,15 @@
       "resource_id": "crash_restraint",
       "url": "https://crash-restraint.com/",
       "scope": "The entire accessible site inventory: every substantive instructional, safety, technique, equipment, anatomy, consent, floor-rope, suspension, upline, hardpoint, rigging, cultural, and reference page. Include all durable rope-bondage facts in the canonical Markdown; exclude only non-content shells, duplicates, inaccessible material, and genuinely unrelated pages with explicit reasons.",
-      "status": "pending"
+      "status": "complete",
+      "worker": "crash_restraint_corpus",
+      "commit": "79c33c2",
+      "artifacts": {
+        "manifest": "data/site_corpora/crash_restraint/manifest.json",
+        "markdown": "data/site_corpora/crash_restraint/crash_restraint.md",
+        "report": "data/site_corpora/crash_restraint/report.json",
+        "tests": "data/site_corpora/crash_restraint/test_crash_restraint_corpus.py"
+      }
     },
     {
       "resource_id": "theduchy",

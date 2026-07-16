@@ -28,6 +28,7 @@ the Markdown is not converted wholesale into automatically generated Q&A.
 - [`rope_topia/rope_topia.md`](rope_topia/rope_topia.md)
 - [`shibari_atlas/shibari_atlas.md`](shibari_atlas/shibari_atlas.md)
 - [`rope365/rope365.md`](rope365/rope365.md)
+- [`crash_restraint/crash_restraint.md`](crash_restraint/crash_restraint.md)
 
 Each directory also contains a manifest, report, provenance or source snapshot,
 and deterministic coverage tests. Corpus completeness means complete coverage
