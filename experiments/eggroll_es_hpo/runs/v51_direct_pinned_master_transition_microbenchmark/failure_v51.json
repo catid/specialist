@@ -1,0 +1,13 @@
+{
+  "content_sha256_before_self_field": "924baaee02bd4a4655af61e399ae132242394bd75fd635a01d02225ee89a9d25",
+  "emergency_exact_restore": null,
+  "emergency_exact_restore_failure": null,
+  "failed_at_utc": "2026-07-16T03:23:08.984583+00:00",
+  "message": "'runtime'",
+  "protected_semantics_opened": false,
+  "schema": "direct-pinned-master-transition-failure-v51",
+  "shadow_ood_holdout_or_benchmark_opened": false,
+  "strict_cleanup_failure": null,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_lora_es_transition_microbenchmark_v51.py\", line 731, in main\n    trainer, saved = v43i._make_trainer(prereg)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_es_multi_anchor_v43i.py\", line 241, in _make_trainer\n    trainer = v40c.make_trainer_v40c(prereg)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_topology_probe_v40c.py\", line 72, in make_trainer_v40c\n    trainer = _ORIGINAL_MAKE_TRAINER(prereg)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_topology_probe_v40a.py\", line 170, in make_trainer\n    expected_tuned_content = prereg[\"runtime\"][\"tuned_table_content_sha256\"]\n                             ~~~~~~^^^^^^^^^^^\nKeyError: 'runtime'\n",
+  "type": "KeyError"
+}
