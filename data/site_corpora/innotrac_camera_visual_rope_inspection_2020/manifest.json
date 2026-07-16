@@ -1,0 +1,91 @@
+{
+  "schema": "site-corpus-manifest",
+  "schema_version": "1.0",
+  "package_id": "innotrac_camera_visual_rope_inspection_2020",
+  "title": "Camera-based industrial rope inspection: bounded method evidence",
+  "corpus_type": "non-operational-industrial-rope-surface-inspection-markdown",
+  "source_scope": "one official article record, its exact final PDF, and the CC BY 4.0 legal code used only for rights provenance",
+  "evidence_scope": "industrial high-modulus synthetic running-rope surface-inspection architecture, exploratory indicator categories, disclosure context, validation gaps, and observability limits",
+  "excluded_application_scope": "finished natural-fibre or bondage rope inspection, care, retirement, working loads, body contact, knots, frictions, uplines, anchors, hardpoints, bondage, and human suspension",
+  "rights_status": "cc-by-4.0",
+  "license_spdx": "CC-BY-4.0",
+  "direct_training_ready": true,
+  "created_at": "2026-07-16",
+  "manual_audit": {
+    "source_identity": true,
+    "rights_and_components": true,
+    "all_pdf_pages": true,
+    "all_numbered_figures": true,
+    "all_material_html_surfaces": true,
+    "disclosures_and_validation": true,
+    "application_transfer_boundary": true
+  },
+  "schemas": {
+    "sources": "site-corpus-source@1.0",
+    "provenance": "site-corpus-provenance@1.0",
+    "surfaces": "manual-html-surface-dispositions",
+    "dispositions": "manual-pdf-page-dispositions",
+    "components": "manual-component-and-controlled-exclusion-dispositions"
+  },
+  "statistics": {
+    "allowed_source_bodies": 3,
+    "article_record_surfaces": 9,
+    "license_surfaces": 6,
+    "html_surfaces": 15,
+    "pdf_pages": 9,
+    "pdf_pages_partially_retained": 9,
+    "pdf_pages_excluded": 0,
+    "blank_pages": 0,
+    "figures_excluded": 9,
+    "tables_present": 0,
+    "tables_excluded": 0,
+    "logical_rules_or_equations_excluded": 1,
+    "reference_entries_excluded": 12,
+    "controlled_exclusion_blocks": 9,
+    "component_records": 18,
+    "corpus_bytes": 13097,
+    "corpus_words": 1648,
+    "corpus_claim_paragraphs": 32,
+    "corpus_evidence_paragraphs": 23,
+    "corpus_boundary_paragraphs": 9,
+    "corpus_citations": 32
+  },
+  "artifacts": {
+    "CORPUS.md": {
+      "bytes": 13097,
+      "sha256": "84fb8d18bb2fe1b1492dd7c96f5ffb04f6a134435a66f244064e3e9e13842f17"
+    },
+    "README.md": {
+      "bytes": 3115,
+      "sha256": "681357970a7107c1c81e0d878fca53b6494bbae1efc5fa20d6b8b4efd966e8c3"
+    },
+    "REPORT.md": {
+      "bytes": 9127,
+      "sha256": "fed6f367bcdec5bdb3af064cc76d11e1c3dae40a67631af71d6ea41af4246cd2"
+    },
+    "components.jsonl": {
+      "bytes": 7528,
+      "sha256": "ab1f50b703611fa77f7365b5f4e40c8def3f53782bd8167ebb48092410ff998d"
+    },
+    "dispositions.jsonl": {
+      "bytes": 4330,
+      "sha256": "e19eb89a78758d44311abf130931ce7246a6235c24b060c33d32e5cd109e0b6f"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 8474,
+      "sha256": "ab29228b8d33d26f9d391184c804749934ce3109497333707ad90f8ddc6e164a"
+    },
+    "sources.jsonl": {
+      "bytes": 4289,
+      "sha256": "379087b23e89114cce16d99074a9b4b78afac7305dd446f58c6d7ab53d1f9577"
+    },
+    "surfaces.jsonl": {
+      "bytes": 5392,
+      "sha256": "9221bd4a47c68206dd1a5e6fd206487302eac66458b4fa43cc740b1322aab623"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 14264,
+      "sha256": "88470044968f3cc948446878786200314d83268798382253e7283141d36600a3"
+    }
+  }
+}
