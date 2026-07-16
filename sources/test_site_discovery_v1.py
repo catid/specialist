@@ -2975,12 +2975,146 @@ class SourceCorpusContractTest(unittest.TestCase):
             for marker in required:
                 self.assertIn(marker, text, candidate_id)
 
+    def test_batch_019_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_019"
+        }
+        self.assertEqual(len(batch), 10)
+        expected = {
+            "accept_targeted_scope": {
+                "hse_temporary_works_faqs",
+                "bennett_pierre_knot_spatial_skill_2025",
+                "lang_coping_error_video_knot_training_2023",
+            },
+            "defer": {
+                "usfs_fpl_wood_condition_assessment_2025",
+                "wang_natural_rope_marine_degradation_2021",
+                "wire_accessible_consent_guidelines_2025",
+                "levy_operant_surgical_knot_training_2016",
+                "liu_self_directed_video_feedback_2026",
+                "wahlborg_friction_knot_terminology_2025",
+                "nhs_fainting_first_aid_currency_gate",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_019_accepts_mirror_queue_and_preserve_limits(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "hse_temporary_works_faqs": {
+                "2026-03-11",
+                "site assumptions",
+                "design and coordination are distinct roles",
+                "human suspension",
+            },
+            "bennett_pierre_knot_spatial_skill_2025": {
+                "279 and 147",
+                "explicitly label every teaching use an inference",
+                "did not train learners",
+                "gender-performance claims",
+            },
+            "lang_coping_error_video_knot_training_2023": {
+                "55 laparoscopically naive",
+                "no significant difference",
+                "right-handed-only",
+                "no retention",
+                "human-suspension",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_019_deferrals_are_rights_access_or_currency_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        markers = {
+            "usfs_fpl_wood_condition_assessment_2025": {
+                "mixed federal/nonfederal",
+                "111 physical",
+                "federal hosting does not",
+                "human-suspension",
+            },
+            "wang_natural_rope_marine_degradation_2021": {
+                "official pdf route returned http 403",
+                "do not reconstruct",
+                "marine immersion",
+                "retirement claim",
+            },
+            "wire_accessible_consent_guidelines_2025": {
+                "restricted access",
+                "mary ann liebert",
+                "participatory",
+                "legal or clinical equivalence",
+            },
+            "levy_operant_surgical_knot_training_2016": {
+                "association of bone and joint surgeons",
+                "tagteach",
+                "single method-skilled",
+                "human-suspension",
+            },
+            "liu_self_directed_video_feedback_2026": {
+                "cc by-nc-nd 4.0",
+                "62-participant",
+                "technology-company",
+                "deepseek or gpt",
+            },
+            "wahlborg_friction_knot_terminology_2025": {
+                "personal use only",
+                "160 complete",
+                "side-by-side",
+                "shibari",
+            },
+            "nhs_fainting_first_aid_currency_gate": {
+                "2026-02-23",
+                "2025-03-15",
+                "overdue",
+                "ordinary fainting guidance is a bondage-suspension protocol",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_018`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_019`", self.report)
 
 
 if __name__ == "__main__":

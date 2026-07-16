@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T14:41:59Z
-Latest batch: `discovery_batch_018`
+Latest review at: 2026-07-16T15:05:50Z
+Latest batch: `discovery_batch_019`
 
 ## Outcome
 
@@ -1300,3 +1300,70 @@ shadow, benchmark, probe, unrelated corpus body or unrelated repository
 artifact was read. No login, paywall, challenge, crawler restriction, mirror,
 cache, archive or snippet reconstruction was bypassed, and no reviewed source
 body entered a training artifact during discovery.
+
+## Discovery batch 019 outcome
+
+`discovery_batch_019` manually reviewed 10 exact-new source identities after
+title, DOI, PMID, PMCID, document and canonical-URL deduplication. It records 3
+`accept_targeted_scope`, 7 `defer`, and no rejection. The 3 accepted sources
+expand the canonical Markdown queue from 146 to 149 resources.
+
+This batch adds temporary-support governance, empirical evidence that knot
+configuration reasoning is a distinct non-rigid spatial task, and a randomized
+error-coping teaching model. It also preserves unusually valuable wood
+inspection, natural-rope aging, accessible consent, component-skill,
+multi-angle feedback, terminology and first-aid leads without admitting bodies
+whose rights, official access route or clinical currency remain unresolved.
+
+Repeated search leads for Masakazu Tanaka's 2014 kinbaku-globalization abstract
+and the 2025 PLOS offshore-mooring study were exact identity matches for
+existing batch 005 and batch 012 records and therefore did not create duplicate
+candidates or queue jobs.
+
+### Newly accepted sources
+
+| Source | Score | Exact useful scope and boundary |
+|---|---:|---|
+| [HSE temporary-works FAQs](https://www.hse.gov.uk/construction/faq-temporary-works.htm) | 33 | Current OGL text supports short-duration-is-not-less-critical, end-to-end responsibility, site-assumption validation, load-path completeness, relevant competence and separation of design from coordination. Exclude construction recipes, calculations, standards and universalized UK law; it cannot design or approve a ceiling-tension frame, hardpoint, upline or human suspension. |
+| [Knot-based non-rigid spatial-skill study](https://link.springer.com/article/10.1186/s41235-025-00621-w) | 34 | CC BY 4.0 methods support the bounded fact that reasoning about deformable string configurations is a measurable spatial challenge. Recognition under material or orientation changes and backward reasoning are teaching hypotheses only: the study did not train physical knot tying or test identity, security, loading, body contact or suspension. |
+| [Coping-error video knot-training randomized study](https://pmc.ncbi.nlm.nih.gov/articles/PMC10156798/) | 34 | CC BY 4.0 evidence adds active error diagnosis, selectable error-and-recovery examples, peer discussion and blinded verification to mastery demonstration. Preserve the null attempts-and-time primary outcome and all single-center, handedness, partner, questionnaire and no-retention limits; exclude procedures, checklists, videos, effects and rope-safety transfer. |
+
+### Permission-, access-, or currency-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [USFS *Wood and Timber Condition Assessment Manual*, third edition](https://research.fs.usda.gov/treesearch/69136) | 38 | The report mixes federal, retired-federal, university and private authors plus a nonfederal foreword and credited artwork. Federal hosting does not place the whole manual in the public domain. Keep the contributor map and topic inventory only until chapter and component rights are cleared. |
+| [Finished natural-rope marine-degradation study](https://www.sciencedirect.com/science/article/pii/S2468550X20300824) | 31 | The publisher marks the article CC BY 4.0, but its ordinary HTML route exposed only metadata and abstract and the official PDF route returned 403. No mirror or search-text reconstruction is allowed; a compliant official body route is needed before methods and limitations can be audited. |
+| [WIRE accessible research-consent guidelines](https://journals.sagepub.com/doi/10.1089/aut.2024.0263) | 36 | The participatory guidance is highly relevant, but the publisher labels it restricted access, credits Mary Ann Liebert copyright and requires permission. NIH funding and a public manuscript route do not grant derivative commercial model-training rights. |
+| [Operant-learning knot-skill study](https://link.springer.com/article/10.1007/s11999-015-4555-8) | 26 | Ordinary copyright blocks transformation. The small non-equivalent groups, single method-skilled assessor, weak demonstration control, TAGteach or clicker-training employment and institutional funding links also require careful bias review. |
+| [Self-directed multi-angle video-feedback trial](https://link.springer.com/article/10.1186/s12909-026-09104-y) | 29 | CC BY-NC-ND does not authorize a transformed commercial corpus. Keep the 62-person single-center design, tiny feedback subgroups, no detected feedback-mode difference, company co-development, funding and AI-language-editing disclosure as metadata while seeking permission. |
+| [Veterinary friction-knot terminology survey](https://pmc.ncbi.nlm.nih.gov/articles/PMC11665728/) | 32 | The journal and PMC record preserve a useful finding that specialists may assign inconsistent names to configurations, but the association holds copyright and the official issue says personal use only. Permission is required; veterinary suture naming does not control shibari terminology or prove knot security. |
+| [NHS fainting and first-aid pages](https://www.nhs.uk/symptoms/fainting/) | 28 | The text is generally OGL, but the fainting page's February 2026 review date and the first-aid overview's March 2025 review date have passed. Rights compatibility cannot cure overdue high-stakes medical guidance; retain dates and terms only pending current clinical reconciliation. |
+
+### Batch 019 rights, evidence, and safety controls
+
+Rights were resolved at page, article and component level. Public access, PMC
+deposit, federal funding or government hosting was never treated as a reuse
+license. OGL and CC BY bodies were accepted only with attribution, date,
+change, component and evidence-domain controls. Mixed authorship, ordinary
+copyright, personal-use-only terms, CC BY-NC-ND, an official-route 403 and
+overdue clinical review dates remain hard transformation gates.
+
+The accepted sources do not become operational rope instructions. Temporary-
+works governance cannot approve a body-support structure; a visual spatial-
+reasoning measure is not physical tying competence; and a laparoscopic coping-
+video trial is not evidence of rope-knot security or human-suspension safety.
+All teaching implications are explicitly marked for direct validation in rope
+education, and no source supplies a capacity, service-life, medical-treatment,
+anchor, hardpoint or upline rule.
+
+### Batch 019 access and clean-room statement
+
+Discovery read only the governing candidate ledger, queue, report and tests,
+the metadata package for an official report already under rights audit, and
+ordinary first-party public sources plus their explicit licenses, terms and
+robots routes. No QA, trainer, projection, evaluation, heldout, holdout, OOD,
+shadow, benchmark, probe, unrelated corpus body or unrelated repository
+artifact was read. No login, paywall, challenge, crawler restriction, mirror,
+cache, archive, search-text reconstruction or official-route 403 was bypassed,
+and no reviewed source body entered a training artifact during discovery.
