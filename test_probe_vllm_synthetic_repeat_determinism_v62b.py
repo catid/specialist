@@ -35,6 +35,15 @@ def test_probe_defaults_preserve_exact_v62_runtime_shape() -> None:
     assert args.max_num_seqs == 68
     assert args.torch_deterministic is False
     assert args.warmup_calls == 1
+    assert args.adapter_path == str(probe.ADAPTER)
+
+
+def test_file_sha256_binds_adapter_bytes(tmp_path: Path) -> None:
+    path = tmp_path / "weights"
+    path.write_bytes(b"bound-adapter")
+    assert probe.file_sha256(path) == (
+        "4bacf763bbc7ab0a6be0979f13c3aae2c353a83bd87bf2c27a6d083ab6af855a"
+    )
 
 
 def test_probe_source_is_synthetic_and_numeric_receipt_only() -> None:
@@ -46,4 +55,3 @@ def test_probe_source_is_synthetic_and_numeric_receipt_only() -> None:
     assert "protected_ood_shadow_or_terminal_opened\": False" in source
     assert "train_qa" not in source
     assert "holdout" not in source.lower()
-

@@ -37,6 +37,7 @@ def parser() -> argparse.ArgumentParser:
     value.add_argument("--max-num-seqs", type=int, default=68)
     value.add_argument("--torch-deterministic", action="store_true")
     value.add_argument("--warmup-calls", type=int, default=1)
+    value.add_argument("--adapter-path", default=str(ADAPTER))
     return value
 
 
@@ -48,6 +49,14 @@ def canonical_sha256(value: object) -> str:
         ensure_ascii=True,
         allow_nan=False,
     ).encode("ascii")).hexdigest()
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def token_hashes(outputs: list) -> list[dict]:
@@ -71,6 +80,11 @@ def main() -> int:
         raise RuntimeError("--max-num-seqs must be between 1 and 68")
     if not 1 <= args.warmup_calls <= 8:
         raise RuntimeError("--warmup-calls must be between 1 and 8")
+    adapter = Path(args.adapter_path).resolve()
+    adapter_weights = adapter / "adapter_model.safetensors"
+    adapter_config = adapter / "adapter_config.json"
+    if not adapter_weights.is_file() or not adapter_config.is_file():
+        raise RuntimeError("probe adapter path is incomplete")
     if os.environ.get("VLLM_BATCH_INVARIANT") not in (None, "0"):
         raise RuntimeError("probe requires installed Qwen GDN-compatible BI=false")
     os.environ["VLLM_BATCH_INVARIANT"] = "0"
@@ -118,7 +132,7 @@ def main() -> int:
         generation_config="vllm",
         seed=202607241,
     )
-    request = LoRARequest("v434-synthetic-probe", 1, str(ADAPTER))
+    request = LoRARequest("synthetic-probe", 1, str(adapter))
     params = SamplingParams(
         n=1,
         temperature=0.0,
@@ -180,6 +194,10 @@ def main() -> int:
             "CUDA_LAUNCH_BLOCKING": os.environ.get("CUDA_LAUNCH_BLOCKING"),
             "tensor_parallel_size": 1,
             "vllm_version": "0.25.0",
+        },
+        "adapter_identity": {
+            "weights_sha256": file_sha256(adapter_weights),
+            "config_sha256": file_sha256(adapter_config),
         },
         "warmup_call_rows_sha256": warmup_receipt_hashes,
         "warmup_rows_sha256": warmup_receipt_hashes[-1],

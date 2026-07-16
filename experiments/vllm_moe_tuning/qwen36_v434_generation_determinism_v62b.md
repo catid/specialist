@@ -14,7 +14,7 @@ receives one unscored full request call and then four identical recorded calls
 unless stated otherwise.
 
 Probe implementation SHA-256:
-`ba395e0b434cf498f838de8ee320464d273c27e9b9786730766c2c1c51d857c3`.
+`8dfaa169b3bfff8430d5efd60625d43dee26872693bee9aaa1452ffc0ec0a70a`.
 
 ## Primary four-actor comparison
 
@@ -63,12 +63,13 @@ path is not vetted for deterministic mode. Installed vLLM batch-invariant mode
 also fails closed for the model's GDN attention backend. These safeguards were
 not patched around.
 
-Two exploratory `CUDA_DEVICE_MAX_CONNECTIONS=1` labels changed 12 and 14 rows,
-which is within ordinary eager variation and is insufficient evidence for a
-runtime-identity change. A `CUDA_LAUNCH_BLOCKING=1` label changed 13 rows and
-increased post-load time to 33.45 seconds. Those environment values were not
-embedded by the earlier probe revision, so the labels are diagnostic only and
-cannot authorize promotion.
+A later four-actor run embedded and verified
+`CUDA_DEVICE_MAX_CONNECTIONS=1`; it changed 15, 14, 18, and 14 rows (mean
+15.25) in a mean 22.59 seconds. A four-actor run with embedded
+`CUDA_LAUNCH_BLOCKING=1` changed 17, 16, 12, and 15 rows (mean 15.0) while
+increasing mean post-load time to 34.46 seconds. Neither control improved on
+the ordinary eager mean of 14.75, so neither is promoted into the evaluator
+runtime identity.
 
 ## Decision
 
