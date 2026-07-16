@@ -919,6 +919,73 @@
       "whitespace_delimited_word_count": 2084
     },
     {
+      "artifact_id": "canonical-markdown:nist_manila_rope_tests_t198_1921",
+      "byte_length": 13506,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/nist_manila_rope_tests_t198_1921/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest",
+        "version": "1.0"
+      },
+      "manifest_sha256": "8be3bc4b5a3a17008b72d80b94e71259d8f9708f485a2ca71607d4878346c4be",
+      "markdown_path": "data/site_corpora/nist_manila_rope_tests_t198_1921/CORPUS.md",
+      "markdown_sha256": "b58c0888460e5ceafb69f5ca7afe1790b2cf66512794977bceddac069f79fc55",
+      "non_qa": true,
+      "qwen36_token_count": 2937,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:fe9a393f569f65d1329028b0dfc647868039b2c29092dbfc89e0f248e8ba336f",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "nist_manila_rope_tests_t198_1921",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The report cover identifies both authors in Bureau of Standards employee roles, the official NIST catalog binds T198, title, authors and DOI, and current NIST technical-series policy states that eligible employee-authored works are not protected by United States copyright while granting broad derivative reuse of residual foreign rights.",
+        "license": "Public Domain in the United States; NIST technical-series reuse permission",
+        "limitations": [
+          "All five figures, all three tables, formulas, equations, numerical outputs, performance values, procurement rules, standards, manufacturer remarks, commercial labels, period recommendations, visual matter, and third-party or uncertain components are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, HTML, OCR output, rendered page, photograph, plot, table, extraction, source body, or rights-policy prose is retained.",
+          "The 1921 report reflects heterogeneous commercial three-strand regular-lay Manila rope chiefly encountered through purchase-order testing, was not an investigational sampling program, used uneven observation coverage and different machines, and reported frequent termination-region failures.",
+          "Historical construction and test-design evidence cannot establish a current product, strength, service life, care, cleaning, hygiene, storage, inspection, retirement, knot, working load, body contact, upline, anchor, bondage, or human-suspension rule."
+        ],
+        "promotion_gate": "ready_with_nist_attribution_checksum_full_page_component_audit_and_historical_nontransfer_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "construction_vocabulary_sampling_test_design_and_negative_evidence_only",
+        "historical_1921_commercial_three_strand_regular_lay_manila_rope_scope_required",
+        "no_body_contact_upline_anchor_bondage_or_human_suspension_transfer",
+        "no_numeric_performance_formula_table_standard_procurement_recipe_rating_or_modern_recommendation",
+        "no_transfer_to_modern_products_6mm_jute_hemp_knots_care_hygiene_retirement_or_working_load",
+        "purchase_order_sample_was_not_an_investigational_program_and_had_uncontrolled_variables",
+        "uneven_observation_coverage_machine_assignment_and_termination_region_failures_limit_inference"
+      ],
+      "source_document_identity": {
+        "authors": [
+          "Ambrose H. Stang",
+          "Lory R. Strickenberg"
+        ],
+        "canonical_url": "https://doi.org/10.6028/nbst.6078",
+        "doi": "10.6028/nbst.6078",
+        "identity_type": "government_historical_primary_rope_test_report",
+        "official_pdf_sha256": "bceb261d3ac009b71046b67a0ad400c632360bb7a61ba0c88c222ca31beb1f32",
+        "official_pdf_url": "https://nvlpubs.nist.gov/nistpubs/nbstechnologic/nbstechnologicpaperT198.pdf",
+        "publication_date": "1921-09-15",
+        "report_date": "1921-02-26",
+        "report_number": "NBS Technologic Paper T198",
+        "source_resource_id": "nist_manila_rope_tests_t198_1921"
+      },
+      "source_document_identity_sha256": "fe9a393f569f65d1329028b0dfc647868039b2c29092dbfc89e0f248e8ba336f",
+      "source_label": "NBS Technologic Paper T198: Results of Some Tests of Manila Rope",
+      "unicode_word_count": 1841,
+      "whitespace_delimited_word_count": 1829
+    },
+    {
       "artifact_id": "canonical-markdown:nistir_6096_post_installed_anchors_review",
       "byte_length": 13473,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1616,7 +1683,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "dcbb54baad4f2848dc849ef7a88870805a4129cfca77586ae52295cf0761614d"
+    "sha256": "a1fbed81d41590ab0f00cc0a607d8fc3289ae1ce70523067f61150af477a89ac"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1655,7 +1722,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "e8b68c788e64a50e70acab1256276c8069c39d6cc0ec04943c1a571e13e0d1bd",
+  "source_tree_fingerprint_sha256": "9c4adc5c65ce77e12246e2f3fdb83d5bdc2d160cd2a35b16db949e7eb5daf130",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1665,11 +1732,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 28,
-    "byte_length": 4132548,
-    "qwen36_token_count": 1199657,
-    "source_document_split_group_count": 28,
-    "unicode_word_count": 543876,
-    "whitespace_delimited_word_count": 431822
+    "artifact_count": 29,
+    "byte_length": 4146054,
+    "qwen36_token_count": 1202594,
+    "source_document_split_group_count": 29,
+    "unicode_word_count": 545717,
+    "whitespace_delimited_word_count": 433651
   }
 }

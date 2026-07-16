@@ -372,6 +372,35 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
         }:
             self.assertIn(flag, hse["safety_transfer_flags"])
 
+    def test_nist_t198_identity_rights_and_transfer_gate_are_exact(self) -> None:
+        t198 = self.by_id["nist_manila_rope_tests_t198_1921"]
+        identity = t198["source_document_identity"]
+        self.assertEqual(identity["doi"], "10.6028/nbst.6078")
+        self.assertEqual(identity["report_number"], "NBS Technologic Paper T198")
+        self.assertEqual(
+            identity["official_pdf_sha256"],
+            "bceb261d3ac009b71046b67a0ad400c632360bb7a61ba0c88c222ca31beb1f32",
+        )
+        self.assertEqual(
+            identity["authors"],
+            ["Ambrose H. Stang", "Lory R. Strickenberg"],
+        )
+        self.assertEqual(
+            t198["markdown_sha256"],
+            "b58c0888460e5ceafb69f5ca7afe1790b2cf66512794977bceddac069f79fc55",
+        )
+        self.assertEqual(
+            t198["rights_basis"]["status"],
+            "federal_text_public_domain_presumption",
+        )
+        for flag in {
+            "purchase_order_sample_was_not_an_investigational_program_and_had_uncontrolled_variables",
+            "uneven_observation_coverage_machine_assignment_and_termination_region_failures_limit_inference",
+            "no_transfer_to_modern_products_6mm_jute_hemp_knots_care_hygiene_retirement_or_working_load",
+            "no_body_contact_upline_anchor_bondage_or_human_suspension_transfer",
+        }:
+            self.assertIn(flag, t198["safety_transfer_flags"])
+
     def test_safety_and_domain_transfer_flags_cannot_be_empty(self) -> None:
         for item in self.artifacts:
             flags = item["safety_transfer_flags"]
