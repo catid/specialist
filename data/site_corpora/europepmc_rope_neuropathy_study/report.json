@@ -1,0 +1,67 @@
+{
+  "capture_boundary": {
+    "authorized_get_routes": [
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10294117/fullTextXML"
+    ],
+    "excluded_routes": [
+      "Cureus publisher endpoint",
+      "United States PMC endpoint"
+    ],
+    "request_count": 1
+  },
+  "category_section_counts": {
+    "anatomy_injury_prevention": 10,
+    "bottoming_skills": 3,
+    "emergency_procedures": 3,
+    "teaching_evaluation": 11
+  },
+  "counts": {
+    "documents": 1,
+    "sections": 13,
+    "source_body_sections_reviewed": 5,
+    "source_tables_reviewed": 2,
+    "words": 1536
+  },
+  "direct_training_ready": true,
+  "evidence_level": {
+    "causal_protocol_validated": false,
+    "counted_injury_instances": 16,
+    "design": "retrospective injury-enriched survey/case series plus one detailed recurrent case report",
+    "main_cohort_people": 10,
+    "medical_attention_people": 5,
+    "nerve_conduction_study_people": 2,
+    "population_incidence_estimable": false,
+    "population_prevalence_estimable": false
+  },
+  "genuine_gaps": [
+    "representative exposure denominator and population injury rate",
+    "prospective symptom and outcome ascertainment",
+    "uniform clinical and electrodiagnostic confirmation",
+    "uninjured or alternative-exposure comparison groups",
+    "independent observations without repeated or bilateral counting",
+    "validated preventive interventions and standardized safety guidance"
+  ],
+  "hashes": {
+    "manifest_sha256": "ba11a483d86c3e79f2495a9584cb22be17c3e29a340981dbe4cb565df8043d4e",
+    "markdown_sha256": "1507aa6cbb4025b8287bd9e1646de4b91855932f9ac6e3fae0e8393ebafe4260",
+    "provenance_sha256": "f20fc524aef004ef736e3f2cd5efdd90c85c3782e963d40da3092afc926d0967",
+    "source_snapshot_sha256": "2419fe0e0757e6fcaf3b082e481b5a9688c41b322441f2bcc8a509a7772b4a85"
+  },
+  "non_qa": true,
+  "repository_provenance_discrepancy": {
+    "jats_pmid": "37384078",
+    "queued_canonical_url": "https://europepmc.org/article/MED/37324199",
+    "queued_pmid": "37324199",
+    "resolution": "corpus identity is anchored to the authorized PMCID route and its JATS DOI/PMID; no MED or publisher route was queried"
+  },
+  "resource_id": "europepmc_rope_neuropathy_study",
+  "role": "canonical_markdown_direct_training_source",
+  "schema": "site-corpus-report-v1",
+  "source_claim_policy": "Self-reported and clinical observations remain attributed; no prevalence, causal, safe-duration, or tying-protocol inference is added.",
+  "supported_categories": [
+    "anatomy_injury_prevention",
+    "bottoming_skills",
+    "emergency_procedures",
+    "teaching_evaluation"
+  ]
+}
