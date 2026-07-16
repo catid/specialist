@@ -161,6 +161,39 @@
       ]
     },
     {
+      "resource_id": "hse_treework_lifting_and_climbing",
+      "source_label": "HSE treework lifting and climbing guidance",
+      "manifest_path": "data/site_corpora/hse_treework_lifting_and_climbing/manifest.json",
+      "markdown_path": "data/site_corpora/hse_treework_lifting_and_climbing/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "official_guidance_source_family",
+        "publisher": "Health and Safety Executive (HSE)",
+        "jurisdiction": "United Kingdom",
+        "canonical_url": "https://www.hse.gov.uk/treework/safety-topics/arboriculture.htm",
+        "source_resource_id": "hse_treework_lifting_and_climbing"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "Eligible HSE Crown text is licensed under the Open Government Licence v3.0; the corpus records transformation and attribution.",
+        "license": "Open Government Licence v3.0",
+        "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_component_audit_and_domain_limits",
+        "limitations": [
+          "HSE logos, site chrome, images, illustrations, SVG, video, multimedia, linked publications, legislation, standards, and third-party material are excluded.",
+          "The corpus is a transformed synthesis rather than a legal reproduction or legal advice.",
+          "Open licensing does not transfer UK occupational treework rules into bondage or certify any tree, branch, anchor, hardpoint, rope, or human-suspension system."
+        ]
+      },
+      "safety_transfer_flags": [
+        "anchor_and_line_roles_do_not_establish_capacity_or_independence",
+        "no_tree_branch_anchor_hardpoint_bondage_or_human_suspension_certification",
+        "rescue_readiness_retained_without_rescue_procedure",
+        "uk_occupational_treework_context_required_no_universal_legal_transfer"
+      ]
+    },
+    {
       "resource_id": "rope365",
       "source_label": "Rope365 canonical instructional site digest",
       "manifest_path": "data/site_corpora/rope365/manifest.json",

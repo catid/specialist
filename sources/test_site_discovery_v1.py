@@ -1294,12 +1294,167 @@ class SourceCorpusContractTest(unittest.TestCase):
         }:
             self.assertIn(marker, text)
 
+    def test_batch_009_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_009"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_high_priority": {
+                "kink_education_code_of_conduct",
+            },
+            "accept_targeted_scope": {
+                "ninds_peripheral_neuropathy_2026",
+                "nist_rope_yarn_bending_fatigue_t300",
+            },
+            "defer": {
+                "nhs_neuropathy_compartment_warning_signs",
+                "safe_work_australia_industrial_rope_access_2022",
+                "karada_house_consent_accessibility_policies",
+                "international_guild_knot_tyers_public_library",
+                "consent_academy_public_resources",
+                "transport_nsw_fibre_rope_guide",
+                "arxiv_frictional_sliding_strength_2604",
+            },
+            "reject": {
+                "studio_allegory_current_primary_metadata",
+                "hitchin_bitches_skillshare_archive",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+    def test_batch_009_accepted_sources_have_explicit_reuse_bounds(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        accepted = {
+            "kink_education_code_of_conduct",
+            "ninds_peripheral_neuropathy_2026",
+            "nist_rope_yarn_bending_fatigue_t300",
+        }
+        for candidate_id in accepted:
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertTrue(source["decision"].startswith("accept_"))
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+
+        kecc = by_id["kink_education_code_of_conduct"]
+        kecc_text = json.dumps(kecc, sort_keys=True).lower()
+        for marker in {
+            "cc by-sa 4.0",
+            "sharealike",
+            "2019/version-1",
+            "demo-volunteer",
+            "do not present kecc as law, certification",
+        }:
+            self.assertIn(marker, kecc_text)
+
+        ninds = by_id["ninds_peripheral_neuropathy_2026"]
+        ninds_text = json.dumps(ninds, sort_keys=True).lower()
+        for marker in {
+            "march 13, 2026",
+            "motor-versus-autonomic",
+            "prolonged pressure",
+            "do not derive a safe rope placement",
+            "all treatment and medication content",
+        }:
+            self.assertIn(marker, ninds_text)
+
+        nist = by_id["nist_rope_yarn_bending_fatigue_t300"]
+        nist_text = json.dumps(nist, sort_keys=True).lower()
+        for marker in {
+            "1925",
+            "10.6028/nbst.8322",
+            "repeated bending",
+            "no. 18 manila yarn",
+            "do not generalize manila rope-yarn results",
+        }:
+            self.assertIn(marker, nist_text)
+
+    def test_batch_009_restricted_and_stale_sources_are_not_queued(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        expected_markers = {
+            "safe_work_australia_industrial_rope_access_2022": {
+                "cc by 4.0",
+                "non-commercial",
+                "rights conflict",
+            },
+            "transport_nsw_fibre_rope_guide": {
+                "personal or non-commercial",
+                "overrides",
+                "third-party",
+            },
+            "arxiv_frictional_sliding_strength_2604": {
+                "cc by-nc-nd 4.0",
+                "noderivatives",
+                "do not copy",
+            },
+            "international_guild_knot_tyers_public_library": {
+                "all rights reserved",
+                "verification",
+                "permission",
+            },
+            "karada_house_consent_accessibility_policies": {
+                "no open reuse license",
+                "permission",
+            },
+            "consent_academy_public_resources": {
+                "patreon",
+                "no open reuse license",
+                "permission",
+            },
+        }
+        for candidate_id, markers in expected_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in markers:
+                self.assertIn(marker, text, candidate_id)
+
+        nhs = by_id["nhs_neuropathy_compartment_warning_signs"]
+        self.assertEqual(nhs["decision"], "defer")
+        self.assertNotIn(nhs["candidate_id"], queued)
+        nhs_text = json.dumps(nhs, sort_keys=True).lower()
+        for marker in {
+            "october 10, 2025",
+            "february 9, 2026",
+            "overdue",
+            "never claim rope bondage causes compartment syndrome",
+        }:
+            self.assertIn(marker, nhs_text)
+
+        for candidate_id in {
+            "studio_allegory_current_primary_metadata",
+            "hitchin_bitches_skillshare_archive",
+        }:
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "reject")
+            self.assertEqual(source["training_use"], "rejected_low_yield")
+            self.assertNotIn(candidate_id, queued)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_008`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_009`", self.report)
 
 
 if __name__ == "__main__":

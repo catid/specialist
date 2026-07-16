@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T10:16:37Z
-Latest batch: `discovery_batch_008`
+Latest review at: 2026-07-16T10:37:58Z
+Latest batch: `discovery_batch_009`
 
 ## Outcome
 
@@ -526,3 +526,75 @@ existing source-corpus artifact was read. Public review used ordinary
 rightsholder and official government routes, respected access and reuse terms,
 and did not bypass a login, purchase, challenge, crawler restriction, missing
 body, or license. Discovery wrote no reviewed page body to a training artifact.
+
+## Discovery batch 009 outcome
+
+`discovery_batch_009` manually reviewed 12 additional, nonduplicate source
+candidates against their substantive public pages, primary metadata, current
+reuse terms, and safety value. It produced 1 `accept_high_priority`, 2
+`accept_targeted_scope`, 7 `defer`, and 2 `reject` decisions. The three accepted
+candidates expand the canonical corpus queue from 86 to 89 resources.
+
+This batch adds a kink-specific educator ethics code, a March 2026 federal
+clinical reference, and a primary federal rope-yarn flex-fatigue study. It also
+records several excellent sources that cannot yet enter transformed Markdown:
+two government guides have publication-specific noncommercial language, a new
+knot-mechanics preprint is NoDerivatives, and several practitioner or guild
+libraries lack an open corpus license.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Kink Education Code of Conduct v1](https://www.thekecc.org/fullVersion.html) | `accept_high_priority` | 38 | CC BY-SA 4.0, kink-specific guidance on consent modeling, student-demo power differentials, competence disclosure, inclusion, accountability, educator-student boundaries, vetting, incident disclosure, and privacy. Preserve the 2019/version-1 status and ShareAlike terms; do not present it as law, certification, current consensus, or proof that a person or venue is safe. |
+| [NINDS Peripheral Neuropathy](https://www.ninds.nih.gov/health-information/disorders/peripheral-neuropathy) | `accept_targeted_scope` | 31 | First-party federal clinical overview last reviewed March 13, 2026. Capture only motor/sensory/autonomic distinctions, signaling and symptom categories, compression/prolonged-pressure and vascular mechanisms, heterogeneity, and assessment limits. Exclude treatment, diagnosis, prognosis, disease catalogs, and every rope pressure, placement, timing, or recovery inference. |
+| [NBS T300: Standard Bending Test for Rope Yarns](https://nvlpubs.nist.gov/nistpubs/nbstechnologic/nbstechnologicpaperT300.pdf) | `accept_targeted_scope` | 34 | Reusable 1925 federal primary study showing why breaking strength does not represent repeated bending and how test variables, twist, humidity, variability, and replication matter. Preserve its manila rope-yarn and historical-method scope; do not generalize to finished jute, hemp, synthetic rope, care, retirement, bondage, or human suspension. |
+
+### Deferred sources
+
+| Source | Score | Why it is reference-only |
+|---|---:|---|
+| [Frictional Sliding Strength of Knotted and Capstan Configurations](https://arxiv.org/abs/2604.06962) | 40 | The April 2026 preprint is exceptionally relevant modern mechanics research across a clove hitch, capstan configurations, braided rope, experiments, FEM, DER, and an elastica model, but the arXiv record is CC BY-NC-ND 4.0. Retain versioned metadata and seek derivative/training permission; do not use experimental HTML as a workaround. |
+| [Safe Work Australia industrial rope-access guide](https://www.safeworkaustralia.gov.au/doc/guide-managing-risks-industrial-rope-access-systems) | 36 | The 36-page guide has outstanding anchor, inspection-record, rope-protection, planning, exclusion-zone, environment, and rescue coverage. Its specific notice names CC BY 4.0 but describes reuse as noncommercial, conflicting with the site-wide commercial-reuse statement. Clarification is required before transformation. |
+| [Transport for NSW fibre-rope guide](https://www.nsw.gov.au/employment/dogging-and-rigging/guide/part-1-general-rigging-principles/lifting-equipment/fibre-rope-and-slings) | 33 | The current 2024 guide covers construction, handling, inspection, knots, slings, and assemblies. Its document-specific notice permits only personal or noncommercial reproduction and overrides the site's CC BY default; linked videos and several components are third-party. |
+| [International Guild of Knot Tyers library](https://igkt.net/document-downloads/4-knotting-tools/24-knot-chart) | 32 | Strong knot nomenclature, chart, journal, history, and bibliography lead, but the official chart record is all-rights-reserved and key routes intermittently present a verification page. No challenge was bypassed; request item-level derivative/training permission. |
+| [Karada House policies](https://karada-house.de/policies-rules-expectations/) | 29 | Unusually concrete rope-space guidance on affirmative consent, confidentiality, recording, accessibility devices, sobriety, scents, agency, adaptation, support, and accountability, but no open license was found. Venue-specific rules must not be universalized. |
+| [NHS neuropathy and compartment-syndrome pages](https://www.nhs.uk/conditions/compartment-syndrome/) | 23 | OGL-compatible clinical pages, but their displayed review deadlines passed in October 2025 and February 2026. Defer until refreshed; England-specific emergency routing, treatment, tests, diagnosis, and rope-specific inference remain excluded. |
+| [Consent Academy public resources](https://www.consent.academy/consent-education-resources.html) | 23 | Valuable violation, allegation-response, uncertainty, harm, withdrawal, victim-blaming, pronoun, and privacy topics, but bodies are split across the site and Patreon and no open license was found. Titles are leads, not facts; seek permission for an exact complete-article allowlist. |
+
+### Rejected sources
+
+| Source | Score | Reason |
+|---|---:|---|
+| [Studio Allegory](https://studio-allegory.com/about/) | 9 | The durable public body is thin, copyrighted, promotional, and dominated by current classes, events, memberships, rental, policies, and shop content. Founder/date/location/URL trivia is not a useful corpus. |
+| [Hitchin' Bitches](https://www.hitchinbitch.com/) | 4 | The surviving all-rights-reserved site is a short mission statement plus a 2014–2019 event/link archive, with no substantive technique, history, safety, or evidence-bearing educational body. |
+
+### Batch 009 rights, evidence, and safety controls
+
+The two government-guide deferrals are deliberate. A site-wide open-license
+footer does not override a more specific publication notice. Safe Work
+Australia requires clarification of contradictory CC BY/noncommercial wording;
+Transport for NSW requires broader permission than personal or noncommercial
+reproduction. The arXiv paper's NoDerivatives term prevents transformed
+Markdown even though its HTML is publicly readable. IGKT verification, Karada
+House's resources challenge, Patreon bodies, paid material, member areas,
+images, video, diagrams, and third-party standards were not bypassed or copied.
+
+The accepted clinical and mechanics sources retain their evidence domains.
+NINDS describes broad peripheral neuropathy, not a rope diagnostic test. NBS
+T300 studies one historical manila rope yarn and a laboratory method, not
+finished bondage rope or current certification. KECC is a dated collective code
+for educators and producers, not an adjudication system or guarantee. None can
+certify a person, knot, rope, anchor, hardpoint, bondage system, or human
+suspension.
+
+### Batch 009 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery ledger,
+corpus queue, report, and discovery tests. No QA, training projection, manual
+review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe, trainer, or
+existing source-corpus artifact was read. Public review used ordinary official
+or rightsholder routes, respected access and reuse terms, and did not bypass a
+login, purchase, member area, Patreon restriction, verification challenge,
+crawler restriction, missing body, or license. Discovery wrote no reviewed page
+body to a training artifact.

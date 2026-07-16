@@ -275,6 +275,62 @@
       "whitespace_delimited_word_count": 1519
     },
     {
+      "artifact_id": "canonical-markdown:hse_treework_lifting_and_climbing",
+      "byte_length": 25061,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/hse_treework_lifting_and_climbing/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "cb2233639b64d6f5acdf8b15039d0659b2cb8f9b78588e1e56cfba70bcb6497f",
+      "markdown_path": "data/site_corpora/hse_treework_lifting_and_climbing/CORPUS.md",
+      "markdown_sha256": "f47bac571ece0c708af7e0d6401467f67dd3be5c7a028d859e6b791f34c9f4fa",
+      "non_qa": true,
+      "qwen36_token_count": 4904,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:1e7f419f084446e0f041d2eda835b6e160fd5ec1b7bf16e67ce09a8e3db0ae61",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "hse_treework_lifting_and_climbing",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "Eligible HSE Crown text is licensed under the Open Government Licence v3.0; the corpus records transformation and attribution.",
+        "license": "Open Government Licence v3.0",
+        "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "limitations": [
+          "HSE logos, site chrome, images, illustrations, SVG, video, multimedia, linked publications, legislation, standards, and third-party material are excluded.",
+          "The corpus is a transformed synthesis rather than a legal reproduction or legal advice.",
+          "Open licensing does not transfer UK occupational treework rules into bondage or certify any tree, branch, anchor, hardpoint, rope, or human-suspension system."
+        ],
+        "promotion_gate": "ready_with_attribution_component_audit_and_domain_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "anchor_and_line_roles_do_not_establish_capacity_or_independence",
+        "no_tree_branch_anchor_hardpoint_bondage_or_human_suspension_certification",
+        "rescue_readiness_retained_without_rescue_procedure",
+        "uk_occupational_treework_context_required_no_universal_legal_transfer"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.hse.gov.uk/treework/safety-topics/arboriculture.htm",
+        "identity_type": "official_guidance_source_family",
+        "jurisdiction": "United Kingdom",
+        "publisher": "Health and Safety Executive (HSE)",
+        "source_resource_id": "hse_treework_lifting_and_climbing"
+      },
+      "source_document_identity_sha256": "1e7f419f084446e0f041d2eda835b6e160fd5ec1b7bf16e67ce09a8e3db0ae61",
+      "source_label": "HSE treework lifting and climbing guidance",
+      "unicode_word_count": 3592,
+      "whitespace_delimited_word_count": 3605
+    },
+    {
       "artifact_id": "canonical-markdown:rope365",
       "byte_length": 90243,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -548,7 +604,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "5b5d1d6f146de04dc1a7d23eab85dedd47571890b61c11b36bbc3b9031508d4e"
+    "sha256": "9b619d7ec2a02fa2c0043992ea40d2d0a2388f12446e37c81e10a4e653bffb5e"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -587,7 +643,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "1dd8840548cfe4b9b09b8db052ece57382e3bbaa0d20f895f3e97ad71e0c52f4",
+  "source_tree_fingerprint_sha256": "f5ac5963149cf29db5fbf723caa9674096042d0166c091bb5f9fbcfddb20e61e",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -597,11 +653,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 10,
-    "byte_length": 3842180,
-    "qwen36_token_count": 1136466,
-    "source_document_split_group_count": 10,
-    "unicode_word_count": 503684,
-    "whitespace_delimited_word_count": 391960
+    "artifact_count": 11,
+    "byte_length": 3867241,
+    "qwen36_token_count": 1141370,
+    "source_document_split_group_count": 11,
+    "unicode_word_count": 507276,
+    "whitespace_delimited_word_count": 395565
   }
 }

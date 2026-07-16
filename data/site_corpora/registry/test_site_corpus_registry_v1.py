@@ -199,6 +199,16 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             "federal_text_public_domain_presumption",
         )
 
+        hse = self.by_id["hse_treework_lifting_and_climbing"]
+        self.assertEqual(
+            hse["source_document_identity"]["canonical_url"],
+            "https://www.hse.gov.uk/treework/safety-topics/arboriculture.htm",
+        )
+        self.assertEqual(hse["rights_basis"]["status"], "explicit_open_license")
+        self.assertEqual(
+            hse["rights_basis"]["license"], "Open Government Licence v3.0"
+        )
+
     def test_safety_and_domain_transfer_flags_cannot_be_empty(self) -> None:
         for item in self.artifacts:
             flags = item["safety_transfer_flags"]
@@ -219,6 +229,12 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
         self.assertIn(
             "no_bondage_rope_tree_limb_indoor_hardpoint_or_hardware_certification",
             self.by_id["usfs_rigging_for_trail_work"]["safety_transfer_flags"],
+        )
+        self.assertIn(
+            "no_tree_branch_anchor_hardpoint_bondage_or_human_suspension_certification",
+            self.by_id["hse_treework_lifting_and_climbing"][
+                "safety_transfer_flags"
+            ],
         )
 
     def test_policy_exclusion_notices_are_not_training_artifacts(self) -> None:
