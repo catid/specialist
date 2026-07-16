@@ -315,6 +315,33 @@ def test_v65a_runtime_uses_explicit_v434_request_and_read_only_edge_hashes():
     )
 
 
+def test_v65a_worker_retains_exact_v40a_identity_compatibility_receipt(
+    monkeypatch,
+):
+    import eggroll_es_worker_lora_v65a as worker65a
+
+    monkeypatch.setenv("CUDA_VISIBLE_DEVICES", "2")
+    monkeypatch.setattr(
+        worker65a.state_v41a.torch.cuda, "is_available", lambda: True,
+    )
+    monkeypatch.setattr(
+        worker65a.state_v41a.torch.cuda, "current_device", lambda: 0,
+    )
+    worker = worker65a.LoRAAdapterStateWorkerExtensionV65A.__new__(
+        worker65a.LoRAAdapterStateWorkerExtensionV65A
+    )
+    receipt = worker.runtime_identity_v40a()
+    assert set(receipt) == {
+        "schema", "pid", "cuda_visible_devices", "cuda_current_device",
+    }
+    assert receipt == {
+        "schema": "lora-topology-worker-identity-v40a",
+        "pid": worker65a.os.getpid(),
+        "cuda_visible_devices": "2",
+        "cuda_current_device": 0,
+    }
+
+
 def test_v65a_build_evidence_accepts_exact_order_and_rejects_receipt_reorder():
     import run_lora_es_ranking64_alpha_zero_calibration_v65a as runtime65a
 
@@ -620,6 +647,89 @@ def test_v65a_builder_is_deterministic_exact64_and_measurement_only(tmp_path):
     assert json.dumps(first_panel).lower().find('"answer"') == -1
 
 
+def test_v65a_r1_paths_and_predecessor_failed_attempt_are_exact_and_fresh():
+    import run_lora_es_ranking64_alpha_zero_calibration_v65a as runtime65a
+
+    assert builder.EXPERIMENT == "v65a_r1_ranking64_alpha_zero_calibration"
+    assert builder.RANKING_PANEL_OUTPUT.name == (
+        "v65a_r1_ranking64_alpha_zero_panel.json"
+    )
+    assert builder.PREREGISTRATION_OUTPUT.name == (
+        "ranking64_alpha_zero_calibration_v65a_r1.json"
+    )
+    assert builder.artifacts_v65a() == runtime65a.artifacts_v65a()
+    assert runtime65a.ATTEMPT.name == (
+        ".v65a_r1_ranking64_alpha_zero_calibration.attempt.json"
+    )
+    assert runtime65a.EVIDENCE.name.endswith("_v65a_r1.json")
+    assert runtime65a.ANALYSIS.name.endswith("_v65a_r1.json")
+    assert runtime65a.REPORT.name.endswith("_v65a_r1.json")
+    assert runtime65a.FAILURE.name == "failure_v65a_r1.json"
+    assert runtime65a.GPU_LOG.name == "gpu_activity_v65a_r1.jsonl"
+
+    predecessor = builder.predecessor_failed_attempt_binding_v65a()
+    assert set(predecessor) == {
+        "schema", "predecessor_preregistration",
+        "predecessor_ranking_panel", "predecessor_attempt",
+        "predecessor_failure", "diagnosed_failure_boundary",
+        "cleanup_receipt", "retry_contract",
+    }
+    assert predecessor["schema"] == (
+        "v65a-r1-predecessor-failed-attempt-binding"
+    )
+    assert predecessor["predecessor_attempt"] == {
+        "path": str(builder.PREDECESSOR_ATTEMPT_V65A),
+        "file_sha256": (
+            "d64f88a3924d34557be38bc2f43b0a714017fd6eefc6d79baaf7cb3af1510f2e"
+        ),
+        "content_sha256": (
+            "b44bbd11525ea3f4f9be8378c97955f8c4b9edb0eecf44b4b4e7a5945298f2b6"
+        ),
+    }
+    assert predecessor["predecessor_failure"] == {
+        "path": str(builder.PREDECESSOR_FAILURE_V65A),
+        "file_sha256": (
+            "bb642eba1a5e4ceaa53e14a67f68eb39544de613e7c6b04089e34c56a9640011"
+        ),
+        "content_sha256": (
+            "99a00ab1dfd9c3ce1811206cfacd17643fcdf2062fa692012fff3ed47aedfdf7"
+        ),
+    }
+    boundary = predecessor["diagnosed_failure_boundary"]
+    assert boundary["model_actors_constructed_and_model_or_gpu_runtime_accessed"] \
+        is True
+    assert boundary["attempt_model_loaded_flag_is_prelaunch_snapshot_only"] \
+        is True
+    assert boundary["failing_collective_rpc"] == "runtime_identity_v40a"
+    assert boundary["authorized_semantic_prefix_decoded"] is False
+    assert boundary["generation_started"] is False
+    assert boundary["scoring_or_numeric_outcome_observed"] is False
+    assert predecessor["cleanup_receipt"] == {
+        "engine_kill_count": 4,
+        "placement_group_remove_count": 4,
+        "all_four_gcs_states_removed": True,
+        "all_before_states_created": True,
+        "all_after_states_removed": True,
+        "cleanup_errors_empty": True,
+        "ray_shutdown_attempted": True,
+        "final_four_gpu_idle": True,
+    }
+    retry = predecessor["retry_contract"]
+    assert retry["failed_artifact_path_reused"] is False
+    assert retry["schedule_or_numeric_contract_changed"] is False
+    assert retry["candidate_hpo_update_projection_or_promotion_authorized"] \
+        is False
+    assert retry["v65_population_authorized"] is False
+
+
+def test_v65a_predecessor_rebuild_rejects_changed_exact_file_hash(monkeypatch):
+    monkeypatch.setattr(
+        builder, "PREDECESSOR_FAILURE_FILE_SHA256_V65A", _sha("changed"),
+    )
+    with pytest.raises(RuntimeError, match="sealed file changed"):
+        builder.predecessor_failed_attempt_binding_v65a()
+
+
 def test_v65a_builder_binds_prefix_schedule_engine_receipts_and_cluster_gate():
     panel, sources = builder.sealed_source_bindings_v65a()
     implementation = builder.implementation_bindings_v65a(
@@ -824,4 +934,44 @@ def test_v65a_runtime_loader_rejects_rehashed_missing_or_changed_binding(
             ],
         )
         with pytest.raises(RuntimeError):
+            runtime.load_preregistration_v65a(args)
+
+
+def test_v65a_runtime_loader_rejects_rehashed_predecessor_hash_or_fact_tamper(
+    tmp_path,
+):
+    _panel, preregistration = builder.build_v65a(
+        ranking_panel_output=tmp_path / "ranking-panel.json",
+    )
+    runtime = importlib.import_module(
+        "run_lora_es_ranking64_alpha_zero_calibration_v65a"
+    )
+    variants = []
+    missing_hash = copy.deepcopy(preregistration)
+    missing_hash["predecessor_failed_attempt"]["predecessor_failure"].pop(
+        "content_sha256"
+    )
+    variants.append(("missing-hash", missing_hash))
+    changed_fact = copy.deepcopy(preregistration)
+    changed_fact["predecessor_failed_attempt"][
+        "diagnosed_failure_boundary"
+    ]["authorized_semantic_prefix_decoded"] = True
+    variants.append(("changed-fact", changed_fact))
+    for label, value in variants:
+        value.pop("content_sha256_before_self_field")
+        value["content_sha256_before_self_field"] = (
+            subject.canonical_sha256_v65a(value)
+        )
+        path = tmp_path / f"tampered-predecessor-{label}.json"
+        path.write_bytes(builder.json_payload_v65a(value))
+        args = SimpleNamespace(
+            preregistration=str(path),
+            preregistration_sha256=(
+                subject.population65.file_sha256_v65(path)
+            ),
+            preregistration_content_sha256=value[
+                "content_sha256_before_self_field"
+            ],
+        )
+        with pytest.raises(RuntimeError, match="preregistration contract"):
             runtime.load_preregistration_v65a(args)

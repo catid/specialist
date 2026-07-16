@@ -406,7 +406,7 @@ def _fixture(tmp_path: Path) -> subject.FinalizerSourcesV65A:
         "analysis": str(paths["analysis"]),
         "report": str(paths["report"]),
         "gpu_log": str(paths["gpu_log"]),
-        "failure": str(tmp_path / "failure_v65a.json"),
+        "failure": str(tmp_path / runtime.FAILURE.name),
     })
     prereg = _self_hashed(prereg)
     prereg_source = _write_source(paths["preregistration"], prereg)
@@ -766,6 +766,21 @@ def test_v65a_finalizer_rejects_reduced_implementation_closure(tmp_path):
     )
     sources = _replace_json_source(sources, "preregistration", prereg)
     with pytest.raises(RuntimeError, match="preregistration"):
+        subject.build_finalized_v65a(sources)
+
+
+def test_v65a_finalizer_rejects_rehashed_predecessor_boundary_tamper(
+    tmp_path,
+):
+    sources = _fixture(tmp_path)
+    prereg = json.loads(
+        sources.preregistration.path.read_text(encoding="utf-8")
+    )
+    prereg["predecessor_failed_attempt"]["diagnosed_failure_boundary"][
+        "authorized_semantic_prefix_decoded"
+    ] = True
+    sources = _replace_json_source(sources, "preregistration", prereg)
+    with pytest.raises(RuntimeError, match="predecessor"):
         subject.build_finalized_v65a(sources)
 
 

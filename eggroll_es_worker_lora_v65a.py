@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import os
 import time
 
 import eggroll_es_worker_lora_v41a as state_v41a
@@ -12,6 +13,18 @@ from eggroll_es_worker_lora_v41a import adapter_identity_v41a
 
 class LoRAAdapterStateWorkerExtensionV65A(LoRAAdapterStateWorkerExtensionV64):
     """Re-materialize the pinned master without changing canonical state."""
+
+    def runtime_identity_v40a(self):
+        """Retain the exact V40A worker-identity compatibility endpoint."""
+        return {
+            "schema": "lora-topology-worker-identity-v40a",
+            "pid": os.getpid(),
+            "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
+            "cuda_current_device": (
+                int(state_v41a.torch.cuda.current_device())
+                if state_v41a.torch.cuda.is_available() else None
+            ),
+        }
 
     def runtime_active_lora_v65a(
         self,

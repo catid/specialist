@@ -18,14 +18,58 @@ import run_lora_es_v59_vs_v434_robust_confirmation_v64 as runtime64
 ROOT = Path(__file__).resolve().parent
 RANKING_PANEL_OUTPUT = (
     ROOT / "experiments/eggroll_es_hpo/datasets/"
-    "v65a_ranking64_alpha_zero_panel.json"
+    "v65a_r1_ranking64_alpha_zero_panel.json"
 ).resolve()
 PREREGISTRATION_OUTPUT = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
+    "ranking64_alpha_zero_calibration_v65a_r1.json"
+).resolve()
+EXPERIMENT = "v65a_r1_ranking64_alpha_zero_calibration"
+RUN_DIR = (ROOT / "experiments/eggroll_es_hpo/runs" / EXPERIMENT).resolve()
+
+PREDECESSOR_RANKING_PANEL_V65A = (
+    ROOT / "experiments/eggroll_es_hpo/datasets/"
+    "v65a_ranking64_alpha_zero_panel.json"
+).resolve()
+PREDECESSOR_RANKING_PANEL_FILE_SHA256_V65A = (
+    "916aaa6d30d059207a4da02ce67368b3707bb46ac17e2fe1636a4f4e4aa48094"
+)
+PREDECESSOR_RANKING_PANEL_CONTENT_SHA256_V65A = (
+    "267337eb9711b8592178afa98482d188edd4db4e715f74eb63c0a64fb90330c8"
+)
+PREDECESSOR_PREREGISTRATION_V65A = (
+    ROOT / "experiments/eggroll_es_hpo/preregistrations/"
     "ranking64_alpha_zero_calibration_v65a.json"
 ).resolve()
-EXPERIMENT = "v65a_ranking64_alpha_zero_calibration"
-RUN_DIR = (ROOT / "experiments/eggroll_es_hpo/runs" / EXPERIMENT).resolve()
+PREDECESSOR_PREREGISTRATION_FILE_SHA256_V65A = (
+    "473148e96b3c0153fa32abe2d2790bc089ef42cb854f6bf4808946598a892b99"
+)
+PREDECESSOR_PREREGISTRATION_CONTENT_SHA256_V65A = (
+    "5de8762a06e90611f8f439cf6606c598b8f26b0a809e3db206df2a8f2e5496f3"
+)
+PREDECESSOR_ATTEMPT_V65A = (
+    ROOT / "experiments/eggroll_es_hpo/runs/"
+    ".v65a_ranking64_alpha_zero_calibration.attempt.json"
+).resolve()
+PREDECESSOR_ATTEMPT_FILE_SHA256_V65A = (
+    "d64f88a3924d34557be38bc2f43b0a714017fd6eefc6d79baaf7cb3af1510f2e"
+)
+PREDECESSOR_ATTEMPT_CONTENT_SHA256_V65A = (
+    "b44bbd11525ea3f4f9be8378c97955f8c4b9edb0eecf44b4b4e7a5945298f2b6"
+)
+PREDECESSOR_FAILURE_V65A = (
+    ROOT / "experiments/eggroll_es_hpo/runs/"
+    "v65a_ranking64_alpha_zero_calibration/failure_v65a.json"
+).resolve()
+PREDECESSOR_FAILURE_FILE_SHA256_V65A = (
+    "bb642eba1a5e4ceaa53e14a67f68eb39544de613e7c6b04089e34c56a9640011"
+)
+PREDECESSOR_FAILURE_CONTENT_SHA256_V65A = (
+    "99a00ab1dfd9c3ce1811206cfacd17643fcdf2062fa692012fff3ed47aedfdf7"
+)
+PREDECESSOR_FAILURE_MESSAGE_SHA256_V65A = (
+    "50af24ded76854ac98724e20e8fbffcec146aae3228734b092f35151a2204e62"
+)
 
 V64_RUNTIME_CRITICAL_ENTRY_PATHS_V65A = {
     f"v64_runtime__{name}": Path(path).resolve()
@@ -202,11 +246,176 @@ def artifacts_v65a() -> dict:
     return {
         "run_directory": str(RUN_DIR),
         "attempt": str(RUN_DIR.parent / f".{EXPERIMENT}.attempt.json"),
-        "gpu_log": str(RUN_DIR / "gpu_activity_v65a.jsonl"),
-        "evidence": str(RUN_DIR / "ranking64_alpha_zero_evidence_v65a.json"),
-        "analysis": str(RUN_DIR / "ranking64_alpha_zero_analysis_v65a.json"),
-        "report": str(RUN_DIR / "ranking64_alpha_zero_report_v65a.json"),
-        "failure": str(RUN_DIR / "failure_v65a.json"),
+        "gpu_log": str(RUN_DIR / "gpu_activity_v65a_r1.jsonl"),
+        "evidence": str(
+            RUN_DIR / "ranking64_alpha_zero_evidence_v65a_r1.json"
+        ),
+        "analysis": str(
+            RUN_DIR / "ranking64_alpha_zero_analysis_v65a_r1.json"
+        ),
+        "report": str(
+            RUN_DIR / "ranking64_alpha_zero_report_v65a_r1.json"
+        ),
+        "failure": str(RUN_DIR / "failure_v65a_r1.json"),
+    }
+
+
+def predecessor_failed_attempt_binding_v65a() -> dict:
+    """Rebuild the exact failed-launch boundary without opening semantics."""
+    panel = population65.read_exact_self_hashed_v65(
+        PREDECESSOR_RANKING_PANEL_V65A,
+        PREDECESSOR_RANKING_PANEL_FILE_SHA256_V65A,
+        PREDECESSOR_RANKING_PANEL_CONTENT_SHA256_V65A,
+    )
+    preregistration = population65.read_exact_self_hashed_v65(
+        PREDECESSOR_PREREGISTRATION_V65A,
+        PREDECESSOR_PREREGISTRATION_FILE_SHA256_V65A,
+        PREDECESSOR_PREREGISTRATION_CONTENT_SHA256_V65A,
+    )
+    attempt = population65.read_exact_self_hashed_v65(
+        PREDECESSOR_ATTEMPT_V65A,
+        PREDECESSOR_ATTEMPT_FILE_SHA256_V65A,
+        PREDECESSOR_ATTEMPT_CONTENT_SHA256_V65A,
+    )
+    failure = population65.read_exact_self_hashed_v65(
+        PREDECESSOR_FAILURE_V65A,
+        PREDECESSOR_FAILURE_FILE_SHA256_V65A,
+        PREDECESSOR_FAILURE_CONTENT_SHA256_V65A,
+    )
+    cleanup = failure.get("cleanup", {})
+    before = cleanup.get("before", [])
+    after = cleanup.get("after", [])
+    predecessor_artifacts = preregistration.get("artifacts", {})
+    predecessor_outcome_paths = [
+        predecessor_artifacts.get(name)
+        for name in ("evidence", "analysis", "report", "gpu_log")
+    ]
+    if (
+        panel.get("schema") != "v65-robust-sampling-ranking-panel"
+        or panel.get("ranking_units") != 64
+        or panel.get("question_answer_or_generation_text_persisted") is not False
+        or panel.get("protected_semantics_opened") is not False
+        or preregistration.get("schema")
+        != "v65a-ranking64-alpha-zero-calibration-preregistration"
+        or preregistration.get("artifacts", {}).get("attempt")
+        != str(PREDECESSOR_ATTEMPT_V65A)
+        or preregistration.get("artifacts", {}).get("failure")
+        != str(PREDECESSOR_FAILURE_V65A)
+        or any(
+            not isinstance(path, str) or Path(path).resolve().exists()
+            for path in predecessor_outcome_paths
+        )
+        or attempt.get("schema") != "v65a-ranking64-alpha-zero-attempt"
+        or attempt.get("status") != "launching_exact64_calibration_only"
+        or attempt.get("phase")
+        != "before_authorized_train_semantics_model_ray_or_gpu_load"
+        or attempt.get("model_loaded_or_gpu_compute_started") is not False
+        or attempt.get("preregistration_file_sha256")
+        != PREDECESSOR_PREREGISTRATION_FILE_SHA256_V65A
+        or attempt.get("preregistration_content_sha256")
+        != PREDECESSOR_PREREGISTRATION_CONTENT_SHA256_V65A
+        or attempt.get(
+            "candidate_hpo_update_projection_or_protected_access"
+        ) is not False
+        or failure.get("schema")
+        != "v65a-ranking64-alpha-zero-calibration-failure"
+        or failure.get("type") != "RayTaskError(NotImplementedError)"
+        or failure.get("message_sha256")
+        != PREDECESSOR_FAILURE_MESSAGE_SHA256_V65A
+        or failure.get("raw_error_message_or_traceback_persisted") is not False
+        or failure.get(
+            "candidate_hpo_update_projection_or_promotion_performed"
+        ) is not False
+        or failure.get(
+            "holdback_sentinel_reserve_ood_terminal_or_protected_opened"
+        ) is not False
+        or failure.get(
+            "raw_question_answer_prompt_or_generation_text_persisted"
+        ) is not False
+        or failure.get(
+            "adaptive_retry_drop_reorder_or_early_stop_performed"
+        ) is not False
+        or not isinstance(before, list) or len(before) != 4
+        or not isinstance(after, list) or len(after) != 4
+        or any(item.get("state") != "CREATED" for item in before)
+        or any(item.get("state") != "REMOVED" for item in after)
+        or type(cleanup.get("engine_kill_count")) is not int
+        or cleanup.get("engine_kill_count") != 4
+        or type(cleanup.get("placement_group_remove_count")) is not int
+        or cleanup.get("placement_group_remove_count") != 4
+        or cleanup.get("all_four_gcs_states_removed") is not True
+        or failure.get("cleanup_errors") != []
+        or failure.get("ray_shutdown_attempted_even_without_complete_trainer")
+        is not True
+        or failure.get("final_gpu_idle")
+        != {"all_four_compute_process_lists_empty": True}
+    ):
+        raise RuntimeError("v65a predecessor failed-attempt boundary changed")
+
+    def binding(path: Path, file_sha256: str, content_sha256: str) -> dict:
+        return {
+            "path": str(path),
+            "file_sha256": file_sha256,
+            "content_sha256": content_sha256,
+        }
+
+    return {
+        "schema": "v65a-r1-predecessor-failed-attempt-binding",
+        "predecessor_preregistration": binding(
+            PREDECESSOR_PREREGISTRATION_V65A,
+            PREDECESSOR_PREREGISTRATION_FILE_SHA256_V65A,
+            PREDECESSOR_PREREGISTRATION_CONTENT_SHA256_V65A,
+        ),
+        "predecessor_ranking_panel": binding(
+            PREDECESSOR_RANKING_PANEL_V65A,
+            PREDECESSOR_RANKING_PANEL_FILE_SHA256_V65A,
+            PREDECESSOR_RANKING_PANEL_CONTENT_SHA256_V65A,
+        ),
+        "predecessor_attempt": binding(
+            PREDECESSOR_ATTEMPT_V65A,
+            PREDECESSOR_ATTEMPT_FILE_SHA256_V65A,
+            PREDECESSOR_ATTEMPT_CONTENT_SHA256_V65A,
+        ),
+        "predecessor_failure": binding(
+            PREDECESSOR_FAILURE_V65A,
+            PREDECESSOR_FAILURE_FILE_SHA256_V65A,
+            PREDECESSOR_FAILURE_CONTENT_SHA256_V65A,
+        ),
+        "diagnosed_failure_boundary": {
+            "type": "RayTaskError(NotImplementedError)",
+            "message_sha256": PREDECESSOR_FAILURE_MESSAGE_SHA256_V65A,
+            "model_actors_constructed_and_model_or_gpu_runtime_accessed": True,
+            "attempt_model_loaded_flag_is_prelaunch_snapshot_only": True,
+            "actor_runtime_identity_validation_completed": True,
+            "failing_collective_rpc": "runtime_identity_v40a",
+            "worker_method_absent_from_v65a_inheritance_chain": True,
+            "gpu_monitor_started": False,
+            "authorized_semantic_prefix_decoded": False,
+            "generation_started": False,
+            "scoring_or_numeric_outcome_observed": False,
+        },
+        "cleanup_receipt": {
+            "engine_kill_count": 4,
+            "placement_group_remove_count": 4,
+            "all_four_gcs_states_removed": True,
+            "all_before_states_created": True,
+            "all_after_states_removed": True,
+            "cleanup_errors_empty": True,
+            "ray_shutdown_attempted": True,
+            "final_four_gpu_idle": True,
+        },
+        "retry_contract": {
+            "fresh_ranking_panel_path": str(RANKING_PANEL_OUTPUT),
+            "fresh_preregistration_path": str(PREREGISTRATION_OUTPUT),
+            "fresh_attempt_path": str(
+                RUN_DIR.parent / f".{EXPERIMENT}.attempt.json"
+            ),
+            "fresh_run_directory": str(RUN_DIR),
+            "failed_artifact_path_reused": False,
+            "schedule_or_numeric_contract_changed": False,
+            "candidate_hpo_update_projection_or_promotion_authorized": False,
+            "v65_population_authorized": False,
+        },
     }
 
 
@@ -283,6 +492,9 @@ def build_preregistration_v65a(
             "terminal_holdout": False,
             "promotion": False,
         },
+        "predecessor_failed_attempt": (
+            predecessor_failed_attempt_binding_v65a()
+        ),
         "source_evidence": sources,
         "ranking_panel": {
             "path": str(panel_path),

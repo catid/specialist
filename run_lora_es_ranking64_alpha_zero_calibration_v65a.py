@@ -33,17 +33,17 @@ import run_lora_es_v59_vs_v434_robust_confirmation_v64 as runtime64
 
 
 ROOT = Path(__file__).resolve().parent
-EXPERIMENT = "v65a_ranking64_alpha_zero_calibration"
+EXPERIMENT = "v65a_r1_ranking64_alpha_zero_calibration"
 RUN_DIR = (ROOT / "experiments/eggroll_es_hpo/runs" / EXPERIMENT).resolve()
 ATTEMPT = (RUN_DIR.parent / f".{EXPERIMENT}.attempt.json").resolve()
-EVIDENCE = (RUN_DIR / "ranking64_alpha_zero_evidence_v65a.json").resolve()
-ANALYSIS = (RUN_DIR / "ranking64_alpha_zero_analysis_v65a.json").resolve()
-REPORT = (RUN_DIR / "ranking64_alpha_zero_report_v65a.json").resolve()
-FAILURE = (RUN_DIR / "failure_v65a.json").resolve()
-GPU_LOG = (RUN_DIR / "gpu_activity_v65a.jsonl").resolve()
+EVIDENCE = (RUN_DIR / "ranking64_alpha_zero_evidence_v65a_r1.json").resolve()
+ANALYSIS = (RUN_DIR / "ranking64_alpha_zero_analysis_v65a_r1.json").resolve()
+REPORT = (RUN_DIR / "ranking64_alpha_zero_report_v65a_r1.json").resolve()
+FAILURE = (RUN_DIR / "failure_v65a_r1.json").resolve()
+GPU_LOG = (RUN_DIR / "gpu_activity_v65a_r1.jsonl").resolve()
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "ranking64_alpha_zero_calibration_v65a.json"
+    "ranking64_alpha_zero_calibration_v65a_r1.json"
 ).resolve()
 WORKER_EXTENSION_V65A = (
     "eggroll_es_worker_lora_v65a.LoRAAdapterStateWorkerExtensionV65A"
@@ -95,6 +95,10 @@ def load_preregistration_v65a(args) -> dict:
     live_receipt = recipe.get("sanitized_live_engine_and_cache_receipt", {})
     integrity = value.get("required_integrity_gates", {})
     bindings = value.get("implementation_bindings", {})
+    predecessor = value.get("predecessor_failed_attempt")
+    expected_predecessor = (
+        builder65a.predecessor_failed_attempt_binding_v65a()
+    )
     required_binding_keys = (
         builder65a.REQUIRED_IMPLEMENTATION_BINDING_KEYS_V65A
     )
@@ -109,6 +113,7 @@ def load_preregistration_v65a(args) -> dict:
         or design65.self_content_sha256_v65(value)
         != args.preregistration_content_sha256
         or value.get("artifacts") != artifacts_v65a()
+        or predecessor != expected_predecessor
         or authorization.get("gpu_launch") is not True
         or authorization.get("alpha_zero_calibration") is not True
         or authorization.get("physical_gpu_ids") != [0, 1, 2, 3]

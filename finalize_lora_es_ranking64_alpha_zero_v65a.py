@@ -32,7 +32,7 @@ import run_lora_es_v59_vs_v434_robust_confirmation_v64 as runtime64
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = (
-    runtime.RUN_DIR / "ranking64_alpha_zero_finalized_v65a.json"
+    runtime.RUN_DIR / "ranking64_alpha_zero_finalized_v65a_r1.json"
 ).resolve()
 TESTS = (
     ROOT / "test_finalize_lora_es_ranking64_alpha_zero_v65a.py"
@@ -56,6 +56,49 @@ BASE_INVENTORY_SHA256_V65A = (
 )
 REGISTERED_SLOT_RECORDS_SHA256_V65A = (
     "c7a5ce898287b80765330f1d5c7616f1baf4c9eaab971778b0ec817edb0ce8d8"
+)
+PREDECESSOR_RANKING_PANEL_V65A = (
+    ROOT / "experiments/eggroll_es_hpo/datasets/"
+    "v65a_ranking64_alpha_zero_panel.json"
+).resolve()
+PREDECESSOR_RANKING_PANEL_FILE_SHA256_V65A = (
+    "916aaa6d30d059207a4da02ce67368b3707bb46ac17e2fe1636a4f4e4aa48094"
+)
+PREDECESSOR_RANKING_PANEL_CONTENT_SHA256_V65A = (
+    "267337eb9711b8592178afa98482d188edd4db4e715f74eb63c0a64fb90330c8"
+)
+PREDECESSOR_PREREGISTRATION_V65A = (
+    ROOT / "experiments/eggroll_es_hpo/preregistrations/"
+    "ranking64_alpha_zero_calibration_v65a.json"
+).resolve()
+PREDECESSOR_PREREGISTRATION_FILE_SHA256_V65A = (
+    "473148e96b3c0153fa32abe2d2790bc089ef42cb854f6bf4808946598a892b99"
+)
+PREDECESSOR_PREREGISTRATION_CONTENT_SHA256_V65A = (
+    "5de8762a06e90611f8f439cf6606c598b8f26b0a809e3db206df2a8f2e5496f3"
+)
+PREDECESSOR_ATTEMPT_V65A = (
+    ROOT / "experiments/eggroll_es_hpo/runs/"
+    ".v65a_ranking64_alpha_zero_calibration.attempt.json"
+).resolve()
+PREDECESSOR_ATTEMPT_FILE_SHA256_V65A = (
+    "d64f88a3924d34557be38bc2f43b0a714017fd6eefc6d79baaf7cb3af1510f2e"
+)
+PREDECESSOR_ATTEMPT_CONTENT_SHA256_V65A = (
+    "b44bbd11525ea3f4f9be8378c97955f8c4b9edb0eecf44b4b4e7a5945298f2b6"
+)
+PREDECESSOR_FAILURE_V65A = (
+    ROOT / "experiments/eggroll_es_hpo/runs/"
+    "v65a_ranking64_alpha_zero_calibration/failure_v65a.json"
+).resolve()
+PREDECESSOR_FAILURE_FILE_SHA256_V65A = (
+    "bb642eba1a5e4ceaa53e14a67f68eb39544de613e7c6b04089e34c56a9640011"
+)
+PREDECESSOR_FAILURE_CONTENT_SHA256_V65A = (
+    "99a00ab1dfd9c3ce1811206cfacd17643fcdf2062fa692012fff3ed47aedfdf7"
+)
+PREDECESSOR_FAILURE_MESSAGE_SHA256_V65A = (
+    "50af24ded76854ac98724e20e8fbffcec146aae3228734b092f35151a2204e62"
 )
 EXPECTED_PHASES_V65A = [
     *(f"unscored_warmup_{index}_generation_all_actors" for index in range(4)),
@@ -304,6 +347,189 @@ def _read_self_hashed_v65a(source: SelfHashedSourceV65A) -> dict:
     return value
 
 
+def _verify_predecessor_failed_attempt_v65a(prereg: dict) -> dict:
+    """Independently bind the failed pre-generation launch and cleanup."""
+    sources = {
+        "predecessor_preregistration": SelfHashedSourceV65A(
+            PREDECESSOR_PREREGISTRATION_V65A,
+            PREDECESSOR_PREREGISTRATION_FILE_SHA256_V65A,
+            PREDECESSOR_PREREGISTRATION_CONTENT_SHA256_V65A,
+        ),
+        "predecessor_ranking_panel": SelfHashedSourceV65A(
+            PREDECESSOR_RANKING_PANEL_V65A,
+            PREDECESSOR_RANKING_PANEL_FILE_SHA256_V65A,
+            PREDECESSOR_RANKING_PANEL_CONTENT_SHA256_V65A,
+        ),
+        "predecessor_attempt": SelfHashedSourceV65A(
+            PREDECESSOR_ATTEMPT_V65A,
+            PREDECESSOR_ATTEMPT_FILE_SHA256_V65A,
+            PREDECESSOR_ATTEMPT_CONTENT_SHA256_V65A,
+        ),
+        "predecessor_failure": SelfHashedSourceV65A(
+            PREDECESSOR_FAILURE_V65A,
+            PREDECESSOR_FAILURE_FILE_SHA256_V65A,
+            PREDECESSOR_FAILURE_CONTENT_SHA256_V65A,
+        ),
+    }
+    observed = {
+        name: _read_self_hashed_v65a(source)
+        for name, source in sources.items()
+    }
+    old_prereg = observed["predecessor_preregistration"]
+    old_panel = observed["predecessor_ranking_panel"]
+    old_attempt = observed["predecessor_attempt"]
+    old_failure = observed["predecessor_failure"]
+    old_artifacts = old_prereg.get("artifacts", {})
+    cleanup = old_failure.get("cleanup", {})
+    before = cleanup.get("before", [])
+    after = cleanup.get("after", [])
+    outcome_names = ("evidence", "analysis", "report", "gpu_log")
+    if (
+        old_prereg.get("schema")
+        != "v65a-ranking64-alpha-zero-calibration-preregistration"
+        or old_prereg.get("ranking_panel") != {
+            "path": str(PREDECESSOR_RANKING_PANEL_V65A),
+            "file_sha256": PREDECESSOR_RANKING_PANEL_FILE_SHA256_V65A,
+            "content_sha256": PREDECESSOR_RANKING_PANEL_CONTENT_SHA256_V65A,
+            "units": 64,
+            "request_order_sha256": old_panel.get("request_order_sha256"),
+            "unit_order_sha256": old_panel.get("unit_order_sha256"),
+            "hash_only": True,
+        }
+        or old_panel.get("schema") != "v65-robust-sampling-ranking-panel"
+        or not _exact_int_v65a(old_panel.get("ranking_units"), 64)
+        or old_panel.get("question_answer_or_generation_text_persisted")
+        is not False
+        or old_panel.get("protected_semantics_opened") is not False
+        or old_artifacts.get("attempt") != str(PREDECESSOR_ATTEMPT_V65A)
+        or old_artifacts.get("failure") != str(PREDECESSOR_FAILURE_V65A)
+        or any(Path(old_artifacts.get(name, "")).exists()
+               for name in outcome_names)
+        or old_attempt.get("schema")
+        != "v65a-ranking64-alpha-zero-attempt"
+        or old_attempt.get("status") != "launching_exact64_calibration_only"
+        or old_attempt.get("phase")
+        != "before_authorized_train_semantics_model_ray_or_gpu_load"
+        or old_attempt.get("preregistration_file_sha256")
+        != PREDECESSOR_PREREGISTRATION_FILE_SHA256_V65A
+        or old_attempt.get("preregistration_content_sha256")
+        != PREDECESSOR_PREREGISTRATION_CONTENT_SHA256_V65A
+        or old_attempt.get("model_loaded_or_gpu_compute_started") is not False
+        or old_attempt.get(
+            "candidate_hpo_update_projection_or_protected_access"
+        ) is not False
+        or old_failure.get("schema")
+        != "v65a-ranking64-alpha-zero-calibration-failure"
+        or old_failure.get("type") != "RayTaskError(NotImplementedError)"
+        or old_failure.get("message_sha256")
+        != PREDECESSOR_FAILURE_MESSAGE_SHA256_V65A
+        or old_failure.get("raw_error_message_or_traceback_persisted")
+        is not False
+        or old_failure.get(
+            "raw_question_answer_prompt_or_generation_text_persisted"
+        ) is not False
+        or old_failure.get(
+            "candidate_hpo_update_projection_or_promotion_performed"
+        ) is not False
+        or old_failure.get(
+            "holdback_sentinel_reserve_ood_terminal_or_protected_opened"
+        ) is not False
+        or old_failure.get(
+            "adaptive_retry_drop_reorder_or_early_stop_performed"
+        ) is not False
+        or not isinstance(before, list) or len(before) != 4
+        or not isinstance(after, list) or len(after) != 4
+        or any(not isinstance(item, dict) or item.get("state") != "CREATED"
+               for item in before)
+        or any(not isinstance(item, dict) or item.get("state") != "REMOVED"
+               for item in after)
+        or [item.get("placement_group_id") for item in before]
+        != [item.get("placement_group_id") for item in after]
+        or not _exact_int_v65a(cleanup.get("engine_kill_count"), 4)
+        or not _exact_int_v65a(
+            cleanup.get("placement_group_remove_count"), 4,
+        )
+        or cleanup.get("all_four_gcs_states_removed") is not True
+        or old_failure.get("cleanup_errors") != []
+        or old_failure.get(
+            "ray_shutdown_attempted_even_without_complete_trainer"
+        ) is not True
+        or old_failure.get("final_gpu_idle")
+        != {"all_four_compute_process_lists_empty": True}
+    ):
+        raise RuntimeError("v65a predecessor failure transcript changed")
+
+    def binding(source: SelfHashedSourceV65A) -> dict:
+        return {
+            "path": str(source.path),
+            "file_sha256": source.file_sha256,
+            "content_sha256": source.content_sha256,
+        }
+
+    expected = {
+        "schema": "v65a-r1-predecessor-failed-attempt-binding",
+        **{name: binding(source) for name, source in sources.items()},
+        "diagnosed_failure_boundary": {
+            "type": "RayTaskError(NotImplementedError)",
+            "message_sha256": PREDECESSOR_FAILURE_MESSAGE_SHA256_V65A,
+            "model_actors_constructed_and_model_or_gpu_runtime_accessed": True,
+            "attempt_model_loaded_flag_is_prelaunch_snapshot_only": True,
+            "actor_runtime_identity_validation_completed": True,
+            "failing_collective_rpc": "runtime_identity_v40a",
+            "worker_method_absent_from_v65a_inheritance_chain": True,
+            "gpu_monitor_started": False,
+            "authorized_semantic_prefix_decoded": False,
+            "generation_started": False,
+            "scoring_or_numeric_outcome_observed": False,
+        },
+        "cleanup_receipt": {
+            "engine_kill_count": 4,
+            "placement_group_remove_count": 4,
+            "all_four_gcs_states_removed": True,
+            "all_before_states_created": True,
+            "all_after_states_removed": True,
+            "cleanup_errors_empty": True,
+            "ray_shutdown_attempted": True,
+            "final_four_gpu_idle": True,
+        },
+        "retry_contract": {
+            "fresh_ranking_panel_path": str(
+                ROOT / "experiments/eggroll_es_hpo/datasets/"
+                "v65a_r1_ranking64_alpha_zero_panel.json"
+            ),
+            "fresh_preregistration_path": str(
+                ROOT / "experiments/eggroll_es_hpo/preregistrations/"
+                "ranking64_alpha_zero_calibration_v65a_r1.json"
+            ),
+            "fresh_attempt_path": str(
+                ROOT / "experiments/eggroll_es_hpo/runs/"
+                ".v65a_r1_ranking64_alpha_zero_calibration.attempt.json"
+            ),
+            "fresh_run_directory": str(
+                ROOT / "experiments/eggroll_es_hpo/runs/"
+                "v65a_r1_ranking64_alpha_zero_calibration"
+            ),
+            "failed_artifact_path_reused": False,
+            "schedule_or_numeric_contract_changed": False,
+            "candidate_hpo_update_projection_or_promotion_authorized": False,
+            "v65_population_authorized": False,
+        },
+    }
+    predecessor = prereg.get("predecessor_failed_attempt")
+    if (
+        predecessor != expected
+        or analysis.canonical_sha256_v65a(predecessor)
+        != analysis.canonical_sha256_v65a(expected)
+    ):
+        raise RuntimeError("v65a predecessor failed-attempt binding changed")
+    return {
+        "predecessor_artifacts_exact": True,
+        "failure_before_semantic_decode_or_generation": True,
+        "strict_cleanup_and_final_idle_exact": True,
+        "fresh_retry_paths_only": True,
+    }
+
+
 def _verify_no_text_keys_v65a(name: str, value: object) -> dict:
     found = []
 
@@ -330,6 +556,7 @@ def _verify_no_text_keys_v65a(name: str, value: object) -> dict:
 def _verify_preregistration_v65a(
     prereg: dict, sources: FinalizerSourcesV65A,
 ) -> dict:
+    predecessor_receipt = _verify_predecessor_failed_attempt_v65a(prereg)
     authorization = prereg.get("authorization", {})
     access = prereg.get("access_contract", {})
     recipe = prereg.get("fixed_calibration_recipe", {})
@@ -402,7 +629,7 @@ def _verify_preregistration_v65a(
         "analysis": str(sources.analysis.path.resolve()),
         "report": str(sources.report.path.resolve()),
         "failure": str(
-            (sources.evidence.path.parent / "failure_v65a.json").resolve()
+            (sources.evidence.path.parent / runtime.FAILURE.name).resolve()
         ),
     }
     expected_prereg = builder.build_preregistration_v65a(
@@ -584,6 +811,7 @@ def _verify_preregistration_v65a(
         raise RuntimeError("v65a preregistration or sealed code contract changed")
     return {
         "specific_v65a_calibration_launch_was_preregistered": True,
+        **predecessor_receipt,
         "implementation_bindings_exact": True,
         "implementation_binding_set_equals_current_builder_closure": True,
         "artifact_paths_exact": True,
