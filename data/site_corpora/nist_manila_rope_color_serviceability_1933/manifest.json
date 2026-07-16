@@ -1,0 +1,94 @@
+{
+  "schema": "site-corpus-manifest@1.0",
+  "package_id": "nist_manila_rope_color_serviceability_1933",
+  "title": "NIST Manila-rope fiber color and serviceability boundary (1933)",
+  "corpus_type": "historical-evidence-and-limitations-digest",
+  "source_scope": "One official NIST journal paper, with official NIST identity, access, and rights surfaces used only for provenance",
+  "evidence_scope": "Attributed historical evidence about prepared abaca-fiber color, finished-rope surface confounders, and the paper's explicit exclusion of rope serviceability",
+  "excluded_scope": "All figures, tables, values, scales, instruments, solvents, procedures, specifications, ranks, procurement details, reference bodies, color rules, modern recommendations, and transfer to other materials or human applications",
+  "rights_status": "journal-paper-not-subject-to-us-copyright; foreign-and-third-party-caveats-recorded",
+  "rights_basis": "Official NIST journal and technical-series rights statements; attribution and change notice provided; possible foreign rights and third-party-component caveats preserved",
+  "worldwide_public_domain_claimed": false,
+  "source_bodies_redistributed": false,
+  "direct_training_ready": true,
+  "created_utc": "2026-07-16",
+  "token_count_method": "Unicode regex lexical tokens: \\w+(?:[’'-]\\w+)*|[^\\w\\s]",
+  "manual_audit": {
+    "source_identity": true,
+    "rights": true,
+    "robots_and_access": true,
+    "all_pdf_pages_text_screened": true,
+    "all_pdf_pages_rendered_and_visually_inspected": true,
+    "all_figures_tables_and_scan_objects_reconciled": true,
+    "all_retained_claims_manually_rewritten": true,
+    "existing_corpus_bodies_inspected": false,
+    "qa_trainer_eval_holdout_ood_probe_or_experiment_artifacts_inspected": false
+  },
+  "record_schemas": {
+    "sources.jsonl": "manual-source-provenance@1.0",
+    "surfaces.jsonl": "manual-source-surface-disposition@1.0",
+    "dispositions.jsonl": "manual-pdf-page-disposition@1.0",
+    "components.jsonl": "manual-component-disposition@1.0"
+  },
+  "statistics": {
+    "official_source_records": 6,
+    "known_official_pdf_body_gets": 1,
+    "official_web_surfaces_manually_decided": 9,
+    "pdf_bytes": 1082392,
+    "pdf_pages_manually_reviewed": 12,
+    "pdf_pages_partially_retained": 7,
+    "pdf_pages_fully_excluded": 5,
+    "figures_excluded": 4,
+    "tables_excluded": 5,
+    "scan_image_and_mask_objects_excluded": 36,
+    "numbered_footnotes_reconciled": 21,
+    "external_reference_bodies_acquired": 0,
+    "component_records": 16,
+    "novelty_phrases_with_zero_allowed-surface_matches": 7,
+    "corpus_bytes": 6989,
+    "corpus_words": 980,
+    "corpus_lexical_tokens": 1242,
+    "corpus_claim_paragraphs": 17,
+    "corpus_evidence_paragraphs": 11,
+    "corpus_boundary_paragraphs": 6,
+    "corpus_terminal_citations": 17
+  },
+  "artifacts": {
+    "CORPUS.md": {
+      "bytes": 6989,
+      "sha256": "ebd170b0b0fddb4ac8e9042fadea7503865dda5df53738cf953b423c4a897ce3"
+    },
+    "README.md": {
+      "bytes": 3639,
+      "sha256": "303af7eb8a176e68999043d81c9a139ab619cfe5d3184e8cad5691a225296ae1"
+    },
+    "REPORT.md": {
+      "bytes": 8919,
+      "sha256": "6cfb982ec60f014c9c3276a1e27d8071275d8cda8b54749cb0071b7e8ac1a80a"
+    },
+    "components.jsonl": {
+      "bytes": 6034,
+      "sha256": "36b8952a2d6213aded41a825615f36e81cab7143031236116d82a1f7695c221b"
+    },
+    "dispositions.jsonl": {
+      "bytes": 5163,
+      "sha256": "639cb966304ae39a94077140934cba2e213ccd42cb9284bec0ff636a157ffecc"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 6106,
+      "sha256": "1f8e3fc3ec98929b7c103d11f61f518f2d045cab2304e124de899416c77ff0ca"
+    },
+    "sources.jsonl": {
+      "bytes": 4498,
+      "sha256": "f202a47f9d589054763d860f790ff366082d5d4a6cdab89ac6c953540e598cff"
+    },
+    "surfaces.jsonl": {
+      "bytes": 3585,
+      "sha256": "875aacc70e813e556ed5d5e9b514f1fc8caa4b32d0ff06cb21bcdd472e2e4c8e"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 17876,
+      "sha256": "45851d487155675310e70738e7ad6a8d81395588c6a3fd8d5683c682fab0d43e"
+    }
+  }
+}
