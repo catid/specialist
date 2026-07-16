@@ -1,0 +1,44 @@
+{
+  "schema": "lora-es-selected-score-backtracking-remote-seal-delay-v54",
+  "status": "declared_before_v54_attempt_or_gpu_actor_creation",
+  "declared_at_utc": "2026-07-16T06:44:05Z",
+  "local_seal": {
+    "commit": "9fcb776",
+    "preregistration_path": "experiments/eggroll_es_hpo/preregistrations/lora_es_selected_score_backtracking_v54.json",
+    "preregistration_file_sha256": "079a7a19e870c9a8c3342b783139b61324e595d9eff2d6587c5f11a5376f570a",
+    "preregistration_content_sha256": "b67b7331a1d3ad36ecb7e20a0fd7e13da7fe4843823ffb919263ae5cccf10f66",
+    "focused_and_v52_regression_tests_passed": 32,
+    "exact_dry_run_passed": true
+  },
+  "remote_delay": {
+    "target": "git@github.com:catid/specialist.git main",
+    "cause": "The push of the approximately 80 MiB V53 evidence history remained active without remote completion for more than three minutes.",
+    "push_stopped_before_launch": true,
+    "remote_commit_presence_claimed": false,
+    "local_committed_seal_used_for_launch": true
+  },
+  "pre_outcome_state": {
+    "v54_attempt_exists": false,
+    "v54_run_directory_exists": false,
+    "gpu_compute_process_query_empty": true,
+    "gpu_memory_used_mib": [4, 4, 4, 4],
+    "v54_model_train_gate_or_outcome_metrics_observed": false,
+    "ood_shadow_benchmark_holdout_or_protected_semantics_opened": false,
+    "sealed_holdout_opened": false
+  },
+  "unchanged_scientific_contract": {
+    "selected_v53_sigma": 0.0048,
+    "population_rerun": false,
+    "p8_evaluation": false,
+    "five_halfspace_projection_scale_plans_alpha_seeds_and_gates_changed": false,
+    "optimizer_master_commit_authorized": false,
+    "candidate_abort_or_state_integrity_gates_changed": false,
+    "telemetry_path_or_phase_changed": false,
+    "protected_evaluation_authorized": false
+  },
+  "handling": {
+    "launch_may_use_only_the_exact_local_committed_preregistration_and_bound_code": true,
+    "postrun_evidence_must_not_claim_prelaunch_remote_push_completion": true,
+    "remote_push_must_be_retried_after_gpu_launch_without changing_the_sealed_files": true
+  }
+}
