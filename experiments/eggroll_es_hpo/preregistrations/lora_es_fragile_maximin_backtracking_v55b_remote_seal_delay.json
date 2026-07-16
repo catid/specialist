@@ -1,0 +1,52 @@
+{
+  "schema": "lora-es-fragile-maximin-backtracking-remote-seal-delay-v55b",
+  "status": "declared_before_v55b_attempt_or_gpu_actor_creation",
+  "declared_at_utc": "2026-07-16T07:11:43Z",
+  "local_seal": {
+    "commit": "44a7ebe6d4c0c14d974cbd174b564983590e7c0c",
+    "preregistration_path": "experiments/eggroll_es_hpo/preregistrations/lora_es_fragile_maximin_backtracking_v55b.json",
+    "preregistration_file_sha256": "8c54229976bba3bc57aa363df855758275c848a531edbcad4d9ae744e5748e6e",
+    "preregistration_content_sha256": "322acd85278825a462dd921d7ff197ef9141728626508c18075d956fffe46115",
+    "focused_and_v52_regression_tests_passed": 33,
+    "exact_dry_run_passed": true
+  },
+  "remote_delay": {
+    "target": "git@github.com:catid/specialist.git main",
+    "cause": "The forwarded SSH authentication-agent socket no longer exists; the immediate BatchMode push failed with Permission denied (publickey).",
+    "push_stopped_before_launch": true,
+    "remote_commit_presence_claimed": false,
+    "local_committed_seal_used_for_launch": true
+  },
+  "pre_outcome_state": {
+    "v55b_attempt_exists": false,
+    "v55b_run_directory_exists": false,
+    "gpu_compute_process_query_empty": true,
+    "gpu_memory_used_mib": [
+      4,
+      4,
+      4,
+      4
+    ],
+    "v55b_model_train_gate_or_outcome_metrics_observed": false,
+    "ood_shadow_benchmark_holdout_or_protected_semantics_opened": false,
+    "sealed_holdout_opened": false
+  },
+  "unchanged_scientific_contract": {
+    "selected_v53_sigma": 0.0048,
+    "population_rerun": false,
+    "p8_evaluation": false,
+    "projection_direction_only_change_from_v54": true,
+    "per_scale_coefficient_l2_norms_match_v54": true,
+    "backtracking_scales_alpha_seeds_order_and_train_rows_changed": false,
+    "nine_endpoint_gate_definitions_changed": false,
+    "optimizer_master_commit_authorized": false,
+    "candidate_abort_or_state_integrity_gates_changed": false,
+    "telemetry_path_or_phase_changed": false,
+    "protected_evaluation_authorized": false
+  },
+  "handling": {
+    "launch_may_use_only_the_exact_local_committed_preregistration_and_bound_code": true,
+    "postrun_evidence_must_not_claim_prelaunch_remote_push_completion": true,
+    "remote_push_must_be_retried_after_gpu_launch_without_changing_the_sealed_files": true
+  }
+}
