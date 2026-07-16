@@ -330,31 +330,69 @@ class SourceCorpusContractTest(unittest.TestCase):
             ],
         )
 
-    def test_rope_neuropathy_article_identifiers_are_bound(self) -> None:
+    def test_europe_pmc_article_identifiers_are_bound(self) -> None:
         by_id = {row["candidate_id"]: row for row in self.candidates}
-        row = by_id["europepmc_rope_neuropathy_study"]
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        expected = {
+            "europepmc_rope_neuropathy_study": {
+                "pmcid": "PMC10294117",
+                "doi": "10.7759/cureus.39588",
+                "pmid": "37384078",
+                "stale_pmids": {"37324199"},
+            },
+            "europepmc_icar_suspension_syndrome": {
+                "pmcid": "PMC10710713",
+                "doi": "10.1186/s13049-023-01164-z",
+                "pmid": "38071341",
+                "stale_pmids": {"38081341"},
+            },
+            "europepmc_bdsm_fatality_review": {
+                "pmcid": "PMC8813685",
+                "doi": "10.1007/s00414-021-02674-0",
+                "pmid": "34383118",
+                "stale_pmids": set(),
+            },
+        }
+        for candidate_id, identifiers in expected.items():
+            row = by_id[candidate_id]
+            self.assertEqual(
+                row["canonical_url"],
+                "https://europepmc.org/article/MED/" + identifiers["pmid"],
+            )
+            serialized = json.dumps(row, sort_keys=True)
+            for identifier in {
+                identifiers["pmcid"],
+                identifiers["doi"],
+                identifiers["pmid"],
+            }:
+                self.assertIn(identifier, serialized)
+            for stale_pmid in identifiers["stale_pmids"]:
+                self.assertNotIn(stale_pmid, serialized)
+
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(queued["url"], row["canonical_url"])
+            for identifier in {
+                identifiers["pmcid"],
+                identifiers["doi"],
+                identifiers["pmid"],
+            }:
+                self.assertIn(identifier, queued["scope"])
+            for stale_pmid in identifiers["stale_pmids"]:
+                self.assertNotIn(stale_pmid, json.dumps(queued, sort_keys=True))
+
+        queued_med_urls = {
+            row["url"]
+            for row in self.corpus["queue"]
+            if "europepmc.org/article/MED/" in row["url"]
+        }
         self.assertEqual(
-            row["canonical_url"],
-            "https://europepmc.org/article/MED/37384078",
+            queued_med_urls,
+            {
+                "https://europepmc.org/article/MED/37384078",
+                "https://europepmc.org/article/MED/38071341",
+                "https://europepmc.org/article/MED/34383118",
+            },
         )
-        serialized = json.dumps(row, sort_keys=True)
-        for identifier in {
-            "PMC10294117",
-            "10.7759/cureus.39588",
-            "37384078",
-        }:
-            self.assertIn(identifier, serialized)
-        self.assertNotIn("37324199", serialized)
-        queued = next(
-            item
-            for item in self.corpus["queue"]
-            if item["resource_id"] == "europepmc_rope_neuropathy_study"
-        )
-        self.assertEqual(queued["url"], row["canonical_url"])
-        self.assertIn("PMC10294117", queued["scope"])
-        self.assertIn("10.7759/cureus.39588", queued["scope"])
-        self.assertIn("37384078", queued["scope"])
-        self.assertNotIn("37324199", json.dumps(queued, sort_keys=True))
 
     def test_batch_003_restricted_rights_are_not_queued(self) -> None:
         by_id = {row["candidate_id"]: row for row in self.candidates}
@@ -521,11 +559,190 @@ class SourceCorpusContractTest(unittest.TestCase):
             self.assertEqual(row["decision"], "accept_targeted_scope")
             self.assertIn(marker, row["recommended_crawl_scope"].lower())
 
+    def test_batch_005_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_005"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_high_priority": {
+                "usda_wood_handbook_structural_wood",
+                "europepmc_bdsm_fatality_review",
+            },
+            "accept_targeted_scope": {
+                "yukimura_ryu_official_archive",
+                "shibaru_life_history_series",
+                "willcat_tension_curriculum",
+                "esinem_rope_maker_articles",
+            },
+            "defer": {
+                "akechi_kanna_official_note",
+                "ropeconnections_smart_way_manual",
+                "rope_bondage_affective_embodiments",
+                "tanaka_kinbaku_globalization_abstract",
+            },
+            "reject": {
+                "ropebite_pittsburgh_guides",
+                "remedial_ropes_wordpress_archive",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        accepted = expected["accept_high_priority"] | expected["accept_targeted_scope"]
+        self.assertEqual(len(accepted), 6)
+        self.assertTrue(accepted.issubset(queued))
+
+    def test_batch_005_restricted_rights_are_not_queued(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        kanna = by_id["akechi_kanna_official_note"]
+        self.assertEqual(kanna["decision"], "defer")
+        kanna_access = kanna["access_notes"].lower()
+        for marker in {"reproduction", "modification", "adaptation"}:
+            self.assertIn(marker, kanna_access)
+        self.assertIn("written permission", kanna["recommended_crawl_scope"].lower())
+
+        manual = by_id["ropeconnections_smart_way_manual"]
+        self.assertEqual(manual["decision"], "defer")
+        self.assertIn("all rights reserved", manual["access_notes"].lower())
+        self.assertIn("retrieval-system", manual["recommended_crawl_scope"].lower())
+        self.assertIn("written permission", manual["recommended_crawl_scope"].lower())
+
+        ethnography = by_id["rope_bondage_affective_embodiments"]
+        self.assertEqual(ethnography["decision"], "defer")
+        self.assertIn("CC BY-NC-ND 4.0", ethnography["access_notes"])
+        self.assertIn("permission", ethnography["recommended_crawl_scope"].lower())
+
+        tanaka = by_id["tanaka_kinbaku_globalization_abstract"]
+        self.assertEqual(tanaka["decision"], "defer")
+        self.assertIn("Abstract License Flag", tanaka["access_notes"])
+        self.assertIn("*_pdf", tanaka["recommended_crawl_scope"])
+
+    def test_batch_005_rejects_unsafe_or_empty_sources(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        ropebite = by_id["ropebite_pittsburgh_guides"]
+        self.assertEqual(ropebite["decision"], "reject")
+        ropebite_scope = ropebite["recommended_crawl_scope"].lower()
+        for marker in {
+            "ibuprofen",
+            "vitamin b12",
+            "boil rope",
+            "gas flame",
+            "oven",
+        }:
+            self.assertIn(marker, ropebite_scope)
+
+        remedial = by_id["remedial_ropes_wordpress_archive"]
+        self.assertEqual(remedial["decision"], "reject")
+        self.assertFalse(remedial["accessible"])
+        self.assertIn("six", remedial["access_notes"].lower())
+        self.assertIn("404", remedial["access_notes"])
+        remedial_scope = remedial["recommended_crawl_scope"].lower()
+        for marker in {"url titles", "search snippets", "archive", "mirror"}:
+            self.assertIn(marker, remedial_scope)
+
+    def test_batch_005_accepted_scopes_are_safely_bounded(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        wood = by_id["usda_wood_handbook_structural_wood"]
+        wood_scope = wood["recommended_crawl_scope"].lower()
+        self.assertIn("does not certify", wood_scope)
+        self.assertIn("qualified structural engineer", wood_scope)
+        self.assertIn("third-party", wood_scope)
+
+        fatality = by_id["europepmc_bdsm_fatality_review"]
+        fatality_scope = fatality["recommended_crawl_scope"].lower()
+        self.assertIn("17-case publication-derived denominator", fatality_scope)
+        self.assertIn("lack of a population denominator", fatality_scope)
+        self.assertIn("sensational", fatality_scope)
+
+        shibaru = by_id["shibaru_life_history_series"]
+        shibaru_pages = {page["url"] for page in shibaru["representative_pages"]}
+        self.assertEqual(
+            shibaru_pages,
+            {
+                "https://shibaru.life/2015/09/history-of-shibari-1-hojojutsu/",
+                "https://shibaru.life/2015/09/history-of-shibari-2-kabuki/",
+                "https://shibaru.life/2015/09/history-of-shibari-3-ukiyoe/",
+                "https://shibaru.life/2018/04/history-of-shibari-4-kitan-club/",
+            },
+        )
+        shibaru_scope = shibaru["recommended_crawl_scope"].lower()
+        self.assertIn("full translation", shibaru_scope)
+        self.assertIn("kannuki", shibaru_scope)
+
+        esinem_scope = by_id["esinem_rope_maker_articles"][
+            "recommended_crawl_scope"
+        ].lower()
+        self.assertIn("rope lay", esinem_scope)
+        self.assertIn("american death triangle", esinem_scope)
+        self.assertIn("sales claims", esinem_scope)
+
+    def test_batch_005_claim_types_and_pedagogy_limits_are_preserved(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        yukimura_scope = by_id["yukimura_ryu_official_archive"][
+            "recommended_crawl_scope"
+        ].lower()
+        self.assertIn("first-person", yukimura_scope)
+        self.assertIn("claim type", yukimura_scope)
+        self.assertIn("2006/2007 contradiction", yukimura_scope)
+
+        willcat_scope = by_id["willcat_tension_curriculum"][
+            "recommended_crawl_scope"
+        ].lower()
+        self.assertIn("under-construction", willcat_scope)
+        self.assertIn("absolute safety", willcat_scope)
+        self.assertIn("validated instructions", willcat_scope)
+
+    def test_twisted_windows_second_audit_is_evidence_gated(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        row = by_id["twisted_windows"]
+        self.assertEqual(row["decision"], "accept_targeted_scope")
+        self.assertEqual(row["priority_score"], 29)
+        self.assertIn("numbering may be out of order", row["access_notes"])
+        scope = row["recommended_crawl_scope"].lower()
+        for marker in {
+            "claim-to-citation matrix",
+            "two-finger rule",
+            "capillary-refill",
+            "harness-hang",
+            "ibuprofen",
+            "vitamin b12",
+            "qualified clinicians",
+        }:
+            self.assertIn(marker, scope)
+
+        queued = next(
+            item
+            for item in self.corpus["queue"]
+            if item["resource_id"] == "twisted_windows"
+        )
+        self.assertEqual(queued["discovery_priority_score"], 29)
+        self.assertEqual(queued["scope"], row["recommended_crawl_scope"])
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
+        self.assertIn("Latest batch: `discovery_batch_005`", self.report)
 
 
 if __name__ == "__main__":

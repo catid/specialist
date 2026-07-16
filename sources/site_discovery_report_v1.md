@@ -2,12 +2,12 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T08:02:21Z
-Latest batch: `discovery_batch_003`
+Latest review at: 2026-07-16T09:00:22Z
+Latest batch: `discovery_batch_005`
 
 ## Outcome
 
-This first bounded batch manually reviewed 20 candidate websites or official site-hosted resources by opening their actual public pages. Its decisions were 7 `accept_high_priority`, 8 `accept_targeted_scope`, 2 `defer`, and 3 `reject`. The 15 accepted sources are added to the canonical corpus queue as separate pending extraction jobs. Discovery did not copy page bodies into training data, enter a course, sign in, start a trial, defeat a challenge, or infer instructions from images or video.
+This first bounded batch manually reviewed 20 candidate websites or official site-hosted resources by opening their actual public pages. After the evidence-quality correction described in batch 005, its decisions are 6 `accept_high_priority`, 9 `accept_targeted_scope`, 2 `defer`, and 3 `reject`. The 15 accepted sources are added to the canonical corpus queue as separate pending extraction jobs. Discovery did not copy page bodies into training data, enter a course, sign in, start a trial, defeat a challenge, or infer instructions from images or video.
 
 All 20 canonical candidate URLs were compared with all 25 entries that were already in `site_corpus_queue_v1.json`; none duplicated an existing queue URL or resource ID. Rope365 was separately sealed as complete with its accepted commit and artifacts. The expanded full-site Crash Restraint scope remains unchanged.
 
@@ -25,7 +25,6 @@ The machine-readable ledger contains every required field, all component scores,
 | [Nawapedia](https://nawapedia.net/index.php?title=Main_Page) | 33 | 5 | [Chimuo Nureki](https://nawapedia.net/index.php?title=Chimuo_Nureki), [Akira Naka](https://nawapedia.net/index.php?title=Akira_Naka) | Structured named-person, chronology, alias, publication, and lineage coverage with print and first-party references. | Substantive article namespace only; exclude edit/history/talk, category shells, venue/event directories, and media-only pages. |
 | [Kinbaku Books](https://kokoro-kinbaku.com/) | 34 | 5 | [translation index](https://kokoro-kinbaku.com/translations/), [Urado Hiroshi guide context](https://kokoro-kinbaku.com/2014/09/17/urado-hiroshi-sm-play-you-can-play-sm-1972/) | Rare commissioned English translations and bibliographic research on historical Japanese books, magazines, interviews, performers, and postwar SM culture. | Historical essays, research, and public translations; deduplicate the old WordPress domain and exclude cover-only listings, comments, tags, and untranslated image scans. |
 | [La quarta corda / Nawame](https://www.laquartacorda.it/en/) | 37 | 4 | [safety guide](https://www.laquartacorda.it/en/safety-guidelines-for-bondage/), [suspension-line syllabus](https://www.laquartacorda.it/en/all-about-suspensions-in-bondage-and-shibari/), [webbook structure](https://www.laquartacorda.it/en/how-to-use-this-webbook/) | Broad progressive webbook spanning safety, consent, anatomy, terminology, technique, bottoming, suspension lines, hardpoints, and pulley systems. | English educational corpus plus unique untranslated Italian facts; deduplicate translations and never reconstruct video-only steps. |
-| [Twisted Windows Bondage Safety](https://www.twistedwindows.com/bondagesafety) | 40 | 5 | [six nerve-injury factors](https://www.twistedwindows.com/bondagesafety/six-contributing-factors), [health considerations](https://www.twistedwindows.com/bondagesafety/health-considerations-for-bondage), [nerve first aid](https://www.twistedwindows.com/bondagesafety/first-aid-for-nerve-damage) | Practitioner-authored safety material with medical citations, explicit uncertainty, adaptations, emergency reasoning, and both top and bottom perspectives. | Complete safety hub plus directly relevant rope/hardpoint pages; exclude events, performances, sales/logistics, unrelated kink, and migrated Remedial Ropes duplicates. |
 | [Self Suspension](https://www.selfsuspend.com/) | 41 | 5 | [safety](https://www.selfsuspend.com/safety), [self-suspension uplines](https://www.selfsuspend.com/uplines-for-selfsuspension), [equipment](https://www.selfsuspend.com/supplies/) | The clearest discovered public source for self-suspension risk, critical-line continuity, spotters, jams, rated uplines, hardware, movement, and emergency planning. | Public safety, preparation, equipment, upline, body-mechanics, emergency, and technique pages; exclude galleries, directories, comments, and visual-only instructions. |
 | [Helsinki Shibari](https://www.helsinkishibari.com/) | 33 | 4 | [bottom-perspective risks](https://www.helsinkishibari.com/articles/title), [nerve safety](https://www.helsinkishibari.com/articles/nerve-safety-for-rope-bondage), [social safety practice](https://www.helsinkishibari.com/safety-practices) | Bottom-centered fall, nerve, fainting, neck, equipment, and suspension risk guidance paired with operational consent, reporting, confidentiality, accountability, and sober-space policies. | Durable educational and policy pages in English plus unique Finnish facts; exclude calendar, current staff, contacts, and repeated event material. |
 
@@ -35,6 +34,7 @@ The machine-readable ledger contains every required field, all component scores,
 |---|---:|---:|---|---|---|
 | [The Rope Bottom Guide](https://theropebottomguide.com/) | 40 | 5 | [official version 4.2 PDF](https://theropebottomguide.com/downloads/rope_bottom_guide.pdf) | Dense authored bottom-centered coverage of partner evaluation, responsibility, communication, body knowledge, placement, temperature, risk, and recovery. | Official guide and version metadata only; preserve cautions and structure, without reproducing or inferring photography. |
 | [Anatomie Studio London](https://www.anatomiestudio.com/) | 28 | 4 | [education blog](https://www.anatomiestudio.com/blog), [code of conduct](https://www.anatomiestudio.com/code-of-conduct), [accessibility](https://www.anatomiestudio.com/accessibility) | Unusually strong public bottoming, disability, accessibility, pedagogy, consent, performance, and rope-space governance material. | Education/community articles, code, accessibility, nerve safety, and durable history only; exclude tickets, schedules, store, testimonials, galleries, and venue news. |
+| [Twisted Windows Bondage Safety](https://www.twistedwindows.com/bondagesafety) | 29 | 4 | [six nerve-injury factors](https://www.twistedwindows.com/bondagesafety/six-contributing-factors), [health considerations](https://www.twistedwindows.com/bondagesafety/health-considerations-for-bondage), [nerve first aid](https://www.twistedwindows.com/bondagesafety/first-aid-for-nerve-damage) | A second body audit retained useful practitioner operational guidance but found mixed citation quality and unsupported health, timing, treatment, and prognosis claims. | Quotation-light attributed digest with a claim-to-citation matrix; quarantine two-finger/capillary-refill heuristics, exact timings, harness-hang claims, drugs/supplements, ice/heat, prognosis, exercise, and uncorroborated medical advice. |
 | [The Twisted Monk](https://www.twistedmonk.com/) | 26 | 4 | [rope care](https://www.twistedmonk.com/pages/ropecare), [rated synthetic uplines](https://www.twistedmonk.com/blogs/news/the-joy-of-posh), [partner green flags](https://www.twistedmonk.com/blogs/news/green-lights) | A small valuable core covers fiber-specific maintenance, critical versus secondary lines, rated uplines, dynamic load, redundancy, partner evaluation, and inclusion. | Strict article allowlist; exclude the Shopify catalog, prices, stock, reviews, customer stories, marketing, and volatile commerce. Attribute vendor and guest claims. |
 | [RopeLab Online](https://www.ropelab.com.au/) | 40 | 5 | [two-point anchor loads](https://www.ropelab.com.au/two-point-anchor-loads/), [pulley analysis](https://www.ropelab.com.au/pulley-system-analysis/), [mechanical-advantage quiz](https://www.ropelab.com.au/ropelab-quiz-1-mechanical-advantage-2/) | Professional rigging research fills major mechanics gaps: vectors, anchor loads, redirects, friction, pulley efficiency, mechanical advantage, abrasion, testing, and rescue systems. | Public/free human-suspension-relevant mechanics only. Never access members-only content or convert industrial/rescue values into bondage guarantees. |
 | [Discover Kinbaku](https://discoverkinbaku.com/en/) | 27 | 4 | [kinbaku and lineage](https://discoverkinbaku.com/en/what-is-kinbaku/), [declared influences](https://discoverkinbaku.com/en/about_us/) | First-party Nureki–Naka–Sugiura lineage perspective, semenawa philosophy, and uncommon somatic resources for bottoms. | Substantive terminology, declared lineage, philosophy, Elements, and somatics only; exclude bookings, galleries, promotion, thin class listings, and untranscribed embeds. |
@@ -130,7 +130,7 @@ The most important access correction is that Europe PMC and US PubMed Central ar
 
 | Source | Decision | Score | Distinct value and boundary |
 |---|---|---:|---|
-| [ICAR suspension syndrome review](https://europepmc.org/article/MED/38081341) | `accept_high_priority` | 43 | CC BY 4.0 review-level evidence, graded recommendations, and myth correction via EMBL-EBI JATS only; harness/rescue evidence is not silently generalized to rope bondage. |
+| [ICAR suspension syndrome review](https://europepmc.org/article/MED/38071341) | `accept_high_priority` | 43 | CC BY 4.0 review-level evidence, graded recommendations, and myth correction via EMBL-EBI JATS only; harness/rescue evidence is not silently generalized to rope bondage. JATS binds PMCID PMC10710713, DOI 10.1186/s13049-023-01164-z, and PMID 38071341. |
 | [Rope neuropathy study](https://europepmc.org/article/MED/37384078) | `accept_high_priority` | 42 | CC BY 3.0 directly relevant survey evidence via EMBL-EBI JATS only; self-report associations retain denominators, uncertainty, and study limits. JATS binds PMCID PMC10294117, DOI 10.7759/cureus.39588, and PMID 37384078. |
 | [Ontario live-performance safety guidelines](https://www.ontario.ca/document/safety-guidelines-live-performance-industry) | `accept_targeted_scope` | 41 | Official performer-flying, rigging, anchors, temporary/outdoor structure, competent-role, inspection, and rescue facts; transformed and jurisdiction-attributed under Crown terms. |
 | [NCSF Consent Counts](https://ncsfreedom.org/consent-counts/) | `accept_high_priority` | 41 | Consent policy, explicit prior permission, negotiation, red flags, incident reporting, response teams, confidentiality, trauma response, and survey findings; item-level licenses must be retained. |
@@ -235,3 +235,76 @@ corpus artifact was read. Public-web review respected current robots, ordinary
 browsing boundaries, authentication, licenses, and rightsholder endpoints. No
 challenge, cache, archive, third-party mirror, or access workaround was used,
 and no reviewed page body was written into a training artifact.
+
+## Discovery batch 005 outcome
+
+`discovery_batch_005` manually reviewed 12 additional source candidates by
+opening the actual public body, official metadata, or live failure endpoint and
+checking current access and reuse boundaries. It produced 2
+`accept_high_priority`, 4 `accept_targeted_scope`, 4 `defer`, and 2 `reject`
+decisions. The six accepted candidates expand the canonical corpus queue from
+68 to 74 resources.
+
+This batch prioritizes primary lineage testimony, source-critical history,
+licensed forensic evidence, structural-wood engineering, progressive rope
+pedagogy, and narrowly recoverable rope-maker observations. It also rejects a
+dead URL index and unsafe community class notes rather than treating page titles
+or public availability as training value.
+
+### Accepted sources
+
+| Source | Decision | Score | Distinct value and extraction boundary |
+|---|---|---:|---|
+| [BDSM fatality literature review](https://europepmc.org/article/MED/34383118) | `accept_high_priority` | 42 | CC BY 4.0 forensic review binding PMCID PMC8813685, DOI 10.1007/s00414-021-02674-0, and PMID 34383118. Preserve the 17-case publication-derived denominator, selection bias, absence of an incidence denominator, category distinctions, and questionable inferences; omit sensational or instructional case reconstruction. |
+| [USDA Wood Handbook](https://www.govinfo.gov/app/details/GOVPUB-A13-PURL-gpo158673) | `accept_high_priority` | 40 | Official 2021 engineering reference for wood variability, grade, moisture, duration, connectors, engineered wood, deterioration, and structural assumptions. Capture only relevant federal text after third-party-rights audit; it does not certify a ceiling, beam, joist, tree, connector, hardpoint, bondage system, or human-suspension use. |
+| [Shibaru history series](https://shibaru.life/category/history/) | `accept_targeted_scope` | 33 | Four signed Traditional-Chinese practitioner essays connect hojojutsu, Kabuki, ukiyo-e, ero-guro, and the postwar *Kitan Club* network. Produce a quotation-light source-labeled synthesis, not a full translation; exclude images and historical instruction and quarantine unsupported bruising, slippage, and safety claims. |
+| [Yukimura-ryu official archive](https://yukimura-ryu.com/) | `accept_targeted_scope` | 32 | Rare Yukimura, family, and student testimony plus named school progression. Preserve first-person/recollection/interviewer claim types and the unresolved 2006-versus-2007 formal-student date instead of flattening the conflict. |
+| [Willcat / Tension curriculum](https://willcatropes.art/) | `accept_targeted_scope` | 26 | Concrete prerequisites, assessment, two-sided fundamentals, integration labs, and readiness progression before uplines or load. Store only an attributed pedagogy map; exclude unsupported history, anatomy, body-reading, absolute safety, construction, and promotion. |
+| [ESINEM rope-maker articles](https://www.esinem.com/category/articles/hardware/) | `accept_targeted_scope` | 21 | A small unique core of firsthand observations on lay, strand imbalance, high-stranding, tangling, and handling. Cross-check cordage terminology and exclude product claims, load/size recommendations, anatomy, gote safety, assumed analogies, tutorials, and sales. This is distinct from the already queued ESINEM-hosted dissertation. |
+
+### Deferred and rejected sources
+
+| Source | Decision | Score | Reason |
+|---|---|---:|---|
+| [Rope Bondage and Affective Embodiments](https://revistas.udistrital.edu.co/index.php/CORPO/article/view/14228) | `defer` | 32 | Valuable comparative fieldwork and cultural analysis, but CC BY-NC-ND 4.0 does not license the intended derivative training Markdown; retain DOI/metadata while seeking author/editor permission. |
+| [Akechi Kanna official Note essay](https://note.com/nawashi_kanna/n/nbce4efeb3aad) | `defer` | 25 | Useful first-person lineage and practice perspective, but Note's terms retain creator copyright and restrict reproduction, publication, modification, and adaptation without consent. |
+| [Tanaka globalization abstract](https://cir.nii.ac.jp/crid/1390282680688408192) | `defer` | 22 | CiNii metadata is durable, but `Abstract License Flag: Disallowed` and J-STAGE's `*_pdf` robots rule leave no authorized body-capture route. |
+| [Rope Bondage the Smart Way](https://www.ropeconnections.com/wp-content/uploads/2018/05/Rope-Bondage-the-Smart-Way-Pete-Riggs.pdf) | `defer` | 20 | The 345-page author-hosted manual expressly prohibits reproduction and retrieval-system storage without permission, and its self-qualified, dated body needs a complete safety and duplication audit. |
+| [RopeBite Pittsburgh](https://ropebitepgh.com/) | `reject` | 5 | Heavy duplication and video dependence are compounded by ibuprofen/B12 advice and instructions to boil, gas-flame singe, and oven-bake treated rope and paper towels. |
+| [Remedial Ropes WordPress archive](https://remedialropes.wordpress.com/) | `reject` | 2 | The landing page is under construction and all six promised article bodies return 404. URL titles, feeds, snippets, archives, and mirrors are not corpus knowledge; the successor Twisted Windows source is already separately reviewed. |
+
+### Corrections and strengthened evidence gates
+
+The Europe PMC identity audit now checks every queued MED route against the
+authorized EMBL-EBI JATS rather than trusting an index number. The three bound
+records are:
+
+| Work | Required identity binding | Authorized full-text route |
+|---|---|---|
+| Rope-bondage neuropathy survey | PMCID PMC10294117; DOI 10.7759/cureus.39588; PMID 37384078 | `www.ebi.ac.uk/europepmc/webservices/rest/PMC10294117/fullTextXML` |
+| ICAR suspension-syndrome review | PMCID PMC10710713; DOI 10.1186/s13049-023-01164-z; PMID 38071341 | `www.ebi.ac.uk/europepmc/webservices/rest/PMC10710713/fullTextXML` |
+| BDSM fatality review | PMCID PMC8813685; DOI 10.1007/s00414-021-02674-0; PMID 34383118 | `www.ebi.ac.uk/europepmc/webservices/rest/PMC8813685/fullTextXML` |
+
+The prior ICAR queue PMID `38081341` was corrected to `38071341` everywhere,
+and regression coverage rejects the stale identifier. The earlier rope
+neuropathy identity remains corrected to PMID `37384078`, not `37324199`.
+
+Twisted Windows was re-audited after the dead Remedial Ropes predecessor was
+found. Its score is reduced from 40 to 29 and its decision changes from
+`accept_high_priority` to `accept_targeted_scope`. A capture worker must build a
+claim-to-citation matrix and quarantine unsupported exact onset/recovery times,
+the two-finger rule, capillary-refill heuristics, harness-hang timing, drugs or
+supplements, ice/heat treatment, exercise, prognosis, and other medical advice.
+This retains useful community operational knowledge without laundering
+practitioner synthesis into clinical fact.
+
+### Batch 005 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery contract,
+candidate ledger, corpus queue, report, and discovery tests. No QA, training
+projection, manual review, evaluation, heldout, holdout, OOD, shadow,
+benchmark, probe, or existing source-corpus artifact was read. Public-web review
+used normal public pages and official endpoints, respected robots and
+rightsholder terms, and did not bypass a login, purchase, challenge, missing
+body, license, or platform restriction. No reviewed page body was copied into a
+training artifact during discovery.
