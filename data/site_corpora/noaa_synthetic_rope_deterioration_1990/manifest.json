@@ -1,0 +1,76 @@
+{
+  "corpus_id": "noaa_synthetic_rope_deterioration_1990",
+  "content_kind": "manual_claim_cited_historical_methods_digest",
+  "created_at_utc": "2026-07-16",
+  "files": {
+    "CORPUS.md": {
+      "bytes": 17887,
+      "sha256": "9751de41e2775ea367c1cbaca1b7b05dbb471cb427f3d5d008b3830162226c09"
+    },
+    "README.md": {
+      "bytes": 1438,
+      "sha256": "631016eef988936182c3b0b79cb2f0268522059ac9947da7cdbe7bf8fc29f7ac"
+    },
+    "REPORT.md": {
+      "bytes": 10019,
+      "sha256": "c6386047bd9dfa272088655abdf9c707e469712d6645c172b345d130292f1fed"
+    },
+    "dispositions.jsonl": {
+      "bytes": 10028,
+      "sha256": "bebcc8de443671f06847001ebbd83e6d288b3cf68c5d24b64e4817792b455cb9"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 4862,
+      "sha256": "73b101a2104b1101cfe342f90e04cd190727154a74da242907c064cc5201c422"
+    },
+    "sources.jsonl": {
+      "bytes": 1129,
+      "sha256": "c854ba61edf66958811c50e97ecf7f237a005b9c719d377b8871f48ef20b1de3"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 14414,
+      "sha256": "a83fdb70696761b255981dc3598f40c90a2c1345cab47624ac359b37eea2451b"
+    }
+  },
+  "language": "en",
+  "primary_source": {
+    "authors": [
+      "Moon Hwo Seo",
+      "Stanley Backer",
+      "John F. Mandell"
+    ],
+    "repository_id": "noaa:9887",
+    "series": "MITSG 90-18",
+    "title": "Modelling of Synthetic Fiber Ropes Deterioration Caused by Internal Abrasion and Tensile Fatigue",
+    "year": 1990
+  },
+  "rights": {
+    "component_caveat": "Tables, figures, formulas, commercial identifiers, cited works, and operational parameters are excluded.",
+    "legal_advice": false,
+    "record_checksum_match": true,
+    "repository_designation": "Public Domain",
+    "source_bodies_retained": false,
+    "status": "accepted_manual_public_domain_adaptation"
+  },
+  "schema_version": "site-corpus-manifest-v1",
+  "source_ids": [
+    "NOAA-IR-9887",
+    "NOAA-1990-PDF"
+  ],
+  "split_hygiene": {
+    "allowed": [
+      "training_source"
+    ],
+    "forbidden": [
+      "validation",
+      "holdout",
+      "evaluation",
+      "ood",
+      "probe"
+    ],
+    "qa_derivation": "separate_training_only_artifact_after_manual_review"
+  },
+  "status": "accepted",
+  "summary": "Manual historical digest of an idealized 1990 double-braided synthetic marine-rope deterioration model, separating internal abrasion from tensile creep-fatigue and preserving assumptions and evidence limits without operational calculations.",
+  "version": 1
+}
