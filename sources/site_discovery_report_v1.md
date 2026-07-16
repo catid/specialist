@@ -131,7 +131,7 @@ The most important access correction is that Europe PMC and US PubMed Central ar
 | Source | Decision | Score | Distinct value and boundary |
 |---|---|---:|---|
 | [ICAR suspension syndrome review](https://europepmc.org/article/MED/38081341) | `accept_high_priority` | 43 | CC BY 4.0 review-level evidence, graded recommendations, and myth correction via EMBL-EBI JATS only; harness/rescue evidence is not silently generalized to rope bondage. |
-| [Rope neuropathy study](https://europepmc.org/article/MED/37324199) | `accept_high_priority` | 42 | CC BY 3.0 directly relevant survey evidence via EMBL-EBI JATS only; self-report associations retain denominators, uncertainty, and study limits. |
+| [Rope neuropathy study](https://europepmc.org/article/MED/37384078) | `accept_high_priority` | 42 | CC BY 3.0 directly relevant survey evidence via EMBL-EBI JATS only; self-report associations retain denominators, uncertainty, and study limits. JATS binds PMCID PMC10294117, DOI 10.7759/cureus.39588, and PMID 37384078. |
 | [Ontario live-performance safety guidelines](https://www.ontario.ca/document/safety-guidelines-live-performance-industry) | `accept_targeted_scope` | 41 | Official performer-flying, rigging, anchors, temporary/outdoor structure, competent-role, inspection, and rescue facts; transformed and jurisdiction-attributed under Crown terms. |
 | [NCSF Consent Counts](https://ncsfreedom.org/consent-counts/) | `accept_high_priority` | 41 | Consent policy, explicit prior permission, negotiation, red flags, incident reporting, response teams, confidentiality, trauma response, and survey findings; item-level licenses must be retained. |
 | [USFS Rigging for Trail Work](https://www.govinfo.gov/app/details/GOVPUB-A13-PURL-gpo235248) | `accept_high_priority` | 41 | Durable federal manual on knots, bend radius, slings, anchors, friction, blocks, mechanical advantage, inspection, and planning; credited third-party material must be audited and forestry ratings must not transfer to human suspension. |
@@ -166,3 +166,72 @@ The most important access correction is that Europe PMC and US PubMed Central ar
 ### Batch 003 access and clean-room statement
 
 Every decision distinguishes discovery from extraction. Public availability was not treated as permission, and alternate copies were not used to evade endpoint-specific robots or terms. No challenge, paywall, authentication, invalid TLS path, or crawler restriction was bypassed. Discovery used only governing source-discovery files and public web evidence; no existing QA, training projection, manual review, evaluation, heldout, holdout, OOD, shadow, benchmark, or probe artifact was read. No source body was written into a training artifact.
+
+## Discovery batch 004 outcome
+
+`discovery_batch_004` manually reviewed 12 additional, nonduplicate public
+sources, including the actual body or official metadata, current access policy,
+and visible reuse terms. It produced 1 `accept_high_priority`, 5
+`accept_targeted_scope`, 5 `defer`, and 1 `reject` decisions. The six accepted
+candidates expand the canonical corpus queue from 62 to 68 resources.
+
+This batch concentrates on first-party Japanese practitioner testimony and
+lineage, named rope-school progressions, knot/friction and upline curriculum
+maps, and rope construction/care. Discovery acceptance remains only permission
+to perform a bounded extraction review; it does not certify medical advice,
+historical claims, tying instructions, hardware, hardpoints, or suspension
+systems.
+
+### Accepted sources
+
+| Source | Decision | Score | Distinct value and extraction boundary |
+|---|---|---:|---|
+| [Heartland Kinbaku public guides](https://www.heartlandkinbaku.com/resources) | `accept_high_priority` | 36 | Explicitly shareable-with-attribution beginner, bottom, and physical-preparation guides plus a 20-class progression; every medical, anatomy, exercise, timing, and load claim must be independently adjudicated or quarantined. |
+| [Osada-ryu primary writings](https://www.osada-ryu.com/?page_id=184) | `accept_targeted_scope` | 34 | Quotation-light, fully attributed digest of first-person Akechi, Nureki, Yukimura, and Osada-ryu testimony; speaker, interviewer, date, framing, recollection, and later synthesis remain distinct. |
+| [Devil Mask Studio curriculum](https://devilmaskstud.io/preflight/) | `accept_targeted_scope` | 30 | Detailed prerequisite map for body-adapted harnesses, uplines, lockoffs, force vectors, ground tests, go/no-go reasoning, bamboo, hashira, inversions, and transitions; descriptions are not reconstructed tutorials. |
+| [Rope Study progression](https://ropestudy.com/) | `accept_targeted_scope` | 29 | Current 101–401 competency progression and partnered-practice pedagogy; capture only normally browsable pages during the incomplete May 2026 rebuild, without bypassing ModSecurity. |
+| [Hajime Kinoko official profile](https://shibari.jp/en/profile/index.html) | `accept_targeted_scope` | 24 | Narrow first-party digest of declared teachers, influences, artistic statement, Ichinawa-kai, and durable milestones; lineage is labeled self-described and promotion is excluded. |
+| [Go Arisue official profile](https://www.arisuego.com/home/%E6%9C%89%E6%9C%AB%E5%89%9B%E3%81%AE%E4%B8%96%E7%95%8C/) | `accept_targeted_scope` | 19 | Stable Japanese first-party biography and role chronology from a provisional 2026 relaunch; image, event, store, and forthcoming paid content is excluded. |
+
+### Deferred and rejected sources
+
+| Source | Decision | Score | Reason |
+|---|---|---:|---|
+| [USDA National Tree Climbing Guide](https://research.fs.usda.gov/treesearch/49660) | `defer` | 39 | The official 88-page manual is highly relevant, but its current host publishes a universal robots prohibition and the former official path is 404; no mirror or workaround was used. |
+| [Ritsumeikan Nureki biography/interview study](https://ritsumei.repo.nii.ac.jp/records/2003261) | `defer` | 37 | Exceptional source-critical scholarship, but the repository displays no reuse license and university policy requires prior permission for duplication, modification, or distribution. |
+| [Early *Kitan Club* bibliography](https://www.jstage.jst.go.jp/article/antitled/4/0/4_273/_article/-char/ja) | `defer` | 33 | Public metadata is retained, but ordinary copyright applies and J-STAGE robots disallow the `*_pdf` capture route; body use requires both a permitted endpoint and permission. |
+| [RebornRopes technical guides](https://www.rebornropes.com/pages/shibari-how-to-jute-rope-care) | `defer` | 25 | Broad materials and friction coverage is mixed with disputed knot equivalences, unsafe single-column framing, unsupported respiratory claims, uncited load claims, and heavy commerce; specialist adjudication is required first. |
+| [Full Circle beginner handout](https://www.fullcirclekink.com/pdfs/Bondage%20for%20Beginners%20handout.pdf) | `defer` | 21 | Search indexing suggests a formerly CC BY-SA handout, but the official asset is 404 and the source body and license cannot now be revalidated; no cache, archive, or third-party copy was used. |
+| [German Wikibooks Shibari manual](https://commons.wikimedia.org/wiki/File:Shibari.pdf) | `reject` | 21 | Despite CC BY-SA 3.0, the incomplete legacy manual contains hazardous or unsupported rope processing, hardware, safety-factor, neck-adjacent pattern, gender, and origin guidance. |
+
+### Batch 004 evidence, rights, and quality controls
+
+The first-party lineage cluster intentionally preserves claim type. Hajime
+Kinoko and Go Arisue profiles are self-descriptions, while the Osada-ryu pages
+contain layered interviews, interviewer narration, repost history, recollection,
+and school framing. These sources may correct thin secondary summaries, but
+they do not independently prove every date, relationship, or contested origin.
+
+Heartland, Devil Mask Studio, and Rope Study provide curriculum architecture:
+prerequisites, sequencing, competency language, partnered practice, harness
+adaptation, uplines, load reasoning, and decisions to stop. Their maps can guide
+later educational organization without inventing technique from images or
+marketing descriptions. Heartland's explicit sharing statement supports
+capture of its named public documents, but practitioner claims still require
+claim-level evidence review.
+
+Permissive licensing alone was not treated as a quality signal. The German
+Wikibooks manual was rejected after body review, and RebornRopes was deferred
+despite its accessible technical library. Conversely, strong relevance did not
+override access or rights: USDA robots, J-STAGE's PDF restriction, Ritsumeikan's
+reuse policy, and Full Circle's missing official asset all block corpus capture.
+
+### Batch 004 access and clean-room statement
+
+Repository inspection remained limited to the governing source-discovery
+ledger, queue, report, and contract test. No QA, training projection, manual
+review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe, or source
+corpus artifact was read. Public-web review respected current robots, ordinary
+browsing boundaries, authentication, licenses, and rightsholder endpoints. No
+challenge, cache, archive, third-party mirror, or access workaround was used,
+and no reviewed page body was written into a training artifact.

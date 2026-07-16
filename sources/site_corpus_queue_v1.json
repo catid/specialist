@@ -708,8 +708,8 @@
     },
     {
       "resource_id": "europepmc_rope_neuropathy_study",
-      "url": "https://europepmc.org/article/MED/37324199",
-      "scope": "Capture the CC BY 3.0 JATS from the EMBL-EBI Europe PMC API only, preserving title, authors, journal, publication date, DOI/PMCID, license, study design, population, measures, results, limitations, and evidence level. Clearly label self-reported associations rather than causal rules; retain subgroup denominators and uncertainty; do not generalize beyond the sampled population or turn observed injury locations into tying instructions. Exclude publisher chrome and do not access the Cureus or US PMC copies.",
+      "url": "https://europepmc.org/article/MED/37384078",
+      "scope": "Capture the CC BY 3.0 JATS from the EMBL-EBI Europe PMC API only, preserving title, authors, journal, publication date, DOI/PMCID/PMID, license, study design, population, measures, results, limitations, and evidence level. Bind PMCID PMC10294117, DOI 10.7759/cureus.39588, and PMID 37384078 in the manifest. Clearly label self-reported associations rather than causal rules; retain subgroup denominators and uncertainty; do not generalize beyond the sampled population or turn observed injury locations into tying instructions. Exclude publisher chrome and do not access the Cureus or US PMC copies.",
       "status": "pending",
       "discovery_candidate_id": "europepmc_rope_neuropathy_study",
       "discovery_priority_score": 42,
@@ -847,6 +847,106 @@
         "consent_scene_management",
         "aesthetics_performance",
         "terminology_cultural_context",
+        "teaching_evaluation"
+      ]
+    },
+    {
+      "resource_id": "heartland_kinbaku_public_guides",
+      "url": "https://www.heartlandkinbaku.com/resources",
+      "scope": "Capture the resource hub, core-curriculum page, and the three named public Google documents through their anonymous public/export routes, recording exact document title, owner, retrieval date, export URL, visible share-with-attribution wording, and a snapshot hash. Preserve substantive history/terminology, rope selection and processing, emotional and physical safety, single/double columns, basic rigging, bottom advocacy, nerve material, accessibility, physical-preparation exercises, prerequisites, progression, and stated limits of internet-only learning. Treat the documents as living practitioner curriculum, not consensus: independently adjudicate or quarantine every anatomy, injury, circulation-time, exercise, load, and medical claim; retain the roughly-ten-bottom observational basis of the PT guide. Exclude schedules, ticketing, private lessons, images, contact details, and promotion; do not infer steps from embedded media.",
+      "status": "pending",
+      "discovery_candidate_id": "heartland_kinbaku_public_guides",
+      "discovery_priority_score": 36,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "ties_knots_frictions",
+        "uplines_suspension_hardpoints",
+        "anatomy_injury_prevention",
+        "rope_materials_maintenance",
+        "rigging_mechanics",
+        "consent_scene_management",
+        "bottoming_skills",
+        "pattern_architecture",
+        "rope_handling",
+        "teaching_evaluation",
+        "accessibility_adaptation",
+        "terminology_cultural_context"
+      ]
+    },
+    {
+      "resource_id": "osada_ryu_primary_writings",
+      "url": "https://www.osada-ryu.com/?page_id=184",
+      "scope": "Allowlist the writings index, Akechi Denki, Nureki Chimuo, Yukimura Haruki, Osada Eikichi, Oda Hisashi, Osada Steve, terminology essays, about, and training pages. Produce an original, quotation-light digest that records speaker, interviewer/author, interview or repost date, original publication when stated, Japanese name/term, first-person status, and uncertainty. Keep direct testimony separate from interviewer narration, promotion, recollection, and later synthesis; cross-check dates, lineage, hojojutsu, linguistic, anatomy, and safety claims against stronger sources and preserve disagreements. Exclude images, comments, dojo listings, student promotion, and extended prose; do not turn historical gender norms, injury claims, or master/disciple rhetoric into universal consent or technique rules.",
+      "status": "pending",
+      "discovery_candidate_id": "osada_ryu_primary_writings",
+      "discovery_priority_score": 34,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "ties_knots_frictions",
+        "consent_scene_management",
+        "teaching_evaluation",
+        "aesthetics_performance",
+        "terminology_cultural_context"
+      ]
+    },
+    {
+      "resource_id": "hajime_kinoko_official_profile",
+      "url": "https://shibari.jp/en/profile/index.html",
+      "scope": "Capture a concise attributed digest of the official profile's first-person artistic statement; declared learning from or relationships with Yumeko, Teru, Akechi Denki, Kanna, Yukimura Haruki, Chiharu Karino, Norio Sugiura, and other explicitly named influences; formation of Ichinawa-kai; and selected dated milestones that explain the development of his rope, photography, teaching, performance, or installation practice. Preserve Japanese terms such as shisho and onshi as the profile uses them and label all lineage as self-described. Exclude images, embedded video, galleries, current tours/events, exhaustive celebrity/commercial credits, purchase links, promotional superlatives, and volatile schedules; do not infer technique or safety from visual work.",
+      "status": "pending",
+      "discovery_candidate_id": "hajime_kinoko_official_profile",
+      "discovery_priority_score": 24,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "aesthetics_performance",
+        "terminology_cultural_context"
+      ]
+    },
+    {
+      "resource_id": "go_arisue_official_profile",
+      "url": "https://www.arisuego.com/home/%E6%9C%89%E6%9C%AB%E5%89%9B%E3%81%AE%E4%B8%96%E7%95%8C/",
+      "scope": "Capture only the stable Japanese biography and a careful, source-labeled English factual digest of its dates, roles, named films/directors, technical-supervision work, workshops, instructional publications, writing, photography, stage practice, and bakutaku description. Record the site's January 2026 provisional status and distinguish biography claims from independently verified credits. Exclude images, galleries, event listings, work inquiries, social links, sales, forthcoming paid note content, exhaustive publicity, and external storefronts; do not translate promotional superlatives as neutral facts.",
+      "status": "pending",
+      "discovery_candidate_id": "go_arisue_official_profile",
+      "discovery_priority_score": 19,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "aesthetics_performance",
+        "terminology_cultural_context"
+      ]
+    },
+    {
+      "resource_id": "devil_mask_studio_curriculum",
+      "url": "https://devilmaskstud.io/preflight/",
+      "scope": "Allowlist only the substantive Studio Series 102, 201, 301, and 401 curriculum pages that are publicly accessible. Create a concise attributed pedagogy map preserving track order, prerequisites, intended competency, named technical topics, harness/body adaptation, uplines and lockoffs, line tension and force vectors, ground testing and go/no-go reasoning, nawajiri redistribution, bamboo pressure distribution, hashira, inversions, transitions, communication, and problem-solving emphasis. Treat descriptions as the studio's curriculum, not validated instructions; do not invent construction steps, certify any harness or hardpoint, or infer from images. Exclude class dates, tickets, membership, shop, services, staff promotion, venue details, and event listings.",
+      "status": "pending",
+      "discovery_candidate_id": "devil_mask_studio_curriculum",
+      "discovery_priority_score": 30,
+      "supported_taxonomy_categories": [
+        "ties_knots_frictions",
+        "uplines_suspension_hardpoints",
+        "rigging_mechanics",
+        "consent_scene_management",
+        "pattern_architecture",
+        "rope_handling",
+        "teaching_evaluation",
+        "aesthetics_performance"
+      ]
+    },
+    {
+      "resource_id": "rope_study_progression",
+      "url": "https://ropestudy.com/",
+      "scope": "On a fresh access-policy check, capture only the current public home and about pages, plus any restored topic/progression page reachable through ordinary public navigation without a 406, challenge, login, or workaround. Snapshot retrieval date and page status because the May 2026 rebuild is incomplete. Preserve the 101-401 prerequisites and conceptual progression, distinctions among practice/performance/play, deliberate practice, risk decisions, top/bottom partnership, stewardship, teaching limits, humility, and lineage acknowledgment as Rope Study's pedagogy. Exclude contact/social links, missing-page inference, obsolete cached lessons, and any claim that this outline itself teaches suspension technique or certifies competence.",
+      "status": "pending",
+      "discovery_candidate_id": "rope_study_progression",
+      "discovery_priority_score": 29,
+      "supported_taxonomy_categories": [
+        "uplines_suspension_hardpoints",
+        "anatomy_injury_prevention",
+        "consent_scene_management",
+        "bottoming_skills",
+        "pattern_architecture",
+        "rope_handling",
         "teaching_evaluation"
       ]
     }

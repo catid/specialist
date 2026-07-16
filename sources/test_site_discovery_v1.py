@@ -330,6 +330,32 @@ class SourceCorpusContractTest(unittest.TestCase):
             ],
         )
 
+    def test_rope_neuropathy_article_identifiers_are_bound(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        row = by_id["europepmc_rope_neuropathy_study"]
+        self.assertEqual(
+            row["canonical_url"],
+            "https://europepmc.org/article/MED/37384078",
+        )
+        serialized = json.dumps(row, sort_keys=True)
+        for identifier in {
+            "PMC10294117",
+            "10.7759/cureus.39588",
+            "37384078",
+        }:
+            self.assertIn(identifier, serialized)
+        self.assertNotIn("37324199", serialized)
+        queued = next(
+            item
+            for item in self.corpus["queue"]
+            if item["resource_id"] == "europepmc_rope_neuropathy_study"
+        )
+        self.assertEqual(queued["url"], row["canonical_url"])
+        self.assertIn("PMC10294117", queued["scope"])
+        self.assertIn("10.7759/cureus.39588", queued["scope"])
+        self.assertIn("37384078", queued["scope"])
+        self.assertNotIn("37324199", json.dumps(queued, sort_keys=True))
+
     def test_batch_003_restricted_rights_are_not_queued(self) -> None:
         by_id = {row["candidate_id"]: row for row in self.candidates}
         for candidate_id in {
@@ -385,6 +411,115 @@ class SourceCorpusContractTest(unittest.TestCase):
         ].lower()
         self.assertIn("conference-abstract status", abstract_scope)
         self.assertIn("do not reproduce", abstract_scope)
+
+    def test_batch_004_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_004"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_high_priority": {
+                "heartland_kinbaku_public_guides",
+            },
+            "accept_targeted_scope": {
+                "osada_ryu_primary_writings",
+                "hajime_kinoko_official_profile",
+                "go_arisue_official_profile",
+                "devil_mask_studio_curriculum",
+                "rope_study_progression",
+            },
+            "defer": {
+                "usfs_national_tree_climbing_guide",
+                "ritsumeikan_nureki_biography_interviews",
+                "antitled_early_kitan_club_bibliography",
+                "fullcircle_bondage_beginner_handout",
+                "reborn_ropes_technical_guides",
+            },
+            "reject": {
+                "german_wikibooks_shibari_manual",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        accepted = {
+            candidate_id
+            for candidate_id, row in batch.items()
+            if row["decision"].startswith("accept_")
+        }
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        self.assertEqual(len(accepted), 6)
+        self.assertTrue(accepted.issubset(queued))
+
+    def test_batch_004_access_and_rights_blocks_are_explicit(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        usfs = by_id["usfs_national_tree_climbing_guide"]
+        self.assertEqual(usfs["decision"], "defer")
+        self.assertIn("universal", usfs["access_notes"].lower())
+        self.assertIn("robots", usfs["access_notes"].lower())
+
+        antitled = by_id["antitled_early_kitan_club_bibliography"]
+        self.assertEqual(antitled["decision"], "defer")
+        self.assertIn("*_pdf", antitled["recommended_crawl_scope"])
+        self.assertIn("permission", antitled["recommended_crawl_scope"].lower())
+
+        ritsumeikan = by_id["ritsumeikan_nureki_biography_interviews"]
+        self.assertEqual(ritsumeikan["decision"], "defer")
+        self.assertIn(
+            "permission", ritsumeikan["recommended_crawl_scope"].lower()
+        )
+
+        fullcircle = by_id["fullcircle_bondage_beginner_handout"]
+        self.assertEqual(fullcircle["decision"], "defer")
+        self.assertIn("404", fullcircle["access_notes"])
+        self.assertIn("archive", fullcircle["recommended_crawl_scope"].lower())
+
+    def test_batch_004_quality_gates_unsafe_or_disputed_sources(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        reborn = by_id["reborn_ropes_technical_guides"]
+        self.assertEqual(reborn["decision"], "defer")
+        reborn_scope = reborn["recommended_crawl_scope"].lower()
+        for disputed_term in {"jbo", "somerville", "reef/granny"}:
+            self.assertIn(disputed_term, reborn_scope)
+
+        wikibook = by_id["german_wikibooks_shibari_manual"]
+        self.assertEqual(wikibook["decision"], "reject")
+        wikibook_scope = wikibook["recommended_crawl_scope"].lower()
+        self.assertIn("90°c", wikibook_scope)
+        self.assertIn("gun oil", wikibook_scope)
+
+        heartland = by_id["heartland_kinbaku_public_guides"]
+        self.assertEqual(heartland["decision"], "accept_high_priority")
+        heartland_scope = heartland["recommended_crawl_scope"].lower()
+        self.assertIn("adjudicate or quarantine", heartland_scope)
+        self.assertIn("roughly-ten-bottom", heartland_scope)
+
+    def test_batch_004_first_party_claim_types_are_preserved(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        expected_scope_markers = {
+            "osada_ryu_primary_writings": "first-person",
+            "hajime_kinoko_official_profile": "self-described",
+            "go_arisue_official_profile": "source-labeled",
+        }
+        for candidate_id, marker in expected_scope_markers.items():
+            row = by_id[candidate_id]
+            self.assertEqual(row["decision"], "accept_targeted_scope")
+            self.assertIn(marker, row["recommended_crawl_scope"].lower())
 
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
