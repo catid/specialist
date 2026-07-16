@@ -1,0 +1,915 @@
+{
+  "access_contract": {
+    "builder_or_dry_run_reads_base_model_directory_bytes": false,
+    "builder_or_dry_run_reads_raw_dataset_or_semantic_rows": false,
+    "decode_exactly_first_64_v61c_ranking_rows": true,
+    "decode_v61c_row_64_or_later": false,
+    "full_jsonl_hash_verification_or_full_file_read_live": false,
+    "full_train_membership_holdback_sentinel_ood_protected_or_terminal_may_open": false,
+    "live_authorized_prefix_pread_count": 2,
+    "live_read_primitive": "one decoded exact-prefix os.pread before generation and one hash-only exact-prefix os.pread after cleanup",
+    "live_semantic_dataset_path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v61c_paired_null_calibration_rows.jsonl",
+    "numeric_hash_only_evidence_required": true,
+    "postrun_prefix_integrity_pread_decodes_semantics": false,
+    "ranking_prefix_bytes": 136848,
+    "ranking_prefix_sha256": "8259894003268a2fafed6a9a66ce3e604d5eb76cdf19a1c1c759e5ffc5916c70",
+    "raw_question_answer_prompt_or_generation_text_may_be_persisted": false,
+    "source_file_size_metadata_bytes": 144481,
+    "v61c_hash_numeric_panel_may_open_live": true
+  },
+  "adapter_update_candidate_hpo_or_promotion_performed": false,
+  "artifacts": {
+    "analysis": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v65a_r1_ranking64_alpha_zero_calibration/ranking64_alpha_zero_analysis_v65a_r1.json",
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v65a_r1_ranking64_alpha_zero_calibration.attempt.json",
+    "evidence": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v65a_r1_ranking64_alpha_zero_calibration/ranking64_alpha_zero_evidence_v65a_r1.json",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v65a_r1_ranking64_alpha_zero_calibration/failure_v65a_r1.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v65a_r1_ranking64_alpha_zero_calibration/gpu_activity_v65a_r1.jsonl",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v65a_r1_ranking64_alpha_zero_calibration/ranking64_alpha_zero_report_v65a_r1.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v65a_r1_ranking64_alpha_zero_calibration"
+  },
+  "authorization": {
+    "actors": 4,
+    "adapter_update": false,
+    "alpha_zero_calibration": true,
+    "authority_origin": "this_specific_v65a_preregistration_only",
+    "candidate": false,
+    "candidate_snapshot": false,
+    "exact_sentinel": false,
+    "gpu_launch": true,
+    "hpo_population": false,
+    "ood_shadow": false,
+    "optimizer_update": false,
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "projection": false,
+    "promotion": false,
+    "protected_semantics": false,
+    "tensor_parallel_size_per_actor": 1,
+    "terminal_holdout": false,
+    "train_holdback": false,
+    "unused_reserve": false
+  },
+  "content_sha256_before_self_field": "8f6f8a5e0d07355164e84e8b0563c8d1484336b9a4b4dd3eb1cf81421f89c89e",
+  "fixed_calibration_recipe": {
+    "actors": 4,
+    "adapter_update_candidate_hpo_or_promotion_performed": false,
+    "adaptive_retry_drop_reorder_or_early_stop": false,
+    "alpha": 0.0,
+    "base_model": {
+      "all_top_level_files_fingerprint_sha256": "1a21a765e374e266037b3b7e5313a62a0de8ca37c00c0462b67c21af7e21f61e",
+      "builder_read_model_directory_bytes": false,
+      "committed_seal": {
+        "commit": "00471e1c44b78813d02f0a8895c8e014a75dcc4e",
+        "content_sha256": "d4cf795408967aefbc77f841c47e6fe2fbe3cefc14a4a0fdb4bf73b2701326f9",
+        "file_sha256": "96eeb236ea94678f57a530a27a471467d4b3d413d2e7be397e293b695cd4c440",
+        "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V23A_INSERTION_MODEL_SEAL.json"
+      },
+      "full_byte_receipt_implementation": "run_lora_es_v59_vs_v434_robust_confirmation_v64",
+      "non_weight_file_count": 14,
+      "non_weight_manifest_sha256": "f53b938b97ac06c075d697eaec662695b5349f344f79808cbaa86218f2b057e1",
+      "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+      "top_level_file_count": 40,
+      "weight_shard_count": 26,
+      "weight_shard_manifest_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e"
+    },
+    "candidate_after_reference_pairs_per_actor": 1,
+    "candidate_before_reference_pairs_per_actor": 1,
+    "common_generation_seed": 2026071601,
+    "exact_master_receipt_before_and_after_every_scored_period": true,
+    "exact_master_receipt_before_and_after_every_warmup": true,
+    "exact_master_rematerialization": {
+      "after_generation_receipt_may_write_or_reset_slot": false,
+      "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+      "candidate_or_perturbation_materialized": false,
+      "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "host_copy_for_read_only_hashing_permitted": true,
+      "period_slot_write_receipts_required": 8,
+      "read_only_edges_per_period": [
+        "before_generation",
+        "after_generation"
+      ],
+      "read_only_live_slot_receipts_required": 16,
+      "required_before_every_warmup_and_scored_period": true,
+      "rpc": "rematerialize_exact_master_v65a",
+      "source_is_unchanged_pinned_fp32_master": true,
+      "worker_extension": "eggroll_es_worker_lora_v65a.LoRAAdapterStateWorkerExtensionV65A"
+    },
+    "exact_sentinel_units": 0,
+    "generation_params_without_seed": {
+      "detokenize": true,
+      "max_tokens": 64,
+      "n": 1,
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "label_order_matches_v65_plus0_minus0_minus1_plus1": true,
+    "lora_request": {
+      "integer_id": 1,
+      "name": "v434_ranking64_alpha_zero_v65a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d"
+    },
+    "pair_periods": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "paired_replicas_per_unit": 8,
+    "pairs_per_actor": 2,
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "ranking_units": 64,
+    "reference_and_candidate_are_identical_v434_aliases": true,
+    "rows_per_actor_call": 64,
+    "runtime_determinism_controls": {
+      "VLLM_BATCH_INVARIANT": false,
+      "async_scheduling": false,
+      "dtype": "torch.bfloat16",
+      "enable_chunked_prefill": false,
+      "enable_prefix_caching": false,
+      "enforce_eager": true,
+      "gpu_memory_utilization": 0.82,
+      "max_cpu_loras": 2,
+      "max_lora_rank": 32,
+      "max_loras": 1,
+      "max_model_len": 2048,
+      "max_num_batched_tokens": 8192,
+      "max_num_seqs": 64,
+      "scheduling_policy": "fcfs",
+      "tensor_parallel_size": 1
+    },
+    "sanitized_live_engine_and_cache_receipt": {
+      "active_lora_ids_exactly": [
+        1
+      ],
+      "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+      "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "engine_fields_must_equal_runtime_determinism_controls": true,
+      "extra_or_candidate_adapter_loaded": false,
+      "manager_and_cpu_cache_lora_ids_exactly": [
+        1
+      ],
+      "raw_model_config_semantics_or_text_persisted": false,
+      "registered_and_gpu_slot_match_exact_staged_v434_bytes": true,
+      "required_from_every_actor": true,
+      "staged_v434_weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+      "unique_actor_pid_and_physical_gpu": true
+    },
+    "scored_generation_completions": 1024,
+    "scored_label_plan": {
+      "0": [
+        "candidate",
+        "reference",
+        "reference",
+        "candidate"
+      ],
+      "1": [
+        "candidate",
+        "reference",
+        "reference",
+        "candidate"
+      ],
+      "2": [
+        "candidate",
+        "reference",
+        "reference",
+        "candidate"
+      ],
+      "3": [
+        "candidate",
+        "reference",
+        "reference",
+        "candidate"
+      ]
+    },
+    "scored_periods": 4,
+    "sigma_or_direction": null,
+    "tensor_parallel_size_per_actor": 1,
+    "total_generation_completions": 2048,
+    "unscored_warmup_periods": 4,
+    "v434_adapter": {
+      "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+      "builder_reopened_adapter_bytes": false,
+      "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "canonical_ordered_key_sha256": "ddee26a3a4a10683a51f089e8b7028e4a8d9607e0827dab7a314e04e3ece2280",
+      "runtime_assignment_sha256": "bac008805d7fc7c6279c47255d8d1563b0be978cb21109e8c013114f143e09df",
+      "source": {
+        "config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+        "path": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/v434_equal_r32_seed17_init20260715041/final",
+        "weights_file_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b"
+      },
+      "staged": {
+        "config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+        "manifest_content_sha256": "ea328ada018e1c0d182d329d2a9cb81f8f0375aef93738f3b9c0a00f63c82da3",
+        "manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+        "ordered_values_sha256": "26daf52fac11a584891f745e9682c4409ff4aee3119814f0a083a91a192bdf45",
+        "path": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d",
+        "transformed_identity_sha256": "f210bf05e7fe38481d0a7d9c641a7f902e575521b50e98bdc021bf11b49cb1c8",
+        "weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a"
+      }
+    },
+    "warmup_generation_completions_discarded": 1024,
+    "warmup_generation_metrics_computed_or_persisted": false,
+    "warmup_outputs_scored_or_persisted": false,
+    "warmup_state": "exact unchanged pinned V434 master"
+  },
+  "implementation_bindings": {
+    "closure__audit_vllm_fullbatch_fcfs_support_v61e.py": {
+      "file_sha256": "a7d2447d4d9d16a8c3fca895df7ac91c7519a16b25a902082a9ea0ead521ea47",
+      "path": "/home/catid/specialist/audit_vllm_fullbatch_fcfs_support_v61e.py"
+    },
+    "closure__audit_vllm_pre_hpo_alpha_zero_support_v62a.py": {
+      "file_sha256": "2982b47c350239a0d710cf9f0e29484419e6af8be5ad9cd6014ae53ed8913444",
+      "path": "/home/catid/specialist/audit_vllm_pre_hpo_alpha_zero_support_v62a.py"
+    },
+    "closure__audit_vllm_pre_hpo_alpha_zero_support_v62b.py": {
+      "file_sha256": "e7105fc834f83bfa916fb7b49417944715e6ccfc9cc34017d2987d10681eb7ce",
+      "path": "/home/catid/specialist/audit_vllm_pre_hpo_alpha_zero_support_v62b.py"
+    },
+    "closure__build_eval_v3.py": {
+      "file_sha256": "bbea54a6d9255f6edaa1d5d20a013e7e0aa1a280baebbc145f897392c574d7d5",
+      "path": "/home/catid/specialist/build_eval_v3.py"
+    },
+    "closure__build_general_prose_anchor.py": {
+      "file_sha256": "5df8f4441f2f719c676560be857b2f90e5cb918a31d4e197040c47157e4b36f8",
+      "path": "/home/catid/specialist/build_general_prose_anchor.py"
+    },
+    "closure__build_lora_es_paired_null_inputs_v61c.py": {
+      "file_sha256": "4c1db298d5804f7edaddb70b26dea24974853211adde4de1b5601493a1c206ce",
+      "path": "/home/catid/specialist/build_lora_es_paired_null_inputs_v61c.py"
+    },
+    "closure__build_lora_es_robust_sampling_preregistration_v65.py": {
+      "file_sha256": "95d6625065ba914ebe4ef65873f36efd335b638349d9658eb11ad1b663bebd1a",
+      "path": "/home/catid/specialist/build_lora_es_robust_sampling_preregistration_v65.py"
+    },
+    "closure__build_train_shadow_folds_v37a.py": {
+      "file_sha256": "29fb6e94eb7bca470d5d2ef32dd9bc74a755eaa0624a14a74a1a22ded070a6a8",
+      "path": "/home/catid/specialist/build_train_shadow_folds_v37a.py"
+    },
+    "closure__build_v48b_train_membership.py": {
+      "file_sha256": "b9455fa4bb180b882998e354cb575151ed4350a0113eddcc653d795cd75fd06e",
+      "path": "/home/catid/specialist/build_v48b_train_membership.py"
+    },
+    "closure__eggroll_es_anchor.py": {
+      "file_sha256": "a5e71ae4eebf36907e9a8da2d91e61fe46d0c581b5ef286a0668124feb02af52",
+      "path": "/home/catid/specialist/eggroll_es_anchor.py"
+    },
+    "closure__eggroll_es_multi_anchor_v43h.py": {
+      "file_sha256": "2b1c17096831ab4636109e40980e54ccdf4712f95adb0ec250051c34f710ad04",
+      "path": "/home/catid/specialist/eggroll_es_multi_anchor_v43h.py"
+    },
+    "closure__eggroll_es_robust_anchor.py": {
+      "file_sha256": "8291ac4be909619a527cd9f2ffb4665b4884d0b3dae7feb7dc1b1fd8840a943f",
+      "path": "/home/catid/specialist/eggroll_es_robust_anchor.py"
+    },
+    "closure__eggroll_es_train_panel_sampler_v13.py": {
+      "file_sha256": "81ca63c230995d44dfdb739a78b4a1a0f85d09724ba5915860ae36f78ccc3da9",
+      "path": "/home/catid/specialist/eggroll_es_train_panel_sampler_v13.py"
+    },
+    "closure__eggroll_es_worker_v10.py": {
+      "file_sha256": "42fce05ea99e457df17b9cd11c53ad8340b1b1321d2d4ebe9191ded1a964e0a9",
+      "path": "/home/catid/specialist/eggroll_es_worker_v10.py"
+    },
+    "closure__eggroll_es_worker_v11.py": {
+      "file_sha256": "1bda6397fd5f1478d47de929babe509e6a3475c882ffa642d5252a3f283cd8d5",
+      "path": "/home/catid/specialist/eggroll_es_worker_v11.py"
+    },
+    "closure__eggroll_es_worker_v11b.py": {
+      "file_sha256": "64a0af9c977d8e09282560e8f8e2979a50034d6d78e081387ee1383bee97baa7",
+      "path": "/home/catid/specialist/eggroll_es_worker_v11b.py"
+    },
+    "closure__eggroll_es_worker_v11c.py": {
+      "file_sha256": "d75951483058de340185fc81f6ed050deeac1551107c0357349a1f311cdb2c22",
+      "path": "/home/catid/specialist/eggroll_es_worker_v11c.py"
+    },
+    "closure__eggroll_es_worker_v13.py": {
+      "file_sha256": "5596bff9174e5e94e812181a51f8cc9f9b2a73f3a4cb58c45d5346147c8d6367",
+      "path": "/home/catid/specialist/eggroll_es_worker_v13.py"
+    },
+    "closure__eggroll_es_worker_v38a.py": {
+      "file_sha256": "0b5a2a86a0aa51f34e38ddad653d34bfdbb7779e409fd6e47a4d9f3dcb3fec50",
+      "path": "/home/catid/specialist/eggroll_es_worker_v38a.py"
+    },
+    "closure__eggroll_es_worker_v4.py": {
+      "file_sha256": "876033b6b2ac8a869f0f82656c7e49434b7ba25789c1ddf776ac433659f72f59",
+      "path": "/home/catid/specialist/eggroll_es_worker_v4.py"
+    },
+    "closure__eggroll_es_worker_v6.py": {
+      "file_sha256": "5ffd843344931a02594f096ba9e1b7ac3291d345ab71ad76df2ec9c03d0c2b26",
+      "path": "/home/catid/specialist/eggroll_es_worker_v6.py"
+    },
+    "closure__eggroll_es_worker_v7.py": {
+      "file_sha256": "9357adc5ac105abe1c13d9e315ba3a35a885ee9f11a5de9114ee2ecc8df729fb",
+      "path": "/home/catid/specialist/eggroll_es_worker_v7.py"
+    },
+    "closure__eggroll_es_worker_v8.py": {
+      "file_sha256": "99f22cd0811fbf840f0b93426d0d3db09fd30938ba926594eef10081bc51a825",
+      "path": "/home/catid/specialist/eggroll_es_worker_v8.py"
+    },
+    "closure__es_common.py": {
+      "file_sha256": "fe81f932432eecf1cfe852de4d84cebb15ef1f6eaf0b75a61ce9309640e5f666",
+      "path": "/home/catid/specialist/es_common.py"
+    },
+    "closure__es_layer_plan.py": {
+      "file_sha256": "ac69b3570e051089d994706e6ffcb81be38199f8e35076d9245479e5acb3053d",
+      "path": "/home/catid/specialist/es_layer_plan.py"
+    },
+    "closure__es_train_acc.py": {
+      "file_sha256": "2c7a78c0b1a9eba79de194312e4a8d8c4ebfd3a080816cb31b8e3738082bbefd",
+      "path": "/home/catid/specialist/es_train_acc.py"
+    },
+    "closure__lora_es_baseline_census_strata_v61a.py": {
+      "file_sha256": "b180c0bf9ef4996b24662eba604b396e2d33a0e32fb4c8305be8cc34b7dd7569",
+      "path": "/home/catid/specialist/lora_es_baseline_census_strata_v61a.py"
+    },
+    "closure__lora_es_direct_master_pipeline_v51.py": {
+      "file_sha256": "5a3f24852dbe2b74ed0aa1cbd251efcfbf540f97e95b4d9b6b7ae728d30bb9ab",
+      "path": "/home/catid/specialist/lora_es_direct_master_pipeline_v51.py"
+    },
+    "closure__lora_es_f1_anchor_projection_v43m.py": {
+      "file_sha256": "2742c460fd64d1480f7c13d55a2b5b33d364e0b48edc8a81b54962eb7c834881",
+      "path": "/home/catid/specialist/lora_es_f1_anchor_projection_v43m.py"
+    },
+    "closure__lora_es_fused_anchor_runtime_v43i.py": {
+      "file_sha256": "9c9d0cbe860080dc31ce747ae27996985668c61daf7b6d8ed10232e9351255e1",
+      "path": "/home/catid/specialist/lora_es_fused_anchor_runtime_v43i.py"
+    },
+    "closure__lora_es_generation_boundary_sampling_v48a.py": {
+      "file_sha256": "b5aaa9f41d07b1f4531675bba6cd96d5f81a718308d32a0ec4902ac81e169982",
+      "path": "/home/catid/specialist/lora_es_generation_boundary_sampling_v48a.py"
+    },
+    "closure__lora_es_nested_population_v52.py": {
+      "file_sha256": "25a385911b24177630a9449c65b40d4eeccda5f6bbff3d67734e795efadb6f08",
+      "path": "/home/catid/specialist/lora_es_nested_population_v52.py"
+    },
+    "closure__lora_es_numeric_consensus_v43f.py": {
+      "file_sha256": "de44b0765e8f083f75a4bebb171916a283f906f6ddd92e0a88094c36d42fa561",
+      "path": "/home/catid/specialist/lora_es_numeric_consensus_v43f.py"
+    },
+    "closure__lora_es_paired_null_calibration_v61c.py": {
+      "file_sha256": "196df73ef48eaa1e31636b7e5f96b73538a7cd8a2630b93896153dc0247d1cfa",
+      "path": "/home/catid/specialist/lora_es_paired_null_calibration_v61c.py"
+    },
+    "closure__lora_es_pre_hpo_alpha_zero_calibration_v62a.py": {
+      "file_sha256": "9baf66b1290c4d33a8ace3699db681761f7ee21906a356d3478547fba2074bc4",
+      "path": "/home/catid/specialist/lora_es_pre_hpo_alpha_zero_calibration_v62a.py"
+    },
+    "closure__lora_es_pre_hpo_alpha_zero_calibration_v62b.py": {
+      "file_sha256": "3ab8e03f86cadce192685483f6c66fa018b57764b4c43e4b62e6423dee50a3e5",
+      "path": "/home/catid/specialist/lora_es_pre_hpo_alpha_zero_calibration_v62b.py"
+    },
+    "closure__lora_es_robust_consensus_v43g.py": {
+      "file_sha256": "f989042ed6699557ecebe7697eb22d5e211f9755d5e42ff5d29d4f18d20abec1",
+      "path": "/home/catid/specialist/lora_es_robust_consensus_v43g.py"
+    },
+    "closure__lora_es_robust_paired_hpo_v61.py": {
+      "file_sha256": "a15f8566776e65fdf68875608c184b57091251ae5dd082e5b9aab2802bcdc525",
+      "path": "/home/catid/specialist/lora_es_robust_paired_hpo_v61.py"
+    },
+    "closure__lora_es_transition_microbenchmark_v51.py": {
+      "file_sha256": "726b194827bb5afc6693ce37e3bbd33b0f562716cc012b16fe850eef6479c545",
+      "path": "/home/catid/specialist/lora_es_transition_microbenchmark_v51.py"
+    },
+    "closure__lora_es_v59_vs_v434_robust_confirmation_v64.py": {
+      "file_sha256": "a0d22f3d9a6d62acd312c3da790d7777f52c6dff9f29f7f175acb876108b2f16",
+      "path": "/home/catid/specialist/lora_es_v59_vs_v434_robust_confirmation_v64.py"
+    },
+    "closure__qa_quality.py": {
+      "file_sha256": "9429accd25b629297b3a121ac843aba5ed3b6e39cb0a2938677a8038d92eb106",
+      "path": "/home/catid/specialist/qa_quality.py"
+    },
+    "closure__run_eggroll_es_equal_unit_v38a.py": {
+      "file_sha256": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+      "path": "/home/catid/specialist/run_eggroll_es_equal_unit_v38a.py"
+    },
+    "closure__run_lora_es_base_generation_evidence_v48b.py": {
+      "file_sha256": "775554ee3e3ba00e81b9acd5c5be81d325d24ea160a99f8f135fc78535948f62",
+      "path": "/home/catid/specialist/run_lora_es_base_generation_evidence_v48b.py"
+    },
+    "closure__run_lora_es_baseline_census_v61a.py": {
+      "file_sha256": "5a32372e236ca877ed72b57fcfe0886b8fffbddfdd197bdf6b098612e9458e45",
+      "path": "/home/catid/specialist/run_lora_es_baseline_census_v61a.py"
+    },
+    "closure__run_lora_es_equal_unit_v43a.py": {
+      "file_sha256": "ebdcfb930793efeba9559e0e53956927c062e3d55cef43036ccaa3ea4b596c9f",
+      "path": "/home/catid/specialist/run_lora_es_equal_unit_v43a.py"
+    },
+    "closure__run_lora_es_generation_boundary_v48b.py": {
+      "file_sha256": "fa02c9568c7f027d4f9083ec270d4d2b132867fcfb733be8a23151f64c9e6401",
+      "path": "/home/catid/specialist/run_lora_es_generation_boundary_v48b.py"
+    },
+    "closure__run_lora_es_multi_anchor_v43i.py": {
+      "file_sha256": "67c4da05a26eaf990b2710afbffe6d403825b576cd384f87f3b818af199c1555",
+      "path": "/home/catid/specialist/run_lora_es_multi_anchor_v43i.py"
+    },
+    "closure__run_lora_es_paired_null_calibration_v61c.py": {
+      "file_sha256": "814c1d4a7704a8acdcd0c5770b6744f5fb638239e6c3401fd9bdfd5d532ca537",
+      "path": "/home/catid/specialist/run_lora_es_paired_null_calibration_v61c.py"
+    },
+    "closure__run_lora_es_pre_hpo_alpha_zero_calibration_v62a.py": {
+      "file_sha256": "ce66aa91b2e41665b42f560a0fa07f9490ba9c74af125829754395eca64f3f7e",
+      "path": "/home/catid/specialist/run_lora_es_pre_hpo_alpha_zero_calibration_v62a.py"
+    },
+    "closure__run_lora_es_robust_sampling_population_v65.py": {
+      "file_sha256": "015f9ac6b9f34619cdc94c6031a4a64f24411037cd53c50a282630c44d9d11f2",
+      "path": "/home/catid/specialist/run_lora_es_robust_sampling_population_v65.py"
+    },
+    "closure__run_lora_es_transition_microbenchmark_v51.py": {
+      "file_sha256": "daa9ed8645deed0eb3b07e649fb30003774df75a3a67fe1ae2b8647a25fff319",
+      "path": "/home/catid/specialist/run_lora_es_transition_microbenchmark_v51.py"
+    },
+    "closure__run_lora_topology_probe_v40a.py": {
+      "file_sha256": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+      "path": "/home/catid/specialist/run_lora_topology_probe_v40a.py"
+    },
+    "closure__run_lora_topology_probe_v40b.py": {
+      "file_sha256": "eaa039496ec1b9b6deff2e2cf9e9ecffa4ba362be90868b1b34449ba486eb607",
+      "path": "/home/catid/specialist/run_lora_topology_probe_v40b.py"
+    },
+    "closure__run_lora_topology_probe_v40c.py": {
+      "file_sha256": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+      "path": "/home/catid/specialist/run_lora_topology_probe_v40c.py"
+    },
+    "closure__run_sft_train_only_control_v36a.py": {
+      "file_sha256": "e9823359d82aeb61d7fd1f17f24ea22fc46680cc122c55232b1913d765d1d49d",
+      "path": "/home/catid/specialist/run_sft_train_only_control_v36a.py"
+    },
+    "closure__seal_lora_es_generation_boundary_subset_v48b.py": {
+      "file_sha256": "b4d6c5d6d50d5d3f00f01e71d5b3d6045890ed307488d4fe8819779e65786334",
+      "path": "/home/catid/specialist/seal_lora_es_generation_boundary_subset_v48b.py"
+    },
+    "closure__stage_v48b_train_input.py": {
+      "file_sha256": "536c840725e3b03095fed02f91221257e10536f7d21529d2dc1eabd1336b183f",
+      "path": "/home/catid/specialist/stage_v48b_train_input.py"
+    },
+    "closure__train_eggroll_es_equal_unit_v38a.py": {
+      "file_sha256": "a76dc19b0c1c9d5b57bebd66544662553935dfbc23f72a47e172f4366cba5852",
+      "path": "/home/catid/specialist/train_eggroll_es_equal_unit_v38a.py"
+    },
+    "closure__train_eggroll_es_specialist.py": {
+      "file_sha256": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor.py": {
+      "file_sha256": "e429e2150859bb308f45efa6b6147edff5bd4207e45b902bffb03f58c827ce2a",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v10.py": {
+      "file_sha256": "7dcc3bbf4d4640ae0d004a1c791af81460ea418939d90b01eaef48faa9392df5",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v10.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v11.py": {
+      "file_sha256": "c3c4cde40408eeb91dd51cd48c17294cdc4389ee51359a0c560fa1ff94f4fec9",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v11.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v11b.py": {
+      "file_sha256": "2db34d796f7a39c85187964bdbd333d153212af47b257c9dfd0dbe92965c6254",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v11b.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v11c.py": {
+      "file_sha256": "c663b62f9d7990a2c59d8b46ad6258209b590bb29aa48946755a7d263a3d0799",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v11c.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v13.py": {
+      "file_sha256": "1a8a4145a85c183bb6121914357b7e6bce916b4f76a0693887ac41fa3a8c4c6e",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v13.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v2.py": {
+      "file_sha256": "bd64e557045e46b37a7748243c0d1468527485c01a9bbcfec7819320fc959686",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v2.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v3.py": {
+      "file_sha256": "f25fc796c7cff4fe86dab960a03c7a51463e6fdeecf6b9c11377d749990a3f51",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v3.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v4.py": {
+      "file_sha256": "9b771f5f5578cc233bea9b92ee48dbad8bbf7f363fae44d4dadde5e926f6cd65",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v4.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v5.py": {
+      "file_sha256": "4067ab6d7a611676a4a0291928badc23506826d366a4f71a5dddcd7eeb2e0886",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v5.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v6.py": {
+      "file_sha256": "3620fae91c34873d5657ec5491290c0d160f0b8cab451868b6e98401a4f6f0e5",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v6.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v7.py": {
+      "file_sha256": "1b78029eeb4d47464d028e0e0421603e70976eb9c84b16b5f6b106d167fbbe70",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v7.py"
+    },
+    "closure__train_eggroll_es_specialist_anchor_v8.py": {
+      "file_sha256": "b1ccbf5eaa95e49824de16df6c6b7ceae54b57ba2533166a7a0642805d0cf50b",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v8.py"
+    },
+    "entry__base_model_byte_receipt_runtime_v64": {
+      "file_sha256": "e713f60eb78376bc3c58f890d6aaae1d04454be3c70ed1382ed378aab9a57426",
+      "path": "/home/catid/specialist/run_lora_es_v59_vs_v434_robust_confirmation_v64.py"
+    },
+    "entry__calibrated_runtime_v62b": {
+      "file_sha256": "b9a1812bf056cf197a27fdd33c280d216a7a28788b466b757db4cd4bc822c773",
+      "path": "/home/catid/specialist/run_lora_es_pre_hpo_alpha_zero_calibration_v62b.py"
+    },
+    "entry__canonical_state_worker_v41a": {
+      "file_sha256": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v41a.py"
+    },
+    "entry__exact_master_slot_write_worker_v65a": {
+      "file_sha256": "56512db643f51b99133ce0ed81069287c05124d34099423d11bef27a6b46580d",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v65a.py"
+    },
+    "entry__hash_only_panel_design_v65": {
+      "file_sha256": "6a756fb3f84ce822ee8a2fbd0d9495bacd4e8ce5a7fb1a791c8d4408bb32d2f9",
+      "path": "/home/catid/specialist/lora_es_robust_sampling_population_v65.py"
+    },
+    "entry__numeric_analysis_v65a": {
+      "file_sha256": "b89c581723c37cb2ce186fad8a4db0130392eb3e53596a604755b77fc6585769",
+      "path": "/home/catid/specialist/lora_es_ranking64_alpha_zero_calibration_v65a.py"
+    },
+    "entry__numeric_cpu_scorer_v65": {
+      "file_sha256": "7f9f3d3fc7c0b2543f37cf62653bc52c098a09af740861b7554a1fb40bba92d3",
+      "path": "/home/catid/specialist/eggroll_es_worker_robust_sampling_v65.py"
+    },
+    "entry__population_runtime_v52": {
+      "file_sha256": "1f433e4b484846c02135fb25f3c3d05655de365e438c2a945829063d2e1a4f27",
+      "path": "/home/catid/specialist/run_lora_es_nested_population_v52.py"
+    },
+    "entry__population_worker_v52": {
+      "file_sha256": "f5e04e752e6b20fc7e380d366bcd282c519ea7aa4d280345671ec428ff39356a",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v52.py"
+    },
+    "entry__preregistration_builder_v65a": {
+      "file_sha256": "4b0a615b350f44f0e273b47b8b41043b755ae22f035512ca1e92e81fd3e45c5b",
+      "path": "/home/catid/specialist/build_lora_es_ranking64_alpha_zero_preregistration_v65a.py"
+    },
+    "entry__runtime_v65a": {
+      "file_sha256": "98a23328813176aa5d4257e1006a49514498259a124b046970824f3891e26e9c",
+      "path": "/home/catid/specialist/run_lora_es_ranking64_alpha_zero_calibration_v65a.py"
+    },
+    "entry__tests_v65a": {
+      "file_sha256": "59d94743cadc5d3853d158efe1a0f70a0418d04c2cf5d94eb3e69540cb569544",
+      "path": "/home/catid/specialist/test_lora_es_ranking64_alpha_zero_calibration_v65a.py"
+    },
+    "entry__v64_runtime__ray_worker_sitecustomize": {
+      "file_sha256": "573ca8389e97d36476f879421ad49794d6ed0d5cb89b935d88c5bc981c98320d",
+      "path": "/home/catid/specialist/eggroll_es_compat/sitecustomize.py"
+    },
+    "entry__v64_runtime__upstream_es_trainer": {
+      "file_sha256": "4f7044600af13b0a73f807aabb7c188610438d31501cc8a053d0f6efae14b42e",
+      "path": "/home/catid/specialist/es-at-scale/es_at_scale/trainer/es_trainer.py"
+    },
+    "entry__v64_runtime__upstream_worker_extension": {
+      "file_sha256": "b5e99e4f050f6882529eae98d3b1cd9cb54894362fefcb2b7b802ce3f75a933a",
+      "path": "/home/catid/specialist/es-at-scale/es_at_scale/utils/worker_extension.py"
+    },
+    "entry__v64_runtime__vllm_cache_utils": {
+      "file_sha256": "7483d3e7156370b05040ab57d7155743236063ac92a521ed6b30c28e0e5701b5",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/utils/cache.py"
+    },
+    "entry__v64_runtime__vllm_gpu_model_runner": {
+      "file_sha256": "6c92ded8468f44d6df863a617ce588f132fa6df7031feecc0cc421702a41610e",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_model_runner.py"
+    },
+    "entry__v64_runtime__vllm_lora_layer_base": {
+      "file_sha256": "49c2c390a57feda206b691183ea0cc5e73bf29f4e9ac1a99f47c3734ce0a6bce",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/layers/base.py"
+    },
+    "entry__v64_runtime__vllm_lora_layer_base_linear": {
+      "file_sha256": "040d75b4a76cb97f28c507453ab8aea68252c35b8b64d9f83ce40d32e2a3a495",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/layers/base_linear.py"
+    },
+    "entry__v64_runtime__vllm_lora_layer_column_parallel": {
+      "file_sha256": "a096eeefea7572c10470c7e2b255559e3895248149454009ba61a7c7ebe7be82",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/layers/column_parallel_linear.py"
+    },
+    "entry__v64_runtime__vllm_lora_layer_replicated": {
+      "file_sha256": "fcc73a9497e09eb0c480882886a8bd8c0158b45a0703338b7005f19b6c9e95cf",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/layers/replicated_linear.py"
+    },
+    "entry__v64_runtime__vllm_lora_layer_row_parallel": {
+      "file_sha256": "0ee6a753a11dab7fb10da605e48dad43bf7e814482190db00aef4ff067bb68b9",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/layers/row_parallel_linear.py"
+    },
+    "entry__v64_runtime__vllm_lora_model": {
+      "file_sha256": "1b7e44ab5034ce8616ae9a076b811e62e5b5a2da808c13d9ccd77af94d620dae",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/lora_model.py"
+    },
+    "entry__v64_runtime__vllm_lora_model_manager": {
+      "file_sha256": "13201a06e17cccffb30c90bf3d268dfbf901567623b03454003afb5a922ae45a",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/model_manager.py"
+    },
+    "entry__v64_runtime__vllm_lora_peft_helper": {
+      "file_sha256": "210c953519d294278ef761879ad3b1463c9205a40b2007b83d7a46277b0548dd",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/peft_helper.py"
+    },
+    "entry__v64_runtime__vllm_lora_request": {
+      "file_sha256": "b90138a585a7eec65c2e9339bd8a070593b5bb523755ac410eab32fa34695c84",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/request.py"
+    },
+    "entry__v64_runtime__vllm_lora_runner_mixin": {
+      "file_sha256": "6e1c0d7aca2eaea43f5e04ebf506a598816e6663aef9eab5709cba7df8844e99",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/v1/worker/lora_model_runner_mixin.py"
+    },
+    "entry__v64_runtime__vllm_lora_utils": {
+      "file_sha256": "adf5c7e6fcaea7c82c05f9126793067ceae082bbdb7f3ac19b3049f45c5eb9bc",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/utils.py"
+    },
+    "entry__v64_runtime__vllm_lora_weights": {
+      "file_sha256": "91783ceed9c68d8846d4426abd1004acf7eca4f5ff577bac1d1ed99743c76620",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/lora_weights.py"
+    },
+    "entry__v64_runtime__vllm_lora_worker_manager": {
+      "file_sha256": "1f7bb394ca92e21a3f0e250943196dd679c145f16fb67cc64e00e011e8e1447a",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/worker_manager.py"
+    },
+    "entry__v64_runtime__vllm_model_utils": {
+      "file_sha256": "921e1f9d1e78cc65bb68b53b4c2648444936c09b9b63e375b352e848cdecf3e8",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/models/utils.py"
+    },
+    "entry__v64_runtime__vllm_qwen35_model": {
+      "file_sha256": "5f47ae4f4a08d0a78dd681d58b290f3298744c73a82f1349f3e2853469ef73e6",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5.py"
+    },
+    "entry__v64_runtime__vllm_qwen3_next_model": {
+      "file_sha256": "b0e0b96d08329e7ad91756eb67e8c4a9ad19ac0a38cbebbc3fbf13716ec424cd",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py"
+    },
+    "entry__v64_runtime__vllm_qwen3_vl_model": {
+      "file_sha256": "c7fb5ac20e2938640c279b363acc59d54fdb860e78fd2621b686d459d8b80254",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_vl.py"
+    },
+    "entry__v64_runtime__vllm_worker_base": {
+      "file_sha256": "7da44338c2645ebf03d23394e452b31a8e3da1011fd1b42fcfcccfe99551b3fe",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/v1/worker/worker_base.py"
+    },
+    "entry__v64_runtime__worker_extension_v2": {
+      "file_sha256": "1ad28983a6c7d9f73591065123123b97ce24d288942bd30f7a6f674c69988776",
+      "path": "/home/catid/specialist/eggroll_es_worker_v2.py"
+    },
+    "entry__v64_runtime__worker_extension_v3": {
+      "file_sha256": "636698c7ea8e8155ea08298e428b5c40c01141ff10db59290d74831db360e5b1",
+      "path": "/home/catid/specialist/eggroll_es_worker_v3.py"
+    },
+    "entry__v64_runtime__worker_extension_v41a": {
+      "file_sha256": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v41a.py"
+    },
+    "entry__v64_runtime__worker_extension_v43i": {
+      "file_sha256": "4bd6c2ce66c46a14ce1190435b336eae37d061f2e77746997ac4fa9a32e9af08",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v43i.py"
+    },
+    "entry__v64_runtime__worker_extension_v51": {
+      "file_sha256": "57c7e9356b45f330b2e0ea1b0f814482aff71fc93cccc13b4b956376e3252389",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v51.py"
+    },
+    "entry__v64_runtime__worker_extension_v52": {
+      "file_sha256": "f5e04e752e6b20fc7e380d366bcd282c519ea7aa4d280345671ec428ff39356a",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v52.py"
+    },
+    "entry__v64_runtime__worker_extension_v64": {
+      "file_sha256": "d19a9e3491bb3ae61c7b1dc7527dbe9973f48487933a8d82955794388d80a6e2",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v64.py"
+    },
+    "entry__v64_runtime__worker_topology_v40a": {
+      "file_sha256": "d487ff4657a2a6fbd7d2d0f9200a63547dd79b258cc488b93382fdf26b52cf05",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_topology_v40a.py"
+    }
+  },
+  "implementation_closure_manifest_sha256": "1a4d5b287974ece18cff9b5f72a61573b68612f760c92d1dcdd68932848d57c2",
+  "numeric_analysis_contract": {
+    "B_C_pass_definition": "max(pair_0.null_radius,pair_1.null_radius)",
+    "bootstrap_index_matrix_sha256": "2655c01169827ce8980fc7c67c5250a365c29e523b4caebfbcab0518b9ce6e89",
+    "bootstrap_replicates": 4096,
+    "bootstrap_seed": 2026071612,
+    "each_component_and_joint_composite_seals": [
+      "point",
+      "lcb",
+      "ucb",
+      "halfwidth",
+      "contains_zero",
+      "null_radius"
+    ],
+    "exact_is_numeric_diagnostic_not_gate": true,
+    "exact_sentinel_logic_present": false,
+    "future_v65_null_bound_transfer": {
+      "failed_required_alpha_zero_gate_forbids_bound_rebinding_and_v65_launch": true,
+      "mapping_or_gates_may_change_after_observing_v65a": false,
+      "outcome_independent_field_mapping": {
+        "B_C": "primary_cluster_bootstrap.intervals.joint_composite.null_radius",
+        "B_C_pass": "primary_cluster_bootstrap.B_C_pass",
+        "B_F": "primary_cluster_bootstrap.intervals.generated_f1_delta.null_radius",
+        "B_S": "primary_cluster_bootstrap.intervals.stability_improvement.null_radius"
+      },
+      "rebind_or_launch_requires_required_alpha_zero_gate_passed": true,
+      "required_spread_gates": {
+        "each_pass_joint_composite": "spread_strictly_greater_than_2*B_C_pass",
+        "generated_f1_when_used": "spread_strictly_greater_than_2*B_F",
+        "pooled_joint_composite": "spread_strictly_greater_than_2*B_C",
+        "stability_coefficient_when_gate_not_met": 0.0,
+        "stability_gate_not_met_causes_population_failure": false,
+        "stability_when_used": "spread_strictly_greater_than_2*B_S"
+      }
+    },
+    "joint_composite_distribution_bootstrapped_before_quantiles": true,
+    "joint_composite_weights": {
+      "f1_delta": 0.8,
+      "nonzero_delta": 0.2,
+      "stability_improvement": 0.25
+    },
+    "later_v65_pass_specific_spread_gate": "each pass-specific direction spread must be strictly greater than 2*B_C_pass",
+    "one_sided_alpha": 0.05,
+    "pairing_keys": [
+      "unit_identity_sha256",
+      "actor_rank",
+      "pair_index"
+    ],
+    "primary_components": [
+      "paired_generated_f1_candidate_minus_reference",
+      "paired_generated_nonzero_candidate_minus_reference",
+      "reference_instability_minus_candidate_instability"
+    ],
+    "required_gates": {
+      "generated_f1_primary_interval_contains_zero": true,
+      "joint_composite_interval_contains_zero": true,
+      "maximum_actor_leave_one_out_shift_inclusive": 0.0012119648781783704,
+      "maximum_primary_ci_halfwidth_inclusive": 0.000773822590292528,
+      "stability_improvement_interval_contains_zero": true
+    },
+    "resampled_axis": "conflict_unit_only",
+    "single_replica_per_resampled_unit_sampling": false,
+    "success_authorizes_population_update_or_promotion": false,
+    "temporal_pair_joint_composite_intervals": {
+      "pair_0": {
+        "actor_replicas_preserved_and_averaged": 4,
+        "periods": [
+          0,
+          1
+        ],
+        "sealed_fields": [
+          "point",
+          "lcb",
+          "ucb",
+          "halfwidth",
+          "contains_zero",
+          "null_radius"
+        ]
+      },
+      "pair_1": {
+        "actor_replicas_preserved_and_averaged": 4,
+        "periods": [
+          2,
+          3
+        ],
+        "sealed_fields": [
+          "point",
+          "lcb",
+          "ucb",
+          "halfwidth",
+          "contains_zero",
+          "null_radius"
+        ]
+      }
+    },
+    "within_unit_actor_pair_replicas_preserved_and_averaged": 8
+  },
+  "predecessor_failed_attempt": {
+    "cleanup_receipt": {
+      "all_after_states_removed": true,
+      "all_before_states_created": true,
+      "all_four_gcs_states_removed": true,
+      "cleanup_errors_empty": true,
+      "engine_kill_count": 4,
+      "final_four_gpu_idle": true,
+      "placement_group_remove_count": 4,
+      "ray_shutdown_attempted": true
+    },
+    "diagnosed_failure_boundary": {
+      "actor_runtime_identity_validation_completed": true,
+      "attempt_model_loaded_flag_is_prelaunch_snapshot_only": true,
+      "authorized_semantic_prefix_decoded": false,
+      "failing_collective_rpc": "runtime_identity_v40a",
+      "generation_started": false,
+      "gpu_monitor_started": false,
+      "message_sha256": "50af24ded76854ac98724e20e8fbffcec146aae3228734b092f35151a2204e62",
+      "model_actors_constructed_and_model_or_gpu_runtime_accessed": true,
+      "scoring_or_numeric_outcome_observed": false,
+      "type": "RayTaskError(NotImplementedError)",
+      "worker_method_absent_from_v65a_inheritance_chain": true
+    },
+    "predecessor_attempt": {
+      "content_sha256": "b44bbd11525ea3f4f9be8378c97955f8c4b9edb0eecf44b4b4e7a5945298f2b6",
+      "file_sha256": "d64f88a3924d34557be38bc2f43b0a714017fd6eefc6d79baaf7cb3af1510f2e",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v65a_ranking64_alpha_zero_calibration.attempt.json"
+    },
+    "predecessor_failure": {
+      "content_sha256": "99a00ab1dfd9c3ce1811206cfacd17643fcdf2062fa692012fff3ed47aedfdf7",
+      "file_sha256": "bb642eba1a5e4ceaa53e14a67f68eb39544de613e7c6b04089e34c56a9640011",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v65a_ranking64_alpha_zero_calibration/failure_v65a.json"
+    },
+    "predecessor_preregistration": {
+      "content_sha256": "5de8762a06e90611f8f439cf6606c598b8f26b0a809e3db206df2a8f2e5496f3",
+      "file_sha256": "473148e96b3c0153fa32abe2d2790bc089ef42cb854f6bf4808946598a892b99",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/ranking64_alpha_zero_calibration_v65a.json"
+    },
+    "predecessor_ranking_panel": {
+      "content_sha256": "267337eb9711b8592178afa98482d188edd4db4e715f74eb63c0a64fb90330c8",
+      "file_sha256": "916aaa6d30d059207a4da02ce67368b3707bb46ac17e2fe1636a4f4e4aa48094",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v65a_ranking64_alpha_zero_panel.json"
+    },
+    "retry_contract": {
+      "candidate_hpo_update_projection_or_promotion_authorized": false,
+      "failed_artifact_path_reused": false,
+      "fresh_attempt_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v65a_r1_ranking64_alpha_zero_calibration.attempt.json",
+      "fresh_preregistration_path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/ranking64_alpha_zero_calibration_v65a_r1.json",
+      "fresh_ranking_panel_path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v65a_r1_ranking64_alpha_zero_panel.json",
+      "fresh_run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v65a_r1_ranking64_alpha_zero_calibration",
+      "schedule_or_numeric_contract_changed": false,
+      "v65_population_authorized": false
+    },
+    "schema": "v65a-r1-predecessor-failed-attempt-binding"
+  },
+  "prior_batch68_calibration_alone_authorizes_exact64_launch": false,
+  "protected_semantics_opened": false,
+  "purpose": "Calibrate the exact 64-request V65 population evaluator at alpha zero using four discarded all-actor warmups and one fixed four-period counterbalanced V434-versus-identical-V434 block. This prerequisite persists only numeric/hash evidence and cannot project, update, select, promote, or open row 64 or later.",
+  "ranking_panel": {
+    "content_sha256": "267337eb9711b8592178afa98482d188edd4db4e715f74eb63c0a64fb90330c8",
+    "file_sha256": "916aaa6d30d059207a4da02ce67368b3707bb46ac17e2fe1636a4f4e4aa48094",
+    "hash_only": true,
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v65a_r1_ranking64_alpha_zero_panel.json",
+    "request_order_sha256": "839417f90ca3bb45645eb096f1f08a33605a2f5ffffe69ce15a5ffd7396b33a9",
+    "unit_order_sha256": "7a6a60c36791528662461218c242521125f0a508c3a4efe09d911fb4ca8fa7b5",
+    "units": 64
+  },
+  "raw_question_answer_prompt_or_generation_text_may_be_persisted": false,
+  "required_integrity_gates": {
+    "adapter_source_and_stage_contract_reverified_unchanged_postcleanup": true,
+    "all_eight_paired_replicas_preserved_before_unit_bootstrap": true,
+    "all_four_engine_and_cache_receipts_exact": true,
+    "all_four_gpus_attributed_positive_each_generation_phase": true,
+    "all_four_scored_periods_complete_without_schedule_change": true,
+    "all_periods_have_read_only_exact_slot_hash_before_and_after": true,
+    "all_warmup_outputs_discarded_without_scoring_or_persistence": true,
+    "exact_base_model_and_v434_byte_identities": true,
+    "exact_first64_prefix_and_panel_order": true,
+    "exact_idle_four_gpu_preflight": true,
+    "four_unscored_master_warmups_before_scored_block": true,
+    "numeric_hash_only_evidence": true,
+    "row64plus_update_hpo_holdback_sentinel_ood_protected_terminal_access_zero": true,
+    "strict_four_engine_cleanup_and_final_idle": true
+  },
+  "required_python": "/home/catid/specialist/es-at-scale/.venv/bin/python",
+  "row_64_or_later_opened": false,
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "v65a-ranking64-alpha-zero-calibration-preregistration",
+  "source_evidence": {
+    "v61_hash_only_ranking_preview": {
+      "content_sha256": "1b25f3c667fc0e9eeddc19f1d20aebc70c2a0127db0c3eafe11c2f19fb35a0f0",
+      "file_sha256": "a9ce060ce81df5b1fbddcc40db572fe56974ea6dfb6ef2e6ebf3e81925a400e2",
+      "future_candidate_outcomes_used_for_selection": false,
+      "launch_authorized_by_source": false,
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_paired_block_bootstrap_v61_preview.json"
+    },
+    "v61c_hash_numeric_panel": {
+      "content_sha256": "ca0a947e6437c0d84360176087b0a9dab12b79cf6ba1be8f965b24e9f4ec7ba4",
+      "file_sha256": "92e0c6160bfc7884a00be4c34c427685dcb2bf5a6aa8c3820f5c53e225f8091c",
+      "first_64_items_are_exact_ranking_projection": true,
+      "last_4_semantic_rows_authorized": false,
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v61c_paired_null_calibration_panel.json"
+    },
+    "v62b_batch68_methodology_and_threshold_source": {
+      "VLLM_BATCH_INVARIANT": false,
+      "authorizes_exact_64_calibration_or_population": false,
+      "batch_size": 68,
+      "content_sha256": "f05506bfcca63bf2723b10518708897ab871b1073f654ed8a221608aaacd2149",
+      "file_sha256": "92b7e847ef42b06735d29d2a3f345a8c1cc8233c8408395de8d7016e9838ae72",
+      "finalizer_commit": "44208cb7c7c4bd27a038f9d3ebb9041c237ecea7",
+      "numeric_audit_identities": {
+        "content_sha256": "365280457e84abb2734cb21b872a79d97e4f4da2f4c62b7bc1ef5361cab659fe",
+        "file_sha256": "5597aef07576ff35613dbb77c5a3c5f35a441374d926b7e54ac48df8e6386785"
+      },
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v62b_v434_pre_hpo_alpha_zero_generation_calibration/alpha_zero_finalized_v62b.json",
+      "preregistration_identities": {
+        "content_sha256": "6bd56b962b6cdc4543ac126dc098f357bd03356964c18fb9796a2c2204db6be3",
+        "file_sha256": "45342e29ae1b9cd6041092e26339aad76ab6379048fe364d1ea176e9f399e03c"
+      },
+      "v62_methodology_commit": "3878fb4d85ddbb1fb96d382d1af21446bc8764c0"
+    }
+  },
+  "specific_v65a_exact64_alpha_zero_gpu_launch_authorized": true,
+  "status": "sealed_before_v65a_train_semantics_model_ray_or_gpu_access"
+}
