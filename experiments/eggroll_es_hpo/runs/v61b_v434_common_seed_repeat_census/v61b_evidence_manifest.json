@@ -1,0 +1,202 @@
+{
+  "artifacts": {
+    "analysis": {
+      "content_sha256": "354317a4bcca08bac4d0bc0f2d269f019b401b84c137acd202b131c616818b74",
+      "file_sha256": "30a569fd89d38e66e95de9a55cc83c84e760007d1527bd6fa076f7ffc8c89961"
+    },
+    "evidence": {
+      "content_sha256": "a2a0f8cf07510e5f1e61635d2199ccfe5de3562ef9c859c2e23a1e8a960a29c8",
+      "file_sha256": "ea8ec108938ef2b17cf2572e4debca17d8986afa1f52fb2494d1fa87f54545b9"
+    },
+    "report": {
+      "content_sha256": "b50a5aefbd716a5ac47a427ea172a18a248734c6fd0df77d1f19957d22f25acf",
+      "file_sha256": "ad970297015200d5e01e116b9afffd1125d165c715aa6ebd1490b683470327cd"
+    }
+  },
+  "attempt": {
+    "content_sha256": "28c7ea22e9d7e90425ca38748d2b264f15ae4439f6d1db4597948ef8990b22ed",
+    "file_sha256": "8d629d9b82284ea879619781318f677fc4cc984bac492e6bbfb599115a5bea86"
+  },
+  "cleanup": {
+    "all_four_gcs_states_removed": true,
+    "engine_kill_count": 4,
+    "placement_group_remove_count": 4,
+    "sealed_final_gpu_idle": true
+  },
+  "completed_at_utc": "2026-07-16T09:43:24.517822+00:00",
+  "content_sha256_before_self_field": "bfc003914a2d664fac9cf13011367c6a611778e9f0210634cf6d0d9c0eaa16b8",
+  "coverage": {
+    "actors": 4,
+    "conflict_units": 208,
+    "numeric_actor_pass_metrics": 3584,
+    "rows": 448,
+    "sequential_passes": 2
+  },
+  "ood_shadow_or_terminal_holdout_opened": false,
+  "preregistration": {
+    "content_sha256": "b526acb6b728bc767ca74cdd47b0f41567703181e4cb1f59948c85fb23109bfa",
+    "file_sha256": "44fece1ef9805b529cd268c52736cc6bb3f08696e55fb7612dcdf22f6407af74"
+  },
+  "protected_semantics_opened": false,
+  "raw_question_answer_or_generation_text_persisted": false,
+  "repeat_characterization": {
+    "causal_variance_source_claimed": false,
+    "common_generation_seed": 2026071601,
+    "cross_actor_same_seed_by_pass": [
+      {
+        "all_actor_exact_rows": 3,
+        "any_actor_exact_rows": 4,
+        "f1_absolute_delta_gt_counts": {
+          "0.01": 217,
+          "0.05": 115,
+          "0.1": 46,
+          "0.25": 4,
+          "1e-12": 244
+        },
+        "maximum_absolute_f1_delta": 0.8181818181818181,
+        "mean_absolute_f1_delta": 0.03738274842053852,
+        "pass_index": 0,
+        "rows_with_exact_label_disagreement": 1,
+        "rows_with_nonzero_label_disagreement": 3
+      },
+      {
+        "all_actor_exact_rows": 3,
+        "any_actor_exact_rows": 4,
+        "f1_absolute_delta_gt_counts": {
+          "0.01": 215,
+          "0.05": 121,
+          "0.1": 62,
+          "0.25": 5,
+          "1e-12": 235
+        },
+        "maximum_absolute_f1_delta": 0.8181818181818181,
+        "mean_absolute_f1_delta": 0.039801359158541216,
+        "pass_index": 1,
+        "rows_with_exact_label_disagreement": 1,
+        "rows_with_nonzero_label_disagreement": 3
+      }
+    ],
+    "f1_absolute_delta_thresholds": [
+      1e-12,
+      0.01,
+      0.05,
+      0.1,
+      0.25
+    ],
+    "v61a_distinct_seed_bound_aggregate": {
+      "actor_exact_row_counts": [
+        3,
+        4,
+        4,
+        3
+      ],
+      "actor_mean_f1_range": [
+        0.28352,
+        0.28747
+      ],
+      "actor_nonzero_row_counts": [
+        442,
+        442,
+        444,
+        443
+      ],
+      "all_actor_exact_rows": 3,
+      "any_actor_exact_rows": 4,
+      "comparison_semantics": "four actors, one greedy pass each, distinct fixed seeds",
+      "cross_actor_rows_f1_delta_gt": {
+        "0.01": 225,
+        "0.05": 124,
+        "0.1": 55,
+        "0.25": 4,
+        "1e-12": 249
+      },
+      "evidence_content_sha256": "92df95db709e05c2c81c94d98d755a81d15069c94e7bbffa37c9566e4a33b3b5",
+      "evidence_file_sha256": "bb95aa2b99d292f0c5cff27afbd255d4ca0697097e8c38e1dbda4dfa63280640",
+      "pairwise_exact_label_disagreement_row_count_range": [
+        0,
+        1
+      ],
+      "pairwise_mean_absolute_f1_delta_range": [
+        0.0186,
+        0.0247
+      ],
+      "pairwise_nonzero_label_disagreement_row_count_range": [
+        0,
+        3
+      ],
+      "report_content_sha256": "0f14376da323846e96ad16b2a3197e722b58afbb3c20765d3eeec1fbb5009547",
+      "report_file_sha256": "89aa6b70b6150cc5abafa6ebddaffebf1751fb6001c136fdd0dd40dd29ad2878",
+      "row_strata_counts": {
+        "actor_unstable": 249,
+        "difficult": 92,
+        "stable_exact": 3,
+        "stable_partial": 104
+      },
+      "strata_content_sha256": "d6a34b36fea22a8bdc97698a377ffb4df596bade8cf1506c41721f5db9c4185a",
+      "strata_file_sha256": "23c8393555c3d7f09c95ecc7e23a04637f86df8fd20f55f67b67000ae78257f5",
+      "unit_strata_counts": {
+        "actor_unstable": 140,
+        "difficult": 30,
+        "stable_exact": 3,
+        "stable_partial": 35
+      }
+    },
+    "within_actor_all_row_comparisons": {
+      "comparisons": 1792,
+      "f1_absolute_delta_gt_counts": {
+        "0.01": 543,
+        "0.05": 229,
+        "0.1": 96,
+        "0.25": 7,
+        "1e-12": 654
+      },
+      "maximum_absolute_f1_delta": 0.5192307692307692,
+      "mean_absolute_f1_delta": 0.019738375723323053
+    },
+    "within_actor_exact_label_disagreement_rows": 0,
+    "within_actor_nonzero_label_disagreement_rows": 5
+  },
+  "schema": "lora-es-baseline-repeat-evidence-v61b",
+  "selection_update_or_promotion_performed": false,
+  "status": "complete_content_free_same_seed_repeat_characterization",
+  "telemetry": {
+    "all_four_attributed_positive": true,
+    "by_gpu": {
+      "0": {
+        "expected_pid": 54560,
+        "mean_utilization_percent": 43.28260869565217,
+        "peak_memory_used_mib": 83926,
+        "peak_utilization_percent": 84,
+        "positive_samples": 74,
+        "samples": 92
+      },
+      "1": {
+        "expected_pid": 54563,
+        "mean_utilization_percent": 42.25,
+        "peak_memory_used_mib": 83926,
+        "peak_utilization_percent": 73,
+        "positive_samples": 74,
+        "samples": 92
+      },
+      "2": {
+        "expected_pid": 54562,
+        "mean_utilization_percent": 42.71739130434783,
+        "peak_memory_used_mib": 83926,
+        "peak_utilization_percent": 96,
+        "positive_samples": 73,
+        "samples": 92
+      },
+      "3": {
+        "expected_pid": 54561,
+        "mean_utilization_percent": 41.80434782608695,
+        "peak_memory_used_mib": 83926,
+        "peak_utilization_percent": 69,
+        "positive_samples": 70,
+        "samples": 92
+      }
+    },
+    "foreign_compute_pid_rows": 0,
+    "gpu_log_file_sha256": "6af7cb290fd1878caee4f3f89cedecd96479ca1829f22d0361b1274cae9f1376"
+  },
+  "v61a_row_level_evidence_opened": false
+}
