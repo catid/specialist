@@ -737,12 +737,183 @@ class SourceCorpusContractTest(unittest.TestCase):
         self.assertEqual(queued["discovery_priority_score"], 29)
         self.assertEqual(queued["scope"], row["recommended_crawl_scope"])
 
+    def test_batch_006_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_006"
+        }
+        self.assertEqual(len(batch), 11)
+        expected = {
+            "accept_targeted_scope": {
+                "voxbody_core_curriculum",
+                "temple_nyc_core_curriculum",
+                "edo_tokyo_seiu_ito_museum",
+            },
+            "defer": {
+                "house_cordee_bottoming_advice",
+                "berkeley_binding_practice_thesis",
+                "edinburgh_holding_rope_thesis",
+                "esta_performer_flying_rigging_point_standards",
+                "uan_shibari_ergonomics_thesis",
+            },
+            "reject": {
+                "lb_shibari_dojo_class_resources",
+                "clinical_neurophysiology_repeated_radial_neuropathy",
+                "all_tied_up_rope_type_report",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_006_rights_and_access_blocks_are_explicit(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        house = by_id["house_cordee_bottoming_advice"]
+        self.assertEqual(house["decision"], "defer")
+        self.assertIn("not to copy", house["access_notes"].lower())
+        for marker in {"permission", "peter martin", "mya/fox"}:
+            self.assertIn(marker, house["recommended_crawl_scope"].lower())
+
+        esta = by_id["esta_performer_flying_rigging_point_standards"]
+        self.assertEqual(esta["decision"], "defer")
+        esta_text = (
+            esta["access_notes"] + " " + esta["recommended_crawl_scope"]
+        ).lower()
+        for marker in {
+            "e1.43-2025",
+            "e1.56-2026",
+            "single-computer",
+            "merge",
+            "adapt",
+            "translate",
+            "network",
+        }:
+            self.assertIn(marker, esta_text)
+        self.assertFalse(esta["accessible"])
+
+        edinburgh = by_id["edinburgh_holding_rope_thesis"]
+        self.assertEqual(edinburgh["decision"], "defer")
+        self.assertFalse(edinburgh["accessible"])
+        self.assertIn("GPTBot", edinburgh["access_notes"])
+        self.assertIn("ChatGPT-User", edinburgh["access_notes"])
+        edinburgh_scope = edinburgh["recommended_crawl_scope"].lower()
+        self.assertIn("do not access", edinburgh_scope)
+        self.assertIn("download", edinburgh_scope)
+
+        uan = by_id["uan_shibari_ergonomics_thesis"]
+        self.assertEqual(uan["decision"], "defer")
+        self.assertIn("CC BY-NC-ND 4.0", uan["access_notes"])
+        uan_scope = uan["recommended_crawl_scope"].lower()
+        self.assertIn("do not copy, translate, transform", uan_scope)
+        self.assertIn("written permission", uan_scope)
+
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        for blocked in [house, esta, edinburgh, uan]:
+            self.assertNotIn(blocked["candidate_id"], queued)
+
+    def test_batch_006_rejects_hazardous_duplicate_or_empty_sources(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        dojo = by_id["lb_shibari_dojo_class_resources"]
+        self.assertEqual(dojo["decision"], "reject")
+        dojo_scope = dojo["recommended_crawl_scope"].lower()
+        for marker in {
+            "breath-control-with-rope",
+            "neck-rope",
+            "pre-scene stretching",
+            "timed endurance",
+            "bodyweight",
+        }:
+            self.assertIn(marker, dojo_scope)
+
+        clinical = by_id[
+            "clinical_neurophysiology_repeated_radial_neuropathy"
+        ]
+        self.assertEqual(clinical["decision"], "reject")
+        clinical_text = (
+            clinical["access_notes"] + " " + clinical["recommended_crawl_scope"]
+        )
+        for marker in {
+            "10.1016/j.clinph.2019.04.557",
+            "PMC10294117",
+            "10.7759/cureus.39588",
+            "37384078",
+            "95.3",
+            "77.3",
+        }:
+            self.assertIn(marker, clinical_text)
+        clinical_scope = clinical["recommended_crawl_scope"].lower()
+        self.assertIn("single-patient", clinical_scope)
+        self.assertIn("prevalence", clinical_scope)
+
+        report = by_id["all_tied_up_rope_type_report"]
+        self.assertEqual(report["decision"], "reject")
+        report_text = (
+            report["access_notes"] + " " + report["recommended_crawl_scope"]
+            + " "
+            + report["decision_reason"]
+            + " "
+            + " ".join(page["note"] for page in report["representative_pages"])
+        ).lower()
+        self.assertIn("quiz-result", report_text)
+        self.assertIn("lead magnet", report_text)
+        self.assertIn("no substantive technical rope knowledge", report_text)
+
+    def test_batch_006_accepted_scopes_are_safely_bounded(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        vox = by_id["voxbody_core_curriculum"]
+        self.assertEqual(vox["decision"], "accept_targeted_scope")
+        vox_scope = vox["recommended_crawl_scope"].lower()
+        for marker in {
+            "fundamentals, progressions, ascent, and onward",
+            "14-month",
+            "both-partners",
+            "non-ryu",
+            "certify suspension competence",
+        }:
+            self.assertIn(marker, vox_scope)
+
+        temple = by_id["temple_nyc_core_curriculum"]
+        self.assertEqual(temple["decision"], "accept_targeted_scope")
+        temple_scope = temple["recommended_crawl_scope"].lower()
+        for marker in {"level 0-4", "uplines", "lab/study-group", "certify"}:
+            self.assertIn(marker, temple_scope)
+
+        museum = by_id["edo_tokyo_seiu_ito_museum"]
+        self.assertEqual(museum["decision"], "accept_targeted_scope")
+        museum_text = (
+            museum["access_notes"] + " " + museum["recommended_crawl_scope"]
+        ).lower()
+        for marker in {"1882", "1961", "age 78", "seme-e"}:
+            self.assertIn(marker, museum_text)
+        self.assertIn("do not label ito the father", museum_text)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_005`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_006`", self.report)
 
 
 if __name__ == "__main__":

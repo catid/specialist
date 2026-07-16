@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T09:00:22Z
-Latest batch: `discovery_batch_005`
+Latest review at: 2026-07-16T09:17:20Z
+Latest batch: `discovery_batch_006`
 
 ## Outcome
 
@@ -308,3 +308,69 @@ used normal public pages and official endpoints, respected robots and
 rightsholder terms, and did not bypass a login, purchase, challenge, missing
 body, license, or platform restriction. No reviewed page body was copied into a
 training artifact during discovery.
+
+## Discovery batch 006 outcome
+
+`discovery_batch_006` manually reviewed 11 additional candidates by opening
+the actual public body where access and rights allowed, or only official
+metadata and governing terms where they did not. It produced 0
+`accept_high_priority`, 3 `accept_targeted_scope`, 5 `defer`, and 3 `reject`
+decisions. The three accepted candidates expand the canonical corpus queue from
+74 to 77 resources.
+
+This batch adds two complementary curriculum architectures and an official
+museum chronology. It also records unusually valuable but unusable leads rather
+than treating visibility as permission: House Cordee asks readers not to copy
+its articles; the ESTA standards require a restrictive EULA; Edinburgh blocks
+this agent class; and the Colombian ergonomics thesis is NoDerivatives.
+
+### Accepted sources
+
+| Source | Decision | Score | Distinct value and extraction boundary |
+|---|---|---:|---|
+| [Edo-Tokyo Museum Seiu Ito record](https://www.edo-tokyo-museum.or.jp/en/s-exhibition/ito-seiu/) | `accept_targeted_scope` | 30 | Official chronology and bibliography for Seiu Ito: born in Asakusa in 1882, theater/sign-painting and newspaper work, historical-custom research, seme-e from his mid-thirties, and death in 1961 at age 78. Create only an original factual digest; copy no prose or images, and do not label him the “father” of modern kinbaku or infer a direct technique lineage. |
+| [Temple New York core curriculum](https://www.templenewyork.org/core-rope-curriculum) | `accept_targeted_scope` | 26 | Concrete Level 0–4 architecture from community care and consent through knots/frictions, body bamboo, harness reasoning, partials, uplines, static/dynamic suspension, and collaborative labs. Capture the progression, not implied instructions or certification. |
+| [VoxBody core curriculum](https://www.voxbody.com/core-curriculum) | `accept_targeted_scope` | 24 | A deliberately slow, roughly 14-month sequence in which both partners progress from floorwork through Fundamentals, Progressions, Ascent, and Onward. Preserve inclusive/non-ryu pedagogy while excluding schedules, promotion, unsupported readiness heuristics, and any certification claim. |
+
+### Deferred sources
+
+| Source | Decision | Score | Reason |
+|---|---|---:|---|
+| [ESTA E1.43 and E1.56 standards](https://tsp.esta.org/tsp/documents/published_docs.php) | `defer` | 43 | The official index identifies the strongest current performer-flying and facility-support-point standards found, but the EULA grants single-computer, non-transferable use and prohibits merging, adaptation, translation, modification, network use, or transfer. Neither standard was downloaded or accepted; seek a separate written training license. |
+| [Binding Practice](https://digicoll.lib.berkeley.edu/record/265621) | `defer` | 35 | The 77-page architecture thesis has rare spatial, hardpoint, material, friction, sanitation, thermal, and pedagogy ideas, but Copyright © 2022 and speculative engineering require author permission plus qualified structural review. |
+| [House Cordee bottoming advice](https://www.housecordee.com/bottoming-advice) | `defer` | 32 | Nineteen bottom-centered articles cover risk profiling, communication, negotiation, injury planning, documentation, emotion, drop, and performance, but each explicitly says not to copy it. Permission and clarification of the Peter Martin versus Mya/Fox attribution are required. |
+| [Edinburgh holding-of-rope thesis](https://era.ed.ac.uk/items/713fab98-99f8-4b08-953b-a4742d4cad29) | `defer` | 32 | Public metadata identifies a 2022 DClinPsychol autoethnography, but repository robots globally disallow GPTBot and ChatGPT-User and ordinary copyright applies. The body was not accessed; a single practitioner narrative cannot establish therapeutic efficacy. |
+| [UAN shibari ergonomics thesis](https://redcol.minciencias.gov.co/Record/UAntonioN2_b4e4a4e542aef2d96adb592e04f7d0ff) | `defer` | 29 | National metadata marks the 2021 Spanish undergraduate thesis CC BY-NC-ND 4.0. Retain metadata only while seeking author/university permission; NoDerivatives does not authorize translation or transformed Markdown, and technical claims need review. |
+
+### Rejected sources
+
+| Source | Decision | Score | Reason |
+|---|---|---:|---|
+| [Repeated compression radial neuropathies abstract](https://www.sciencedirect.com/science/article/pii/S1388245719306935) | `reject` | 20 | This ordinary-copyright single-case conference abstract overgeneralizes prevalence and is superseded by the already queued CC BY case article. Retain its DOI and unresolved 95.3-versus-77.3-percent conduction-block discrepancy only. |
+| [LB Shibari Dojo class resources](https://lbshibaridojo.com/class-resources/) | `reject` | 16 | Anonymous worksheets mix useful reflection prompts with neck-rope and breath-control-with-rope interests, pre-scene stretching, and timed endurance/bodyweight “readiness” scores. A partner-sharing note on one file is not a corpus license. |
+| [Nuts and Bolts Rope Type Report](https://www.alltiedupsandiego.com/wp-content/uploads/2020/10/Nuts-and-Bolts-Rope-Type-Report-v2-oct-22-2020a.pdf) | `reject` | 2 | Manual review showed a commercial personality-quiz result and course lead magnet, not technical facts about rope type, fibers, knots, friction, rigging, or safety. Its search title and URL are not knowledge. |
+
+### Batch 006 rights, evidence, and safety controls
+
+Public visibility was again separated from reuse permission. Discovery did not
+accept the ESTA EULA, download the standards, access Edinburgh's thesis body,
+transform the NoDerivatives UAN thesis, copy House Cordee, or infer useful
+content from a search snippet. The Berkeley thesis remains a permission lead,
+not an engineering source for certifying a human-suspension point.
+
+The two accepted studio pages are pedagogical maps only. Class names and
+prerequisites can help organize knowledge, but they are not construction steps,
+clinical evidence, or proof of learner competence. The museum page supplies
+institutional chronology, not tying authority or proof of every later lineage
+claim. Rejected material cannot become QA, URL-trivia, safety advice, or a
+backdoor source through a cache or mirror.
+
+### Batch 006 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery ledger,
+corpus queue, report, and discovery tests. No QA, training projection, manual
+review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe, or source
+corpus artifact was read. Public-web review used ordinary public routes,
+respected current robots and rightsholder terms, and did not bypass a login,
+purchase, challenge, EULA, missing body, license, or crawler restriction. No
+reviewed page body was copied into a training artifact during discovery.
