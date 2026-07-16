@@ -1,0 +1,113 @@
+{
+  "audit": {
+    "by_decision": {
+      "drop": 3,
+      "edit": 6,
+      "keep": 1
+    },
+    "by_review_class": {
+      "archive_identity_trivia_drop": 1,
+      "documented_contribution_edit": 3,
+      "historical_context_edit": 1,
+      "lineage_relationship_edit": 1,
+      "mere_chronology_drop": 1,
+      "redundant_role_list_drop": 1,
+      "terminology_edit": 1,
+      "terminology_keep": 1
+    },
+    "path": "data/manual_reviews/context_merit_audit_v446/context_merit_audit_v446.jsonl",
+    "rows": 10,
+    "sha256": "258dc874cae39d6fb03337ac467943dd3fde081c6e05379feb5030f31d02e461"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 260,
+      "equipment_material": 22,
+      "resources_general": 78,
+      "safety_consent": 86,
+      "technique": 74
+    },
+    "before": {
+      "conflict_units": 261,
+      "equipment_material": 22,
+      "resources_general": 80,
+      "safety_consent": 86,
+      "technique": 73
+    },
+    "delta": {
+      "conflict_units": -1,
+      "equipment_material": 0,
+      "resources_general": -2,
+      "safety_consent": 0,
+      "technique": 1
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "curation_outcome": {
+    "documented_contribution_repairs": 3,
+    "historical_context_repairs": 1,
+    "lineage_relationship_repairs": 1,
+    "low_merit_rows_quarantined": 3,
+    "terminology_repairs": 1,
+    "terminology_rows_kept": 1
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 0,
+    "output_rows": 515,
+    "output_sha256": "7ab0562e978c6a15f7122fd3a62e8cade2daff80a0c0a0228dc069cf1b59d900",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "drop": 3,
+      "edit": 6
+    },
+    "decisions": 9,
+    "path": "data/manual_reviews/context_merit_audit_v446/pending_curation_context_merit_v446.jsonl",
+    "sha256": "c97bb65a6a7a34670cf76655d5cad960379dee1eae666b0b084196c54c974fa3"
+  },
+  "redundancy_quarantine": {
+    "dropped_to_surviving_fact": {
+      "fact-558694f6a7e4f740243d": "fact-8bc60f112e90fb781203",
+      "fact-b34d490cfff5f65c5e81": "fact-d9cd6ee0dfa1a1dd55da"
+    }
+  },
+  "schema": "context-merit-audit-report-v446",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  },
+  "source_snapshot_inventory": {
+    "documents": 10,
+    "paths": [
+      "data/raw/kinbakutoday_eb5b3fd68f12e8e9.json",
+      "data/raw/kinbakutoday_381214111022a952.json",
+      "data/raw/kinbakutoday_82071039cb003b58.json",
+      "data/raw/kinbakutoday_938724eb415ca5c0.json",
+      "data/raw/kinbakutoday_3376e34b04fe0fb1.json",
+      "data/raw/kinbakutoday_e2c96f38ced1cb5d.json",
+      "data/raw/kinbakutoday_b776fccd348e2538.json",
+      "data/raw/kinbakutoday_f6ccdaa49bed3fa5.json",
+      "data/raw/kinbakutoday_4f26f20c5f1dc7ba.json",
+      "data/raw/kinbakutoday_92c9fc29a66300a0.json"
+    ],
+    "total_characters": 82494
+  },
+  "training_layer_contract": {
+    "cleaned_markdown_site_corpora": "Distinct first-class future training artifacts; unfinished corpus output was neither read nor ingested by v446.",
+    "deduplication_policy": "Do not collapse a cleaned Markdown document and its derived Q&A merely because they express the same source knowledge.",
+    "derived_qa": "Distinct first-class training layer; v446 changes only existing sealed Q&A using attached evidence and pinned raw snapshots.",
+    "provenance_requirement": "Link future derived Q&A to the cleaned source document through stable source URL and document or snapshot hashes."
+  },
+  "v52_isolation": {
+    "active_v52_inputs_modified": false,
+    "candidate_status": "isolated_pending_not_promoted"
+  }
+}
