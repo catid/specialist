@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T15:05:50Z
-Latest batch: `discovery_batch_019`
+Latest review at: 2026-07-16T15:26:28Z
+Latest batch: `discovery_batch_020`
 
 ## Outcome
 
@@ -1367,3 +1367,74 @@ shadow, benchmark, probe, unrelated corpus body or unrelated repository
 artifact was read. No login, paywall, challenge, crawler restriction, mirror,
 cache, archive, search-text reconstruction or official-route 403 was bypassed,
 and no reviewed source body entered a training artifact during discovery.
+
+## Discovery batch 020 outcome
+
+`discovery_batch_020` manually reviewed 10 exact-new source identities after
+title, DOI, document and canonical-URL deduplication. It records 4
+`accept_targeted_scope`, 5 `defer`, and 1 `reject`. The accepted sources expand
+the canonical Markdown queue from 149 to 153 resources.
+
+The batch adds two complementary video-and-practice studies, a natural-rope
+review whose main value is its explicit lack of finished-rope evidence, and a
+physical-knot motor-learning study that tests whether precise laboratory
+measures generalize to ecological skill. Restricted consent and feedback
+sources remain permission leads. A public-domain historical manual is also
+quarantined because its rope lesson incorporates unidentified Bell System
+material, despite GovInfo's document-level federal rights statement.
+
+Repeated search leads for the 2024 BDSM consent-norms article, the 2024 autism
+and BDSM article, the PubPub kinbaku ritual article and a SEDICI stage-shibari
+paper were existing identities and did not create duplicate candidates.
+
+### Newly accepted sources
+
+| Source | Score | Exact useful scope and boundary |
+|---|---:|---|
+| [Household-item online knot-training study](https://link.springer.com/article/10.1186/s12909-024-05549-1) | 31 | CC BY mixed-methods evidence adds low-resource, self-paced video practice plus the learner-reported need for usable camera views, supervision, formal feedback and blended physical practice. Preserve 304 eligible and 71 voluntary participants, lack of control, clinical practice and retention, and the researcher relationship; exclude the procedure, media, materials recipe and effects. |
+| [Video-adjunct knot-training randomized trial](https://link.springer.com/article/10.1007/s44217-024-00101-1) | 31 | CC BY evidence supports video only as an adjunct to a common coached workshop. Preserve the 29-person randomization, blinded assessment, unmonitored external learning and four-week attrition to 6 versus 8; the follow-up efficiency result was weak and nonsignificant. It is not evidence of independent rope competence or safety. |
+| [Wool-rope aquaculture systematic review](https://www.mdpi.com/2071-1050/14/15/9011) | 32 | The CC BY review's useful result is negative: proposed wool-rope strength and durability were untested, marine-wool evidence was sparse and not finished rope, and fibre or carpet properties are not finished-rope performance. Do not transfer the review to hemp, jute, care, service life, body support or suspension. |
+| [Ecological knot motor-learning study](https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0319715) | 32 | CC BY evidence found only low-to-moderate correspondence between laboratory and ecological motor-learning tasks. Preserve the 42-person, one-session design, measurement mismatch and lack of long-term retention; exclude the knot identity and media. Laboratory sequence scores cannot replace observed physical rope skill. |
+
+### Permission- or component-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Feedback-valence randomized trial](https://link.springer.com/article/10.1007/s00464-025-12285-0) | 34 | CC BY-NC-ND does not authorize a transformed commercial digest. Keep the 42-person three-arm simulation, broad outcome direction and limits as metadata while seeking permission; surgical feedback effects cannot be presumed to transfer to rope teaching. |
+| [Video peer-feedback randomized trial](https://link.springer.com/article/10.1186/s12909-025-08029-2) | 31 | CC BY-NC-ND blocks transformation. The no-significant-difference suturing result, task-dependent findings, no power analysis, possible peer leniency and no retention are useful metadata, not proof that peers replace expert rope feedback. |
+| [Association EDO four-Cs rope-prevention leaflet](https://www.asso-edo.fr/telechargement) | 24 | This direct French rope-consent lead is licensed CC BY-NC-ND for unmodified noncommercial distribution. Translation, condensation and commercial model-training use require permission from the relevant rightsholders. |
+| [*Running the Yellow Light* consent thesis](https://digitalcollections.trentu.ca/node/23537) | 38 | Trent's record says the author holds all rights. The abstract's 1,118-person result includes a sensitive role-identity comparison that must not be taught without permission and full recruitment, instrument, category, subgroup, multiplicity and ethics review. |
+| [War Department *Shop Work*, Lesson 8](https://www.govinfo.gov/app/details/GOVPUB-W-c7e159acf398602aa98d8a1ab3ff35d5) | 26 | GovInfo labels the 1942 manual a federal public-domain work, but the preface acknowledges Bell System Practices sections inside the rope lesson on printed pages 99–133. A page-and-paragraph component audit must separate third-party material before transformation; all dated operational and load advice remains excluded. |
+
+### Rejected source
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [Prorope 8 mm sisal in-house test](https://prorope.eu/blogs/news/8-mm-sisal-breaking-strength-test) | 10 | An ordinary-copyright seller article reports five in-house tests but lacks complete specimen, setup and raw-data provenance, links directly to products, compares the seller's alternatives and discloses AI-assisted drafting. It cannot establish general sisal, jute, bondage-rope or human-support performance. |
+
+### Batch 020 rights, evidence, and safety controls
+
+CC BY bodies are queued only as bounded methods, findings and limitations
+digests. NoDerivatives, NonCommercial and all-rights-reserved sources remain
+metadata-only permission leads. A government-hosted document-level rights
+statement did not override an internal third-party acknowledgment, and public
+readability did not become reuse permission. The commercial in-house test was
+rejected independently on rights, provenance and commerce grounds.
+
+The accepted teaching studies do not become tying recipes, and their surgical
+or generic motor tasks do not establish rope-bondage knot identity, competence,
+security, body-contact or suspension safety. The material review establishes
+an evidence gap rather than a strength, hygiene, care or retirement rule. No
+candidate supplies a load, hardpoint, upline, medical-treatment or human-
+suspension rule.
+
+### Batch 020 access and clean-room statement
+
+Discovery read only the governing candidate ledger, queue, report and tests
+plus ordinary first-party publisher, repository, association, vendor and
+government sources and their visible rights statements. No QA, trainer,
+projection, evaluation, heldout, holdout, OOD, shadow, benchmark, probe,
+unrelated corpus body or unrelated repository artifact was read. No login,
+paywall, challenge, crawler restriction, mirror, cache, archive or snippet
+reconstruction was bypassed, and no reviewed source body entered a training
+artifact during discovery.
