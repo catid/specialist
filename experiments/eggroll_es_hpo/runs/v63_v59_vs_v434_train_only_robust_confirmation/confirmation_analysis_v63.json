@@ -1,0 +1,526 @@
+{
+  "actor_influence": {
+    "actor_mean_deltas": [
+      -0.12770781967818803,
+      -0.12591975568578676,
+      -0.12644269134136019,
+      -0.1276850942475037
+    ],
+    "definition": "maximum absolute difference between the full four-actor point and each leave-one-actor-out point across all 12 pairs per actor",
+    "full_four_actor_point": -0.12693884023820967,
+    "leave_one_actor_out_points": [
+      -0.1266825137582169,
+      -0.1272785350890173,
+      -0.12710422320382614,
+      -0.12669008890177832
+    ],
+    "maximum_absolute_leave_one_actor_out_shift": 0.0003396948508076203
+  },
+  "arithmetic_mean_all_48_replicas_per_unit": true,
+  "content_sha256_before_self_field": "f288a82f4007d450eeffd38e3950f7e43494608d1b3e346d8413c785de43e233",
+  "counterbalance_pair_receipts": [
+    {
+      "actor_rank": 0,
+      "block_index": 0,
+      "candidate_after_reference": true,
+      "candidate_period": 1,
+      "pair_index": 0,
+      "reference_period": 0
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 0,
+      "candidate_after_reference": false,
+      "candidate_period": 2,
+      "pair_index": 1,
+      "reference_period": 3
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 1,
+      "candidate_after_reference": true,
+      "candidate_period": 5,
+      "pair_index": 2,
+      "reference_period": 4
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 1,
+      "candidate_after_reference": false,
+      "candidate_period": 6,
+      "pair_index": 3,
+      "reference_period": 7
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 2,
+      "candidate_after_reference": true,
+      "candidate_period": 9,
+      "pair_index": 4,
+      "reference_period": 8
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 2,
+      "candidate_after_reference": false,
+      "candidate_period": 10,
+      "pair_index": 5,
+      "reference_period": 11
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 3,
+      "candidate_after_reference": true,
+      "candidate_period": 13,
+      "pair_index": 6,
+      "reference_period": 12
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 3,
+      "candidate_after_reference": false,
+      "candidate_period": 14,
+      "pair_index": 7,
+      "reference_period": 15
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 4,
+      "candidate_after_reference": true,
+      "candidate_period": 17,
+      "pair_index": 8,
+      "reference_period": 16
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 4,
+      "candidate_after_reference": false,
+      "candidate_period": 18,
+      "pair_index": 9,
+      "reference_period": 19
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 5,
+      "candidate_after_reference": true,
+      "candidate_period": 21,
+      "pair_index": 10,
+      "reference_period": 20
+    },
+    {
+      "actor_rank": 0,
+      "block_index": 5,
+      "candidate_after_reference": false,
+      "candidate_period": 22,
+      "pair_index": 11,
+      "reference_period": 23
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 0,
+      "candidate_after_reference": false,
+      "candidate_period": 0,
+      "pair_index": 0,
+      "reference_period": 1
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 0,
+      "candidate_after_reference": true,
+      "candidate_period": 3,
+      "pair_index": 1,
+      "reference_period": 2
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 1,
+      "candidate_after_reference": false,
+      "candidate_period": 4,
+      "pair_index": 2,
+      "reference_period": 5
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 1,
+      "candidate_after_reference": true,
+      "candidate_period": 7,
+      "pair_index": 3,
+      "reference_period": 6
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 2,
+      "candidate_after_reference": false,
+      "candidate_period": 8,
+      "pair_index": 4,
+      "reference_period": 9
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 2,
+      "candidate_after_reference": true,
+      "candidate_period": 11,
+      "pair_index": 5,
+      "reference_period": 10
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 3,
+      "candidate_after_reference": false,
+      "candidate_period": 12,
+      "pair_index": 6,
+      "reference_period": 13
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 3,
+      "candidate_after_reference": true,
+      "candidate_period": 15,
+      "pair_index": 7,
+      "reference_period": 14
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 4,
+      "candidate_after_reference": false,
+      "candidate_period": 16,
+      "pair_index": 8,
+      "reference_period": 17
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 4,
+      "candidate_after_reference": true,
+      "candidate_period": 19,
+      "pair_index": 9,
+      "reference_period": 18
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 5,
+      "candidate_after_reference": false,
+      "candidate_period": 20,
+      "pair_index": 10,
+      "reference_period": 21
+    },
+    {
+      "actor_rank": 1,
+      "block_index": 5,
+      "candidate_after_reference": true,
+      "candidate_period": 23,
+      "pair_index": 11,
+      "reference_period": 22
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 0,
+      "candidate_after_reference": true,
+      "candidate_period": 1,
+      "pair_index": 0,
+      "reference_period": 0
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 0,
+      "candidate_after_reference": false,
+      "candidate_period": 2,
+      "pair_index": 1,
+      "reference_period": 3
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 1,
+      "candidate_after_reference": true,
+      "candidate_period": 5,
+      "pair_index": 2,
+      "reference_period": 4
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 1,
+      "candidate_after_reference": false,
+      "candidate_period": 6,
+      "pair_index": 3,
+      "reference_period": 7
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 2,
+      "candidate_after_reference": true,
+      "candidate_period": 9,
+      "pair_index": 4,
+      "reference_period": 8
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 2,
+      "candidate_after_reference": false,
+      "candidate_period": 10,
+      "pair_index": 5,
+      "reference_period": 11
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 3,
+      "candidate_after_reference": true,
+      "candidate_period": 13,
+      "pair_index": 6,
+      "reference_period": 12
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 3,
+      "candidate_after_reference": false,
+      "candidate_period": 14,
+      "pair_index": 7,
+      "reference_period": 15
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 4,
+      "candidate_after_reference": true,
+      "candidate_period": 17,
+      "pair_index": 8,
+      "reference_period": 16
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 4,
+      "candidate_after_reference": false,
+      "candidate_period": 18,
+      "pair_index": 9,
+      "reference_period": 19
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 5,
+      "candidate_after_reference": true,
+      "candidate_period": 21,
+      "pair_index": 10,
+      "reference_period": 20
+    },
+    {
+      "actor_rank": 2,
+      "block_index": 5,
+      "candidate_after_reference": false,
+      "candidate_period": 22,
+      "pair_index": 11,
+      "reference_period": 23
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 0,
+      "candidate_after_reference": false,
+      "candidate_period": 0,
+      "pair_index": 0,
+      "reference_period": 1
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 0,
+      "candidate_after_reference": true,
+      "candidate_period": 3,
+      "pair_index": 1,
+      "reference_period": 2
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 1,
+      "candidate_after_reference": false,
+      "candidate_period": 4,
+      "pair_index": 2,
+      "reference_period": 5
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 1,
+      "candidate_after_reference": true,
+      "candidate_period": 7,
+      "pair_index": 3,
+      "reference_period": 6
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 2,
+      "candidate_after_reference": false,
+      "candidate_period": 8,
+      "pair_index": 4,
+      "reference_period": 9
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 2,
+      "candidate_after_reference": true,
+      "candidate_period": 11,
+      "pair_index": 5,
+      "reference_period": 10
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 3,
+      "candidate_after_reference": false,
+      "candidate_period": 12,
+      "pair_index": 6,
+      "reference_period": 13
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 3,
+      "candidate_after_reference": true,
+      "candidate_period": 15,
+      "pair_index": 7,
+      "reference_period": 14
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 4,
+      "candidate_after_reference": false,
+      "candidate_period": 16,
+      "pair_index": 8,
+      "reference_period": 17
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 4,
+      "candidate_after_reference": true,
+      "candidate_period": 19,
+      "pair_index": 9,
+      "reference_period": 18
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 5,
+      "candidate_after_reference": false,
+      "candidate_period": 20,
+      "pair_index": 10,
+      "reference_period": 21
+    },
+    {
+      "actor_rank": 3,
+      "block_index": 5,
+      "candidate_after_reference": true,
+      "candidate_period": 23,
+      "pair_index": 11,
+      "reference_period": 22
+    }
+  ],
+  "exact_sentinel_diagnostics": {
+    "actor_unstable_stress_unit": {
+      "candidate_exact_pass_count_of_48": 0,
+      "candidate_nonzero_pass_count_of_48": 48,
+      "candidate_strict_majority_at_least_25_of_48": false,
+      "paired_exact_flip_count": 4,
+      "reference_exact_pass_count_of_48": 4,
+      "reference_nonzero_pass_count_of_48": 48,
+      "reference_strict_majority_at_least_25_of_48": false,
+      "role": "actor_unstable_stress_diagnostic_only",
+      "unit_identity_sha256": "27c984ca0a7dbd4ffead6e79d7b691dc7a37856356a9a050a40603c11c6dbda7"
+    },
+    "actor_unstable_stress_unit_aborts": false,
+    "actor_unstable_stress_unit_used_in_required_gate": false,
+    "all_four_sentinel_paired_exact_flip_count": 148,
+    "any_per_unit_all_replicas_failure_aborts": false,
+    "any_single_flip_aborts": false,
+    "majority_or_consensus_selection_performed": false,
+    "stable_panel": {
+      "candidate_exact_pass_total_of_144": 0,
+      "candidate_majority_consensus_unit_count_of_3": 0,
+      "candidate_nonzero_pass_total_of_144": 96,
+      "reference_exact_pass_total_of_144": 144,
+      "reference_majority_consensus_unit_count_of_3": 3,
+      "reference_nonzero_pass_total_of_144": 144,
+      "unit_count": 3,
+      "units": [
+        {
+          "candidate_exact_pass_count_of_48": 0,
+          "candidate_nonzero_pass_count_of_48": 48,
+          "candidate_strict_majority_at_least_25_of_48": false,
+          "paired_exact_flip_count": 48,
+          "reference_exact_pass_count_of_48": 48,
+          "reference_nonzero_pass_count_of_48": 48,
+          "reference_strict_majority_at_least_25_of_48": true,
+          "role": "baseline_stable_diagnostic_only",
+          "unit_identity_sha256": "2ef7c0e5ca2ff81b7326ea6dc2bd8b32c2499f939c04f9574c7135be37837ab4"
+        },
+        {
+          "candidate_exact_pass_count_of_48": 0,
+          "candidate_nonzero_pass_count_of_48": 0,
+          "candidate_strict_majority_at_least_25_of_48": false,
+          "paired_exact_flip_count": 48,
+          "reference_exact_pass_count_of_48": 48,
+          "reference_nonzero_pass_count_of_48": 48,
+          "reference_strict_majority_at_least_25_of_48": true,
+          "role": "baseline_stable_diagnostic_only",
+          "unit_identity_sha256": "f080d7ea1b60062d035852d3542a2664e49af07294efec841f95acc99994f68f"
+        },
+        {
+          "candidate_exact_pass_count_of_48": 0,
+          "candidate_nonzero_pass_count_of_48": 48,
+          "candidate_strict_majority_at_least_25_of_48": false,
+          "paired_exact_flip_count": 48,
+          "reference_exact_pass_count_of_48": 48,
+          "reference_nonzero_pass_count_of_48": 48,
+          "reference_strict_majority_at_least_25_of_48": true,
+          "role": "baseline_stable_diagnostic_only",
+          "unit_identity_sha256": "aa2af8f5c0eaede64c3acd990852475c441587c29bfa50fab0f30b2ed0061a66"
+        }
+      ]
+    },
+    "stable_panel_used_in_required_gate": true
+  },
+  "generation_only": true,
+  "median_consensus_or_best_of_selection_performed": false,
+  "primary_generated_f1": {
+    "bootstrap_replicates": 4096,
+    "bootstrap_seed": 2026071612,
+    "contains_zero": false,
+    "estimand": "mean paired generated-F1 delta after averaging all 48 actor-pair replicas within each conflict unit",
+    "halfwidth": 0.0337466328911761,
+    "lcb": -0.16178157632815343,
+    "one_sided_alpha": 0.05,
+    "point": -0.12693884023820967,
+    "resampled_axis": "conflict_unit",
+    "ucb": -0.09428831054580124,
+    "within_unit_actor_pair_replicas_preserved_and_averaged": 48
+  },
+  "raw_question_answer_or_generation_text_persisted": false,
+  "required_confirmation_gate": {
+    "actor_unstable_stress_unit_is_diagnostic_only": true,
+    "authorizes_update_hpo_promotion_or_protected_access": false,
+    "checks": {
+      "point_improvement_at_least_twice_frozen_null_width_inclusive": false,
+      "robust_fitness_lcb_minus_max_actor_loo_shift_strictly_positive": false,
+      "stable_exact_aggregate_candidate_noninferior_inclusive": false,
+      "stable_exact_every_unit_candidate_noninferior_inclusive": false,
+      "stable_nonzero_aggregate_candidate_noninferior_inclusive": false
+    },
+    "failure_action": "fail_closed_without_update_hpo_or_promotion",
+    "frozen_null_width": 0.000773822590292528,
+    "median_consensus_or_best_of_selection_performed": false,
+    "minimum_point_improvement_inclusive": 0.001547645180585056,
+    "passed": false,
+    "robust_fitness": -0.16212127117896105,
+    "robust_fitness_definition": "paired generated-F1 one-sided LCB minus maximum absolute actor leave-one-out point shift",
+    "stable_per_unit_noninferiority": [
+      {
+        "candidate_at_least_reference": false,
+        "unit_identity_sha256": "2ef7c0e5ca2ff81b7326ea6dc2bd8b32c2499f939c04f9574c7135be37837ab4"
+      },
+      {
+        "candidate_at_least_reference": false,
+        "unit_identity_sha256": "f080d7ea1b60062d035852d3542a2664e49af07294efec841f95acc99994f68f"
+      },
+      {
+        "candidate_at_least_reference": false,
+        "unit_identity_sha256": "aa2af8f5c0eaede64c3acd990852475c441587c29bfa50fab0f30b2ed0061a66"
+      }
+    ]
+  },
+  "schema": "v63-v59-vs-v434-train-only-robust-confirmation-analysis",
+  "source_evidence_content_sha256": "b4954981dcc4eed3aeda90c05ce84e8ce6bd4d6efb190da66773bef22095d62e",
+  "status": "complete_gate_failed_closed",
+  "teacher_forced_metric_computed": false,
+  "teacher_forced_requests": 0,
+  "unscored_warmup_excluded_from_every_metric": true,
+  "update_hpo_candidate_promotion_or_protected_access_authorized": false
+}

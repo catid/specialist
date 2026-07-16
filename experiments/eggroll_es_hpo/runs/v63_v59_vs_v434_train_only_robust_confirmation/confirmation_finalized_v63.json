@@ -1,0 +1,302 @@
+{
+  "content_sha256_before_self_field": "5c329e13cf0a3b765ee93c345e93c172ddeb16d1afd32761e6cbeb2aa2663d8f",
+  "frozen_non_authorization": {
+    "adapter_update_hpo_candidate_promotion_authorized": false,
+    "failed_gate_reinterpreted_or_relaxed": false,
+    "finalizer_accepts_and_records_either_gate_outcome": true,
+    "gpu_or_model_launch_authorized": false,
+    "holdback_ood_shadow_terminal_or_protected_access_authorized": false,
+    "outcome_assumed_before_read": false,
+    "thresholds_changed_after_outcome": false
+  },
+  "gpu_log_file_sha256": "0793e88b83e45ecebc743c645f07b2d2301e254be688907d3ca85c9887418aa4",
+  "observed_numeric_outcome_without_authorization": {
+    "actor_influence": {
+      "actor_mean_deltas": [
+        -0.12770781967818803,
+        -0.12591975568578676,
+        -0.12644269134136019,
+        -0.1276850942475037
+      ],
+      "definition": "maximum absolute difference between the full four-actor point and each leave-one-actor-out point across all 12 pairs per actor",
+      "full_four_actor_point": -0.12693884023820967,
+      "leave_one_actor_out_points": [
+        -0.1266825137582169,
+        -0.1272785350890173,
+        -0.12710422320382614,
+        -0.12669008890177832
+      ],
+      "maximum_absolute_leave_one_actor_out_shift": 0.0003396948508076203
+    },
+    "exact_sentinel_diagnostics": {
+      "actor_unstable_stress_unit": {
+        "candidate_exact_pass_count_of_48": 0,
+        "candidate_nonzero_pass_count_of_48": 48,
+        "candidate_strict_majority_at_least_25_of_48": false,
+        "paired_exact_flip_count": 4,
+        "reference_exact_pass_count_of_48": 4,
+        "reference_nonzero_pass_count_of_48": 48,
+        "reference_strict_majority_at_least_25_of_48": false,
+        "role": "actor_unstable_stress_diagnostic_only",
+        "unit_identity_sha256": "27c984ca0a7dbd4ffead6e79d7b691dc7a37856356a9a050a40603c11c6dbda7"
+      },
+      "actor_unstable_stress_unit_aborts": false,
+      "actor_unstable_stress_unit_used_in_required_gate": false,
+      "all_four_sentinel_paired_exact_flip_count": 148,
+      "any_per_unit_all_replicas_failure_aborts": false,
+      "any_single_flip_aborts": false,
+      "majority_or_consensus_selection_performed": false,
+      "stable_panel": {
+        "candidate_exact_pass_total_of_144": 0,
+        "candidate_majority_consensus_unit_count_of_3": 0,
+        "candidate_nonzero_pass_total_of_144": 96,
+        "reference_exact_pass_total_of_144": 144,
+        "reference_majority_consensus_unit_count_of_3": 3,
+        "reference_nonzero_pass_total_of_144": 144,
+        "unit_count": 3,
+        "units": [
+          {
+            "candidate_exact_pass_count_of_48": 0,
+            "candidate_nonzero_pass_count_of_48": 48,
+            "candidate_strict_majority_at_least_25_of_48": false,
+            "paired_exact_flip_count": 48,
+            "reference_exact_pass_count_of_48": 48,
+            "reference_nonzero_pass_count_of_48": 48,
+            "reference_strict_majority_at_least_25_of_48": true,
+            "role": "baseline_stable_diagnostic_only",
+            "unit_identity_sha256": "2ef7c0e5ca2ff81b7326ea6dc2bd8b32c2499f939c04f9574c7135be37837ab4"
+          },
+          {
+            "candidate_exact_pass_count_of_48": 0,
+            "candidate_nonzero_pass_count_of_48": 0,
+            "candidate_strict_majority_at_least_25_of_48": false,
+            "paired_exact_flip_count": 48,
+            "reference_exact_pass_count_of_48": 48,
+            "reference_nonzero_pass_count_of_48": 48,
+            "reference_strict_majority_at_least_25_of_48": true,
+            "role": "baseline_stable_diagnostic_only",
+            "unit_identity_sha256": "f080d7ea1b60062d035852d3542a2664e49af07294efec841f95acc99994f68f"
+          },
+          {
+            "candidate_exact_pass_count_of_48": 0,
+            "candidate_nonzero_pass_count_of_48": 48,
+            "candidate_strict_majority_at_least_25_of_48": false,
+            "paired_exact_flip_count": 48,
+            "reference_exact_pass_count_of_48": 48,
+            "reference_nonzero_pass_count_of_48": 48,
+            "reference_strict_majority_at_least_25_of_48": true,
+            "role": "baseline_stable_diagnostic_only",
+            "unit_identity_sha256": "aa2af8f5c0eaede64c3acd990852475c441587c29bfa50fab0f30b2ed0061a66"
+          }
+        ]
+      },
+      "stable_panel_used_in_required_gate": true
+    },
+    "failed_gate_count": 5,
+    "failed_gates": [
+      "point_improvement_at_least_twice_frozen_null_width_inclusive",
+      "robust_fitness_lcb_minus_max_actor_loo_shift_strictly_positive",
+      "stable_exact_aggregate_candidate_noninferior_inclusive",
+      "stable_exact_every_unit_candidate_noninferior_inclusive",
+      "stable_nonzero_aggregate_candidate_noninferior_inclusive"
+    ],
+    "passed_gate_count": 0,
+    "primary_generated_f1": {
+      "bootstrap_replicates": 4096,
+      "bootstrap_seed": 2026071612,
+      "contains_zero": false,
+      "estimand": "mean paired generated-F1 delta after averaging all 48 actor-pair replicas within each conflict unit",
+      "halfwidth": 0.0337466328911761,
+      "lcb": -0.16178157632815343,
+      "one_sided_alpha": 0.05,
+      "point": -0.12693884023820967,
+      "resampled_axis": "conflict_unit",
+      "ucb": -0.09428831054580124,
+      "within_unit_actor_pair_replicas_preserved_and_averaged": 48
+    },
+    "required_confirmation_gate": {
+      "actor_unstable_stress_unit_is_diagnostic_only": true,
+      "authorizes_update_hpo_promotion_or_protected_access": false,
+      "checks": {
+        "point_improvement_at_least_twice_frozen_null_width_inclusive": false,
+        "robust_fitness_lcb_minus_max_actor_loo_shift_strictly_positive": false,
+        "stable_exact_aggregate_candidate_noninferior_inclusive": false,
+        "stable_exact_every_unit_candidate_noninferior_inclusive": false,
+        "stable_nonzero_aggregate_candidate_noninferior_inclusive": false
+      },
+      "failure_action": "fail_closed_without_update_hpo_or_promotion",
+      "frozen_null_width": 0.000773822590292528,
+      "median_consensus_or_best_of_selection_performed": false,
+      "minimum_point_improvement_inclusive": 0.001547645180585056,
+      "passed": false,
+      "robust_fitness": -0.16212127117896105,
+      "robust_fitness_definition": "paired generated-F1 one-sided LCB minus maximum absolute actor leave-one-out point shift",
+      "stable_per_unit_noninferiority": [
+        {
+          "candidate_at_least_reference": false,
+          "unit_identity_sha256": "2ef7c0e5ca2ff81b7326ea6dc2bd8b32c2499f939c04f9574c7135be37837ab4"
+        },
+        {
+          "candidate_at_least_reference": false,
+          "unit_identity_sha256": "f080d7ea1b60062d035852d3542a2664e49af07294efec841f95acc99994f68f"
+        },
+        {
+          "candidate_at_least_reference": false,
+          "unit_identity_sha256": "aa2af8f5c0eaede64c3acd990852475c441587c29bfa50fab0f30b2ed0061a66"
+        }
+      ]
+    }
+  },
+  "protected_semantics_opened": false,
+  "raw_question_answer_prediction_or_generation_text_persisted": false,
+  "schema": "v63-v59-vs-v434-independent-numeric-finalizer",
+  "source_hashes": {
+    "analysis": {
+      "content_sha256": "f288a82f4007d450eeffd38e3950f7e43494608d1b3e346d8413c785de43e233",
+      "file_sha256": "6c9a566c5f6a3f20c24078165609d555ff5c899089a9942823fe5ebcc68d2f15"
+    },
+    "attempt": {
+      "content_sha256": "318c0f06a3e764352df2269db171722551bf6d639318595e363ba18d988fe945",
+      "file_sha256": "9e90c9ba76fee695d53751e1c6bac4b2a2010bc6e8858d8d0f5e5fd7eefcf080"
+    },
+    "evidence": {
+      "content_sha256": "b4954981dcc4eed3aeda90c05ce84e8ce6bd4d6efb190da66773bef22095d62e",
+      "file_sha256": "16fde944611c3d2b862a78549a23b10f9780109376716b5ea91511d05b60f17a"
+    },
+    "panel": {
+      "content_sha256": "ca0a947e6437c0d84360176087b0a9dab12b79cf6ba1be8f965b24e9f4ec7ba4",
+      "file_sha256": "92e0c6160bfc7884a00be4c34c427685dcb2bf5a6aa8c3820f5c53e225f8091c"
+    },
+    "preregistration": {
+      "content_sha256": "df21cd8fa40bac2bf1ddda80b64bb4bb389995225eafb5fc60dcaa707a661439",
+      "file_sha256": "79327aae4fa42ff8741d988f2ad07252eb66911fdf5fee433a3188fb2e6f7e7b"
+    },
+    "report": {
+      "content_sha256": "8d6c4630de1451e4a6f71786c69e78887246882547fe5aaf2161ec7e49d75b85",
+      "file_sha256": "7a668e8ba9da84ab531b8f58bfacbeb96e27261ae6012219788699d2c1695d78"
+    }
+  },
+  "status": "complete_gate_failed_closed",
+  "verification": {
+    "all_file_and_self_hashes_verified": true,
+    "analysis_exactly_rebuilt": true,
+    "exclusive_idle_launch_attempt": {
+      "all_base_model_files_byte_hash_exact_before_attempt": true,
+      "attempt_file_and_content_hash_exact": true,
+      "exclusive_idle_four_gpu_preflight_exact": true,
+      "model_or_gpu_compute_not_started_before_attempt_receipt": true,
+      "update_hpo_or_protected_access_before_attempt_receipt": false
+    },
+    "no_text_leakage": {
+      "analysis": {
+        "forbidden_text_key_count": 0,
+        "source": "analysis"
+      },
+      "attempt": {
+        "forbidden_text_key_count": 0,
+        "source": "attempt"
+      },
+      "evidence": {
+        "forbidden_text_key_count": 0,
+        "source": "evidence"
+      },
+      "panel": {
+        "forbidden_text_key_count": 0,
+        "source": "panel"
+      },
+      "preregistration": {
+        "forbidden_text_key_count": 0,
+        "source": "preregistration"
+      },
+      "report": {
+        "forbidden_text_key_count": 0,
+        "source": "report"
+      }
+    },
+    "preregistration": {
+      "fixed_gates_exact": true,
+      "fixed_recipe_exact": true,
+      "immutable_prelaunch_finalizer_binding_exact": true,
+      "implementation_bindings_exact": true,
+      "v62b_finalized_eligibility_exact": true
+    },
+    "report": {
+      "actor_count": 4,
+      "actor_runtime_controls_exact": true,
+      "base_model_full_byte_hash_prelaunch_and_postrun_exact": true,
+      "cleanup_and_final_idle": {
+        "all_four_final_gpu_compute_process_lists_empty": true,
+        "all_four_gcs_states_removed": true,
+        "engines_killed": 4,
+        "placement_groups_removed": 4
+      },
+      "evidence_coverage_and_analysis_crosslinks_exact": true,
+      "fixed_complete_schedule": true,
+      "gpu_activity_recomputed_from_numeric_log": {
+        "all_28_generation_phases_attributed_positive_on_every_gpu": true,
+        "all_28_generation_phases_observed_on_every_gpu": true,
+        "all_four_attributed_positive": true,
+        "by_gpu": {
+          "0": {
+            "expected_pid": 544042,
+            "mean_resident_utilization_percent": 36.87931034482759,
+            "peak_memory_used_mib": 82504,
+            "peak_utilization_percent": 100,
+            "positive_samples": 221,
+            "resident_samples": 232,
+            "samples": 232
+          },
+          "1": {
+            "expected_pid": 544044,
+            "mean_resident_utilization_percent": 36.82327586206897,
+            "peak_memory_used_mib": 82504,
+            "peak_utilization_percent": 100,
+            "positive_samples": 219,
+            "resident_samples": 232,
+            "samples": 232
+          },
+          "2": {
+            "expected_pid": 544043,
+            "mean_resident_utilization_percent": 37.314655172413794,
+            "peak_memory_used_mib": 82504,
+            "peak_utilization_percent": 100,
+            "positive_samples": 222,
+            "resident_samples": 232,
+            "samples": 232
+          },
+          "3": {
+            "expected_pid": 544045,
+            "mean_resident_utilization_percent": 36.831896551724135,
+            "peak_memory_used_mib": 82504,
+            "peak_utilization_percent": 100,
+            "positive_samples": 220,
+            "resident_samples": 232,
+            "samples": 232
+          }
+        },
+        "foreign_compute_process_observations": 0,
+        "gpu_log_rows": 928,
+        "samples_per_gpu": 232
+      },
+      "panel_hashes_exact": true,
+      "physical_gpu_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "result_authority": false,
+      "sealed_numeric_panel_projection": {
+        "document_block_audit_exact": true,
+        "evidence_request_order_matches_sealed_numeric_panel": true,
+        "exact_sentinel_units": 4,
+        "question_answer_or_generation_text_in_panel": false,
+        "ranking_units": 64,
+        "rows": 68
+      },
+      "standard_lora_request_ids_and_capacity_exact": true,
+      "state_receipt_hash_crosslinks_exact": true,
+      "unique_processes": 4
+    }
+  }
+}
