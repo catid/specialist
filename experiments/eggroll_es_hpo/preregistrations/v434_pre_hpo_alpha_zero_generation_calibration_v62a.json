@@ -1,0 +1,264 @@
+{
+  "access_contract": {
+    "builder_or_dry_run_loads_model_or_gpu": false,
+    "builder_or_dry_run_reads_staged_rows_or_panel": false,
+    "full_train_membership_holdback_ood_shadow_terminal_or_protected_may_open": false,
+    "live_runtime_may_load_only_pinned_qwen36_v434_and_staged_68_rows": true,
+    "numeric_hash_only_evidence_required": true,
+    "only_live_semantic_paths_may_open": [
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v61c_paired_null_calibration_rows.jsonl",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v61c_paired_null_calibration_panel.json"
+    ],
+    "raw_question_answer_or_generation_text_may_be_persisted": false
+  },
+  "artifacts": {
+    "analysis": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v62a_v434_pre_hpo_alpha_zero_generation_calibration/alpha_zero_analysis_v62a.json",
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v62a_v434_pre_hpo_alpha_zero_generation_calibration.attempt.json",
+    "evidence": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v62a_v434_pre_hpo_alpha_zero_generation_calibration/alpha_zero_evidence_v62a.json",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v62a_v434_pre_hpo_alpha_zero_generation_calibration/failure_v62a.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v62a_v434_pre_hpo_alpha_zero_generation_calibration/gpu_activity_v62a.jsonl",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v62a_v434_pre_hpo_alpha_zero_generation_calibration/alpha_zero_report_v62a.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v62a_v434_pre_hpo_alpha_zero_generation_calibration"
+  },
+  "builder_or_dry_run_performed_gpu_launch": false,
+  "content_sha256_before_self_field": "c1cdd1900406823ba15769fe3fb10b574129d9d3467e3e0d32905723df3d0d5e",
+  "created_at_utc": "2026-07-16T11:33:50.075165+00:00",
+  "exact_sentinel_diagnostics": {
+    "actor_unstable_role": "diagnostic_stress_unit_only",
+    "actor_unstable_stress_unit_identity_sha256": "27c984ca0a7dbd4ffead6e79d7b691dc7a37856356a9a050a40603c11c6dbda7",
+    "any_per_unit_eight_of_eight_failure_aborts": false,
+    "any_single_flip_aborts": false,
+    "stable_aggregate_statistic": "reference_and_candidate_exact_pass_totals_across_24_replicas",
+    "stable_per_unit_statistic": "strict_majority_exact_pass_count_at_least_5_of_8",
+    "stable_unit_identity_sha256": [
+      "2ef7c0e5ca2ff81b7326ea6dc2bd8b32c2499f939c04f9574c7135be37837ab4",
+      "f080d7ea1b60062d035852d3542a2664e49af07294efec841f95acc99994f68f",
+      "aa2af8f5c0eaede64c3acd990852475c441587c29bfa50fab0f30b2ed0061a66"
+    ],
+    "used_in_alpha_zero_gate": false
+  },
+  "fixed_calibration_recipe": {
+    "active_sequence_limit_per_actor": 68,
+    "actors": 4,
+    "adapter_state": "V434",
+    "adapter_update_candidate_or_hpo_performed": false,
+    "alpha": 0.0,
+    "base_model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+    "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+    "common_generation_seed": 2026071601,
+    "counterbalanced_pairs_per_actor": 2,
+    "exact_sentinel_units": 4,
+    "generation_completions": 1088,
+    "generation_only": true,
+    "generation_params_without_seed": {
+      "detokenize": true,
+      "max_tokens": 64,
+      "n": 1,
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "global_batch_invariance_claimed": false,
+    "holdback_documents": 0,
+    "holdback_units": 0,
+    "label_plan": {
+      "0": [
+        "reference",
+        "candidate",
+        "candidate",
+        "reference"
+      ],
+      "1": [
+        "candidate",
+        "reference",
+        "reference",
+        "candidate"
+      ],
+      "2": [
+        "reference",
+        "candidate",
+        "candidate",
+        "reference"
+      ],
+      "3": [
+        "candidate",
+        "reference",
+        "reference",
+        "candidate"
+      ]
+    },
+    "pair_periods": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "ranking_units": 64,
+    "replicas_per_conflict_unit": 8,
+    "request_type_per_period": "generation",
+    "rows": 68,
+    "runtime_determinism_controls": {
+      "VLLM_BATCH_INVARIANT": false,
+      "async_scheduling": false,
+      "enforce_eager": true,
+      "max_num_seqs": 68,
+      "scheduling_policy": "fcfs"
+    },
+    "same_call_ranking_plus_sentinel_rows": true,
+    "sequential_periods": 4,
+    "sigma_or_direction": null,
+    "source_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "source_v434": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/v434_equal_r32_seed17_init20260715041/final",
+    "source_weights_file_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+    "staged_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "staged_dataset": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v61c_paired_null_calibration_rows.jsonl",
+    "staged_dataset_file_sha256": "9c1b7f69595cf70ef045259e2097c39546e9f1d84a6b0870fcb14e987655079a",
+    "staged_manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+    "staged_panel": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v61c_paired_null_calibration_panel.json",
+    "staged_panel_content_sha256": "ca0a947e6437c0d84360176087b0a9dab12b79cf6ba1be8f965b24e9f4ec7ba4",
+    "staged_panel_file_sha256": "92e0c6160bfc7884a00be4c34c427685dcb2bf5a6aa8c3820f5c53e225f8091c",
+    "staged_v434": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d",
+    "staged_weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+    "submitted_requests_per_actor_call": 68,
+    "teacher_forced_metric_computed": false,
+    "teacher_forced_requests": 0,
+    "tensor_parallel_size_per_actor": 1,
+    "v27c_tuned_table_runtime_identity_retained": true,
+    "worker_extension": "eggroll_es_worker_lora_v52.LoRAAdapterStateWorkerExtensionV52"
+  },
+  "hpo_population_update_or_candidate_authorized": false,
+  "implementation_bindings": {
+    "code_file_sha256": {
+      "analysis_v62a": "9baf66b1290c4d33a8ace3699db681761f7ee21906a356d3478547fba2074bc4",
+      "anchor_v4": "9b771f5f5578cc233bea9b92ee48dbad8bbf7f363fae44d4dadde5e926f6cd65",
+      "design_v52": "25a385911b24177630a9449c65b40d4eeccda5f6bbff3d67734e795efadb6f08",
+      "input_builder_v61c": "4c1db298d5804f7edaddb70b26dea24974853211adde4de1b5601493a1c206ce",
+      "method_numeric_audit_v62": "92700393e6996703dc80094c782903026d4d64d53124386805ab861e1d2e55d6",
+      "method_preregistration_builder_v62": "daa9f3ee7d64aa7b314c456e7563bf373aae1b61fd78e6418846b407090fb4b7",
+      "method_tests_v62": "a376b9244f18191a03ec31f3862bb533916a7eb944ec95b87577d43d2eeaf2e5",
+      "preregistration_builder_v62a": "bfd5b15effe968678bee88c2bbc6e71f9dffb33feb94137e99b733d5b2a1e0f4",
+      "runtime_v52": "1f433e4b484846c02135fb25f3c3d05655de365e438c2a945829063d2e1a4f27",
+      "runtime_v61a": "5a32372e236ca877ed72b57fcfe0886b8fffbddfdd197bdf6b098612e9458e45",
+      "runtime_v61c": "814c1d4a7704a8acdcd0c5770b6744f5fb638239e6c3401fd9bdfd5d532ca537",
+      "runtime_v62a": "ce66aa91b2e41665b42f560a0fa07f9490ba9c74af125829754395eca64f3f7e",
+      "support_audit_v62a": "2982b47c350239a0d710cf9f0e29484419e6af8be5ad9cd6014ae53ed8913444",
+      "tests_v62a": "435a0cd7162ecf26421bce6e1b1a700a1853111eba5a2243c4a02f1475537428",
+      "worker_v41a": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+      "worker_v51": "57c7e9356b45f330b2e0ea1b0f814482aff71fc93cccc13b4b956376e3252389",
+      "worker_v52": "f5e04e752e6b20fc7e380d366bcd282c519ea7aa4d280345671ec428ff39356a"
+    },
+    "pinned_v434_identities_without_reopening": {
+      "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+      "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "membership_content_sha256": "a8870fdce8fbf631b3d3472fd03690f6987590ee6e8758dc8fdcb4556dcc9096",
+      "membership_file_sha256": "e9b073369966e21912a0bda86da501ab0975646df2a7d80bf5675c3dfec8c121",
+      "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+      "source_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "source_weights_file_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+      "staged_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "staged_manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+      "staged_weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+      "train_bundle_content_sha256": "c94a7e8e8c30dbc2586351c4ef0ff13e3e9cc8551a21b9e055d34fbfa94bf44a",
+      "train_dataset_file_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a"
+    },
+    "staged_dataset_file_sha256": "9c1b7f69595cf70ef045259e2097c39546e9f1d84a6b0870fcb14e987655079a",
+    "staged_panel_content_sha256": "ca0a947e6437c0d84360176087b0a9dab12b79cf6ba1be8f965b24e9f4ec7ba4",
+    "staged_panel_file_sha256": "92e0c6160bfc7884a00be4c34c427685dcb2bf5a6aa8c3820f5c53e225f8091c",
+    "support_audit": {
+      "content_sha256": "7d6a823fdba6fc0631974ebc7312e214f5f8a8e8a5d3b43d45db5206dcb9faa2",
+      "file_sha256": "cc979d6828a337fe7c62fb12140ac4668e6b6e3b038a4a1346156a810f0da0b7"
+    },
+    "train_semantics_model_gpu_or_protected_paths_opened": false,
+    "v62_methodology_commit": "3878fb4d85ddbb1fb96d382d1af21446bc8764c0",
+    "v62_numeric_audit": {
+      "content_sha256": "365280457e84abb2734cb21b872a79d97e4f4da2f4c62b7bc1ef5361cab659fe",
+      "file_sha256": "5597aef07576ff35613dbb77c5a3c5f35a441374d926b7e54ac48df8e6386785"
+    },
+    "v62_preregistration": {
+      "content_sha256": "6bd56b962b6cdc4543ac126dc098f357bd03356964c18fb9796a2c2204db6be3",
+      "file_sha256": "45342e29ae1b9cd6041092e26339aad76ab6379048fe364d1ea176e9f399e03c"
+    }
+  },
+  "installed_runtime_support_audit": {
+    "content_sha256": "7d6a823fdba6fc0631974ebc7312e214f5f8a8e8a5d3b43d45db5206dcb9faa2",
+    "file_sha256": "cc979d6828a337fe7c62fb12140ac4668e6b6e3b038a4a1346156a810f0da0b7",
+    "model_train_semantics_or_gpu_accessed": false,
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/vllm_pre_hpo_alpha_zero_support_audit_v62a.json",
+    "pre_hpo_alpha_zero_runtime_supported": true,
+    "status": "supported",
+    "support_audit_authorizes_gpu_launch": false
+  },
+  "ood_shadow_holdout_or_protected_access_authorized": false,
+  "ood_shadow_holdout_or_terminal_opened": false,
+  "primary_numeric_estimator": {
+    "actor_influence": "maximum absolute shift from full four-actor point to each leave-one-actor-out point",
+    "bootstrap_replicates": 4096,
+    "bootstrap_resampled_axis": "conflict_unit",
+    "bootstrap_seed": 2026071612,
+    "metric": "paired_generated_f1_delta",
+    "one_sided_alpha": 0.05,
+    "teacher_forced_logprob_role": "absent_not_computed",
+    "within_unit_aggregation": "arithmetic_mean_all_8_replicas",
+    "within_unit_replicas_preserved": 8
+  },
+  "protected_semantics_opened": false,
+  "purpose": "Run the actual intended four-actor generation-only HPO evaluator at alpha zero and unchanged V434 state, then fail closed unless the three V62 null-calibration gates pass.",
+  "raw_question_answer_or_generation_text_may_be_persisted": false,
+  "required_alpha_zero_gates": {
+    "all_comparisons_inclusive": true,
+    "failure_action": "fail_closed_before_hpo_population_or_update",
+    "generated_f1_primary_interval_must_contain_zero": true,
+    "maximum_actor_leave_one_out_shift_inclusive": 0.0012119648781783704,
+    "maximum_primary_ci_halfwidth_inclusive": 0.000773822590292528,
+    "success_does_not_authorize_hpo_population_or_update": true
+  },
+  "required_integrity_gates": {
+    "all_actor_identities_verify_exact_v27c_tuned_table": true,
+    "all_actor_identities_verify_sync_fcfs_eager_bi_false_max68": true,
+    "all_four_gpus_attributed_positive": true,
+    "all_four_tp1_actor_identities_exact": true,
+    "exact_v434_state_before_and_after_every_period": true,
+    "exclusive_idle_four_gpu_preflight": true,
+    "numeric_hash_only_evidence": true,
+    "same_68_requests_submitted_in_each_actor_period_call": true,
+    "strict_four_engine_cleanup_and_final_idle": true,
+    "update_candidate_hpo_and_protected_access_zero": true
+  },
+  "required_python": "/home/catid/specialist/es-at-scale/.venv/bin/python",
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "v62a-v434-pre-hpo-alpha-zero-generation-preregistration",
+  "scientific_scope": {
+    "actual_intended_hpo_generation_runtime": true,
+    "adapter_perturbation_or_update": false,
+    "calibration_success_itself_authorizes_hpo": false,
+    "candidate_state_or_persistent_artifact": false,
+    "fresh_pre_hpo_alpha_zero_characterization_only": true,
+    "hpo_population_selection_or_promotion": false,
+    "reference_and_candidate_are_counterbalanced_aliases_for_identical_v434_state": true
+  },
+  "specific_alpha_zero_calibration_gpu_launch_authorized": true,
+  "status": "preregistered_before_train_semantics_model_or_gpu_access",
+  "support_audit_alone_authorizes_gpu_launch": false,
+  "v62_methodology_commit": "3878fb4d85ddbb1fb96d382d1af21446bc8764c0",
+  "v62_numeric_audit_identities": {
+    "content_sha256": "365280457e84abb2734cb21b872a79d97e4f4da2f4c62b7bc1ef5361cab659fe",
+    "file_sha256": "5597aef07576ff35613dbb77c5a3c5f35a441374d926b7e54ac48df8e6386785"
+  },
+  "v62_preregistration_identities": {
+    "content_sha256": "6bd56b962b6cdc4543ac126dc098f357bd03356964c18fb9796a2c2204db6be3",
+    "file_sha256": "45342e29ae1b9cd6041092e26339aad76ab6379048fe364d1ea176e9f399e03c"
+  }
+}

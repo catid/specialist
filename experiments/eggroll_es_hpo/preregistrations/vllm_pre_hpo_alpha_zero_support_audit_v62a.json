@@ -1,0 +1,73 @@
+{
+  "content_sha256_before_self_field": "7d6a823fdba6fc0631974ebc7312e214f5f8a8e8a5d3b43d45db5206dcb9faa2",
+  "engine_args_fields_present": {
+    "async_scheduling": true,
+    "enable_lora": true,
+    "enforce_eager": true,
+    "max_cpu_loras": true,
+    "max_lora_rank": true,
+    "max_loras": true,
+    "max_num_seqs": true,
+    "scheduling_policy": true,
+    "tensor_parallel_size": true
+  },
+  "filesystem_paths_mutated_outside_audit_output": false,
+  "generation_sampling_projection": {
+    "detokenize": true,
+    "max_tokens": 64,
+    "n": 1,
+    "seed": 2026071601,
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "global_batch_invariance_claimed": false,
+  "installed_vllm_source_file_sha256": {
+    "engine_arg_utils": "3b3ffa6b403d34188c6d2fe7a2dc36debcee7402a17fc6a6145e885130f3dacd",
+    "envs": "15ab853b73b26da5dc2808699138dff7217b72b9f661da274cc0c9f6c262f631",
+    "fused_moe": "72811a4e543cc6f415f184cb951b61522643cddc4d6456f61a2f8c1a53b2cf79",
+    "lora_triton_utils": "ba7110f5f52b6b5172aede8cb15da4fac93358a0d0c7c4004743ed5a1c979343",
+    "model_config": "41cdd96fd1c9f141a96938fa2d08032cfcb89a4925d7d10b64ef937884791908",
+    "scheduler_config": "a816cf79a3e74ffc0984f9bebb274275b26f46be8b28cb77a29388a0996263c8",
+    "vllm_config": "caf6db4dbbafb3e2194022d779e4635e78ea1f51bfc5d299997640cd2806cb05"
+  },
+  "intended_evaluator_projection": {
+    "actors": 4,
+    "adapter_state": "V434",
+    "base_model_family": "Qwen3.6-35B-A3B",
+    "exact_sentinel_rows": 4,
+    "generation_completions": 1088,
+    "generation_only": true,
+    "physical_gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "ranking_rows": 64,
+    "rows_per_actor_call": 68,
+    "sequential_periods": 4,
+    "teacher_forced_requests": 0,
+    "tensor_parallel_size_per_actor": 1
+  },
+  "model_train_semantics_or_gpu_accessed": false,
+  "pre_hpo_alpha_zero_runtime_supported": true,
+  "protected_semantics_opened": false,
+  "requested_runtime_controls": {
+    "VLLM_BATCH_INVARIANT": false,
+    "async_scheduling": false,
+    "enforce_eager": true,
+    "max_num_seqs": 68,
+    "scheduling_policy": "fcfs"
+  },
+  "required_python": "/usr/bin/python3.12",
+  "scheduler_config_projection": {
+    "async_scheduling": false,
+    "max_num_seqs": 68,
+    "policy": "fcfs",
+    "scheduler_class": "Scheduler"
+  },
+  "schema": "v62a-installed-vllm-pre-hpo-alpha-zero-support-audit",
+  "status": "supported",
+  "support_audit_authorizes_gpu_launch": false,
+  "vllm_version": "0.25.0"
+}
