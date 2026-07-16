@@ -1,0 +1,47 @@
+{
+  "schema": "lora-es-sigma-discrimination-telemetry-deviation-v53",
+  "status": "declared_during_shared_calibration_before_any_sigma_arm_completed",
+  "declared_at_utc": "2026-07-16T06:07:32Z",
+  "parent_preregistration": {
+    "path": "experiments/eggroll_es_hpo/preregistrations/lora_es_sigma_discrimination_v53.json",
+    "file_sha256": "abd15ce713af9b3f824f2a0457a93f9673c91d19c72f5c8c67e23b9d27b76a83",
+    "content_sha256": "e14b3bf36e3fe4f8b48e8a1c18c348239a34889afe3b4ffceda1ccd45e198935"
+  },
+  "observation_timing": {
+    "actual_log_first_sample_at_utc": "2026-07-16T06:02:45.676689+00:00",
+    "actual_log_first_phase": "setup",
+    "sigma_arm_artifacts_present_when_declared": 0,
+    "outcome_metrics_observed_when_declared": false
+  },
+  "deviation": {
+    "preregistered_gpu_log": "experiments/eggroll_es_hpo/runs/v53_lora_es_sigma_discrimination/gpu_activity_v53.jsonl",
+    "actual_gpu_log": "experiments/eggroll_es_hpo/runs/v53_lora_es_sigma_discrimination/gpu_activity_v52.jsonl",
+    "preregistered_gpu_log_exists": false,
+    "actual_gpu_log_exists": true,
+    "inherited_population_phase_label": "nested_p16_population_v52",
+    "actual_population_operation": "V53 ascending P16 sigma discrimination",
+    "cause": "The V53 wrapper changed RUN_DIR but the reused V52 executor constructs the telemetry filename and phase label internally; the wrapper-level GPU_LOG constant is not consumed by that path.",
+    "scope": "Telemetry filename and human-readable inherited phase label only."
+  },
+  "unchanged_scientific_contract": {
+    "sigma_grid": [
+      0.0012,
+      0.0024,
+      0.0048
+    ],
+    "population_seeds_scores_reliability_gates_and_stop_rule_changed": false,
+    "model_adapter_dataset_generation_panel_or_actor_reducer_changed": false,
+    "optimizer_update_projection_train_gate_or_candidate_snapshot_authorized": false,
+    "ood_shadow_benchmark_holdout_or_protected_semantics_authorized": false,
+    "telemetry_samples_still_record_exact_gpu_actor_pids_utilization_memory_foreign_pids_phase_and_timestamp": true
+  },
+  "handling": {
+    "sealed_runtime_will_not_be_modified_mid_run": true,
+    "actual_log_will_be_preserved_under_its_observed_name": true,
+    "postrun_evidence_must_hash_and_bind_the_actual_log": true,
+    "postrun_evidence_must_not_claim_all_preregistered_artifact_paths_matched": true,
+    "measurement_may_select_a_sigma_only_if_every_original_scientific_and_state_integrity_gate_passes": true,
+    "measurement_does_not_authorize_an_optimizer_update_or_protected_evaluation": true,
+    "future_runner_must_test_preregistered_telemetry_path_and_phase_labels": true
+  }
+}
