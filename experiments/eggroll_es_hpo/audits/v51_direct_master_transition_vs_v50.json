@@ -1,0 +1,82 @@
+{
+  "content_sha256_before_self_field": "60e55b62bfec09be64acd5c612a394dc54a3cf9596bdf2ef949c6ef93f5bd25d",
+  "correctness": {
+    "15_intermediate_restores_elided": true,
+    "all_16_precommitted_states_exact": true,
+    "all_320_timing_receipts": true,
+    "all_four_gpus_positive": true,
+    "base_score_exact_after_population": true,
+    "final_master_exact_all_four": true,
+    "final_runtime_exact_all_four": true,
+    "four_actual_final_restores": true,
+    "no_protected_access": true,
+    "no_update_or_snapshot": true,
+    "strict_cleanup": true
+  },
+  "decision": {
+    "accepted": true,
+    "quality_or_checkpoint_promotion_authorized": false,
+    "reason": "The direct-master single-slot transition passed every exact state/restore/safety gate and both preregistered speed gates.",
+    "scope": "population transition implementation only"
+  },
+  "schema": "direct-pinned-master-transition-audit-v51",
+  "sealed_inputs": {
+    "experiments/eggroll_es_hpo/preregistrations/matched_lora_es_direct_pinned_master_transition_v51_retry1.json": {
+      "content_sha256": "02dd64eb07694c6d659c3036b63037cf607b942f5e2bc98972d75c1c4b3abf79",
+      "file_sha256": "41b1c3d93cff777aef470427ce597f12e631699c9d8a26c536605155a4c475e0"
+    },
+    "experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/gpu_activity_v50.jsonl": {
+      "file_sha256": "cd2050101ede6c42f7cbc9e4111de782d6f8f5068c3abb3a7711d1d87b3a2e37"
+    },
+    "experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/gpu_activity_v51.jsonl": {
+      "file_sha256": "229af9a053535f70b6bd4d00fd7447ea053bed810cc85006b336b7525b68d101"
+    },
+    "experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/per_state_timing_v51.json": {
+      "content_sha256": "7ec7b3486a7143f3d7d58f4f678add547f4062b649779aa466b8de2622b7593e",
+      "file_sha256": "a7c03ffdfba16d5ab277ea724a1fa71299cb587132c7269bbfc64f4a92b686c6"
+    },
+    "experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/population_v51.json": {
+      "content_sha256": "a342aaaef035b17b228fdd9f04357b548d8363f16d16dfd10640605918c8d5ac",
+      "file_sha256": "ff4b23544ba641191e364c9dc000af1878f0972adddd5d4479ffa1b68b0de0ce"
+    },
+    "experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/transition_microbenchmark_report_v51.json": {
+      "content_sha256": "42b31602793aa727dcfc5622fce4c0e1c1a094e2b8234f3f6f402f52db68ba37",
+      "file_sha256": "a727990745f6d41e0eb36104a19ce1d92c1645c2bf01bfb7ce3b02e4bbe29b1f"
+    }
+  },
+  "speed": {
+    "median_idle_gap_gate": {
+      "minimum_reduction_fraction": 0.2,
+      "passed": true
+    },
+    "median_idle_gap_reduction_fraction": 0.40219820497380765,
+    "population_wall_gate": {
+      "minimum_reduction_fraction": 0.1,
+      "passed": true
+    },
+    "population_wall_reduction_fraction": 0.17839330690012645,
+    "v50": {
+      "all_four_ge10_fraction": 0.4715235355697856,
+      "all_four_ge10_seconds": 119.89788899999992,
+      "none_ge10_fraction": 0.486855623330206,
+      "none_ge10_seconds": 123.79649599999998,
+      "samples": 505,
+      "synchronized_idle_gap_count": 17,
+      "synchronized_idle_gap_max_seconds": 9.086343,
+      "synchronized_idle_gap_median_seconds": 7.562898000000001,
+      "wall_seconds": 254.277634
+    },
+    "v51": {
+      "all_four_ge10_fraction": 0.5562495089538437,
+      "all_four_ge10_seconds": 116.20953700000005,
+      "none_ge10_fraction": 0.3665449630078005,
+      "none_ge10_seconds": 76.57718300000002,
+      "samples": 416,
+      "synchronized_idle_gap_count": 19,
+      "synchronized_idle_gap_max_seconds": 8.563608999999998,
+      "synchronized_idle_gap_median_seconds": 4.521114000000001,
+      "wall_seconds": 208.916206
+    }
+  },
+  "status": "accepted_for_future_lora_es_population_transitions"
+}
