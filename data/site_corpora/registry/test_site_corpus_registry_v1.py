@@ -292,6 +292,31 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             aramid["safety_transfer_flags"],
         )
 
+        manila = self.by_id["nist_manila_rope_statistics_1947"]
+        self.assertEqual(
+            manila["source_document_identity"]["doi"],
+            "10.6028/jres.039.039",
+        )
+        self.assertEqual(
+            manila["source_document_identity"]["research_paper"], "RP1847"
+        )
+        self.assertEqual(
+            manila["source_document_identity"]["official_pdf_sha256"],
+            "5429d55bb31652b297703ba861f9b64aa43f3e6d3de6ae811ebc0e847fe67741",
+        )
+        self.assertEqual(
+            manila["rights_basis"]["status"],
+            "federal_text_public_domain_presumption",
+        )
+        self.assertIn(
+            "doi_039_is_verified_and_doi_037_is_an_unrelated_uranium_paper",
+            manila["safety_transfer_flags"],
+        )
+        self.assertIn(
+            "no_transfer_to_modern_natural_fiber_bondage_body_contact_uplines_anchors_or_human_suspension",
+            manila["safety_transfer_flags"],
+        )
+
         noaa = self.by_id["noaa_synthetic_rope_deterioration_1990"]
         self.assertEqual(
             noaa["source_document_identity"]["repository_id"], "noaa:9887"

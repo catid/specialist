@@ -614,6 +614,65 @@
       "whitespace_delimited_word_count": 2097
     },
     {
+      "artifact_id": "canonical-markdown:nist_manila_rope_statistics_1947",
+      "byte_length": 15165,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/nist_manila_rope_statistics_1947/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": "site-corpus-manifest-v1"
+      },
+      "manifest_sha256": "e3da2664e6f206ec32c686f662c1ded26c857f95dfa8a5960485cca0a0e84e11",
+      "markdown_path": "data/site_corpora/nist_manila_rope_statistics_1947/CORPUS.md",
+      "markdown_sha256": "8968c334cacf2c205a6ea1afa44ad29009b07207895162a3547e0d752b2910bf",
+      "non_qa": true,
+      "qwen36_token_count": 3291,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:5d8eb06f2d907d9d9e20dd2fc47166238e687b60577f3887499cf80674c5deb5",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "nist_manila_rope_statistics_1947",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The National Bureau of Standards publication identifies federal employee authors; current NIST Research Library and Technical Series policies state that eligible employee-authored federal works are not protected by copyright in the United States and grant broad reprint and derivative permission to the extent NIST may assert foreign rights.",
+        "license": "Public Domain in the United States; NIST technical-series reuse permission",
+        "limitations": [
+          "Images, tables, graphs, equations, numerical property outputs, procurement content, references, and separately credited components are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, OCR output, contact sheet, or source body is retained.",
+          "The public-domain and permission screen is not legal advice and does not validate the model or convert a nonrandom heterogeneous 1938-to-1941 procurement stream into current product, rating, natural-fiber bondage-rope, or human-suspension evidence."
+        ],
+        "promotion_gate": "ready_with_attribution_doi_correction_component_audit_and_historical_population_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "doi_039_is_verified_and_doi_037_is_an_unrelated_uranium_paper",
+        "historical_1938_to_1941_nonrandom_heterogeneous_procurement_population_required",
+        "no_numeric_property_rating_tolerance_procurement_or_operational_output",
+        "no_transfer_to_current_products_four_strand_rope_knots_wet_or_aged_behavior",
+        "no_transfer_to_modern_natural_fiber_bondage_body_contact_uplines_anchors_or_human_suspension",
+        "three_strand_conditioning_measurement_and_static_endpoint_scope_required"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://nvlpubs.nist.gov/nistpubs/jres/39/jresv39n6p551_A1b.pdf",
+        "doi": "10.6028/jres.039.039",
+        "identity_type": "government_historical_research_paper",
+        "official_pdf_sha256": "5429d55bb31652b297703ba861f9b64aa43f3e6d3de6ae811ebc0e847fe67741",
+        "publication_date": "December 1947",
+        "research_paper": "RP1847",
+        "source_resource_id": "nist_manila_rope_statistics_1947"
+      },
+      "source_document_identity_sha256": "5d8eb06f2d907d9d9e20dd2fc47166238e687b60577f3887499cf80674c5deb5",
+      "source_label": "A Statistical Analysis of Some Mechanical Properties of Manila Rope",
+      "unicode_word_count": 2114,
+      "whitespace_delimited_word_count": 2084
+    },
+    {
       "artifact_id": "canonical-markdown:noaa_synthetic_rope_deterioration_1990",
       "byte_length": 17887,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -945,7 +1004,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "a6c86db009bb6e0ce8118ec8535ac29746c4097b69c6df4af967f1e5ca5bbdf6"
+    "sha256": "5f080e4c7984191a845dc11ecb3c65f381ede32eeaabe0af9456cf129e34423e"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -984,7 +1043,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "b32e762aecb913da199ab4fe1886b189c2329b55377efa86d2080afb551ed3e3",
+  "source_tree_fingerprint_sha256": "452a764f8a15b3b0e4b65f2329bfd6ec350674b9ff1ef8ab2b6d693025db5d6d",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -994,11 +1053,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 17,
-    "byte_length": 3985310,
-    "qwen36_token_count": 1166271,
-    "source_document_split_group_count": 17,
-    "unicode_word_count": 523833,
-    "whitespace_delimited_word_count": 411958
+    "artifact_count": 18,
+    "byte_length": 4000475,
+    "qwen36_token_count": 1169562,
+    "source_document_split_group_count": 18,
+    "unicode_word_count": 525947,
+    "whitespace_delimited_word_count": 414042
   }
 }
