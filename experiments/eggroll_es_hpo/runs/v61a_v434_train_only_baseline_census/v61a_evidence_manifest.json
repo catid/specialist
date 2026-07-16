@@ -1,0 +1,203 @@
+{
+  "adapter_update_or_master_commit_performed": false,
+  "artifacts": {
+    "evidence": {
+      "content_sha256": "92df95db709e05c2c81c94d98d755a81d15069c94e7bbffa37c9566e4a33b3b5",
+      "file_sha256": "bb95aa2b99d292f0c5cff27afbd255d4ca0697097e8c38e1dbda4dfa63280640"
+    },
+    "report": {
+      "content_sha256": "0f14376da323846e96ad16b2a3197e722b58afbb3c20765d3eeec1fbb5009547",
+      "file_sha256": "89aa6b70b6150cc5abafa6ebddaffebf1751fb6001c136fdd0dd40dd29ad2878"
+    },
+    "strata": {
+      "content_sha256": "d6a34b36fea22a8bdc97698a377ffb4df596bade8cf1506c41721f5db9c4185a",
+      "file_sha256": "23c8393555c3d7f09c95ecc7e23a04637f86df8fd20f55f67b67000ae78257f5"
+    }
+  },
+  "attempt": {
+    "content_sha256": "027dd0067d2c409bac33b8e315c875c4d9ecda879b090a1876e7d2bf250b4616",
+    "file_sha256": "d47cd86fd1f1a036583e8f12088c1fcf56e09d6a5508cb2d742f24852b0072cd"
+  },
+  "candidate_selection_update_or_promotion_performed": false,
+  "cleanup": {
+    "all_four_gcs_states_removed": true,
+    "engine_kill_count": 4,
+    "placement_group_remove_count": 4,
+    "sealed_final_gpu_idle": true
+  },
+  "completed_at_utc": "2026-07-16T09:26:58.287265+00:00",
+  "content_sha256_before_self_field": "535329864435ad51e4474dbac57acb7ec6e3a281be6c77475ff4aa5a100379b5",
+  "coverage": {
+    "actors": 4,
+    "conflict_units": 208,
+    "numeric_actor_metrics": 1792,
+    "rows": 448
+  },
+  "ood_shadow_or_terminal_holdout_opened": false,
+  "outcome_characterization": {
+    "all_four_exact_rows": 3,
+    "any_actor_exact_rows": 4,
+    "f1_range_rows_strictly_above": {
+      "0.01": 225,
+      "0.05": 124,
+      "0.1": 55,
+      "0.25": 4,
+      "1e-12": 249
+    },
+    "pairwise": {
+      "0-1": {
+        "exact_label_disagreements": 1,
+        "f1_different_rows": 162,
+        "maximum_absolute_f1_delta": 0.8181818181818181,
+        "mean_absolute_f1_delta": 0.021776577601134654,
+        "nonzero_label_disagreements": 0
+      },
+      "0-2": {
+        "exact_label_disagreements": 1,
+        "f1_different_rows": 179,
+        "maximum_absolute_f1_delta": 0.8181818181818181,
+        "mean_absolute_f1_delta": 0.024692575573647232,
+        "nonzero_label_disagreements": 2
+      },
+      "0-3": {
+        "exact_label_disagreements": 0,
+        "f1_different_rows": 161,
+        "maximum_absolute_f1_delta": 0.5192307692307692,
+        "mean_absolute_f1_delta": 0.018634123350543836,
+        "nonzero_label_disagreements": 1
+      },
+      "1-2": {
+        "exact_label_disagreements": 0,
+        "f1_different_rows": 164,
+        "maximum_absolute_f1_delta": 0.2222222222222222,
+        "mean_absolute_f1_delta": 0.021415365471011534,
+        "nonzero_label_disagreements": 2
+      },
+      "1-3": {
+        "exact_label_disagreements": 1,
+        "f1_different_rows": 162,
+        "maximum_absolute_f1_delta": 0.8181818181818181,
+        "mean_absolute_f1_delta": 0.02134262267588169,
+        "nonzero_label_disagreements": 1
+      },
+      "2-3": {
+        "exact_label_disagreements": 1,
+        "f1_different_rows": 180,
+        "maximum_absolute_f1_delta": 0.8181818181818181,
+        "mean_absolute_f1_delta": 0.02358393854384878,
+        "nonzero_label_disagreements": 3
+      }
+    },
+    "per_actor": {
+      "0": {
+        "exact_rows": 3,
+        "mean_f1": 0.28522256146604,
+        "nonzero_rows": 442
+      },
+      "1": {
+        "exact_rows": 4,
+        "mean_f1": 0.2835237469182895,
+        "nonzero_rows": 442
+      },
+      "2": {
+        "exact_rows": 4,
+        "mean_f1": 0.2874707581841938,
+        "nonzero_rows": 444
+      },
+      "3": {
+        "exact_rows": 3,
+        "mean_f1": 0.28428827650174876,
+        "nonzero_rows": 443
+      }
+    },
+    "row_stratum_counts": {
+      "actor_unstable": 249,
+      "difficult": 92,
+      "stable_exact": 3,
+      "stable_partial": 104
+    },
+    "unit_stratum_counts": {
+      "actor_unstable": {
+        "holdback": 35,
+        "selection_pool": 105,
+        "total": 140
+      },
+      "difficult": {
+        "holdback": 7,
+        "selection_pool": 23,
+        "total": 30
+      },
+      "stable_exact": {
+        "holdback": 0,
+        "selection_pool": 3,
+        "total": 3
+      },
+      "stable_partial": {
+        "holdback": 8,
+        "selection_pool": 27,
+        "total": 35
+      }
+    }
+  },
+  "preregistration": {
+    "content_sha256": "8138e82654792899f48ea2f110de5a846a81146455e08779fb0e92df63ee30d3",
+    "file_sha256": "b48fd9f93f203e089098a44368f8459f7b563118025524b810c82f210a753a18"
+  },
+  "protected_semantics_opened": false,
+  "raw_question_answer_or_generation_text_persisted": false,
+  "schema": "lora-es-baseline-census-evidence-v61a",
+  "scientific_gate": {
+    "later_v61_hpo_authorized": false,
+    "observed_stable_exact": {
+      "holdback": 0,
+      "selection_pool": 3,
+      "total": 3
+    },
+    "stable_exact_minima": {
+      "holdback": 2,
+      "selection_pool": 4,
+      "total": 8
+    },
+    "threshold_or_quota_relaxed_after_outcomes": false
+  },
+  "status": "complete_content_free_characterization_stable_exact_support_fail_closed",
+  "telemetry": {
+    "all_four_attributed_positive": true,
+    "by_gpu": {
+      "0": {
+        "expected_pid": 26027,
+        "mean_utilization_percent": 37.36538461538461,
+        "peak_memory_used_mib": 83926,
+        "peak_utilization_percent": 66,
+        "positive_samples": 37,
+        "samples": 52
+      },
+      "1": {
+        "expected_pid": 26045,
+        "mean_utilization_percent": 36.63461538461539,
+        "peak_memory_used_mib": 83926,
+        "peak_utilization_percent": 65,
+        "positive_samples": 37,
+        "samples": 52
+      },
+      "2": {
+        "expected_pid": 26044,
+        "mean_utilization_percent": 37.96153846153846,
+        "peak_memory_used_mib": 83926,
+        "peak_utilization_percent": 66,
+        "positive_samples": 38,
+        "samples": 52
+      },
+      "3": {
+        "expected_pid": 26048,
+        "mean_utilization_percent": 38.98076923076923,
+        "peak_memory_used_mib": 83926,
+        "peak_utilization_percent": 96,
+        "positive_samples": 40,
+        "samples": 52
+      }
+    },
+    "foreign_compute_pid_rows": 0,
+    "gpu_log_file_sha256": "423272ea0332ec2cd7389acbb4a5de748e4925c0affd6335770570f4a2ca8364"
+  }
+}
