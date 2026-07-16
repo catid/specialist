@@ -1,0 +1,64 @@
+{
+  "schema": "site-discovery-queue-v1",
+  "purpose": "Continuously discover, verify, and prioritize public sources whose substantive rope-bondage, shibari, or kinbaku knowledge merits a canonical Markdown corpus.",
+  "status": "queued_for_dedicated_worker",
+  "taxonomy_source": "sources/site_corpus_queue_v1.json#knowledge_taxonomy",
+  "discovery_contract": {
+    "web_search_and_source_link_traversal_required": true,
+    "evaluate_the_actual_source_not_search_snippets": true,
+    "prefer_primary_instructional_or_first_party_historical_sources": true,
+    "include_credible_specialist_sources_when_primary_sources_are_unavailable": true,
+    "record_access_and_gate_status": true,
+    "do_not_bypass_login_purchase_robots_or_other_access_controls": true,
+    "do_not_copy_search_engine_or_aggregator_text": true,
+    "deduplicate_against_existing_corpus_queue": true,
+    "reject_url_title_navigation_and_storefront_only_sources": true,
+    "broad_commerce_sites_need_a_narrow_bondage_relevant_scope": true,
+    "separate_source_discovery_from_corpus_extraction": true,
+    "sealed_eval_ood_shadow_holdout_and_existing_qa_access_forbidden": true
+  },
+  "candidate_fields": [
+    "candidate_id",
+    "canonical_url",
+    "source_name",
+    "source_type",
+    "languages",
+    "discovered_from",
+    "checked_at_utc",
+    "accessible",
+    "access_notes",
+    "supported_taxonomy_categories",
+    "representative_pages",
+    "estimated_substantive_page_count",
+    "information_density_score_0_to_5",
+    "technical_specificity_score_0_to_5",
+    "provenance_quality_score_0_to_5",
+    "durability_score_0_to_5",
+    "novel_coverage_score_0_to_5",
+    "safety_context_score_0_to_5",
+    "duplication_penalty_0_to_5",
+    "commerce_noise_penalty_0_to_5",
+    "priority_score",
+    "decision",
+    "decision_reason",
+    "recommended_crawl_scope"
+  ],
+  "priority_formula": "2*information_density + 2*technical_specificity + provenance_quality + durability + 2*novel_coverage + safety_context - 2*duplication_penalty - 2*commerce_noise_penalty",
+  "decisions": [
+    "accept_high_priority",
+    "accept_targeted_scope",
+    "defer",
+    "reject"
+  ],
+  "required_outputs": {
+    "candidate_ledger": "sources/site_discovery_candidates_v1.jsonl",
+    "human_readable_report": "sources/site_discovery_report_v1.md",
+    "accepted_queue_patch": "sources/site_corpus_queue_v1.json",
+    "tests": "sources/test_site_discovery_v1.py"
+  },
+  "cadence": {
+    "keep_discovery_worker_running_when_a_subworker_slot_is_available": true,
+    "commit_bounded_reviewed_batches": true,
+    "never_start_extraction_without_a_distinct_dedicated_site_worker": true
+  }
+}

@@ -1,6 +1,92 @@
 {
   "schema": "site-corpus-queue-v1",
   "purpose": "Build evidence-first, information-dense Markdown source corpora before authoring or revising QA rows.",
+  "dataset_layers": {
+    "canonical_markdown_source_corpus": {
+      "required": true,
+      "direct_training_ready": true,
+      "non_qa": true,
+      "description": "Cleaned, information-dense Markdown preserving the substantive knowledge and instructional structure of each accessible source, with page-level provenance. This is a first-class training artifact, not disposable QA-generation output."
+    },
+    "derived_manual_qa": {
+      "required_when_source_supports_useful_questions": true,
+      "description": "Natural questions that a rope learner might plausibly ask, with complete factual answers derived from the canonical Markdown and checked manually against the cited source page.",
+      "must_link_to_markdown_source_record": true,
+      "automatic_generation_without_manual_review_forbidden": true
+    }
+  },
+  "knowledge_taxonomy": {
+    "goal": "Maximize durable rope-bondage, shibari, and kinbaku knowledge rather than URL, title, navigation, commerce, or archive trivia.",
+    "categories": [
+      {
+        "category_id": "lineage_history_people",
+        "coverage": "Traditions, schools, lineages, influential practitioners, documented contributions, relationships, and historical development; retain biography only when it explains durable rope knowledge or lineage."
+      },
+      {
+        "category_id": "ties_knots_frictions",
+        "coverage": "Tie families, knots, hitches, bends, frictions, lockoffs, extensions, cinches, construction sequences, dressing, verification, uses, limitations, and failure modes."
+      },
+      {
+        "category_id": "uplines_suspension_hardpoints",
+        "coverage": "Upline techniques, suspension mechanics, redirects, lowering, transitions, hardpoint types, tree rigging, indoor structures, ceiling-tension systems, portable frames, rig evaluation, and rejection criteria."
+      },
+      {
+        "category_id": "anatomy_injury_prevention",
+        "coverage": "Nerves, circulation, joints, breathing, placement hazards, warning signs, monitoring, injury prevention, recovery boundaries, and appropriately attributed medical uncertainty."
+      },
+      {
+        "category_id": "rope_materials_maintenance",
+        "coverage": "Fiber and construction, diameter, stretch, strength, treatment, washing, conditioning, inspection, retirement, contamination, storage, and hygiene."
+      },
+      {
+        "category_id": "rigging_mechanics",
+        "coverage": "Tension, vectors, load paths, force multiplication, dynamic loading, redundancy, anchors, connectors, rings, pulleys, plates, frames, and hardware compatibility."
+      },
+      {
+        "category_id": "consent_scene_management",
+        "coverage": "Negotiation, consent, communication loss, monitoring, safewords and alternatives, boundaries, aftercare, incident response, accountability, and partner evaluation."
+      },
+      {
+        "category_id": "bottoming_skills",
+        "coverage": "Body awareness, active positioning, communication under stress, differentiating expected sensation from injury signals, endurance limits, suspension readiness, and informed self-advocacy."
+      },
+      {
+        "category_id": "pattern_architecture",
+        "coverage": "Harness and pattern design, wrap and cinch placement, stability, body mechanics, transitions, partial suspension, reproducibility, and adaptation to different bodies."
+      },
+      {
+        "category_id": "emergency_procedures",
+        "coverage": "Cutting and lowering plans, stuck systems, fainting, acute nerve or circulation symptoms, suspension emergencies, emergency equipment, and escalation to professional care."
+      },
+      {
+        "category_id": "rope_handling",
+        "coverage": "Feeding, dressing, tension consistency, speed and control, rope extension, tail management, reversing direction, placement, flow, and troubleshooting."
+      },
+      {
+        "category_id": "teaching_evaluation",
+        "coverage": "Prerequisites, progressions, drills, tutorial and instructor evaluation, supervised practice, assessment, debugging, and common learner failure modes."
+      },
+      {
+        "category_id": "accessibility_adaptation",
+        "coverage": "Body diversity, mobility limitations, disability, sensory needs, self-tying, communication accommodations, and lower-risk adaptations."
+      },
+      {
+        "category_id": "aesthetics_performance",
+        "coverage": "Composition, line placement, symmetry and asymmetry, movement, photography, stage practice, performance planning, and performer communication."
+      },
+      {
+        "category_id": "terminology_cultural_context",
+        "coverage": "Japanese and Western terminology, school-specific usage, translation limits, cultural context, attribution, contested claims, and avoidance of false universal definitions."
+      }
+    ],
+    "worker_requirements": {
+      "map_every_included_section_to_one_or_more_categories": true,
+      "report_supported_categories_and_source_specific_gaps": true,
+      "preserve_technical_detail_needed_to_explain_how_and_why": true,
+      "do_not_force_unsupported_categories_into_a_source": true,
+      "distinguish_source_claims_from_cross_source_consensus": true
+    }
+  },
   "artifact_contract": {
     "one_dedicated_worker_per_site_or_supplied_media_resource": true,
     "full_substantive_fact_coverage": true,
@@ -59,7 +145,7 @@
     {
       "resource_id": "crash_restraint",
       "url": "https://crash-restraint.com/",
-      "scope": "All substantive instructional and safety pages, including suspension foundations.",
+      "scope": "The entire accessible site inventory: every substantive instructional, safety, technique, equipment, anatomy, consent, floor-rope, suspension, upline, hardpoint, rigging, cultural, and reference page. Include all durable rope-bondage facts in the canonical Markdown; exclude only non-content shells, duplicates, inaccessible material, and genuinely unrelated pages with explicit reasons.",
       "status": "pending"
     },
     {
