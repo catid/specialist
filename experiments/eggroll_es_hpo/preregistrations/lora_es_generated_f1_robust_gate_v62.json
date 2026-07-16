@@ -1,0 +1,204 @@
+{
+  "access_and_authorization": {
+    "adapter_update_authorized": false,
+    "candidate_materialization_or_master_commit_authorized": false,
+    "gpu_launch_authorized": false,
+    "holdback_ood_shadow_terminal_or_protected_access_authorized": false,
+    "hpo_population_launch_authorized": false,
+    "separate_protected_evaluation_authorization_required_later": true,
+    "separate_runtime_preregistration_required_before_any_launch": true,
+    "train_only_methodology": true
+  },
+  "alternative_estimators": {
+    "median_8": {
+      "arithmetic_nonzero_unit_erasure_fraction": 0.8421052631578947,
+      "rejected_as_primary": true,
+      "role": "diagnostic_only"
+    },
+    "three_of_four_actor_sign_consensus": {
+      "fraction_of_any_nonzero_units_retained": 0.07142857142857142,
+      "rejected_as_primary": true,
+      "role": "diagnostic_only"
+    },
+    "trim_one_each_tail_mean_6": {
+      "arithmetic_nonzero_unit_erasure_fraction": 0.15789473684210525,
+      "rejected_as_primary": true,
+      "role": "diagnostic_sensitivity_only"
+    },
+    "winsor_one_each_tail_mean_8": {
+      "rejected_as_primary": true,
+      "role": "diagnostic_sensitivity_only",
+      "run_level_sign_mismatch_count": 1
+    }
+  },
+  "content_sha256_before_self_field": "6bd56b962b6cdc4543ac126dc098f357bd03356964c18fb9796a2c2204db6be3",
+  "created_at_utc": "2026-07-16T11:17:30.995674+00:00",
+  "estimator_selection": {
+    "across_unit_aggregation": "arithmetic_mean_conflict_units",
+    "actor_influence": {
+      "definition": "maximum absolute difference between full four-actor point and each leave-one-actor-out point",
+      "penalty_weight": 1.0
+    },
+    "actors": 4,
+    "bootstrap": {
+      "fitness_uses": "lower_confidence_bound",
+      "one_sided_alpha": 0.05,
+      "replicates": 4096,
+      "resampled_axis": "conflict_unit",
+      "seed": 2026071612,
+      "within_unit_replicas_preserved": 8
+    },
+    "candidate_advancement_requires_fitness_strictly_above_zero": true,
+    "counterbalanced_pairs_per_actor": 2,
+    "larger_is_better": true,
+    "population_fitness_formula": "generated_f1_primary_cluster_bootstrap_lcb_minus_1.0_times_maximum_absolute_leave_one_actor_out_shift",
+    "primary_metric": "generated_f1_delta",
+    "replicas_per_unit": 8,
+    "unit": "frozen_train_conflict_unit",
+    "within_unit_aggregation": "arithmetic_mean_all_8_replicas"
+  },
+  "fresh_pre_hpo_alpha_zero_calibration_gate": {
+    "actor_threshold_calibration": "maximum_like_for_like_finalized_v61c_v61d_v61e_null_leave_one_actor_out_shift",
+    "actor_threshold_rule": "conservative_observed_maximum_no_distributional_quantile_claim",
+    "gate_failure_aborts_before_population_or_update": true,
+    "generated_f1_primary_interval_must_contain_zero": true,
+    "historical_outcomes_do_not_authorize_future_runtime": true,
+    "like_for_like_actor_statistic_required": true,
+    "maximum_actor_leave_one_out_shift": 0.0012119648781783704,
+    "maximum_primary_ci_halfwidth": 0.000773822590292528,
+    "required_under_exact_future_hpo_runtime": true,
+    "same_panel_labels_periods_metrics_and_eight_replica_estimator": true,
+    "signal_over_allowed_ci_halfwidth_minimum": 2.0,
+    "v53_actor_spread_is_descriptive_non_equivalent": true,
+    "v53_actor_spread_used_as_leave_one_out_threshold": false,
+    "v61e_historical_actor_influence_would_pass": true,
+    "v61e_historical_width_would_pass": true
+  },
+  "implementation_bindings": {
+    "code_file_sha256": {
+      "analysis_v61c": "196df73ef48eaa1e31636b7e5f96b73538a7cd8a2630b93896153dc0247d1cfa",
+      "analysis_v61d": "6604d41461d37dd509b3725a45392a23a399205cdc88bcbc206126545effbde4",
+      "analysis_v61e": "1f06ee24c05928d9fcd88e8609fe32c8b45847ee7c6514ee1d71dce1c1e1e29a",
+      "numeric_audit_builder": "92700393e6996703dc80094c782903026d4d64d53124386805ab861e1d2e55d6",
+      "preregistration_builder": "daa9f3ee7d64aa7b314c456e7563bf373aae1b61fd78e6418846b407090fb4b7",
+      "tests": "a376b9244f18191a03ec31f3862bb533916a7eb944ec95b87577d43d2eeaf2e5"
+    },
+    "exact_panel_preview": {
+      "content_sha256": "1b25f3c667fc0e9eeddc19f1d20aebc70c2a0127db0c3eafe11c2f19fb35a0f0",
+      "file_sha256": "a9ce060ce81df5b1fbddcc40db572fe56974ea6dfb6ef2e6ebf3e81925a400e2"
+    },
+    "numeric_audit": {
+      "content_sha256": "365280457e84abb2734cb21b872a79d97e4f4da2f4c62b7bc1ef5361cab659fe",
+      "file_sha256": "5597aef07576ff35613dbb77c5a3c5f35a441374d926b7e54ac48df8e6386785"
+    },
+    "raw_train_qa_model_gpu_ood_or_protected_paths_opened": false
+  },
+  "non_reinterpretation": {
+    "new_exact_policy_applies_only_to_separately_preregistered_future_runs": true,
+    "v61c_thresholds_changed": false,
+    "v61d_thresholds_changed": false,
+    "v61e_exact_sentinel_failure_retroactively_relaxed": false,
+    "v61e_thresholds_changed": false
+  },
+  "numeric_design_evidence": {
+    "audit_content_sha256": "365280457e84abb2734cb21b872a79d97e4f4da2f4c62b7bc1ef5361cab659fe",
+    "audit_file_sha256": "5597aef07576ff35613dbb77c5a3c5f35a441374d926b7e54ac48df8e6386785",
+    "audit_path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/generated_f1_robust_gate_numeric_audit_v62.json",
+    "exact_panel_preview": {
+      "content_sha256": "1b25f3c667fc0e9eeddc19f1d20aebc70c2a0127db0c3eafe11c2f19fb35a0f0",
+      "file_sha256": "a9ce060ce81df5b1fbddcc40db572fe56974ea6dfb6ef2e6ebf3e81925a400e2",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_paired_block_bootstrap_v61_preview.json",
+      "raw_train_semantics_opened": false
+    },
+    "only_finalized_numeric_v61c_v61d_v61e_evidence_opened": true,
+    "raw_question_answer_prediction_or_generation_text_opened": false,
+    "source_hashes": {
+      "v61c": {
+        "evidence_content_sha256": "15b7d74ea9b003d03ad4ba7667936ac80fac121cbbc28e4ced2c1cd9f57c7fa8",
+        "evidence_file_sha256": "5be0a46ef0051c760b89d535cc252eeb1c9a6b2c700c209799049191615fa3dc",
+        "finalizer_content_sha256": "7bc9735dea87ae8bf2374bcefb7c290b7bb273f2394b44d54dc1fa69e8e851c0",
+        "finalizer_file_sha256": "d3d5eabf1e5d9b0bed2dfd2a355ed5eb839a22cb4bcdea58af0ab84231042d46"
+      },
+      "v61d": {
+        "evidence_content_sha256": "f07a24fcd5ae0cedf1703f1bf25a7e9b6ca3db900d4bd58cc7351a68ec795048",
+        "evidence_file_sha256": "49be43e8a2e02093952bec7a0186f900fd64e3ec00057ece31e290a540c7044e",
+        "finalizer_content_sha256": "58f15e71f7bdf2b7e3804479627bd14e782303004728079d18b2e8fbe09c657a",
+        "finalizer_file_sha256": "98da3f65e5d6a3801d1b56a143b7d9a44d95b971d290523372013525fad814fd"
+      },
+      "v61e": {
+        "evidence_content_sha256": "db145f887a90cd9383bef0d7caaeb22839e34af946c06c547ddc7c79fb564a66",
+        "evidence_file_sha256": "8cd25a3f2f94175dba174199fca665209cbc7d98959ce26df7856cdd4e79507f",
+        "finalizer_content_sha256": "675d70cdb95ae1a4c0d326988df0cd4555633d4c9195712ffb49c221513802cf",
+        "finalizer_file_sha256": "fcd0a8777839b06ac55323d05a7107bcb6c3b6f0f8c5e34e4ae3036c55ac9e3d"
+      }
+    },
+    "v53_signal_benchmark_reopened": false
+  },
+  "population_diagnostics_not_abort_gates": {
+    "frozen_exact_sentinel": {
+      "actor_unstable_stress": {
+        "excluded_from_stable_consensus_aggregate": true,
+        "role": "diagnostic_stress_unit_only",
+        "unit_count": 1,
+        "unit_identity_sha256": "27c984ca0a7dbd4ffead6e79d7b691dc7a37856356a9a050a40603c11c6dbda7",
+        "used_as_population_abort_gate": false
+      },
+      "baseline_stable": {
+        "aggregate_statistic": "total_exact_pass_count_across_all_24_stable_unit_actor_pair_replicas",
+        "per_unit_consensus_statistic": "strict_majority_exact_pass_count_at_least_5_of_8",
+        "report_reference_candidate_totals_and_consensus_units": true,
+        "unit_count": 3,
+        "unit_identity_sha256": [
+          "2ef7c0e5ca2ff81b7326ea6dc2bd8b32c2499f939c04f9574c7135be37837ab4",
+          "f080d7ea1b60062d035852d3542a2664e49af07294efec841f95acc99994f68f",
+          "aa2af8f5c0eaede64c3acd990852475c441587c29bfa50fab0f30b2ed0061a66"
+        ],
+        "used_as_population_abort_gate": false
+      },
+      "replicas_per_unit": 8,
+      "used_in_population_fitness": false
+    },
+    "generated_exact": {
+      "any_per_unit_eight_of_eight_equality_failure_aborts_population": false,
+      "any_single_flip_aborts_population": false,
+      "persist_aggregate_counts_and_individual_flip_count": true,
+      "used_in_population_fitness": false
+    },
+    "median_trim_winsor_and_actor_sign_consensus": {
+      "persist_numeric_sensitivity_summary": true,
+      "used_in_population_fitness": false
+    },
+    "teacher_forced_logprob": {
+      "persist_numeric_summary": true,
+      "used_as_population_abort_gate": false,
+      "used_in_population_fitness": false
+    }
+  },
+  "population_reliability_gate": {
+    "estimated_signal_standard_deviation_must_exceed_fresh_null_width": true,
+    "fresh_actor_influence_is_subtracted_from_each_population_fitness": true,
+    "frozen_v53_signal_standard_deviation": 0.001547645180585056,
+    "minimum_reliability": 0.8,
+    "minimum_split_half_spearman": 0.7
+  },
+  "pre_materialization_master_commit_gate": {
+    "aggregate_exact_candidate_total_must_be_at_least_reference_total": true,
+    "aggregate_exact_noninferiority_margin": 0,
+    "aggregate_exact_statistic": "total_exact_passes_over_all_eligible_train_full_census_unit_actor_pair_replicas",
+    "counterbalanced_pairs_per_actor": 2,
+    "eligible_train_full_census_required": true,
+    "ephemeral_in_memory_candidate_state_required_for_scoring": true,
+    "failure_discards_ephemeral_candidate_before_any_persistent_artifact_or_master_commit": true,
+    "generated_f1_robust_fitness_must_remain_strictly_above_zero": true,
+    "individual_exact_flips_are_reported_but_do_not_individually_abort": true,
+    "master_commit_before_gate": false,
+    "persistent_candidate_artifact_or_snapshot_before_gate": false,
+    "reference_and_candidate_use_identical_full_census_and_four_actors": true,
+    "runs_only_after_generated_f1_candidate_advancement": true
+  },
+  "protected_semantics_opened": false,
+  "purpose": "Freeze a train-only generated-F1 population estimator that preserves all eight actor/pair replicas, penalizes bootstrap uncertainty and actor influence, and moves exact-match to an aggregate full-census precommit gate.",
+  "raw_question_answer_prediction_or_generation_text_persisted": false,
+  "schema": "v62-generated-f1-robust-evaluator-hpo-gate-preregistration",
+  "status": "methodology_preregistered_runtime_and_hpo_launch_unauthorized"
+}
