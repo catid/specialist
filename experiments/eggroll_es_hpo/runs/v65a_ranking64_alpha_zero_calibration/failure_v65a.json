@@ -1,0 +1,156 @@
+{
+  "adaptive_retry_drop_reorder_or_early_stop_performed": false,
+  "candidate_hpo_update_projection_or_promotion_performed": false,
+  "cleanup": {
+    "after": [
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "2d881b2be36eb996d8a232ea69513e8cb7d8c235f684115e97c85d26"
+        },
+        "placement_group_id": "0f5a41dbe9d07544cfb9cb3e062c01000000",
+        "state": "REMOVED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "2d881b2be36eb996d8a232ea69513e8cb7d8c235f684115e97c85d26"
+        },
+        "placement_group_id": "07a9871b3776d0736ebf4575221001000000",
+        "state": "REMOVED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "2d881b2be36eb996d8a232ea69513e8cb7d8c235f684115e97c85d26"
+        },
+        "placement_group_id": "3b7f5ef6a96c5e4ab605c0e841d801000000",
+        "state": "REMOVED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "2d881b2be36eb996d8a232ea69513e8cb7d8c235f684115e97c85d26"
+        },
+        "placement_group_id": "ea2cd9de98d96a6b2e73f11c92b201000000",
+        "state": "REMOVED",
+        "strategy": "PACK"
+      }
+    ],
+    "all_four_gcs_states_removed": true,
+    "before": [
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "2d881b2be36eb996d8a232ea69513e8cb7d8c235f684115e97c85d26"
+        },
+        "placement_group_id": "0f5a41dbe9d07544cfb9cb3e062c01000000",
+        "state": "CREATED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "2d881b2be36eb996d8a232ea69513e8cb7d8c235f684115e97c85d26"
+        },
+        "placement_group_id": "07a9871b3776d0736ebf4575221001000000",
+        "state": "CREATED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "2d881b2be36eb996d8a232ea69513e8cb7d8c235f684115e97c85d26"
+        },
+        "placement_group_id": "3b7f5ef6a96c5e4ab605c0e841d801000000",
+        "state": "CREATED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "2d881b2be36eb996d8a232ea69513e8cb7d8c235f684115e97c85d26"
+        },
+        "placement_group_id": "ea2cd9de98d96a6b2e73f11c92b201000000",
+        "state": "CREATED",
+        "strategy": "PACK"
+      }
+    ],
+    "driver_scoped_non_detached_by_construction": true,
+    "engine_kill_count": 4,
+    "placement_group_remove_count": 4,
+    "schema": "eggroll-es-placement-group-cleanup-v38a"
+  },
+  "cleanup_errors": [],
+  "content_sha256_before_self_field": "99a00ab1dfd9c3ce1811206cfacd17643fcdf2062fa692012fff3ed47aedfdf7",
+  "failed_at_utc": "2026-07-16T19:18:02.909378+00:00",
+  "final_gpu_idle": {
+    "all_four_compute_process_lists_empty": true
+  },
+  "four_gpu_idle_proof_attempted": true,
+  "holdback_sentinel_reserve_ood_terminal_or_protected_opened": false,
+  "message_sha256": "50af24ded76854ac98724e20e8fbffcec146aae3228734b092f35151a2204e62",
+  "partial_constructor_pool_cleanup": {
+    "attempted_after_incomplete_strict_cleanup": false,
+    "join_succeeded": false,
+    "pool_found": false,
+    "terminate_succeeded": false
+  },
+  "raw_error_message_or_traceback_persisted": false,
+  "raw_question_answer_prompt_or_generation_text_persisted": false,
+  "ray_shutdown_attempted_even_without_complete_trainer": true,
+  "runtime_determinism_controls": {
+    "VLLM_BATCH_INVARIANT": false,
+    "async_scheduling": false,
+    "dtype": "torch.bfloat16",
+    "enable_chunked_prefill": false,
+    "enable_prefix_caching": false,
+    "enforce_eager": true,
+    "gpu_memory_utilization": 0.82,
+    "max_cpu_loras": 2,
+    "max_lora_rank": 32,
+    "max_loras": 1,
+    "max_model_len": 2048,
+    "max_num_batched_tokens": 8192,
+    "max_num_seqs": 64,
+    "scheduling_policy": "fcfs",
+    "tensor_parallel_size": 1
+  },
+  "schema": "v65a-ranking64-alpha-zero-calibration-failure",
+  "type": "RayTaskError(NotImplementedError)"
+}
