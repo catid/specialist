@@ -1,0 +1,192 @@
+{
+  "schema": "site-corpus-manifest-v1",
+  "schema_version": 1,
+  "resource_id": "kink_education_code_of_conduct",
+  "source_id": "KECC-v1-2019",
+  "artifact_role": "canonical_markdown_direct_training_source",
+  "direct_training_ready": true,
+  "non_qa": true,
+  "generated_at": "2026-07-16T10:55:50Z",
+  "retrieved_at": "2026-07-16T10:42:15Z",
+  "source_type": "versioned_collective_kink_education_ethics_code",
+  "work": {
+    "title": "The Kink Education Code of Conduct (KECC), version 1",
+    "creator": "v. 1 KECC Collective",
+    "version": "1",
+    "pdf_visible_date": "2019-04-25",
+    "scope": "historically situated educator and producer ethics framework",
+    "current_consensus_claim": false
+  },
+  "license": {
+    "name": "Creative Commons Attribution-ShareAlike 4.0 International",
+    "identifier": "CC BY-SA 4.0",
+    "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "legal_code_url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.en",
+    "creator_credit": "v. 1 KECC Collective",
+    "source_links_present": true,
+    "adaptation_notice_present": true,
+    "changes_described": true,
+    "sharealike_applied_to_corpus": true,
+    "endorsement_implied": false,
+    "additional_restrictions_added": false,
+    "legal_opinion": false
+  },
+  "entries": [
+    {
+      "source_id": "KECC-FULL",
+      "url": "https://www.thekecc.org/fullVersion.html",
+      "content_type": "text/html",
+      "byte_length": 38172,
+      "sha256": "903d1c07dfada79ceee507ad13cbd5d41aa7c8c722228b038122221be93ca2cc",
+      "disposition": "reviewed_not_retained_manually_transformed",
+      "direct_training": false,
+      "reason": "Complete section-level substantive source; concepts manually paraphrased and bounded."
+    },
+    {
+      "source_id": "KECC-PDF",
+      "url": "https://www.thekecc.org/KECC.pdf",
+      "content_type": "application/pdf",
+      "byte_length": 174888,
+      "sha256": "2429e5806ecf2427828676b9aaa8e95c5ac247a8406c6d3b4dd6e1d51b973657",
+      "digital_page_count": 24,
+      "disposition": "reviewed_not_retained_version_scope_and_crosscheck",
+      "direct_training": false,
+      "reason": "All pages reviewed for visible date, FAQ, adoption limits, and full-version crosscheck; raw layout and repeated text excluded."
+    },
+    {
+      "source_id": "KECC-HOME",
+      "url": "https://www.thekecc.org/",
+      "content_type": "text/html",
+      "byte_length": 3945,
+      "sha256": "9e6e9b1f281b7042ce5a8b3e41f398ff82d4d03be319f8f3d10ef14ebb4287a8",
+      "disposition": "reviewed_not_retained_authorship_and_version_context",
+      "direct_training": false,
+      "reason": "Collective authorship and first-version modeling rationale retained; individual names and navigation excluded."
+    },
+    {
+      "source_id": "CC-DEED",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "content_type": "text/html",
+      "byte_length": 35744,
+      "sha256": "17de6b7071e8f4816b103fb45aff75f71c94821f303534fc3e21cb68bd0f7148",
+      "disposition": "license_metadata_only_not_training",
+      "direct_training": false,
+      "reason": "Used only to verify attribution, change notice, ShareAlike, licence-link, and no-additional-restrictions metadata."
+    },
+    {
+      "source_id": "CC-LEGAL",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.en",
+      "content_type": "text/html",
+      "byte_length": 51859,
+      "sha256": "a7dbad04e9a44a69a06d2ea5f20cceccb163091550591ed41ac610f112789246",
+      "disposition": "license_legal_metadata_only_not_training",
+      "direct_training": false,
+      "reason": "Linked legal code reviewed solely to validate ShareAlike-compatible output metadata; legal prose excluded."
+    }
+  ],
+  "training_document_count": 1,
+  "h2_section_count": 14,
+  "h3_subsection_count": 22,
+  "direct_training_word_count": 4070,
+  "whitespace_delimited_word_count": 4129,
+  "word_count_method": "Unicode regex [\\w\\u2019'-]+ over CORPUS.md; whitespace count recorded separately",
+  "claim_level_citation_count": 58,
+  "source_ledger_record_count": 5,
+  "disposition_record_count": 50,
+  "included_or_narrowed_disposition_count": 38,
+  "excluded_disposition_count": 12,
+  "supported_categories": [
+    "consent_communication_boundaries",
+    "education_facilitation",
+    "community_ethics_accountability",
+    "inclusion_accessibility",
+    "risk_disclosure_vetting",
+    "incident_response_privacy"
+  ],
+  "category_scope_note": "All categories describe version-1 educator and producer ethics proposals. They supply no current-consensus, legal, certification, central-enforcement, medical, technique, or safety conclusion.",
+  "evidence_scope": {
+    "retained_roles": "educator, producer, and discussion perspectives",
+    "retained_consent": "capacity-aware informed explicit or enthusiastic continuous noncoerced agreement and visible classroom modeling",
+    "retained_student_demo": "power differential, preference order, advance negotiation, anti-pressure controls, opt-out, inclusive selection, aftercare planning, and producer support",
+    "retained_competence": "topic-specific expertise, qualification or professional-review disclosure, personal-opinion disclosure, and respect for individual risk profiles",
+    "retained_inclusion": "nondiscrimination, pronouns, body and ability access, learning needs, diverse governance, reporting routes, and response staffing",
+    "retained_accountability": "feedback and repair, contacts, circles, conflict awareness, multiple routes, diversity, and pattern memory",
+    "retained_boundaries": "professional student relationships, formal policies, power discussion, mentoring boundaries, and no status exchange",
+    "retained_vetting": "bidirectional, multi-source, contextual vetting without safety clearance",
+    "retained_disclosure_privacy": "injury and consent-incident histories, non-retaliation, need-to-know handling, informed choice, privacy, proportionality, and unresolved tradeoffs",
+    "excluded": "individual names, identifier trivia, kink examples as technique, exact portable time thresholds, medical or legal procedure, investigation or sanction procedure, current-consensus claims, certification, enforcement, and safety proof"
+  },
+  "version_status": "version_1_pdf_dated_2019_historical_not_current_consensus",
+  "role_structure_status": "educator_producer_discussion_roles_preserved",
+  "consent_modeling_status": "capacity_informed_explicit_continuous_noncoerced_and_visible",
+  "student_demo_status": "power_differential_preference_order_anti_pressure_opt_out_and_care",
+  "competence_status": "topic_specific_competence_qualification_review_or_opinion_disclosure",
+  "inclusion_status": "nondiscrimination_accessible_learning_diverse_governance_and_response",
+  "accountability_status": "contacts_circles_independence_access_pattern_memory_and_non_enforcement_limits",
+  "educator_student_boundary_status": "formal_policy_power_discussion_mentoring_boundaries_and_no_status_trade",
+  "vetting_status": "bidirectional_multi_source_contextual_and_not_safety_clearance",
+  "privacy_status": "incident_disclosure_non_retaliation_need_to_know_and_unresolved_balancing",
+  "authority_status": "no_current_consensus_law_certification_enforcement_or_safety_proof",
+  "operational_detail_status": "excluded_no_kink_demo_medical_legal_investigation_or_aftercare_procedure",
+  "sharealike_status": "cc_by_sa_4_0_adapted_output",
+  "component_status": {
+    "raw_html_retained": false,
+    "raw_pdf_retained": false,
+    "audit_extractions_retained": false,
+    "source_images_reused": 0,
+    "external_components_fetched": 0,
+    "license_badge_reused": false,
+    "third_party_kink_pages_accessed": false
+  },
+  "qa_derivation_policy": {
+    "allowed": "version-scoped role distinctions, consent modeling, demonstration power and safeguards, competence and limit disclosure, risk autonomy, inclusion and accessibility, accountability structure, educator-student boundaries, bidirectional vetting, incident disclosure, and privacy tradeoffs",
+    "forbidden": "individual member, affiliation, contact, URL, page title, section order, date, hash, licence boilerplate, named outside organization, practice example, exact threshold, current consensus, legal rule, certification, enforcement, investigation result, sanction, consent proof, or safety proof recall; any operational kink, demonstration, medical, legal, investigation, aftercare, or response procedure",
+    "inherit_document_split": true
+  },
+  "sampling_guidance": {
+    "source_weighting": "one KECC-v1 source-family document, not one document per webpage, section, role, commitment, or disposition",
+    "recommended_unit": "chunks that retain version-1/2019 status, the responsible role, relevant rationale or power context, and no-certification or no-safety-proof boundary",
+    "avoid": "isolating an aspirational commitment as evidence of compliance; converting a disclosure prompt into a clearance checklist; presenting a contact as enforcement; separating disclosure from privacy; or turning examples and time suggestions into technique or safe-harbor rules"
+  },
+  "document_disjoint_requirement": "Assign the KECC homepage, full-version HTML, PDF, this Markdown, and every derivative to one source-family split before chunking or derivation.",
+  "protected_split_requirement": "Exclude QA, trainer, training-projection, evaluation, validation, holdout, OOD, shadow, benchmark, probe, dataset, sealed-holdout, and protected-QA documents from every training layer.",
+  "source_snapshot": {
+    "provenance": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 8634,
+      "sha256": "ead84f68ec6e11369ab0ba03b4380e4d3e9d4eafc60c0d66ddf95ee28f2b0a39"
+    }
+  },
+  "outputs": {
+    "CORPUS.md": {
+      "path": "CORPUS.md",
+      "byte_length": 30035,
+      "sha256": "9d9909ddd3c40a65dd4ee99c1a88df8b938eaf65482f87842bb842ebe187b2d8"
+    },
+    "REPORT.md": {
+      "path": "REPORT.md",
+      "byte_length": 14838,
+      "sha256": "a394a3ae935c7508d21eebfbcb85fc80e91f05c5dfb32076bd4d96eaefb352c8"
+    },
+    "sources.jsonl": {
+      "path": "sources.jsonl",
+      "byte_length": 5029,
+      "sha256": "12f9c9f796dc5e511e13f051caff87def2fadfa78f5d83b733aa778f69e0d419"
+    },
+    "dispositions.jsonl": {
+      "path": "dispositions.jsonl",
+      "byte_length": 14817,
+      "sha256": "47931c778ff97eaab292b695d7bacc98224606756f616b021af2b3fe3a730f64"
+    },
+    "source_snapshot/provenance.json": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 8634,
+      "sha256": "ead84f68ec6e11369ab0ba03b4380e4d3e9d4eafc60c0d66ddf95ee28f2b0a39"
+    },
+    "tests/test_corpus.py": {
+      "path": "tests/test_corpus.py",
+      "byte_length": 24837,
+      "sha256": "964a9438617e912c4abacc0e932f7e8408e4661d38411c6719b1297432ce8e42"
+    }
+  }
+}

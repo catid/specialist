@@ -1,0 +1,205 @@
+{
+  "schema": "site-corpus-provenance-v1",
+  "resource_id": "kink_education_code_of_conduct",
+  "source_family_id": "KECC-v1-2019",
+  "review_started_at": "2026-07-16T10:42:15Z",
+  "review_completed_at": "2026-07-16T10:55:50Z",
+  "creator_attribution": "v. 1 KECC Collective",
+  "work_title": "The Kink Education Code of Conduct (KECC), version 1",
+  "version_status": {
+    "source_version": "1",
+    "pdf_visible_date": "2019-04-25",
+    "pdf_creation_date": "2019-04-25T22:14:31Z",
+    "html_full_version_title": "The KECC v. 1 (full version)",
+    "source_self_limitation": "The PDF FAQ describes version 1 as imperfect and incomplete, expects practices and terminology to change, and anticipates later revision.",
+    "corpus_rule": "Every derivative must retain version-1/2019 historical scope and must not present the document as current community consensus."
+  },
+  "network_boundary": {
+    "allowlisted_requested_routes": [
+      "https://www.thekecc.org/fullVersion.html",
+      "https://www.thekecc.org/KECC.pdf",
+      "https://www.thekecc.org/",
+      "http://creativecommons.org/licenses/by-sa/4.0/",
+      "https://creativecommons.org/licenses/by-sa/4.0/legalcode.en"
+    ],
+    "resolved_routes": [
+      "https://www.thekecc.org/fullVersion.html",
+      "https://www.thekecc.org/KECC.pdf",
+      "https://www.thekecc.org/",
+      "https://creativecommons.org/licenses/by-sa/4.0/",
+      "https://creativecommons.org/licenses/by-sa/4.0/legalcode.en"
+    ],
+    "kecc_short_versions_accessed": false,
+    "kecc_faq_html_accessed": false,
+    "kecc_adoption_html_accessed": false,
+    "kecc_contact_html_accessed": false,
+    "third_party_kink_pages_accessed": false,
+    "font_routes_accessed": false,
+    "script_or_stylesheet_routes_accessed": false,
+    "image_routes_accessed": false,
+    "other_routes_accessed": false,
+    "note": "The allowlisted PDF contains its own FAQ and adoption pages; those embedded pages were manually reviewed without requesting their separate HTML routes. The Creative Commons legal-code route was linked by the allowlisted deed and used only for licence context."
+  },
+  "retrieval_summary": {
+    "source_record_count": 5,
+    "kecc_record_count": 3,
+    "license_metadata_record_count": 2,
+    "raw_byte_length_total": 304608,
+    "kecc_raw_byte_length_total": 217005,
+    "license_metadata_raw_byte_length_total": 87603,
+    "successful_response_count": 5,
+    "redirect_count": 1,
+    "raw_sources_retained_in_repository": false,
+    "page_level_hashes_recorded_in": "sources.jsonl"
+  },
+  "content_audit": {
+    "full_html": {
+      "h1": 1,
+      "h2": 10,
+      "h3": 25,
+      "h4": 4,
+      "paragraphs": 80,
+      "unordered_lists": 33,
+      "list_items": 136,
+      "images": 1,
+      "image_role": "Creative Commons badge in shared footer, excluded and not fetched",
+      "normalized_audit_blocks": 256,
+      "normalized_audit_words": 4978
+    },
+    "homepage_html": {
+      "h1": 1,
+      "paragraphs": 10,
+      "images": 1,
+      "image_role": "Creative Commons badge in shared footer, excluded and not fetched",
+      "normalized_audit_blocks": 11,
+      "normalized_audit_words": 278
+    },
+    "pdf": {
+      "digital_pages": 24,
+      "raster_xobject_occurrences": 0,
+      "audit_text_words": 6197,
+      "audit_text_includes_generated_headers_and_footers": true
+    },
+    "external_components_not_fetched": [
+      "Creative Commons badge image",
+      "Google-hosted font",
+      "site JavaScript",
+      "site stylesheet",
+      "named third-party producer-network page"
+    ]
+  },
+  "normalization_and_review_method": {
+    "mode": "manual_source_review_and_hand_cleanup",
+    "html_audit_normalization": "Python standard-library HTMLParser captured h1-h4, p, and li text; collapsed internal whitespace; wrote one LF-terminated block; used only for deterministic navigation and integrity metrics.",
+    "pdf_audit_extraction": "pypdf 6.14.2 extracted all 24 digital pages with a form-feed separator; the extraction was used only for complete review, visible-date verification, and source comparison.",
+    "manual_transformation": "Every accepted concept was selected, paraphrased, condensed, reorganized, attributed at claim level, and checked against the source section. No audit extraction was emitted as the training artifact.",
+    "direct_training_artifact": "CORPUS.md",
+    "raw_html_retained": false,
+    "raw_pdf_retained": false,
+    "audit_extractions_retained": false,
+    "raw_source_direct_training": false
+  },
+  "rights_review": {
+    "source_notice": "The KECC pages state that the work is licensed under Creative Commons Attribution-ShareAlike 4.0 International.",
+    "license_name": "Creative Commons Attribution-ShareAlike 4.0 International",
+    "license_identifier": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "legal_code_url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode.en",
+    "creator_credit": "v. 1 KECC Collective",
+    "source_links_in_adaptation": [
+      "https://www.thekecc.org/fullVersion.html",
+      "https://www.thekecc.org/KECC.pdf"
+    ],
+    "adaptation_marked": true,
+    "changes_described": true,
+    "license_linked": true,
+    "creator_attributed": true,
+    "sharealike_output_metadata": "CORPUS.md is licensed under CC BY-SA 4.0 as an adapted work.",
+    "endorsement_implied": false,
+    "additional_restrictions_added": false,
+    "legal_opinion": false,
+    "license_sources_direct_training": false
+  },
+  "retained_topics": [
+    "version 1 and 2019 historical status",
+    "Collective authorship",
+    "educator producer and discussion structure",
+    "visible modeling of informed continuous noncoerced consent",
+    "student-demonstration power differentials preference order and anti-pressure safeguards",
+    "topic-specific competence and qualification or opinion disclosure",
+    "respect for student risk profiles and ability to audit",
+    "inclusion accessibility diverse perspectives reporting and staff response",
+    "accountability learning contacts circles conflict awareness and information repository",
+    "educator-student and mentoring boundaries",
+    "bidirectional vetting and de facto endorsement",
+    "injury consent-incident accountability and exclusion disclosure",
+    "privacy informed-choice community-safety and response tensions"
+  ],
+  "exclusion_boundary": {
+    "excluded_identifiers": [
+      "individual Collective member names",
+      "personal affiliations",
+      "contact address",
+      "navigation labels",
+      "URLs as recall targets",
+      "file hashes and retrieval details as training facts",
+      "named external network and people"
+    ],
+    "excluded_operational_material": [
+      "kink practice examples as technique",
+      "demonstration construction",
+      "medical procedure",
+      "legal procedure",
+      "investigation procedure",
+      "sanction or enforcement procedure",
+      "aftercare procedure",
+      "portable time thresholds presented as safe harbors"
+    ],
+    "forbidden_implications": [
+      "current kink-community consensus",
+      "professional certification or licensure",
+      "legal compliance",
+      "central KECC enforcement",
+      "educator or producer clearance",
+      "consent proof",
+      "demonstration safety proof",
+      "venue safety proof",
+      "medical or legal advice"
+    ]
+  },
+  "citation_policy": {
+    "format": "[SOURCE-ID: source section]",
+    "claim_level_required": true,
+    "source_id_mapping_file": "sources.jsonl",
+    "license_citation_role": "metadata only",
+    "uncited_text_allowed": "adaptation notices, explicit corpus safety limitations, and derivation rules only"
+  },
+  "training_boundary": {
+    "non_qa": true,
+    "direct_training_document_count": 1,
+    "source_pages_direct_training": false,
+    "license_pages_direct_training": false,
+    "names_or_urls_as_trivia": false,
+    "technique_instruction": false,
+    "certification_or_enforcement_claim": false,
+    "current_consensus_claim": false
+  },
+  "split_hygiene": {
+    "source_document_unit": "KECC-v1-2019",
+    "document_disjoint_requirement": "Assign the KECC homepage, full-version HTML, PDF, this Markdown, and every derivative to one source-family split before chunking or derivation.",
+    "protected_data_accessed_during_build": false,
+    "protected_data_classes_not_accessed": [
+      "QA artifacts",
+      "training projections",
+      "trainer artifacts",
+      "evaluation sets",
+      "validation sets",
+      "holdout sets",
+      "OOD sets",
+      "shadow sets",
+      "benchmarks",
+      "probes",
+      "datasets"
+    ]
+  }
+}
