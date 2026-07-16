@@ -72,6 +72,18 @@ def test_v49b_only_training_code_change_is_weight_assignment(monkeypatch):
     assert sft_runtime.v42a.assign_equal_unit_weights is original
 
 
+def test_runtime_weight_patch_does_not_recurse_into_v49b(monkeypatch):
+    rows = weighting.v49a.replay_v434_train_only()[0]
+    monkeypatch.setattr(
+        sft_runtime.v42a,
+        "assign_equal_unit_weights",
+        weighting.assign_source_balanced_weights_v49b,
+    )
+    weights, audit = weighting.assign_source_balanced_weights_v49b(rows)
+    assert len(weights) == 448
+    assert audit["identity_sha256"] == weighting.ALTERNATIVE_NORMALIZED_WEIGHT_SHA256
+
+
 def test_v49b_command_preserves_v47c_v42i_runtime_recipe():
     value = builder.build()
     recipe = value["recipe"]

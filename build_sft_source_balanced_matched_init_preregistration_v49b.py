@@ -17,8 +17,8 @@ import sft_lora_equal_unit_matched_init_v47a as schedule
 
 ROOT = Path(__file__).resolve().parent
 RUN_DIR = sealed_input.RUN_DIR
-OUTPUT_DIR = RUN_DIR / "middle_late_r32_seed17_init20260715041"
-PREREGISTRATION = RUN_DIR / "preregistration_v49b.json"
+OUTPUT_DIR = RUN_DIR / "middle_late_r32_seed17_init20260715041_retry1"
+PREREGISTRATION = RUN_DIR / "preregistration_v49b_retry1.json"
 V47C_PREREGISTRATION = (
     ROOT / "experiments/sft_controls/"
     "v47c_lineage_stable_v430_fold3_lr5p5e5/preregistration_v47c.json"
@@ -60,10 +60,10 @@ def argument_vector(
         "--initial-adapter-tensor-identity-sha256",
         source_contract.INITIAL_TENSOR_IDENTITY_SHA256_V42A,
         "--output-dir", str(OUTPUT_DIR),
-        "--stdout-log", str(RUN_DIR / "stdout_v49b.log"),
-        "--gpu-log", str(RUN_DIR / "gpu_activity_v49b.jsonl"),
-        "--report", str(RUN_DIR / "runtime_report_v49b.json"),
-        "--attempt-report", str(RUN_DIR / "attempt_v49b.json"),
+        "--stdout-log", str(RUN_DIR / "stdout_v49b_retry1.log"),
+        "--gpu-log", str(RUN_DIR / "gpu_activity_v49b_retry1.jsonl"),
+        "--report", str(RUN_DIR / "runtime_report_v49b_retry1.json"),
+        "--attempt-report", str(RUN_DIR / "attempt_v49b_retry1.json"),
         "--preregistration", str(PREREGISTRATION),
         "--preregistration-sha256", preregistration_sha256,
         "--preregistration-content-sha256",
@@ -130,7 +130,7 @@ def build() -> dict:
     result = {
         "schema": "specialist-sft-source-balanced-preregistration-v49b",
         "status": "sealed_unlaunched_train_only",
-        "experiment_name": "sft_v49b_source_balanced_v434_fold3_lr5p5e5",
+        "experiment_name": "sft_v49b_source_balanced_v434_fold3_lr5p5e5_retry1",
         "contains_external_validation_ood_or_holdout_content": False,
         "dataset": dataset,
         "input_manifest": {
@@ -181,10 +181,10 @@ def build() -> dict:
         },
         "artifacts": {
             "output_dir": str(OUTPUT_DIR),
-            "stdout_log": str(RUN_DIR / "stdout_v49b.log"),
-            "gpu_log": str(RUN_DIR / "gpu_activity_v49b.jsonl"),
-            "report": str(RUN_DIR / "runtime_report_v49b.json"),
-            "attempt_report": str(RUN_DIR / "attempt_v49b.json"),
+            "stdout_log": str(RUN_DIR / "stdout_v49b_retry1.log"),
+            "gpu_log": str(RUN_DIR / "gpu_activity_v49b_retry1.jsonl"),
+            "report": str(RUN_DIR / "runtime_report_v49b_retry1.json"),
+            "attempt_report": str(RUN_DIR / "attempt_v49b_retry1.json"),
         },
         "recipe": {
             "command": command,

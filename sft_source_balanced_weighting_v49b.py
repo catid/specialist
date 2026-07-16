@@ -13,6 +13,10 @@ import v49a_train_only_source_temperature_weighting as v49a
 
 
 ROOT = Path(__file__).resolve().parent
+# V49A imports the same V42A module object that the runtime wrapper patches.
+# Capture the committed equal-unit parent before that patch so constructing the
+# alternative weights cannot recurse back into this function under torchrun.
+BASE_EQUAL_UNIT_ASSIGNER_V49B = v49a.equal_unit.assign_equal_unit_weights
 V49A_DESIGN = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
     "train_only_capped_source_temperature_weighting_v49a.json"
@@ -105,7 +109,7 @@ def compute_source_balanced_weights_v49b(
     ):
         raise RuntimeError("V49B exact v434 train projection changed")
     units = v49a.frozen.build_conflict_units(rows)
-    ordinary, equal_audit = v49a.equal_unit.assign_equal_unit_weights(rows)
+    ordinary, equal_audit = BASE_EQUAL_UNIT_ASSIGNER_V49B(rows)
     row_count = len(rows)
     current = [weight / row_count for weight in ordinary]
     categories = [None] * row_count
