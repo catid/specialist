@@ -2,28 +2,43 @@ import unittest
 import hashlib
 import json
 import random
+from multiprocessing import TimeoutError as PoolTimeoutError
 from pathlib import Path
 from types import SimpleNamespace
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
+import numpy as np
 import torch
 
 from train_eggroll_es_specialist import (
+    atomic_json_write,
+    bounded_ray_get,
     build_train_loader,
+    close_trainer_preserving_primary,
     compare_ood_prose,
+    dispatch_qa_eval,
     dispatch_ood_prose,
     eval_metrics,
     exact_step_seed,
     extract_answer,
+    fixed_ray_get_timeout,
     load_ood_prose,
+    maybe_save_best_checkpoint_atomic,
     prepare_ood_prose_items,
     prompt_token_logprobs,
+    run_standard_fit_exact,
+    save_checkpoint_atomic,
     run_exact_steps,
+    safe_postprocess_outputs,
     specialist_collate,
     specialist_reward,
     specialist_template,
     summarize_ood_prose,
+    unique_population_seeds,
+    validate_population_seeds,
+    OODProseGateFailure,
+    _TruthyZero,
 )
 
 
@@ -45,6 +60,26 @@ class FakeRemoteGenerate:
 class FakeEngine:
     def __init__(self, engine_index, calls):
         self.generate = FakeRemoteGenerate(engine_index, calls)
+
+
+class FakeQARemoteGenerate:
+    def __init__(self, engine_index, calls):
+        self.engine_index = engine_index
+        self.calls = calls
+
+    def remote(self, prompts, sampling_params, use_tqdm):
+        self.calls.append((
+            self.engine_index, list(prompts), sampling_params, use_tqdm,
+        ))
+        return [
+            f"engine{self.engine_index}: {prompt}"
+            for prompt in prompts
+        ]
+
+
+class FakeQAEngine:
+    def __init__(self, engine_index, calls):
+        self.generate = FakeQARemoteGenerate(engine_index, calls)
 
 
 class FakeTokenizer:
@@ -107,6 +142,321 @@ class EggrollSpecialistAdapterTests(unittest.TestCase):
     def test_exact_step_seed_preserves_zero(self):
         self.assertEqual(exact_step_seed(0, 3), 3)
         self.assertEqual(exact_step_seed(None, 3), 45)
+        self.assertEqual((_TruthyZero() or 42) + 3, 3)
+
+    def test_population_seeds_are_unique_without_reordering_first_draws(self):
+        class CollisionRng:
+            def __init__(self):
+                self.calls = 0
+
+            def integers(self, _low, _high, size, dtype):
+                del dtype
+                self.calls += 1
+                values = [7, 7, 9] if self.calls == 1 else [11]
+                self.assert_size = size
+                return np.asarray(values, dtype=np.int64)
+
+        rng = CollisionRng()
+        seeds = unique_population_seeds(rng, 3)
+        self.assertEqual(seeds, [7, 9, 11])
+        self.assertEqual(validate_population_seeds(seeds, 3), seeds)
+        with self.assertRaisesRegex(ValueError, "unique"):
+            validate_population_seeds([7, 7, 9], 3)
+
+    def test_bounded_ray_get_translates_provider_timeout(self):
+        class GetTimeoutError(Exception):
+            pass
+
+        observed = []
+
+        def get(_handle, timeout=None):
+            observed.append(timeout)
+            raise GetTimeoutError("slow actor")
+
+        fake_ray = SimpleNamespace(
+            get=get,
+            exceptions=SimpleNamespace(GetTimeoutError=GetTimeoutError),
+        )
+        with self.assertRaisesRegex(TimeoutError, "test actor"):
+            bounded_ray_get(fake_ray, "ref", "test actor", timeout=7.5)
+        self.assertEqual(observed, [7.5])
+
+    def test_fixed_ray_get_context_caps_inherited_waits_and_restores(self):
+        observed = []
+
+        def original(handle, timeout=None):
+            observed.append((handle, timeout))
+            return handle
+
+        fake_ray = SimpleNamespace(get=original)
+        with fixed_ray_get_timeout(
+            fake_ray, timeout=7.5, context="inherited actor wait",
+        ):
+            self.assertEqual(fake_ray.get("a"), "a")
+            self.assertEqual(fake_ray.get("b", timeout=20.0), "b")
+        self.assertIs(fake_ray.get, original)
+        self.assertEqual(observed, [("a", 7.5), ("b", 7.5)])
+
+    def test_training_scoring_skips_unused_decode(self):
+        class Result:
+            @staticmethod
+            def get(timeout):
+                del timeout
+                return "exact", 1.0
+
+        trainer = SimpleNamespace(
+            tokenizer=SimpleNamespace(
+                decode=lambda *_args, **_kwargs: self.fail(
+                    "training path decoded an unused response"
+                )
+            ),
+            mp_pool=SimpleNamespace(
+                apply_async=lambda *_args, **_kwargs: Result(),
+            ),
+            task=lambda *_args: None, reward_function_timeout=1,
+            rollout_reduce="mean", n_samples=1,
+        )
+        generation = SimpleNamespace(
+            prompt="p", outputs=[SimpleNamespace(text="r", token_ids=[1])],
+        )
+        result = safe_postprocess_outputs(trainer, [generation], ["a"])
+        self.assertEqual(result["rewards"], [1.0])
+
+    def test_reward_timeout_rows_are_zero_not_unbound_or_stale(self):
+        class AsyncResult:
+            def __init__(self, value):
+                self.value = value
+
+            def get(self, timeout):
+                self.timeout = timeout
+                if isinstance(self.value, BaseException):
+                    raise self.value
+                return self.value
+
+        class Pool:
+            def __init__(self):
+                self.values = iter([
+                    PoolTimeoutError("slow-first"),
+                    ("exact", 1.0), PoolTimeoutError("slow-after-success"),
+                ])
+
+            def apply_async(self, _task, _args):
+                return AsyncResult(next(self.values))
+
+        trainer = SimpleNamespace(
+            tokenizer=SimpleNamespace(
+                decode=lambda ids, skip_special_tokens: str(ids)
+            ),
+            mp_pool=Pool(), task=lambda *_args: None,
+            reward_function_timeout=1, rollout_reduce="mean", n_samples=1,
+        )
+        generations = [
+            SimpleNamespace(
+                prompt=f"p{index}", outputs=[SimpleNamespace(
+                    text=f"r{index}", token_ids=[index],
+                )],
+            ) for index in range(3)
+        ]
+        result = safe_postprocess_outputs(
+            trainer, generations, ["a", "b", "c"], eval=True,
+        )
+        self.assertEqual(result["rewards"], [0.0, 1.0, 0.0])
+        self.assertEqual(result["results"][0]["format"], "timeout")
+        self.assertEqual(result["results"][2]["reward"], 0.0)
+        self.assertEqual(result["results"][2]["format"], "timeout")
+        with self.assertRaisesRegex(ValueError, "batch sizes"):
+            safe_postprocess_outputs(trainer, generations, ["a"], eval=True)
+        generations[0].outputs = []
+        with self.assertRaisesRegex(RuntimeError, "rollout cardinality"):
+            safe_postprocess_outputs(trainer, generations, ["a", "b", "c"])
+
+    def test_default_fit_executes_exactly_requested_updates(self):
+        calls = []
+
+        class Remote:
+            def remote(self, method, args):
+                calls.append((method, args))
+                Path(args[0]).write_bytes(b"checkpoint")
+                return "saved"
+
+        with TemporaryDirectory() as directory:
+            trainer = SimpleNamespace(
+                num_iterations=3,
+                train_dataloader=[(["q"], ["a"])],
+                template=lambda text: f"prompt:{text}",
+                global_seed=0, population_size=4, eval_freq=2,
+                logging_dir=directory,
+                engines=[SimpleNamespace(collective_rpc=Remote())],
+            )
+            trainer.eval_calls = []
+            trainer.train_calls = []
+            trainer.eval_step = lambda iteration: trainer.eval_calls.append(iteration)
+
+            def train_step(**kwargs):
+                validate_population_seeds(kwargs["seeds"], 4)
+                trainer.train_calls.append(kwargs)
+
+            trainer.train_step = train_step
+            fake_ray = SimpleNamespace(get=lambda handle, timeout=None: handle)
+            with patch.dict("sys.modules", {"ray": fake_ray}):
+                checkpoint = run_standard_fit_exact(trainer)
+            self.assertTrue(checkpoint.is_file())
+        self.assertEqual(
+            [row["iteration"] for row in trainer.train_calls], [0, 1, 2],
+        )
+        self.assertEqual(trainer.eval_calls, [0, 2, 3])
+        self.assertTrue(str(checkpoint).endswith(
+            "checkpoint-es_fine_tuned_iteration_3/pytorch_model.pth"
+        ))
+        self.assertEqual(calls[0][0], "save_self_weights_to_disk")
+
+    def test_default_fit_does_not_overwrite_baseline_when_eval_freq_is_one(self):
+        class Remote:
+            def remote(self, _method, args):
+                Path(args[0]).write_bytes(b"checkpoint")
+                return "saved"
+
+        with TemporaryDirectory() as directory:
+            trainer = SimpleNamespace(
+                num_iterations=1,
+                train_dataloader=[(["q"], ["a"])],
+                template=lambda text: text,
+                global_seed=0, population_size=2, eval_freq=1,
+                logging_dir=directory,
+                engines=[SimpleNamespace(collective_rpc=Remote())],
+                eval_calls=[], train_calls=[],
+            )
+            trainer.eval_step = lambda iteration: trainer.eval_calls.append(iteration)
+            trainer.train_step = lambda **kwargs: trainer.train_calls.append(kwargs)
+            fake_ray = SimpleNamespace(get=lambda handle, timeout=None: handle)
+            with patch.dict("sys.modules", {"ray": fake_ray}):
+                run_standard_fit_exact(trainer)
+        self.assertEqual(trainer.eval_calls, [0, 1])
+        self.assertEqual(len(trainer.train_calls), 1)
+
+    def test_default_fit_skips_duplicate_periodic_final_evaluation(self):
+        class Remote:
+            def remote(self, _method, args):
+                Path(args[0]).write_bytes(b"checkpoint")
+                return "saved"
+
+        with TemporaryDirectory() as directory:
+            trainer = SimpleNamespace(
+                num_iterations=2,
+                train_dataloader=[(["q"], ["a"])],
+                template=lambda text: text,
+                global_seed=0, population_size=2, eval_freq=2,
+                logging_dir=directory,
+                engines=[SimpleNamespace(collective_rpc=Remote())],
+                eval_calls=[], train_calls=[],
+            )
+            trainer.eval_step = lambda iteration: trainer.eval_calls.append(iteration)
+            trainer.train_step = lambda **kwargs: trainer.train_calls.append(kwargs)
+            fake_ray = SimpleNamespace(
+                get=lambda handle, timeout=None: handle,
+            )
+            with patch.dict("sys.modules", {"ray": fake_ray}):
+                run_standard_fit_exact(trainer)
+        self.assertEqual(trainer.eval_calls, [0, 2])
+        self.assertEqual(len(trainer.train_calls), 2)
+
+    def test_default_fit_eval_freq_one_covers_every_completed_update(self):
+        class Remote:
+            def remote(self, _method, args):
+                Path(args[0]).write_bytes(b"checkpoint")
+                return "saved"
+
+        with TemporaryDirectory() as directory:
+            trainer = SimpleNamespace(
+                num_iterations=3,
+                train_dataloader=[(["q"], ["a"])],
+                template=lambda text: text,
+                global_seed=0, population_size=2, eval_freq=1,
+                logging_dir=directory,
+                engines=[SimpleNamespace(collective_rpc=Remote())],
+                eval_calls=[], train_calls=[],
+            )
+            trainer.eval_step = lambda iteration: trainer.eval_calls.append(
+                iteration
+            )
+            trainer.train_step = lambda **kwargs: trainer.train_calls.append(
+                kwargs
+            )
+            fake_ray = SimpleNamespace(
+                get=lambda handle, timeout=None: handle,
+            )
+            with patch.dict("sys.modules", {"ray": fake_ray}):
+                run_standard_fit_exact(trainer)
+        self.assertEqual(trainer.eval_calls, [0, 1, 2, 3])
+        self.assertEqual(len(trainer.train_calls), 3)
+
+    def test_best_checkpoint_uses_atomic_checkpoint_publisher(self):
+        calls = []
+
+        class Remote:
+            def remote(self, method, args):
+                calls.append((method, args))
+                Path(args[0]).write_bytes(b"best")
+                return "saved"
+
+        with TemporaryDirectory() as directory:
+            output = Path(directory) / "eval-output"
+            output.mkdir()
+            (output / "model_eval_taskvalidation_iteration1.json").write_text(
+                '[{"reward": 0.75}]\n', encoding="utf-8",
+            )
+            trainer = SimpleNamespace(
+                logging_dir=directory,
+                eval_dataloader_dict={"validation": []},
+                best_avg=float("-inf"), experiment_name="trial",
+                engines=[SimpleNamespace(collective_rpc=Remote())],
+            )
+            fake_ray = SimpleNamespace(
+                get=lambda handle, timeout=None: handle,
+            )
+            with patch.dict("sys.modules", {"ray": fake_ray}):
+                checkpoint = maybe_save_best_checkpoint_atomic(trainer, 0)
+                duplicate = maybe_save_best_checkpoint_atomic(trainer, 0)
+            self.assertTrue(checkpoint.is_file())
+            self.assertIsNone(duplicate)
+            self.assertEqual(trainer.best_avg, 0.75)
+            self.assertEqual(len(calls), 1)
+
+    def test_poisoned_trainer_cannot_publish_checkpoint(self):
+        calls = []
+
+        class Remote:
+            def remote(self, method, args):
+                calls.append((method, args))
+                return "saved"
+
+        trainer = SimpleNamespace(
+            _specialist_state_poisoned=True,
+            engines=[SimpleNamespace(collective_rpc=Remote())],
+        )
+        with TemporaryDirectory() as directory, self.assertRaisesRegex(
+            RuntimeError, "state is poisoned",
+        ):
+            save_checkpoint_atomic(trainer, Path(directory) / "checkpoint")
+        self.assertEqual(calls, [])
+
+    def test_cleanup_failure_does_not_replace_primary_error(self):
+        trainer = SimpleNamespace()
+        primary = ValueError("training failed")
+        with patch(
+            "train_eggroll_es_specialist.close_trainer",
+            side_effect=RuntimeError("cleanup failed"),
+        ):
+            with self.assertRaises(ValueError) as raised:
+                try:
+                    raise primary
+                finally:
+                    close_trainer_preserving_primary(trainer)
+        self.assertIs(raised.exception, primary)
+        self.assertEqual(
+            primary.__notes__,
+            ["trainer cleanup also failed: RuntimeError"],
+        )
 
     def test_collate_matches_upstream_prompt_target_contract(self):
         prompts, targets = specialist_collate([
@@ -157,8 +507,10 @@ class EggrollSpecialistAdapterTests(unittest.TestCase):
         with TemporaryDirectory() as directory:
             path = Path(directory) / "prose.jsonl"
             raw = (
-                '{"item_id":"one","split":"ood_prose","text":"abc"}\n'
-                '{"item_id":"two","split":"ood_prose","text":"def"}\n'
+                '{"item_id":"one","split":"ood_prose","text":"abc",'
+                '"normalized_source_url":"doc://one"}\n'
+                '{"item_id":"two","split":"ood_prose","text":"def",'
+                '"normalized_source_url":"doc://two"}\n'
             ).encode("utf-8")
             path.write_bytes(raw)
             dataset = load_ood_prose(path)
@@ -173,9 +525,24 @@ class EggrollSpecialistAdapterTests(unittest.TestCase):
     def test_load_ood_prose_rejects_duplicate_ids(self):
         with TemporaryDirectory() as directory:
             path = Path(directory) / "prose.jsonl"
-            row = {"item_id": "same", "split": "ood_prose", "text": "ab"}
+            row = {
+                "item_id": "same", "split": "ood_prose", "text": "ab",
+                "normalized_source_url": "doc://same",
+            }
             path.write_text(json.dumps(row) + "\n" + json.dumps(row) + "\n")
             with self.assertRaisesRegex(ValueError, "duplicate"):
+                load_ood_prose(path)
+
+    def test_load_ood_prose_rejects_missing_source_identity(self):
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / "prose.jsonl"
+            path.write_text(
+                json.dumps({
+                    "item_id": "one", "split": "ood_prose", "text": "ab",
+                }) + "\n",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ValueError, "normalized_source_url"):
                 load_ood_prose(path)
 
     def test_frozen_ood_prose_items_are_unique_source_documents(self):
@@ -216,6 +583,58 @@ class EggrollSpecialistAdapterTests(unittest.TestCase):
         )
         self.assertEqual([call[0] for call in calls], [0, 1, 2])
         self.assertTrue(all(call[3] is False for call in calls))
+
+    def test_qa_eval_dispatches_uneven_batch_across_all_engines_in_order(self):
+        calls = []
+        engines = [FakeQAEngine(index, calls) for index in range(4)]
+        prompts = [f"prompt-{index}" for index in range(10)]
+        outputs = dispatch_qa_eval(
+            engines, prompts, "params", lambda handles: handles,
+        )
+        self.assertEqual(outputs, [
+            f"engine{index % 4}: prompt-{index}"
+            for index in range(10)
+        ])
+        self.assertEqual([call[0] for call in calls], [0, 1, 2, 3])
+        self.assertEqual(
+            [call[1] for call in calls],
+            [
+                ["prompt-0", "prompt-4", "prompt-8"],
+                ["prompt-1", "prompt-5", "prompt-9"],
+                ["prompt-2", "prompt-6"],
+                ["prompt-3", "prompt-7"],
+            ],
+        )
+        self.assertTrue(all(call[3] is False for call in calls))
+
+    def test_qa_eval_rejects_changed_engine_cardinality(self):
+        calls = []
+        engines = [FakeQAEngine(index, calls) for index in range(2)]
+
+        def drop_one_result(handles):
+            handles[0].pop()
+            return handles
+
+        with self.assertRaisesRegex(RuntimeError, "request count"):
+            dispatch_qa_eval(
+                engines, ["a", "b", "c"], "params", drop_one_result,
+            )
+
+    def test_atomic_json_failure_preserves_previous_eval_artifact(self):
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / "eval-output" / "result.json"
+            path.parent.mkdir()
+            path.write_text('[{"reward": 0.25}]\n', encoding="utf-8")
+            with patch(
+                "train_eggroll_es_specialist.os.replace",
+                side_effect=OSError("rename failed"),
+            ), self.assertRaisesRegex(OSError, "rename failed"):
+                atomic_json_write(path, [{"reward": 1.0}])
+            self.assertEqual(
+                path.read_text(encoding="utf-8"),
+                '[{"reward": 0.25}]\n',
+            )
+            self.assertEqual(list(path.parent.iterdir()), [path])
 
     def test_prompt_logprobs_skip_only_contextless_first_token(self):
         output = fake_output([11, 12, 13], [-0.25, -1.5])
@@ -432,6 +851,126 @@ class EggrollSpecialistAdapterTests(unittest.TestCase):
             saved["ood_prose"]["gate"]["bootstrap"]["samples"], 20000,
         )
         self.assertTrue(saved["ood_prose"]["gate"]["passed"])
+
+    def test_failed_ood_gate_is_nonzero_and_prevents_checkpoint_creation(self):
+        item = {
+            "item_id": "one", "normalized_source_url": "doc://one",
+            "text_sha256": "text", "token_ids_sha256": "tokens",
+            "prompt_token_count": 2, "scored_token_count": 1,
+            "sum_token_logprob": 0.0,
+        }
+        baseline = {
+            "mean_token_logprob": 0.0, "items": [dict(item)],
+            "item_count": 1, "scored_token_count": 1,
+            "sum_token_logprob": 0.0, "results_path": "baseline.json",
+        }
+        final = json.loads(json.dumps(baseline))
+        final["mean_token_logprob"] = -1.0
+        final["sum_token_logprob"] = -1.0
+        final["items"][0]["sum_token_logprob"] = -1.0
+        final["results_path"] = "final.json"
+        dataset = {
+            "path": "/frozen/ood.jsonl", "sha256": "dataset-sha",
+            "rows": [{"item_id": "one"}],
+        }
+        with TemporaryDirectory() as directory:
+            trainer = FakeExactTrainer(directory)
+            with patch(
+                "train_eggroll_es_specialist.score_ood_prose",
+                side_effect=[baseline, final],
+            ):
+                with self.assertRaises(OODProseGateFailure):
+                    run_exact_steps(
+                        trainer, 0, save_final_checkpoint=True,
+                        ood_prose=dataset, max_ood_prose_degradation=0.02,
+                    )
+            summary = json.loads(
+                (Path(directory) / "run_summary.json").read_text()
+            )
+            checkpoint_dir = (
+                Path(directory) / "checkpoint-es_exact_steps_0"
+            )
+        self.assertTrue(trainer.cleaned_up)
+        self.assertEqual(summary["status"], "failed_ood_prose_gate")
+        self.assertIsNone(summary["checkpoint"])
+        self.assertFalse(checkpoint_dir.exists())
+
+    def test_passing_ood_gate_precedes_atomic_checkpoint_publish(self):
+        events = []
+        item = {
+            "item_id": "one", "normalized_source_url": "doc://one",
+            "text_sha256": "text", "token_ids_sha256": "tokens",
+            "prompt_token_count": 2, "scored_token_count": 1,
+            "sum_token_logprob": -1.0,
+        }
+        evaluation = {
+            "mean_token_logprob": -1.0, "items": [dict(item)],
+            "item_count": 1, "scored_token_count": 1,
+            "sum_token_logprob": -1.0, "results_path": "eval.json",
+        }
+        dataset = {
+            "path": "/frozen/ood.jsonl", "sha256": "dataset-sha",
+            "rows": [{"item_id": "one"}],
+        }
+
+        class Remote:
+            def remote(self, method, args):
+                self.method = method
+                events.append("save")
+                Path(args[0]).write_bytes(b"checkpoint")
+                return "saved"
+
+        original_compare = compare_ood_prose
+
+        def ordered_compare(*args, **kwargs):
+            events.append("compare")
+            return original_compare(*args, **kwargs)
+
+        with TemporaryDirectory() as directory:
+            trainer = FakeExactTrainer(directory)
+            trainer.engines = [SimpleNamespace(collective_rpc=Remote())]
+            fake_ray = SimpleNamespace(
+                get=lambda handle, timeout=None: handle,
+                shutdown=lambda: None,
+            )
+            with patch.dict("sys.modules", {"ray": fake_ray}), patch(
+                "train_eggroll_es_specialist.score_ood_prose",
+                side_effect=[evaluation, evaluation],
+            ), patch(
+                "train_eggroll_es_specialist.compare_ood_prose",
+                side_effect=ordered_compare,
+            ):
+                summary = run_exact_steps(
+                    trainer, 0, save_final_checkpoint=True,
+                    ood_prose=dataset, max_ood_prose_degradation=0.0,
+                )
+            checkpoint = Path(summary["checkpoint"])
+            self.assertTrue(checkpoint.is_file())
+            self.assertEqual(
+                summary["checkpoint_sha256"],
+                hashlib.sha256(b"checkpoint").hexdigest(),
+            )
+        self.assertEqual(events, ["compare", "save"])
+
+    def test_checkpoint_rpc_failure_never_publishes_final_directory(self):
+        class Remote:
+            def remote(self, method, args):
+                del method
+                Path(args[0]).write_bytes(b"partial")
+                raise RuntimeError("save failed")
+
+        trainer = SimpleNamespace(
+            engines=[SimpleNamespace(collective_rpc=Remote())],
+        )
+        fake_ray = SimpleNamespace(get=lambda handle, timeout=None: handle)
+        with TemporaryDirectory() as directory, patch.dict(
+            "sys.modules", {"ray": fake_ray},
+        ):
+            final = Path(directory) / "checkpoint-final"
+            with self.assertRaisesRegex(RuntimeError, "save failed"):
+                save_checkpoint_atomic(trainer, final)
+            self.assertFalse(final.exists())
+            self.assertEqual(list(Path(directory).iterdir()), [])
 
 
 if __name__ == "__main__":
