@@ -398,6 +398,43 @@
       ]
     },
     {
+      "resource_id": "noaa_eight_strand_rope_structural_model_1989",
+      "source_label": "Structural Modeling of the Tensile Behavior of Eight-Strand Ropes",
+      "manifest_path": "data/site_corpora/noaa_eight_strand_rope_structural_model_1989/manifest.json",
+      "markdown_path": "data/site_corpora/noaa_eight_strand_rope_structural_model_1989/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "government_technical_report",
+        "canonical_url": "https://repository.library.noaa.gov/view/noaa/42461",
+        "official_pdf_sha256": "7c25b1003389b3f2902aaf9f4a15b49aec77dfba00c5d367b86623c4f2d198b4",
+        "official_pdf_sha512": "d791640336f80bfb98abe5863476bb366502ca26744b4a59fb4ee09422c3f9ade3c50e5c3471671cc4e0c98d913a0734b9652f1c718f63cd5c586ed78a6ed85e",
+        "publication_year": 1989,
+        "repository_id": "noaa:42461",
+        "report_number": "MITSG 89-28",
+        "source_resource_id": "noaa_eight_strand_rope_structural_model_1989"
+      },
+      "rights_basis": {
+        "status": "federal_text_public_domain_presumption",
+        "basis": "The official NOAA Institutional Repository record explicitly designates the checksum-bound MITSG 89-28 main document Public Domain; the manual adaptation retains attribution, source identity, changes, and strict component exclusions.",
+        "license": "Public Domain",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_checksum_component_audit_and_qualitative_model_limits",
+        "limitations": [
+          "Photographs, logos, figures, formulas, numerical parameters, plotted outputs, references, strength or fatigue predictions, and blending or design prescriptions are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, OCR output, contact sheet, or source body is retained.",
+          "Public-domain status does not validate the historical model or transfer an eight-strand plaited synthetic marine-rope calculation to natural fiber, other constructions, knots, care, ratings, bondage, body contact, uplines, anchors, or human suspension."
+        ]
+      },
+      "safety_transfer_flags": [
+        "historical_1989_eight_strand_plaited_synthetic_marine_rope_scope_required",
+        "qualitative_pre_damage_structural_model_not_strength_fatigue_or_lifetime_evidence",
+        "no_equation_parameter_pressure_rating_design_or_manufacturing_recipe",
+        "no_natural_fiber_knot_care_bondage_body_contact_upline_anchor_or_human_suspension_transfer",
+        "two_inter_yarn_friction_endpoints_and_lateral_contraction_uncertainty_must_be_preserved",
+        "separate_1990_double_braided_rope_report_must_not_be_conflated"
+      ]
+    },
+    {
       "resource_id": "noaa_synthetic_rope_deterioration_1990",
       "source_label": "Modelling of Synthetic Fiber Ropes Deterioration Caused by Internal Abrasion and Tensile Fatigue",
       "manifest_path": "data/site_corpora/noaa_synthetic_rope_deterioration_1990/manifest.json",
