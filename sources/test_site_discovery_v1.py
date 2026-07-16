@@ -4611,12 +4611,162 @@ class SourceCorpusContractTest(unittest.TestCase):
             for marker in required:
                 self.assertIn(marker, text, candidate_id)
 
+    def test_batch_031_decisions_and_queue_are_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_031"
+        }
+        expected = {
+            "accept_targeted_scope": {
+                "cambridge_obryan_consent_sexual_media_2024",
+                "apj_yokohama_araki_authority_work_metadata",
+            },
+            "defer": {
+                "hood_consent_complicating_agency_araki_2019",
+                "umich_yi_araki_crossing_boundaries_interview_2011",
+                "pussy_palace_ferguson_rope_oral_history",
+                "staedel_araki_untitled_kinbaku_work_record",
+                "kunsthalle_basel_mcclodden_kinbaku_paintings_2023",
+                "petite_pretzel_tips_smaller_riggers",
+                "kinkrx_understanding_tk_components",
+                "shibari_dojo_munich_level_framework",
+            },
+            "reject": {
+                "qagoma_araki_visual_consent_essay",
+                "galleri_riis_araki_kinbaku_2008",
+            },
+        }
+        self.assertEqual(len(batch), 12)
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_031_accepts_mirror_queue_and_block_provenance_trivia(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "cambridge_obryan_consent_sexual_media_2024": {
+                "cc by 4.0",
+                "jurisdiction-specific law",
+                "third-party case",
+                "memorization questions",
+            },
+            "apj_yokohama_araki_authority_work_metadata": {
+                "government standard terms 2.0",
+                "cc by-nc-nd",
+                "silver dye breach print",
+                "inventory numbers",
+                "never qa targets",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_031_permission_privacy_and_visual_consent_are_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        deferred_markers = {
+            "hood_consent_complicating_agency_araki_2019": {
+                "allegations as allegations",
+                "appearance, expression, rope looseness",
+                "permission",
+            },
+            "umich_yi_araki_crossing_boundaries_interview_2011": {
+                "self-presentation",
+                "sexual access",
+                "consent, technique or safety authority",
+            },
+            "pussy_palace_ferguson_rope_oral_history": {
+                "citation permission",
+                "transcript transformation",
+                "biography",
+            },
+            "staedel_araki_untitled_kinbaku_work_record": {
+                "all rights reserved",
+                "traditional japanese",
+                "permission",
+            },
+            "kunsthalle_basel_mcclodden_kinbaku_paintings_2023": {
+                "progressive breath",
+                "reenact",
+                "permission",
+            },
+            "petite_pretzel_tips_smaller_riggers": {
+                "martial-arts transfer",
+                "text-based instructional material",
+                "weight limits",
+            },
+            "kinkrx_understanding_tk_components": {
+                "blueprint image",
+                "text-complete",
+                "suspendability",
+            },
+            "shibari_dojo_munich_level_framework": {
+                "under three minutes",
+                "nonverbal connection",
+                "explicit prior agreement",
+            },
+        }
+        for candidate_id, required in deferred_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        rejected_markers = {
+            "qagoma_araki_visual_consent_essay": {
+                "loose-looking bindings",
+                "continued distribution",
+                "artist's publicity statement",
+            },
+            "galleri_riis_araki_kinbaku_2008": {
+                "lower-body knot placement",
+                "reconstruct ties",
+                "traditional japanese technique",
+            },
+        }
+        for candidate_id, required in rejected_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "reject")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_030`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_031`", self.report)
 
 
 if __name__ == "__main__":

@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T19:45:00Z
-Latest batch: `discovery_batch_030`
+Latest review at: 2026-07-16T20:11:48Z
+Latest batch: `discovery_batch_031`
 
 ## Outcome
 
@@ -2238,3 +2238,94 @@ Members-only engineering content was not accessed, absent certificates and
 thesis bodies were not invented, visual instructions were not reconstructed,
 and no source body, audio, video or image entered a training artifact during
 discovery.
+
+## Discovery batch 031 outcome
+
+`discovery_batch_031` manually reviewed 12 exact-new source identities after
+canonical URL, title, creator, institution, DOI, work and source-identity
+deduplication. It records 0 `accept_high_priority`, 2
+`accept_targeted_scope`, 8 `defer`, and 2 `reject` decisions. The two accepted
+rights-bounded sources expand the canonical Markdown queue from 184 to 186
+resources; the discovery ledger grows from 368 to 380 records.
+
+This batch concentrates on consent to sexual and rope-performance media,
+artist and museum authority data, model agency in photography, queer
+community oral history, non-photographic rope art, size-mismatched partners,
+functional pattern architecture and pedagogy. It also makes two negative
+controls explicit: rope looseness or apparent escape capacity does not prove
+consent, and a gallery photograph is not a technical demonstration. Public
+access, citation permission and open-access image programs were each kept
+separate from permission to create a transformed commercial training corpus.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Consent, Contracts, and Sexual Media](https://www.cambridge.org/core/journals/hypatia/article/only-thing-i-want-is-for-people-to-stop-seeing-me-naked-consent-contracts-and-sexual-media/00E2A536D9794C07E898E2B917515434) | `accept_targeted_scope` | 35 | Joan Eleanor O'Bryan's peer-reviewed CC BY 4.0 article supports an attributed digest of affirmative and revocable sexual-media consent, control of audience, duration and conditions, problems with perpetual releases, alternatives, objections and limitations. Its application to rope photography or performance remains an explicitly cross-domain normative framework, not jurisdiction-specific law. Third-party cases, identifying or intimate details, quotations, statutes, contracts and images are excluded. |
+| [APJ and Yokohama Araki authority/work dossier](https://artplatform.go.jp/ja/artists/A1045) | `accept_targeted_scope` | 22 | Bounded APJ-owned authority fields and Yokohama's CC BY 4.0 non-description metadata support one compact artist-and-work record. APJ's embedded Wikipedia and bibliography, external IDs, images, logos, Yokohama's CC BY-NC-ND description and participant-sensitive model detail are excluded. The museum's source wording “silver dye breach print” is preserved with a possible-typo note, not silently corrected. IDs, inventory numbers and URLs remain provenance rather than questions. |
+
+### Permission-, document-, or expert-review-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Consent: Complicating Agency in Photography](https://hoodmuseum.dartmouth.edu/sites/hoodmuseum.prod/files/hoodmuseum/publications/consent_brochure_2019.pdf) | 30 | Kimberly Yu's museum essay and the later curatorial note provide rare institutional evidence about viewing ethics and a source-dated response to exploitation allegations. The brochure is copyright Trustees of Dartmouth College, and Hood's open-access image program does not license the essay or Araki work. Dartmouth, author and component permission plus privacy review are required; allegations remain allegations and appearance never proves consent. |
+| [Crossing Boundaries: An Interview with Nobuyoshi Araki](https://quod.lib.umich.edu/t/tap/7977573.0001.205/--crossing-boundaries-an-interview-with-nobuyoshi-araki?rgn=main%3Bview%3Dfulltext) | 27 | Hyewon Yi's translated primary interview is CC BY-NC-ND 3.0. Commercial derivative permission and model-centered critical review are required. Every Araki statement remains self-presentation, especially claims about sexual access to models; images, explicit anecdotes and intimate third-party details stay excluded. |
+| [T'Hayla Ferguson Pussy Palace oral history](https://pussypalaceproject.org/oral-histories/) | 32 | The official project allows listed interviews to be freely cited, but citation and access permission are not a derivative commercial training license. If project, archive, narrator and component rights are cleared, only a privacy-minimized first-person digest of multi-hour rope demonstrations, couple-centered teaching and stated harm-avoidance intent may be used. Technique, explicit activity, biography and third parties remain excluded. |
+| [Städel Untitled (Kinbaku) work record](https://sammlung.staedelmuseum.de/en/work/ohne-titel-kinbaku) | 19 | The all-rights-reserved museum record offers a potentially useful institutional interpretation of eroticism, dominance, censorship, western art-historical recontextualization and Eurocentric exoticism. Museum and artist permission are required; the image, model description, codes and unsupported traditionality or lineage claims remain excluded or independently checked. |
+| [Tiona Nekkia McClodden at Kunsthalle Basel](https://kunsthallebasel.ch/media/pages/exhibitions/tiona-nekkia-mcclodden/3ee5e27502-1749116445/kunsthalle-basel_a-text_tiona-nekkia-mcclodden_de_web.pdf) | 27 | The German exhibition guide uniquely discusses black rope on leather paintings, Black queer embodiment, vulnerability, violence and consent, but no open license was found. Permission is required. Progressive breath or posture restriction, strap placement, exact timing, bruising, circulation, medical and reenactment content are quarantined completely. |
+| [Tips for Smaller Riggers](https://petitepretzel.com/2024/02/01/tips-for-smaller-riggers/) | 17 | The first-party workshop outline identifies a scarce smaller-top/larger-bottom perspective, but it is not the instructional body and has no open license. Author permission, text-complete material and qualified ergonomics and suspension review are required. Martial-arts transfer, leverage, upline, weight, placement and emergency procedures cannot be inferred from the syllabus. |
+| [Understanding the TK](https://kinkrx.com/understanding-the-tk) | 26 | The synopsis's move from recipe memorization to component goals, acceptability, substitution and elimination is valuable pattern architecture. The actual analysis is absent and ordinary copyright applies. Permission, text-complete material and qualified review are required; the blueprint, linked videos, inferred steps, suspendability and universal correctness claims are excluded. |
+| [Shibari Dōjō München level framework](https://shibaridojomunich.de/training/level/) | 15 | The German school explicitly rejects a global level system and says neither suspension nor a TK universally defines fulfillment or competence. Ordinary copyright applies. Its “suspension-capable TK in under three minutes” criterion is quarantined rather than taught as skill or safety, and nonverbal connection is never converted into consent. |
+
+### Rejected sources
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [QAGOMA essay on Nobuyoshi Araki](https://collection.qagoma.qld.gov.au/node/48890) | 14 | The copyrighted essay infers consent from bindings looking loose enough for escape and supports that inference with the artist's own publicity statement. Rope looseness, gaze, expression or apparent escape capacity cannot establish consent to tying, photography, publication or continued distribution. The body and images must not seed facts or QA. |
+| [Galleri Riis: Nobuyoshi Araki — Kinbaku](https://galleririis.com/exhibitions/11) | 4 | Thin all-rights-reserved gallery copy makes unsupported claims about traditionality, strategic lower-body knot placement and women demonstrating techniques. Images must not be inspected or reconstructed as instruction, and stronger sources cover the limited exhibition facts. |
+
+### Batch 031 rights, privacy, safety, and fact-value controls
+
+Cambridge's CC BY 4.0 applies to O'Bryan's original article, not every quoted
+case, contract, statute or third-party passage. The article's argument may
+inform rope-media policy only with its normative, legal and empirical limits
+attached. APJ terms cover bounded APJ-owned content with attribution and
+change disclosure, not whole-database reproduction or embedded third-party
+content. Yokohama licenses non-description text as CC BY 4.0 while keeping its
+description under CC BY-NC-ND and images subject to separate restrictions.
+
+Museum open-access programs, repository access and permission to cite oral
+history were not treated as transformation licenses. Allegations remain
+source-dated allegations. Interviews remain testimony or self-presentation,
+not verified consent history. Narrator, model, translator, image and other
+component rights stay explicit, and personal, employment, health, location,
+intimate and third-party details are minimized rather than copied because a
+transcript or catalog is public.
+
+Visual appearance is never consent evidence or a technique source. The
+QAGOMA loose-rope heuristic is blocked explicitly. Galleri Riis photographs
+cannot become knot-placement instructions. The Kunsthalle performance cannot
+be reconstructed into breath restriction, strap placement or a safe-time
+rule. A speed threshold cannot define advanced tying, a workshop outline does
+not contain the class, a blueprint is not licensed text, and nonverbal
+connection is never a substitute for explicit ongoing consent.
+
+Titles, dates, DOIs, handles, inventory numbers, dimensions, work counts and
+URLs are provenance where needed, not QA targets. Accepted records teach the
+substantive consent framework and bounded artist/work facts; deferred metadata
+exists to manage permission and evidence, not to generate citation-memory
+questions.
+
+### Batch 031 access and clean-room statement
+
+The source worker read only the governing discovery ledger, queue, report,
+registry and tests plus exact public first-party pages, official museum,
+publisher, repository and project records, source-owned documents, rights and
+license pages and access notices needed to resolve identity, evidence and
+component boundaries. No QA, trainer, projection, evaluation, heldout,
+holdout, OOD, shadow, benchmark, probe, experiment, existing corpus body or
+unrelated repository artifact was read. No login, purchase, membership,
+paywall, challenge, certificate bypass, cache or archive-service bypass was
+used. Visual instructions were not reconstructed, restricted media were not
+copied, and no source body, transcript, audio, video or image entered a
+training artifact during discovery.
