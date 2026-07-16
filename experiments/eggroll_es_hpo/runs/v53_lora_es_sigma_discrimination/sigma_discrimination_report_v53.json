@@ -1,0 +1,429 @@
+{
+  "completed_at_utc": "2026-07-16T06:26:25.996692+00:00",
+  "content_sha256_before_self_field": "ab1b35ba477c3bb7bac80211683676630ecccef15cd8795449317aa2e8fb29c9",
+  "evaluated_arms": [
+    {
+      "artifact": {
+        "content_sha256": "41c064e3bc84201aa1cfe57f185ef583c5408420eb5977e36777944f269df56a",
+        "file_sha256": "57a3b180e39fbae81928416e148763992a3764eadc5b9c4afcb33e4ad8238629",
+        "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v53_lora_es_sigma_discrimination/sigma_0p0012_arm_v53.json"
+      },
+      "passed": false,
+      "perturbation_integrity": {
+        "candidate_identity_inventory_sha256": "30b5fbb8c537137668a29e34239535f5d2d0702f748189d497c9f75f7e0ef7b4",
+        "direct_from_pinned_master": true,
+        "exact_antithetic_seed_sign_coverage": true,
+        "four_actor_consensus_before_scoring": true,
+        "runtime_identity_inventory_sha256": "c84cde3a7c3b730243685f9089e49d0dd88713808bf4cf4f783deb934b06f2c0",
+        "schema": "sigma-perturbation-integrity-v53",
+        "sigma": 0.0012,
+        "states": 32,
+        "unique_nonmaster_bf16_candidates": 32,
+        "unique_nonmaster_fp32_candidates": 32
+      },
+      "population_size": 16,
+      "reliability": {
+        "central_replicates": [
+          [
+            0.00027071035487780115,
+            0.0006972433908343234,
+            0.000443344550141056,
+            0.00047260315571517886
+          ],
+          [
+            0.0011283103863852784,
+            0.0014437590185722993,
+            0.0011686504330983283,
+            0.0009207386950418339
+          ],
+          [
+            0.00021185624620145838,
+            0.00040556694924331893,
+            9.330700423704208e-05,
+            -0.00023665365185321363
+          ],
+          [
+            0.0006525814691200615,
+            0.0008135326560072542,
+            0.0005581320627809916,
+            0.0007493857895632949
+          ],
+          [
+            -0.00048401199139846973,
+            -0.000668151874324785,
+            -0.0006213873713487583,
+            -0.00025510464141631495
+          ],
+          [
+            -0.00016419402876777234,
+            0.0003852068188363589,
+            4.058298289422169e-06,
+            0.00016903948707369665
+          ],
+          [
+            0.0007249843742298534,
+            0.000622135523175471,
+            0.0004253618135179327,
+            0.0005947337456606583
+          ],
+          [
+            0.00042179883281034947,
+            0.0004921598933529392,
+            0.00026348570673073723,
+            0.0007204393470878756
+          ],
+          [
+            0.0006599949589507492,
+            -0.00031943573867732056,
+            8.129890036068232e-06,
+            0.00015432798437586825
+          ],
+          [
+            0.000456898777708048,
+            5.442453732040775e-05,
+            0.00015019551906281237,
+            -0.00024488802546795974
+          ],
+          [
+            0.0012707798718047947,
+            0.0011350468093775934,
+            0.0012786319379394229,
+            0.0007946394328623985
+          ],
+          [
+            -8.648988106685351e-05,
+            -0.0003603927308404309,
+            8.100503236629919e-06,
+            -0.0004764932763037244
+          ],
+          [
+            -0.000291571135419888,
+            -0.00014569802401909193,
+            -9.093157399542307e-05,
+            -0.00014280894567608726
+          ],
+          [
+            -0.0002801905551732542,
+            -0.0002203471588861916,
+            -0.0004019357502063059,
+            -0.0004896668995224562
+          ],
+          [
+            8.022858038181369e-05,
+            6.643767136060852e-05,
+            -0.000598794636694544,
+            -5.5767797792372065e-05
+          ],
+          [
+            0.00016003105702511178,
+            4.697880872805982e-05,
+            -0.00019354947200911354,
+            -0.00023183626982636873
+          ]
+        ],
+        "content_sha256": "ae3548c43c9c41b423c068c63a921583ea68dc58ccbf1337ca8d0999635ce246",
+        "estimated_signal_standard_deviation": 0.0004633940272469408,
+        "estimated_signal_standard_deviation_clears_fresh_calibration_maximum": false,
+        "fresh_calibration_inside_historical_ceiling": true,
+        "fresh_calibration_observed_maximum_actor_spread": 0.0008587933528567682,
+        "historical_calibration_ceiling": 0.001802103667415178,
+        "minimum_reliability": 0.8,
+        "minimum_split_half_spearman": 0.7,
+        "passed": false,
+        "population_size": 16,
+        "reliability": 0.943945392424217,
+        "schema": "sigma-discrimination-reliability-v53",
+        "split_half_spearman": 0.95
+      },
+      "sigma": 0.0012
+    },
+    {
+      "artifact": {
+        "content_sha256": "6309a128147ea7a9e265d5c19cf4855eafcd76b0dbf314da9e308d1aa259f3d1",
+        "file_sha256": "77f17f53786a582ba2635a5e95bc2c7fd2466d328005087a263a31dfe7337899",
+        "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v53_lora_es_sigma_discrimination/sigma_0p0024_arm_v53.json"
+      },
+      "passed": false,
+      "perturbation_integrity": {
+        "candidate_identity_inventory_sha256": "69b6e3aa3f854ff9d6b59a4f852745edc9c7dd3a5252e2e5010a102dbac2ee7e",
+        "direct_from_pinned_master": true,
+        "exact_antithetic_seed_sign_coverage": true,
+        "four_actor_consensus_before_scoring": true,
+        "runtime_identity_inventory_sha256": "9b6dcb443c68993b6691e1f77e8044a6baacc4e84334034adfe6e0cccd7c23de",
+        "schema": "sigma-perturbation-integrity-v53",
+        "sigma": 0.0024,
+        "states": 32,
+        "unique_nonmaster_bf16_candidates": 32,
+        "unique_nonmaster_fp32_candidates": 32
+      },
+      "population_size": 16,
+      "reliability": {
+        "central_replicates": [
+          [
+            0.00017739247911996436,
+            -8.164844110125635e-05,
+            5.4492109199166805e-05,
+            7.928177459137764e-05
+          ],
+          [
+            0.00219840368919777,
+            0.0022869971625814056,
+            0.002160010796390166,
+            0.0023298309828525543
+          ],
+          [
+            0.0006860938162795982,
+            0.0005414743449942971,
+            0.0002453208541888241,
+            0.00039508574064917035
+          ],
+          [
+            -0.0010077393572054394,
+            -0.0012647679045119098,
+            -0.0012111781036052705,
+            -0.0013924349499814248
+          ],
+          [
+            -0.0001669151371590516,
+            -0.0002942513157497828,
+            -0.0002643223853326937,
+            -0.0004433898635927136
+          ],
+          [
+            0.0007260585711406087,
+            0.0006622649572489703,
+            0.0010191968273207674,
+            0.0008045856081004832
+          ],
+          [
+            0.00045806609558418643,
+            0.00042488073781510316,
+            0.00023553704707790502,
+            0.00045640807612068457
+          ],
+          [
+            -0.0004822756029896347,
+            -0.0004258727939780993,
+            -0.0005637853932549675,
+            -0.0005999829224903053
+          ],
+          [
+            -0.0006385485730560081,
+            -7.251263470409164e-05,
+            -0.0005239295230394792,
+            -0.0004716344396467065
+          ],
+          [
+            -0.00026916459426984396,
+            -0.000749237919047463,
+            9.303391138582029e-05,
+            -0.0008856845567410954
+          ],
+          [
+            0.00047813952463404696,
+            0.001026865780701769,
+            0.0010027171397404278,
+            0.0009743080196973342
+          ],
+          [
+            0.0007839070646880053,
+            0.00019345953489580126,
+            0.0005228352751658338,
+            0.0005976438601056344
+          ],
+          [
+            0.000599197616067082,
+            0.0009311761927996987,
+            0.0011867972915551306,
+            0.001231669442620209
+          ],
+          [
+            -0.00030179656930839904,
+            -0.00019618656250575128,
+            -0.00049206859374884,
+            -0.0006230295231008931
+          ],
+          [
+            -0.0006013815168011138,
+            -0.00034830556549492186,
+            -0.0003763173402304698,
+            -0.00041111856047737483
+          ],
+          [
+            -0.0002241619658804872,
+            -0.0007334321976779634,
+            -0.0002520269029389066,
+            -5.7227195232822936e-05
+          ]
+        ],
+        "content_sha256": "7eac0c40853a608fa7adba580fda74472eacfc6d9da9db674052399c61d809be",
+        "estimated_signal_standard_deviation": 0.0007995821684640158,
+        "estimated_signal_standard_deviation_clears_fresh_calibration_maximum": false,
+        "fresh_calibration_inside_historical_ceiling": true,
+        "fresh_calibration_observed_maximum_actor_spread": 0.0008587933528567682,
+        "historical_calibration_ceiling": 0.001802103667415178,
+        "minimum_reliability": 0.8,
+        "minimum_split_half_spearman": 0.7,
+        "passed": false,
+        "population_size": 16,
+        "reliability": 0.9821184566364066,
+        "schema": "sigma-discrimination-reliability-v53",
+        "split_half_spearman": 0.8911764705882353
+      },
+      "sigma": 0.0024
+    },
+    {
+      "artifact": {
+        "content_sha256": "f60eb4f5c66a3f26571c07111ec1ccf9c26ecd8121e3c160007c5ad7220ae486",
+        "file_sha256": "f73adf79eb1cc10315a088568cd68816a5233fdb46217bb5ed55e3c0be778659",
+        "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v53_lora_es_sigma_discrimination/sigma_0p0048_arm_v53.json"
+      },
+      "passed": true,
+      "perturbation_integrity": {
+        "candidate_identity_inventory_sha256": "da18f263be3db7a0febe79cc90eb8b2be2677d80b892760544fe1023d0096364",
+        "direct_from_pinned_master": true,
+        "exact_antithetic_seed_sign_coverage": true,
+        "four_actor_consensus_before_scoring": true,
+        "runtime_identity_inventory_sha256": "edd251c4209bc1e7f1aee4d16aacccef29292da51a889f881d7e4cf3efb015d5",
+        "schema": "sigma-perturbation-integrity-v53",
+        "sigma": 0.0048,
+        "states": 32,
+        "unique_nonmaster_bf16_candidates": 32,
+        "unique_nonmaster_fp32_candidates": 32
+      },
+      "population_size": 16,
+      "reliability": {
+        "central_replicates": [
+          [
+            0.0012273040762105225,
+            0.0013714953157164533,
+            0.0010212595996770268,
+            0.0009331635128588811
+          ],
+          [
+            0.003950346015573425,
+            0.0035009277625008828,
+            0.0033708615567940026,
+            0.003506691718970112
+          ],
+          [
+            0.0017272752581127815,
+            0.0012774796250860643,
+            0.001524515390792125,
+            0.00134951288014995
+          ],
+          [
+            -0.0004866167261941001,
+            -0.0011264868286458007,
+            -0.0005886408362127948,
+            -0.0007355040746137576
+          ],
+          [
+            -0.0010035791412426054,
+            -0.0011739988070464946,
+            -0.0012630327579610245,
+            -0.001166215211207966
+          ],
+          [
+            0.0011080680009427635,
+            0.0010974245434129948,
+            0.0011969553246309328,
+            0.0006889326229246873
+          ],
+          [
+            0.000666592980597569,
+            0.00012142508525614382,
+            0.0011371607657537641,
+            0.0002798255171738706
+          ],
+          [
+            0.00029229682800879786,
+            8.453352596871078e-05,
+            0.0004732637303646037,
+            0.0006705358702137065
+          ],
+          [
+            0.0010571045243603638,
+            0.0009038357374304695,
+            0.00028454011266410006,
+            0.0010688781083907362
+          ],
+          [
+            -0.0010743135028568052,
+            -0.0014334277098555503,
+            -0.001291202146461723,
+            -0.0012518486959709474
+          ],
+          [
+            0.00288366443334076,
+            0.0025149100614332287,
+            0.002901462376782238,
+            0.0028587025393855825
+          ],
+          [
+            -0.00015699129808743884,
+            -3.700164020781216e-05,
+            0.0003092456065252325,
+            0.0005041944525350228
+          ],
+          [
+            0.00030953060594729465,
+            3.734243060926623e-05,
+            -0.0001764375420378883,
+            -0.00024815733327177014
+          ],
+          [
+            -0.0020071765866218616,
+            -0.0018735562784475412,
+            -0.0021497619281056757,
+            -0.001755184113333419
+          ],
+          [
+            -0.00221573736855718,
+            -0.0024408089105407704,
+            -0.0024267904440775645,
+            -0.0024285714443450512
+          ],
+          [
+            -0.000773635327976141,
+            -0.0005813604416631257,
+            -0.00038693157509461784,
+            -0.0005141976283147276
+          ]
+        ],
+        "content_sha256": "600273aa28d5f4c29f8d7ed965d7bdb4c3e29bf167aac4684284316c5cba1170",
+        "estimated_signal_standard_deviation": 0.001547645180585056,
+        "estimated_signal_standard_deviation_clears_fresh_calibration_maximum": true,
+        "fresh_calibration_inside_historical_ceiling": true,
+        "fresh_calibration_observed_maximum_actor_spread": 0.0008587933528567682,
+        "historical_calibration_ceiling": 0.001802103667415178,
+        "minimum_reliability": 0.8,
+        "minimum_split_half_spearman": 0.7,
+        "passed": true,
+        "population_size": 16,
+        "reliability": 0.9937167282924395,
+        "schema": "sigma-discrimination-reliability-v53",
+        "split_half_spearman": 0.9941176470588236
+      },
+      "sigma": 0.0048
+    }
+  ],
+  "exact_cleanup_verified": true,
+  "internal_fail_closed_receipt": {
+    "content_sha256": "79a7fb490bee5d29d01ff29bbace127fef0f09f51e996fd44242c6ffc051fe3c",
+    "file_sha256": "831edaaf946787a8f5cd2b8276c40ae606599af1a1da84d517d80219b1f5ab0c",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v53_lora_es_sigma_discrimination/failure_v52.json"
+  },
+  "optimizer_update_projection_or_train_gate_opened": false,
+  "population": {
+    "content_sha256": "0112032dd2f2dabb777a9cd3f5dcb3f30975e59185ce5ece7c87d3258f499151",
+    "file_sha256": "02412f0440042ed970c4efe8a908fae59fef9c99d47a8f2771c6584da7edde47",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v53_lora_es_sigma_discrimination/nested_population_v52.json"
+  },
+  "preregistration_content_sha256": "e14b3bf36e3fe4f8b48e8a1c18c348239a34889afe3b4ffceda1ccd45e198935",
+  "protected_semantics_opened": false,
+  "schema": "lora-es-sigma-discrimination-report-v53",
+  "sealed_holdout_opened": false,
+  "selected_smallest_passing_sigma": 0.0048,
+  "status": "complete_no_update_no_protected_access"
+}

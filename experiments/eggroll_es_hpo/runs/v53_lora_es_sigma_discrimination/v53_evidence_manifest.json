@@ -1,0 +1,92 @@
+{
+  "schema": "lora-es-sigma-discrimination-evidence-v53",
+  "status": "complete_selected_sigma_with_declared_telemetry_path_deviation",
+  "selected_smallest_passing_sigma": 0.0048,
+  "selected_arm": {
+    "file_sha256": "f73adf79eb1cc10315a088568cd68816a5233fdb46217bb5ed55e3c0be778659",
+    "content_sha256": "f60eb4f5c66a3f26571c07111ec1ccf9c26ecd8121e3c160007c5ad7220ae486",
+    "population_size": 16,
+    "reliability": 0.9937167282924395,
+    "split_half_spearman": 0.9941176470588236,
+    "estimated_signal_standard_deviation": 0.001547645180585056,
+    "fresh_calibration_observed_maximum_actor_spread": 0.0008587933528567682,
+    "signal_to_fresh_noise_clearance_ratio": 1.802115928630361,
+    "passed_every_preregistered_scientific_gate": true,
+    "passed_every_preregistered_state_integrity_gate": true
+  },
+  "failed_smaller_sigma_arms": [
+    {
+      "sigma": 0.0012,
+      "file_sha256": "57a3b180e39fbae81928416e148763992a3764eadc5b9c4afcb33e4ad8238629",
+      "content_sha256": "41c064e3bc84201aa1cfe57f185ef583c5408420eb5977e36777944f269df56a",
+      "failed_only_strict_signal_noise_clearance": true
+    },
+    {
+      "sigma": 0.0024,
+      "file_sha256": "77f17f53786a582ba2635a5e95bc2c7fd2466d328005087a263a31dfe7337899",
+      "content_sha256": "6309a128147ea7a9e265d5c19cf4855eafcd76b0dbf314da9e308d1aa259f3d1",
+      "failed_only_strict_signal_noise_clearance": true
+    }
+  ],
+  "artifacts": {
+    "attempt": {
+      "file_sha256": "5e1ce738736bfb84795d8fb1239d38f0be8e6ed8ee6e78fbfa5cbe6bf7d0131f",
+      "content_sha256": "1cec79cb8d45bcdedb51989ddac5762cff16fff51a5008c1c6b59ad321a28789"
+    },
+    "preinstall_actor_baseline": {
+      "file_sha256": "386a9cc3a570949ffdd09cc2bda1d100fd73b200556302a788baca503fc1da40",
+      "content_sha256": "ffe286a35893bf4bc3b412524f30e7343405ace303bd909ba49718b85381969f"
+    },
+    "master_identity_audit": {
+      "file_sha256": "5ba80d9586023d2e0ca2de968cd7e44c37105e9b049f45f2aa2cac6d3a555a8a",
+      "content_sha256": "d40d5809ef111b0bb8f8e71fd88120b7e564c8efb31b60f6ee8ede4fea4a5ca4"
+    },
+    "numeric_calibration": {
+      "file_sha256": "3e1b76a515dac91c9e0f683f8dadafa0cff57202d707b3b14ca7775d7c53b2e9",
+      "content_sha256": "546fce82e062fb266b130e76636c87ce1ba8bec29455b3d659b43743941e6f0e"
+    },
+    "anchor_calibration": {
+      "file_sha256": "a848bf7b936b1b63dc9ebdf1e1d6c2065b8ddcb0b5c36348904995d4f5907f62",
+      "content_sha256": "c6f494e6ded5f658fb27b0f8d758532ac52adb3bece0403e64c00e96ba93aff3"
+    },
+    "population": {
+      "file_sha256": "02412f0440042ed970c4efe8a908fae59fef9c99d47a8f2771c6584da7edde47",
+      "content_sha256": "0112032dd2f2dabb777a9cd3f5dcb3f30975e59185ce5ece7c87d3258f499151"
+    },
+    "fail_closed_cleanup_receipt": {
+      "file_sha256": "831edaaf946787a8f5cd2b8276c40ae606599af1a1da84d517d80219b1f5ab0c",
+      "content_sha256": "79a7fb490bee5d29d01ff29bbace127fef0f09f51e996fd44242c6ffc051fe3c"
+    },
+    "report": {
+      "file_sha256": "d7b7efb0f69ff262553451b0d4370ed54a5717a0f2812774a70bd2c31a144784",
+      "content_sha256": "ab1b35ba477c3bb7bac80211683676630ecccef15cd8795449317aa2e8fb29c9"
+    }
+  },
+  "exact_final_state": {
+    "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+    "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+    "update_sequence": 0,
+    "four_actor_restore_and_quiescence_passed": true,
+    "four_engines_killed": true,
+    "four_placement_groups_removed": true,
+    "all_gpu_compute_process_lists_empty": true
+  },
+  "telemetry_deviation": {
+    "declaration_commit": "8492a77b35479ad8b2329d8126b2efb6175eba63",
+    "declared_before_any_sigma_arm_completed": true,
+    "actual_path": "experiments/eggroll_es_hpo/runs/v53_lora_es_sigma_discrimination/gpu_activity_v52.jsonl",
+    "actual_file_sha256": "45c9d242bca8b4ea2188b422cc2b3b96d8961c1f6b9135ccb2bc1591b4f42020",
+    "inherited_population_phase_label": "nested_p16_population_v52",
+    "rows": 11240,
+    "rows_per_gpu": 2810,
+    "actor_pids_by_gpu": [3875299, 3875302, 3875300, 3875301],
+    "maximum_utilization_percent_each_gpu": [100, 100, 100, 100],
+    "maximum_memory_used_mib_each_gpu": [87330, 87330, 87330, 87330],
+    "foreign_compute_pid_rows": 0,
+    "all_preregistered_artifact_paths_matched": false,
+    "scientific_contract_changed": false
+  },
+  "projection_optimizer_update_train_gate_or_candidate_snapshot_opened": false,
+  "ood_shadow_benchmark_holdout_or_protected_semantics_opened": false,
+  "sealed_holdout_opened": false
+}
