@@ -1,0 +1,116 @@
+{
+  "audit": {
+    "by_decision": {
+      "drop": 1,
+      "edit": 4,
+      "keep": 5
+    },
+    "by_review_class": {
+      "ambiguous_consent_fragment_drop": 1,
+      "bottoming_shared_responsibility_edit": 1,
+      "injury_prevention_edit": 1,
+      "medical_uncertainty_edit": 2,
+      "nerve_circulation_uncertainty_keep": 1,
+      "precise_emergency_boundary_keep": 2,
+      "scene_management_keep": 2
+    },
+    "path": "data/manual_reviews/context_merit_audit_v448/context_merit_audit_v448.jsonl",
+    "rows": 10,
+    "sha256": "1dc8fca36c354dc3374db902e5be3ae7f4a018547a59deae88c1108d4d25cfc1"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 260,
+      "equipment_material": 22,
+      "resources_general": 78,
+      "safety_consent": 85,
+      "technique": 75
+    },
+    "before": {
+      "conflict_units": 260,
+      "equipment_material": 22,
+      "resources_general": 78,
+      "safety_consent": 85,
+      "technique": 75
+    },
+    "delta": {
+      "conflict_units": 0,
+      "equipment_material": 0,
+      "resources_general": 0,
+      "safety_consent": 0,
+      "technique": 0
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "curation_outcome": {
+    "ambiguous_consent_rows_quarantined": 1,
+    "bottoming_shared_responsibility_repairs": 1,
+    "injury_prevention_repairs": 1,
+    "medical_uncertainty_repairs": 2,
+    "operational_rows_kept": 5
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 0,
+    "output_rows": 512,
+    "output_sha256": "9f817a4669172576284514aaf65c9d5f5389ab3cd1a80a204f4cd61abd175cd0",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "drop": 1,
+      "edit": 4
+    },
+    "decisions": 5,
+    "path": "data/manual_reviews/context_merit_audit_v448/pending_curation_context_merit_v448.jsonl",
+    "sha256": "ca5bf4517a8c317156800f0ba155eacbe28fdc647eda65b755d0c9cdc57aa14d"
+  },
+  "schema": "context-merit-audit-report-v448",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  },
+  "source_boundary": {
+    "crash_rows_reviewed": 0,
+    "pending_or_new_corpus_inputs": 0,
+    "rope365_rows_reviewed": 0
+  },
+  "source_snapshot_inventory": {
+    "documents": 8,
+    "paths": [
+      "data/raw/anatomiestudio_451ac66001188a42.json",
+      "data/raw/anatomiestudio_9749de0eb1ff4ef3.json",
+      "data/raw/esinem_0b1850ee9a40c337.json",
+      "data/raw/esinem_c93603a2c7d48255.json",
+      "data/raw/kinbakutoday_432c8adfc1abe686.json",
+      "data/raw/rope_resources_v1/tethered_together__cfcc0aab47acc802dd94.json",
+      "data/raw/rope_resources_v1/tethered_together__d5594a12694c5468f698.json",
+      "data/site_corpora/rope_topia/evidence_snapshots.json"
+    ],
+    "reviewed_rows": 10,
+    "total_unique_characters": 65539
+  },
+  "surviving_consent_guidance": {
+    "dropped_fact": "fact-18a6771a5b827a23cbde",
+    "surviving_facts": [
+      "fact-096e13f59527794a75e4",
+      "fact-ea0053be5b3e79d7b7d1"
+    ]
+  },
+  "training_layer_contract": {
+    "cleaned_markdown_site_corpora": "Distinct first-class future training artifacts; no corpus output was ingested by v448.",
+    "deduplication_policy": "Do not collapse a cleaned Markdown document and its derived Q&A merely because they express the same source knowledge.",
+    "derived_qa": "Distinct first-class training layer; v448 changes only existing sealed Q&A using attached evidence and pinned source snapshots.",
+    "provenance_requirement": "Link future derived Q&A to the cleaned source document through stable source URL and document or snapshot hashes."
+  },
+  "v52_isolation": {
+    "active_v52_inputs_modified": false,
+    "candidate_status": "isolated_pending_not_promoted"
+  }
+}
