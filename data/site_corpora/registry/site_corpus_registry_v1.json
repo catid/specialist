@@ -443,6 +443,63 @@
       "whitespace_delimited_word_count": 2913
     },
     {
+      "artifact_id": "canonical-markdown:nist_aramid_rope_sling_fatigue_1976",
+      "byte_length": 15633,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/nist_aramid_rope_sling_fatigue_1976/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "beb585847e2005000584de505840c7f29c92b00b17492a4f0f652ebebfb87eee",
+      "markdown_path": "data/site_corpora/nist_aramid_rope_sling_fatigue_1976/CORPUS.md",
+      "markdown_sha256": "f5eb955663f43a9a9d9ea25824386b8ba47d628e91af5ee4bc8dcbbb839a8b23",
+      "non_qa": true,
+      "qwen36_token_count": 3395,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:d16537ff47fe6327d5046778f9cfde8d80d9f23f4fc3a618cd926affcd611e0c",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "nist_aramid_rope_sling_fatigue_1976",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The report identifies National Bureau of Standards employee authors, and current NIST policy treats unmarked federal information as public information while granting broad reuse of eligible technical-series material.",
+        "license": "eligible_US_government_text",
+        "limitations": [
+          "Third-party, proprietary, vendor, scan-layer, image, table, reference, and separately credited components are excluded.",
+          "The retained artifact is a fresh manual paraphrase and records attribution, changes, no endorsement, and the NIST courtesy statement.",
+          "The rights classification is a provenance screen rather than legal advice and does not validate the report's conclusions."
+        ],
+        "promotion_gate": "ready_with_attribution_component_audit_and_historical_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "end_fitting_inadequacy_and_censored_measurements_must_be_front_loaded",
+        "historical_1976_helicopter_external_cargo_prototype_context_required",
+        "no_bondage_natural_fiber_knot_upline_body_contact_or_human_suspension_transfer",
+        "no_numeric_load_rating_end_fitting_design_or_operational_recipe",
+        "prototype_observations_are_not_fully_substantiated_rope_body_conclusions"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.nist.gov/publications/fatigue-and-weatherability-studies-aramid-fiber-rope-slings",
+        "doi": "10.6028/NBS.IR.76-1159",
+        "identity_type": "government_technical_report",
+        "imprint_date": "September 1976",
+        "report_number": "NBSIR 76-1159",
+        "source_resource_id": "nist_aramid_rope_sling_fatigue_1976"
+      },
+      "source_document_identity_sha256": "d16537ff47fe6327d5046778f9cfde8d80d9f23f4fc3a618cd926affcd611e0c",
+      "source_label": "Fatigue and Weatherability Studies of Aramid-Fiber Rope Slings",
+      "unicode_word_count": 2123,
+      "whitespace_delimited_word_count": 2097
+    },
+    {
       "artifact_id": "canonical-markdown:rope365",
       "byte_length": 90243,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -716,7 +773,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "9bbfed24db378b1e5926c791f9fb64caca82c72c97e337fecbe6935c69aef55d"
+    "sha256": "7aab855ae40569bef3441d37549cba49d5f4dac417199bf3b3710bd50fedd533"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -755,7 +812,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "96114c02eec4f71d36c5d8cb4619aea89b6d2b15bf510cf7aafa5a5fae98ff0d",
+  "source_tree_fingerprint_sha256": "0d88aba8afbfae6c6338daaa4cd4f2fd3f99334388f6087d8009b194789f56c6",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -765,11 +822,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 13,
-    "byte_length": 3917609,
-    "qwen36_token_count": 1151298,
-    "source_document_split_group_count": 13,
-    "unicode_word_count": 514291,
-    "whitespace_delimited_word_count": 402607
+    "artifact_count": 14,
+    "byte_length": 3933242,
+    "qwen36_token_count": 1154693,
+    "source_document_split_group_count": 14,
+    "unicode_word_count": 516414,
+    "whitespace_delimited_word_count": 404704
   }
 }

@@ -232,6 +232,28 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             hitch["safety_transfer_flags"],
         )
 
+        aramid = self.by_id["nist_aramid_rope_sling_fatigue_1976"]
+        self.assertEqual(
+            aramid["source_document_identity"]["doi"],
+            "10.6028/NBS.IR.76-1159",
+        )
+        self.assertEqual(
+            aramid["source_document_identity"]["report_number"],
+            "NBSIR 76-1159",
+        )
+        self.assertEqual(
+            aramid["rights_basis"]["status"],
+            "federal_text_public_domain_presumption",
+        )
+        self.assertIn(
+            "end_fitting_inadequacy_and_censored_measurements_must_be_front_loaded",
+            aramid["safety_transfer_flags"],
+        )
+        self.assertIn(
+            "prototype_observations_are_not_fully_substantiated_rope_body_conclusions",
+            aramid["safety_transfer_flags"],
+        )
+
     def test_safety_and_domain_transfer_flags_cannot_be_empty(self) -> None:
         for item in self.artifacts:
             flags = item["safety_transfer_flags"]
