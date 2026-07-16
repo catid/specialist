@@ -62,6 +62,12 @@ def test_v52_centered_rank_objective_supports_p8_and_p16():
         result = design.objective_coefficients_v52(values)
         assert len(result["coefficients"]) == population_size
         assert result["zero_spread"] is False
+        assert result["actor_reducer"] == (
+            "fixed mean in ascending actor-rank order"
+        )
+        assert result["fixed_four_actor_mean_signed_scores"]["plus"][0] == (
+            pytest.approx(sum(values["plus"][0]) / 4)
+        )
 
 
 def test_v52_reliability_gate_accepts_stable_p16_and_rejects_shape():
@@ -401,6 +407,15 @@ def test_v52_preregistration_freezes_gates_and_compute_plan():
     ] == value["retry_science_equivalence"][
         "retry_science_content_sha256"
     ]
+    assert value["measurement_contract"][
+        "cross_actor_score_bit_equality_required"
+    ] is False
+    assert value["measurement_contract"][
+        "postinstall_each_actor_must_equal_own_preinstall"
+    ] is True
+    assert value["measurement_contract"]["population_actor_reducer"] == (
+        "fixed arithmetic mean in ascending actor-rank order"
+    )
     assert runtime.require_live_interpreter_v52(
         str(design.REQUIRED_PYTHON_V52)
     )["matched"] is True
@@ -447,7 +462,42 @@ def test_v52_preregistration_freezes_gates_and_compute_plan():
     assert value["artifacts"]["anchor_calibration"] == str(
         runtime.ANCHOR_CALIBRATION
     )
+    assert value["artifacts"]["preinstall_actor_baseline"] == str(
+        runtime.PREINSTALL_BASELINE
+    )
+    assert value["artifacts"]["master_identity_audit"] == str(
+        runtime.MASTER_IDENTITY_AUDIT
+    )
     assert value["sealed_holdout_opened"] is False
+
+
+def test_v52_actor_self_identity_allows_cross_actor_difference_but_not_drift():
+    def record(rank, value):
+        score = {"aggregate": {"equal_unit_mean": value}}
+        return {
+            "actor_rank": rank,
+            "score": score,
+            "exact_score_sha256": design.canonical_sha256_v52(score),
+            "output_manifests": {
+                "dense_result_sha256": f"{rank + 1:064x}",
+                "unit_aggregate_sha256": f"{rank + 11:064x}",
+                "scored_answer_tokens": 10,
+                "unit_count": 208,
+            },
+        }
+
+    baseline = {"actors": [record(rank, float(rank)) for rank in range(4)]}
+    same = json.loads(json.dumps(baseline))
+    receipt = runtime.require_actor_self_score_identity_v52(
+        baseline, same, phase="postinstall",
+    )
+    assert receipt["all_four_actor_self_identities_exact"] is True
+    assert len({item["exact_score_sha256"] for item in baseline["actors"]}) == 4
+    same["actors"][2]["score"]["aggregate"]["equal_unit_mean"] += 1e-12
+    with pytest.raises(RuntimeError, match="within an actor"):
+        runtime.require_actor_self_score_identity_v52(
+            baseline, same, phase="postpopulation",
+        )
 
 
 def test_v52_v434_content_free_train_contract_is_exact_and_source_faithful():

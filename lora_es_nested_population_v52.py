@@ -22,7 +22,14 @@ ROOT = Path(__file__).resolve().parent
 REQUIRED_PYTHON_V52 = (
     ROOT / "es-at-scale/.venv/bin/python"
 ).absolute()
-RETRY_REVISION_V52 = "retry1_launcher_environment_only"
+RETRY_REVISION_V52 = "retry2_actor_indexed_nondeterminism_measurement"
+RETRY1_GPU_LOG_V52 = (
+    ROOT / "experiments/eggroll_es_hpo/runs/"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry1/gpu_activity_v52.jsonl"
+).resolve()
+RETRY1_GPU_LOG_SHA256_V52 = (
+    "bb1e9b4cb88273998346966755564fb547f34215381dfadfdba67f500466357e"
+)
 POPULATION_SIZES_V52 = (8, 16)
 P8_SEEDS_V52 = (
     140002291, 1028842752, 480373990, 1037026679,
@@ -158,6 +165,21 @@ EDGE_IDENTITY_KEYS_V52 = (
 )
 
 SEALED_NUMERIC_PARENTS_V52 = {
+    "v52_retry1_preregistration": {
+        "path": ROOT / "experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52_retry1.json",
+        "file_sha256": "c051ed9a595735f18cc721e6fbcc09a73ed3cc197c66375f3168323a2c306f94",
+        "content_sha256": "feaead0c4ef1b9aabb46adcd8b7c0923794e2f29478cbdb2193522d44769e6eb",
+    },
+    "v52_retry1_attempt": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/.v52_matched_lora_es_nested_p8_vs_p16_retry1.attempt.json",
+        "file_sha256": "fcba8593976019f086df95b104745cbc341ee738153be0f119b27b2509c0cda4",
+        "content_sha256": "651fc5056314633af4a8694eedaa2b7c35a26a9a11b36e920a182bd18f964a86",
+    },
+    "v52_retry1_failure": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry1/failure_v52.json",
+        "file_sha256": "0f5bdb6b5d42621f1aa25d627ee11706c0203b2372cfec27a5dc126ff0399ac4",
+        "content_sha256": "fc6804d0861b1e1f1e9b71ecd222792e7f8937ce8338161aad461d84dcd19ac3",
+    },
     "v52_original_preregistration": {
         "path": ROOT / "experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52.json",
         "file_sha256": "b8ea48b11a9ea91ba3ece09bc854d74a7a17bb28e6f9496e4f186e0c574eb15d",
@@ -446,11 +468,14 @@ def objective_coefficients_v52(sign_scores: dict) -> dict:
         raise ValueError("v52 objective requires P8/P16 by four actors")
     if not all(np.isfinite(item).all() for item in arrays.values()):
         raise ValueError("v52 objective contains non-finite signed scores")
-    robust_signed = {
-        sign: np.median(item, axis=1).tolist()
+    fixed_four_actor_mean_signed = {
+        sign: [math.fsum(row.tolist()) / ACTORS_V52 for row in item]
         for sign, item in arrays.items()
     }
-    signed = robust_signed["plus"] + robust_signed["minus"]
+    signed = (
+        fixed_four_actor_mean_signed["plus"]
+        + fixed_four_actor_mean_signed["minus"]
+    )
     ranks = _average_tie_ranks_v52(signed)
     utilities = (ranks / (len(signed) - 1) - 0.5).tolist()
     plus = utilities[:population_size]
@@ -460,7 +485,8 @@ def objective_coefficients_v52(sign_scores: dict) -> dict:
     ]
     return {
         "schema": "nested-population-centered-ranks-v52",
-        "robust_signed_scores": robust_signed,
+        "actor_reducer": "fixed mean in ascending actor-rank order",
+        "fixed_four_actor_mean_signed_scores": fixed_four_actor_mean_signed,
         "signed_centered_rank_utilities": {"plus": plus, "minus": minus},
         "coefficients": coefficients,
         "zero_spread": all(value == 0.0 for value in coefficients),

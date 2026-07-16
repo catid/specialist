@@ -15,11 +15,11 @@ import lora_es_nested_population_v52 as design
 ROOT = Path(__file__).resolve().parent
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "matched_lora_es_nested_p8_vs_p16_v52_retry1.json"
+    "matched_lora_es_nested_p8_vs_p16_v52_retry2.json"
 ).resolve()
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
-    "v52_matched_lora_es_nested_p8_vs_p16_retry1"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry2"
 ).resolve()
 TRAIN_PANEL_SELECTION_SEED_V52 = "v52-v434-content-free-generation-panel-20260716"
 
@@ -349,6 +349,23 @@ def _sealed_parent_receipts_v52() -> dict:
         is not False
         or values["v52_pre_model_failure"].get("sealed_holdout_opened")
         is not False
+        or values["v52_retry1_preregistration"].get("retry_revision")
+        != "retry1_launcher_environment_only"
+        or values["v52_retry1_attempt"].get("launcher", {}).get("matched")
+        is not True
+        or values["v52_retry1_failure"].get("type") != "RuntimeError"
+        or values["v52_retry1_failure"].get("message")
+        != "v43i zero-effect base score differs across actors"
+        or values["v52_retry1_failure"].get("strict_cleanup", {}).get(
+            "all_four_gcs_states_removed"
+        ) is not True
+        or values["v52_retry1_failure"].get("final_gpu_idle", {}).get(
+            "all_four_compute_process_lists_empty"
+        ) is not True
+        or values["v52_retry1_failure"].get("protected_semantics_opened")
+        is not False
+        or design.file_sha256_v52(design.RETRY1_GPU_LOG_V52)
+        != design.RETRY1_GPU_LOG_SHA256_V52
     ):
         raise RuntimeError("v52 sealed V48E/V51 evidence contract changed")
     return {
@@ -370,7 +387,7 @@ def build_v52() -> dict:
     artifacts = {
         "attempt": str(
             RUN_DIR.parent
-            / ".v52_matched_lora_es_nested_p8_vs_p16_retry1.attempt.json"
+            / ".v52_matched_lora_es_nested_p8_vs_p16_retry2.attempt.json"
         ),
         "run_directory": str(RUN_DIR),
         "population": str(RUN_DIR / "nested_population_v52.json"),
@@ -378,6 +395,12 @@ def build_v52() -> dict:
         "p16_train_gate": str(RUN_DIR / "p16_train_gate_v52.json"),
         "p8_candidate_snapshot": str(RUN_DIR / "p8_candidate_v52"),
         "p16_candidate_snapshot": str(RUN_DIR / "p16_candidate_v52"),
+        "preinstall_actor_baseline": str(
+            RUN_DIR / "preinstall_actor_baseline_v52.json"
+        ),
+        "master_identity_audit": str(
+            RUN_DIR / "master_identity_audit_v52.json"
+        ),
         "numeric_calibration": str(RUN_DIR / "numeric_calibration_v52.json"),
         "anchor_calibration": str(RUN_DIR / "anchor_calibration_v52.json"),
         "ood_aggregate": str(RUN_DIR / "ood_first_aggregate_v52.json"),
@@ -409,7 +432,7 @@ def build_v52() -> dict:
         "single_scientific_variable": variable,
         "launcher_fix": {
             "required_python": str(design.REQUIRED_PYTHON_V52),
-            "change_scope": "interpreter_and_fresh_retry_artifact_paths_only",
+            "change_scope": "fresh_retry2_artifact_paths_only",
             "original_preregistration_file_sha256": (
                 design.SEALED_NUMERIC_PARENTS_V52[
                     "v52_original_preregistration"
@@ -430,7 +453,33 @@ def build_v52() -> dict:
             ]["file_sha256"],
             "failure_type": "ModuleNotFoundError",
             "failure_before_model_or_gpu_actor_creation": True,
+            "retry1_failure_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry1_failure"
+                ]["file_sha256"]
+            ),
+            "retry1_gpu_log_file_sha256": design.RETRY1_GPU_LOG_SHA256_V52,
             "science_seeds_master_data_and_gates_changed": False,
+        },
+        "measurement_contract": {
+            "reason": (
+                "retry1 proved inherited cross-actor bit-exact score equality "
+                "is invalid on this four-TP1 runtime"
+            ),
+            "cross_actor_score_bit_equality_required": False,
+            "four_actor_master_identity_consensus_required": True,
+            "four_actor_runtime_identity_consensus_required": True,
+            "preinstall_actor_indexed_score_and_output_manifests_persisted": True,
+            "postinstall_each_actor_must_equal_own_preinstall": True,
+            "postpopulation_each_actor_must_equal_own_preinstall": True,
+            "final_restored_each_actor_must_equal_own_preinstall": True,
+            "population_actor_reducer": (
+                "fixed arithmetic mean in ascending actor-rank order"
+            ),
+            "population_actor_count": 4,
+            "missing_or_reordered_actor": "fail_closed",
+            "numeric_tolerance_used_for_identity": False,
+            "raw_questions_answers_or_outputs_persisted": False,
         },
         "arms": arms,
         "fixed_recipe": {
@@ -620,7 +669,7 @@ def build_v52() -> dict:
         "document_disjoint_shadow_gate", "treatment_success_rule",
         "stop_go_gates", "compute_plan",
     )
-    original = design.sealed_json_v52("v52_original_preregistration")
+    original = design.sealed_json_v52("v52_retry1_preregistration")
     original_science = {key: original[key] for key in science_keys}
     retry_science = {key: result[key] for key in science_keys}
     if retry_science != original_science:
@@ -634,6 +683,7 @@ def build_v52() -> dict:
             retry_science
         ),
         "byte_equivalent": True,
+        "explicit_excluded_difference": "measurement_contract",
     }
     result["content_sha256_before_self_field"] = design.canonical_sha256_v52(
         result

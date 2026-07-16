@@ -1,0 +1,135 @@
+{
+  "content_sha256_before_self_field": "fc6804d0861b1e1f1e9b71ecd222792e7f8937ce8338161aad461d84dcd19ac3",
+  "emergency_exact_abort": null,
+  "emergency_exact_abort_failure": null,
+  "emergency_exact_restore": null,
+  "emergency_exact_restore_failure": null,
+  "failed_at_utc": "2026-07-16T04:48:26.101951+00:00",
+  "final_gpu_idle": {
+    "all_four_compute_process_lists_empty": true
+  },
+  "message": "v43i zero-effect base score differs across actors",
+  "p16_train_gate": null,
+  "p8_train_gate": null,
+  "protected_semantics_opened": false,
+  "schema": "nested-population-failure-v52",
+  "sealed_holdout_opened": false,
+  "strict_cleanup": {
+    "after": [
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "5b28cc65add4f33ecc58071f82e1127bc4dbea52446a5d4013e15248"
+        },
+        "placement_group_id": "e9149d3e95babdd76d823dd5415801000000",
+        "state": "REMOVED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "5b28cc65add4f33ecc58071f82e1127bc4dbea52446a5d4013e15248"
+        },
+        "placement_group_id": "8397bd51b26f368cc68b3fabb5d901000000",
+        "state": "REMOVED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "5b28cc65add4f33ecc58071f82e1127bc4dbea52446a5d4013e15248"
+        },
+        "placement_group_id": "02284c93873a3b1c9fc0d278c31c01000000",
+        "state": "REMOVED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "5b28cc65add4f33ecc58071f82e1127bc4dbea52446a5d4013e15248"
+        },
+        "placement_group_id": "4ef883d3a6bf45e2ec8e8c5df8c401000000",
+        "state": "REMOVED",
+        "strategy": "PACK"
+      }
+    ],
+    "all_four_gcs_states_removed": true,
+    "before": [
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "5b28cc65add4f33ecc58071f82e1127bc4dbea52446a5d4013e15248"
+        },
+        "placement_group_id": "e9149d3e95babdd76d823dd5415801000000",
+        "state": "CREATED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "5b28cc65add4f33ecc58071f82e1127bc4dbea52446a5d4013e15248"
+        },
+        "placement_group_id": "8397bd51b26f368cc68b3fabb5d901000000",
+        "state": "CREATED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "5b28cc65add4f33ecc58071f82e1127bc4dbea52446a5d4013e15248"
+        },
+        "placement_group_id": "02284c93873a3b1c9fc0d278c31c01000000",
+        "state": "CREATED",
+        "strategy": "PACK"
+      },
+      {
+        "bundles": {
+          "0": {
+            "GPU": 1.0
+          }
+        },
+        "bundles_to_node_id": {
+          "0": "5b28cc65add4f33ecc58071f82e1127bc4dbea52446a5d4013e15248"
+        },
+        "placement_group_id": "4ef883d3a6bf45e2ec8e8c5df8c401000000",
+        "state": "CREATED",
+        "strategy": "PACK"
+      }
+    ],
+    "driver_scoped_non_detached_by_construction": true,
+    "engine_kill_count": 4,
+    "placement_group_remove_count": 4,
+    "schema": "eggroll-es-placement-group-cleanup-v38a"
+  },
+  "strict_cleanup_failure": null,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_lora_es_nested_population_v52.py\", line 1429, in _execute_v52\n    preinstall = prior._exact_base_score(\n                 ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_es_multi_anchor_v43i.py\", line 485, in _exact_base_score\n    raise RuntimeError(\"v43i zero-effect base score differs across actors\")\nRuntimeError: v43i zero-effect base score differs across actors\n",
+  "type": "RuntimeError"
+}

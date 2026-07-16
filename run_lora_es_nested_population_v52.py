@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import queue
 import sys
 import threading
@@ -28,14 +29,14 @@ import lora_es_nested_population_v52 as design
 ROOT = Path(__file__).resolve().parent
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "matched_lora_es_nested_p8_vs_p16_v52_retry1.json"
+    "matched_lora_es_nested_p8_vs_p16_v52_retry2.json"
 ).resolve()
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
-    "v52_matched_lora_es_nested_p8_vs_p16_retry1"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry2"
 ).resolve()
 ATTEMPT = (
-    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16_retry1.attempt.json"
+    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16_retry2.attempt.json"
 ).resolve()
 WORKER_EXTENSION_V52 = (
     "eggroll_es_worker_lora_v52.LoRAAdapterStateWorkerExtensionV52"
@@ -44,6 +45,8 @@ P8_SNAPSHOT = (RUN_DIR / "p8_candidate_v52").resolve()
 P16_SNAPSHOT = (RUN_DIR / "p16_candidate_v52").resolve()
 NUMERIC_CALIBRATION = (RUN_DIR / "numeric_calibration_v52.json").resolve()
 ANCHOR_CALIBRATION = (RUN_DIR / "anchor_calibration_v52.json").resolve()
+PREINSTALL_BASELINE = (RUN_DIR / "preinstall_actor_baseline_v52.json").resolve()
+MASTER_IDENTITY_AUDIT = (RUN_DIR / "master_identity_audit_v52.json").resolve()
 
 
 def parser() -> argparse.ArgumentParser:
@@ -69,6 +72,8 @@ def _expected_artifacts_v52() -> dict:
         "p16_train_gate": str(RUN_DIR / "p16_train_gate_v52.json"),
         "p8_candidate_snapshot": str(P8_SNAPSHOT),
         "p16_candidate_snapshot": str(P16_SNAPSHOT),
+        "preinstall_actor_baseline": str(PREINSTALL_BASELINE),
+        "master_identity_audit": str(MASTER_IDENTITY_AUDIT),
         "numeric_calibration": str(NUMERIC_CALIBRATION),
         "anchor_calibration": str(ANCHOR_CALIBRATION),
         "ood_aggregate": str(RUN_DIR / "ood_first_aggregate_v52.json"),
@@ -321,11 +326,26 @@ def load_preregistration_v52(args) -> dict:
         or value.get("artifacts") != _expected_artifacts_v52()
         or launcher.get("required_python") != str(design.REQUIRED_PYTHON_V52)
         or launcher.get("change_scope")
-        != "interpreter_and_fresh_retry_artifact_paths_only"
+        != "fresh_retry2_artifact_paths_only"
         or launcher.get("failure_before_model_or_gpu_actor_creation") is not True
         or launcher.get("science_seeds_master_data_and_gates_changed") is not False
         or value.get("retry_science_equivalence", {}).get("byte_equivalent")
         is not True
+        or value.get("measurement_contract", {}).get(
+            "cross_actor_score_bit_equality_required"
+        ) is not False
+        or value.get("measurement_contract", {}).get(
+            "postinstall_each_actor_must_equal_own_preinstall"
+        ) is not True
+        or value.get("measurement_contract", {}).get(
+            "postpopulation_each_actor_must_equal_own_preinstall"
+        ) is not True
+        or value.get("measurement_contract", {}).get(
+            "final_restored_each_actor_must_equal_own_preinstall"
+        ) is not True
+        or value.get("measurement_contract", {}).get(
+            "population_actor_reducer"
+        ) != "fixed arithmetic mean in ascending actor-rank order"
         or recipe.get("matched_initialization") != str(design.SOURCE_V52)
         or recipe.get("staged_initialization") != str(design.STAGED_V52)
         or recipe.get("source_weights_sha256")
@@ -380,6 +400,106 @@ def require_live_interpreter_v52(executable: str | None = None) -> dict:
         "required_python": str(design.REQUIRED_PYTHON_V52),
         "observed_python": str(observed),
         "matched": True,
+    }
+
+
+def actor_indexed_base_score_v52(
+    trainer, prior, bundle: dict, dense_items: list, requests: list,
+) -> dict:
+    """Seal actor-local score/output identities without cross-actor equality."""
+    actors = prior._generate_actor_scores(
+        trainer, bundle, dense_items, requests,
+    )
+    if [item.get("actor_rank") for item in actors] != list(
+        range(design.ACTORS_V52)
+    ):
+        raise RuntimeError("v52 actor-indexed baseline coverage changed")
+    records = []
+    for actor_rank, actor in enumerate(actors):
+        score = {
+            key: value for key, value in actor.items() if key != "actor_rank"
+        }
+        aggregate = score.get("aggregate", {})
+        manifests = {
+            "dense_result_sha256": aggregate.get("dense_result_sha256"),
+            "unit_aggregate_sha256": aggregate.get("unit_aggregate_sha256"),
+            "scored_answer_tokens": aggregate.get("scored_answer_tokens"),
+            "unit_count": len(score.get("units", [])),
+        }
+        if (
+            not all(
+                isinstance(manifests[key], str)
+                and len(manifests[key]) == 64
+                for key in ("dense_result_sha256", "unit_aggregate_sha256")
+            )
+            or manifests["unit_count"] != 208
+            or not isinstance(manifests["scored_answer_tokens"], int)
+            or manifests["scored_answer_tokens"] <= 0
+        ):
+            raise RuntimeError("v52 actor-indexed output manifest changed")
+        records.append({
+            "actor_rank": actor_rank,
+            "score": score,
+            "exact_score_sha256": design.canonical_sha256_v52(score),
+            "output_manifests": manifests,
+        })
+    means = {
+        name: math.fsum(
+            float(item["score"]["aggregate"][name]) for item in records
+        ) / design.ACTORS_V52
+        for name in ("equal_unit_mean", "unweighted_row_mean")
+    }
+    score_hashes = [item["exact_score_sha256"] for item in records]
+    result = {
+        "schema": "actor-indexed-zero-effect-base-score-v52",
+        "actors": records,
+        "actor_order": list(range(design.ACTORS_V52)),
+        "fixed_four_actor_mean": means,
+        "actor_reducer": "fixed mean in ascending actor-rank order",
+        "cross_actor_exact_score_consensus": len(set(score_hashes)) == 1,
+        "cross_actor_exact_score_consensus_required": False,
+        "raw_questions_answers_or_outputs_persisted": False,
+        "protected_semantics_opened": False,
+    }
+    result["content_sha256"] = design.canonical_sha256_v52(result)
+    return result
+
+
+def require_actor_self_score_identity_v52(
+    baseline: dict, observed: dict, *, phase: str,
+) -> dict:
+    before = baseline.get("actors", [])
+    after = observed.get("actors", [])
+    if (
+        [item.get("actor_rank") for item in before]
+        != list(range(design.ACTORS_V52))
+        or [item.get("actor_rank") for item in after]
+        != list(range(design.ACTORS_V52))
+    ):
+        raise RuntimeError(f"v52 {phase} actor order changed")
+    matches = []
+    for actor_rank, (left, right) in enumerate(zip(before, after, strict=True)):
+        matched = bool(
+            left["exact_score_sha256"] == right["exact_score_sha256"]
+            and left["output_manifests"] == right["output_manifests"]
+            and left["score"] == right["score"]
+        )
+        matches.append({
+            "actor_rank": actor_rank,
+            "baseline_exact_score_sha256": left["exact_score_sha256"],
+            "observed_exact_score_sha256": right["exact_score_sha256"],
+            "score_and_output_manifests_exact": matched,
+        })
+    if not all(item["score_and_output_manifests_exact"] for item in matches):
+        raise RuntimeError(
+            f"v52 {phase} score/output manifest changed within an actor"
+        )
+    return {
+        "schema": "actor-self-score-identity-v52",
+        "phase": phase,
+        "actors": matches,
+        "all_four_actor_self_identities_exact": True,
+        "numeric_tolerance_used": False,
     }
 
 
@@ -1311,7 +1431,7 @@ def evaluate_train_arm_v52(
 @contextmanager
 def patched_runtime_v52(prior):
     values = {
-        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16_retry1",
+        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16_retry2",
         "RUN_DIR": RUN_DIR,
         "ATTEMPT": ATTEMPT,
         "REPORT": RUN_DIR / "nested_population_report_v52.json",
@@ -1390,6 +1510,11 @@ def _execute_v52(preregistration: dict) -> int:
     p8_gate = p16_gate = None
     numeric_calibration = anchor_calibration = None
     post_numeric_calibration = post_anchor_calibration = None
+    preinstall = postinstall = post_population = final_score = None
+    preinstall_artifact = master_identity_artifact = None
+    postinstall_identity = post_numeric_identity = None
+    post_anchor_identity = postpopulation_identity = final_identity = None
+    installations = certificates = references = final_certificates = None
     adapter_contract = None
     cleanup = idle = gpu = None
     try:
@@ -1426,8 +1551,18 @@ def _execute_v52(preregistration: dict) -> int:
                 v48b.prepare_v48b(trainer, bundle, anchor_bundle)
             )
             phase.value = "activate_matched_initialization"
-            preinstall = prior._exact_base_score(
-                trainer, bundle, dense_items, requests,
+            preinstall = actor_indexed_base_score_v52(
+                trainer, prior, bundle, dense_items, requests,
+            )
+            preinstall_artifact = _persist_v52(
+                prior, PREINSTALL_BASELINE, {
+                    "schema": "preinstall-actor-indexed-baseline-v52",
+                    "status": "complete_before_canonical_master_install",
+                    "baseline": preinstall,
+                    "staged_adapter_contract": adapter_contract,
+                    "protected_semantics_opened": False,
+                    "raw_questions_answers_or_outputs_persisted": False,
+                },
             )
             phase.value = "install_canonical_master"
             installations = v40a._rpc_all(
@@ -1471,11 +1606,31 @@ def _execute_v52(preregistration: dict) -> int:
                 reference_generation
             }:
                 raise RuntimeError("v52 reference generation differs by rank")
-            postinstall = prior._exact_base_score(
-                trainer, bundle, dense_items, requests,
+            postinstall = actor_indexed_base_score_v52(
+                trainer, prior, bundle, dense_items, requests,
             )
-            if preinstall["consensus"] != postinstall["consensus"]:
-                raise RuntimeError("v52 canonical install changed base score")
+            postinstall_identity = require_actor_self_score_identity_v52(
+                preinstall, postinstall, phase="postinstall",
+            )
+            master_identity_artifact = _persist_v52(
+                prior, MASTER_IDENTITY_AUDIT, {
+                    "schema": "equal-v434-master-identity-audit-v52",
+                    "status": "complete_before_calibration_or_population",
+                    "installations": installations,
+                    "certificates": certificates,
+                    "master_sha256": master["sha256"],
+                    "runtime_values_sha256": master_runtime_sha,
+                    "all_four_fp32_master_identities_exact": True,
+                    "all_four_bf16_runtime_identities_exact": True,
+                    "postinstall_actor_self_score_identity": (
+                        postinstall_identity
+                    ),
+                    "preinstall_baseline_file_sha256": v40a.file_sha256(
+                        PREINSTALL_BASELINE
+                    ),
+                    "protected_semantics_opened": False,
+                },
+            )
 
             phase.value = "shared_v434_numeric_calibration"
             numeric_calibration = prior._calibrate_numeric_path(
@@ -1485,22 +1640,26 @@ def _execute_v52(preregistration: dict) -> int:
             fresh_calibration_maximum = numeric_bounds[
                 "equal_unit_mean"
             ]["observed_maximum_repeat_actor_spread"]
-            post_numeric_calibration = prior._exact_base_score(
-                trainer, bundle, dense_items, requests,
+            post_numeric_calibration = actor_indexed_base_score_v52(
+                trainer, prior, bundle, dense_items, requests,
             )
-            if post_numeric_calibration["consensus"] != postinstall["consensus"]:
-                raise RuntimeError("v52 numeric calibration restore changed base score")
+            post_numeric_identity = require_actor_self_score_identity_v52(
+                preinstall, post_numeric_calibration,
+                phase="post_numeric_calibration",
+            )
 
             phase.value = "shared_v434_anchor_calibration"
             anchor_calibration = prior._calibrate_anchor_path(
                 trainer, full_anchors, master["sha256"], master_runtime_sha,
             )
             anchor_margins = anchor_calibration["calibrated_margins"]
-            post_anchor_calibration = prior._exact_base_score(
-                trainer, bundle, dense_items, requests,
+            post_anchor_calibration = actor_indexed_base_score_v52(
+                trainer, prior, bundle, dense_items, requests,
             )
-            if post_anchor_calibration["consensus"] != postinstall["consensus"]:
-                raise RuntimeError("v52 anchor calibration restore changed base score")
+            post_anchor_identity = require_actor_self_score_identity_v52(
+                preinstall, post_anchor_calibration,
+                phase="post_anchor_calibration",
+            )
 
             phase.value = "nested_p16_population_v52"
             population = replicated_population_v52(
@@ -1513,11 +1672,12 @@ def _execute_v52(preregistration: dict) -> int:
                 prior, population_path, population,
             )
             phase.value = "verify_post_population_master"
-            post_population = prior._exact_base_score(
-                trainer, bundle, dense_items, requests,
+            post_population = actor_indexed_base_score_v52(
+                trainer, prior, bundle, dense_items, requests,
             )
-            if post_population["consensus"] != postinstall["consensus"]:
-                raise RuntimeError("v52 population changed exact master score")
+            postpopulation_identity = require_actor_self_score_identity_v52(
+                preinstall, post_population, phase="postpopulation",
+            )
 
             full_plan = prior.fused.fused_requests_v43i(
                 requests, full_anchors,
@@ -1548,15 +1708,17 @@ def _execute_v52(preregistration: dict) -> int:
             p16_artifact = _persist_v52(prior, p16_gate_path, p16_gate)
 
             phase.value = "verify_final_exact_master"
-            final_score = prior._exact_base_score(
-                trainer, bundle, dense_items, requests,
+            final_score = actor_indexed_base_score_v52(
+                trainer, prior, bundle, dense_items, requests,
+            )
+            final_identity = require_actor_self_score_identity_v52(
+                preinstall, final_score, phase="final_restored",
             )
             final_certificates = v40a._rpc_all(
                 trainer, "adapter_state_certificate_v41a",
             )
             if (
-                final_score["consensus"] != postinstall["consensus"]
-                or any(
+                any(
                     item["current_identity"] != master
                     or item["materialization"]["runtime_values_sha256"]
                     != master_runtime_sha
@@ -1604,11 +1766,31 @@ def _execute_v52(preregistration: dict) -> int:
             "score_audits": {
                 "preinstall": preinstall,
                 "postinstall": postinstall,
+                "postinstall_actor_self_identity": postinstall_identity,
                 "post_numeric_calibration": post_numeric_calibration,
+                "post_numeric_actor_self_identity": post_numeric_identity,
                 "post_anchor_calibration": post_anchor_calibration,
+                "post_anchor_actor_self_identity": post_anchor_identity,
                 "post_population": post_population,
+                "postpopulation_actor_self_identity": postpopulation_identity,
                 "final": final_score,
-                "exact_master_score_preserved": True,
+                "final_actor_self_identity": final_identity,
+                "each_actor_score_and_output_manifest_preserved": True,
+                "cross_actor_bitwise_score_equality_required": False,
+            },
+            "preinstall_actor_baseline": {
+                "path": str(PREINSTALL_BASELINE),
+                "file_sha256": v40a.file_sha256(PREINSTALL_BASELINE),
+                "content_sha256": preinstall_artifact[
+                    "content_sha256_before_self_field"
+                ],
+            },
+            "master_identity_audit": {
+                "path": str(MASTER_IDENTITY_AUDIT),
+                "file_sha256": v40a.file_sha256(MASTER_IDENTITY_AUDIT),
+                "content_sha256": master_identity_artifact[
+                    "content_sha256_before_self_field"
+                ],
             },
             "final_state_certificates": final_certificates,
             "shared_fresh_calibration": {
@@ -1752,6 +1934,26 @@ def _execute_v52(preregistration: dict) -> int:
             "traceback": traceback.format_exc(),
             "p8_train_gate": p8_gate,
             "p16_train_gate": p16_gate,
+            "actor_indexed_score_audit": {
+                "preinstall": preinstall,
+                "postinstall": postinstall,
+                "postinstall_identity": postinstall_identity,
+                "post_numeric_calibration": post_numeric_calibration,
+                "post_numeric_identity": post_numeric_identity,
+                "post_anchor_calibration": post_anchor_calibration,
+                "post_anchor_identity": post_anchor_identity,
+                "post_population": post_population,
+                "postpopulation_identity": postpopulation_identity,
+                "final": final_score,
+                "final_identity": final_identity,
+            },
+            "adapter_contract": adapter_contract,
+            "installations": installations,
+            "certificates": certificates,
+            "references": references,
+            "final_certificates": final_certificates,
+            "preinstall_actor_baseline_artifact": preinstall_artifact,
+            "master_identity_audit_artifact": master_identity_artifact,
             "emergency_exact_abort": emergency_abort,
             "emergency_exact_abort_failure": emergency_abort_failure,
             "emergency_exact_restore": emergency_restore,
