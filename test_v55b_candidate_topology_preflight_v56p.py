@@ -56,3 +56,15 @@ def test_v56p_parent_patch_is_scoped_and_points_at_fixed_snapshot():
         assert parent.RUN_DIR == runtime.RUN_DIR
         assert parent._lora_request is runtime.lora_request_v56p
     assert parent.ADAPTER_FILE == old
+
+
+def test_v56p_resolver_recovery_installs_callable_surface():
+    class Trainer:
+        pass
+
+    calls = []
+    trainer = runtime.attach_resolver_v56p(
+        Trainer(), lambda handles: calls.append(handles) or ["resolved"]
+    )
+    assert trainer._resolve(["handle"]) == ["resolved"]
+    assert calls == [["handle"]]

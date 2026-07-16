@@ -20,14 +20,22 @@ FAILED_ATTEMPT = (
     FAILED_RUN_DIR.parent / f".{FAILED_EXPERIMENT}.attempt.json"
 ).resolve()
 FAILED_FAILURE = (FAILED_RUN_DIR / "failure_v40a.json").resolve()
-EXPERIMENT = "v56p_v55b_candidate_topology_preflight_retry1"
+FAILED_API_EXPERIMENT = "v56p_v55b_candidate_topology_preflight_retry1"
+FAILED_API_RUN_DIR = (
+    ROOT / "experiments/eggroll_es_hpo/runs" / FAILED_API_EXPERIMENT
+).resolve()
+FAILED_API_ATTEMPT = (
+    FAILED_API_RUN_DIR.parent / f".{FAILED_API_EXPERIMENT}.attempt.json"
+).resolve()
+FAILED_API_FAILURE = (FAILED_API_RUN_DIR / "failure_v40a.json").resolve()
+EXPERIMENT = "v56p_v55b_candidate_topology_preflight_retry2"
 RUN_DIR = (ROOT / "experiments/eggroll_es_hpo/runs" / EXPERIMENT).resolve()
 ATTEMPT = (RUN_DIR.parent / f".{EXPERIMENT}.attempt.json").resolve()
 REPORT = (RUN_DIR / "lora_topology_report_v56p.json").resolve()
 GPU_LOG = (RUN_DIR / "gpu_activity_v56p.jsonl").resolve()
 DEFAULT_PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "v55b_candidate_topology_preflight_v56p_retry1.json"
+    "v55b_candidate_topology_preflight_v56p_retry2.json"
 ).resolve()
 BUILDER = (ROOT / "build_v55b_candidate_topology_preflight_v56p.py").resolve()
 TESTS = (ROOT / "test_v55b_candidate_topology_preflight_v56p.py").resolve()
@@ -46,6 +54,10 @@ EXPECTED = {
     "failed_attempt_content": "1b377e4350ddcc48eb095a51c0f06b1f5b01bc8646c69be9ea8caab072b7b482",
     "failed_failure": "022b32b491766d6fff3b89806e4e4e51290c4eb145b3dd69fdb81ab2483a3ef2",
     "failed_failure_content": "60d806e3f37ea3da2d29fbb5091cfb66d93296dab97e7628a2e25ae7601323a5",
+    "failed_api_attempt": "0ada9a1a78fc6158b5eed071289c4febf5507c6ad9491b9daa2f5d8cffcd5bb9",
+    "failed_api_attempt_content": "665f2113b4c146b95bb1ff0896c3a2fe5e25ff5fd892b8c1e149b5a693af49c3",
+    "failed_api_failure": "6e76e50827ecd552fff79057e15e9a574a6f05aaa149c4181a4fc7ea79e2f0e0",
+    "failed_api_failure_content": "e575761b60b0a2b7c89855abfebb54f5a0bd3d4b5ba22dc1d217ab9214a809c6",
 }
 
 
@@ -135,6 +147,8 @@ def implementation_bindings_v56p() -> dict:
         "cleanup_runtime": ROOT / "run_eggroll_es_equal_unit_v38a.py",
         "failed_attempt": FAILED_ATTEMPT,
         "failed_failure": FAILED_FAILURE,
+        "failed_api_attempt": FAILED_API_ATTEMPT,
+        "failed_api_failure": FAILED_API_FAILURE,
     }
     result = {key: file_sha256(path) for key, path in paths.items()}
     result["model_shards_content_sha256"] = parent.MODEL_SHARDS_CONTENT_SHA256
@@ -149,8 +163,21 @@ def recovery_binding_v56p() -> dict:
         raise RuntimeError("V56P failed launch evidence changed")
     attempt = json.loads(FAILED_ATTEMPT.read_text(encoding="utf-8"))
     failure = json.loads(FAILED_FAILURE.read_text(encoding="utf-8"))
+    if (
+        file_sha256(FAILED_API_ATTEMPT) != EXPECTED["failed_api_attempt"]
+        or file_sha256(FAILED_API_FAILURE) != EXPECTED["failed_api_failure"]
+    ):
+        raise RuntimeError("V56P failed API-drift evidence changed")
+    api_attempt = json.loads(FAILED_API_ATTEMPT.read_text(encoding="utf-8"))
+    api_failure = json.loads(FAILED_API_FAILURE.read_text(encoding="utf-8"))
     attempt_content = attempt.pop("content_sha256_before_self_field", None)
     failure_content = failure.pop("content_sha256_before_self_field", None)
+    api_attempt_content = api_attempt.pop(
+        "content_sha256_before_self_field", None
+    )
+    api_failure_content = api_failure.pop(
+        "content_sha256_before_self_field", None
+    )
     if (
         attempt_content != EXPECTED["failed_attempt_content"]
         or attempt_content != canonical_sha256(attempt)
@@ -162,6 +189,16 @@ def recovery_binding_v56p() -> dict:
         or failure.get("type") != "ModuleNotFoundError"
         or failure.get("message") != "No module named 'vllm'"
         or failure.get("dataset_or_evaluation_accessed") is not False
+        or api_attempt_content != EXPECTED["failed_api_attempt_content"]
+        or api_attempt_content != canonical_sha256(api_attempt)
+        or api_failure_content != EXPECTED["failed_api_failure_content"]
+        or api_failure_content != canonical_sha256(api_failure)
+        or api_attempt.get("phase") != "before_model_launch"
+        or api_attempt.get("dataset_or_evaluation_accessed") is not False
+        or api_failure.get("type") != "AttributeError"
+        or api_failure.get("message")
+        != "'TopologyTrainerV40A' object has no attribute '_resolve'"
+        or api_failure.get("dataset_or_evaluation_accessed") is not False
     ):
         raise RuntimeError("V56P failed launch provenance changed")
     return {
@@ -178,6 +215,19 @@ def recovery_binding_v56p() -> dict:
         "recovery_interpreter": str(
             ROOT / "es-at-scale/.venv/bin/python"
         ),
+        "api_drift_failed_experiment": FAILED_API_EXPERIMENT,
+        "api_drift_attempt_file_sha256": EXPECTED["failed_api_attempt"],
+        "api_drift_attempt_content_sha256": EXPECTED[
+            "failed_api_attempt_content"
+        ],
+        "api_drift_failure_file_sha256": EXPECTED["failed_api_failure"],
+        "api_drift_failure_content_sha256": EXPECTED[
+            "failed_api_failure_content"
+        ],
+        "api_drift_failure_type": "AttributeError",
+        "api_drift_failed_after_four_model_loads": True,
+        "api_drift_cleanup_returned_all_gpus_to_4_mib": True,
+        "resolver_recovery": "attach ray.get as trainer._resolve before use",
     }
 
 
@@ -226,6 +276,25 @@ def lora_request_v56p():
     )
 
 
+def attach_resolver_v56p(trainer, resolver):
+    """Install the current V40C resolver surface before any caller uses it."""
+    if not callable(resolver):
+        raise TypeError("V56P resolver must be callable")
+    trainer._resolve = lambda handles: resolver(handles)
+    if not callable(getattr(trainer, "_resolve", None)):
+        raise RuntimeError("V56P trainer resolver installation failed")
+    return trainer
+
+
+_ORIGINAL_MAKE_TRAINER = parent.make_trainer
+
+
+def make_trainer_v56p(preregistration: dict):
+    trainer = _ORIGINAL_MAKE_TRAINER(preregistration)
+    import ray
+    return attach_resolver_v56p(trainer, ray.get)
+
+
 @contextmanager
 def _patched_parent_v56p():
     names = {
@@ -241,6 +310,7 @@ def _patched_parent_v56p():
         "GPU_LOG": GPU_LOG,
         "load_preregistration": load_preregistration_v56p,
         "_lora_request": lora_request_v56p,
+        "make_trainer": make_trainer_v56p,
     }
     previous = {name: getattr(parent, name) for name in names}
     for name, value in names.items():
