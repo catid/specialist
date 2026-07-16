@@ -1,0 +1,70 @@
+{
+  "schema": "site-corpus-provenance",
+  "schema_version": "1.0",
+  "package_id": "usbr_testing_verifying_rope_access_anchors",
+  "retrieved_at": "2026-07-16T14:37:53Z",
+  "retrieval_policy": {
+    "allowed_urls": [
+      "https://usbr.gov/research/projects/detail.cfm?id=6390",
+      "https://usbr.gov/research/projects/download_product.cfm?id=2259"
+    ],
+    "allowed_bodies_retrieved": 2,
+    "protected_document_id": 1018,
+    "protected_document_status": "hard_exclude_no_access",
+    "protected_document_requests": 0,
+    "protected_document_accessed": false,
+    "protected_document_inferred_or_reconstructed": false
+  },
+  "bodies": [
+    {
+      "source_id": "USBR-PROJECT-6390",
+      "source_url": "https://usbr.gov/research/projects/detail.cfm?id=6390",
+      "http_status": 200,
+      "media_type": "text/html;charset=UTF-8",
+      "body_bytes": 23040,
+      "body_sha256": "451093515a67b4043988cc9122f3f567e7df17eb9fdcffd26f096f2f8f8bab0f",
+      "body_sha512": "8f1ae6889878a8abfbbaf178569fef2de69bed89b2438480bffb0851699ab7a86ad2b9919f139bbe6d36b10f3245d17f000787849ae1281945442dcc321d5e96",
+      "retrieved_at": "2026-07-16T14:37:52Z"
+    },
+    {
+      "source_id": "USBR-BULLETIN-2014-09",
+      "source_url": "https://usbr.gov/research/projects/download_product.cfm?id=2259",
+      "http_status": 200,
+      "response_media_type": "application/pdf;charset=UTF-8",
+      "media_type": "application/pdf",
+      "content_disposition_filename": "2014-09-rope.pdf",
+      "body_bytes": 1258428,
+      "body_sha256": "95758fafca146ded6a672a9660f46e233d497cae3012a641dcc3ef17f13ff4e5",
+      "body_sha512": "a050e31194b4c2cc5c8c12fefa83819b5f022f6e142f35b9702dd01038c74fa9d58ffbf30f5056a4904b4d4d23ae6353592dbc13a7012fde7b06e963c01e8874",
+      "retrieved_at": "2026-07-16T14:37:53Z"
+    }
+  ],
+  "pdf_metadata": {
+    "source_id": "USBR-BULLETIN-2014-09",
+    "pages": 2,
+    "format": "PDF 1.6",
+    "encrypted": false,
+    "page_size": "letter",
+    "creator": "Adobe InDesign CS5.5 (7.5)",
+    "producer": "Adobe PDF Library 9.9",
+    "created_at": "2014-09-10T20:34:50Z",
+    "modified_at": "2014-09-10T20:37:55Z"
+  },
+  "rights": {
+    "rights_status": "public_domain_us_federal_work",
+    "rights_basis": "Official Bureau of Reclamation project-page and research-bulletin material prepared and published as federal agency work; 17 U.S.C. 105.",
+    "scope": "eligible USBR-authored qualitative prose only",
+    "component_policy": "Exclude photographs, agency marks, named-person quotes and contacts, third-party standards and organizations, legal text, commercial identities, linked bodies, protected material and any uncertain component."
+  },
+  "audit": {
+    "html_surfaces": 10,
+    "pdf_pages": 2,
+    "pdf_pages_partially_retained": 2,
+    "component_records": 16,
+    "photographs_excluded": 3,
+    "protected_documents_excluded": 1,
+    "text_review": "all material HTML surfaces and both bulletin pages manually read",
+    "visual_review": "both rendered bulletin pages manually inspected in one ordered contact sheet",
+    "direct_training_ready": true
+  }
+}

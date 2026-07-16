@@ -1,0 +1,64 @@
+{
+  "schema": "site-corpus-manifest",
+  "schema_version": "1.0",
+  "corpus_schema": "non-bondage-rope-access-qualitative-evidence-markdown",
+  "corpus_schema_version": "1.0",
+  "package_id": "usbr_testing_verifying_rope_access_anchors",
+  "source_ids": [
+    "USBR-PROJECT-6390",
+    "USBR-BULLETIN-2014-09"
+  ],
+  "evidence_domain": "non-bondage occupational rope-access anchor research uncertainty and qualitative findings",
+  "rights_status": "public_domain_us_federal_work",
+  "direct_training_ready": true,
+  "statistics": {
+    "allowed_source_bodies": 2,
+    "protected_source_bodies_accessed": 0,
+    "html_surfaces_audited": 10,
+    "pdf_pages_audited": 2,
+    "pdf_pages_partially_retained": 2,
+    "component_records": 16,
+    "photographs_excluded": 3,
+    "corpus_words": 1300,
+    "claim_paragraphs": 27,
+    "claim_citations": 27
+  },
+  "artifacts": {
+    "CORPUS.md": {
+      "bytes": 10098,
+      "sha256": "f54652c875800b70adb64183a3288630507983d6df59be9d7f9a1be706b3c8bf"
+    },
+    "README.md": {
+      "bytes": 1687,
+      "sha256": "0c1b6af3442b2fd75b478231ea54ae566c0d633fdcbd7bbde92eea06ab3435c3"
+    },
+    "REPORT.md": {
+      "bytes": 4661,
+      "sha256": "0053314ad1a1f0ee431890fd683565e88b579459e6bbcea8e7f87e09543bd6a2"
+    },
+    "components.jsonl": {
+      "bytes": 5633,
+      "sha256": "9b6f42c76a33edc880e2db416feae4637ad7b0ca5361a70aadf296137835dd8b"
+    },
+    "dispositions.jsonl": {
+      "bytes": 1014,
+      "sha256": "7037c38cc11949e0437d16bd7734ec1a17c8ae20a4c5115536cc1b20ff82508b"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 3093,
+      "sha256": "1b0a91e72eb6770aaeaa4924a0ee9b9a0b3f235d57349c249cd41a4cf7ff48fb"
+    },
+    "sources.jsonl": {
+      "bytes": 2594,
+      "sha256": "1f887d4c07e5fe31847eb3f45a673e8add2240f50a71f6f0a9f00d0d84e34ae1"
+    },
+    "surfaces.jsonl": {
+      "bytes": 3353,
+      "sha256": "ed722b9d69899d9c7494a1c1384b7f7cf7588ffe8f48dd8990b5bccb2b6e3d4e"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 15087,
+      "sha256": "e53baf9e0acce18646922661437a1c8aa9e2362addf4ad54eadb7fef3f0361ae"
+    }
+  }
+}
