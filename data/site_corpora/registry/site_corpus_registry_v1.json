@@ -58,6 +58,77 @@
       "whitespace_delimited_word_count": 2519
     },
     {
+      "artifact_id": "canonical-markdown:coir_ropes_french_polynesia_2024",
+      "byte_length": 7296,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/coir_ropes_french_polynesia_2024/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest@1.0",
+        "version": null
+      },
+      "manifest_sha256": "181abfd09af9ee10f7db7c7e925f137bd93fabf8daf58e364a9ebf2dc81243ab",
+      "markdown_path": "data/site_corpora/coir_ropes_french_polynesia_2024/CORPUS.md",
+      "markdown_sha256": "3cc2a6007de29f2e8d8f6eda186fa75f4ce7a1064fb0a86c8e84b55ba89f7948",
+      "non_qa": true,
+      "qwen36_token_count": 1808,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:a0340ccb3780a10179fa5bff0dcac0ec924d1b83fc5f7b544ece821e4c535342",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "coir_ropes_french_polynesia_2024",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The official Ifremer-hosted version-of-record PDF, its XMP metadata, and DOI metadata identify the article as Creative Commons Attribution 4.0; the manual adaptation records authorship, DOI, license, changes, no endorsement, disclosures, and component exclusions.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "limitations": [
+          "All figures, tables, values, equations, recipes, methods, sample labels, products, ratings, selections, life-cycle results, software workflows, acknowledgements, references, cited-source bodies, and separately contributed visual components are excluded.",
+          "The corpus preserves Polyacht material supply, an employee-author relationship, the authors' no-influence statement, data-on-request status, and the absence of a funding statement without inferring absence of funding.",
+          "The tested locally sourced coir fibers and prototype finished ropes in French Polynesian pearl-farming laboratory and modeled life-cycle contexts cannot establish properties or practices for jute, hemp, cleaning, hygiene, body contact, load-bearing, bondage, or human suspension."
+        ],
+        "promotion_gate": "ready_with_attribution_checksum_component_audit_conflict_disclosure_and_material_domain_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "cc_by_article_scope_and_french_polynesian_pearl_farming_context_required",
+        "construction_quality_and_wet_retention_findings_are_source_specific",
+        "individual_coir_fiber_behavior_did_not_by_itself_predict_finished_rope_behavior",
+        "no_body_contact_upline_anchor_hardpoint_bondage_restraint_lowering_or_human_suspension_transfer",
+        "no_figures_tables_values_recipes_methods_products_lca_results_or_cited_source_bodies",
+        "no_jute_hemp_hygiene_cleaning_care_drying_storage_retirement_knots_frictions_or_working_load_transfer"
+      ],
+      "source_document_identity": {
+        "article_number": "100111",
+        "authors": [
+          "Louis Le Gué",
+          "Peter Davies",
+          "Mael Arhant",
+          "Benoit Vincent",
+          "Benoit Parnaudeau"
+        ],
+        "canonical_url": "https://doi.org/10.1016/j.clcb.2024.100111",
+        "doi": "10.1016/j.clcb.2024.100111",
+        "identity_type": "journal_article",
+        "issue_date": "December 2024",
+        "journal": "Cleaner and Circular Bioeconomy",
+        "official_pdf_sha256": "385b2cb3184a64c4c78979a894d3f715d449197ed526a0af5149767996ec85f3",
+        "official_pdf_url": "https://archimer.ifremer.fr/doc/00914/102595/113967.pdf",
+        "source_resource_id": "coir_ropes_french_polynesia_2024",
+        "version_of_record_online_date": "2024-10-05",
+        "volume": "9"
+      },
+      "source_document_identity_sha256": "a0340ccb3780a10179fa5bff0dcac0ec924d1b83fc5f7b544ece821e4c535342",
+      "source_label": "Coir ropes as a low-tech circular alternative to synthetic ropes in French Polynesia pearl farming",
+      "unicode_word_count": 967,
+      "whitespace_delimited_word_count": 954
+    },
+    {
       "artifact_id": "canonical-markdown:crash_restraint",
       "byte_length": 115628,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1879,7 +1950,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "c30aa6d40539fa645eb6902bc5f477b5dad19a961d371c6c3016010a109c44be"
+    "sha256": "2f3acaace1a80d3accdc88ea16ffcb975a269ba852dc64662886b1fa8f6df735"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1918,7 +1989,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "722f5416cfc2736b86c348952e68a698dc59114ad087970a7eb3b34cb958a896",
+  "source_tree_fingerprint_sha256": "7b22820da72020386bb83e276480518fb776549c64a7a83020f48a4721205668",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1928,11 +1999,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 32,
-    "byte_length": 4182314,
-    "qwen36_token_count": 1211136,
-    "source_document_split_group_count": 32,
-    "unicode_word_count": 550668,
-    "whitespace_delimited_word_count": 438527
+    "artifact_count": 33,
+    "byte_length": 4189610,
+    "qwen36_token_count": 1212944,
+    "source_document_split_group_count": 33,
+    "unicode_word_count": 551635,
+    "whitespace_delimited_word_count": 439481
   }
 }

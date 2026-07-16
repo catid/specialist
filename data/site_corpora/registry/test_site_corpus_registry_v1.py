@@ -373,6 +373,50 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
         }:
             self.assertIn(flag, hse["safety_transfer_flags"])
 
+    def test_coir_rope_identity_rights_and_transfer_gate_are_exact(self) -> None:
+        coir = self.by_id["coir_ropes_french_polynesia_2024"]
+        identity = coir["source_document_identity"]
+        self.assertEqual(identity["doi"], "10.1016/j.clcb.2024.100111")
+        self.assertEqual(identity["journal"], "Cleaner and Circular Bioeconomy")
+        self.assertEqual(identity["article_number"], "100111")
+        self.assertEqual(
+            identity["authors"],
+            [
+                "Louis Le Gué",
+                "Peter Davies",
+                "Mael Arhant",
+                "Benoit Vincent",
+                "Benoit Parnaudeau",
+            ],
+        )
+        self.assertEqual(
+            identity["official_pdf_sha256"],
+            "385b2cb3184a64c4c78979a894d3f715d449197ed526a0af5149767996ec85f3",
+        )
+        self.assertEqual(
+            coir["markdown_sha256"],
+            "3cc2a6007de29f2e8d8f6eda186fa75f4ce7a1064fb0a86c8e84b55ba89f7948",
+        )
+        self.assertEqual(coir["qwen36_token_count"], 1808)
+        self.assertEqual(coir["rights_basis"]["status"], "explicit_open_license")
+        self.assertEqual(coir["rights_basis"]["license"], "CC BY 4.0")
+        rights_text = json.dumps(coir["rights_basis"], sort_keys=True).lower()
+        for marker in {
+            "polyacht material supply",
+            "employee-author relationship",
+            "absence of a funding statement without inferring absence of funding",
+            "separately contributed visual components",
+        }:
+            self.assertIn(marker, rights_text)
+        for flag in {
+            "construction_quality_and_wet_retention_findings_are_source_specific",
+            "individual_coir_fiber_behavior_did_not_by_itself_predict_finished_rope_behavior",
+            "no_figures_tables_values_recipes_methods_products_lca_results_or_cited_source_bodies",
+            "no_jute_hemp_hygiene_cleaning_care_drying_storage_retirement_knots_frictions_or_working_load_transfer",
+            "no_body_contact_upline_anchor_hardpoint_bondage_restraint_lowering_or_human_suspension_transfer",
+        }:
+            self.assertIn(flag, coir["safety_transfer_flags"])
+
     def test_nist_manila_color_identity_rights_and_transfer_gate_are_exact(self) -> None:
         color = self.by_id["nist_manila_rope_color_serviceability_1933"]
         identity = color["source_document_identity"]
