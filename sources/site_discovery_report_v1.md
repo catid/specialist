@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T11:21:59Z
-Latest batch: `discovery_batch_011`
+Latest review at: 2026-07-16T11:54:13Z
+Latest batch: `discovery_batch_012`
 
 ## Outcome
 
@@ -745,3 +745,87 @@ or unrelated corpus artifact was read. Public review used ordinary official,
 publisher, DOI, licensed API, and live failure routes; no login, paywall,
 challenge, crawler restriction, cache, archive, or third-party mirror was
 bypassed. Discovery wrote no reviewed source body into a training artifact.
+
+## Discovery batch 012 outcome
+
+`discovery_batch_012` reviewed 12 additional, nonduplicate candidates against
+their official record or primary body, publication methods, component rights,
+redundancy, conflicts, statistical support, and transfer risk. It produced 1
+`accept_high_priority`, 5 `accept_targeted_scope`, 3 `defer`, and 3 `reject`
+decisions. The six accepted candidates expand the canonical corpus queue from
+99 to 105 resources.
+
+This batch fills four evidence gaps: internal abrasion and tensile-fatigue
+mechanisms; historical natural-rope variability; current synthetic- and
+hemp-rope test methodology; and bounded primary evidence about structural-point
+planning and harness-suspension physiology. None of these sources is treated as
+a bondage test, load table, body-placement guide, care recipe, or human-
+suspension certification.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [NOAA synthetic-rope deterioration report](https://repository.library.noaa.gov/view/noaa/9887) | `accept_high_priority` | 41 | Public-domain MITSG 90-18 adds internal fiber-to-fiber abrasion, tensile fatigue, creep-related behavior, model assumptions, experiment comparison, and validation limits. Its 41 scanned pages require manual OCR verification; equations, service-life predictions, ratings, field procedures, and bondage transfer are excluded. |
+| [NBS statistical analysis of Manila rope](https://nvlpubs.nist.gov/nistpubs/jres/39/jresv39n6p551_A1b.pdf) | `accept_targeted_scope` | 38 | Federal historical evidence covers 863 observations from more than 800 three-strand samples, a nonrandom and heterogeneous acquisition universe, conditioning, measurements, static endpoints, and fiber, fabrication, and treatment variability. Strength values and current-rope claims are excluded. |
+| [Weakest-link model for hemp rope](https://www.sciencedirect.com/science/article/pii/S0266892025000360) | `accept_targeted_scope` | 37 | CC BY 4.0 evidence from one rope and supplier at two tested lengths explains first-strand endpoints, independent versus correlated links, calibration, validation, and explicit omissions. Equations, numerical capacity, ratings, and extrapolation to other ropes or uses are excluded. |
+| [OSHA Appendix C anchor-planning excerpt](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926SubpartMAppC) | `accept_targeted_scope` | 29 | Only paragraphs h(1) and h(2) enter a short public-domain digest: plan early, use qualified structural judgment, evaluate existing or makeshift points, prevent connector pull-through, and preserve whole-system strength. Material examples are not DIY approvals, and no structure or human-suspension rig is certified. |
+| [Synthetic-rope tensile characterization](https://www.nature.com/articles/s41598-023-44816-x) | `accept_targeted_scope` | 35 | CC BY 4.0 methods evidence covers fiber-yarn-rope hierarchy, nominal versus effective diameter, three synthetic materials, 220-to-196 result inclusion, exclusions, endpoints, and ANN black-box and data-access limits. Models, predictions, ratings, products, and size extrapolation are excluded. |
+| [Randomized crossover suspension-syndrome trial](https://pmc.ncbi.nlm.nih.gov/articles/PMC6517360/) | `accept_targeted_scope` | 33 | CC BY 4.0 primary evidence contributes a 20-person, 40-test healthy-male sit-harness crossover design, presyncope interruption, measured physiology, correction, and explicit population and apparatus limits. Timing cannot become a threshold, and the study supplies no rescue, treatment, rope-harness, bondage, or human-suspension advice. |
+
+### Deferred sources
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Tourniquet nerve-compression review](https://link.springer.com/article/10.1186/s42490-020-00041-5) | 28 | CC BY 4.0 does not cure the tourniquet-to-rope scale mismatch, indirect evidence, declared device-company interests and patents, or separately licensed figure. Require independent clinical corroboration before any transformed use; no pressure, duration, cuff-width, treatment, prognosis, or rope-placement inference is permitted. |
+| [Water imbibition and swelling of hemp, jute, and flax filaments](https://www.sciencedirect.com/science/article/pii/S0926669025012488) | 26 | The work concerns individual filaments, not rope, and is CC BY-NC-ND 4.0. Retain metadata only and seek commercial derivative and model-training permission if uniquely necessary; never convert filament swelling into washing, conditioning, shrinkage, strength, care, or retirement advice. |
+| [NDL digitized works by Seiu Ito](https://ndlsearch.ndl.go.jp/search?cs=bib&from=0&q-author=%2200023065%22&size=20) | 30 | The national-library index identifies potentially valuable primary works, but public reading access is not blanket adaptation or translation permission. Each edition, contributor, illustration, work body, and historical claim needs a separate Japanese-language rights and source-critical audit. |
+
+### Rejected sources
+
+| Source | Score | Reason |
+|---|---:|---|
+| [PLOS offshore mooring-rope study](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0318190) | 25 | The open paper omits clear replication and statistical support while using significance language and broad yarn-to-rope, material-selection, and service-life conclusions. All authors are employees of the company that supplied machines, resources, and data. |
+| [Advanced Rigging Principles instructor workbook](https://www.osha.gov/sites/default/files/2021-04/Advanced%20Rigging%20Principles%20-%20Instructor%20Workbook.pdf) | 12 | This 308-page third-party grant workbook is not federal public-domain text and mixes standards, trademarks, images, quizzes, calculations, and high-consequence industrial lifting recipes already covered by cleaner bounded sources. |
+| [OSHA natural and synthetic fiber rope slings](https://www.osha.gov/safe-sling-use/nat-synth-fiber) | 20 | Authoritative federal material, but almost entirely redundant legal and numeric industrial material-lifting guidance. Its personnel-platform exclusion reinforces why it cannot be repurposed as human-suspension evidence. |
+
+### Prior-candidate rights update
+
+The previously deferred [Frictional Sliding Strength of Knotted and Capstan
+Configurations](https://arxiv.org/abs/2604.06962) now has a publisher version of
+record at DOI `10.1016/j.jmps.2026.106628`. The publisher version is CC BY-NC
+4.0, while the arXiv copy remains CC BY-NC-ND 4.0. Derivatives are therefore no
+longer universally blocked, but commercial and intended model-training use is
+still not assumed. The candidate remains deferred: neither the publisher's
+NonCommercial route nor the preprint's NonCommercial and NoDerivatives route is
+used to populate the corpus.
+
+### Batch 012 rights, evidence, and safety controls
+
+Public domain and CC BY status were verified separately from scientific value.
+Open licensing did not rescue underreported statistics, a commercial evidence
+chain, or unsafe cross-scale conclusions. NonCommercial and NoDerivatives works
+remain metadata-only. National-library access was not mistaken for copyright,
+translation, illustration, or model-training permission, and OSHA hosting was
+not mistaken for public-domain status when the hosted workbook was authored by
+a third party.
+
+Every accepted experiment preserves its exact material, construction, sample,
+apparatus, endpoint, loading mode, exclusion, and validation boundary. Static
+breaking behavior remains separate from security, cyclic or dynamic response,
+moisture, aging, damage, knots, body contact, and field use. Structural-point
+planning is preserved as a need for competent evaluation, never as a checklist
+that certifies a tree, ceiling, beam, connector, hardpoint, upline, or human-
+suspension system. Medical studies retain population and harness limits and do
+not generate timing thresholds, first aid, treatment, or prognosis.
+
+### Batch 012 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery ledger,
+corpus queue, report, discovery tests, and first-class corpus registration work
+for an independently completed source artifact. No QA, training projection,
+manual review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe,
+trainer, or unrelated source-corpus artifact was read. Public review used
+ordinary official, publisher, DOI, repository, PubMed, and license routes and
+did not bypass a login, paywall, challenge, crawler restriction, or missing
+license. Discovery wrote no reviewed source body into a training artifact.

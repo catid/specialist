@@ -1764,12 +1764,200 @@ class SourceCorpusContractTest(unittest.TestCase):
             for marker in required:
                 self.assertIn(marker, text, candidate_id)
 
+    def test_batch_012_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_012"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_high_priority": {
+                "noaa_synthetic_rope_deterioration_1990",
+            },
+            "accept_targeted_scope": {
+                "nist_manila_rope_statistics_1947",
+                "elsevier_hemp_rope_weakest_link_2025",
+                "osha_anchor_planning_existing_structures",
+                "scientific_reports_synthetic_rope_tensile_2023",
+                "springer_suspension_syndrome_crossover_2019",
+            },
+            "defer": {
+                "bmc_tourniquet_nerve_compression_review_2020",
+                "elsevier_natural_filament_water_swelling_2025",
+                "ndl_seiu_ito_digitized_works",
+            },
+            "reject": {
+                "plos_mooring_rope_mechanics_2025",
+                "osha_advanced_rigging_workbook",
+                "osha_natural_synthetic_sling_guide",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(
+            queued_from_batch,
+            expected["accept_high_priority"] | expected["accept_targeted_scope"],
+        )
+
+    def test_batch_012_accepted_sources_preserve_evidence_bounds(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "noaa_synthetic_rope_deterioration_1990": {
+                "all 41 pages",
+                "internal fiber-to-fiber abrasion",
+                "tensile creep and fatigue",
+                "numerical service-life predictions",
+                "public domain",
+            },
+            "nist_manila_rope_statistics_1947": {
+                "863 observations",
+                "more than 800 samples",
+                "nonrandom sampling",
+                "insufficient four-strand evidence",
+                "10.6028/jres.039.039",
+                "10.6028/jres.039.037 resolves to an unrelated uranium paper",
+                "numerical strength or rating values",
+            },
+            "elsevier_hemp_rope_weakest_link_2025": {
+                "one-rope and one-supplier",
+                "first-strand-break endpoint",
+                "independent-link premise",
+                "omitted friction and rope hierarchy",
+                "capacity calculators",
+            },
+            "osha_anchor_planning_existing_structures": {
+                "paragraphs h(1) and h(2)",
+                "qualified-person evaluation",
+                "connector pull-through",
+                "must not reduce system strength",
+                "never certifies",
+            },
+            "scientific_reports_synthetic_rope_tensile_2023": {
+                "220 conducted or planned versus 196 included results",
+                "nominal-versus-solid-or-effective-diameter",
+                "ann black-box limitation",
+                "request-only data and code",
+                "small-to-large-rope extrapolation",
+            },
+            "springer_suspension_syndrome_crossover_2019": {
+                "20 healthy male nonprofessional climbers",
+                "40 crossover tests",
+                "published correction",
+                "timing or proportions as a safety threshold",
+                "do not transfer occupational or climbing-harness physiology",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertTrue(source["decision"].startswith("accept_"))
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            self.assertEqual(
+                queued["discovery_priority_score"], source["priority_score"]
+            )
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_012_exclusions_and_prior_rights_update_are_explicit(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        deferred_markers = {
+            "bmc_tourniquet_nerve_compression_review_2020": {
+                "commercial interests",
+                "qualified independent clinical reviewer",
+                "republished figure",
+                "never treat a tourniquet cuff as equivalent to bondage rope",
+            },
+            "elsevier_natural_filament_water_swelling_2025": {
+                "filaments rather than laid",
+                "cc by-nc-nd 4.0",
+                "noderivatives",
+                "do not copy, paraphrase, transform",
+            },
+            "ndl_seiu_ito_digitized_works": {
+                "public reading access does not by itself",
+                "work by work",
+                "japanese-language",
+                "do not bulk mirror, ocr, translate",
+            },
+        }
+        for candidate_id, required in deferred_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        rejection_markers = {
+            "plos_mooring_rope_mechanics_2025": {
+                "do not report replicate counts",
+                "all three authors are employees",
+                "yarn-to-rope overgeneralization",
+                "rejected_underreported_commercial_high_consequence",
+            },
+            "osha_advanced_rigging_workbook": {
+                "308-page instructor workbook",
+                "federal hosting does not make",
+                "do not assume public domain",
+                "rejected_mixed_rights_redundant_operational_noise",
+            },
+            "osha_natural_synthetic_sling_guide": {
+                "not to use knots in place of splices",
+                "personnel platforms",
+                "rejected_redundant_high_consequence_industrial_scope",
+            },
+        }
+        for candidate_id, required in rejection_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "reject")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        friction = by_id["arxiv_frictional_sliding_strength_2604"]
+        self.assertEqual(friction["review_batch"], "discovery_batch_009")
+        self.assertEqual(friction["decision"], "defer")
+        self.assertNotIn(friction["candidate_id"], queued)
+        friction_text = json.dumps(friction, sort_keys=True).lower()
+        for marker in {
+            "10.1016/j.jmps.2026.106628",
+            "cc by-nc 4.0",
+            "cc by-nc-nd 4.0",
+            "noderivatives",
+            "neither route is copied",
+        }:
+            self.assertIn(marker, friction_text)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_011`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_012`", self.report)
 
 
 if __name__ == "__main__":
