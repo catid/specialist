@@ -1,0 +1,117 @@
+{
+  "artifacts": [
+    {
+      "accessed_at_utc": "2026-07-16T11:25:52Z",
+      "bytes": 2840659,
+      "content_type": "application/pdf",
+      "final_status": 200,
+      "id": "DOI-RESOLVER",
+      "redirect_chain": [
+        {
+          "status": 302,
+          "target": "http://przyrbwn.icm.edu.pl/APP/PDF/138/app138z3p11.pdf"
+        },
+        {
+          "status": 301,
+          "target": "https://przyrbwn.icm.edu.pl/APP/PDF/138/app138z3p11.pdf"
+        }
+      ],
+      "retained_in_repository": false,
+      "sha256": "f3a590f7ce727494dde386b95fd903ad3a5ba49b33d1d07c9bfbeff1e0d5b17e",
+      "url": "https://doi.org/10.12693/APhysPolA.138.404"
+    },
+    {
+      "accessed_at_utc": "2026-07-16T11:25:55Z",
+      "bytes": 2840659,
+      "content_type": "application/pdf",
+      "etag": "\"2b5853-5b17e7c5cb780\"",
+      "id": "APP-138-404",
+      "last_modified": "Mon, 12 Oct 2020 19:41:34 GMT",
+      "pdf_pages": 17,
+      "retained_in_repository": false,
+      "sha256": "f3a590f7ce727494dde386b95fd903ad3a5ba49b33d1d07c9bfbeff1e0d5b17e",
+      "status": 200,
+      "url": "https://przyrbwn.icm.edu.pl/APP/PDF/138/app138z3p11.pdf"
+    },
+    {
+      "accessed_at_utc": "2026-07-16T11:24:50Z",
+      "bytes": 14542,
+      "content_type": "text/html; charset=utf-8",
+      "id": "APPA-ABOUT",
+      "retained_in_repository": false,
+      "sha256": "1ad2cd22245581fe207d5947bdc31bcb02a543ea28a4ef7d6c826a473dc3e7bf",
+      "status": 200,
+      "url": "https://appol.ifpan.edu.pl/index.php/appa/about"
+    },
+    {
+      "accessed_at_utc": "2026-07-16T11:26:32Z",
+      "bytes": 32178,
+      "content_type": "text/html",
+      "id": "CC-BY-4.0",
+      "last_modified": "Tue, 09 Jun 2026 14:26:12 GMT",
+      "retained_in_repository": false,
+      "sha256": "231a5dac65bbf135ba27145969a63cd289faadc172f1512c4810a6c60ba91036",
+      "status": 200,
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "corpus_id": "acta_loop_knot_efficiency_experiments_2020",
+  "extraction_audit": {
+    "extracted_alphanumeric_tokens": 10409,
+    "extracted_characters": 59736,
+    "extracted_text_retained": false,
+    "extracted_text_sha256": "15ae678848d05e44a9007b051f3d22089e10b536b1d0c96037e7b6b14fd21c06",
+    "pdf_metadata_creation_date": "2020-10-06T11:16:11+02:00",
+    "pdf_metadata_creator": "LaTeX with hyperref package",
+    "pdf_metadata_producer": "pdfTeX-1.40.19",
+    "pdf_pages": 17,
+    "raster_image_xobjects": 0,
+    "raster_structure_note": "No raster Image XObjects were exposed in the audited page resources; figures use other PDF drawing structures and remain excluded.",
+    "source_numbered_figures": 31,
+    "source_numbered_tables": 5
+  },
+  "manual_review": {
+    "completed": true,
+    "method": "All 17 PDF pages were reviewed in sequence. Extracted text and layout extraction were finding aids only; the digest was manually written and checked against sections and table alignment.",
+    "review_date_utc": "2026-07-16",
+    "source_bodies_retained": false
+  },
+  "rights_screen": {
+    "article_pdf_embedded_cc_notice_found": false,
+    "attribution_elements_present": [
+      "authors",
+      "title",
+      "journal and pages",
+      "DOI source link",
+      "CC BY 4.0 license link",
+      "change notice",
+      "no-endorsement notice"
+    ],
+    "conclusion": "Accepted for manual adaptation under the publisher's current all-articles CC BY 4.0 statement, with full attribution and conservative component exclusions.",
+    "legal_advice": false,
+    "publisher_policy": "Current APPA about page states that all published articles are licensed CC BY 4.0.",
+    "provenance_cautions": [
+      "source PDF does not itself display a CC notice",
+      "31 authored figures and five source tables",
+      "product trademarks and equipment brands",
+      "vendor-declared performance values and material support",
+      "standards text and third-party references"
+    ]
+  },
+  "schema_version": "site-corpus-provenance-v1",
+  "source_identity": {
+    "accepted": "2020-04-24",
+    "authors": [
+      "J. Šimon",
+      "V. Dekýš",
+      "P. Palček"
+    ],
+    "doi": "10.12693/APhysPolA.138.404",
+    "journal": "Acta Physica Polonica A",
+    "pages": "404-420",
+    "received": "2019-11-15",
+    "title": "Revision of Commonly Used Loop Knots Efficiencies",
+    "volume": 138,
+    "year": 2020
+  }
+}
