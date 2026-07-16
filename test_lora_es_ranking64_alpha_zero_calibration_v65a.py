@@ -584,10 +584,12 @@ def test_v65a_builder_is_deterministic_exact64_and_measurement_only(tmp_path):
     first_panel, first = builder.build_v65a(
         ranking_panel_output=panel_path,
         implementation_entry_paths=_implementation_entries(),
+        _test_only_allow_nonproduction_entry_paths=True,
     )
     second_panel, second = builder.build_v65a(
         ranking_panel_output=panel_path,
         implementation_entry_paths=_implementation_entries(),
+        _test_only_allow_nonproduction_entry_paths=True,
     )
     assert first_panel == second_panel
     assert first == second
@@ -625,6 +627,8 @@ def test_v65a_builder_binds_prefix_schedule_engine_receipts_and_cluster_gate():
     )
     value = builder.build_preregistration_v65a(
         panel, sources, implementation,
+        implementation_entry_paths=_implementation_entries(),
+        _test_only_allow_nonproduction_entry_paths=True,
     )
     access = value["access_contract"]
     assert access["decode_exactly_first_64_v61c_ranking_rows"] is True
@@ -719,7 +723,38 @@ def test_v65a_builder_rejects_rehashed_panel_scope_tamper():
         })
     )
     with pytest.raises(RuntimeError):
-        builder.build_preregistration_v65a(changed, sources, implementation)
+        builder.build_preregistration_v65a(
+            changed, sources, implementation,
+            implementation_entry_paths=_implementation_entries(),
+            _test_only_allow_nonproduction_entry_paths=True,
+        )
+
+
+def test_v65a_builder_requires_full_runtime_external_execution_closure():
+    panel, sources = builder.sealed_source_bindings_v65a()
+    implementation = builder.implementation_bindings_v65a()
+    external_keys = {
+        f"entry__v64_runtime__{name}"
+        for name in builder.runtime64.WORKER_EXECUTION_PATHS_V64
+    }
+    assert external_keys
+    assert external_keys.issubset(implementation)
+    assert builder.REQUIRED_IMPLEMENTATION_BINDING_KEYS_V65A.issubset(
+        implementation
+    )
+    assert implementation[
+        "entry__v64_runtime__upstream_es_trainer"
+    ]["path"] == str(
+        builder.ROOT / "es-at-scale/es_at_scale/trainer/es_trainer.py"
+    )
+    assert implementation[
+        "entry__v64_runtime__ray_worker_sitecustomize"
+    ]["path"] == str(builder.ROOT / "eggroll_es_compat/sitecustomize.py")
+
+    changed = copy.deepcopy(implementation)
+    changed.pop("entry__v64_runtime__upstream_es_trainer")
+    with pytest.raises(RuntimeError):
+        builder.build_preregistration_v65a(panel, sources, changed)
 
 
 def test_v65a_builder_output_is_launchable_by_runtime_loader(tmp_path):
@@ -744,35 +779,49 @@ def test_v65a_builder_output_is_launchable_by_runtime_loader(tmp_path):
     assert runtime.load_preregistration_v65a(args) == preregistration
 
 
-def test_v65a_runtime_loader_rejects_rehashed_missing_required_binding(tmp_path):
+def test_v65a_runtime_loader_rejects_rehashed_missing_or_changed_binding(
+    tmp_path,
+):
     _panel, preregistration = builder.build_v65a(
         ranking_panel_output=tmp_path / "ranking-panel.json",
     )
-    changed = copy.deepcopy(preregistration)
-    changed["implementation_bindings"].pop("entry__runtime_v65a")
-    changed["implementation_closure_manifest_sha256"] = (
-        subject.canonical_sha256_v65a({
-            key: binding["file_sha256"]
-            for key, binding in sorted(
-                changed["implementation_bindings"].items()
-            )
-        })
-    )
-    changed.pop("content_sha256_before_self_field")
-    changed["content_sha256_before_self_field"] = (
-        subject.canonical_sha256_v65a(changed)
-    )
-    path = tmp_path / "tampered.json"
-    path.write_bytes(builder.json_payload_v65a(changed))
     runtime = importlib.import_module(
         "run_lora_es_ranking64_alpha_zero_calibration_v65a"
     )
-    args = SimpleNamespace(
-        preregistration=str(path),
-        preregistration_sha256=subject.population65.file_sha256_v65(path),
-        preregistration_content_sha256=changed[
-            "content_sha256_before_self_field"
-        ],
+    variants = []
+    missing = copy.deepcopy(preregistration)
+    missing["implementation_bindings"].pop(
+        "entry__v64_runtime__upstream_es_trainer"
     )
-    with pytest.raises(RuntimeError):
-        runtime.load_preregistration_v65a(args)
+    variants.append(("missing", missing))
+    changed = copy.deepcopy(preregistration)
+    changed["implementation_bindings"][
+        "entry__v64_runtime__ray_worker_sitecustomize"
+    ]["file_sha256"] = _sha("changed-sitecustomize")
+    variants.append(("changed", changed))
+    for label, value in variants:
+        value["implementation_closure_manifest_sha256"] = (
+            subject.canonical_sha256_v65a({
+                key: binding["file_sha256"]
+                for key, binding in sorted(
+                    value["implementation_bindings"].items()
+                )
+            })
+        )
+        value.pop("content_sha256_before_self_field")
+        value["content_sha256_before_self_field"] = (
+            subject.canonical_sha256_v65a(value)
+        )
+        path = tmp_path / f"tampered-{label}.json"
+        path.write_bytes(builder.json_payload_v65a(value))
+        args = SimpleNamespace(
+            preregistration=str(path),
+            preregistration_sha256=(
+                subject.population65.file_sha256_v65(path)
+            ),
+            preregistration_content_sha256=value[
+                "content_sha256_before_self_field"
+            ],
+        )
+        with pytest.raises(RuntimeError):
+            runtime.load_preregistration_v65a(args)

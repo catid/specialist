@@ -20,6 +20,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+import build_lora_es_ranking64_alpha_zero_preregistration_v65a as builder65a
 import eggroll_es_worker_robust_sampling_v65 as scoring65
 import lora_es_nested_population_v52 as design52
 import lora_es_ranking64_alpha_zero_calibration_v65a as analysis65a
@@ -94,14 +95,10 @@ def load_preregistration_v65a(args) -> dict:
     live_receipt = recipe.get("sanitized_live_engine_and_cache_receipt", {})
     integrity = value.get("required_integrity_gates", {})
     bindings = value.get("implementation_bindings", {})
-    required_binding_keys = {
-        "entry__runtime_v65a",
-        "entry__exact_master_slot_write_worker_v65a",
-        "entry__numeric_analysis_v65a",
-        "entry__numeric_cpu_scorer_v65",
-        "entry__preregistration_builder_v65a",
-        "entry__tests_v65a",
-    }
+    required_binding_keys = (
+        builder65a.REQUIRED_IMPLEMENTATION_BINDING_KEYS_V65A
+    )
+    expected_bindings = builder65a.implementation_bindings_v65a()
     if (
         value.get("schema")
         != "v65a-ranking64-alpha-zero-calibration-preregistration"
@@ -213,6 +210,7 @@ def load_preregistration_v65a(args) -> dict:
         or value.get("required_python") != str(design52.REQUIRED_PYTHON_V52)
         or not isinstance(bindings, dict)
         or not required_binding_keys.issubset(bindings)
+        or bindings != expected_bindings
         or value.get("implementation_closure_manifest_sha256")
         != design65.canonical_sha256_v65({
             key: binding["file_sha256"]

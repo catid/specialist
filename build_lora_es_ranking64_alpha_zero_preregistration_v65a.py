@@ -12,6 +12,7 @@ import build_lora_es_robust_sampling_preregistration_v65 as common65
 import lora_es_nested_population_v52 as design52
 import lora_es_ranking64_alpha_zero_calibration_v65a as design65a
 import lora_es_robust_sampling_population_v65 as population65
+import run_lora_es_v59_vs_v434_robust_confirmation_v64 as runtime64
 
 
 ROOT = Path(__file__).resolve().parent
@@ -26,6 +27,10 @@ PREREGISTRATION_OUTPUT = (
 EXPERIMENT = "v65a_ranking64_alpha_zero_calibration"
 RUN_DIR = (ROOT / "experiments/eggroll_es_hpo/runs" / EXPERIMENT).resolve()
 
+V64_RUNTIME_CRITICAL_ENTRY_PATHS_V65A = {
+    f"v64_runtime__{name}": Path(path).resolve()
+    for name, path in sorted(runtime64.WORKER_EXECUTION_PATHS_V64.items())
+}
 DEFAULT_IMPLEMENTATION_ENTRY_PATHS_V65A = {
     "runtime_v65a": (
         ROOT / "run_lora_es_ranking64_alpha_zero_calibration_v65a.py"
@@ -51,7 +56,11 @@ DEFAULT_IMPLEMENTATION_ENTRY_PATHS_V65A = {
     "population_runtime_v52": ROOT / "run_lora_es_nested_population_v52.py",
     "population_worker_v52": ROOT / "eggroll_es_worker_lora_v52.py",
     "canonical_state_worker_v41a": ROOT / "eggroll_es_worker_lora_v41a.py",
+    **V64_RUNTIME_CRITICAL_ENTRY_PATHS_V65A,
 }
+REQUIRED_IMPLEMENTATION_BINDING_KEYS_V65A = frozenset(
+    f"entry__{name}" for name in DEFAULT_IMPLEMENTATION_ENTRY_PATHS_V65A
+)
 
 
 def json_payload_v65a(value: dict) -> bytes:
@@ -70,6 +79,20 @@ def implementation_bindings_v65a(
     return common65.implementation_bindings_v65(
         entry_paths or DEFAULT_IMPLEMENTATION_ENTRY_PATHS_V65A
     )
+
+
+def _implementation_entry_paths_v65a(
+    entry_paths: dict[str, Path] | None,
+    *,
+    test_only_allow_nonproduction_entry_paths: bool,
+) -> dict[str, Path]:
+    if entry_paths is None:
+        return DEFAULT_IMPLEMENTATION_ENTRY_PATHS_V65A
+    if test_only_allow_nonproduction_entry_paths is not True:
+        raise RuntimeError(
+            "v65a nonproduction implementation roots require test-only opt-in"
+        )
+    return entry_paths
 
 
 def sealed_source_bindings_v65a() -> tuple[dict, dict]:
@@ -193,7 +216,18 @@ def build_preregistration_v65a(
     implementation_bindings: dict,
     *,
     ranking_panel_output: Path = RANKING_PANEL_OUTPUT,
+    implementation_entry_paths: dict[str, Path] | None = None,
+    _test_only_allow_nonproduction_entry_paths: bool = False,
 ) -> dict:
+    entry_paths = _implementation_entry_paths_v65a(
+        implementation_entry_paths,
+        test_only_allow_nonproduction_entry_paths=(
+            _test_only_allow_nonproduction_entry_paths
+        ),
+    )
+    expected_implementation = implementation_bindings_v65a(
+        entry_paths
+    )
     if (
         panel.get("schema") != "v65-robust-sampling-ranking-panel"
         or panel.get("ranking_units") != 64
@@ -204,6 +238,7 @@ def build_preregistration_v65a(
             "v62b_batch68_methodology_and_threshold_source",
         }
         or not implementation_bindings
+        or implementation_bindings != expected_implementation
         or any(
             not isinstance(binding, dict)
             or set(binding) != {"path", "file_sha256"}
@@ -502,14 +537,29 @@ def build_v65a(
     *,
     ranking_panel_output: Path = RANKING_PANEL_OUTPUT,
     implementation_entry_paths: dict[str, Path] | None = None,
+    _test_only_allow_nonproduction_entry_paths: bool = False,
 ) -> tuple[dict, dict]:
     panel, sources = sealed_source_bindings_v65a()
+    entry_paths = _implementation_entry_paths_v65a(
+        implementation_entry_paths,
+        test_only_allow_nonproduction_entry_paths=(
+            _test_only_allow_nonproduction_entry_paths
+        ),
+    )
     implementation = implementation_bindings_v65a(
-        implementation_entry_paths
+        entry_paths
     )
     return panel, build_preregistration_v65a(
         panel, sources, implementation,
         ranking_panel_output=ranking_panel_output,
+        implementation_entry_paths=(
+            entry_paths
+            if _test_only_allow_nonproduction_entry_paths is True
+            else None
+        ),
+        _test_only_allow_nonproduction_entry_paths=(
+            _test_only_allow_nonproduction_entry_paths
+        ),
     )
 
 
