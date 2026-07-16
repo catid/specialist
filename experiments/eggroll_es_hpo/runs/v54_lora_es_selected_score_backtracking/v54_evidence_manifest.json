@@ -1,0 +1,88 @@
+{
+  "schema": "lora-es-selected-score-backtracking-evidence-v54",
+  "status": "complete_no_passing_train_candidate_with_postcleanup_wrapper_assertion_issue",
+  "scientific_result": {
+    "selected_target_norm_ratio": null,
+    "passing_candidate_snapshot_created": false,
+    "evaluated_scale_ratios": [0.5, 0.25, 0.125, 0.0625, 0.03125, 0.015625],
+    "all_six_scales_failed_fragile_generation_f1_noninferiority": true,
+    "all_six_scales_failed_fragile_generation_nonzero_noninferiority": true,
+    "all_six_scales_passed_fragile_generation_exact_noninferiority": true,
+    "all_six_scales_passed_prose_and_all_qa_gates": true,
+    "domain_point_improvement_passing_ratios": [0.5, 0.25, 0.015625],
+    "gates_weakened_or_reinterpreted": false
+  },
+  "artifacts": {
+    "attempt": {
+      "file_sha256": "4376658bed9d0cce36db5b609b4c17db77423da16074d9ff029687a29c82ce07",
+      "content_sha256": "fb8856f3f11cef06185a9671de3b43659b1c70d01477e06e28f8855200728fbb"
+    },
+    "preinstall_actor_baseline": {
+      "file_sha256": "9b62b747b31eba534b43051ee636f0adf6cc11665602cc13c4869cee1f3beb81",
+      "content_sha256": "9aef14218819a17d703a3c5c51319150c74100e9df4e0a411e7b2c498992c23a"
+    },
+    "master_identity_audit": {
+      "file_sha256": "e545ae57cf5cb479da12f3aa4c818a4d1fa14edbf125cc6c80747a2e5cf6d58b",
+      "content_sha256": "0a893567f4fbcb50bccbbb06da9d709ca4a1b39323fa1850bea0c0f001ebb1f9"
+    },
+    "numeric_calibration": {
+      "file_sha256": "8f4ec31e2360b816eef624a789ef8ec59d14509c605d625795b00919e1ec9cc2",
+      "content_sha256": "d41ea2476e14dbdfd425034e7278b9402d1b4c7228258de230f93c8625be1841"
+    },
+    "anchor_calibration": {
+      "file_sha256": "186640232b43826c3b394682568806def364620765c2b01c00318ea56cd3d752",
+      "content_sha256": "61e9e016e720fccf2058e511beebd8800548af00f8db5a7c36ca6ec0df788fc1"
+    },
+    "selected_score_projection": {
+      "file_sha256": "74c7cffc2b47966a67a440ec63948970999dd5f6231b9dcc480cbc51c6a6c0e4",
+      "content_sha256": "7cb96e4e32a71417afd1a3c36af647342e914cef1ea211f0aedc5e43a12066cc"
+    },
+    "no_p8_evaluation_receipt": {
+      "file_sha256": "6fa66a338e325a60f17ef477c0e57f4f3190d110410c76d784d486d271fe33e4",
+      "content_sha256": "36dcc66c173413be0b60349d37ce2e2cab85cee31ea976b207a7bfa1bd4a61fa"
+    },
+    "p16_train_gate": {
+      "file_sha256": "9f167f7fd521d0984e49f94a46cb4f8e88dcc34875e5d3de2c1035d337155076",
+      "content_sha256": "b3cb21d5f72f3a2d4b88f5732126090912b5e4da2d0edc6e09774868a6f7b4a1"
+    },
+    "internal_report": {
+      "file_sha256": "0f19a47a174dd9f72f916eb6c9e4cf3e27c1d26374ae052847a1f5aff82d3bb5",
+      "content_sha256": "f4520489895482789e1831e8c4090aa994586d95d2cb3ff8598550dfb41b8bf7"
+    },
+    "gpu_telemetry": {
+      "file_sha256": "b9d27ea775c5f4ba19b9c47de1a601088307a65e8df9b39ebe94dee128b7896b",
+      "rows": 3040,
+      "rows_per_gpu": 760,
+      "actor_pids_by_gpu": [3923869, 3923872, 3923870, 3923871],
+      "maximum_utilization_percent_each_gpu": [100, 100, 100, 100],
+      "maximum_memory_used_mib_each_gpu": [87330, 87330, 87330, 87330],
+      "foreign_compute_pid_rows": 0
+    },
+    "coordinator_log": {
+      "file_sha256": "8d61af7adf44698f567afbacaa2984bedab8ad37acf90c9fa016ac420260bc72"
+    }
+  },
+  "state_and_cleanup": {
+    "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+    "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+    "update_sequence": 0,
+    "all_six_candidate_transactions_exactly_aborted": true,
+    "four_actor_final_state_and_quiescence_exact": true,
+    "optimizer_master_committed": false,
+    "four_engines_killed": true,
+    "four_placement_groups_removed": true,
+    "all_gpu_compute_process_lists_empty": true
+  },
+  "postcleanup_wrapper_issue": {
+    "occurred_after_internal_report_and_exact_cleanup_completed": true,
+    "message": "v54 dedicated completion contract changed",
+    "cause": "The dedicated projection phase had zero duration and was not sampled by the asynchronous GPU monitor.",
+    "gpu_log_path_was_correct": true,
+    "substantive_internal_train_gate_or_state_evidence_invalidated": false,
+    "dedicated_wrapper_report_created": false,
+    "science_success_claimed": false
+  },
+  "population_rerun_or_p8_evaluation_performed": false,
+  "ood_shadow_benchmark_holdout_or_protected_semantics_opened": false,
+  "sealed_holdout_opened": false
+}
