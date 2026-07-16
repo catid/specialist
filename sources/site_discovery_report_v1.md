@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T11:04:00Z
-Latest batch: `discovery_batch_010`
+Latest review at: 2026-07-16T11:21:59Z
+Latest batch: `discovery_batch_011`
 
 ## Outcome
 
@@ -672,3 +672,76 @@ publisher, repository, DOI, and license routes, respected current access and
 reuse terms, and did not bypass a login, paywall, challenge, crawler
 restriction, missing body, license, or publication-specific notice. Discovery
 wrote no reviewed page body to a training artifact.
+
+## Discovery batch 011 outcome
+
+`discovery_batch_011` manually reviewed 12 additional, nonduplicate source
+candidates against their primary body or official failure endpoint, methods,
+component rights, evidentiary limits, redundancy, and cross-domain safety. It
+produced 1 `accept_high_priority`, 4 `accept_targeted_scope`, 3 `defer`, and 4
+`reject` decisions. The five accepted candidates expand the canonical corpus
+queue from 94 to 99 resources.
+
+The strongest addition is a rights-clear 2020 primary experiment on eight
+loop-knot families, multiple load geometries, dressing, replication, static
+break mechanics, infrared imaging, and microscopy. A complementary 2022
+statistics paper explains why knot efficiency is a distribution rather than a
+portable single percentage. The batch also adds bounded federal evidence on
+pleated nylon deformation, OGL inspection-system guidance, and CC BY evidence
+that visual or topological confidence does not reliably predict knot strength.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Revision of Commonly Used Loop Knots Efficiencies](https://doi.org/10.12693/APhysPolA.138.404) | `accept_high_priority` | 41 | CC BY 4.0 primary evidence on eight loop-knot families, exact synthetic kernmantle specimens, standard versus cross-load, I versus O geometry, dressing, calibrated static tests, statistical uncertainty, break versus untying, infrared imaging, and microscopy. Preserve source-bound method and limitations; exclude portable rankings, ratings, storage or retirement rules, and transfer to natural fiber, bondage, dynamics, body contact, uplines, or human suspension. |
+| [Basic Statistical Properties of the Knot Efficiency](https://www.mdpi.com/2073-8994/14/9/1926) | `accept_targeted_scope` | 37 | CC BY 4.0 methods digest on heterogeneous breaking strength, ratio distributions, replication, dispersion, tolerance intervals, and misleading single-pair or ratio-of-means shortcuts. The empirical illustration comes from earlier work; equations and numeric examples must not become calculators or ratings. |
+| [NBSIR 86-3375 pleated nylon-rope tests](https://www.nist.gov/publications/tensile-properties-pleated-synthetic-rope) | `accept_targeted_scope` | 36 | Historical federal evidence from 20 very large pleated nylon ropes, two sizes, untreated and temperature-conditioned groups, quasi-static rupture, deformation, and failure modes. Preserve small samples and unresolved cyclic, connection, moisture, debris, and field questions; exclude every sizing, force, energy, temperature, connection, vehicle-recovery, and safe-rating recipe. |
+| [HSE INDG367 inspection guidance](https://www.hse.gov.uk/pubns/indg367.htm) | `accept_targeted_scope` | 32 | OGL inspection-system concepts: no single life boundary, degradation categories, unique identity, whole-length visual and tactile checks, competent judgment, withdrawal authority, records, training, triggers, and uncertainty. Exclude intervals, damage thresholds, law, standards, product rules, and transfer from industrial synthetic fall-arrest equipment to natural bondage rope. |
+| [Tangled Physics](https://europepmc.org/article/MED/39439589) | `accept_targeted_scope` | 34 | CC BY 4.0 evidence from five experiments that photographs, renderings, dynamic videos, diagrams, and correct topology discrimination did not yield accurate relative-strength judgments for one controlled four-knot series. Use the EMBL-EBI JATS only; do not generalize to trained riggers, all knots, breaking strength, security, ratings, bondage, or human suspension. |
+
+### Deferred sources
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Static anchor-knot tests](https://www.mdpi.com/2073-8994/16/2/167) | 34 | The CC BY study has a useful controlled static design, but its “safest knot” conclusion exceeds that method. It omits dynamic, cyclic, security, capsizing, other geometry, wet or aged behavior, and untying evidence; the authors withhold data because misinterpretation could cause fall accidents. Require specialist safety adjudication. |
+| [HSE RR708 suspension-trauma first-aid review](https://www.hse.gov.uk/research/rrpdf/rr708.pdf) | 18 | The official historical PDF now returns 404. No mirror, cache, or archive was used. Body, publication-specific rights, components, and clinical currency must be recovered first and reconciled with the already accepted 2023 ICAR MEDCOM review. |
+| [2021 suspension-trauma systematic review](https://europepmc.org/article/MED/34512820) | 25 | The PMC record states World Journal of Emergency Medicine copyright and no permissive license. Public repository access is not adaptation permission, and the older heterogeneous medical evidence needs current clinical review. |
+
+### Rejected sources
+
+| Source | Score | Reason |
+|---|---:|---|
+| [Dynamic lanyard prototype study](https://www.mdpi.com/1660-4601/17/3/1107) | 27 | Sixteen total specimens spread across prototype or commercial types and fall arrangements support broad claims about arresting people and possible energy-absorber redundancy. Minimal cell replication, a material-description error, and high-consequence numeric recipes make the incremental value unsafe. |
+| [HSE LOLER guidance hub](https://www.hse.gov.uk/work-equipment-machinery/loler.htm) | 15 | Current and authoritative, but mostly UK legal navigation and heavily redundant with accepted MCA, Ontario, Actsafe, FEDEC, USBR, and INDG367 system sources. |
+| [Human knot-tying robotics dataset](https://openreview.net/forum?id=t1AKFuIjRS) | 15 | Thirty demonstrations by five people across only overhand and figure-eight knots principally supply RGB-D, trajectory, and topology data for robotics, not verified mechanics, human instruction, bondage knowledge, or safety. |
+| [Tokyo Weekender shibari history](https://www.tokyoweekender.com/art_and_culture/history/history-of-shibari-the-evolution-of-japanese-rope-bondage/) | 4 | All rights reserved and weakly sourced. Its rice-bag-to-hojojutsu-to-shunga narrative and unqualified “father of kinbaku” label would reintroduce exactly the neat false-lineage claims the source-critical corpus is designed to prevent. |
+
+### Batch 011 rights, evidence, and safety controls
+
+The APPA journal policy, MDPI article notices, EMBL-EBI JATS, NIST federal
+status, and HSE OGL terms were checked independently of technical relevance.
+Images, tables, standards, trademarks, vendor material, experiment media, and
+separately credited components remain outside every accepted scope. The
+ordinary-copyright medical review is not transformed, the missing HSE report is
+not recovered through a mirror, and open licensing does not rescue an
+underpowered high-consequence source.
+
+Static strength is kept separate from knot security, dynamic response, cyclic
+behavior, capsizing, dressing, tail behavior, inspectability, and ease of
+untying. Historical vehicle-recovery and industrial fall-protection evidence
+does not certify natural-fiber rope, a bondage knot, upline, anchor, hardpoint,
+body placement, or human suspension. The cognitive study supports verification
+and epistemic humility, not the claim that all practitioners are unable to
+judge all knots.
+
+### Batch 011 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery ledger,
+corpus queue, report, discovery test, and first-class corpus registry work for
+an independently completed source artifact. No QA, training projection, manual
+review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe, trainer,
+or unrelated corpus artifact was read. Public review used ordinary official,
+publisher, DOI, licensed API, and live failure routes; no login, paywall,
+challenge, crawler restriction, cache, archive, or third-party mirror was
+bypassed. Discovery wrote no reviewed source body into a training artifact.

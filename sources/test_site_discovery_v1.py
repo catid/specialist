@@ -358,6 +358,12 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "pmid": "32766466",
                 "stale_pmids": set(),
             },
+            "openmind_tangled_physics_knots_2024": {
+                "pmcid": "PMC11495958",
+                "doi": "10.1162/opmi_a_00159",
+                "pmid": "39439589",
+                "stale_pmids": set(),
+            },
         }
         for candidate_id, identifiers in expected.items():
             row = by_id[candidate_id]
@@ -398,6 +404,7 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "https://europepmc.org/article/MED/38071341",
                 "https://europepmc.org/article/MED/34383118",
                 "https://europepmc.org/article/MED/32766466",
+                "https://europepmc.org/article/MED/39439589",
             },
         )
 
@@ -1597,12 +1604,172 @@ class SourceCorpusContractTest(unittest.TestCase):
         }:
             self.assertIn(marker, consent_text)
 
+    def test_batch_011_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_011"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_high_priority": {
+                "acta_loop_knot_efficiency_experiments_2020",
+            },
+            "accept_targeted_scope": {
+                "mdpi_knot_efficiency_statistics_2022",
+                "nist_pleated_synthetic_rope_1986",
+                "hse_indg367_fall_arrest_rope_inspection",
+                "openmind_tangled_physics_knots_2024",
+            },
+            "defer": {
+                "mdpi_static_anchor_knot_tests_2024",
+                "hse_rr708_suspension_trauma_first_aid_2009",
+                "wjem_suspension_trauma_systematic_review_2021",
+            },
+            "reject": {
+                "mdpi_dynamic_lanyard_prototypes_2020",
+                "hse_general_loler_guidance",
+                "openreview_human_knot_tying_robotics_2025",
+                "tokyo_weekender_shibari_history_2024",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(
+            queued_from_batch,
+            expected["accept_high_priority"] | expected["accept_targeted_scope"],
+        )
+
+    def test_batch_011_accepted_sources_preserve_evidence_bounds(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "acta_loop_knot_efficiency_experiments_2020": {
+                "eight tested loop-knot families",
+                "standard-load versus cross-load",
+                "break-versus-untying",
+                "cc by 4.0",
+                "natural-fiber or bondage rope",
+            },
+            "mdpi_knot_efficiency_statistics_2022": {
+                "single paired break",
+                "ratio of small-sample means",
+                "approximately 200 straight-rope and 80 knotted-rope",
+                "failure to reject normality and proof of normality",
+            },
+            "nist_pleated_synthetic_rope_1986": {
+                "20 specimens",
+                "four untreated replicates per size",
+                "triplicate temperature groups",
+                "monotonic quasi-static",
+                "mired-vehicle kinetic-recovery",
+            },
+            "hse_indg367_fall_arrest_rope_inspection": {
+                "whole-length visual and tactile",
+                "sufficiently independent and impartial",
+                "single well-defined usable-life boundary",
+                "open government licence v3.0",
+            },
+            "openmind_tangled_physics_knots_2024": {
+                "pmcid pmc11495958",
+                "doi 10.1162/opmi_a_00159",
+                "five-experiment structure",
+                "topology recognition and strength judgment",
+                "resistance-to-undoing judgments",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertTrue(source["decision"].startswith("accept_"))
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_011_deferred_and_rejected_sources_are_safely_excluded(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        deferred_markers = {
+            "mdpi_static_anchor_knot_tests_2024": {
+                "safest-knot conclusion",
+                "misinterpretation could cause fall accidents",
+                "specialist safety adjudication",
+            },
+            "hse_rr708_suspension_trauma_first_aid_2009": {
+                "http 404",
+                "no cache, archive",
+                "clinical currency",
+            },
+            "wjem_suspension_trauma_systematic_review_2021": {
+                "copyright world journal of emergency medicine",
+                "public full-text access alone",
+                "qualified clinical review",
+            },
+        }
+        for candidate_id, required in deferred_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        rejection_markers = {
+            "mdpi_dynamic_lanyard_prototypes_2020": {
+                "16 total dynamic specimens",
+                "energy absorber",
+                "rejected_underpowered_high_consequence",
+            },
+            "hse_general_loler_guidance": {
+                "duplicates already queued",
+                "uk legal scope",
+                "rejected_redundant_legal_scope",
+            },
+            "openreview_human_knot_tying_robotics_2025": {
+                "30 human demonstrations",
+                "rgb-d",
+                "rejected_low_transfer_visual_robotics",
+            },
+            "tokyo_weekender_shibari_history_2024": {
+                "tawara rice-bag tying",
+                "father of kinbaku",
+                "all rights reserved",
+            },
+        }
+        for candidate_id, required in rejection_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "reject")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_010`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_011`", self.report)
 
 
 if __name__ == "__main__":
