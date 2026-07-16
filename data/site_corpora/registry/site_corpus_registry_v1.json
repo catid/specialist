@@ -331,6 +331,62 @@
       "whitespace_delimited_word_count": 3605
     },
     {
+      "artifact_id": "canonical-markdown:kink_education_code_of_conduct",
+      "byte_length": 30035,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/kink_education_code_of_conduct/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "3d6c69dbd2d34ec31cddbb11c6500c8af99c8f69d3866f8099a8d775fe16d93d",
+      "markdown_path": "data/site_corpora/kink_education_code_of_conduct/CORPUS.md",
+      "markdown_sha256": "9d9909ddd3c40a65dd4ee99c1a88df8b938eaf65482f87842bb842ebe187b2d8",
+      "non_qa": true,
+      "qwen36_token_count": 5544,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:d523412f2ee8535b9db9b02a98b3e6e871bf53e2627ce8417b0a638f84f6aeab",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "kink_education_code_of_conduct",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The official KECC full-version HTML, PDF, and homepage identify the version-1 work and v. 1 KECC Collective under Creative Commons Attribution-ShareAlike 4.0; the transformed corpus records attribution, changes, and ShareAlike status.",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "limitations": [
+          "The corpus is explicitly version 1 and PDF-dated 2019; it is not represented as complete or current community consensus.",
+          "Individual contributor names, operational kink examples, exact portable thresholds, and source or URL trivia are excluded.",
+          "Open licensing does not make the code law, certification, enforcement, adjudication, consent proof, or evidence that an educator, producer, venue, or practice is safe."
+        ],
+        "promotion_gate": "ready_with_attribution_sharealike_version_and_role_context",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "educator_and_producer_role_context_must_be_preserved",
+        "incident_disclosure_and_privacy_tension_must_remain_together",
+        "no_current_consensus_law_certification_enforcement_or_safety_proof",
+        "no_operational_kink_medical_legal_investigation_or_response_procedure",
+        "version_1_2019_historical_scope_required"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.thekecc.org/fullVersion.html",
+        "identity_type": "versioned_collective_ethics_code",
+        "source_id": "KECC-v1-2019",
+        "version": "1"
+      },
+      "source_document_identity_sha256": "d523412f2ee8535b9db9b02a98b3e6e871bf53e2627ce8417b0a638f84f6aeab",
+      "source_label": "Kink Education Code of Conduct (KECC), version 1",
+      "unicode_word_count": 4070,
+      "whitespace_delimited_word_count": 4129
+    },
+    {
       "artifact_id": "canonical-markdown:rope365",
       "byte_length": 90243,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -604,7 +660,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "9b619d7ec2a02fa2c0043992ea40d2d0a2388f12446e37c81e10a4e653bffb5e"
+    "sha256": "4790554aafb0043955af028534b5f78020152f5cddf8d439bb53d0fde16f48a9"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -643,7 +699,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "f5ac5963149cf29db5fbf723caa9674096042d0166c091bb5f9fbcfddb20e61e",
+  "source_tree_fingerprint_sha256": "22b450973409a333e0b8d0f36393710184800349224c2db7337a3d5e43a90774",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -653,11 +709,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 11,
-    "byte_length": 3867241,
-    "qwen36_token_count": 1141370,
-    "source_document_split_group_count": 11,
-    "unicode_word_count": 507276,
-    "whitespace_delimited_word_count": 395565
+    "artifact_count": 12,
+    "byte_length": 3897276,
+    "qwen36_token_count": 1146914,
+    "source_document_split_group_count": 12,
+    "unicode_word_count": 511346,
+    "whitespace_delimited_word_count": 399694
   }
 }

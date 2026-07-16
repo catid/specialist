@@ -209,6 +209,18 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             hse["rights_basis"]["license"], "Open Government Licence v3.0"
         )
 
+        kecc = self.by_id["kink_education_code_of_conduct"]
+        self.assertEqual(
+            kecc["source_document_identity"]["source_id"], "KECC-v1-2019"
+        )
+        self.assertEqual(kecc["source_document_identity"]["version"], "1")
+        self.assertEqual(kecc["rights_basis"]["status"], "explicit_open_license")
+        self.assertEqual(kecc["rights_basis"]["license"], "CC BY-SA 4.0")
+        self.assertIn(
+            "no_current_consensus_law_certification_enforcement_or_safety_proof",
+            kecc["safety_transfer_flags"],
+        )
+
     def test_safety_and_domain_transfer_flags_cannot_be_empty(self) -> None:
         for item in self.artifacts:
             flags = item["safety_transfer_flags"]

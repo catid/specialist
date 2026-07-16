@@ -194,6 +194,39 @@
       ]
     },
     {
+      "resource_id": "kink_education_code_of_conduct",
+      "source_label": "Kink Education Code of Conduct (KECC), version 1",
+      "manifest_path": "data/site_corpora/kink_education_code_of_conduct/manifest.json",
+      "markdown_path": "data/site_corpora/kink_education_code_of_conduct/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "versioned_collective_ethics_code",
+        "canonical_url": "https://www.thekecc.org/fullVersion.html",
+        "source_id": "KECC-v1-2019",
+        "version": "1"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The official KECC full-version HTML, PDF, and homepage identify the version-1 work and v. 1 KECC Collective under Creative Commons Attribution-ShareAlike 4.0; the transformed corpus records attribution, changes, and ShareAlike status.",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_sharealike_version_and_role_context",
+        "limitations": [
+          "The corpus is explicitly version 1 and PDF-dated 2019; it is not represented as complete or current community consensus.",
+          "Individual contributor names, operational kink examples, exact portable thresholds, and source or URL trivia are excluded.",
+          "Open licensing does not make the code law, certification, enforcement, adjudication, consent proof, or evidence that an educator, producer, venue, or practice is safe."
+        ]
+      },
+      "safety_transfer_flags": [
+        "educator_and_producer_role_context_must_be_preserved",
+        "incident_disclosure_and_privacy_tension_must_remain_together",
+        "no_current_consensus_law_certification_enforcement_or_safety_proof",
+        "no_operational_kink_medical_legal_investigation_or_response_procedure",
+        "version_1_2019_historical_scope_required"
+      ]
+    },
+    {
       "resource_id": "rope365",
       "source_label": "Rope365 canonical instructional site digest",
       "manifest_path": "data/site_corpora/rope365/manifest.json",
