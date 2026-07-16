@@ -1,0 +1,65 @@
+{
+  "schema": "site-corpus-manifest",
+  "schema_version": "1.0",
+  "corpus_schema": "museum-textile-mechanism-markdown",
+  "corpus_schema_version": "1.0",
+  "package_id": "nps_textile_fiber_aging_appendix_k_2002",
+  "source_ids": [
+    "NPS-TEXTILES-K-2002"
+  ],
+  "evidence_domain": "museum textile fibers, fabrication history and collection aging mechanisms",
+  "selected_scope": {
+    "printed_pages": "K:2-K:13",
+    "physical_pdf_pages": "6-17",
+    "claim_level_retained_pages": "6-16",
+    "publication_year": 2002
+  },
+  "rights_status": "public_domain_us_federal_work",
+  "direct_training_ready": true,
+  "statistics": {
+    "source_documents": 1,
+    "physical_pages_audited": 50,
+    "partially_retained_pages": 11,
+    "excluded_pages": 39,
+    "numbered_figures_excluded": 16,
+    "controlled_source_blocks_excluded": 3,
+    "component_records": 19,
+    "corpus_words": 2209,
+    "claim_paragraphs": 43,
+    "claim_citations": 43
+  },
+  "artifacts": {
+    "CORPUS.md": {
+      "bytes": 16780,
+      "sha256": "04949a4d3685ad91b052ba81224a770b39328c2715ebc5fc8284bebf34d33453"
+    },
+    "README.md": {
+      "bytes": 1489,
+      "sha256": "d6d87350cf7b58bcead7381d85fb537598e29dffeacbc68aff42bf2be4ca794a"
+    },
+    "REPORT.md": {
+      "bytes": 4132,
+      "sha256": "556c44fe815084449373285c7576e5bc213ff0e870efd83aa2d632c6aac1ece7"
+    },
+    "components.jsonl": {
+      "bytes": 6811,
+      "sha256": "c54274c72f5788fd1bd78fbcc56f51d92a2042777b19df2e3e03aaa483dba1ad"
+    },
+    "dispositions.jsonl": {
+      "bytes": 12151,
+      "sha256": "d6cd3d9accd23d2046b280c805784f4be29efa081e7c0a675d6f8ea638395f12"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 2366,
+      "sha256": "730c8ea3f45dc51ca0c8a2e81899169d676354803f811ea9e7572fcf2fbc0c44"
+    },
+    "sources.jsonl": {
+      "bytes": 1405,
+      "sha256": "49cc32205fa30e8489644f53bd391c93c36040a30afea692fd8bcd7128464615"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 12016,
+      "sha256": "9cb3e2d91e5ed6743a4cbd793b49b323daf87ad45784b3ef51224875813e4a61"
+    }
+  }
+}
