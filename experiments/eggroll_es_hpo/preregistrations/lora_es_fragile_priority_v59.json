@@ -1,0 +1,675 @@
+{
+  "artifacts": {
+    "anchor_calibration": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/anchor_calibration_v59.json",
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v59_lora_es_fragile_priority.attempt.json",
+    "compatibility_report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/compatibility_report_v55b.json",
+    "coordinator_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority.coordinator.log",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/failure_v52.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/gpu_activity_v59.jsonl",
+    "internal_report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/nested_population_report_v52.json",
+    "no_p8_evaluation_receipt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/p8_train_gate_v52.json",
+    "numeric_calibration": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/numeric_calibration_v59.json",
+    "ood_shadow_benchmark_or_holdout": null,
+    "p16_train_gate": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/p16_train_gate_v52.json",
+    "passing_candidate_snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/selected_candidate_v59",
+    "projection": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/nested_population_v52.json",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/fragile_priority_report_v59.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority"
+  },
+  "authorization": {
+    "gpu_launch": true,
+    "in_memory_candidate_transaction": true,
+    "ood_shadow_benchmark_or_holdout": false,
+    "optimizer_master_commit": false,
+    "p8_evaluation": false,
+    "population_generation_or_scoring": false,
+    "protected_semantics": false,
+    "reuse_persisted_signed_scores": true,
+    "sealed_holdout": false
+  },
+  "content_sha256_before_self_field": "e21bb2dd54b4e557d04b9989748f3475fbbdf9c498611a193a1d407bde34c49b",
+  "created_at_utc": "2026-07-16T08:43:01.705811+00:00",
+  "document_disjoint_evaluation_doctrine_preserved": true,
+  "fixed_recipe": {
+    "dataset": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/train_v434_fold3_v49d.jsonl",
+    "dataset_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+    "engine_count": 4,
+    "master_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+    "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "source": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/v434_equal_r32_seed17_init20260715041/final",
+    "staged": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "c94a7e8e8c30dbc2586351c4ef0ff13e3e9cc8551a21b9e055d34fbfa94bf44a",
+    "worker_extension": "eggroll_es_worker_lora_v52.LoRAAdapterStateWorkerExtensionV52"
+  },
+  "fragile_priority_projection": {
+    "content_sha256": "99f09eec0ba6d72cbe19ac3cf9653ef5251a4c2a8ef2cccbeb56b55a190bbf2b",
+    "direction": [
+      0.2704305325244327,
+      0.14844798761264721,
+      0.12981504714004827,
+      -0.4159770367108563,
+      0.5204628783663723,
+      -0.08906929883297349,
+      -0.043952177882467365,
+      -0.06780794314707844,
+      -0.1988618994335722,
+      0.06983271106034157,
+      -0.11637490121495458,
+      0.21673069381684543,
+      -0.3319995379644854,
+      -0.42802252238164046,
+      -0.13306137654155786,
+      0.11630453565505489
+    ],
+    "direction_sha256": "f80db1bde940053c93e559c9305dc750e82f5231d8df4f52fcf1b85c06dc0522",
+    "genuinely_different_from_v58": true,
+    "maximin_margin": 0.47021686822275277,
+    "minimum_fragile_margin": 0.47021686822275277,
+    "minimum_other_margin": 0.14999999999999908,
+    "population_size": 16,
+    "reference_norm": 0.6520654409995457,
+    "row_order": [
+      {
+        "actor_rank": 0,
+        "objective": "domain"
+      },
+      {
+        "actor_rank": 1,
+        "objective": "domain"
+      },
+      {
+        "actor_rank": 2,
+        "objective": "domain"
+      },
+      {
+        "actor_rank": 3,
+        "objective": "domain"
+      },
+      {
+        "actor_rank": 0,
+        "objective": "fragile_generation_f1"
+      },
+      {
+        "actor_rank": 1,
+        "objective": "fragile_generation_f1"
+      },
+      {
+        "actor_rank": 2,
+        "objective": "fragile_generation_f1"
+      },
+      {
+        "actor_rank": 3,
+        "objective": "fragile_generation_f1"
+      },
+      {
+        "actor_rank": 0,
+        "objective": "fragile_generation_nonzero"
+      },
+      {
+        "actor_rank": 1,
+        "objective": "fragile_generation_nonzero"
+      },
+      {
+        "actor_rank": 2,
+        "objective": "fragile_generation_nonzero"
+      },
+      {
+        "actor_rank": 3,
+        "objective": "fragile_generation_nonzero"
+      },
+      {
+        "actor_rank": 0,
+        "objective": "prose_lm"
+      },
+      {
+        "actor_rank": 1,
+        "objective": "prose_lm"
+      },
+      {
+        "actor_rank": 2,
+        "objective": "prose_lm"
+      },
+      {
+        "actor_rank": 3,
+        "objective": "prose_lm"
+      },
+      {
+        "actor_rank": 0,
+        "objective": "qa_answer_logprob"
+      },
+      {
+        "actor_rank": 1,
+        "objective": "qa_answer_logprob"
+      },
+      {
+        "actor_rank": 2,
+        "objective": "qa_answer_logprob"
+      },
+      {
+        "actor_rank": 3,
+        "objective": "qa_answer_logprob"
+      },
+      {
+        "actor_rank": 0,
+        "objective": "qa_generation_f1"
+      },
+      {
+        "actor_rank": 1,
+        "objective": "qa_generation_f1"
+      },
+      {
+        "actor_rank": 2,
+        "objective": "qa_generation_f1"
+      },
+      {
+        "actor_rank": 3,
+        "objective": "qa_generation_f1"
+      }
+    ],
+    "schema": "fragile-f1-priority-constrained-actor-projection-v59",
+    "seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570,
+      863156398,
+      658045682,
+      947615772,
+      615729462,
+      958574585,
+      1048698881,
+      573870406,
+      938961107
+    ],
+    "sigma": 0.0048,
+    "solution": {
+      "all_24_margins": [
+        0.14999999999999986,
+        0.21945910229049662,
+        0.18438510798324562,
+        0.19494957658880913,
+        0.5341924244600029,
+        0.47021686822275277,
+        0.5377364408094183,
+        0.4702168682227531,
+        0.4030955248034488,
+        0.18019463335670846,
+        0.5718291498267323,
+        0.421291313090037,
+        0.17139583906232175,
+        0.34985706212555073,
+        0.16558497530441324,
+        0.1500000000000002,
+        0.16447839872315567,
+        0.14999999999999908,
+        0.17314042959399278,
+        0.16049593154856212,
+        0.1517998465180754,
+        0.14999999999999966,
+        0.14999999999999986,
+        0.2279399059062528
+      ],
+      "convex_program": "maximize t subject to four fragile-F1 actor margins >= t, other 20 actor-objective margins >= 0.15, ||u||_2 <= 1",
+      "direction": [
+        0.2704305325244327,
+        0.14844798761264721,
+        0.12981504714004827,
+        -0.4159770367108563,
+        0.5204628783663723,
+        -0.08906929883297349,
+        -0.043952177882467365,
+        -0.06780794314707844,
+        -0.1988618994335722,
+        0.06983271106034157,
+        -0.11637490121495458,
+        0.21673069381684543,
+        -0.3319995379644854,
+        -0.42802252238164046,
+        -0.13306137654155786,
+        0.11630453565505489
+      ],
+      "direction_norm": 1.0,
+      "fragile_margins": [
+        0.5341924244600029,
+        0.47021686822275277,
+        0.5377364408094183,
+        0.4702168682227531
+      ],
+      "fragile_multiplier_sum": 1.0000000000000306,
+      "fragile_row_indices": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "ftol": 1e-14,
+      "global_optimality_certificate": "convex feasible set plus primal feasibility, nonnegative KKT multipliers, stationarity, and complementarity",
+      "kkt_multipliers": [
+        0.0,
+        0.5729511173046259,
+        0.0,
+        0.42704888269540486,
+        0.6042691555884773,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.03937695595335649,
+        0.0,
+        0.6498997627505171,
+        0.0,
+        0.0,
+        0.0,
+        0.1344104188966058,
+        0.3371606695640316,
+        0.0,
+        0.3674922063178766
+      ],
+      "maximum_complementarity_residual": 5.952652862508419e-16,
+      "maximum_stationarity_residual": 5.326131202743056e-11,
+      "maxiter": 10000,
+      "minimum_fragile_margin": 0.47021686822275277,
+      "minimum_kkt_multiplier": 0.0,
+      "minimum_other_margin": 0.14999999999999908,
+      "norm_multiplier": 0.3674922063178766,
+      "other_margin_floor_derivation": "exactly one half of V55B MINIMUM_MAXIMIN_MARGIN_V55B=0.3",
+      "other_margins": [
+        0.14999999999999986,
+        0.21945910229049662,
+        0.18438510798324562,
+        0.19494957658880913,
+        0.4030955248034488,
+        0.18019463335670846,
+        0.5718291498267323,
+        0.421291313090037,
+        0.17139583906232175,
+        0.34985706212555073,
+        0.16558497530441324,
+        0.1500000000000002,
+        0.16447839872315567,
+        0.14999999999999908,
+        0.17314042959399278,
+        0.16049593154856212,
+        0.1517998465180754,
+        0.14999999999999966,
+        0.14999999999999986,
+        0.2279399059062528
+      ],
+      "other_row_indices": [
+        0,
+        1,
+        2,
+        3,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "per_objective_minimum_margins": {
+        "domain": 0.14999999999999986,
+        "fragile_generation_f1": 0.47021686822275277,
+        "fragile_generation_nonzero": 0.18019463335670846,
+        "prose_lm": 0.1500000000000002,
+        "qa_answer_logprob": 0.14999999999999908,
+        "qa_generation_f1": 0.14999999999999966
+      },
+      "required_minimum_fragile_margin": 0.47,
+      "required_other_margin_floor": 0.15,
+      "selected_start_index": 0,
+      "solver": "scipy.optimize.minimize/SLSQP",
+      "start_order": "v58_direction, fragile_row_mean, fragile_actor_rows_0_to_3",
+      "start_receipts": [
+        {
+          "direction_norm": 1.0000000000000009,
+          "fragile_minimum_margin": 0.47021686822275316,
+          "iterations": 7,
+          "other_minimum_margin": 0.1499999999999992,
+          "start_index": 0,
+          "status": 0,
+          "success": true
+        },
+        {
+          "direction_norm": 0.9999999999999997,
+          "fragile_minimum_margin": 0.4702168682227521,
+          "iterations": 10,
+          "other_minimum_margin": 0.14999999999999958,
+          "start_index": 1,
+          "status": 0,
+          "success": true
+        },
+        {
+          "direction_norm": 1.0,
+          "fragile_minimum_margin": 0.47021686822275205,
+          "iterations": 12,
+          "other_minimum_margin": 0.1499999999999999,
+          "start_index": 2,
+          "status": 0,
+          "success": true
+        },
+        {
+          "direction_norm": 0.9999999999999999,
+          "fragile_minimum_margin": 0.47021686822275266,
+          "iterations": 7,
+          "other_minimum_margin": 0.14999999999999922,
+          "start_index": 3,
+          "status": 0,
+          "success": true
+        },
+        {
+          "direction_norm": 1.0000000000000004,
+          "fragile_minimum_margin": 0.4702168682227524,
+          "iterations": 10,
+          "other_minimum_margin": 0.1499999999999999,
+          "start_index": 4,
+          "status": 0,
+          "success": true
+        },
+        {
+          "direction_norm": 0.9999999999999998,
+          "fragile_minimum_margin": 0.47021686822275144,
+          "iterations": 7,
+          "other_minimum_margin": 0.14999999999999983,
+          "start_index": 5,
+          "status": 0,
+          "success": true
+        }
+      ]
+    },
+    "source_matrix_sha256": "986ae509c1350e39416113d56277d54dd9f58322f1a6f63e914465e1a68c4bd3",
+    "source_signed_scores_content_sha256": "f60eb4f5c66a3f26571c07111ec1ccf9c26ecd8121e3c160007c5ad7220ae486",
+    "source_signed_scores_file_sha256": "f73adf79eb1cc10315a088568cd68816a5233fdb46217bb5ed55e3c0be778659",
+    "source_v58_projection_content_sha256": "492ed88fad7cbb6ace872a3129e01f650a9b45a37b580f4a4f49366144103f88",
+    "v58_direction_cosine": 0.9206650055681261
+  },
+  "fragile_priority_projection_content_sha256": "99f09eec0ba6d72cbe19ac3cf9653ef5251a4c2a8ef2cccbeb56b55a190bbf2b",
+  "implementation_bindings": {
+    "compatibility_runner_v55b": {
+      "file_sha256": "7df1306acb65fa406ff381795198272f38521dace3bfec06c7756c9e8804b535",
+      "path": "/home/catid/specialist/run_lora_es_fragile_maximin_backtracking_v55b.py"
+    },
+    "projection_v59": {
+      "file_sha256": "e2b697ce5686cee8c9cb0a748fca554f994b32881c44745c2cd7f57fb12cf9b4",
+      "path": "/home/catid/specialist/lora_es_fragile_priority_projection_v59.py"
+    },
+    "runner_v59": {
+      "file_sha256": "d5d288a8b541d4a7c6d7b98b284839b5e70ddf3a04f62f79e709a768245658ad",
+      "path": "/home/catid/specialist/run_lora_es_fragile_priority_v59.py"
+    },
+    "v52_design": {
+      "file_sha256": "25a385911b24177630a9449c65b40d4eeccda5f6bbff3d67734e795efadb6f08",
+      "path": "/home/catid/specialist/lora_es_nested_population_v52.py"
+    },
+    "v52_executor": {
+      "file_sha256": "1f433e4b484846c02135fb25f3c3d05655de365e438c2a945829063d2e1a4f27",
+      "path": "/home/catid/specialist/run_lora_es_nested_population_v52.py"
+    },
+    "v52_worker": {
+      "file_sha256": "f5e04e752e6b20fc7e380d366bcd282c519ea7aa4d280345671ec428ff39356a",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v52.py"
+    },
+    "v58_shell": {
+      "file_sha256": "68e1c147223bb6b7b35e3ed9bb63424d0dd9454f645091a48688d941c9cba8bc",
+      "path": "/home/catid/specialist/run_lora_es_actor_maximin_v58.py"
+    }
+  },
+  "ood_shadow_opened": false,
+  "protected_semantics_opened": false,
+  "purpose": "Target V58's sole repeat bottleneck by maximizing the four fragile-generation-F1 actor margins while requiring every other actor-objective margin to remain at least 0.15.",
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "scale_plans": [
+    {
+      "actual_norm_ratio": 0.5,
+      "coefficient_l2_norm": 0.32603272049977283,
+      "coefficient_sha256": "eb908a7c25c3f566040b0b379b3463883a5115b46be6b764e54060820bb493e3",
+      "coefficients": [
+        0.0881692022251431,
+        0.04839890125406795,
+        0.04232395298087619,
+        -0.13562212494427436,
+        0.1696879281529307,
+        -0.029039505811521586,
+        -0.01432984812691078,
+        -0.022107608175735913,
+        -0.06483548607607978,
+        0.02276774876687774,
+        -0.03794202564100396,
+        0.07066129772090941,
+        -0.10824271256722878,
+        -0.13954934740726113,
+        -0.04338236258728877,
+        0.03791908416608037
+      ],
+      "fragile_priority_and_other_positive_margins_preserved": true,
+      "original_nine_calibrated_endpoint_gates_unchanged": true,
+      "target_norm_ratio": 0.5
+    },
+    {
+      "actual_norm_ratio": 0.375,
+      "coefficient_l2_norm": 0.24452454037482962,
+      "coefficient_sha256": "66d8b1acdb0b5fb5d8fa23a6114dbdc498556413a81ea430bdc11aea928fce06",
+      "coefficients": [
+        0.06612690166885732,
+        0.03629917594055096,
+        0.031742964735657145,
+        -0.10171659370820577,
+        0.12726594611469805,
+        -0.021779629358641188,
+        -0.010747386095183085,
+        -0.016580706131801935,
+        -0.048626614557059834,
+        0.017075811575158306,
+        -0.028456519230752972,
+        0.052995973290682064,
+        -0.08118203442542159,
+        -0.10466201055544586,
+        -0.03253677194046657,
+        0.02843931312456028
+      ],
+      "fragile_priority_and_other_positive_margins_preserved": true,
+      "original_nine_calibrated_endpoint_gates_unchanged": true,
+      "target_norm_ratio": 0.375
+    },
+    {
+      "actual_norm_ratio": 0.25,
+      "coefficient_l2_norm": 0.16301636024988642,
+      "coefficient_sha256": "c0dd990fdd77a3176e1dbafd46ef4dbd6ea3220b5fc23a71334836a8dcbfba0c",
+      "coefficients": [
+        0.04408460111257155,
+        0.024199450627033974,
+        0.021161976490438095,
+        -0.06781106247213718,
+        0.08484396407646536,
+        -0.014519752905760793,
+        -0.00716492406345539,
+        -0.011053804087867956,
+        -0.03241774303803989,
+        0.01138387438343887,
+        -0.01897101282050198,
+        0.03533064886045471,
+        -0.05412135628361439,
+        -0.06977467370363057,
+        -0.021691181293644383,
+        0.018959542083040185
+      ],
+      "fragile_priority_and_other_positive_margins_preserved": true,
+      "original_nine_calibrated_endpoint_gates_unchanged": true,
+      "target_norm_ratio": 0.25
+    },
+    {
+      "actual_norm_ratio": 0.1875,
+      "coefficient_l2_norm": 0.12226227018741481,
+      "coefficient_sha256": "c119529666471994326bfa6b79144d04090133282ea044ab355adca43b9aa55a",
+      "coefficients": [
+        0.03306345083442866,
+        0.01814958797027548,
+        0.015871482367828572,
+        -0.05085829685410288,
+        0.06363297305734902,
+        -0.010889814679320594,
+        -0.005373693047591542,
+        -0.008290353065900967,
+        -0.024313307278529917,
+        0.008537905787579153,
+        -0.014228259615376486,
+        0.026497986645341032,
+        -0.040591017212710793,
+        -0.05233100527772293,
+        -0.016268385970233286,
+        0.01421965656228014
+      ],
+      "fragile_priority_and_other_positive_margins_preserved": true,
+      "original_nine_calibrated_endpoint_gates_unchanged": true,
+      "target_norm_ratio": 0.1875
+    },
+    {
+      "actual_norm_ratio": 0.125,
+      "coefficient_l2_norm": 0.08150818012494321,
+      "coefficient_sha256": "37157b37167ece443b2c8b400bb8c83fa343834c0a42c4a54dd1ac422cc97f06",
+      "coefficients": [
+        0.022042300556285775,
+        0.012099725313516987,
+        0.010580988245219048,
+        -0.03390553123606859,
+        0.04242198203823268,
+        -0.0072598764528803966,
+        -0.003582462031727695,
+        -0.005526902043933978,
+        -0.016208871519019945,
+        0.005691937191719435,
+        -0.00948550641025099,
+        0.017665324430227353,
+        -0.027060678141807196,
+        -0.03488733685181528,
+        -0.010845590646822192,
+        0.009479771041520093
+      ],
+      "fragile_priority_and_other_positive_margins_preserved": true,
+      "original_nine_calibrated_endpoint_gates_unchanged": true,
+      "target_norm_ratio": 0.125
+    },
+    {
+      "actual_norm_ratio": 0.0625,
+      "coefficient_l2_norm": 0.040754090062471604,
+      "coefficient_sha256": "34f4886882073c2a33aeaf8ae63a84bb26230e7f6efe5b39d311fec158ddbb69",
+      "coefficients": [
+        0.011021150278142888,
+        0.0060498626567584935,
+        0.005290494122609524,
+        -0.016952765618034295,
+        0.02121099101911634,
+        -0.0036299382264401983,
+        -0.0017912310158638475,
+        -0.002763451021966989,
+        -0.008104435759509972,
+        0.0028459685958597174,
+        -0.004742753205125495,
+        0.008832662215113677,
+        -0.013530339070903598,
+        -0.01744366842590764,
+        -0.005422795323411096,
+        0.004739885520760046
+      ],
+      "fragile_priority_and_other_positive_margins_preserved": true,
+      "original_nine_calibrated_endpoint_gates_unchanged": true,
+      "target_norm_ratio": 0.0625
+    }
+  ],
+  "scale_plans_content_sha256": "7cc8bd8792d6ea24c371b10324e68728bd641ff4d02f33e5061981baf868f476",
+  "schema": "lora-es-fragile-priority-preregistration-v59",
+  "single_scientific_change": {
+    "new_direction": "fragile-F1 priority with fixed nonfragile floor",
+    "no_ood_output_or_semantic_informed_projection_scale_or_gate": true,
+    "no_raw_all_actor_sign_selector": true,
+    "nonfragile_floor": 0.15,
+    "nonfragile_floor_preregistered_derivation": "0.5 * V55B_MINIMUM_MAXIMIN_MARGIN_0p3",
+    "old_direction": "V58 equal maximin over 24 actor-objective rows",
+    "same_candidate_consensus": true,
+    "same_exact_master_dataset_sigma_population_seeds_alpha": true,
+    "same_original_nine_calibrated_endpoint_gates": true,
+    "same_persisted_signed_scores": true,
+    "variable": "projection_direction_only"
+  },
+  "status": "sealed_before_v59_model_ray_gpu_or_train_gate_access",
+  "telemetry": {
+    "all_four_physical_gpus_and_expected_actor_pids_required": true,
+    "foreign_compute_processes_forbidden": true,
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/gpu_activity_v59.jsonl",
+    "minimum_projection_phase_barrier_seconds": 1.25,
+    "p16_train_gate_activity_receipt_required": true,
+    "projection_phase": "v59_fragile_priority_projection_no_population_rerun"
+  },
+  "terminal_holdout_opened": false,
+  "train_only_gate": {
+    "additional_raw_actor_sign_checks": false,
+    "all_nine_original_calibrated_checks_required_without_weakening": true,
+    "candidate_actor_consensus_required": true,
+    "every_candidate_exactly_aborted_to_master": true,
+    "largest_strictly_passing_scale": true,
+    "required_checks": [
+      "domain_point_improvement",
+      "prose_lm_noninferiority",
+      "qa_logprob_noninferiority",
+      "qa_generation_f1_noninferiority",
+      "qa_generation_exact_noninferiority",
+      "qa_generation_nonzero_noninferiority",
+      "fragile_generation_f1_noninferiority",
+      "fragile_generation_exact_noninferiority",
+      "fragile_generation_nonzero_noninferiority"
+    ],
+    "save_pending_candidate_only_for_passing_scale": true,
+    "scale_order": [
+      0.5,
+      0.375,
+      0.25,
+      0.1875,
+      0.125,
+      0.0625
+    ]
+  },
+  "v58_train_only_negative_evidence": {
+    "aggregate_report": {
+      "file_sha256": "2b7e541e0a806fea41e6d91dc718d89c42cd2920a06499e78c8c3e3001f09436",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v58_lora_es_actor_maximin/actor_maximin_report_v58.json"
+    },
+    "fragile_f1_failed_all_six_ratios": true,
+    "manifest": {
+      "file_sha256": "3dc7b6bdafa36cbfa7fe5c2d584ceff4d5ada857df4e59ce9c6ef8e5afc905ff",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v58_lora_es_actor_maximin/v58_evidence_manifest.json"
+    },
+    "middle_three_ratios_failed_only_fragile_f1": true,
+    "ood_shadow_benchmark_holdout_or_protected_semantics_used": false
+  }
+}
