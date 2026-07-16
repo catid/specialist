@@ -1,0 +1,135 @@
+{
+  "schema": "site-corpus-provenance-v1",
+  "resource_id": "usfs_rigging_for_trail_work",
+  "source_id": "usfs_rigging_for_trail_work",
+  "retrieved_at": "2026-07-16T09:17:48Z",
+  "review_completed_at": "2026-07-16T09:25:00Z",
+  "canonical_package_url": "https://www.govinfo.gov/app/details/GOVPUB-A13-PURL-gpo235248",
+  "canonical_pdf_url": "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-gpo235248/pdf/GOVPUB-A13-PURL-gpo235248.pdf",
+  "canonical_mods_url": "https://www.govinfo.gov/metadata/pkg/GOVPUB-A13-PURL-gpo235248/mods.xml",
+  "agency_origin_url": "https://www.fs.usda.gov/t-d/pubs/pdfpubs/pdf22232806/2223-2806-rigging-for-trail-work-guide.pdf",
+  "agency_origin_url_treatment": "identifier_only_not_retained",
+  "publication": {
+    "title": "Rigging for Trail Work: Principles, Techniques, and Lessons from the Backcountry",
+    "authors": [
+      "David E. Michael",
+      "Jedediah J. Talbot",
+      "John S. Glenn"
+    ],
+    "publisher": "U.S. Department of Agriculture, Forest Service, National Technology and Development Program",
+    "publication_date_as_displayed": "August 2024",
+    "publication_number": "2223-2806-NTDP",
+    "extent_as_cataloged": "1 online resource (viii, 176 pages); 188 digital object pages",
+    "govinfo_package_id": "GOVPUB-A13-PURL-gpo235248",
+    "oclc": "1477818231"
+  },
+  "remote_objects": {
+    "pdf": {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-gpo235248/pdf/GOVPUB-A13-PURL-gpo235248.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "content_length": 22614422,
+      "sha256": "72128d121adeac0bc668f0acd0f9b09cdb134ed997601b2d792ac3283da33d74",
+      "last_modified": "Fri, 26 Jun 2026 05:01:06 GMT",
+      "retained_in_repository": false,
+      "retention_reason": "The 22.6 MB source PDF is referenced by canonical URL, byte length, and digest; the repository retains the compact official metadata and manually transformed corpus."
+    },
+    "mods_xml": {
+      "url": "https://www.govinfo.gov/metadata/pkg/GOVPUB-A13-PURL-gpo235248/mods.xml",
+      "http_status": 200,
+      "content_type": "application/xml",
+      "remote_byte_length": 9001,
+      "remote_sha256": "3f33bd253963358992746af9bb8394bd400fa1003ecb795895b2368f6987261b",
+      "last_modified": "Fri, 26 Jun 2026 05:01:06 GMT",
+      "retained_path": "source_snapshot/mods.xml",
+      "retained_byte_length": 9002,
+      "retained_sha256": "e06e800719fd9810669e7fe56e6d03523f9a3a7c9ebf93cc51c64d44ecf98677",
+      "normalization": "A single terminal LF was added to the verbatim XML bytes for repository text-file normalization; the remote raw digest and length remain recorded separately."
+    },
+    "robots_txt": {
+      "url": "https://www.govinfo.gov/robots.txt",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "remote_byte_length": 4695,
+      "remote_sha256": "628d45022bceabd6fb36b85c8b63425f01baba5cef77eb982469e763a074f66a",
+      "retained_path": "source_snapshot/robots.txt",
+      "retained_byte_length": 4696,
+      "retained_sha256": "bccb5879452d620d3a46a1d399e224ac90ef06c22b5343a82f9ca4102d05bcf6",
+      "normalization": "A single terminal LF was added for repository text-file normalization.",
+      "access_interpretation": "The retrieved robots file contains no rule disallowing the canonical content/pkg or metadata/pkg routes. Robots access is not a copyright license."
+    }
+  },
+  "rights_review": {
+    "decision": "include_manually_transformed_eligible_federal_text_with_component_exclusions",
+    "basis": "Eligible text prepared as a work of the United States Government is treated as presumptively public domain under 17 U.S.C. 105. This corpus decision is deliberately narrower than a blanket conclusion about every component in the PDF.",
+    "source_signals": [
+      "The publication is issued by the U.S. Department of Agriculture, Forest Service, National Technology and Development Program.",
+      "The front matter says images are Forest Service images unless otherwise noted.",
+      "The acknowledgments identify an illustrator and several visual or editorial contributors.",
+      "The source includes bibliography, a decorative third-party quotation, vendor descriptions, photographs, illustrations, and tables that need not share one rights status."
+    ],
+    "excluded_components": [
+      "all photographs",
+      "all illustrations and figure artwork",
+      "expressive source table layouts",
+      "decorative quotations",
+      "bibliographic abstracts or third-party prose",
+      "vendor descriptions and product promotion",
+      "any component noted as externally supplied or not independently cleared"
+    ],
+    "included_treatment": "Original manual synthesis and independently typeset equations or numerical examples only; no source image is retained.",
+    "legal_opinion": false
+  },
+  "review_method": {
+    "mode": "manual_source_review_and_hand_cleanup",
+    "automation_boundary": "PDF text extraction was used only to navigate and verify printed pages, equations, metadata, and candidate passages. The training Markdown was manually selected, rewritten, scoped, and checked; automated extraction output was not emitted as the corpus.",
+    "reviewed_regions": [
+      "front matter and source limitations",
+      "chapters 1 through 16 at the section and disposition level",
+      "fiber-rope, sling, hardware, theory, planning, anchor-principle, inspection, friction, and safety passages in detail",
+      "glossary terms needed by included text",
+      "references and vendor pages for exclusion",
+      "appendices A through F at the section and disposition level",
+      "appendices D and E equations, examples, limitations, and errata in detail"
+    ],
+    "excluded_regions_are_recorded_in": "dispositions.jsonl",
+    "source_pdf_retained": false,
+    "source_figures_retained": false,
+    "source_tables_retained_verbatim": false
+  },
+  "domain_transfer": {
+    "source_domain": "USDA Forest Service backcountry trail material rigging",
+    "target_corpus_interest": "rope mechanics and safety reasoning",
+    "allowed_transfer": [
+      "force magnitude and direction",
+      "vector and line-angle reasoning",
+      "component identity and configuration-specific rating discipline",
+      "fiber-rope construction and contextual material properties",
+      "inspection, lifecycle records, and quarantine principles",
+      "planning, roles, closed-loop communication, and failure-zone analysis"
+    ],
+    "forbidden_inferences": [
+      "human-suspension certification",
+      "bondage-rope certification",
+      "tree or limb certification",
+      "indoor hardpoint or structural certification",
+      "universal safety factors or retirement thresholds",
+      "approval of improvised anchors, frames, tripods, or hardware",
+      "transfer of Forest Service or OSHA context into another regulated domain"
+    ],
+    "controlling_rule": "Manufacturer instructions, domain-specific standards, and qualified structural or rigging evaluation control."
+  },
+  "split_hygiene": {
+    "non_qa": true,
+    "source_document_unit": "GOVPUB-A13-PURL-gpo235248",
+    "document_disjoint_requirement": "Assign this entire canonical source document to one split before Markdown chunking or QA derivation.",
+    "protected_data_accessed_during_build": false,
+    "protected_data_classes_not_accessed": [
+      "validation",
+      "OOD",
+      "shadow",
+      "sealed holdout",
+      "protected QA"
+    ]
+  }
+}

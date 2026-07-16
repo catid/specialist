@@ -1,0 +1,156 @@
+{
+  "schema": "site-corpus-manifest-v1",
+  "schema_version": 1,
+  "resource_id": "usfs_rigging_for_trail_work",
+  "source_id": "usfs_rigging_for_trail_work",
+  "artifact_role": "direct_training_markdown",
+  "direct_training_ready": true,
+  "non_qa": true,
+  "generated_at": "2026-07-16T09:25:00Z",
+  "retrieved_at": "2026-07-16T09:17:48Z",
+  "source_type": "official_us_federal_trail_rigging_manual",
+  "publication": {
+    "title": "Rigging for Trail Work: Principles, Techniques, and Lessons from the Backcountry",
+    "authors": [
+      "David E. Michael",
+      "Jedediah J. Talbot",
+      "John S. Glenn"
+    ],
+    "publisher": "U.S. Department of Agriculture, Forest Service, National Technology and Development Program",
+    "publication_date_as_displayed": "August 2024",
+    "publication_number": "2223-2806-NTDP",
+    "govinfo_package_id": "GOVPUB-A13-PURL-gpo235248",
+    "extent": "viii, 176 manual pages; 188 digital object pages"
+  },
+  "canonical_source": {
+    "package_url": "https://www.govinfo.gov/app/details/GOVPUB-A13-PURL-gpo235248",
+    "pdf_url": "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-gpo235248/pdf/GOVPUB-A13-PURL-gpo235248.pdf",
+    "mods_url": "https://www.govinfo.gov/metadata/pkg/GOVPUB-A13-PURL-gpo235248/mods.xml",
+    "pdf_byte_length": 22614422,
+    "pdf_sha256": "72128d121adeac0bc668f0acd0f9b09cdb134ed997601b2d792ac3283da33d74",
+    "pdf_retained": false
+  },
+  "license": {
+    "name": "eligible United States Government text treated as presumptively public domain under 17 U.S.C. 105",
+    "scope": "manually transformed eligible federal text only",
+    "limitations": "No blanket rights conclusion is made for embedded or credited third-party components. Photographs, figures, expressive source tables, decorative quotations, vendor prose, and externally supplied matter are excluded.",
+    "legal_opinion": false
+  },
+  "entries": [
+    {
+      "url": "https://www.govinfo.gov/content/pkg/GOVPUB-A13-PURL-gpo235248/pdf/GOVPUB-A13-PURL-gpo235248.pdf",
+      "content_type": "application/pdf",
+      "disposition": "referenced_not_retained",
+      "byte_length": 22614422,
+      "sha256": "72128d121adeac0bc668f0acd0f9b09cdb134ed997601b2d792ac3283da33d74",
+      "reason": "Canonical source for manual review; large binary omitted after identity and integrity were recorded."
+    },
+    {
+      "url": "https://www.govinfo.gov/metadata/pkg/GOVPUB-A13-PURL-gpo235248/mods.xml",
+      "content_type": "application/xml",
+      "disposition": "retained_provenance_only_terminal_lf_normalized",
+      "snapshot_path": "source_snapshot/mods.xml",
+      "byte_length": 9002,
+      "sha256": "e06e800719fd9810669e7fe56e6d03523f9a3a7c9ebf93cc51c64d44ecf98677"
+    },
+    {
+      "url": "https://www.govinfo.gov/robots.txt",
+      "content_type": "text/plain",
+      "disposition": "retained_access_provenance_only_terminal_lf_normalized",
+      "snapshot_path": "source_snapshot/robots.txt",
+      "byte_length": 4696,
+      "sha256": "bccb5879452d620d3a46a1d399e224ac90ef06c22b5343a82f9ca4102d05bcf6"
+    }
+  ],
+  "training_document_count": 1,
+  "training_section_count": 22,
+  "direct_training_word_count": 6102,
+  "whitespace_delimited_word_count": 6082,
+  "word_count_method": "Unicode regex [\\w\\u2019'-]+ over CORPUS.md; whitespace count recorded separately",
+  "manual_page_citation_count": 74,
+  "disposition_record_count": 25,
+  "included_or_narrowed_disposition_count": 15,
+  "excluded_disposition_count": 10,
+  "supported_categories": [
+    "rope_materials_care",
+    "technical_skills_knots_frictions",
+    "rigging_mechanics",
+    "uplines_suspension_hardpoints",
+    "emergency_procedures",
+    "teaching_evaluation"
+  ],
+  "category_scope_note": "The uplines_suspension_hardpoints mapping covers mechanics and uncertainty reasoning only; it provides no human-suspension, tree, or indoor-hardpoint certification.",
+  "human_suspension_transfer_status": "mechanics_only_no_certification_or_design_values",
+  "domain_transfer": {
+    "source_domain": "Forest Service backcountry material rigging",
+    "allowed": "mechanics, inspection, planning, communication, and failure-consequence reasoning with source context attached",
+    "not_allowed": "human-support design values; bondage-rope approval; tree, limb, indoor hardpoint, frame, tripod, anchor, or hardware certification; universalized Forest Service, manufacturer, or OSHA rules",
+    "controlling_authority": "current manufacturer instructions, applicable domain standards, and qualified structural or rigging evaluation"
+  },
+  "qa_derivation_policy": {
+    "allowed": "mechanics, assumptions, limitations, inspection logic, and source-attributed contextual comparisons",
+    "forbidden": "URL recall, title or author recall, page-number recall, identifier trivia, vendor recall, or answers detached from scope and assumptions",
+    "inherit_document_split": true
+  },
+  "sampling_guidance": {
+    "long_document_cap_required": true,
+    "reason": "This roughly 6,100-word manual digest should not dominate domain sampling simply because it is longer than individual bondage-source documents.",
+    "recommended_unit": "source-document-aware chunks preserving section warning and printed-page citations"
+  },
+  "document_disjoint_requirement": "Assign this entire canonical source document to one split before Markdown chunking or QA derivation.",
+  "protected_split_requirement": "Exclude validation, OOD, shadow, sealed-holdout, and protected-QA documents from every training layer.",
+  "source_snapshot": {
+    "provenance": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 7477,
+      "sha256": "2c2a13e576d09625650c77cda4d871cbad5ccaa1f04aec511de80f67c454e8f8"
+    },
+    "mods_xml": {
+      "path": "source_snapshot/mods.xml",
+      "byte_length": 9002,
+      "sha256": "e06e800719fd9810669e7fe56e6d03523f9a3a7c9ebf93cc51c64d44ecf98677"
+    },
+    "robots": {
+      "path": "source_snapshot/robots.txt",
+      "byte_length": 4696,
+      "sha256": "bccb5879452d620d3a46a1d399e224ac90ef06c22b5343a82f9ca4102d05bcf6"
+    }
+  },
+  "outputs": {
+    "CORPUS.md": {
+      "path": "CORPUS.md",
+      "byte_length": 40592,
+      "sha256": "4ba06a9c38b1270ce09de54f9e9d58eff016996ac14fe79d94a4519e1b28210a"
+    },
+    "REPORT.md": {
+      "path": "REPORT.md",
+      "byte_length": 6937,
+      "sha256": "7b23faf2a40f8aedc8425322aa235dc3917ae489874d143585998c6d3b6aada5"
+    },
+    "dispositions.jsonl": {
+      "path": "dispositions.jsonl",
+      "byte_length": 11568,
+      "sha256": "f46ee8c34dfd70babe0e3f2b7488a76a36d5c354edd90f1ba5b5076c7d5fdafb"
+    },
+    "source_snapshot/provenance.json": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 7477,
+      "sha256": "2c2a13e576d09625650c77cda4d871cbad5ccaa1f04aec511de80f67c454e8f8"
+    },
+    "source_snapshot/mods.xml": {
+      "path": "source_snapshot/mods.xml",
+      "byte_length": 9002,
+      "sha256": "e06e800719fd9810669e7fe56e6d03523f9a3a7c9ebf93cc51c64d44ecf98677"
+    },
+    "source_snapshot/robots.txt": {
+      "path": "source_snapshot/robots.txt",
+      "byte_length": 4696,
+      "sha256": "bccb5879452d620d3a46a1d399e224ac90ef06c22b5343a82f9ca4102d05bcf6"
+    },
+    "tests/test_corpus.py": {
+      "path": "tests/test_corpus.py",
+      "byte_length": 13038,
+      "sha256": "14e83a0985286617f203abaac45de509b85920a0ef9ec91669cf5b976d8e0c39"
+    }
+  }
+}
