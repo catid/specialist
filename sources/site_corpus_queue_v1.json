@@ -1,0 +1,183 @@
+{
+  "schema": "site-corpus-queue-v1",
+  "purpose": "Build evidence-first, information-dense Markdown source corpora before authoring or revising QA rows.",
+  "artifact_contract": {
+    "one_dedicated_worker_per_site_or_supplied_media_resource": true,
+    "full_substantive_fact_coverage": true,
+    "verbatim_site_mirror": false,
+    "original_dense_paraphrase_required": true,
+    "source_url_for_every_page_or_media_section": true,
+    "retrieval_date_required": true,
+    "discovered_url_inventory_required": true,
+    "included_or_excluded_with_reason_required": true,
+    "preserve_heading_list_caution_and_step_structure": true,
+    "deduplicate_navigation_seo_cookie_footer_and_repeated_blocks": true,
+    "do_not_infer_missing_text_from_images_or_video": true,
+    "media_only_sections_must_be_marked": true,
+    "store_only_bondage_relevant_facts_for_broad_storefronts": true,
+    "deterministic_build_and_coverage_tests_required": true,
+    "qa_url_title_index_or_navigation_trivia_forbidden": true,
+    "resource_recommendation_answers_may_retain_urls": true,
+    "sealed_eval_ood_shadow_and_holdout_access_forbidden": true
+  },
+  "output_layout": {
+    "markdown": "data/site_corpora/<resource_id>/<resource_id>.md",
+    "manifest": "data/site_corpora/<resource_id>/manifest.json",
+    "report": "data/site_corpora/<resource_id>/report.json",
+    "tests": "data/site_corpora/<resource_id>/test_<resource_id>_corpus.py"
+  },
+  "queue": [
+    {
+      "resource_id": "rope_topia",
+      "url": "https://rope-topia.com/",
+      "scope": "Former article bodies and clearly verified successor or archived copies; remove all active title-to-URL trivia.",
+      "status": "in_progress",
+      "worker": "dataset_curator_v432"
+    },
+    {
+      "resource_id": "shibari_atlas",
+      "url": "https://shibariatlas.org/",
+      "scope": "All same-domain substantive educational pages.",
+      "status": "in_progress",
+      "worker": "sft_v47a_audit"
+    },
+    {
+      "resource_id": "rope365",
+      "url": "https://rope365.com/",
+      "scope": "All substantive instructional, safety, terminology, practice, and rope-care pages.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "crash_restraint",
+      "url": "https://crash-restraint.com/",
+      "scope": "All substantive instructional and safety pages, including suspension foundations.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "theduchy",
+      "url": "https://www.theduchy.com/",
+      "scope": "Publicly accessible substantive floor-rope instruction; mark gated media without inference.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "shibari_study",
+      "url": "https://shibaristudy.com/",
+      "scope": "Public course descriptions and substantive educational text; do not bypass membership gates.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "house_of_bound_tutorials",
+      "url": "https://www.houseofbound.com/tutorials",
+      "scope": "Public tutorial text and factual media metadata; do not bypass purchase gates.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "deep_dive_single_columns",
+      "url": "https://www.youtube.com/watch?v=vnDvjAaQU8g",
+      "scope": "Dense transcript-derived technical guide with timestamps and visual-only limitations.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "hip_harness_playlist",
+      "url": "https://youtube.com/playlist?list=PLkrdRffh_Gg2S9QccbRyiLE5x4SIacgoM",
+      "scope": "Every available playlist video, with per-video transcript facts and timestamps.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "strugglers_knot_somerville_bowline",
+      "url": "https://youtu.be/OsIcEtCoKHo",
+      "scope": "Dense transcript-derived comparison and technique guide with timestamps.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "subspace_designs",
+      "url": "https://www.subspacedesigns.shop/",
+      "scope": "Bondage-relevant rigging-plate specifications, intended uses, constraints, and safety text only.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "tetruss",
+      "url": "https://tetruss.com/",
+      "scope": "Portable suspension-frame specifications, setup, constraints, compatibility, and safety text.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "xpole_a_frame",
+      "url": "https://xpoleus.com/shop-all/aerial/a-frame/xpole-a-frame/",
+      "scope": "A-FRAME product and official manual facts relevant to suspension-frame decisions and safe use.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "shibari_supply_bamboo",
+      "url": "https://shibarisupply.com/",
+      "scope": "Suspension-grade bamboo specifications, preparation, limitations, and care only.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "emt_shears",
+      "url": "https://www.amazon.com/dp/B0195QI218",
+      "scope": "Stable manufacturer/product facts relevant to emergency rope cutting; exclude reviews and volatile commerce data.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "my_nawashi",
+      "url": "https://www.etsy.com/shop/MyNawashi",
+      "scope": "Stable bondage-rope materials, construction, treatment, sizing, and care facts; exclude reviews and volatile listings.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "de_giotto_rope",
+      "url": "https://degiottorope.com/",
+      "scope": "Natural-fiber rope materials, construction, treatment, selection, maintenance, and safety facts.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "rw_rope",
+      "url": "https://www.rwrope.com/",
+      "scope": "Only synthetic-upline specifications, material properties, relevant custom-order facts, and care; never crawl the general catalog.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "chromaknotz",
+      "url": "https://chromaknotz.square.site/",
+      "scope": "Stable synthetic bondage-rope material, construction, sizing, handling, and care facts only.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "knothead_nylon",
+      "url": "https://knotheadnylon.net/",
+      "scope": "Stable nylon bondage-rope material, construction, sizing, handling, and care facts only.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "tethered_together",
+      "url": "https://tetheredtogether.net/",
+      "scope": "Stable convention policies, education, safety, conduct, accessibility, and attendee guidance; exclude dates and prices unless explicitly time-stamped.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "ropecraft",
+      "url": "https://ropecraft.net/",
+      "scope": "Stable convention policies, education, safety, conduct, accessibility, and attendee guidance; exclude dates and prices unless explicitly time-stamped.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "atx_empty_space",
+      "url": "https://www.atxempty.space/",
+      "scope": "Stable venue/community policies, consent, conduct, accessibility, and participation guidance; do not mirror the changing calendar.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "austin_rope_slingers",
+      "url": "https://www.austinropeslingers.com/",
+      "scope": "Stable group purpose, education format, participation, consent, safety, and conduct information.",
+      "status": "pending"
+    },
+    {
+      "resource_id": "bight_bound",
+      "url": "https://www.bightbound.com/",
+      "scope": "Stable educational philosophy, technique/style, safety, prerequisites, and class-scope information.",
+      "status": "pending"
+    }
+  ]
+}
