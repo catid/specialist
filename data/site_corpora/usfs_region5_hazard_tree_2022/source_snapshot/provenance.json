@@ -1,0 +1,355 @@
+{
+  "schema": "site-corpus-provenance-v1",
+  "resource_id": "usfs_region5_hazard_tree_2022",
+  "source_id": "usfs_region5_hazard_tree_2022",
+  "retrieved_at": "2026-07-16T10:06:09Z",
+  "review_completed_at": "2026-07-16T10:14:06Z",
+  "canonical_pdf_url": "https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf",
+  "publication": {
+    "title": "Hazard Tree Identification and Mitigation",
+    "authors": [
+      "Peter A. Angwin",
+      "Daniel R. Cluck",
+      "James Rosen",
+      "William C. Woodruff",
+      "Ashley E. Hawkins",
+      "Charles W. Barnes",
+      "Philip G. Cannon",
+      "Sherry Hazelhurst"
+    ],
+    "publisher": "USDA Forest Service, Pacific Southwest Region, Forest Health Protection",
+    "region": "Pacific Southwest Region (Region 5)",
+    "geographic_scope": "California and Region 5 National Forest System management context",
+    "revision_as_displayed": "March 2022",
+    "report_number": "FHP Report RO-22-01",
+    "supersedes": "All previous versions, including April 2012 Report RO-12-01"
+  },
+  "remote_object": {
+    "url": "https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf",
+    "http_status": 200,
+    "content_type": "application/pdf",
+    "content_length": 1597581,
+    "sha256": "a743018dd717a8c101c2a714dd6d37ed06bb981795a816d8cc43939adaa28612",
+    "last_modified": "Tue, 18 Feb 2025 11:52:44 GMT",
+    "etag": "\"18608d-62e694765469a\"",
+    "accept_ranges": "bytes",
+    "retained_in_repository": false,
+    "retention_reason": "The mixed-component 1.6 MB PDF is identified by exact official URL, headers, byte length, digest, and structural metadata. The repository retains the compact provenance and manually transformed corpus, not the binary."
+  },
+  "network_boundary": {
+    "get_routes_used": [
+      "https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf"
+    ],
+    "head_routes_used": [
+      "https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf"
+    ],
+    "publisher_html_route_accessed": false,
+    "alternate_pdf_route_accessed": false,
+    "external_reference_route_accessed": false,
+    "figure_or_image_route_accessed": false,
+    "other_body_route_accessed": false
+  },
+  "pdf_structure": {
+    "format": "PDF 1.7",
+    "digital_page_count": 40,
+    "encrypted": false,
+    "cover_page_count": 1,
+    "contents_page_label": "iii",
+    "main_and_appendix_printed_page_range": "2-39",
+    "embedded_metadata": {
+      "title": "Hazard Tree Identification and Mitigation, Region 5, USFS",
+      "author": "fsdefaultUser",
+      "company": "USDA Forest Service",
+      "creator": "Acrobat PDFMaker 22 for Word",
+      "producer": "Adobe PDF Library 22.1.117",
+      "creation_date": "D:20220324141003-04'00'",
+      "modification_date": "D:20220324142546-04'00'"
+    },
+    "identity_rule": "Named authors and publication identity come from the visible report cover. The generic embedded PDF author field is recorded but is not used as authorship metadata."
+  },
+  "rights_review": {
+    "decision": "include_manually_transformed_eligible_federal_text_with_component_exclusions",
+    "basis": "The report is issued by the USDA Forest Service Pacific Southwest Region as an official Forest Health Protection technical report. Eligible United States Government text is treated as presumptively public domain under 17 U.S.C. 105, while no blanket conclusion is made about embedded, derived, administrative, or cited third-party components.",
+    "source_rights_statement_found": false,
+    "component_credit_statement_found": false,
+    "interpretation_of_absence": "The absence of an extracted rights or credit statement is not evidence that every component is federally authored or independently reusable.",
+    "included_treatment": "Original manual paraphrase and synthesis of eligible federal explanatory text with printed-page citations and a change notice.",
+    "excluded_components": [
+      "cover graphic and agency marks",
+      "all numbered figures and figure artwork",
+      "all raster and vector graphics",
+      "expressive source table and scoring layout",
+      "evaluation forms and quick-list layouts",
+      "maps, mapping examples, and location codes",
+      "Survey123 application screenshot and workflow",
+      "cited standards, manuals, books, articles, and other third-party prose",
+      "species, disease, score, and action tables",
+      "any component whose authorship or rights were not independently established"
+    ],
+    "source_visuals_reused": false,
+    "source_table_layouts_reused": false,
+    "source_forms_reused": false,
+    "legal_opinion": false
+  },
+  "component_audit": {
+    "numbered_figure_count": 6,
+    "numbered_table_count": 1,
+    "raster_xobject_occurrence_count": 18,
+    "pages_with_raster_xobjects": [
+      1,
+      3,
+      7,
+      9,
+      20,
+      27,
+      28,
+      31,
+      32
+    ],
+    "components": [
+      {
+        "component_id": "cover-graphic",
+        "digital_page": 1,
+        "printed_page": "cover",
+        "description": "wide cover graphic or agency-mark banner; one raster object occurrence",
+        "raster_xobject_occurrences": 1,
+        "credit_visible_in_extracted_text": false,
+        "reused": false,
+        "disposition": "excluded"
+      },
+      {
+        "component_id": "figure-1",
+        "digital_page": 3,
+        "printed_page": "2",
+        "description": "pre- and post-mitigation hazard-risk matrices; two raster panels",
+        "raster_xobject_occurrences": 2,
+        "credit_visible_in_extracted_text": false,
+        "reused": false,
+        "disposition": "excluded_as_expressive_rating_diagram"
+      },
+      {
+        "component_id": "figures-2-through-5",
+        "digital_page": 7,
+        "printed_page": "6",
+        "description": "four potential-failure-zone diagrams for level ground, slope, tree parts, and lean; eight raster object occurrences including graphic fragments",
+        "raster_xobject_occurrences": 8,
+        "credit_visible_in_extracted_text": false,
+        "reused": false,
+        "disposition": "excluded_as_operational_distance_and_location_diagrams"
+      },
+      {
+        "component_id": "figure-6",
+        "digital_page": 9,
+        "printed_page": "8",
+        "description": "included-bark formation illustration; one raster object occurrence",
+        "raster_xobject_occurrences": 1,
+        "credit_visible_in_extracted_text": false,
+        "reused": false,
+        "disposition": "excluded_as_illustration"
+      },
+      {
+        "component_id": "table-1",
+        "digital_page": 20,
+        "printed_page": "19",
+        "description": "hazard score, potential category, and suggested-action table rendered as one raster image",
+        "raster_xobject_occurrences": 1,
+        "credit_visible_in_extracted_text": false,
+        "reused": false,
+        "disposition": "excluded_as_expressive_table_and_nonportable_rating_rule"
+      },
+      {
+        "component_id": "appendix-1-form-title-page",
+        "digital_page": 27,
+        "printed_page": "26",
+        "description": "hazard-tree evaluation form graphic; one raster object occurrence",
+        "raster_xobject_occurrences": 1,
+        "credit_visible_in_extracted_text": false,
+        "reused": false,
+        "disposition": "excluded_as_administrative_form"
+      },
+      {
+        "component_id": "appendix-1-form-and-map-layout",
+        "digital_page": 28,
+        "printed_page": "27",
+        "description": "evaluation-form or mapping graphic plus a raster rule fragment; two raster object occurrences",
+        "raster_xobject_occurrences": 2,
+        "credit_visible_in_extracted_text": false,
+        "reused": false,
+        "disposition": "excluded_as_administrative_form_and_mapping_layout"
+      },
+      {
+        "component_id": "appendix-2-quick-list-graphic",
+        "digital_page": 31,
+        "printed_page": "30",
+        "description": "quick-list graphic fragment; one raster object occurrence within a two-page scoring layout",
+        "raster_xobject_occurrences": 1,
+        "credit_visible_in_extracted_text": false,
+        "reused": false,
+        "disposition": "excluded_as_repeated_score_and_action_layout"
+      },
+      {
+        "component_id": "appendix-3-survey123-screenshot",
+        "digital_page": 32,
+        "printed_page": "31",
+        "description": "Survey123 application screenshot; one raster object occurrence",
+        "raster_xobject_occurrences": 1,
+        "credit_visible_in_extracted_text": false,
+        "reused": false,
+        "disposition": "excluded_as_application_screenshot_and_administrative_workflow"
+      }
+    ],
+    "photo_caption_count_found": 0,
+    "photograph_reused": false,
+    "separately_fetched_component_count": 0,
+    "audit_note": "Raster object occurrence count is a PDF structural count, not a claim that each object is one distinct expressive work. Vector and text layouts were also reviewed by page and excluded with their parent component."
+  },
+  "review_method": {
+    "mode": "manual_source_review_and_hand_cleanup",
+    "automation_boundary": "pypdf text extraction was used only to navigate and verify all 40 pages, metadata, headings, captions, and candidate claims. PDF resource enumeration supported the component audit. The training Markdown was manually selected, paraphrased, reorganized, scoped, and checked; raw extraction was not emitted as training prose.",
+    "reviewed_regions": [
+      "cover, authors, report number, revision, and table of contents",
+      "introduction and definitions",
+      "site prioritization, inspection frequency, and inspection context",
+      "target assessment and failure-zone discussion",
+      "all defect sections: cracks, unions, decay, fruiting bodies, cankers, dead parts, insects, roots, lean, and architecture",
+      "rating system and source Table 1 at exclusion-disposition level",
+      "all management and mitigation sections at exclusion-disposition level",
+      "monitoring, records, failure records, and specialist assistance",
+      "references and additional reading at exclusion-disposition level",
+      "Appendices 1 through 5 at page and disposition level",
+      "all six numbered figures, source Table 1, cover graphic, form and quick-list graphics, and application screenshot at component-disposition level"
+    ],
+    "digital_pages_reviewed": 40,
+    "direct_training_artifact": "CORPUS.md",
+    "source_pdf_retained": false,
+    "source_visuals_retained": false,
+    "source_tables_retained_verbatim": false,
+    "source_forms_retained": false,
+    "extracted_text_emitted_as_training": false
+  },
+  "evidence_audit": {
+    "central_uncertainty": "It is impossible to predict all tree failures; a professional program can reduce but not eliminate risk.",
+    "scope_gate": "Region 5 and California Forest Service management guidance, not a universal species, disease, scoring, or arboriculture standard.",
+    "conceptual_distinctions": [
+      "defect is a flaw that reduces structural strength",
+      "failure is mechanical breakage of a tree or tree part",
+      "target is a person or built asset that could be struck",
+      "loss is personal injury or monetary property damage",
+      "hazard combines tree-side failure concern with target-side exposure and consequence",
+      "rating system is an administrative prioritization tool rather than a physical capacity measurement"
+    ],
+    "inspection_context": [
+      "public use and occupancy",
+      "local failure history",
+      "insect, disease, fire, and weather impacts",
+      "species, age, condition, and site history in local professional context",
+      "program priorities and available resources",
+      "major storms, fire, reopening, construction, or other material change",
+      "documented rationale for inspection intervals"
+    ],
+    "retained_defect_families": [
+      "cracks",
+      "branch unions and forked tops",
+      "decay, cavities, fruiting bodies, and cankers",
+      "dead trees, tops, and branches",
+      "biological attack as a contributor to death and decay",
+      "root damage and root disease",
+      "recent or changing lean versus long-compensated lean",
+      "poor architecture and past injury",
+      "multiple and interacting defects"
+    ],
+    "retained_site_change_factors": [
+      "soil compaction",
+      "erosion",
+      "fire",
+      "flooding or prolonged saturation",
+      "construction and excavation",
+      "heavy equipment, vehicle traffic, and concentrated foot traffic",
+      "root lifting, soil cracking, soil movement, and mounding",
+      "storm, wind, snow, and ice",
+      "nearby tree removal or pruning",
+      "new or changed target occupancy"
+    ],
+    "excluded_nonportable_claims": [
+      "species and host rating rules",
+      "named disease and fungus thresholds",
+      "circumference, diameter, length, percentage, and distance cutoffs",
+      "decay shell arithmetic",
+      "point scores and suggested actions",
+      "failure-zone multipliers and regulatory distances",
+      "mortality probabilities and catastrophic-treatment thresholds"
+    ]
+  },
+  "training_boundary": {
+    "direct_training_artifact": "CORPUS.md",
+    "source_pdf_direct_training": false,
+    "non_qa": true,
+    "retained_scope": [
+      "Region 5 and California context",
+      "prediction limits and reduce-not-eliminate-risk framing",
+      "failure, defect, hazard, target, and loss distinctions",
+      "inspection context and interval reasoning",
+      "target exposure and consequence",
+      "defect families and interaction without scores",
+      "site, soil, disturbance, weather, and temporal-change context",
+      "monitoring and record principles",
+      "Forest Health Protection, certified-arborist, and professional-arborist referral"
+    ],
+    "excluded_material": [
+      "administrative forms and application workflow",
+      "mitigation, cutting, felling, removal, pruning, topping, cabling, bracing, and support instructions",
+      "construction and attachment instructions",
+      "universalized species, disease, rating, decay, size, or distance claims",
+      "figures, graphics, source tables, forms, maps, and screenshots",
+      "third-party references and external prose",
+      "identifier-recall and URL-recall prompts"
+    ]
+  },
+  "anchor_and_human_suspension_boundary": {
+    "source_studied_load_bearing_anchors": false,
+    "source_studied_human_suspension": false,
+    "tree_health_equals_anchor_capacity": false,
+    "forbidden_certifications": [
+      "tree certification",
+      "branch certification",
+      "sling certification",
+      "anchor certification",
+      "hardpoint certification",
+      "load certification",
+      "bondage certification",
+      "human-suspension certification"
+    ],
+    "forbidden_derivations": [
+      "working-load limit or safety factor from a hazard score",
+      "attachment point or sling placement",
+      "wrap, knot, direction, or component selection",
+      "anchor, backup, frame, or suspension-system design",
+      "safe location from a numerical failure zone",
+      "capacity from healthy foliage, corrected lean, or absence of visible defects",
+      "approval from one professional domain alone"
+    ],
+    "required_professional_domains": [
+      "qualified arboricultural assessment of the living tree, roots, site, defects, disease, and foreseeable tree failure modes",
+      "qualified rigging or structural assessment of the proposed load path, forces, dynamics, components, attachment effects, redundancies, and consequences"
+    ],
+    "controlling_rule": "The corpus provides no load-bearing approval. Tree-risk and load-path assessments are separate and both remain necessary for any contemplated use."
+  },
+  "split_hygiene": {
+    "non_qa": true,
+    "source_document_unit": "FHP-RO-22-01-March-2022",
+    "document_disjoint_requirement": "Assign FHP Report RO-22-01 and all derived Markdown or QA to one split before chunking or derivation.",
+    "protected_data_accessed_during_build": false,
+    "protected_data_classes_not_accessed": [
+      "QA artifacts",
+      "training projections",
+      "evaluation sets",
+      "validation sets",
+      "holdout sets",
+      "OOD sets",
+      "shadow sets",
+      "benchmarks",
+      "probes",
+      "datasets"
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "schema": "site-corpus-manifest-v1",
+  "schema_version": 1,
+  "resource_id": "usfs_region5_hazard_tree_2022",
+  "source_id": "usfs_region5_hazard_tree_2022",
+  "artifact_role": "canonical_markdown_direct_training_source",
+  "direct_training_ready": true,
+  "non_qa": true,
+  "generated_at": "2026-07-16T10:14:06Z",
+  "retrieved_at": "2026-07-16T10:06:09Z",
+  "source_type": "official_us_federal_region5_hazard_tree_technical_report",
+  "publication": {
+    "title": "Hazard Tree Identification and Mitigation",
+    "authors": [
+      "Peter A. Angwin",
+      "Daniel R. Cluck",
+      "James Rosen",
+      "William C. Woodruff",
+      "Ashley E. Hawkins",
+      "Charles W. Barnes",
+      "Philip G. Cannon",
+      "Sherry Hazelhurst"
+    ],
+    "publisher": "USDA Forest Service, Pacific Southwest Region, Forest Health Protection",
+    "region": "Pacific Southwest Region (Region 5)",
+    "geographic_scope": "California and Region 5 National Forest System management context",
+    "revision_as_displayed": "March 2022",
+    "report_number": "FHP Report RO-22-01",
+    "supersedes": "All previous versions, including April 2012 Report RO-12-01"
+  },
+  "canonical_source": {
+    "pdf_url": "https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf",
+    "content_type": "application/pdf",
+    "pdf_byte_length": 1597581,
+    "pdf_sha256": "a743018dd717a8c101c2a714dd6d37ed06bb981795a816d8cc43939adaa28612",
+    "pdf_page_count": 40,
+    "pdf_retained": false
+  },
+  "license": {
+    "name": "eligible United States Government text treated as presumptively public domain under 17 U.S.C. 105",
+    "scope": "manually transformed eligible federal explanatory text only",
+    "limitations": "No blanket rights conclusion is made for figures, graphics, source tables, forms, maps, application screenshots, derived administrative layouts, cited standards, or other third-party material. Every such component is excluded.",
+    "change_notice": "Manually selected, paraphrased, reorganized, Region-5-scoped, and stripped of visuals, scores, universalized biological thresholds, mitigation, cutting, construction, and anchor transfer.",
+    "legal_opinion": false
+  },
+  "entries": [
+    {
+      "url": "https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf",
+      "content_type": "application/pdf",
+      "disposition": "referenced_not_retained",
+      "byte_length": 1597581,
+      "sha256": "a743018dd717a8c101c2a714dd6d37ed06bb981795a816d8cc43939adaa28612",
+      "digital_page_count": 40,
+      "direct_training": false,
+      "reason": "Exact official source for complete manual review; mixed-component PDF omitted after identity, integrity, structure, and visual dispositions were recorded."
+    }
+  ],
+  "training_document_count": 1,
+  "training_section_count": 19,
+  "direct_training_word_count": 4201,
+  "whitespace_delimited_word_count": 4226,
+  "word_count_method": "Unicode regex [\\w\\u2019'-]+ over CORPUS.md; whitespace count recorded separately",
+  "manual_page_citation_count": 43,
+  "disposition_record_count": 30,
+  "included_or_narrowed_disposition_count": 21,
+  "excluded_disposition_count": 9,
+  "supported_categories": [
+    "anatomy_injury_prevention",
+    "uplines_suspension_hardpoints",
+    "rigging_mechanics",
+    "emergency_procedures",
+    "teaching_evaluation"
+  ],
+  "category_scope_note": "The hardpoint and rigging category mappings contain only tree-risk uncertainty, target-exposure, inspection, and referral boundaries. They provide no tree, branch, sling, anchor, hardpoint, load, bondage, or human-suspension certification.",
+  "evidence_scope": {
+    "source_context": "USDA Forest Service Pacific Southwest Region hazard-tree identification and management around people and built infrastructure",
+    "central_uncertainty": "all tree failures cannot be predicted and professional programs reduce rather than eliminate risk",
+    "retained_framework": "defect, failure, target, loss, and hazard distinctions; contextual inspection frequency; target exposure; defect interaction; site and weather change; monitoring; professional referral",
+    "retained_defects": "cracks, branch unions, poor architecture, decay, cavities, fruiting bodies, cankers, dead parts, biological attack, root damage and disease, recent versus compensated lean, and interacting defects",
+    "retained_site_factors": "compaction, erosion, fire, flooding, saturation, construction, excavation, traffic, root lifting, soil cracks and mounding, storms, nearby removal, and changed occupancy",
+    "excluded_operations": "invasive tests, rating arithmetic, mitigation, cutting, construction, catastrophic-abatement workflow, and numerical failure-zone procedures"
+  },
+  "prediction_status": "impossible_to_predict_all_failures_risk_reduced_not_eliminated",
+  "region_scope_status": "region5_california_context_required_no_universal_arboriculture_claim",
+  "target_exposure_status": "retained_as_consequence_context_not_failure_proof",
+  "universalization_status": "forbidden_region5_species_disease_score_and_distance_rules_not_portable",
+  "mitigation_status": "excluded_no_cutting_felling_pruning_topping_cabling_bracing_or_construction",
+  "anchor_transfer_status": "forbidden_tree_health_not_anchor_capacity_no_load_approval",
+  "professional_assessment_status": "separate_qualified_arboricultural_and_rigging_or_structural_assessments_required",
+  "visual_component_status": {
+    "numbered_figures": 6,
+    "numbered_tables": 1,
+    "raster_xobject_occurrences": 18,
+    "source_visuals_reused": 0,
+    "source_table_layouts_reused": 0,
+    "source_forms_reused": 0,
+    "separately_fetched_components": 0,
+    "rights_rule": "No blanket component-rights assumption; cover art, figures, diagrams, raster table, forms, maps, quick list, and application screenshot excluded."
+  },
+  "qa_derivation_policy": {
+    "allowed": "Region 5 scope, prediction uncertainty, reduce-not-eliminate framing, failure-defect-target-hazard-loss distinctions, inspection context, target exposure, defect interactions, site change, monitoring, and separate professional-domain boundaries",
+    "forbidden": "title, author, report number, URL, page, figure, table, form, application, species, disease, fungus, insect, percentage, score, distance, decay-shell, mitigation, cutting, construction, anchor, hardpoint, sling, load, bondage, human-suspension, or component trivia; any portable certification or numerical rule",
+    "inherit_document_split": true
+  },
+  "sampling_guidance": {
+    "source_weighting": "one Region 5 technical report document, not one document per defect, species, disease, page, figure, or appendix",
+    "recommended_unit": "source-aware chunks that retain Region 5 scope, prediction uncertainty, defect-target separation, relevant change context, and no-anchor-certification boundary",
+    "avoid": "isolating a defect indicator from its uncertainty; extracting scores or thresholds; generating cutting, mitigation, construction, self-inspection clearance, or anchor-selection prompts"
+  },
+  "document_disjoint_requirement": "Assign FHP Report RO-22-01 and all derived Markdown or QA to one split before chunking or derivation.",
+  "protected_split_requirement": "Exclude QA, training-projection, evaluation, validation, holdout, OOD, shadow, benchmark, probe, dataset, sealed-holdout, and protected-QA documents from every training layer.",
+  "source_snapshot": {
+    "provenance": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 16524,
+      "sha256": "cb2743360bf343686e2ea53cee68c83a37875e1fbbd3b52aadfea3a74912a740"
+    }
+  },
+  "outputs": {
+    "CORPUS.md": {
+      "path": "CORPUS.md",
+      "byte_length": 28577,
+      "sha256": "17c8eca67538c64c8f624972ec1965aa7f764180412a3598108a1d00d34eae9e"
+    },
+    "REPORT.md": {
+      "path": "REPORT.md",
+      "byte_length": 12617,
+      "sha256": "2a46041528f9365a7da6fc7c99b92ef1ca1f7b4ef07a5a716a3059f6d3764078"
+    },
+    "dispositions.jsonl": {
+      "path": "dispositions.jsonl",
+      "byte_length": 15843,
+      "sha256": "f6b380b71996513cb512da4127a91e24b278bc4ea0ae80cd3769897c7884dc2e"
+    },
+    "source_snapshot/provenance.json": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 16524,
+      "sha256": "cb2743360bf343686e2ea53cee68c83a37875e1fbbd3b52aadfea3a74912a740"
+    },
+    "tests/test_corpus.py": {
+      "path": "tests/test_corpus.py",
+      "byte_length": 20582,
+      "sha256": "923089cccce5bbe2c8541b0847dc1071f180ff8c9a4f32adbbb297fdb156b0ca"
+    }
+  }
+}
