@@ -1,0 +1,88 @@
+{
+  "access_notice_word_count": 313,
+  "artifact_role": "rights_deferred_metadata_inventory",
+  "candidate_scope_record_count": 17,
+  "candidate_taxonomy_scope_for_permission_planning_only": [
+    "rigging_mechanics",
+    "uplines_suspension_hardpoints"
+  ],
+  "canonical_instructional_body_snapshots_retained": 0,
+  "content_record_count": 0,
+  "direct_training_ready": false,
+  "direct_training_word_count": 0,
+  "document_disjoint_requirement": "assign canonical source document before Markdown chunking or QA derivation; keep all Markdown and QA from that document in one split",
+  "external_resource_count": 1,
+  "generated_at": "2026-07-16T07:20:52Z",
+  "genuine_gaps": [
+    "measured test setups and units",
+    "anchor and redirect loads",
+    "friction and rope-angle relationships",
+    "dynamic-event and peak-load behavior",
+    "branch and stem response",
+    "safety-factor and uncertainty reasoning",
+    "inspection, selection, and rejection criteria",
+    "experimental limitations and text-supported figure interpretation"
+  ],
+  "human_suspension_transfer_status": "no_tree_or_hardpoint_certification_or_safety_claim",
+  "inventory_record_count": 19,
+  "non_qa": true,
+  "outputs": {
+    "CORPUS.md": {
+      "byte_length": 2401,
+      "sha256": "ef1b3b02a1ed992e344d2b40962ca0b7eed24ebaec3baf164480354402fdf754"
+    },
+    "REPORT.md": {
+      "byte_length": 3209,
+      "sha256": "220bdcce1e4299375a095abb148f2ded070638993517b97c377ae9bc14381975"
+    },
+    "content_records.jsonl": {
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "inventory.jsonl": {
+      "byte_length": 29493,
+      "sha256": "f1c916392dd802fe9ef142106d6ee9d94f291de90e64246c7084307e7290a286"
+    },
+    "url_dispositions.jsonl": {
+      "byte_length": 7987,
+      "sha256": "782b6029559f42e98e677e82ed29a88e7f94a69d74b7c3d0b58b4fd08ad019a5"
+    }
+  },
+  "outside_scope_record_count": 1,
+  "policy_decision": {
+    "byte_length": 1466,
+    "path": "policy_decision.json",
+    "sha256": "13e9eb3344d44a90fcdde7dad888fde8c88fe7cbfac30672cc4e7ff1c99ab3da"
+  },
+  "policy_reason": "treeconsult_copyright_notice_requires_written_permission_for_text_reuse",
+  "protected_split_requirement": "exclude validation, OOD, shadow, and sealed-holdout documents from every training layer",
+  "research_document_get_requests": 0,
+  "resource_id": "tree_anchor_mechanics",
+  "same_domain_pdf_count": 18,
+  "same_domain_pdf_head_200_count": 18,
+  "schema_version": 1,
+  "source_id": "treeconsult_rigging_research",
+  "source_snapshot": {
+    "document_inventory": {
+      "byte_length": 31610,
+      "path": "source_snapshot/document_inventory.json",
+      "record_count": 19,
+      "sha256": "2ecdb76fd1a2d235de0fdd4a5d954865990e0a1e698c717bce0a8072cf6fd578"
+    },
+    "provenance": {
+      "byte_length": 2425,
+      "path": "source_snapshot/provenance.json",
+      "sha256": "d2ff61cb76ec031f9379d5e028bbb03be08921ad38e983ac2536e5f6def14cc3"
+    },
+    "robots": {
+      "byte_length": 87,
+      "path": "source_snapshot/robots.txt",
+      "sha256": "54048c131bb92328c4d50c704f4b34da7d82665bad5203005041900bedbf2552"
+    }
+  },
+  "taxonomy_mapping_status": "no_training_sections_due_to_rights_deferral",
+  "taxonomy_mappings": [],
+  "training_document_count": 0,
+  "training_section_count": 0,
+  "word_count_method": "Unicode regex [\\w\u2019'-]+ applied only to the non-training access notice"
+}
