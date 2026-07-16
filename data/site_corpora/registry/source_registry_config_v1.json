@@ -300,6 +300,45 @@
       ]
     },
     {
+      "resource_id": "maib_throwbag_hidden_fused_joints_2019",
+      "source_label": "MAIB Report 2/2019: throw-bag rescue-line hidden fused-joint failure",
+      "manifest_path": "data/site_corpora/maib_throwbag_hidden_fused_joints_2019/manifest.json",
+      "markdown_path": "data/site_corpora/maib_throwbag_hidden_fused_joints_2019/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "government_accident_investigation_report",
+        "canonical_url": "https://www.gov.uk/maib-reports/failure-of-a-throw-bag-rescue-line-during-a-boat-capsize-drill",
+        "corporate_author": "Marine Accident Investigation Branch",
+        "official_pdf_sha256": "1d29a09b23c21d40aca2e0da4087b63aa648b77816e6dc80e8abecb4d2d16b66",
+        "publication_date": "2019-01-31",
+        "report_number": "2/2019",
+        "source_resource_id": "maib_throwbag_hidden_fused_joints_2019"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The GOV.UK page applies Open Government Licence version 3 except where otherwise stated, and the checksum-bound MAIB report's Crown reuse notice permits accurate attributed reuse while requiring separate permission for identified third-party matter.",
+        "license": "OGL-UK-3.0",
+        "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_crown_attribution_checksum_component_audit_and_single_case_limits",
+        "limitations": [
+          "All three numbered figures, one additional branded visual, one unnumbered table, eleven credited or externally controlled blocks, captions, logos, image-derived claims, and uncertain components are excluded.",
+          "Standards, legal text, brands, manufacturers, products, external tests, measurements, loads, counts, ratios, dimensions, material specifications, joining recipes, and rescue-use instructions are excluded.",
+          "The artifact is a fresh manual, claim-cited Crown-text adaptation; no PDF, rendered page, extraction, contact sheet, visual, table, or source body is retained.",
+          "This single 2019 manufactured rescue-line defect case does not establish defect incidence and is not a rope-joining, inspection, quality-control, bondage, body-contact, anchor, hardpoint, upline, rescue, or human-suspension procedure."
+        ]
+      },
+      "safety_transfer_flags": [
+        "historical_2019_manufactured_throw_bag_rescue_line_defect_case_scope_required",
+        "hidden_fused_joint_failure_and_intact_span_behavior_are_construction_specific",
+        "recurrence_does_not_establish_population_incidence",
+        "random_visual_inspection_does_not_validate_an_uncontrolled_or_hidden_process",
+        "traceability_batch_control_process_validation_output_checks_and_independent_verification_are_distinct_quality_functions",
+        "no_joining_inspection_rescue_bondage_body_contact_anchor_hardpoint_upline_or_human_suspension_transfer",
+        "all_figures_visuals_tables_standards_legal_vendor_external_test_and_numeric_content_excluded"
+      ]
+    },
+    {
       "resource_id": "mdpi_knot_efficiency_statistics_2022",
       "source_label": "Basic Statistical Properties of the Knot Efficiency",
       "manifest_path": "data/site_corpora/mdpi_knot_efficiency_statistics_2022/manifest.json",

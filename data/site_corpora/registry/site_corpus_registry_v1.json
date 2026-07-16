@@ -444,6 +444,68 @@
       "whitespace_delimited_word_count": 4129
     },
     {
+      "artifact_id": "canonical-markdown:maib_throwbag_hidden_fused_joints_2019",
+      "byte_length": 10615,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/maib_throwbag_hidden_fused_joints_2019/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest",
+        "version": "1.0"
+      },
+      "manifest_sha256": "862ec681042a1287092ed032ab28dcac447119325ccf13d7c98ca77bb8636a45",
+      "markdown_path": "data/site_corpora/maib_throwbag_hidden_fused_joints_2019/CORPUS.md",
+      "markdown_sha256": "7e90461a555f90a1c7a9f4edc3373c47c15ac20b61c729bdbaf05c74d8972932",
+      "non_qa": true,
+      "qwen36_token_count": 2315,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:094d2e97dd609cc2e3a6085b216edabd0fad22d53edb09c1ecff0e38327fa8f8",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "maib_throwbag_hidden_fused_joints_2019",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The GOV.UK page applies Open Government Licence version 3 except where otherwise stated, and the checksum-bound MAIB report's Crown reuse notice permits accurate attributed reuse while requiring separate permission for identified third-party matter.",
+        "license": "OGL-UK-3.0",
+        "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "limitations": [
+          "All three numbered figures, one additional branded visual, one unnumbered table, eleven credited or externally controlled blocks, captions, logos, image-derived claims, and uncertain components are excluded.",
+          "Standards, legal text, brands, manufacturers, products, external tests, measurements, loads, counts, ratios, dimensions, material specifications, joining recipes, and rescue-use instructions are excluded.",
+          "The artifact is a fresh manual, claim-cited Crown-text adaptation; no PDF, rendered page, extraction, contact sheet, visual, table, or source body is retained.",
+          "This single 2019 manufactured rescue-line defect case does not establish defect incidence and is not a rope-joining, inspection, quality-control, bondage, body-contact, anchor, hardpoint, upline, rescue, or human-suspension procedure."
+        ],
+        "promotion_gate": "ready_with_crown_attribution_checksum_component_audit_and_single_case_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "all_figures_visuals_tables_standards_legal_vendor_external_test_and_numeric_content_excluded",
+        "hidden_fused_joint_failure_and_intact_span_behavior_are_construction_specific",
+        "historical_2019_manufactured_throw_bag_rescue_line_defect_case_scope_required",
+        "no_joining_inspection_rescue_bondage_body_contact_anchor_hardpoint_upline_or_human_suspension_transfer",
+        "random_visual_inspection_does_not_validate_an_uncontrolled_or_hidden_process",
+        "recurrence_does_not_establish_population_incidence",
+        "traceability_batch_control_process_validation_output_checks_and_independent_verification_are_distinct_quality_functions"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.gov.uk/maib-reports/failure-of-a-throw-bag-rescue-line-during-a-boat-capsize-drill",
+        "corporate_author": "Marine Accident Investigation Branch",
+        "identity_type": "government_accident_investigation_report",
+        "official_pdf_sha256": "1d29a09b23c21d40aca2e0da4087b63aa648b77816e6dc80e8abecb4d2d16b66",
+        "publication_date": "2019-01-31",
+        "report_number": "2/2019",
+        "source_resource_id": "maib_throwbag_hidden_fused_joints_2019"
+      },
+      "source_document_identity_sha256": "094d2e97dd609cc2e3a6085b216edabd0fad22d53edb09c1ecff0e38327fa8f8",
+      "source_label": "MAIB Report 2/2019: throw-bag rescue-line hidden fused-joint failure",
+      "unicode_word_count": 1517,
+      "whitespace_delimited_word_count": 1503
+    },
+    {
       "artifact_id": "canonical-markdown:maib_zarga_hmpe_inspection_failure_2017",
       "byte_length": 16730,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1248,7 +1310,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "f7225ca4ab379f1d2eae42ed1d0ca9585bec7c91078a8974e0458af730274db7"
+    "sha256": "caccf4d0be846e790a67ec47cefae921e972a396beea407fec01dafc8b8b5404"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1287,7 +1349,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "9ddebeffb7312133c3f5d4f4d54c24ab2c9542a6496028d35a88a1aed868269a",
+  "source_tree_fingerprint_sha256": "333aa0fee97cb23afdeba76e6d3e14ef413db4cfcf1588351768c9c9175b7206",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1297,11 +1359,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 22,
-    "byte_length": 4061219,
-    "qwen36_token_count": 1183288,
-    "source_document_split_group_count": 22,
-    "unicode_word_count": 534475,
-    "whitespace_delimited_word_count": 422520
+    "artifact_count": 23,
+    "byte_length": 4071834,
+    "qwen36_token_count": 1185603,
+    "source_document_split_group_count": 23,
+    "unicode_word_count": 535992,
+    "whitespace_delimited_word_count": 424023
   }
 }
