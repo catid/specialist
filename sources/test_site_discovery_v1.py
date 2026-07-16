@@ -3243,12 +3243,159 @@ class SourceCorpusContractTest(unittest.TestCase):
             for marker in required:
                 self.assertIn(marker, text, candidate_id)
 
+    def test_batch_021_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_021"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_targeted_scope": {
+                "nist_manila_rope_tests_t198_1921",
+                "gutenberg_brady_kedge_anchor_77729",
+                "gutenberg_dana_seamans_friend_40958",
+                "innotrac_camera_visual_rope_inspection_2020",
+            },
+            "defer": {
+                "imca_natural_fibre_ladder_failure_2021",
+                "ccohs_fibre_rope_slings_2023",
+                "quartz_rope_accessible_curriculum",
+                "rope_office_hours_accessibility_negotiation",
+                "safelink_alberta_kinky_sex_toolkit_2024",
+                "sedici_latam_shibari_genealogy_187026",
+                "waseda_ito_seiu_semeba_manuscript",
+            },
+            "reject": {"rackwiki_bondage_safety_contamination"},
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_021_accepts_mirror_queue_and_preserve_limits(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "nist_manila_rope_tests_t198_1921": {
+                "t198",
+                "commercial three-strand regular-lay",
+                "purchase-order sampling",
+                "6 mm jute or hemp",
+                "human suspension",
+            },
+            "gutenberg_brady_kedge_anchor_77729": {
+                "sanctioned mirror",
+                "human-user-only main-site terms",
+                "automatically generated summary",
+                "human-suspension validation",
+            },
+            "gutenberg_dana_seamans_friend_40958": {
+                "sanctioned mirror",
+                "semantic deduplication",
+                "maritime law",
+                "human-suspension safety",
+            },
+            "innotrac_camera_visual_rope_inspection_2020": {
+                "one-sided manual surface viewing",
+                "discard criteria",
+                "surface imaging does not establish internal condition",
+                "human-suspension fitness",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_021_permissions_ai_access_and_contamination_are_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        markers = {
+            "imca_natural_fibre_ladder_failure_2021": {
+                "express derivative commercial model-training permission",
+                "member-supplied components",
+                "single-incident provenance",
+            },
+            "ccohs_fibre_rope_slings_2023": {
+                "internal-copy limitation",
+                "written permission",
+                "industrial sling context",
+            },
+            "quartz_rope_accessible_curriculum": {
+                "ordinary-copyright",
+                "tied-person co-teaching",
+                "independent current clinical corroboration",
+            },
+            "rope_office_hours_accessibility_negotiation": {
+                "gptbot",
+                "chatgpt-user",
+                "do not crawl, copy, paraphrase",
+            },
+            "safelink_alberta_kinky_sex_toolkit_2024": {
+                "ai-train=no",
+                "aids committee",
+                "do not retrieve, copy, paraphrase",
+            },
+            "sedici_latam_shibari_genealogy_187026": {
+                "cc by-nc-sa 4.0",
+                "converter's access authorization",
+                "situated genealogy and universal history",
+            },
+            "rackwiki_bondage_safety_contamination": {
+                "oldid 2073",
+                "incomplete license rendering",
+                "do not copy, paraphrase, translate",
+            },
+            "waseda_ito_seiu_semeba_manuscript": {
+                "robots-disallowed image route",
+                "do not access, copy, ocr",
+                "staged imagery, not a tying manual",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            self.assertIn(source["decision"], {"defer", "reject"})
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        for candidate_id in {
+            "rope_office_hours_accessibility_negotiation",
+            "safelink_alberta_kinky_sex_toolkit_2024",
+            "waseda_ito_seiu_semeba_manuscript",
+        }:
+            self.assertFalse(by_id[candidate_id]["accessible"])
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_020`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_021`", self.report)
 
 
 if __name__ == "__main__":

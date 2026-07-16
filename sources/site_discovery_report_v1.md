@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T15:26:28Z
-Latest batch: `discovery_batch_020`
+Latest review at: 2026-07-16T15:50:26Z
+Latest batch: `discovery_batch_021`
 
 ## Outcome
 
@@ -1438,3 +1438,84 @@ unrelated corpus body or unrelated repository artifact was read. No login,
 paywall, challenge, crawler restriction, mirror, cache, archive or snippet
 reconstruction was bypassed, and no reviewed source body entered a training
 artifact during discovery.
+
+## Discovery batch 021 outcome
+
+`discovery_batch_021` manually reviewed 12 exact-new source identities after
+title, DOI, document, repository-handle, clipping-ID, eBook-number and
+canonical-URL deduplication. It records 4 `accept_targeted_scope`, 7 `defer`,
+and 1 `reject`. The accepted sources expand the canonical Markdown queue from
+153 to 157 resources; the discovery ledger grows from 255 to 267 records.
+
+The batch adds one historical federal finished-Manila-rope test, two public-
+domain historical seamanship witnesses, and a CC BY industrial inspection-
+observability article. It also preserves unusually strong natural-fibre
+failure, occupational inspection, accessibility, consent, sexual-health,
+Latin American genealogy, and Itō Seiu archival leads without crossing
+copyright, AI-access, component, license-compatibility or evidence gates.
+
+The SEDICI handle and Waseda clipping are exact-new identities despite thematic
+overlap with earlier lineage records; their duplication penalties preserve
+that overlap. No candidate body was compared with an existing corpus body.
+
+### Newly accepted sources
+
+| Source | Score | Exact useful scope and boundary |
+|---|---:|---|
+| [NBS T198, *Results of Some Tests of Manila Rope*](https://doi.org/10.6028/nbst.6078) | 34 | NIST's rights-clean 1921 primary report adds yarn, strand and lay vocabulary, purchase-order sampling, specimen preparation, test-design distinctions and manufacturer/lot variability. Exclude all numbers, formulas, tables, specifications and modern recommendations. Historical three-strand regular-lay commercial Manila rope is not evidence for modern products, 6 mm jute/hemp, care, working loads, body contact or suspension. |
+| [Brady, *The Kedge-Anchor*, eBook 77729](https://www.gutenberg.org/ebooks/77729) | 29 | U.S. public-domain Part I can add historical knots, hitches, bends, splices, seizings, serving and teaching sequence. The main Gutenberg site is for human users only: conversion must use a sanctioned mirror or documented manual single-item route. Exclude images, endorsements, automatic summary, wrapper, naval operations, numbers and obsolete safety. |
+| [Dana, *The Seaman's Friend*, eBook 40958](https://www.gutenberg.org/ebooks/40958) | 25 | A second U.S. public-domain historical terminology witness can corroborate cordage, marlinespike, knot and splice vocabulary after aggressive semantic deduplication. Use the same sanctioned acquisition rule and exclude maritime law, operations, numerical proportions, load claims, media and near-duplicate prose. |
+| [Camera-Based Visual Rope Inspection](https://www.bibliothek.tu-chemnitz.de/ojs/index.php/innoTRAC/article/view/462) | 33 | CC BY industrial evidence adds one-sided-view, inspector-fatigue and absent-record limitations plus multi-angle surface imaging and the need to combine indicators. Exclude thresholds, figures, equipment recipes and remaining-life or discard rules. High-modulus synthetic running-rope inspection does not reveal internal condition or validate natural-fibre shibari rope or human support. |
+
+### Permission-, access-, or license-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [IMCA natural-fibre embarkation-ladder failure](https://www.imca-int.com/resources/safety/safety-flashes/0721-failure-of-natural-fibre-rope-in-embarkation-ladder/) | 30 | The anonymized incident may illustrate hidden abrasion near a securing thimble, but IMCA requires express reproduction permission and member-supplied text/images may have separate ownership. One marine incident is not a controlled materials study or a jute-care rule. |
+| [CCOHS Fibre Rope Slings](https://www.ccohs.ca/oshanswers/safety_haz/materials_handling/sling_fibre.html) | 28 | CCOHS's default terms permit internal copies but require written authorization for modification and redistribution. Industrial inspection categories may be useful if cleared; numerical retirement, temperature, care and working-load guidance cannot transfer to body support. |
+| [Quartz Rope accessibility curriculum](https://www.quartzrope.com/class-descriptions) | 23 | First-party neurodivergence, mobility, sensory, dysphoria/euphoria and tied-person co-teaching topics are valuable, but the site is ordinary copyright and promotional lived experience. Permission, component clearance and independent clinical review are required. |
+| [Rope Office Hours](https://ropeofficehours.com/) | 28 | Ordinary copyright plus explicit robots blocks for GPTBot, ChatGPT-User, CCBot and other AI agents make this metadata-only. No body review or conversion may occur without written access and derivative commercial training authorization. |
+| [SafeLink Alberta *Kinky Sex* toolkit](https://safelinkalberta.ca/toolkits/) | 36 | The strongest BDSM hygiene and consent lead in this batch is still blocked: terms prohibit modification/redistribution, robots advertises `ai-train=no` and blocks GPTBot, and adapted AIDS Committee/community components require separate permission. The PDF body was not ingested. |
+| [Latin American shibari genealogy, SEDICI 10915/187026](https://sedici.unlp.edu.ar/handle/10915/187026) | 30 | The situated Spanish exploratory paper fills a major regional-history gap, but CC BY-NC-SA compatibility with intended commercial training is not assumed and robots restrict named/bulk agents. Permission and converter-specific access review are required. |
+| [Waseda Itō Seiu semeba manuscript clipping](https://archive.waseda.jp/archive/vm-view.html?arg=%7B%22clipping_id%22%3A%22242eb88de504d971d879546e9c0418e1%22%7D) | 21 | Official catalog context is valuable, but the image-viewer route is robots-disallowed and image/manuscript/digitization/transcription rights require permission. It is evidence about staged imagery, not a tying manual or self-proving kinbaku lineage. |
+
+### Rejected source
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [RACKWiki Bondage](https://rackwiki.org/wiki/Bondage) | 14 | The footer exposes no usable contributor license, while the article mixes unsafe or weakly sourced duration, circulation, nerve, capillary-check and emergency implications. Rights ambiguity and medical/procedural contamination each independently fail. |
+
+### Batch 021 rights, evidence, and safety controls
+
+NIST employee-authored technical-series text and the two United States public-
+domain books were accepted with attribution, component and historical-domain
+controls. Gutenberg's public-domain determination does not override its server
+access terms: automated main-host retrieval is forbidden, sanctioned mirrors
+or a manual single-item route are mandatory, trademarks are excluded and non-
+U.S. status remains jurisdiction-specific. The innoTRAC article is queued only
+under its article-level CC BY 4.0 terms with figures, products and numerical
+rules excluded.
+
+Ordinary copyright, internal-copy-only terms, CC BY-NC-SA uncertainty,
+component ownership, named-agent blocks, `ai-train=no`, and robots-disallowed
+image routes remain hard gates. Robots permission was never treated as a
+license, and open licensing was never treated as evidence that a source's
+domain transfers to bondage or human suspension.
+
+Historical seamanship and 1921 materials evidence do not become current knot-
+security, rope-care, load or body-support rules. Industrial surface inspection
+does not establish internal condition, retirement, remaining life or safe use.
+No accepted source supplies a modern load, capacity, hardpoint, upline,
+medical-treatment or human-suspension rule.
+
+### Batch 021 access and clean-room statement
+
+The read-only scout inspected only the four authorized discovery metadata
+ledgers and ordinary first-party source, repository, publisher, terms, license
+and robots routes. No QA, trainer, projection, evaluation, heldout, holdout,
+OOD, shadow, benchmark, probe, experiment, existing corpus body or unrelated
+repository artifact was read. The scout stopped at explicit AI-agent and image-
+viewer prohibitions, did not retrieve the SafeLink toolkit body or Waseda
+images, and did not use a mirror during discovery. No login, paywall,
+challenge, access block, cache, archive or snippet reconstruction was bypassed,
+and no reviewed source body entered a training artifact during discovery.
