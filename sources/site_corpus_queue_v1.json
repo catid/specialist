@@ -2614,6 +2614,38 @@
       ],
       "training_use": "direct_training_source_critical_public_domain_japanese_primary_history_after_expert_review",
       "rights_basis": "The exact NDL record and IIIF manifest mark the 1929 work PDM, and NDL reuse guidance permits reuse of protection-period-expired items with attribution and component checks; conversion remains contingent on territorial, frame-level, moral-rights, human-rights and privacy review, with all images excluded."
+    },
+    {
+      "resource_id": "rijksmuseum_yoshitoshi_adachi_moor_records",
+      "url": "https://www.rijksmuseum.nl/en/collection/object/Lonely-house-on-Adachi-Moor--294bdb485e29697b36fd74cae97600a8",
+      "scope": "Create a short attributed text-only record from the two exact public-domain collection objects and eligible open metadata. Preserve titles, Tsukioka Yoshitoshi attribution, 1885 and 1890 dates, object numbers, paper and color-woodcut media, persistent identifiers, and only the theatrical or folktale context explicitly stated by the museum. Exclude every image, inferred visual technique, graphic detail not necessary for identification, broad claims about Japanese culture, and all claims that Yoshitoshi inspired Ito Seiu or modern kinbaku, depicts a consensual practice, or establishes a tying or safety technique. Keep the 1885 and 1890 objects distinct and label museum descriptions as collection-record evidence.",
+      "status": "pending",
+      "discovery_candidate_id": "rijksmuseum_yoshitoshi_adachi_moor_records",
+      "discovery_priority_score": 26,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "aesthetics_performance",
+        "terminology_cultural_context",
+        "teaching_evaluation"
+      ],
+      "training_use": "direct_training_bounded_public_domain_museum_metadata_cultural_context",
+      "rights_basis": "The exact objects are designated Public Domain; Rijksmuseum policy makes associated open collection metadata available under PDM or CC0 and asks for source citation. Images remain excluded by dataset policy."
+    },
+    {
+      "resource_id": "artic_oshu_adachi_ga_hara_kabuki_1777",
+      "url": "https://www.artic.edu/artworks/31601/the-actor-ichikawa-danjuro-v-as-abe-no-sadato-in-the-play-oshu-adachi-ga-hara-performed-at-the-ichimura-theater-in-the-fifth-month-1777",
+      "scope": "Create one compact attributed metadata record from the exact artwork page and CC0 API fields. Preserve the full supplied title, Katsukawa Shunsho attribution, circa-1777 date, Ichikawa Danjuro V as Abe no Sadato, Ichimura Theater, color woodblock print and hosoban medium, public-domain designation and reference number 1939.644. Exclude the image, visual interpretation, generic collection navigation and every inference that this record is the same narrative as a later Yoshitoshi object, proves an Ito Seiu or modern kinbaku lineage, or supplies tying, consent or safety information.",
+      "status": "pending",
+      "discovery_candidate_id": "artic_oshu_adachi_ga_hara_kabuki_1777",
+      "discovery_priority_score": 21,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "aesthetics_performance",
+        "terminology_cultural_context",
+        "teaching_evaluation"
+      ],
+      "training_use": "direct_training_bounded_cc0_museum_kabuki_metadata",
+      "rights_basis": "The exact artwork is designated CC0 Public Domain, and Art Institute API documentation makes all artwork data other than the description field CC0; no description or image is included."
     }
   ]
 }

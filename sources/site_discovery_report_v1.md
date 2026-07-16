@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T17:45:24Z
-Latest batch: `discovery_batch_025`
+Latest review at: 2026-07-16T18:14:12Z
+Latest batch: `discovery_batch_026`
 
 ## Outcome
 
@@ -1816,3 +1816,81 @@ evaluation, heldout, holdout, OOD, shadow, benchmark, probe, experiment,
 existing corpus body or unrelated repository artifact was read. No login,
 paywall, challenge, cache, archive or access-control bypass was used, and no
 reviewed source body entered a training artifact during discovery.
+
+## Discovery batch 026 outcome
+
+`discovery_batch_026` manually reviewed 11 exact-new source identities after
+title, object, accession, organization and canonical-URL deduplication. It
+records 0 `accept_high_priority`, 2 `accept_targeted_scope`, 8 `defer`, and 1
+`reject` decisions. The two accepted museum-data records expand the canonical
+Markdown queue from 174 to 176 resources; the discovery ledger grows from 307
+to 318 records.
+
+This batch rotates toward the thinnest cultural-knowledge categories:
+`aesthetics_performance`, `lineage_history_people`, `pattern_architecture` and
+`terminology_cultural_context`. It also records four unusually strong
+accessible-consent and disability-safety permission leads. Exact-object and
+page-level rights were decisive: clear public access, a free PDF, a free cart,
+an underlying public-domain artwork or a site-wide open-data program did not
+override restrictive terms or an exact `Usage Conditions Apply` label.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Rijksmuseum Yoshitoshi Adachi Moor records](https://www.rijksmuseum.nl/en/collection/object/Lonely-house-on-Adachi-Moor--294bdb485e29697b36fd74cae97600a8) | `accept_targeted_scope` | 26 | PDM/CC0 collection data can preserve the two exact object identities, maker, dates, media, persistent identifiers and only museum-stated theatrical context. Images and any claim that Yoshitoshi inspired Ito Seiu or modern kinbaku are excluded. |
+| [Art Institute Oshu Adachi ga Hara record](https://www.artic.edu/artworks/31601/the-actor-ichikawa-danjuro-v-as-abe-no-sadato-in-the-play-oshu-adachi-ga-hara-performed-at-the-ichimura-theater-in-the-fifth-month-1777) | `accept_targeted_scope` | 21 | CC0 non-description API fields anchor a named actor, role, play, theatre and circa-1777 print. The record does not establish that it depicts the same narrative as a later object or supply modern lineage, tying, consent or safety evidence. |
+
+### Permission- or rights-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Smithsonian Ito Seiu Art of Knots and Ropes](https://www.si.edu/object/art-knots-and-ropes-series-torture-pictures-seme-e%3Afsg_S2021.5.93) | 27 | The first-party archive identifies an exact circa-1930s Ito Seiu object but displays conflicting CC0 boilerplate and `Usage Conditions Apply`; the exact object could not be verified in open API data. Metadata and permission lead only. |
+| [Japan Arts Council Adachigahara performance context](https://www2.ntj.jac.go.jp/unesco/kabuki/en/production/scene2.html) | 25 | Official Kabuki and Noh records help disambiguate titles, but current terms prohibit unauthorized reuse, distribution and non-personal storage. No page, image, audio or performance body enters training without permission. |
+| [National Gallery of Australia Yoshitoshi inventory record](https://nga.gov.au/media/dd/documents/annualreport_08-09.2c14bdd.pdf) | 7 | The all-rights-reserved inventory line corroborates accession 2008.774.A-B but duplicates the rights-clear Rijksmuseum evidence. An underlying public-domain artwork does not license Gallery-authored metadata or images. |
+| [SECCA Introduction to Consent](https://www.secca.org.au/resources/introduction-to-consent/) | 34 | The co-designed Easy English books are a strong accessibility target, but their copyright page says all rights reserved and prohibits reproduction without prior permission. Free download is not corpus permission. |
+| [Safer Me Safer You National Guidelines](https://safermesaferyou.org.au/projects/guidelines) | 35 | The 68-page co-designed social and sexual safety guideline and Easy Read companion are limited by governing terms to personal, non-commercial use; lived-experience quotations and case studies also need component clearance. |
+| [WWDA Neve intellectual-disability consent guide](https://www.neve-plainenglish.wwda.org.au/level-4-page/teaching-people-with-intellectual-disabilities-about-sexual-consent) | 35 | Detailed paced, trauma-aware and communication-specific teaching guidance is valuable, but WWDA terms prohibit copying, adaptation, translation, distribution and commercialisation without express approval. |
+| [SACID Relationship Wise bundle](https://sacid.org.au/product/relationship-wise-bundle/) | 24 | Eleven Easy Read booklets cover relationships, boundaries, safety and consent, but access requires a free cart and no open reuse license was found. Checkout was not entered; Photosymbols components need separate clearance. |
+| [Japan House London kumihimo and wrapping context](https://www.japanhouselondon.uk/read-and-watch/kumihimo-a-thread-through-japanese-history/) | 28 | The cultural articles are dense on braiding, historical use, named patterns and mizuhiki wrapping, but commercial reuse needs permission. Decorative-cord knowledge cannot be presented as direct kinbaku lineage, body-restraint technique or suspension safety. |
+
+### Rejected false-relevance source
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [Cleveland Museum Trefoil Knots object](https://www.clevelandart.org/art/1961.202.q) | 8 | CMA metadata is exemplary CC0 open data, but “Trefoil Knots” is a literary chapter title and the record describes a Tale of Genji painting rather than a rope structure. Open licensing does not turn keyword coincidence into useful training knowledge. |
+
+### Batch 026 rights, evidence, and safety controls
+
+The two accepted jobs are text-only exact-record conversions. Rijksmuseum
+objects are individually designated public domain and their eligible open
+collection metadata follows PDM/CC0 policy. The Art Institute job uses only
+CC0 API fields; its separately CC BY description field is empty for this
+object. No museum image, visual inference, linked essay, bibliography body,
+provenance narrative or generic navigation enters either job.
+
+Adachi, Adachigahara and Oshu Adachi ga Hara titles were not flattened into a
+single narrative. The reviewed records do not demonstrate a causal chain from
+Kabuki, Noh or Yoshitoshi to Ito Seiu, hojojutsu or modern kinbaku. Museum
+catalog titles also do not establish consent, technique, anatomy, load,
+hardpoint, upline, pattern or safety facts.
+
+The accessibility leads remain permission metadata only. Disability does not
+establish incapacity; a communication format does not prove understanding or
+agreement; a population guideline does not adjudicate an individual; and
+cross-domain consent education does not certify a rope scene. If permissions
+are obtained later, images, symbols, lived-experience quotations, case studies,
+third-party models, medical or legal claims and problematic prescriptive
+heuristics require separate review.
+
+### Batch 026 access and clean-room statement
+
+The source worker read only the governing discovery ledger, queue, report and
+tests plus first-party museum, performing-arts, disability-organization,
+rights, policy, API-documentation and exact source pages needed to resolve
+identity, scope and reuse gates. No QA, trainer, projection, evaluation,
+heldout, holdout, OOD, shadow, benchmark, probe, experiment, existing corpus
+body or unrelated repository artifact was read. No login, checkout, paywall,
+challenge, cache, archive-service or access-control bypass was used. The worker
+did not inspect museum images or retrieve gated bundle bodies, and no reviewed
+source body entered a training artifact during discovery.

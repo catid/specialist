@@ -3916,12 +3916,148 @@ class SourceCorpusContractTest(unittest.TestCase):
             for marker in required:
                 self.assertIn(marker, text, candidate_id)
 
+    def test_batch_026_decisions_are_deterministic_and_accepted_are_queued(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_026"
+        }
+        expected = {
+            "accept_targeted_scope": {
+                "rijksmuseum_yoshitoshi_adachi_moor_records",
+                "artic_oshu_adachi_ga_hara_kabuki_1777",
+            },
+            "defer": {
+                "smithsonian_ito_seiu_art_knots_ropes_seme_e",
+                "japan_arts_council_adachigahara_performance_context",
+                "nga_yoshitoshi_lonely_house_adachi_moor_1885",
+                "secca_introduction_to_consent_easy_english_2024",
+                "safer_me_safer_you_national_social_sexual_safety_guidelines_2025",
+                "wwda_neve_intellectual_disability_sexual_consent_guide",
+                "sacid_relationship_wise_easy_read_bundle",
+                "japan_house_london_kumihimo_wrapping_context",
+            },
+            "reject": {
+                "cleveland_open_access_knotting_object_metadata",
+            },
+        }
+        self.assertEqual(len(batch), 11)
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_026_accepts_mirror_queue_and_block_lineage_transfer(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "rijksmuseum_yoshitoshi_adachi_moor_records": {
+                "public domain",
+                "modern kinbaku",
+                "every image",
+                "keep the 1885 and 1890 objects distinct",
+            },
+            "artic_oshu_adachi_ga_hara_kabuki_1777": {
+                "cc0",
+                "same narrative",
+                "ichimura theater",
+                "consent or safety",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_026_gated_and_false_relevance_sources_are_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        markers = {
+            "smithsonian_ito_seiu_art_knots_ropes_seme_e": {
+                "usage conditions apply",
+                "conflicting",
+                "exact-object cc0",
+            },
+            "japan_arts_council_adachigahara_performance_context": {
+                "non-personal storage",
+                "shared place or title",
+                "modern kinbaku lineage",
+            },
+            "nga_yoshitoshi_lonely_house_adachi_moor_1885": {
+                "all rights reserved",
+                "underlying public-domain artwork",
+                "prefer the rights-clear rijksmuseum",
+            },
+            "secca_introduction_to_consent_easy_english_2024": {
+                "all rights reserved",
+                "multiple communication modes",
+                "format proves comprehension or consent",
+            },
+            "safer_me_safer_you_national_social_sexual_safety_guidelines_2025": {
+                "personal, non-commercial",
+                "lived-experience quotations",
+                "unsupported transfer to individuals",
+            },
+            "wwda_neve_intellectual_disability_sexual_consent_guide": {
+                "express approval",
+                "body language can supplement but not replace",
+                "disability means incapacity",
+            },
+            "sacid_relationship_wise_easy_read_bundle": {
+                "free cart",
+                "photosymbols",
+                "do not enter checkout",
+            },
+            "japan_house_london_kumihimo_wrapping_context": {
+                "commercial use without permission",
+                "direct kinbaku lineage",
+                "decorative cord",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        rejected = by_id["cleveland_open_access_knotting_object_metadata"]
+        self.assertEqual(rejected["decision"], "reject")
+        self.assertNotIn(rejected["candidate_id"], queued)
+        rejected_text = json.dumps(rejected, sort_keys=True).lower()
+        self.assertIn("false-relevance", rejected_text)
+        self.assertIn("keyword coincidence", rejected_text)
+        self.assertIn("does not teach bondage-relevant", rejected_text)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_025`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_026`", self.report)
 
 
 if __name__ == "__main__":
