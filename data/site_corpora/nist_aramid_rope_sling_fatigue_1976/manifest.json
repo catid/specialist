@@ -1,0 +1,75 @@
+{
+  "corpus_id": "nist_aramid_rope_sling_fatigue_1976",
+  "content_kind": "manual_historical_evidence_digest",
+  "created_at_utc": "2026-07-16",
+  "files": {
+    "CORPUS.md": {
+      "bytes": 15633,
+      "sha256": "f5eb955663f43a9a9d9ea25824386b8ba47d628e91af5ee4bc8dcbbb839a8b23"
+    },
+    "REPORT.md": {
+      "bytes": 7889,
+      "sha256": "f9ca773cad1a86a02a12ee04c9f1216e20f6cbb14da7fb192d88ffbdaa11f1a1"
+    },
+    "dispositions.jsonl": {
+      "bytes": 5862,
+      "sha256": "46a48d5b2ae695bd5c5b801d499bbaf509c4be02b301c88a7c140cdfd10210b1"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 4361,
+      "sha256": "0e957e266025fd5ed23c6484f9cb58837aa071737778b091e64dfe0ec7a4e507"
+    },
+    "sources.jsonl": {
+      "bytes": 1970,
+      "sha256": "87a254f64c5103ad39293ebd176e5eff13dffe55eac9d11f9bd073548d9fb44a"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 11227,
+      "sha256": "eb2f0707ff743a1e2a3c0485f44880149c762cbaecb2094f05c85e54a5c2894b"
+    }
+  },
+  "language": "en",
+  "primary_source": {
+    "doi": "10.6028/NBS.IR.76-1159",
+    "report_number": "NBSIR 76-1159",
+    "title": "Fatigue and Weatherability Studies of Aramid-Fiber Rope Slings"
+  },
+  "rights": {
+    "attribution_required_by_corpus_policy": true,
+    "component_caveat": "Third-party, proprietary, vendor, scan-layer, image, table, and reference components are excluded.",
+    "legal_advice": false,
+    "source_bodies_retained": false,
+    "status": "accepted_manual_paraphrase"
+  },
+  "schema_version": "site-corpus-manifest-v1",
+  "source_ids": [
+    "NIST-LANDING",
+    "NBSIR-76-1159",
+    "NIST-RIGHTS",
+    "NIST-SERIES-RIGHTS"
+  ],
+  "split_hygiene": {
+    "allowed": [
+      "training_source"
+    ],
+    "forbidden": [
+      "validation",
+      "holdout",
+      "evaluation",
+      "ood",
+      "probe"
+    ],
+    "qa_derivation": "separate_training_only_artifact_after_manual_review"
+  },
+  "status": "accepted",
+  "stats": {
+    "claim_citations": 29,
+    "corpus_words": 2097,
+    "disposition_rows": 23,
+    "official_sources": 4,
+    "report_words": 1073,
+    "source_pdf_pages_reviewed": 44
+  },
+  "summary": "Claim-cited historical digest of a 1976 NBS aramid prototype sling-leg study, centered on end-fitting-confounded fatigue, weathering, residual-strength, and elongation evidence.",
+  "version": 1
+}
