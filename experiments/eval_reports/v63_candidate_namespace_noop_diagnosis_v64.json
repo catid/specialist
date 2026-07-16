@@ -1,0 +1,75 @@
+{
+  "content_sha256_before_self_field": "d57b5e1953ca058fcd3a3605e78e8f0d014de97d3f65db018088d7792c4736c8",
+  "exact_input_file_sha256": {
+    "raw_candidate_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "raw_candidate_weights": "c2665b60928b16120a2b98fdf137fafd250644852c86a02d797689f02105c6c8",
+    "reference_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "reference_weights": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+    "staged_candidate_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "staged_candidate_manifest": "c0e8c322f8c373dadd66506a2ad3859b7f9f18e56e56ff7b387999fb060f3d0e",
+    "staged_candidate_weights": "e189cfb9fcd6c55700babae91111266825522fc46ddbd53fc0574786711eccae",
+    "v63_analysis": "6c9a566c5f6a3f20c24078165609d555ff5c899089a9942823fe5ebcc68d2f15",
+    "v63_evidence": "16fde944611c3d2b862a78549a23b10f9780109376716b5ea91511d05b60f17a",
+    "v63_finalized": "6c165dcbc043c9ce5a510369df0b6511e8ab57b51615278b1e6e993c64f8faea",
+    "v63_preregistration": "79327aae4fa42ff8741d988f2ad07252eb66911fdf5fee433a3188fb2e6f7e7b",
+    "v63_report": "7a668e8ba9da84ab531b8f58bfacbeb96e27261ae6012219788699d2c1695d78"
+  },
+  "installed_implementation": {
+    "vllm_lora_model_manager": {
+      "file_sha256": "13201a06e17cccffb30c90bf3d268dfbf901567623b03454003afb5a922ae45a",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/model_manager.py"
+    },
+    "vllm_lora_worker_manager": {
+      "file_sha256": "1f7bb394ca92e21a3f0e250943196dd679c145f16fb67cc64e00e011e8e1447a",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/worker_manager.py"
+    },
+    "vllm_qwen35_model": {
+      "file_sha256": "5f47ae4f4a08d0a78dd681d58b290f3298744c73a82f1349f3e2853469ef73e6",
+      "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5.py"
+    }
+  },
+  "interpretation": {
+    "corrected_confirmation_must_require_live_applied_weight_coverage_receipts": true,
+    "corrected_confirmation_requires_new_preregistration": true,
+    "v63_negative_result_is_not_evidence_against_the_v59_eggroll_es_weights": true,
+    "v63_negative_result_is_valid_as_a_serving_export_failure_finding": true
+  },
+  "mapper": {
+    "raw_candidate_mapped_module_count": 35,
+    "raw_candidate_mapped_module_manifest_sha256": "0b1b77f2f1faf57160a0f209804663e18d3082b590e0a94867a57a827de5df90",
+    "raw_candidate_reference_module_intersection_count": 0,
+    "raw_candidate_tensor_count": 70,
+    "reference_mapped_module_count": 35,
+    "reference_mapped_module_manifest_sha256": "73472ab045ae6e0962cf6562aa67b7003d15fc353ea00b68ec3993fa25ee161a",
+    "reference_tensor_count": 70,
+    "staged_candidate_mapped_module_count": 35,
+    "staged_candidate_mapped_module_manifest_sha256": "73472ab045ae6e0962cf6562aa67b7003d15fc353ea00b68ec3993fa25ee161a",
+    "staged_candidate_module_set_equals_reference": true,
+    "staged_candidate_reference_module_intersection_count": 35,
+    "staged_candidate_tensor_count": 70,
+    "unstacked_prefix_map": {
+      "lm_head.": "language_model.lm_head.",
+      "model.language_model.": "language_model.model.",
+      "model.visual.": "visual."
+    }
+  },
+  "mechanism": {
+    "activation_records_id_before_module_weight_lookup": true,
+    "activation_resets_live_module_slot_when_lookup_returns_none": true,
+    "correct_stage_has_exact_35_of_35_expected_module_name_overlap": true,
+    "correct_staged_candidate_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v59_fragile_priority_ratio0p25_lora_es_qwen35_vllm_namespace_v60",
+    "raw_candidate_had_zero_expected_live_module_name_overlap": true,
+    "v63_active_id_receipt_was_insufficient_to_prove_weight_application": true,
+    "v63_requested_raw_candidate_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/selected_candidate_v59"
+  },
+  "schema": "v63-candidate-namespace-noop-diagnosis-v64",
+  "scope": {
+    "base_model_loaded": false,
+    "cuda_compute_initialized": true,
+    "gpu_accessed_for_compute": false,
+    "protected_ood_shadow_holdout_or_terminal_material_opened": false,
+    "sealed_v63_files_modified": false,
+    "semantic_dataset_prompt_answer_or_generation_opened": false
+  },
+  "status": "reproduced_exact_serving_namespace_failure"
+}
