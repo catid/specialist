@@ -614,6 +614,64 @@
       "whitespace_delimited_word_count": 2097
     },
     {
+      "artifact_id": "canonical-markdown:noaa_synthetic_rope_deterioration_1990",
+      "byte_length": 17887,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/noaa_synthetic_rope_deterioration_1990/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "118bf25f524f56125fa4d28cc745763f78986997163673da02cc10cc24f7789b",
+      "markdown_path": "data/site_corpora/noaa_synthetic_rope_deterioration_1990/CORPUS.md",
+      "markdown_sha256": "9751de41e2775ea367c1cbaca1b7b05dbb471cb427f3d5d008b3830162226c09",
+      "non_qa": true,
+      "qwen36_token_count": 3875,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:93abf1349a57ef758b7aafcda364d6b91caf1f0831ef5395a4ca548cdaa1b38c",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "noaa_synthetic_rope_deterioration_1990",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The official NOAA Institutional Repository record explicitly designates the bound MITSG 90-18 main document Public Domain and publishes a SHA-256 that exactly matches the reviewed 41-page scan.",
+        "license": "Public Domain",
+        "limitations": [
+          "Tables, figures, formulas, references, commercial identifiers, cited works, operational parameters, and separately credited components are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, OCR output, contact sheet, or source body is retained.",
+          "Public-domain status does not validate the model, cure sparse low-pressure inputs or mixed inherited validation, or make the report a service-life, load, rating, care, retirement, bondage, or human-suspension authority."
+        ],
+        "promotion_gate": "ready_with_attribution_checksum_component_audit_and_historical_model_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "historical_1990_offshore_double_braided_synthetic_rope_model_scope_required",
+        "internal_abrasion_and_tensile_creep_fatigue_are_modeled_mechanisms_not_universal_retirement_rules",
+        "no_equation_service_life_load_rating_safety_factor_or_operational_recipe",
+        "no_natural_fiber_knot_care_bondage_body_contact_upline_anchor_or_human_suspension_transfer",
+        "sparse_low_pressure_input_mixed_validation_and_termination_bias_must_be_preserved"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://repository.library.noaa.gov/view/noaa/9887",
+        "identity_type": "government_technical_report",
+        "official_pdf_sha256": "7a29a928c08d6257f1558eac2d63a26c8e662240e01ee87400cedc95b70d242f",
+        "publication_year": 1990,
+        "report_number": "MITSG 90-18",
+        "repository_id": "noaa:9887",
+        "source_resource_id": "noaa_synthetic_rope_deterioration_1990"
+      },
+      "source_document_identity_sha256": "93abf1349a57ef758b7aafcda364d6b91caf1f0831ef5395a4ca548cdaa1b38c",
+      "source_label": "Modelling of Synthetic Fiber Ropes Deterioration Caused by Internal Abrasion and Tensile Fatigue",
+      "unicode_word_count": 2511,
+      "whitespace_delimited_word_count": 2486
+    },
+    {
       "artifact_id": "canonical-markdown:rope365",
       "byte_length": 90243,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -887,7 +945,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "e4448ccd498e52f0bf0167e64dae97d1cd0cc60268c80c1a1d21c35734a23782"
+    "sha256": "a6c86db009bb6e0ce8118ec8535ac29746c4097b69c6df4af967f1e5ca5bbdf6"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -926,7 +984,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "01ed57ddc23da2c9d000e5c3beb49acb7bdac9481025e5e94f559eb0fd3d0e14",
+  "source_tree_fingerprint_sha256": "b32e762aecb913da199ab4fe1886b189c2329b55377efa86d2080afb551ed3e3",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -936,11 +994,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 16,
-    "byte_length": 3967423,
-    "qwen36_token_count": 1162396,
-    "source_document_split_group_count": 16,
-    "unicode_word_count": 521322,
-    "whitespace_delimited_word_count": 409472
+    "artifact_count": 17,
+    "byte_length": 3985310,
+    "qwen36_token_count": 1166271,
+    "source_document_split_group_count": 17,
+    "unicode_word_count": 523833,
+    "whitespace_delimited_word_count": 411958
   }
 }

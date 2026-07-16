@@ -292,6 +292,31 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             aramid["safety_transfer_flags"],
         )
 
+        noaa = self.by_id["noaa_synthetic_rope_deterioration_1990"]
+        self.assertEqual(
+            noaa["source_document_identity"]["repository_id"], "noaa:9887"
+        )
+        self.assertEqual(
+            noaa["source_document_identity"]["report_number"], "MITSG 90-18"
+        )
+        self.assertEqual(
+            noaa["source_document_identity"]["official_pdf_sha256"],
+            "7a29a928c08d6257f1558eac2d63a26c8e662240e01ee87400cedc95b70d242f",
+        )
+        self.assertEqual(
+            noaa["rights_basis"]["status"],
+            "federal_text_public_domain_presumption",
+        )
+        self.assertEqual(noaa["rights_basis"]["license"], "Public Domain")
+        self.assertIn(
+            "sparse_low_pressure_input_mixed_validation_and_termination_bias_must_be_preserved",
+            noaa["safety_transfer_flags"],
+        )
+        self.assertIn(
+            "no_natural_fiber_knot_care_bondage_body_contact_upline_anchor_or_human_suspension_transfer",
+            noaa["safety_transfer_flags"],
+        )
+
     def test_safety_and_domain_transfer_flags_cannot_be_empty(self) -> None:
         for item in self.artifacts:
             flags = item["safety_transfer_flags"]

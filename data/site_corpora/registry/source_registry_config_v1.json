@@ -362,6 +362,41 @@
       ]
     },
     {
+      "resource_id": "noaa_synthetic_rope_deterioration_1990",
+      "source_label": "Modelling of Synthetic Fiber Ropes Deterioration Caused by Internal Abrasion and Tensile Fatigue",
+      "manifest_path": "data/site_corpora/noaa_synthetic_rope_deterioration_1990/manifest.json",
+      "markdown_path": "data/site_corpora/noaa_synthetic_rope_deterioration_1990/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "government_technical_report",
+        "canonical_url": "https://repository.library.noaa.gov/view/noaa/9887",
+        "official_pdf_sha256": "7a29a928c08d6257f1558eac2d63a26c8e662240e01ee87400cedc95b70d242f",
+        "publication_year": 1990,
+        "repository_id": "noaa:9887",
+        "report_number": "MITSG 90-18",
+        "source_resource_id": "noaa_synthetic_rope_deterioration_1990"
+      },
+      "rights_basis": {
+        "status": "federal_text_public_domain_presumption",
+        "basis": "The official NOAA Institutional Repository record explicitly designates the bound MITSG 90-18 main document Public Domain and publishes a SHA-256 that exactly matches the reviewed 41-page scan.",
+        "license": "Public Domain",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_checksum_component_audit_and_historical_model_limits",
+        "limitations": [
+          "Tables, figures, formulas, references, commercial identifiers, cited works, operational parameters, and separately credited components are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, OCR output, contact sheet, or source body is retained.",
+          "Public-domain status does not validate the model, cure sparse low-pressure inputs or mixed inherited validation, or make the report a service-life, load, rating, care, retirement, bondage, or human-suspension authority."
+        ]
+      },
+      "safety_transfer_flags": [
+        "historical_1990_offshore_double_braided_synthetic_rope_model_scope_required",
+        "internal_abrasion_and_tensile_creep_fatigue_are_modeled_mechanisms_not_universal_retirement_rules",
+        "no_equation_service_life_load_rating_safety_factor_or_operational_recipe",
+        "no_natural_fiber_knot_care_bondage_body_contact_upline_anchor_or_human_suspension_transfer",
+        "sparse_low_pressure_input_mixed_validation_and_termination_bias_must_be_preserved"
+      ]
+    },
+    {
       "resource_id": "rope365",
       "source_label": "Rope365 canonical instructional site digest",
       "manifest_path": "data/site_corpora/rope365/manifest.json",
