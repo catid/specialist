@@ -1,0 +1,89 @@
+{
+  "audit": {
+    "by_decision": {
+      "drop": 6,
+      "keep": 26
+    },
+    "by_review_class": {
+      "awkward_tranche_drop": 1,
+      "awkward_tranche_keep": 2,
+      "metadata_drop": 5,
+      "whole_candidate_metadata_scan": 24
+    },
+    "path": "data/manual_reviews/context_merit_audit_v444/context_merit_audit_v444.jsonl",
+    "rows": 32,
+    "sha256": "248eaf5841bde99784a069d454f034a03a365795fad909cee74cd83c296cc2a7"
+  },
+  "awkward_tranche": {
+    "drops": 1,
+    "keeps": 2,
+    "rows": 3
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 261,
+      "equipment_material": 22,
+      "resources_general": 81,
+      "safety_consent": 86,
+      "technique": 72
+    },
+    "before": {
+      "conflict_units": 266,
+      "equipment_material": 23,
+      "resources_general": 85,
+      "safety_consent": 86,
+      "technique": 72
+    },
+    "delta": {
+      "conflict_units": -5,
+      "equipment_material": -1,
+      "resources_general": -4,
+      "safety_consent": 0,
+      "technique": 0
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 0,
+    "output_rows": 518,
+    "output_sha256": "41c8df268b82bfc33a4f9f74adfbdd5519aa892464569937afeb39cbb0a54565",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "drop": 6
+    },
+    "decisions": 6,
+    "path": "data/manual_reviews/context_merit_audit_v444/pending_curation_context_merit_v444.jsonl",
+    "sha256": "8318433f1f1d3c3acd8e701cf8dd5509ffbc9dc11eeb28b950377f6c76499a3f"
+  },
+  "schema": "context-merit-audit-report-v444",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  },
+  "v52_isolation": {
+    "active_v52_inputs_modified": false,
+    "candidate_status": "isolated_pending_not_promoted"
+  },
+  "whole_candidate_metadata_scan": {
+    "by_rule_counts": {
+      "explicit_url_canonical_or_sitemap": 0,
+      "owner_or_page_location": 19,
+      "page_title_recall": 0,
+      "publication_date_index_recall": 0,
+      "site_structure_or_index": 5
+    },
+    "flagged_unique_rows": 24,
+    "legitimate_owner_resource_recommendations_kept": 24,
+    "nonowner_metadata_rows_dropped": 5,
+    "rows_scanned": 524
+  }
+}
