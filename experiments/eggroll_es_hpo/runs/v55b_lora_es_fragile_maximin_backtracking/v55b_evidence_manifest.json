@@ -1,0 +1,166 @@
+{
+  "schema": "lora-es-fragile-maximin-backtracking-evidence-v55b",
+  "status": "complete_passing_train_candidate_saved_no_master_commit",
+  "local_seal": {
+    "code_and_preregistration_commit": "44a7ebe6d4c0c14d974cbd174b564983590e7c0c",
+    "remote_delay_declaration_commit": "c08cf9c",
+    "preregistration_file_sha256": "8c54229976bba3bc57aa363df855758275c848a531edbcad4d9ae744e5748e6e",
+    "preregistration_content_sha256": "322acd85278825a462dd921d7ff197ef9141728626508c18075d956fffe46115",
+    "focused_and_v52_regression_tests_passed": 33,
+    "exact_dry_run_passed": true,
+    "prelaunch_remote_presence_claimed": false
+  },
+  "scientific_result": {
+    "selected_v53_sigma": 0.0048,
+    "projection_direction_sha256": "a34e30eb237cd27e433a31ffe319251bbf0a23aed25d4a4d8a81ea0e39156b6c",
+    "maximin_margin": 0.32390973186639976,
+    "evaluated_target_norm_ratios": [
+      0.5,
+      0.25
+    ],
+    "selected_target_norm_ratio": 0.25,
+    "ratio_0p5_failed_only_domain_and_qa_logprob": true,
+    "ratio_0p25_passed_all_nine_endpoint_gates": true,
+    "ratio_0p25_gate_checks": {
+      "domain_point_improvement": true,
+      "fragile_generation_exact_noninferiority": true,
+      "fragile_generation_f1_noninferiority": true,
+      "fragile_generation_nonzero_noninferiority": true,
+      "prose_lm_noninferiority": true,
+      "qa_generation_exact_noninferiority": true,
+      "qa_generation_f1_noninferiority": true,
+      "qa_generation_nonzero_noninferiority": true,
+      "qa_logprob_noninferiority": true
+    },
+    "ratio_0p25_paired_actor_median_deltas": {
+      "domain": 0.0004487037043918729,
+      "prose_lm": 0.00046898809975592926,
+      "qa_answer_logprob": 0.0003812930889142141,
+      "qa_generation_f1": 0.002302474185915976,
+      "qa_generation_exact_count": 0.0,
+      "qa_generation_nonzero_count": 0.0
+    },
+    "all_nine_endpoint_gates_unchanged": true,
+    "gates_weakened_or_reinterpreted": false,
+    "population_rerun_performed": false,
+    "p8_evaluation_performed": false
+  },
+  "candidate_snapshot": {
+    "directory": "experiments/eggroll_es_hpo/runs/v55b_lora_es_fragile_maximin_backtracking/selected_candidate_v55b",
+    "four_actor_consensus_passed": true,
+    "readback_verified": true,
+    "written_rank": 0,
+    "worker_consensus_count": 4,
+    "canonical_fp32_candidate_sha256": "78fa46a9f77387f7872a09202658e471b2c03969687abcbccc253f5f194980fc",
+    "canonical_ordered_key_sha256": "ddee26a3a4a10683a51f089e8b7028e4a8d9607e0827dab7a314e04e3ece2280",
+    "runtime_bf16_values_sha256": "3745c5578db05102f1784f2b5489f39e9910eae4bf55f5c9edaa5485c48fda4c",
+    "tensor_count": 70,
+    "elements": 4528128,
+    "canonical_tensor_bytes": 18112512,
+    "adapter_model_file_sha256": "d13a62107b29ca2a17682d2fa0d2eb424ef3eb90ad8aafc0bc0f5c5786b7bf9c",
+    "adapter_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "optimizer_master_committed": false,
+    "candidate_exactly_aborted_after_snapshot": true
+  },
+  "artifacts": {
+    "attempt": {
+      "file_sha256": "f06fb4c025793b24316ac25f956fdda4899af649d5f5cdbd5b58f1a2c0eb8a50",
+      "content_sha256": "2364d0c13e54a3aa637c814de9e8f36b02356218ac616f82bd7e471bf957c70f"
+    },
+    "preinstall_actor_baseline": {
+      "file_sha256": "d3bd139da6efb5678d3c062e30c0708587bf8e50ca28539ecd06aaba6c35a869",
+      "content_sha256": "4c232e1791f33b316c399c976af849f22bee8a30edb393d1a16425424753c91c"
+    },
+    "master_identity_audit": {
+      "file_sha256": "eab8ce549af74f3fe84378a281a5b5735b00ffe748adef4ca00c36121eae785f",
+      "content_sha256": "3ec6edd4446ca02e8fb999d3fdf0f053fc0349d507282393e09e34afb0d5736a"
+    },
+    "numeric_calibration": {
+      "file_sha256": "970834d2fb5818ce5b769dad733d0f8d95d7df9a712994bb60a936dfb98351eb",
+      "content_sha256": "12c15469519a34593f48d111b806dff21051fc3e300477da2ca90af608ecbfd9"
+    },
+    "anchor_calibration": {
+      "file_sha256": "f29e458b27788b2713b569e55e9e18049d0fa67953dde6e5df7583ca96c0f45d",
+      "content_sha256": "6a85c7017ef67d2a364fbe91d237a77bab47bc7e661c93909d2401a83bcb60ff"
+    },
+    "population_projection": {
+      "file_sha256": "02662374752fd7df2a07d277f0bbba66684712ef967016ad1982bac5f157469b",
+      "content_sha256": "09c02bfbb17a5b230669312beec88f941c2e4505156aeec9e9ca31147a02e740"
+    },
+    "no_p8_evaluation_receipt": {
+      "file_sha256": "2da25907f1dbab850ce0c07479b5dca92c7ac25c0c2bbd7048d6109695a27ddb",
+      "content_sha256": "2a77f63b7788abcbf6796e2e3169438b16e799af25bd55ec59be0099e6689d14"
+    },
+    "p16_train_gate": {
+      "file_sha256": "17bbc43d7821b6e01d02e131a88d75519720e4a22a2d036f1e551909a0f2aecc",
+      "content_sha256": "c5b54a709afb37f45ed3bfbfe6c3109875775b437952a0f0e70c5d1a5b41e499"
+    },
+    "internal_report": {
+      "file_sha256": "955218f6f6defbcafdf1734e3fad37e3ff2cf37ee4aa5f214c15f721a1ba5629",
+      "content_sha256": "3ef62178ef3b8179758944e8da98abe47297a43b8558befdde83d1879a095297"
+    },
+    "dedicated_wrapper_report": {
+      "file_sha256": "c7e68279f22d3b3b90802e90a9b18c3ccc096860a2d2008777b85d36a54bd9ac",
+      "content_sha256": "bf6738e97034092570c98d6d309fbaed7ebbe147a9ef7f82a0e4eea4283f4849"
+    },
+    "gpu_telemetry": {
+      "file_sha256": "741088e587a31f6dd0b9c73911d0aff47710611812afe75edd1238067861a042",
+      "rows": 2344,
+      "rows_per_gpu": [
+        586,
+        586,
+        586,
+        586
+      ],
+      "actor_pids_by_gpu": [
+        3960267,
+        3960270,
+        3960271,
+        3960269
+      ],
+      "maximum_utilization_percent_each_gpu": [
+        100,
+        100,
+        100,
+        100
+      ],
+      "positive_activity_rows_each_gpu": [
+        414,
+        409,
+        413,
+        416
+      ],
+      "maximum_memory_used_mib_each_gpu": [
+        87330,
+        87330,
+        87330,
+        87330
+      ],
+      "foreign_compute_pid_rows": 0,
+      "dedicated_projection_phase_present": true,
+      "inherited_v52_phase_absent": true
+    },
+    "coordinator_log": {
+      "file_sha256": "6ae118aadf57cda8d4c84408fdff664489782c322e6e0a6d414d8285d0dc46d7"
+    }
+  },
+  "state_and_cleanup": {
+    "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+    "bf16_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+    "update_sequence": 0,
+    "both_candidate_transactions_exactly_aborted": true,
+    "four_actor_final_state_and_quiescence_exact": true,
+    "optimizer_master_committed": false,
+    "four_engines_killed": true,
+    "four_placement_groups_removed": true,
+    "all_gpu_compute_process_lists_empty": true,
+    "final_gpu_memory_used_mib": [
+      4,
+      4,
+      4,
+      4
+    ]
+  },
+  "ood_shadow_benchmark_holdout_or_protected_semantics_opened": false,
+  "sealed_holdout_opened": false
+}

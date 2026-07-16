@@ -1,0 +1,24 @@
+{
+  "content_sha256_before_self_field": "2364d0c13e54a3aa637c814de9e8f36b02356218ac616f82bd7e471bf957c70f",
+  "launcher": {
+    "matched": true,
+    "observed_python": "/home/catid/specialist/es-at-scale/.venv/bin/python",
+    "required_python": "/home/catid/specialist/es-at-scale/.venv/bin/python"
+  },
+  "phase": "before_train_semantics_model_or_gpu_load",
+  "preflight": {
+    "compute_process_query_empty": true,
+    "memory_used_mib": {
+      "0": 4,
+      "1": 4,
+      "2": 4,
+      "3": 4
+    }
+  },
+  "preregistration_content_sha256": "322acd85278825a462dd921d7ff197ef9141728626508c18075d956fffe46115",
+  "protected_semantics_opened": false,
+  "schema": "nested-population-attempt-v52",
+  "sealed_holdout_opened": false,
+  "started_at_utc": "2026-07-16T07:12:38.268706+00:00",
+  "status": "launching_train_only"
+}

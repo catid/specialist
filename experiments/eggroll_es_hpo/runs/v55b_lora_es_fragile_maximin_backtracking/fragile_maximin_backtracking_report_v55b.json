@@ -1,0 +1,41 @@
+{
+  "all_candidates_exactly_aborted_to_master": true,
+  "compatibility_shell_metadata": {
+    "actual_v55b_science": "one selected persisted V53 P16 arm, strict-interior six-objective direction, no P8 evaluation or population rerun",
+    "internal_report_schema": "nested-population-train-only-report-v52",
+    "internal_shared_by_p8_and_p16_field": true,
+    "shared_by_p8_and_p16_is_factual_v55b_science": false
+  },
+  "completed_at_utc": "2026-07-16T07:18:39.212699+00:00",
+  "content_sha256_before_self_field": "bf6738e97034092570c98d6d309fbaed7ebbe147a9ef7f82a0e4eea4283f4849",
+  "internal_exact_state_report": {
+    "content_sha256": "3ef62178ef3b8179758944e8da98abe47297a43b8558befdde83d1879a095297",
+    "file_sha256": "955218f6f6defbcafdf1734e3fad37e3ff2cf37ee4aa5f214c15f721a1ba5629",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v55b_lora_es_fragile_maximin_backtracking/nested_population_report_v52.json"
+  },
+  "maximin_margin": 0.32390973186639976,
+  "ood_shadow_benchmark_holdout_or_protected_semantics_opened": false,
+  "optimizer_master_committed": false,
+  "p16_train_gate": {
+    "content_sha256": "c5b54a709afb37f45ed3bfbfe6c3109875775b437952a0f0e70c5d1a5b41e499",
+    "file_sha256": "17bbc43d7821b6e01d02e131a88d75519720e4a22a2d036f1e551909a0f2aecc",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v55b_lora_es_fragile_maximin_backtracking/p16_train_gate_v52.json"
+  },
+  "p8_evaluation_performed": false,
+  "passing_candidate_saved": true,
+  "population_rerun_performed": false,
+  "preregistration_content_sha256": "322acd85278825a462dd921d7ff197ef9141728626508c18075d956fffe46115",
+  "projection_direction_sha256": "a34e30eb237cd27e433a31ffe319251bbf0a23aed25d4a4d8a81ea0e39156b6c",
+  "schema": "lora-es-fragile-maximin-backtracking-report-v55b",
+  "sealed_holdout_opened": false,
+  "selected_target_norm_ratio": 0.25,
+  "selected_v53_sigma": 0.0048,
+  "status": "complete_train_only_no_master_commit",
+  "telemetry": {
+    "file_sha256": "741088e587a31f6dd0b9c73911d0aff47710611812afe75edd1238067861a042",
+    "foreign_compute_pid_rows": 0,
+    "inherited_v52_phase_absent": true,
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v55b_lora_es_fragile_maximin_backtracking/gpu_activity_v55b.jsonl",
+    "required_phase_present": true
+  }
+}
