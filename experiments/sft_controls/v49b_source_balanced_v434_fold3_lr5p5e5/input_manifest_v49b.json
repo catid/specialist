@@ -1,0 +1,50 @@
+{
+  "access_firewall": {
+    "eval_ood_holdout_semantics_opened": false,
+    "gpu_accessed": false,
+    "shadow_semantics_opened": false,
+    "train_semantics_opened": true,
+    "training_launched": false
+  },
+  "content_sha256_before_self_field": "a2aaa30e5b4df42f4d3efc6a94b16fcc6ec3b796c97e3889c16f08a7e3a2a418",
+  "dataset": {
+    "conflict_units": 208,
+    "file_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+    "membership_exactly_frozen_v412_fold3_train": true,
+    "path": "/home/catid/specialist/experiments/sft_controls/v49b_source_balanced_v434_fold3_lr5p5e5/train_v434_fold3_v49b.jsonl",
+    "root_membership_sha256": "e0e5eca72438aebc40d915eb824e03c42441c180d6ab585e1b375f83ddec3275",
+    "rows": 448
+  },
+  "document_disjoint_membership": {
+    "confirmatory_fold": 3,
+    "manifest_content_sha256": "3fcc2820e8dffe6a21198d0520365aace049735ac84bda179ea44bc8ad0881eb",
+    "manifest_file_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+    "manifest_path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/manifest_v37a.json",
+    "membership_replayed_by_content_free_root_identity_only": true,
+    "non_train_rows_opened": false,
+    "train_dev_conflict_unit_intersection": 0,
+    "train_dev_edge_identity_intersections": {
+      "document_sha256": 0,
+      "normalized_url": 0,
+      "raw_lineage": 0,
+      "semantic_cluster": 0
+    }
+  },
+  "schema": "specialist-source-balanced-train-input-manifest-v49b",
+  "status": "sealed_train_only_before_launch",
+  "v49a_parent": {
+    "alternative_weight_identity_inherited_exactly": true,
+    "content_sha256": "cf376bb772c39f564050290a3958bba753434c4c8c2e4902f1347e0d7ee21826",
+    "file_sha256": "01fc746881e7c7ace9f7bddf14b85fecf3d40cf9bd5e15c613115a826af537c4",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/train_only_capped_source_temperature_weighting_v49a.json"
+  },
+  "weighting_audit": {
+    "alternative_normalized_weight_sha256": "76dd9224cde643b2dd22123c2bd7952a830809a3ed84c977d61208da874de612",
+    "content_sha256": "273912c3bf6502c720781ae78e058fabe1834eceb6e4d5a0b84a442b85a972cb",
+    "file_sha256": "0a45915bcd47f8144068b2d40a3fc1dbaf6d8b2c6d3a5946ed74fade61e8543f",
+    "path": "/home/catid/specialist/experiments/sft_controls/v49b_source_balanced_v434_fold3_lr5p5e5/weighting_audit_v49b.json",
+    "per_category_identity_sha256": "e248f3d1eea9de0445248189bc4b9264447978d4736cb1b759b5a60c083f08d9",
+    "per_row_identity_sha256": "12175f8a48150f2ee04942334a12d2255da73d1d20edfe5fe391f2f37313f90d",
+    "per_source_identity_sha256": "3ab5d46ab944944137fabe1bd20db95000292c89804340f5d061b56bb1da77e0"
+  }
+}
