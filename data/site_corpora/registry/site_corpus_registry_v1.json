@@ -858,6 +858,69 @@
       "whitespace_delimited_word_count": 2084
     },
     {
+      "artifact_id": "canonical-markdown:nistir_6096_post_installed_anchors_review",
+      "byte_length": 13473,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/nistir_6096_post_installed_anchors_review/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest",
+        "version": "1.0"
+      },
+      "manifest_sha256": "1f7ada515afeee546419219b03c23bc49f8be7a33117650bbd063f3859973ab6",
+      "markdown_path": "data/site_corpora/nistir_6096_post_installed_anchors_review/CORPUS.md",
+      "markdown_sha256": "17a916f5b7c50f1577b6d93797797577c34f974023019a4882891875e3ed15d5",
+      "non_qa": true,
+      "qwen36_token_count": 3330,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:c0627363cf7a206c47f9d9fea613770e731bf071273cf3966c9bc5fb16da23ce",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "nistir_6096_post_installed_anchors_review",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The official NIST record and report title page identify NIST employee authors; NIST technical-series policy states that eligible employee-authored federal works are not protected by United States copyright and grants broad reprint and derivative permission to the extent NIST may assert foreign rights.",
+        "license": "Public Domain in the United States; NIST technical-series reuse permission",
+        "limitations": [
+          "Every figure, table, incorporated standard, third-party study body, quotation, reference body, image, and uncertain or separately owned component is excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, OCR output, contact sheet, source body, numerical capacity, load, threshold, coefficient, equation, product, configuration, installation, testing, proof-load, design, reinforcement, acceptance, or certification recipe is retained.",
+          "This January 1998 secondary literature review is historical synthesis rather than current qualification evidence, and its rights classification is a provenance screen rather than legal advice."
+        ],
+        "promotion_gate": "ready_with_attribution_checksum_component_audit_historical_review_and_engineering_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "current_site_specific_qualified_engineering_and_governing_requirements_control",
+        "failure_mode_vocabulary_variable_distinctions_and_evidence_gaps_only",
+        "historical_january_1998_secondary_review_scope_required",
+        "internal_citation_leads_require_separate_source_and_rights_audits",
+        "no_capacity_load_threshold_product_configuration_installation_testing_design_proof_load_or_certification_output",
+        "no_ceiling_hardpoint_anchor_bondage_body_support_or_human_suspension_selection_sizing_or_approval"
+      ],
+      "source_document_identity": {
+        "authors": [
+          "Geraldine S. Cheok",
+          "Long T. Phan"
+        ],
+        "canonical_url": "https://www.nist.gov/publications/post-installed-anchors-literature-review",
+        "identity_type": "government_historical_secondary_literature_review",
+        "official_pdf_sha256": "8b6b586e65e61a634b29af302bfa686d4bb357a304f661363f9863028c6c88d7",
+        "official_pdf_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir6096.pdf",
+        "publication_date": "January 1998",
+        "report_number": "NISTIR 6096",
+        "source_resource_id": "nistir_6096_post_installed_anchors_review"
+      },
+      "source_document_identity_sha256": "c0627363cf7a206c47f9d9fea613770e731bf071273cf3966c9bc5fb16da23ce",
+      "source_label": "NISTIR 6096 Post-Installed Anchors—A Literature Review",
+      "unicode_word_count": 1771,
+      "whitespace_delimited_word_count": 1786
+    },
+    {
       "artifact_id": "canonical-markdown:noaa_eight_strand_rope_structural_model_1989",
       "byte_length": 18158,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1492,7 +1555,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "1ecd7a6f3cc577fc35ac24c7fb8238ef0216154a251bf9ac00f059b5bc316503"
+    "sha256": "dc48ad9d9149b14cad63164b4f3a829a65645bcc590d3944273f364a1080ae01"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1531,7 +1594,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "a617406cab5b92e3372cb4a8b0bd31097eef682681fc3e620193c7d5f0273401",
+  "source_tree_fingerprint_sha256": "1e8ccd683e88739f086f3f469494acd9b845481e471fa077f7170064410ce087",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1541,11 +1604,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 26,
-    "byte_length": 4108902,
-    "qwen36_token_count": 1193988,
-    "source_document_split_group_count": 26,
-    "unicode_word_count": 540901,
-    "whitespace_delimited_word_count": 428824
+    "artifact_count": 27,
+    "byte_length": 4122375,
+    "qwen36_token_count": 1197318,
+    "source_document_split_group_count": 27,
+    "unicode_word_count": 542672,
+    "whitespace_delimited_word_count": 430610
   }
 }
