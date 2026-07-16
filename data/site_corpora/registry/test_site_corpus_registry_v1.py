@@ -373,6 +373,46 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
         }:
             self.assertIn(flag, hse["safety_transfer_flags"])
 
+    def test_nist_manila_color_identity_rights_and_transfer_gate_are_exact(self) -> None:
+        color = self.by_id["nist_manila_rope_color_serviceability_1933"]
+        identity = color["source_document_identity"]
+        self.assertEqual(identity["doi"], "10.6028/jres.011.057")
+        self.assertEqual(identity["research_paper"], "RP627")
+        self.assertEqual(identity["publication_date"], "December 1933")
+        self.assertEqual(
+            identity["authors"],
+            ["Genevieve Becker", "William D. Appel"],
+        )
+        self.assertEqual(
+            identity["official_pdf_sha256"],
+            "fc29fe3c20edda1d8372c05083e9154d328b225c6959a9f1b8f4ab6edc5debd1",
+        )
+        self.assertEqual(
+            color["markdown_sha256"],
+            "ebd170b0b0fddb4ac8e9042fadea7503865dda5df53738cf953b423c4a897ce3",
+        )
+        self.assertEqual(color["qwen36_token_count"], 1575)
+        self.assertEqual(
+            color["rights_basis"]["status"],
+            "federal_text_public_domain_presumption",
+        )
+        rights_text = json.dumps(color["rights_basis"], sort_keys=True).lower()
+        for marker in {
+            "explicitly did not test rope serviceability",
+            "prepared abaca-fiber color",
+            "no pdf, rendered page, scan object",
+            "public domain in the united states",
+        }:
+            self.assertIn(marker, rights_text)
+        for flag in {
+            "historical_1933_abaca_fiber_color_and_finished_manila_rope_appearance_scope_required",
+            "lubricant_dust_exposure_bleaching_and_construction_are_appearance_confounders",
+            "no_color_visual_appearance_serviceability_strength_remaining_life_or_discard_rule",
+            "no_jute_hemp_cleaning_hygiene_care_body_contact_upline_anchor_bondage_or_human_suspension_transfer",
+            "paper_explicitly_did_not_test_rope_serviceability",
+        }:
+            self.assertIn(flag, color["safety_transfer_flags"])
+
     def test_nist_t198_identity_rights_and_transfer_gate_are_exact(self) -> None:
         t198 = self.by_id["nist_manila_rope_tests_t198_1921"]
         identity = t198["source_document_identity"]

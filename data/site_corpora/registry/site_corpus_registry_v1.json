@@ -991,6 +991,71 @@
       "whitespace_delimited_word_count": 2097
     },
     {
+      "artifact_id": "canonical-markdown:nist_manila_rope_color_serviceability_1933",
+      "byte_length": 6989,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/nist_manila_rope_color_serviceability_1933/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest@1.0",
+        "version": null
+      },
+      "manifest_sha256": "f40590bf01034a29fa3eed5146272ac6f66878f8f3b975582ef9423fd8d9955e",
+      "markdown_path": "data/site_corpora/nist_manila_rope_color_serviceability_1933/CORPUS.md",
+      "markdown_sha256": "ebd170b0b0fddb4ac8e9042fadea7503865dda5df53738cf953b423c4a897ce3",
+      "non_qa": true,
+      "qwen36_token_count": 1575,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:a5e1f5ed73e9c41d15d25442340d139b8010a0a1a58c26c80325fcfa602b70dd",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "nist_manila_rope_color_serviceability_1933",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The official paper identifies Bureau of Standards employee authors, and current NIST journal and technical-series policy states that eligible employee-authored federal works are not protected by United States copyright while granting broad derivative reuse of residual foreign rights to the extent NIST may assert them.",
+        "license": "Public Domain in the United States; NIST technical-series reuse permission",
+        "limitations": [
+          "All figures, tables, color scales, values, instruments, solvents, specimen preparation, sampling and procurement details, specifications, ranks, references, commercial identifiers, and third-party or uncertain components are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, scan object, OCR output, figure, table, source body, reference body, or rights-policy prose is retained.",
+          "The 1933 paper measured prepared abaca-fiber color, explicitly did not test rope serviceability, and cannot establish current product quality, strength, deterioration, remaining life, care, hygiene, retirement, body contact, bondage, or human-suspension safety."
+        ],
+        "promotion_gate": "ready_with_nist_attribution_checksum_component_audit_and_historical_nontransfer_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "historical_1933_abaca_fiber_color_and_finished_manila_rope_appearance_scope_required",
+        "lubricant_dust_exposure_bleaching_and_construction_are_appearance_confounders",
+        "no_color_visual_appearance_serviceability_strength_remaining_life_or_discard_rule",
+        "no_figures_tables_values_scales_instruments_solvents_procedures_specifications_or_ranks",
+        "no_jute_hemp_cleaning_hygiene_care_body_contact_upline_anchor_bondage_or_human_suspension_transfer",
+        "paper_explicitly_did_not_test_rope_serviceability"
+      ],
+      "source_document_identity": {
+        "article_dateline": "1933-09-16",
+        "authors": [
+          "Genevieve Becker",
+          "William D. Appel"
+        ],
+        "canonical_url": "https://doi.org/10.6028/jres.011.057",
+        "doi": "10.6028/jres.011.057",
+        "identity_type": "government_historical_research_paper",
+        "official_pdf_sha256": "fc29fe3c20edda1d8372c05083e9154d328b225c6959a9f1b8f4ab6edc5debd1",
+        "official_pdf_url": "https://nvlpubs.nist.gov/nistpubs/jres/11/jresv11n6p811_a2b.pdf",
+        "publication_date": "December 1933",
+        "research_paper": "RP627",
+        "source_resource_id": "nist_manila_rope_color_serviceability_1933"
+      },
+      "source_document_identity_sha256": "a5e1f5ed73e9c41d15d25442340d139b8010a0a1a58c26c80325fcfa602b70dd",
+      "source_label": "Evaluation of Manila-Rope Fiber for Color",
+      "unicode_word_count": 987,
+      "whitespace_delimited_word_count": 980
+    },
+    {
       "artifact_id": "canonical-markdown:nist_manila_rope_statistics_1947",
       "byte_length": 15165,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1814,7 +1879,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "4f1e5689f831d7532af083fbd445cbb5a0c14ef0099b86c530a108f05c52ff52"
+    "sha256": "c30aa6d40539fa645eb6902bc5f477b5dad19a961d371c6c3016010a109c44be"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1853,7 +1918,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "3289c0518dff6fb2555aaf7ffe88cf665e4a6fe49eaea250c4095117d5851eab",
+  "source_tree_fingerprint_sha256": "722f5416cfc2736b86c348952e68a698dc59114ad087970a7eb3b34cb958a896",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1863,11 +1928,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 31,
-    "byte_length": 4175325,
-    "qwen36_token_count": 1209561,
-    "source_document_split_group_count": 31,
-    "unicode_word_count": 549681,
-    "whitespace_delimited_word_count": 437547
+    "artifact_count": 32,
+    "byte_length": 4182314,
+    "qwen36_token_count": 1211136,
+    "source_document_split_group_count": 32,
+    "unicode_word_count": 550668,
+    "whitespace_delimited_word_count": 438527
   }
 }

@@ -601,6 +601,48 @@
       ]
     },
     {
+      "resource_id": "nist_manila_rope_color_serviceability_1933",
+      "source_label": "Evaluation of Manila-Rope Fiber for Color",
+      "manifest_path": "data/site_corpora/nist_manila_rope_color_serviceability_1933/manifest.json",
+      "markdown_path": "data/site_corpora/nist_manila_rope_color_serviceability_1933/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "government_historical_research_paper",
+        "canonical_url": "https://doi.org/10.6028/jres.011.057",
+        "official_pdf_url": "https://nvlpubs.nist.gov/nistpubs/jres/11/jresv11n6p811_a2b.pdf",
+        "official_pdf_sha256": "fc29fe3c20edda1d8372c05083e9154d328b225c6959a9f1b8f4ab6edc5debd1",
+        "authors": [
+          "Genevieve Becker",
+          "William D. Appel"
+        ],
+        "publication_date": "December 1933",
+        "article_dateline": "1933-09-16",
+        "research_paper": "RP627",
+        "doi": "10.6028/jres.011.057",
+        "source_resource_id": "nist_manila_rope_color_serviceability_1933"
+      },
+      "rights_basis": {
+        "status": "federal_text_public_domain_presumption",
+        "basis": "The official paper identifies Bureau of Standards employee authors, and current NIST journal and technical-series policy states that eligible employee-authored federal works are not protected by United States copyright while granting broad derivative reuse of residual foreign rights to the extent NIST may assert them.",
+        "license": "Public Domain in the United States; NIST technical-series reuse permission",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_nist_attribution_checksum_component_audit_and_historical_nontransfer_limits",
+        "limitations": [
+          "All figures, tables, color scales, values, instruments, solvents, specimen preparation, sampling and procurement details, specifications, ranks, references, commercial identifiers, and third-party or uncertain components are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, scan object, OCR output, figure, table, source body, reference body, or rights-policy prose is retained.",
+          "The 1933 paper measured prepared abaca-fiber color, explicitly did not test rope serviceability, and cannot establish current product quality, strength, deterioration, remaining life, care, hygiene, retirement, body contact, bondage, or human-suspension safety."
+        ]
+      },
+      "safety_transfer_flags": [
+        "historical_1933_abaca_fiber_color_and_finished_manila_rope_appearance_scope_required",
+        "lubricant_dust_exposure_bleaching_and_construction_are_appearance_confounders",
+        "no_color_visual_appearance_serviceability_strength_remaining_life_or_discard_rule",
+        "no_figures_tables_values_scales_instruments_solvents_procedures_specifications_or_ranks",
+        "no_jute_hemp_cleaning_hygiene_care_body_contact_upline_anchor_bondage_or_human_suspension_transfer",
+        "paper_explicitly_did_not_test_rope_serviceability"
+      ]
+    },
+    {
       "resource_id": "nist_manila_rope_statistics_1947",
       "source_label": "A Statistical Analysis of Some Mechanical Properties of Manila Rope",
       "manifest_path": "data/site_corpora/nist_manila_rope_statistics_1947/manifest.json",
