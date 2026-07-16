@@ -1,0 +1,135 @@
+{
+  "access_contract": {
+    "builder_reads_train_semantics": false,
+    "dry_run_launches_model_or_gpu": false,
+    "dry_run_reads_train_semantics": false,
+    "only_runtime_semantic_paths_may_open": [
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_fold3_train_v412.jsonl",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_row_conflict_unit_membership.json"
+    ],
+    "original_split_manifest_opened_at_runtime": false,
+    "prose_or_qa_proxy_anchor_opened": false,
+    "raw_question_answer_or_generation_text_may_be_persisted": false,
+    "shadow_ood_holdout_or_benchmark_path_opened": false
+  },
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v48c_train_only_matched_base_generation_evidence_activation_retry.attempt.json",
+    "evidence": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48c_train_only_matched_base_generation_evidence_activation_retry/base_generation_evidence_v48c.json",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48c_train_only_matched_base_generation_evidence_activation_retry/failure_v48c.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48c_train_only_matched_base_generation_evidence_activation_retry/gpu_activity_v48c.jsonl",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48c_train_only_matched_base_generation_evidence_activation_retry/base_generation_evidence_report_v48c.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48c_train_only_matched_base_generation_evidence_activation_retry"
+  },
+  "content_sha256_before_self_field": "911b794b9e27292aa4a51909a98c2f4486a2f45917aa479fcb4c1cb17fe8ed9a",
+  "created_at_utc": "2026-07-16T02:01:40.302349+00:00",
+  "current_fixed_holdout_cycle_eligible": false,
+  "evidence_contract": {
+    "actors_per_row": 4,
+    "greedy_completions": 1792,
+    "maximum_decode_tokens": 64,
+    "persisted_per_actor_fields": [
+      "actor_rank",
+      "prediction_sha256",
+      "f1",
+      "exact",
+      "nonzero"
+    ],
+    "rows": 448,
+    "subset_is_not_persisted_or_used_for_population_by_this_run": true,
+    "subset_preview_must_select_64_distinct_conflict_units": true,
+    "worst_case_decode_tokens": 114688
+  },
+  "gpu_launch_authorized": true,
+  "implementation_bindings": {
+    "base_runtime": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+    "builder": "0b5f6731c08bd3cbdb29e14354b8d0598e5f485c051afa462b6d7b0a3c28a661",
+    "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "membership": "13f30232dd735451d4b90682b335072cbcc86de263c0984170f931721f764a9f",
+    "membership_builder": "b9455fa4bb180b882998e354cb575151ed4350a0113eddcc653d795cd75fd06e",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "runtime": "775554ee3e3ba00e81b9acd5c5be81d325d24ea160a99f8f135fc78535948f62",
+    "source_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "source_manifest": "a2fa79e6ac06f75743d3fee8f5c0b1aabe6bb83b52b05910ed6460438e2640a2",
+    "source_weights": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "staged_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "staged_manifest": "bdefd41d5537501e660426b81297b59ddfbeb66a268dd12d14be8bbae4959c38",
+    "staged_weights": "9c4382048a2bb001995586715eac53f51672a161f3351080a604543b8384a09b",
+    "tests": "b933ea223119256cf5cc4c7d6da94039a14951cd16ee2d4ae6dab939221540cc",
+    "train_dataset": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "train_stage_manifest": "3afd441915a86267fd3882208375d3285abd7aeca87157c33fcfbb81db431a99",
+    "train_stage_runtime": "536c840725e3b03095fed02f91221257e10536f7d21529d2dc1eabd1336b183f",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "v40a_runtime": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+    "v40c_runtime": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+    "v43i_runtime": "67c4da05a26eaf990b2710afbffe6d403825b576cd384f87f3b818af199c1555",
+    "worker": "4bd6c2ce66c46a14ce1190435b336eae37d061f2e77746997ac4fa9a32e9af08"
+  },
+  "parent_v43i_runtime": {
+    "content_sha256": "086d94f1b69732a9a0d7913c8bab7789b15f64131f125ba4381eea3bcc228c5a",
+    "file_sha256": "00c545926b217a64acabbc541f3e92e071a1a199dbabef121383c788f574272e",
+    "only_model_runtime_and_matched_initialization_reused": true,
+    "v43i_anchor_or_population_inputs_opened": false
+  },
+  "protected_semantic_access_authorized": false,
+  "protected_semantics_opened": false,
+  "purpose": "Collect content-free four-actor greedy metrics for every exact V43I train row at the matched initial LoRA state before any population or candidate selection.",
+  "quality_selection_or_promotion_authorized": false,
+  "recipe": {
+    "adapter_slot_activation": "collective_rpc.add_lora_before_canonical_install",
+    "adapter_slot_activation_actors": 4,
+    "adapter_slot_activation_completions": 0,
+    "all_four_actors_receive_identical_448_prompt_order": true,
+    "engine_count": 4,
+    "generation_params": {
+      "detokenize": true,
+      "max_tokens": 64,
+      "n": 1,
+      "seed": 2026071543,
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "matched_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/initial_adapters/matched_lora_initialization_v41a_seed20260715041",
+    "matched_initialization_weights_sha256": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "matched_master_sha256": "dfb8ef8981cd4a21bd8d342353fc3d9c84c5d4759c38973e1528245f2baff192",
+    "membership": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_row_conflict_unit_membership.json",
+    "membership_content_sha256": "fd3ca8d6a8c03cac15320394dfcf5c4590dff0ab01f1492c67716c80e19b3e4a",
+    "membership_file_sha256": "13f30232dd735451d4b90682b335072cbcc86de263c0984170f931721f764a9f",
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "staged_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/matched_lora_initialization_v41b",
+    "staged_initialization_weights_sha256": "9c4382048a2bb001995586715eac53f51672a161f3351080a604543b8384a09b",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "ba0a951f153b60fb5729e0169a4d780277d9d860cbacb1f95fc7433afc875e19",
+    "train_conflict_units": 208,
+    "train_dataset": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_fold3_train_v412.jsonl",
+    "train_dataset_sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "train_rows": 448,
+    "worker_extension": "eggroll_es_worker_lora_v43i.LoRAAdapterStateWorkerExtensionV43I"
+  },
+  "required_gates": {
+    "448_completions_per_actor": true,
+    "all_four_gpus_attributed_positive": true,
+    "all_four_lora_slots_activated_before_canonical_install": true,
+    "deterministic_subset_preview_valid": true,
+    "exact_matched_master_same_on_all_actors": true,
+    "exclusive_idle_four_gpu_preflight": true,
+    "numeric_hash_only_evidence": true,
+    "strict_four_engine_cleanup_and_idle": true
+  },
+  "retry_revision": "v48c_activation_retry",
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "matched-lora-es-base-generation-evidence-preregistration-v48b",
+  "shadow_ood_holdout_or_benchmark_authorized": false,
+  "shadow_ood_holdout_or_benchmark_opened": false,
+  "status": "preregistered_before_train_only_launch"
+}

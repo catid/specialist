@@ -1,0 +1,152 @@
+{
+  "access_contract": {
+    "base_evidence_reopened_at_population_runtime": false,
+    "builder_reads_train_semantics": false,
+    "direct_benchmark_source_opened": false,
+    "dry_run_launches_model_or_gpu": false,
+    "dry_run_reads_train_semantics": false,
+    "only_runtime_train_paths_may_open": [
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_fold3_train_v412.jsonl",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_row_conflict_unit_membership.json",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_generation_boundary_subset.json",
+      "/home/catid/specialist/data/general_prose_anchor_v1.jsonl",
+      "/home/catid/specialist/data/general_qa_proxy_anchor_v43h.jsonl"
+    ],
+    "original_split_manifest_opened_at_runtime": false,
+    "shadow_ood_holdout_or_benchmark_path_opened": false
+  },
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v48b_matched_lora_es_generation_boundary_pop8.attempt.json",
+    "candidate_gate": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/candidate_gate_v48b.json",
+    "exact_abort": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/exact_abort_v48b.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/gpu_activity_v48b.jsonl",
+    "population": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/population_reliability_v48b.json",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/matched_lora_es_report_v48b.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8",
+    "snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/adapter_step1_v48b"
+  },
+  "content_sha256_before_self_field": "4d5e17a07551377f0ef39c3dfa306fda68b9b669eeafd3c78ebbfff894072d1e",
+  "created_at_utc": "2026-07-16T02:07:31.730405+00:00",
+  "current_fixed_holdout_cycle_eligible": false,
+  "generation_boundary_objective": {
+    "common_random_plan_receipts": 64,
+    "fail_if_fragile_generation_f1_has_zero_population_spread": true,
+    "primary": "equal average of unit-norm domain and fragile generated-F1 centered-rank coefficient vectors",
+    "projection_halfspaces": [
+      "domain",
+      "fragile_generation_f1",
+      "prose_lm",
+      "qa_answer_logprob"
+    ],
+    "trust_region_norm_ratio": 0.5
+  },
+  "gpu_launch_authorized": true,
+  "implementation_bindings": {
+    "base_evidence_runtime": "775554ee3e3ba00e81b9acd5c5be81d325d24ea160a99f8f135fc78535948f62",
+    "boundary_runtime": "b5aaa9f41d07b1f4531675bba6cd96d5f81a718308d32a0ec4902ac81e169982",
+    "builder": "c1a70c59da747127fe865795d9ac324f018f1b7484058af1888edfd9e20675bc",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "prose_anchor": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+    "prose_report": "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5",
+    "qa_anchor": "d250980c5b88308452aba4ee8d3e43090b1444c250547c2515c838593f2f391f",
+    "qa_report": "b176f4ea0d1d4b466c83b68c243bfb4a9e315df8574d9ba2c606333fbfc4ee8f",
+    "runtime": "fa02c9568c7f027d4f9083ec270d4d2b132867fcfb733be8a23151f64c9e6401",
+    "source_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "source_manifest": "a2fa79e6ac06f75743d3fee8f5c0b1aabe6bb83b52b05910ed6460438e2640a2",
+    "source_weights": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "staged_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "staged_manifest": "bdefd41d5537501e660426b81297b59ddfbeb66a268dd12d14be8bbae4959c38",
+    "staged_weights": "9c4382048a2bb001995586715eac53f51672a161f3351080a604543b8384a09b",
+    "subset": "e1c3601d1328ee2a1345423632e423628857147042755b8ac15e21a2506a0060",
+    "subset_sealer": "b4d6c5d6d50d5d3f00f01e71d5b3d6045890ed307488d4fe8819779e65786334",
+    "tests": "09e40f90fe4937e14299b7914914a55feb3c91ffbb3e4c74dd0098d569b99f42",
+    "train_dataset": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "train_membership": "13f30232dd735451d4b90682b335072cbcc86de263c0984170f931721f764a9f",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "v43i_runtime": "67c4da05a26eaf990b2710afbffe6d403825b576cd384f87f3b818af199c1555",
+    "worker": "4bd6c2ce66c46a14ce1190435b336eae37d061f2e77746997ac4fa9a32e9af08"
+  },
+  "parents": {
+    "base_evidence": {
+      "content_sha256": "233933bd16005ee515ace357bf7200ef670b4c792141cae45b4b46dd11958773",
+      "file_sha256": "e531bab620c49ca7aef511c7b15a63d6a99914ab6f0ec00d89b15f5d7cc8649c",
+      "reopened_at_runtime": false,
+      "report_content_sha256": "e5b44c70778247ac547c49d797f08f56fc4e80b9f19509bf3763148439ba99d3",
+      "report_file_sha256": "8e0d13a84772ec2465c4a663026e88d1a4e85ae384f994cc58508de9772f3e93"
+    },
+    "v43i_runtime": {
+      "content_sha256": "086d94f1b69732a9a0d7913c8bab7789b15f64131f125ba4381eea3bcc228c5a",
+      "file_sha256": "00c545926b217a64acabbc541f3e92e071a1a199dbabef121383c788f574272e"
+    }
+  },
+  "protected_semantic_access_authorized": false,
+  "protected_semantics_opened": false,
+  "purpose": "Make deterministic conflict-unit-balanced train generated F1 a direct ES objective while retaining domain, F1, prose, and QA logprob halfspaces and V43I's uncommitted full candidate gate.",
+  "quality_selection_or_promotion_authorized": false,
+  "recipe": {
+    "alpha": 0.00015,
+    "conflict_units": 208,
+    "dataset": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_fold3_train_v412.jsonl",
+    "dataset_rows": 448,
+    "dataset_sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "engine_count": 4,
+    "fragile_generation_documents": 64,
+    "fused_requests_per_population_actor_state": 608,
+    "matched_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/initial_adapters/matched_lora_initialization_v41a_seed20260715041",
+    "membership": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_row_conflict_unit_membership.json",
+    "membership_file_sha256": "13f30232dd735451d4b90682b335072cbcc86de263c0984170f931721f764a9f",
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "population_size": 8,
+    "request_order_sha256": "8823e00d9600dc1ce56b2f5f5024a184d0b46ada034523ea2acbe6c7cd920dc7",
+    "seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570
+    ],
+    "sigma": 0.0006,
+    "signed_replicates_per_direction": 4,
+    "staged_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/matched_lora_initialization_v41b",
+    "subset": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_generation_boundary_subset.json",
+    "subset_content_sha256": "99fa38820a55d3ba7af0a10b5ae26238ffff754fded001a6cc248319cfcc23ca",
+    "subset_file_sha256": "e1c3601d1328ee2a1345423632e423628857147042755b8ac15e21a2506a0060",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "bc58bed21f60f6665b666b12c11d084b0e681b72e160918c871866b31d23ca99",
+    "worker_extension": "eggroll_es_worker_lora_v43i.LoRAAdapterStateWorkerExtensionV43I"
+  },
+  "required_gates": {
+    "V43I_reliability_and_exact_restore_retained": true,
+    "all_common_random_plan_receipts_exact": true,
+    "all_four_gpus_attributed_positive": true,
+    "direct_f1_population_spread_nonzero": true,
+    "domain_f1_prose_qa_halfspaces_all_nonnegative": true,
+    "full_candidate_gate_passes_before_commit": true,
+    "strict_cleanup_and_idle": true
+  },
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "matched-lora-es-generation-boundary-preregistration-v48b",
+  "shadow_ood_holdout_or_benchmark_authorized": false,
+  "shadow_ood_holdout_or_benchmark_opened": false,
+  "status": "preregistered_before_train_only_launch",
+  "uncommitted_candidate_gate": {
+    "abort_on_any_failure": true,
+    "adds_fragile_f1_exact_and_nonzero_noninferiority": true,
+    "candidate_scored_before_commit": true,
+    "inherits_full_128_document_v43i_anchor_gate": true
+  }
+}
