@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T12:42:07Z
-Latest batch: `discovery_batch_014`
+Latest review at: 2026-07-16T13:35:49Z
+Latest batch: `discovery_batch_015`
 
 ## Outcome
 
@@ -323,20 +323,18 @@ benchmark, probe, or existing source-corpus artifact was read. Public-web review
 used normal public pages and official endpoints, respected robots and
 rightsholder terms, and did not bypass a login, purchase, challenge, missing
 body, license, or platform restriction. No reviewed page body was copied into a
-training artifact during discovery.
-
 ## Discovery batch 014 outcome
 
 discovery_batch_014 reviewed 11 additional, nonduplicate candidates against
 their actual first-party record or body, article-level license, methods,
 conflicts, access path, redundancy, and domain-transfer risk. It produced 1
-accept_high_priority, 4 accept_targeted_scope, 5 defer, and 1 reject decision.
-The five accepted candidates expand the canonical corpus queue from 109 to 114
+accept_high_priority, 3 accept_targeted_scope, 6 defer, and 1 reject decision.
+The four accepted candidates expand the canonical corpus queue from 109 to 113
 resources.
 
-This batch adds two complementary evidence lanes. Three rope-engineering sources
-cover three-strand contact force, yarn-on-yarn abrasion and condition-monitoring
-methods while keeping yarn, rope construction and material scales separate. Two
+This batch adds two complementary evidence lanes. Two rope-engineering sources
+cover three-strand contact force and condition-monitoring methods while keeping
+yarn, rope construction and material scales separate. Two
 consent studies add perceived community norms and within-person variability
 without turning group identity, arousal, body language or one survey into proof
 of an individual's consent.
@@ -353,7 +351,6 @@ mistaken for authority, reuse permission or information density.
 | Source | Decision | Score | Exact useful scope and boundary |
 |---|---|---:|---|
 | [Three-strand aramid contact-force experiment](https://research.utwente.nl/en/publications/experimental-analysis-of-contact-forces-between-strands-in-three-/) | accept_high_priority | 39 | CC BY 4.0, 17-page primary evidence using pressure film in exact Twaron three-strand ropes. Preserve construction hierarchy, calibration limits, qualitative twist and contact distinctions, model limits, request-only data, and the NWO or Teijin funding and declared financial-support conflict. Exclude values, fitted corrections, lifetime or rating claims, supplier endorsement and all natural-fiber or human-use transfer. |
-| [Yarn-on-yarn abrasion mechanisms](https://journals.sagepub.com/doi/10.1177/15589250241228263) | accept_targeted_scope | 35 | CC BY 4.0 comparison of UHMWPE, PET, PPTA and PAR yarn under controlled abrasion, thermal imaging and microscopy. Preserve mechanical-versus-thermal mechanism distinctions and company affiliations; do not turn yarn rankings, temperatures or cycles into finished-rope or retirement advice. |
 | [Synthetic-rope condition-monitoring review](https://papers.phmsociety.org/index.php/ijphm/article/view/2619) | accept_targeted_scope | 30 | CC BY 3.0 US historical review of rope hierarchy, interacting damage mechanisms, embedded versus external sensors and continuous versus discrete monitoring. Exclude every permission-reproduced figure, patent, vendor claim, standard, discard number and remaining-life rule. |
 | [Sexual Consent Norms in a Sexually Diverse Sample](https://europepmc.org/article/MED/38017253) | accept_targeted_scope | 34 | CC BY 4.0 EMBL-EBI JATS contributes a 388-person online sample with 116 BDSM participants. Preserve overlapping identities, perceived descriptive versus injunctive norms, small or null findings, indirect measurement and sensitivity discrepancies; never infer that BDSM identity proves consent. |
 | [Within-person variability of sexual consent](https://eprints.gla.ac.uk/238155/) | accept_targeted_scope | 30 | CC BY 4.0, 28-day experience-sampling evidence from 113 adults and 1,189 analytic partnered events distinguishes internal feelings from external communication and shows event-level variability. It is not a BDSM or rope study and does not validate body-language inference, a check-in schedule or a rope policy. |
@@ -362,6 +359,7 @@ mistaken for authority, reuse permission or information density.
 
 | Source | Score | Why it remains reference-only |
 |---|---:|---|
+| [Yarn-on-yarn abrasion mechanisms](https://journals.sagepub.com/doi/10.1177/15589250241228263) | 35 | The publisher-rendered body identifies CC BY 4.0 and a relevant controlled yarn-abrasion study, but direct retrieval and an ordinary unmodified browser both receive a Cloudflare 403 challenge. The first-party PDF could not be retrieved or checksummed, so no page audit, mirror, or snippet reconstruction substitutes for legitimate body access. |
 | [Hemp fiber-to-rope hierarchy experiment](https://www.sciencedirect.com/science/article/pii/S1359835X24002008) | 40 | The publisher metadata and CC BY 4.0 license are clear, and the 120-fiber, 55-yarn, 33-strand and 64-rope hierarchy is unusually valuable. The official PDF returns HTTP 403 and the API returns only unauthorized minimized metadata. No mirror, snippet reconstruction or access bypass substitutes for a page-level body audit. |
 | [The ancient art of laying rope](https://arxiv.org/abs/1004.0814) | 34 | Helical maximum-rotation and zero-twist ideas are relevant, but the arXiv copy carries only a nonexclusive distribution license and the identified publisher copy restricts redistribution and commercial use. Permission is required before transformation. |
 | [Self-locking and stability of the bowline knot](https://www.sciencedirect.com/science/article/pii/S2352431625001257) | 40 | The seven-page EPFL final PDF is CC BY-NC 4.0 and tests six quasi-static composite elastomeric rods, not textile rope. NonCommercial compatibility is unresolved; equations, thresholds, tying diagrams, secure claims and rescue-harness language remain quarantined. |
@@ -410,6 +408,74 @@ publisher, DOI, licensed API and license routes. No login, paywall, challenge,
 Cloudflare gate, unauthorized API, cache, archive, snippet reconstruction or
 third-party mirror was bypassed, and discovery wrote no reviewed source body
 into a training artifact.
+
+## Discovery batch 015 outcome
+
+`discovery_batch_015` reviewed 14 exact-new candidates against the existing
+ledger and corpus queue. It produced 1 `accept_high_priority`, 8
+`accept_targeted_scope`, 5 `defer`, and 0 `reject` decisions. The nine accepted
+sources expand the canonical Markdown queue from 113 to 122 resources.
+
+The batch emphasizes facts and transferable evaluation habits rather than URL
+recall. Two Crown investigation reports add unusually strong evidence about
+hidden rope construction defects, inspection blind spots, component mismatch,
+quality control, and inappropriate test-method transfer. Federal textile and
+maritime sources add bounded fiber-aging and rope-construction context. Three
+rights-clear studies add accessibility, agency, negotiation, and uncertainty
+while preserving their non-rope populations, methods, jurisdictions, and
+small-sample limits. One high-risk strangulation study advances only an
+extremely narrow epistemic-safety lesson and none of its participant beliefs.
+
+### Newly accepted sources
+
+| Source | Score | Exact useful scope and boundary |
+|---|---:|---|
+| [Zarga HMPE mooring-line investigation](https://www.gov.uk/maib-reports/failure-of-mooring-line-on-board-lng-carrier-zarga-with-1-person-injured) | 39 | OGL v3 Crown-authored failure analysis of a jacket hiding the load-bearing core, axial-compression or cyclic contact damage, line-and-fitting incompatibility, incomplete supplier/builder information, visual-inspection limits, and invalid test-method transfer. Exclude identities, third-party annexes and images, standards, vendors, every number or rating, snapback procedures, and any human-suspension equivalence. |
+| [Defective throw-bag rescue-line investigation](https://www.gov.uk/maib-reports/failure-of-a-throw-bag-rescue-line-during-a-boat-capsize-drill) | 41 | OGL v3 text supports a narrow case study of hidden thermally fused segment joints, why intact-rope tests do not validate joints, and the limits of visual or random quality control. Exclude brands, ratios, loads, standards, images, manufacturing recipes, rescue procedures, and body-rope transfer. |
+| [Consent and abuse reflections among Swedish young adults with intellectual disabilities](https://europepmc.org/article/PMC/12397527) | 39 | CC BY 4.0 EMBL-EBI JATS supports agency, contextual ambiguity, clarification, accessible communication and education, with the 22-interview, gender-imbalanced, verbally communicating Swedish sample inseparable from every finding. Exclude participant quotations, abuse narratives, legal-capacity advice, deficit framing, and BDSM inference. |
+| [Disability sexual rights as access, choice, and pleasure](https://link.springer.com/article/10.1007/s11195-024-09874-7) | 35 | CC BY 4.0 theoretical framework adds positive access needs, heterogeneity and agency to accessibility and scene-design coverage. Preserve its theoretical, non-rope and jurisdiction-specific limits; exclude legal advice, universalization, entitlement to another person, and third-party components. |
+| [NPS curatorial care of textile objects, Appendix K](https://www.nps.gov/subjects/museums/upload/MHI_AppK_TextilesObjects.pdf) | 36 | Eligible federal text supplies a tightly bounded taxonomy of plant, animal and synthetic fibers, construction, processing damage, molecular degradation, dimensional stress, light, heat, moisture, pollution, pests and abrasion. Label it museum-textile evidence; exclude figures, credited matter, environmental numbers, chemical, cleaning, treatment, storage and emergency recipes, and rope-strength or retirement inference. |
+| [BSEE auxiliary-line abrasion alert](https://www.bsee.gov/safety-alerts/bsee-safety-alert-454-auxiliary-line-abrading-causes-rope-guard-failure) | 37 | Eligible federal text supports only the industrial contact-path to chronic abrasion to component damage to dropped-part or line-jump failure chain, plus inspection of adjacent components and line-of-fire reasoning. Exclude wire-rope transfer, photos, vendors, standards, heights, machinery procedure and replacement-design prescriptions. |
+| [Three trans men's kink-negotiation case studies](https://www.mdpi.com/1660-4601/19/18/11382) | 32 | CC BY 4.0 evidence from three Toronto participants may preserve reported deliberate negotiation, explicit consent, sobriety, affirming partners and community support as perceptions, not proof of causality or safety. Exclude quotations, stories, HIV advice, unnecessary demographics and claims that kink frameworks are validated risk controls. |
+| [Sexual strangulation safety perceptions](https://link.springer.com/article/10.1007/s10508-025-03097-3) | 30 | CC BY 4.0 material is limited to the proposition that consent, trust, benign intent and participant belief do not establish physical safety, attached to its selected responses, risk-prompt priming, single final open question and unreported coding-reliability limitation. Exclude every quotation, prevalence or injury statistic, anatomy, pressure, location, duration, onset, medical, first-aid, legal or technique claim and every unsafe participant belief. |
+| [NPS maritime rope-construction history](https://www.nps.gov/articles/000/charlestown-navy-yard-ropewalk.htm) | 29 | Eligible federal prose supports yarn-to-strand-to-rope hierarchy, spinning, forming, laying and counter-twist construction, historical hemp ropewalk production, and clearly labeled maritime line, cable and hawser vocabulary. Exclude third-party images or excerpts, production trivia and numbers, modern safety claims, and tying or rigging recipes. |
+
+### Deferred sources
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [BSEE TAP-591 polyester subrope inspection study](https://www.bsee.gov/research-record/tap-591-evaluate-accuracy-polyester-subrope-damage-detection-performed-rovs) | 38 | The accessible 117-page contractor report could add inspection uncertainty, FMEA and measurement limits, but federal commissioning and review do not place Stress Engineering Services or TTI text in the public domain. No reuse license was found; permission and a component audit are required. |
+| [Shibari Lounge risk profile](https://www.shibarilounge.co.uk/journal/shibari-risk-profile) | 14 | A CC BY footer conflicts with June 2025 terms granting limited noncommercial, no-modification use. Useful accessibility and policy prose remains unavailable for transformation pending written clarification; unsupported medical, breath-play, hardware, hardpoint, bamboo, hygiene and product content stays excluded regardless. |
+| [FEMA structural-collapse search-technician qualification](https://rtlt.preptoolkit.fema.gov/Public/Position/View/8-509-1164) | 31 | A federal competency framework could support demonstrated skills, team context, exercises, currency and recertification, but the RTLT robots policy disallows all automated access. Retain metadata only until an allowed static route or permission exists; never import named standards, occupational credentials or rescue technique. |
+| [USFS-hosted Jute and Kenaf chapter](https://research.fs.usda.gov/treesearch/30670) | 38 | The CRC/Taylor & Francis chapter reserves reproduction and electronic-use rights and disclaims claims over original U.S. Government works, leaving the joint-author and component boundary unresolved; USFS robots also disallows access. Publisher permission is required before any fiber-science transformation. |
+| [USCG cutter seamanship line handling](https://media.defense.gov/2020/Nov/09/2002532100/-1/-1/0/CIM_3120_9.PDF) | 27 | Federal authorship is promising, but the official media host returns HTTP 403 and the material substantially duplicates the accepted USFS rigging manual. Seek an allowed route before considering only team communication and system-level reassessment; exclude operations, commands, numbers, ratings and human-support transfer. |
+
+### Batch 015 rights, evidence, and safety controls
+
+Public access, public funding and an agency landing page were never treated as
+reuse permission. Crown text advances under OGL v3 only after excluding
+credited third-party matter. Eligible federal prose advances under the
+public-domain presumption only with component audit. CC BY articles preserve
+attribution, changes, methods and limitations. Conflicting site terms,
+contractor authorship, robots disallows and HTTP 403 routes remain hard gates.
+
+Industrial HMPE mooring rope, wire rope, rescue line and museum textiles are
+not bondage rope. Their accepted records preserve only source-supported
+failure-analysis or material-taxonomy lessons, never ratings, recipes,
+retirement rules, hardpoint approval or human-suspension validation. The
+strangulation source is quarantined from all technique and medical content.
+Sensitive consent and disability studies exclude participant narratives and
+retain sample selection, communication, jurisdictional and causal limits.
+
+### Batch 015 access and clean-room statement
+
+Discovery read only the governing candidate ledger, queue, report and tests
+plus ordinary first-party public sources and their explicit licenses or terms.
+No QA, trainer, projection, evaluation, heldout, holdout, OOD, shadow,
+benchmark, probe, unrelated corpus body or unrelated repository artifact was
+read. No login, purchase, robots rule, challenge, HTTP 403, archive, mirror,
+cache or snippet reconstruction was bypassed, and no source body entered a
+training artifact during discovery.
 
 
 ## Discovery batch 006 outcome

@@ -2148,12 +2148,12 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "sage_aramid_three_strand_contact_forces_2025",
             },
             "accept_targeted_scope": {
-                "sage_yarn_abrasion_failure_mechanisms_2024",
                 "phm_synthetic_fiber_rope_condition_monitoring_review_2017",
                 "springer_bdsm_consent_norms_2024",
                 "tandf_within_person_consent_variability_2021",
             },
             "defer": {
+                "sage_yarn_abrasion_failure_mechanisms_2024",
                 "elsevier_hemp_rope_hierarchy_statistics_2024",
                 "arxiv_ancient_art_laying_rope_2010",
                 "elsevier_bowline_self_locking_2025",
@@ -2194,12 +2194,6 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "specific-material-and-construction limitation",
                 "declared financial-support conflict",
             },
-            "sage_yarn_abrasion_failure_mechanisms_2024": {
-                "yarn-on-yarn twist-method apparatus",
-                "mechanical-wear-versus-thermal-effect interpretation",
-                "finished rope",
-                "company affiliations",
-            },
             "phm_synthetic_fiber_rope_condition_monitoring_review_2017": {
                 "cc by 3.0 united states",
                 "continuous-versus-discrete monitoring distinction",
@@ -2238,6 +2232,12 @@ class SourceCorpusContractTest(unittest.TestCase):
             if "discovery_candidate_id" in row
         }
         deferred_markers = {
+            "sage_yarn_abrasion_failure_mechanisms_2024": {
+                "cloudflare challenge",
+                "no mirror",
+                "checksum",
+                "reference_only_access_blocked_cc_by",
+            },
             "elsevier_hemp_rope_hierarchy_statistics_2024": {
                 "http 403",
                 "unauthorized minimized metadata",
@@ -2309,12 +2309,178 @@ class SourceCorpusContractTest(unittest.TestCase):
             for marker in required:
                 self.assertIn(marker, text, candidate_id)
 
+    def test_batch_015_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_015"
+        }
+        self.assertEqual(len(batch), 14)
+        expected = {
+            "accept_high_priority": {
+                "maib_zarga_hmpe_inspection_failure_2017",
+            },
+            "accept_targeted_scope": {
+                "springer_disability_sexual_rights_access_choice_pleasure_2024",
+                "sage_intellectual_disability_consent_interviews_2024",
+                "bsee_auxiliary_line_abrasion_failure_alert_2022",
+                "mdpi_trans_msm_kink_negotiation_case_studies_2022",
+                "nps_textile_fiber_aging_appendix_k_2002",
+                "maib_throwbag_hidden_fused_joints_2019",
+                "springer_sexual_strangulation_safety_perceptions_2025",
+                "nps_maritime_rope_construction_history",
+            },
+            "defer": {
+                "bsee_polyester_subrope_inspection_uncertainty_2007",
+                "shibari_lounge_uk_risk_accessibility",
+                "fema_structural_collapse_search_technician_2021",
+                "usfs_crc_jute_kenaf_fiber_chemistry_2007",
+                "uscg_cutter_seamanship_line_handling_2020",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(
+            queued_from_batch,
+            expected["accept_high_priority"] | expected["accept_targeted_scope"],
+        )
+
+    def test_batch_015_accepts_preserve_source_limits_and_transfer_blocks(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "springer_disability_sexual_rights_access_choice_pleasure_2024": {
+                "theoretical",
+                "jurisdiction-specific",
+                "right to another person's sexual participation",
+                "third-party",
+            },
+            "sage_intellectual_disability_consent_interviews_2024": {
+                "22",
+                "verbal",
+                "participant quotation",
+                "rope-specific claims",
+            },
+            "bsee_auxiliary_line_abrasion_failure_alert_2022": {
+                "wire rope",
+                "adjacent components",
+                "line-of-fire",
+                "body rope",
+            },
+            "mdpi_trans_msm_kink_negotiation_case_studies_2022": {
+                "three",
+                "participant perceptions",
+                "causal",
+                "hiv",
+            },
+            "maib_zarga_hmpe_inspection_failure_2017": {
+                "load-bearing core",
+                "axial-compression",
+                "offshore-sector test methodology",
+                "human suspension",
+            },
+            "nps_textile_fiber_aging_appendix_k_2002": {
+                "museum",
+                "museum-textile evidence",
+                "treatment",
+                "retirement",
+            },
+            "maib_throwbag_hidden_fused_joints_2019": {
+                "thermally fused",
+                "random",
+                "traceability",
+                "bondage rope",
+            },
+            "springer_sexual_strangulation_safety_perceptions_2025": {
+                "single final open question",
+                "risk-prompt",
+                "coding-reliability",
+                "breath-play",
+            },
+            "nps_maritime_rope_construction_history": {
+                "yarn",
+                "strand",
+                "counter-twist",
+                "historical",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertTrue(source["decision"].startswith("accept_"))
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_015_deferrals_are_rights_or_access_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        markers = {
+            "bsee_polyester_subrope_inspection_uncertainty_2007": {
+                "contractor",
+                "permission",
+                "public domain",
+                "remaining-life",
+            },
+            "shibari_lounge_uk_risk_accessibility": {
+                "license conflict",
+                "noncommercial",
+                "no-modification",
+                "written clarification",
+            },
+            "fema_structural_collapse_search_technician_2021": {
+                "robots",
+                "disallow",
+                "metadata",
+                "role profile, not instruction",
+            },
+            "usfs_crc_jute_kenaf_fiber_chemistry_2007": {
+                "taylor & francis",
+                "no claim to original united states government works",
+                "robots",
+                "permission",
+            },
+            "uscg_cutter_seamanship_line_handling_2020": {
+                "403",
+                "redundan",
+                "human suspension",
+                "allowed official route",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_014`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_015`", self.report)
 
 
 if __name__ == "__main__":
