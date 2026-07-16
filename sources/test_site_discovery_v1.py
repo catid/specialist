@@ -450,6 +450,21 @@ class SourceCorpusContractTest(unittest.TestCase):
         self.assertIn("conference-abstract status", abstract_scope)
         self.assertIn("do not reproduce", abstract_scope)
 
+        ontario = by_id["ontario_live_performance_safety"]
+        ontario_pages = {page["url"] for page in ontario["representative_pages"]}
+        self.assertIn(
+            "https://www.ontario.ca/document/"
+            "safety-guidelines-live-performance-industry/"
+            "rigging-systems-and-fall-arrest",
+            ontario_pages,
+        )
+        self.assertNotIn(
+            "https://www.ontario.ca/document/"
+            "safety-guidelines-live-performance-industry/rigging",
+            ontario_pages,
+        )
+        self.assertIn("404", ontario["access_notes"])
+
     def test_batch_004_decisions_are_complete_and_deterministic(self) -> None:
         batch = {
             row["candidate_id"]: row
