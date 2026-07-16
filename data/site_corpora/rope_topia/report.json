@@ -1,0 +1,30 @@
+{
+  "artifacts": {
+    "evidence": {
+      "path": "data/site_corpora/rope_topia/evidence_snapshots.json",
+      "sha256": "8a1ccd882c37993fc5d236585e31feec35a79b11e951a01d3dea11290144e3c5"
+    },
+    "manifest": {
+      "path": "data/site_corpora/rope_topia/manifest.json",
+      "sha256": "ba5c1854789ae5569825a1f878b077a7e2847bcd6b3f39633ce5896e8835a26d"
+    },
+    "markdown": {
+      "path": "data/site_corpora/rope_topia/rope_topia.md",
+      "sha256": "526c8740b7845f2c91dc2a7b43d348891beeb9b5b00c0f80db20c6bd803576e5"
+    }
+  },
+  "coverage": {
+    "archive_captures_found": 14,
+    "indexed_pages": 15,
+    "pages_excluded_with_reason": 7,
+    "substantive_pages_included": 8,
+    "verified_successor_bodies": 3
+  },
+  "method": "manual full-body review followed by original dense paraphrase; exact snippets retained only for QA evidence",
+  "retrieved_at": "2026-07-16",
+  "schema": "rope-topia-dense-corpus-report-v1",
+  "sealed_evaluation_policy": {
+    "eval_or_heldout_opened": false,
+    "ood_shadow_or_benchmark_opened": false
+  }
+}

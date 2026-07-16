@@ -31,8 +31,14 @@
       "resource_id": "rope_topia",
       "url": "https://rope-topia.com/",
       "scope": "Former article bodies and clearly verified successor or archived copies; remove all active title-to-URL trivia.",
-      "status": "in_progress",
-      "worker": "dataset_curator_v432"
+      "status": "complete",
+      "worker": "dataset_curator_v432",
+      "artifacts": {
+        "manifest": "data/site_corpora/rope_topia/manifest.json",
+        "markdown": "data/site_corpora/rope_topia/rope_topia.md",
+        "report": "data/site_corpora/rope_topia/report.json",
+        "tests": "data/site_corpora/rope_topia/test_rope_topia_corpus.py"
+      }
     },
     {
       "resource_id": "shibari_atlas",

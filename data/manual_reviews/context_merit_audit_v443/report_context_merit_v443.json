@@ -1,0 +1,97 @@
+{
+  "audit": {
+    "by_decision": {
+      "drop": 7,
+      "keep": 7,
+      "replace": 8
+    },
+    "direct_url_trivia_rows_inventoried": 15,
+    "path": "data/manual_reviews/context_merit_audit_v443/context_merit_audit_v443.jsonl",
+    "rows": 22,
+    "sha256": "12035773993166cd19d6b001315ae25997deb845aa121206fbce0a8843d89fa8",
+    "successor_content_rows_inventoried": 7
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 266,
+      "equipment_material": 23,
+      "resources_general": 85,
+      "safety_consent": 86,
+      "technique": 72
+    },
+    "before": {
+      "conflict_units": 259,
+      "equipment_material": 23,
+      "resources_general": 84,
+      "safety_consent": 81,
+      "technique": 71
+    },
+    "delta": {
+      "conflict_units": 7,
+      "equipment_material": 0,
+      "resources_general": 1,
+      "safety_consent": 5,
+      "technique": 1
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "dense_source_corpus": {
+    "evidence": {
+      "path": "data/site_corpora/rope_topia/evidence_snapshots.json",
+      "sha256": "8a1ccd882c37993fc5d236585e31feec35a79b11e951a01d3dea11290144e3c5"
+    },
+    "manifest": {
+      "path": "data/site_corpora/rope_topia/manifest.json",
+      "sha256": "ba5c1854789ae5569825a1f878b077a7e2847bcd6b3f39633ce5896e8835a26d"
+    },
+    "markdown": {
+      "path": "data/site_corpora/rope_topia/rope_topia.md",
+      "sha256": "526c8740b7845f2c91dc2a7b43d348891beeb9b5b00c0f80db20c6bd803576e5"
+    },
+    "report": {
+      "path": "data/site_corpora/rope_topia/report.json",
+      "sha256": "64a8fc37c8cf0a079cde90b24929ae68113fdf03de95aaeeb80a569a3dcba850"
+    }
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 8,
+    "output_rows": 524,
+    "output_sha256": "9f8e28292f65b4c8f0928f3fbde353a431686753bb3af42435b2a1d43c2b4d0d",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_additions": {
+    "path": "data/manual_reviews/context_merit_audit_v443/pending_additions_context_merit_v443.jsonl",
+    "rows": 8,
+    "sha256": "dab80deabe2669ce546791643509d4470e1f9f4b009acab481f13348db740180"
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "drop": 15
+    },
+    "decisions": 15,
+    "path": "data/manual_reviews/context_merit_audit_v443/pending_curation_context_merit_v443.jsonl",
+    "sha256": "cb52d859771717df3e85582ee311ddf0360cf732268856e1caae8478f20c193b"
+  },
+  "replacement_accounting": {
+    "archive_supported_replacements": 7,
+    "drop_only_without_usable_body": 7,
+    "successor_supported_replacements": 1,
+    "useful_successor_rows_preserved": 7
+  },
+  "schema": "context-merit-audit-report-v443",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  },
+  "v52_isolation": {
+    "active_v52_inputs_modified": false,
+    "candidate_status": "isolated_pending_not_promoted"
+  }
+}
