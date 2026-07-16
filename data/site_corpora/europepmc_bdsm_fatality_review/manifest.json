@@ -1,0 +1,145 @@
+{
+  "schema": "site-corpus-manifest-v1",
+  "schema_version": 1,
+  "resource_id": "europepmc_bdsm_fatality_review",
+  "source_id": "europepmc_bdsm_fatality_review",
+  "artifact_role": "canonical_markdown_direct_training_source",
+  "direct_training_ready": true,
+  "non_qa": true,
+  "generated_at": "2026-07-16T09:42:00Z",
+  "retrieved_at": "2026-07-16T09:30:33Z",
+  "source_type": "peer_reviewed_forensic_literature_review",
+  "article": {
+    "title": "How safe is BDSM? A literature review on fatal outcome in BDSM play",
+    "authors": [
+      "Anouk Schori",
+      "Christian Jackowski",
+      "Corinna A. Schön"
+    ],
+    "journal": "International Journal of Legal Medicine",
+    "volume": "136",
+    "issue": "1",
+    "pages": "287-295",
+    "first_publication_date": "2021-08-12",
+    "doi": "10.1007/s00414-021-02674-0",
+    "pmcid": "PMC8813685",
+    "pmid": "34383118"
+  },
+  "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "copyright_statement": "The Author(s) 2021",
+    "attribution": "Schori A, Jackowski C, Schön CA. International Journal of Legal Medicine. DOI 10.1007/s00414-021-02674-0.",
+    "changes": "Manually selected, paraphrased, reorganized, critically annotated, typo-cleaned, and stripped of individual case narratives, technique reconstruction, source table layouts, and unsupported generalization."
+  },
+  "entries": [
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8813685/fullTextXML",
+      "content_type": "application/xml",
+      "disposition": "retained_provenance_not_direct_training_terminal_lf_normalized",
+      "snapshot_path": "source_snapshot/fullTextXML.xml",
+      "remote_raw_byte_length": 84800,
+      "remote_raw_sha256": "70bbf0a86d13f9b2b34ef99f3b78bcc7cf3ee87b34dfd0eba78f7941fe7bd0bc",
+      "snapshot_byte_length": 84801,
+      "snapshot_sha256": "5c1e66790925eed475b554fe673c04ba6a42363ba1691aa3e2d20934f6434bcf",
+      "reason": "Sole authorized EMBL-EBI JATS source retained for evidence and reproducibility; sensitive source narrative is excluded from the direct-training Markdown."
+    }
+  ],
+  "excluded_routes": [
+    "Springer publisher article endpoint",
+    "United States PMC article and PDF endpoints",
+    "Europe PMC generated PDF and supplementary routes"
+  ],
+  "training_document_count": 1,
+  "training_section_count": 13,
+  "direct_training_word_count": 2941,
+  "whitespace_delimited_word_count": 2974,
+  "word_count_method": "Unicode regex [\\w\\u2019'-]+ over CORPUS.md; whitespace count recorded separately",
+  "disposition_record_count": 22,
+  "included_or_narrowed_disposition_count": 15,
+  "excluded_disposition_count": 7,
+  "supported_categories": [
+    "anatomy_injury_prevention",
+    "emergency_procedures",
+    "teaching_evaluation",
+    "terminology_cultural_context"
+  ],
+  "evidence_scope": {
+    "case_set": "17 deaths compiled from 14 case reports and one study located under the review's database, language, and subject criteria",
+    "denominator": "published cases; no exposed population, participant, scene, or time-at-risk denominator",
+    "german_autopsy_series": "three BDSM-associated cases within 74 non-natural sexual-activity deaths and 16,437 total autopsies in one 1993-2017 study",
+    "cause_signal": "15 of 17 selected cases categorized as strangulation",
+    "toxicology_signal": "decedent toxicology mentioned in 13 cases; eight positive and five negative; detection is not impairment or causation",
+    "experience_signal": "both participants described as non-novices in nine cases; remaining cases partial or missing"
+  },
+  "population_inference_status": "forbidden_no_population_or_exposure_denominator",
+  "technique_transfer_status": "forbidden_no_instructional_reconstruction",
+  "correlation_status": "unsupported_fatal_only_case_set_has_no_outcome_negative_comparison",
+  "safeguard_efficacy_status": "not_evaluated_by_review",
+  "sensitive_content_status": "individual_case_narratives_excluded_from_direct_training",
+  "source_issue_gates": [
+    "64.3 percent substance-involvement denominator unclear",
+    "traumatic-versus-positional asphyxia descriptions appear inverted in source Table 1",
+    "two-versus-three instruction and CPR count inconsistency",
+    "rarity comparisons use heterogeneous case definitions and denominators",
+    "lack-of-knowledge and substance correlation language exceeds the design",
+    "universal preventability language exceeds the design"
+  ],
+  "qa_derivation_policy": {
+    "allowed": "methods, denominators, category distinctions, aggregate counts with missingness, interpretation limits, and non-instructional safety boundaries",
+    "forbidden": "title, author, DOI, PMCID, PMID, page, URL, case-number, relationship, substance, apparatus, body-position, sequence, or other identifier recall; prevalence invention; causal overclaim; technique reconstruction",
+    "inherit_document_split": true
+  },
+  "sampling_guidance": {
+    "source_weighting": "one review document, not 17 independent training documents",
+    "recommended_unit": "section chunks that retain the scope warning, publication-derived denominator, and relevant missingness",
+    "avoid": "oversampling fatality material or allowing it to characterize rope bondage as a whole"
+  },
+  "document_disjoint_requirement": "Assign PMCID PMC8813685 and all derived Markdown or QA to one split before chunking or derivation.",
+  "protected_split_requirement": "Exclude validation, OOD, shadow, sealed-holdout, and protected-QA documents from every training layer.",
+  "source_snapshot": {
+    "full_text_xml": {
+      "path": "source_snapshot/fullTextXML.xml",
+      "byte_length": 84801,
+      "sha256": "5c1e66790925eed475b554fe673c04ba6a42363ba1691aa3e2d20934f6434bcf",
+      "direct_training": false
+    },
+    "provenance": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 6269,
+      "sha256": "4703d705bf787d352cc7ccc84cf2569612445f94edf775847666b88ac3ac4f60"
+    }
+  },
+  "outputs": {
+    "CORPUS.md": {
+      "path": "CORPUS.md",
+      "byte_length": 21214,
+      "sha256": "3ac2cfe01a60802e61a6ef83d3d4f62c41b4bb06983e2a9c43c5d2bfdf61ae94"
+    },
+    "REPORT.md": {
+      "path": "REPORT.md",
+      "byte_length": 6940,
+      "sha256": "41b5fd29f5f081142d301c24b11fbd943a3a6be08299d3700e9507822279cf1f"
+    },
+    "dispositions.jsonl": {
+      "path": "dispositions.jsonl",
+      "byte_length": 10259,
+      "sha256": "151c93f582f12b9556ee3bf1fd6b460d5824055a4532650ac1846c4e230654de"
+    },
+    "source_snapshot/provenance.json": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 6269,
+      "sha256": "4703d705bf787d352cc7ccc84cf2569612445f94edf775847666b88ac3ac4f60"
+    },
+    "source_snapshot/fullTextXML.xml": {
+      "path": "source_snapshot/fullTextXML.xml",
+      "byte_length": 84801,
+      "sha256": "5c1e66790925eed475b554fe673c04ba6a42363ba1691aa3e2d20934f6434bcf"
+    },
+    "tests/test_corpus.py": {
+      "path": "tests/test_corpus.py",
+      "byte_length": 15278,
+      "sha256": "9430a4801cf6c19be2852c9c3c1910a09fd1154bda019368872a5c2b1a96ae88"
+    }
+  }
+}

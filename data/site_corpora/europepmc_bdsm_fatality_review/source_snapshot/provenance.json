@@ -1,0 +1,141 @@
+{
+  "schema": "site-corpus-provenance-v1",
+  "resource_id": "europepmc_bdsm_fatality_review",
+  "retrieved_at": "2026-07-16T09:30:33Z",
+  "review_completed_at": "2026-07-16T09:42:00Z",
+  "article": {
+    "title": "How safe is BDSM? A literature review on fatal outcome in BDSM play",
+    "authors": [
+      "Anouk Schori",
+      "Christian Jackowski",
+      "Corinna A. Schön"
+    ],
+    "journal": "International Journal of Legal Medicine",
+    "volume": "136",
+    "issue": "1",
+    "pages": "287-295",
+    "first_publication_date": "2021-08-12",
+    "issue_year": 2022,
+    "doi": "10.1007/s00414-021-02674-0",
+    "pmcid": "PMC8813685",
+    "pmid": "34383118"
+  },
+  "authorized_source": {
+    "provider": "EMBL-EBI Europe PMC",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8813685/fullTextXML",
+    "content_type": "application/xml",
+    "remote_raw_byte_length": 84800,
+    "remote_raw_sha256": "70bbf0a86d13f9b2b34ef99f3b78bcc7cf3ee87b34dfd0eba78f7941fe7bd0bc",
+    "snapshot_path": "source_snapshot/fullTextXML.xml",
+    "snapshot_byte_length": 84801,
+    "snapshot_sha256": "5c1e66790925eed475b554fe673c04ba6a42363ba1691aa3e2d20934f6434bcf",
+    "normalization": "The authorized XML ended with a closing angle bracket and no newline. One terminal LF was added for repository text normalization; both remote and local digests are recorded."
+  },
+  "network_boundary": {
+    "get_routes_used": [
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8813685/fullTextXML"
+    ],
+    "head_routes_used": [
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8813685/fullTextXML"
+    ],
+    "publisher_route_accessed": false,
+    "united_states_pmc_route_accessed": false,
+    "other_article_body_route_accessed": false,
+    "excluded_routes": [
+      "Springer publisher article endpoint",
+      "United States PMC article and PDF endpoints",
+      "Europe PMC generated PDF and supplementary routes"
+    ]
+  },
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "copyright_statement": "The Author(s) 2021",
+    "source_license_scope": "The JATS states that article reuse, sharing, adaptation, distribution, and reproduction are permitted with attribution, license link, and change notice, subject to separately credited third-party material.",
+    "attribution_and_change_notice_present": true,
+    "third_party_component_policy": "No figure, source table layout, or externally credited expressive material is emitted in the training Markdown."
+  },
+  "review_method": {
+    "mode": "manual_source_review_and_hand_cleanup",
+    "automation_boundary": "XML parsing was used to navigate metadata, sections, tables, and aggregate counts. The training Markdown was manually selected, rewritten, checked against the JATS, and critically scoped. Raw extraction was not emitted as training prose.",
+    "reviewed_regions": [
+      "front matter, identifiers, and license",
+      "abstract",
+      "introduction",
+      "materials and methods",
+      "all result subsections",
+      "all four source tables at disposition level",
+      "all discussion subsections",
+      "strengths and limitations",
+      "conclusion",
+      "references and associated data at disposition level"
+    ],
+    "case_narratives_copied_to_training": false,
+    "technique_reconstructions_copied_to_training": false,
+    "source_tables_copied_to_training": false,
+    "aggregate_counts_recomputed_against_jats": true
+  },
+  "evidence_audit": {
+    "review_case_count": 17,
+    "source_publication_count": 15,
+    "case_report_count": 14,
+    "included_study_count": 1,
+    "publication_year_range_as_reported": "1986-2020",
+    "german_autopsy_series": {
+      "years": "1993-2017",
+      "all_autopsies": 16437,
+      "non_natural_sexual_activity_deaths": 74,
+      "bdsm_associated_cases": 3
+    },
+    "cause_categories": {
+      "strangulation": 15,
+      "suffocation_or_oronasal_occlusion": 1,
+      "severe_hemorrhage_with_alcohol_intoxication": 1
+    },
+    "decedent_toxicology": {
+      "mentioned": 13,
+      "positive": 8,
+      "negative": 5
+    },
+    "both_participants_described_as_not_novices": 9,
+    "safeword_reporting": {
+      "explicitly_absent": 1,
+      "not_reported": 16
+    },
+    "source_internal_issues": [
+      "The 64.3 percent substance-involvement claim does not explicitly name its denominator; it appears to be 9 of 14 cases with some participant toxicology or intoxication information.",
+      "The source Table 1 descriptions labeled traumatic and positional asphyxia appear inverted.",
+      "The results describe two cases with breath-control instruction and CPR teaching, while the safeguards discussion describes three cases with instruction and CPR discussion.",
+      "A fatal-only case compilation with no nonfatal comparison group cannot estimate correlation between substances or knowledge and fatal outcome.",
+      "Publication-derived cases and one institutional autopsy series cannot establish population prevalence, incidence, or per-scene risk."
+    ]
+  },
+  "training_boundary": {
+    "direct_training_artifact": "CORPUS.md",
+    "source_snapshot_direct_training": false,
+    "excluded_sensitive_material": [
+      "individual case narratives",
+      "age-sex-relationship combinations",
+      "apparatus and body-position descriptions",
+      "sequences of failure",
+      "dangerous act reconstruction",
+      "case-to-reference mappings",
+      "sensational or vague substance labels"
+    ],
+    "no_technique_transfer": "The corpus contains no breath-control, neck-compression, bondage, suspension, or release configuration instructions.",
+    "no_prevalence_transfer": "All 17-case findings remain publication-derived and cannot become general BDSM prevalence or incidence claims."
+  },
+  "split_hygiene": {
+    "non_qa": true,
+    "source_document_unit": "PMC8813685",
+    "document_disjoint_requirement": "Assign PMCID PMC8813685 and all derived Markdown or QA to one split before chunking or derivation.",
+    "protected_data_accessed_during_build": false,
+    "protected_data_classes_not_accessed": [
+      "validation",
+      "OOD",
+      "shadow",
+      "sealed holdout",
+      "protected QA"
+    ]
+  }
+}
