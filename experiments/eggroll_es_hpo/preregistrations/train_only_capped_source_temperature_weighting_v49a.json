@@ -1,0 +1,407 @@
+{
+  "access_firewall": {
+    "evaluation_launched": false,
+    "external_metrics_used": false,
+    "gpu_accessed": false,
+    "non_train_semantics_opened_received_or_inferred": false,
+    "projection_filtering_is_content_free_root_membership_only": true,
+    "train_metadata_and_train_rows_opened": true,
+    "training_launched": false
+  },
+  "alternative_weighting": {
+    "category_masses_preserved_exactly": true,
+    "category_normalization": "100-step deterministic bisection with per-row multiplier clipping",
+    "max_row_multiplier": 1.5,
+    "min_row_multiplier": 0.6666666666666666,
+    "name": "category_preserving_capped_source_temperature_over_equal_unit",
+    "raw_source_factor": "(current_source_mass / median_source_mass)^-0.5",
+    "source_temperature": 0.5,
+    "within_source_category_conflict_unit_structure": "current equal-unit row weights retained then boundedly rescaled"
+  },
+  "artifact_role": "preregisterable_design_only_no_launch_authority",
+  "content_sha256_before_self_field": "cf376bb772c39f564050290a3958bba753434c4c8c2e4902f1347e0d7ee21826",
+  "current_weighting": {
+    "audit": {
+      "conflict_units": 208,
+      "identity_sha256": "39928da53f95edec8c94135daa90efee7907836ff5eddcfbb32f0f8bcba7152d",
+      "maximum_row_weight": 2.1538461538461537,
+      "minimum_row_weight": 0.05128205128205128,
+      "ordinary_row_mean_weight": 1.0,
+      "rows": 448,
+      "schema": "specialist-equal-conflict-unit-weighting-v37a",
+      "unit_objective_mass": 0.004807692307692308
+    },
+    "name": "equal_conflict_unit_then_equal_rows_within_unit"
+  },
+  "diagnostics": {
+    "conflict_unit_mass_bounds": {
+      "alternative_max": 0.0072115384615384645,
+      "alternative_max_to_min_ratio": 2.2500000000000013,
+      "alternative_min": 0.0032051282051282046,
+      "current_max": 0.00480769230769231,
+      "current_max_to_min_ratio": 1.0000000000000009,
+      "current_min": 0.004807692307692305
+    },
+    "effective_sample_size": {
+      "conflict_unit_alternative": 193.94839902460873,
+      "conflict_unit_current": 208.00000000000006,
+      "conflict_unit_retention_fraction": 0.9324442260798494,
+      "row_alternative": 252.31044736281518,
+      "row_current": 270.5990623825994,
+      "row_retention_fraction": 0.9324143444594571,
+      "source_alternative": 4.1230323912329245,
+      "source_current": 3.2876670650162363,
+      "source_improvement_fraction": 0.2540906088410637
+    },
+    "objective_mass_sum": {
+      "alternative": 0.9999999999999991,
+      "current": 0.9999999999999999
+    },
+    "source_concentration": {
+      "alternative_largest_source": "rope365",
+      "alternative_largest_source_mass": 0.3447422742177388,
+      "alternative_top_two_mass": 0.6596169470955381,
+      "alternative_top_two_sources": [
+        "rope365",
+        "kinbakutoday"
+      ],
+      "current_largest_source": "rope365",
+      "current_largest_source_mass": 0.41346153846153794,
+      "current_top_two_mass": 0.7596153846153837,
+      "current_top_two_sources": [
+        "rope365",
+        "kinbakutoday"
+      ],
+      "top_two_mass_delta": -0.0999984375198456
+    },
+    "weight_bounds": {
+      "alternative_max": 0.00721153846153846,
+      "alternative_max_to_min_ratio": 41.99999999999999,
+      "alternative_min": 0.0001717032967032967,
+      "configured_max_multiplier": 1.5,
+      "configured_min_multiplier": 0.6666666666666666,
+      "current_max": 0.004807692307692307,
+      "current_max_to_min_ratio": 41.99999999999999,
+      "current_min": 0.00011446886446886447,
+      "max_applied_multiplier": 1.5,
+      "min_applied_multiplier": 0.6666666666666666
+    }
+  },
+  "evaluation_launch_authorized": false,
+  "gpu_launch_authorized": false,
+  "implementation_bindings": {
+    "builder": "dd24fded4f669d12dc74644759f9b72daf80c3a2a282c622ba496bfd95d01f4f",
+    "conflict_graph_runtime": "29fb6e94eb7bca470d5d2ef32dd9bc74a755eaa0624a14a74a1a22ded070a6a8",
+    "curated_merge_runtime": "b12cb79907a50d05bde9269f3a98e43514da58e05fa1b85cb58bcfc692549384",
+    "design_runtime": "76074a778950f69d3e84c49eb145c1546d65b17b3cdfd3d95b78987521fa38df",
+    "equal_unit_runtime": "a1f8d357daab59b37716e70d6d3fc07be9122db2a7a5415be3a9cde021f02c81",
+    "tests": "7b06cb8d42c831a73a59f6bc18b458af4b3e624f78cfdf5ab05ee14e61ef208e"
+  },
+  "inputs": {
+    "frozen_v412_fold3_train_membership": {
+      "file_sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+      "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_train.jsonl",
+      "rows": 448
+    },
+    "v430_projection": {
+      "path": "/home/catid/specialist/experiments/sft_controls/v47a_train_refresh_v430/train_v430.jsonl",
+      "sha256": "a230b0f0c32a53e8b40140bd5881cfe7e7102f565dd2b3989e38b1fe9a8804c2"
+    },
+    "v434_projection": {
+      "materialization": "deterministic temporary train-only replay",
+      "rows": 531,
+      "sha256": "f86f0618b0ac87ffd58b863763fd8d6609179c13dce2b945ddf0b96d75f3c099"
+    }
+  },
+  "membership_and_weight_identities": {
+    "alternative_normalized_weight_sha256": "76dd9224cde643b2dd22123c2bd7952a830809a3ed84c977d61208da874de612",
+    "current_normalized_weight_sha256": "a8cbc597f865123100de870fdbc22a2529ed5ec3534531f897d27763baa4492f",
+    "equal_unit_weighting_identity_sha256": "39928da53f95edec8c94135daa90efee7907836ff5eddcfbb32f0f8bcba7152d",
+    "root_membership_exactly_frozen_v412_fold3_train": true,
+    "root_membership_sha256": "e0e5eca72438aebc40d915eb824e03c42441c180d6ab585e1b375f83ddec3275",
+    "source_mass_table_sha256": "3ab5d46ab944944137fabe1bd20db95000292c89804340f5d061b56bb1da77e0",
+    "train_conflict_units": 208,
+    "train_jsonl_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+    "train_rows": 448,
+    "v434_replay": [
+      {
+        "decision_file_sha256": "815c8b1a272b8bb0e040ac95d5ed8a0af9ea20a40c406c9daeef5b6119c3f0c0",
+        "projection_sha256": "56d40784197f9c124acc21abcd6313ca55e648a921e95287da0821ca5fade824",
+        "version": 431
+      },
+      {
+        "decision_file_sha256": "46f72ad35d82356b807fe4e05fff3296ba7b985aedbcfa972bee8de88c0a8afe",
+        "projection_sha256": "6bb26f0a0ef094168bed42826eadd1dc39dbd891d1ff62798032f16250c8becd",
+        "version": 432
+      },
+      {
+        "decision_file_sha256": "cd2c216ce8e2dc8db4d905ff8697dbd077be59a4937948fc299540cda691e29c",
+        "projection_sha256": "5d21081e044c3f5a2110212dae19e22dfdc08e4b59d483a134871cbeaa9c268c",
+        "version": 433
+      },
+      {
+        "decision_file_sha256": "850692b7ce32081bc2c68043e15145fd7c738423c6b15d96c6c30414565cc7ba",
+        "projection_sha256": "f86f0618b0ac87ffd58b863763fd8d6609179c13dce2b945ddf0b96d75f3c099",
+        "version": 434
+      }
+    ]
+  },
+  "per_category_mass": [
+    {
+      "alternative_mass": 0.09134615384615377,
+      "category": "equipment_material",
+      "conflict_units": 19,
+      "current_mass": 0.0913461538461538,
+      "mass_delta": -2.7755575615628914e-17,
+      "rows": 74
+    },
+    {
+      "alternative_mass": 0.32211538461538464,
+      "category": "resources_general",
+      "conflict_units": 67,
+      "current_mass": 0.3221153846153842,
+      "mass_delta": 4.440892098500626e-16,
+      "rows": 137
+    },
+    {
+      "alternative_mass": 0.31249999999999956,
+      "category": "safety_consent",
+      "conflict_units": 65,
+      "current_mass": 0.31249999999999967,
+      "mass_delta": -1.1102230246251565e-16,
+      "rows": 154
+    },
+    {
+      "alternative_mass": 0.2740384615384614,
+      "category": "technique",
+      "conflict_units": 57,
+      "current_mass": 0.27403846153846145,
+      "mass_delta": -5.551115123125783e-17,
+      "rows": 83
+    }
+  ],
+  "per_source_mass": [
+    {
+      "alternative_mass": 0.0001717032967032967,
+      "conflict_units_touched": 1,
+      "current_mass": 0.00011446886446886447,
+      "effective_mass_multiplier": 1.4999999999999998,
+      "mass_delta": 5.723443223443222e-05,
+      "rows": 1,
+      "source": "amazon"
+    },
+    {
+      "alternative_mass": 0.02884615384615386,
+      "conflict_units_touched": 4,
+      "current_mass": 0.019230769230769232,
+      "effective_mass_multiplier": 1.5000000000000007,
+      "mass_delta": 0.00961538461538463,
+      "rows": 29,
+      "source": "anatomiestudio"
+    },
+    {
+      "alternative_mass": 0.007383241758241757,
+      "conflict_units_touched": 2,
+      "current_mass": 0.004922161172161171,
+      "effective_mass_multiplier": 1.5,
+      "mass_delta": 0.002461080586080586,
+      "rows": 2,
+      "source": "atx_empty_space"
+    },
+    {
+      "alternative_mass": 0.014594780219780217,
+      "conflict_units_touched": 3,
+      "current_mass": 0.009729853479853478,
+      "effective_mass_multiplier": 1.5,
+      "mass_delta": 0.004864926739926738,
+      "rows": 3,
+      "source": "austin_rope_slingers"
+    },
+    {
+      "alternative_mass": 0.0003434065934065934,
+      "conflict_units_touched": 1,
+      "current_mass": 0.00022893772893772894,
+      "effective_mass_multiplier": 1.4999999999999998,
+      "mass_delta": 0.00011446886446886444,
+      "rows": 2,
+      "source": "bight_bound"
+    },
+    {
+      "alternative_mass": 0.0003434065934065934,
+      "conflict_units_touched": 1,
+      "current_mass": 0.00022893772893772894,
+      "effective_mass_multiplier": 1.4999999999999998,
+      "mass_delta": 0.00011446886446886444,
+      "rows": 2,
+      "source": "chromaknotz"
+    },
+    {
+      "alternative_mass": 0.014423076923076922,
+      "conflict_units_touched": 2,
+      "current_mass": 0.009615384615384614,
+      "effective_mass_multiplier": 1.5,
+      "mass_delta": 0.004807692307692308,
+      "rows": 5,
+      "source": "crash_restraint"
+    },
+    {
+      "alternative_mass": 0.00051510989010989,
+      "conflict_units_touched": 1,
+      "current_mass": 0.0003434065934065934,
+      "effective_mass_multiplier": 1.4999999999999998,
+      "mass_delta": 0.00017170329670329664,
+      "rows": 3,
+      "source": "degiotto_rope"
+    },
+    {
+      "alternative_mass": 0.14073001356236073,
+      "conflict_units_touched": 22,
+      "current_mass": 0.10576923076923074,
+      "effective_mass_multiplier": 1.3305383100441381,
+      "mass_delta": 0.03496078279312999,
+      "rows": 29,
+      "source": "esinem"
+    },
+    {
+      "alternative_mass": 0.3148746728777993,
+      "conflict_units_touched": 72,
+      "current_mass": 0.3461538461538457,
+      "effective_mass_multiplier": 0.9096379438691992,
+      "mass_delta": -0.0312791732760464,
+      "rows": 142,
+      "source": "kinbakutoday"
+    },
+    {
+      "alternative_mass": 0.01442307692307692,
+      "conflict_units_touched": 2,
+      "current_mass": 0.009615384615384612,
+      "effective_mass_multiplier": 1.5000000000000002,
+      "mass_delta": 0.004807692307692308,
+      "rows": 5,
+      "source": "knothead_nylon"
+    },
+    {
+      "alternative_mass": 0.004120879120879119,
+      "conflict_units_touched": 1,
+      "current_mass": 0.0027472527472527475,
+      "effective_mass_multiplier": 1.4999999999999993,
+      "mass_delta": 0.0013736263736263718,
+      "rows": 24,
+      "source": "owner_curated_rope_resource_directory"
+    },
+    {
+      "alternative_mass": 0.3447422742177388,
+      "conflict_units_touched": 86,
+      "current_mass": 0.41346153846153794,
+      "effective_mass_multiplier": 0.8337952678754623,
+      "mass_delta": -0.06871926424379915,
+      "rows": 147,
+      "source": "rope365"
+    },
+    {
+      "alternative_mass": 0.004916958041958044,
+      "conflict_units_touched": 1,
+      "current_mass": 0.003277972027972028,
+      "effective_mass_multiplier": 1.5000000000000004,
+      "mass_delta": 0.0016389860139860157,
+      "rows": 15,
+      "source": "rope_topia"
+    },
+    {
+      "alternative_mass": 0.00721153846153846,
+      "conflict_units_touched": 1,
+      "current_mass": 0.004807692307692307,
+      "effective_mass_multiplier": 1.5,
+      "mass_delta": 0.002403846153846153,
+      "rows": 1,
+      "source": "ropeconnections"
+    },
+    {
+      "alternative_mass": 0.014594780219780217,
+      "conflict_units_touched": 3,
+      "current_mass": 0.009729853479853478,
+      "effective_mass_multiplier": 1.5,
+      "mass_delta": 0.004864926739926738,
+      "rows": 3,
+      "source": "shibari_study"
+    },
+    {
+      "alternative_mass": 0.007383241758241757,
+      "conflict_units_touched": 2,
+      "current_mass": 0.004922161172161171,
+      "effective_mass_multiplier": 1.5,
+      "mass_delta": 0.002461080586080586,
+      "rows": 2,
+      "source": "subspace_designs"
+    },
+    {
+      "alternative_mass": 0.021978021978021976,
+      "conflict_units_touched": 4,
+      "current_mass": 0.014652014652014649,
+      "effective_mass_multiplier": 1.5000000000000002,
+      "mass_delta": 0.007326007326007328,
+      "rows": 7,
+      "source": "tethered_together"
+    },
+    {
+      "alternative_mass": 0.0003434065934065934,
+      "conflict_units_touched": 1,
+      "current_mass": 0.00022893772893772894,
+      "effective_mass_multiplier": 1.4999999999999998,
+      "mass_delta": 0.00011446886446886444,
+      "rows": 2,
+      "source": "tetruss"
+    },
+    {
+      "alternative_mass": 0.048210731649792796,
+      "conflict_units_touched": 7,
+      "current_mass": 0.03365384615384615,
+      "effective_mass_multiplier": 1.4325474547367003,
+      "mass_delta": 0.014556885495946643,
+      "rows": 14,
+      "source": "wikipedia"
+    },
+    {
+      "alternative_mass": 0.00229458041958042,
+      "conflict_units_touched": 1,
+      "current_mass": 0.0015297202797202797,
+      "effective_mass_multiplier": 1.5000000000000002,
+      "mass_delta": 0.0007648601398601402,
+      "rows": 7,
+      "source": "wykd"
+    },
+    {
+      "alternative_mass": 0.00721153846153846,
+      "conflict_units_touched": 1,
+      "current_mass": 0.004807692307692307,
+      "effective_mass_multiplier": 1.5,
+      "mass_delta": 0.002403846153846153,
+      "rows": 1,
+      "source": "xpole_a_frame"
+    },
+    {
+      "alternative_mass": 0.0003434065934065934,
+      "conflict_units_touched": 1,
+      "current_mass": 0.00022893772893772894,
+      "effective_mass_multiplier": 1.4999999999999998,
+      "mass_delta": 0.00011446886446886444,
+      "rows": 2,
+      "source": "xpole_us"
+    }
+  ],
+  "recommendation": {
+    "basis_is_train_only_diagnostics": true,
+    "merits_one_later_preregistered_hpo_arm": true,
+    "quality_or_generalization_improvement_claimed": false,
+    "reason": "source ESS and top-two concentration improve materially while category mass is exact, row multipliers are bounded, the row max/min ratio does not increase, and row/unit ESS retain over 90%",
+    "required_future_gate": "fresh preregistered train run followed by unchanged OOD-first eligibility and document-disjoint validation; no current test authorizes promotion"
+  },
+  "running_experiment_isolation": {
+    "existing_ab_test_read_or_mutated": false,
+    "gpu_process_started": false,
+    "model_or_adapter_artifacts_read_or_mutated": false
+  },
+  "schema": "specialist-train-only-source-temperature-weighting-v49a",
+  "status": "complete_bounded_design_unlaunched",
+  "training_launch_authorized": false
+}
