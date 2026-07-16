@@ -269,7 +269,6 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "actsafe_performer_flying_rigging",
                 "ashra_bondage_injury_prevalence_2025",
                 "icar_rope_connection_recommendations",
-                "alef_healing_shibari_study",
             },
             "defer": {
                 "itra_rope_rescue_documents",
@@ -280,6 +279,7 @@ class SourceCorpusContractTest(unittest.TestCase):
             "reject": {
                 "durham_comparative_rope_thesis",
                 "cleveland_clinic_suspension_syndrome",
+                "alef_healing_shibari_study",
             },
         }
         for decision, candidate_ids in expected.items():
@@ -454,10 +454,18 @@ class SourceCorpusContractTest(unittest.TestCase):
                 or "human-suspension" in scope
             )
 
-        healing_scope = by_id["alef_healing_shibari_study"][
-            "recommended_crawl_scope"
-        ].lower()
-        self.assertIn("do not claim efficacy", healing_scope)
+        healing = by_id["alef_healing_shibari_study"]
+        self.assertEqual(healing["decision"], "reject")
+        healing_text = json.dumps(healing, sort_keys=True).lower()
+        for marker in {
+            "some friends",
+            "felt-healing interview prompt",
+            "all-caucasian",
+            "temporarily losing consciousness",
+            "do not copy, paraphrase, transform",
+            "rejected_unsafe_therapeutic_overclaim_and_positive_selection",
+        }:
+            self.assertIn(marker, healing_text)
         abstract_scope = by_id["ashra_bondage_injury_prevalence_2025"][
             "recommended_crawl_scope"
         ].lower()

@@ -122,7 +122,19 @@ Repository inspection remained limited to the governing source-discovery artifac
 
 ## Discovery batch 003 outcome
 
-`discovery_batch_003` manually reviewed 16 additional, nonduplicate sources and the endpoint-specific access and reuse terms needed for each. It produced 4 `accept_high_priority`, 6 `accept_targeted_scope`, 4 `defer`, and 2 `reject` decisions. The ten accepted candidates are separate pending extraction jobs; all rights-limited sources use narrow, attributed scopes and all cross-domain material retains its original operating context.
+`discovery_batch_003` manually reviewed 16 additional, nonduplicate sources and the endpoint-specific access and reuse terms needed for each. After the full-body safety correction recorded below, it contains 4 `accept_high_priority`, 5 `accept_targeted_scope`, 4 `defer`, and 3 `reject` decisions. The nine accepted candidates are separate pending extraction jobs; all rights-limited sources use narrow, attributed scopes and all cross-domain material retains its original operating context.
+
+The complete 11-page body of the previously queued healing phenomenology paper
+was re-audited after discovery. Its ten regular practitioners came from practice
+groups, acquaintances and some friends, all were Caucasian, and the interview
+guide expressly prompted felt healing effects. Although the article acknowledges
+that medical therapeutic properties are unproven and the sample is not
+generalizable, it repeatedly promotes healing or therapy and positively frames a
+participant temporarily losing consciousness during suspension as a
+transformative near-death experience. That combination of positive selection,
+leading prompts, missing adverse perspectives, therapeutic overclaim and medical-
+emergency normalization outweighs its CC BY license. It is now rejected and
+removed from the extraction queue.
 
 The most important access correction is that Europe PMC and US PubMed Central are not interchangeable capture endpoints. The two accepted clinical sources have licensed JATS available from the robots-allowed EMBL-EBI Europe PMC API. The Cureus publisher copy of the neuropathy paper prohibits AI-training collection, US PMC disallows crawling, and the Springer copy of the suspension review blocks named AI agents. Those restricted copies are excluded even though the same works can lawfully and technically be acquired from the licensed Europe PMC route.
 
@@ -139,7 +151,6 @@ The most important access correction is that Europe PMC and US PubMed Central ar
 | [ICAR rope-connection recommendation](https://www.alpine-rescue.org/articles/10--rope-connections-for-kernmantle-rope-extension-tercom-recommendation-nr-4) | `accept_targeted_scope` | 35 | Revision-controlled context for joining kernmantle rescue ropes; noncommercial editorial digest only and no transfer to natural-fiber rope or human suspension. |
 | [Exploring Bondage-Related Injury Risks](https://academic.oup.com/jsm/article/22/Supplement_1/qdaf068.070/8119573) | `accept_targeted_scope` | 32 | Recent two-survey conference abstract; bibliographic metadata and minimal factual digest only, explicitly preliminary and noncausal. |
 | [Disability and Bondage](https://enhancetheuk.org/disability-and-bondage/) | `accept_targeted_scope` | 30 | Occupational-therapy prompts for positioning, support, pressure, stability, sensation, grip, pacing, and planning; excludes the unsafe solo-pulley scenario and individualized advice is not universalized. |
-| [Healing Experiences in Japanese Rope Bondage Practice](https://www.journal.aleftrust.org/index.php/cstp/article/view/46) | `accept_targeted_scope` | 28 | CC BY 4.0 qualitative methodology and attributed participant experience; no therapeutic-efficacy claim is permitted. |
 
 ### Deferred and rejected sources
 
@@ -151,6 +162,7 @@ The most important access correction is that Europe PMC and US PubMed Central ar
 | [Kanna/Kagura bakushi biographies](https://kanna-kagura.blogspot.com/2020/04/biographies-of-kinbakushi-of-japan.html) | `defer` | 27 | Rare translated lineage testimony, but rights are layered across the interview, translation, annotations, magazine, and later book. |
 | [Durham comparative rope thesis](https://etheses.durham.ac.uk/id/eprint/15763/) | `reject` | 32 | Repository robots explicitly block named OpenAI/AI-training agents; no body was opened and no bypass was attempted. |
 | [Cleveland Clinic suspension syndrome](https://my.clevelandclinic.org/health/diseases/suspension-syndrome) | `reject` | 29 | Reuse terms prohibit storing, repackaging, or editing, and a stronger CC BY review already covers the topic. |
+| [Healing Experiences in Japanese Rope Bondage Practice](https://www.journal.aleftrust.org/index.php/cstp/article/view/46) | `reject` | 15 | The licensed body has severe positive-selection and prompting bias, overstates therapeutic implications, and positively narrates suspension-related loss of consciousness. Metadata and rejection rationale only; no participant narrative or healing claim enters training. |
 
 ### Endpoint and evidence controls
 
@@ -174,7 +186,7 @@ sources, including the actual body or official metadata, current access policy,
 and visible reuse terms. After the official-access correction recorded in
 batch 008, it contains 2 `accept_high_priority`, 5 `accept_targeted_scope`, 4
 `defer`, and 1 `reject` decisions. The seven accepted candidates expand the
-canonical corpus queue from 62 to 69 resources.
+canonical corpus queue from 61 to 68 resources.
 
 This batch concentrates on first-party Japanese practitioner testimony and
 lineage, named rope-school progressions, knot/friction and upline curriculum
@@ -247,7 +259,7 @@ opening the actual public body, official metadata, or live failure endpoint and
 checking current access and reuse boundaries. It produced 2
 `accept_high_priority`, 4 `accept_targeted_scope`, 4 `defer`, and 2 `reject`
 decisions. The six accepted candidates expand the canonical corpus queue from
-69 to 75 resources.
+68 to 74 resources.
 
 This batch prioritizes primary lineage testimony, source-critical history,
 licensed forensic evidence, structural-wood engineering, progressive rope
@@ -320,7 +332,7 @@ the actual public body where access and rights allowed, or only official
 metadata and governing terms where they did not. It produced 0
 `accept_high_priority`, 3 `accept_targeted_scope`, 5 `defer`, and 3 `reject`
 decisions. The three accepted candidates expand the canonical corpus queue from
-75 to 78 resources.
+74 to 77 resources.
 
 This batch adds two complementary curriculum architectures and an official
 museum chronology. It also records unusually valuable but unusable leads rather
@@ -385,7 +397,7 @@ reviewed page body was copied into a training artifact during discovery.
 actual public body, authoritative metadata, current robots policy, and governing
 reuse terms. It produced 2 `accept_high_priority`, 2
 `accept_targeted_scope`, 4 `defer`, and 3 `reject` decisions. The four accepted
-candidates expand the canonical corpus queue from 78 to 82 resources.
+candidates expand the canonical corpus queue from 77 to 81 resources.
 
 This batch fills three especially useful gaps: a current clinical review of
 entrapment-neuropathy mechanisms and diagnostic limits, a current federal
@@ -454,7 +466,7 @@ was copied into a training artifact during discovery.
 against their substantive pages, primary metadata, current reuse terms, and
 training suitability. It produced 1 `accept_high_priority`, 3
 `accept_targeted_scope`, 7 `defer`, and 1 `reject` decisions. The four new
-accepted candidates expand the corrected canonical corpus queue from 82 to 86
+accepted candidates expand the corrected canonical corpus queue from 81 to 85
 resources.
 
 This batch makes reuse status explicit rather than equating public readability
@@ -533,7 +545,7 @@ body, or license. Discovery wrote no reviewed page body to a training artifact.
 candidates against their substantive public pages, primary metadata, current
 reuse terms, and safety value. It produced 1 `accept_high_priority`, 2
 `accept_targeted_scope`, 7 `defer`, and 2 `reject` decisions. The three accepted
-candidates expand the canonical corpus queue from 86 to 89 resources.
+candidates expand the canonical corpus queue from 85 to 88 resources.
 
 This batch adds a kink-specific educator ethics code, a March 2026 federal
 clinical reference, and a primary federal rope-yarn flex-fatigue study. It also
@@ -606,7 +618,7 @@ candidates against their primary pages, methods and limitations, current reuse
 terms, domain transfer, and safety value. It produced 1
 `accept_high_priority`, 4 `accept_targeted_scope`, 5 `defer`, and 2 `reject`
 decisions. The five accepted candidates expand the canonical corpus queue from
-89 to 94 resources.
+88 to 93 resources.
 
 This batch deliberately separates technically strong evidence from permission
 to transform it. It adds a CC BY primary friction-hitch experiment, a federal
@@ -680,7 +692,7 @@ candidates against their primary body or official failure endpoint, methods,
 component rights, evidentiary limits, redundancy, and cross-domain safety. It
 produced 1 `accept_high_priority`, 4 `accept_targeted_scope`, 3 `defer`, and 4
 `reject` decisions. The five accepted candidates expand the canonical corpus
-queue from 94 to 99 resources.
+queue from 93 to 98 resources.
 
 The strongest addition is a rights-clear 2020 primary experiment on eight
 loop-knot families, multiple load geometries, dressing, replication, static
@@ -753,7 +765,7 @@ their official record or primary body, publication methods, component rights,
 redundancy, conflicts, statistical support, and transfer risk. It produced 1
 `accept_high_priority`, 5 `accept_targeted_scope`, 3 `defer`, and 3 `reject`
 decisions. The six accepted candidates expand the canonical corpus queue from
-99 to 105 resources.
+98 to 104 resources.
 
 This batch fills four evidence gaps: internal abrasion and tensile-fatigue
 mechanisms; historical natural-rope variability; current synthetic- and
@@ -837,7 +849,7 @@ their actual first-party body or official failure endpoint, exact license,
 methods, scale, redundancy, and cross-domain transfer risk. It produced 1
 `accept_high_priority`, 4 `accept_targeted_scope`, 5 `defer`, and 2 `reject`
 decisions. The five accepted candidates expand the canonical corpus queue from
-105 to 110 resources.
+104 to 109 resources.
 
 The batch fills three important gaps. First, a public-domain NOAA report models
 where eight-strand construction produces contact pressure and relative movement,
