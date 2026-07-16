@@ -1,0 +1,169 @@
+{
+  "access_firewall": {
+    "evaluation_launched": false,
+    "gpu_accessed": false,
+    "heldout_or_holdout_opened": false,
+    "ood_prose_semantics_opened": false,
+    "ood_qa_semantics_opened": false,
+    "shadow_semantics_opened": false,
+    "training_launched": false,
+    "training_rows_opened_by_builder": false
+  },
+  "activation_prerequisites": {
+    "both_logical_candidates_must_have": [
+      "complete self-hashed runtime report",
+      "complete self-hashed attempt receipt",
+      "exactly 48 optimizer steps and 3 complete row-equivalent passes",
+      "positive attributed activity and residency on GPUs 0,1,2,3",
+      "source adapter_model.safetensors SHA-256",
+      "source adapter_config.json SHA-256",
+      "unchanged initialization, loader, schedule, and weighting audit",
+      "training shadow/OOD/holdout access remains false"
+    ],
+    "candidate_stage_manifests_must_then_be_content_addressed": true,
+    "new_runnable_preregistration_required_after_receipts_exist": true,
+    "replicas_of_each_candidate_must_share_identical_staged_bytes": true,
+    "this_template_cannot_be_mutated_into_a_launch": true
+  },
+  "arms": [
+    "base_a",
+    "base_b",
+    "base_c",
+    "base_d",
+    "v434_equal_a",
+    "v434_equal_b",
+    "v434_source50_a",
+    "v434_source50_b"
+  ],
+  "artifact_role": "future_protocol_only_not_a_launch_manifest",
+  "base_duplicate_arms": [
+    "base_a",
+    "base_b",
+    "base_c",
+    "base_d"
+  ],
+  "contains_protected_semantic_content": false,
+  "content_sha256_before_self_field": "03b1e989810c836186898f01480389d592b1357f1d46f94f4a45110f60e495de",
+  "direct_hypothesis_gates": {
+    "all_three_directional_thresholds_must_pass": true,
+    "comparison": "mean(v434_source50 replicas)-mean(v434_equal replicas)",
+    "direct_gate_evaluated_only_after_both_logical_candidates_are_ood_eligible": true,
+    "mean_replicated_ood_qa_exact_count_delta_minimum": 0,
+    "mean_replicated_ood_qa_reward_delta_minimum": 0.0,
+    "mean_replicated_shadow_reward_delta_minimum": 0.0008257591,
+    "paired_ood_qa_bootstrap_ci_role": "informational_not_a_gate",
+    "shadow_threshold_origin": "one_half_of_observed_V49B_minus_V47C_shadow_mean_reward_delta"
+  },
+  "evaluation_launch_authorized": false,
+  "gpu_launch_authorized": false,
+  "heldout_or_holdout_access_authorized": false,
+  "inherited_protocol": {
+    "bundles_prompts_sampling_seed_metrics_and_protocol_gates_unchanged": true,
+    "content_sha256": "97611a30fabccc6c1f68c3ba164a1ce292d35a39e03ff6c84baaae754e9d7a36",
+    "file_sha256": "1f1e90f976c4f6399a703b58a5d2dfaadae30107d2a2fa3c758724626888d2f8",
+    "inheritance_method": "identity_only_without_reopening_semantics",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/sft_v42i_vs_v47c_replicated_ood_first_eval_v47d.json",
+    "protected_files_read_by_builder": false,
+    "protected_semantics_opened_by_builder": false
+  },
+  "logical_candidate_replicas": {
+    "v434_equal": [
+      "v434_equal_a",
+      "v434_equal_b"
+    ],
+    "v434_source50": [
+      "v434_source50_a",
+      "v434_source50_b"
+    ]
+  },
+  "logical_candidates": [
+    "v434_equal",
+    "v434_source50"
+  ],
+  "ood_first_eligibility_gates": {
+    "all_inherited_generation_and_parser_protocol_gates_must_pass": true,
+    "all_inherited_protocol_and_leak_counters_must_not_increase": true,
+    "applied_independently_to_each_of_four_candidate_replicas": true,
+    "base_relative_ood_prose_paired_document_bootstrap_lcb_minimum": 0.0,
+    "base_relative_ood_prose_point_non_degradation_required": true,
+    "base_relative_ood_qa_exact_count_delta_minimum": 0,
+    "base_relative_ood_qa_mean_reward_delta_minimum": 0.0,
+    "both_replicas_of_each_logical_candidate_must_pass": true,
+    "eligibility_set_frozen_before_any_shadow_ranking": true,
+    "shadow_not_opened_for_an_ineligible_logical_candidate": true
+  },
+  "runtime_shape": {
+    "all_four_gpus_busy_in_every_wave_required": true,
+    "candidate_replica_outputs_bit_exact_required": false,
+    "engine_count": 4,
+    "every_gpu_receives_one_request_per_wave": true,
+    "four_base_outputs_exact_on_every_surface_required": true,
+    "identical_prompts_sampling_parameters_and_seed_for_all_arms": true,
+    "no_partial_or_third_wave_authorized": true,
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tensor_parallel_size_per_engine": 1,
+    "two_full_fixed_waves": [
+      [
+        {
+          "arm": "base_a",
+          "engine_index": 0
+        },
+        {
+          "arm": "base_b",
+          "engine_index": 1
+        },
+        {
+          "arm": "base_c",
+          "engine_index": 2
+        },
+        {
+          "arm": "base_d",
+          "engine_index": 3
+        }
+      ],
+      [
+        {
+          "arm": "v434_equal_a",
+          "engine_index": 0
+        },
+        {
+          "arm": "v434_equal_b",
+          "engine_index": 1
+        },
+        {
+          "arm": "v434_source50_a",
+          "engine_index": 2
+        },
+        {
+          "arm": "v434_source50_b",
+          "engine_index": 3
+        }
+      ]
+    ]
+  },
+  "schema": "specialist-v434-equal-source50-future-eval-v49d",
+  "selection_and_scope": {
+    "additional_hpo_or_lambda_sweep_authorized": false,
+    "comparison_is_future_cycle_diagnostic_only": true,
+    "holdout_evaluation_authorized": false,
+    "lambda_values_authorized": [
+      0.0,
+      0.5
+    ],
+    "primary_scientific_question": "Does lambda=0.5 source balancing beat a fresh content-matched equal control without OOD degradation?",
+    "promotion_authorized": false
+  },
+  "status": "sealed_deferred_pending_both_training_completion_receipts",
+  "training_preregistration": {
+    "both_training_arms_preregistered": true,
+    "content_sha256": "6400e2ee17922fa30e57117ed7332bb2fdf3456267e9c0b710796b69d764efba",
+    "file_sha256": "4512e15987550c5b20cc0bd2a9c230a981f0c02f0fea877e5ee263ff747a0cde",
+    "path": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/preregistration_v49d.json",
+    "training_recipe_identity": "d72c32fc9ef24097144f4a458ac6a826a05e451d2d86d328f93742fd2b470d84"
+  }
+}

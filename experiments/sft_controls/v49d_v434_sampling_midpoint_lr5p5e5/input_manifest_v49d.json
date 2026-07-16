@@ -1,0 +1,85 @@
+{
+  "access_firewall": {
+    "eval_ood_holdout_semantics_opened": false,
+    "evaluation_launched": false,
+    "gpu_accessed": false,
+    "non_train_rows_opened": false,
+    "shadow_semantics_opened": false,
+    "train_semantics_opened": true,
+    "training_launched": false
+  },
+  "arm_order": [
+    "v434_equal",
+    "v434_source50"
+  ],
+  "content_sha256_before_self_field": "fb0f3484e785822836bcda40843dd5c9fcf823501cb2d5ae792745eadb6a5d81",
+  "controlled_contrast": {
+    "equal_lambda": 0.0,
+    "no_other_lambda_or_hpo_arm_authorized": true,
+    "only_difference": "per-row Trainer example weights",
+    "source50_exact_multiplier_range": [
+      "5/6",
+      "5/4"
+    ],
+    "source50_lambda": 0.5,
+    "v49a_full_parent_multiplier_range": [
+      "2/3",
+      "3/2"
+    ]
+  },
+  "dataset": {
+    "conflict_units": 208,
+    "file_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+    "membership_exactly_frozen_v412_fold3_train": true,
+    "path": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/train_v434_fold3_v49d.jsonl",
+    "root_membership_sha256": "e0e5eca72438aebc40d915eb824e03c42441c180d6ab585e1b375f83ddec3275",
+    "rows": 448,
+    "same_exact_bytes_for_both_arms": true
+  },
+  "document_disjoint_membership": {
+    "confirmatory_fold": 3,
+    "manifest_content_sha256": "3fcc2820e8dffe6a21198d0520365aace049735ac84bda179ea44bc8ad0881eb",
+    "manifest_file_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+    "manifest_path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/manifest_v37a.json",
+    "membership_replayed_by_content_free_root_identity_only": true,
+    "non_train_rows_opened": false,
+    "train_dev_conflict_unit_intersection": 0,
+    "train_dev_edge_identity_intersections": {
+      "document_sha256": 0,
+      "normalized_url": 0,
+      "raw_lineage": 0,
+      "semantic_cluster": 0
+    }
+  },
+  "parents": {
+    "equal_weight_identity_sha256": "a8cbc597f865123100de870fdbc22a2529ed5ec3534531f897d27763baa4492f",
+    "v49a_design_content_sha256": "cf376bb772c39f564050290a3958bba753434c4c8c2e4902f1347e0d7ee21826",
+    "v49a_design_file_sha256": "01fc746881e7c7ace9f7bddf14b85fecf3d40cf9bd5e15c613115a826af537c4",
+    "v49a_full_weight_identity_sha256": "76dd9224cde643b2dd22123c2bd7952a830809a3ed84c977d61208da874de612",
+    "v49b_input_manifest_content_sha256": "a2aaa30e5b4df42f4d3efc6a94b16fcc6ec3b796c97e3889c16f08a7e3a2a418"
+  },
+  "schema": "specialist-v434-sampling-midpoint-input-manifest-v49d",
+  "status": "sealed_train_only_before_launch",
+  "weighting_audits": {
+    "v434_equal": {
+      "content_sha256": "07582b3652c08209e5ced3e58d17ef125ac71bad2539b0e19a34a7062424907c",
+      "file_sha256": "14806537002ea9caabd83b3df19aeecd56103934cfdd5a3b8c9c45610775a4d2",
+      "normalized_weight_sha256": "a8cbc597f865123100de870fdbc22a2529ed5ec3534531f897d27763baa4492f",
+      "path": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/weighting_audit_v434_equal_v49d.json",
+      "per_category_sha256": "0fb1a79c61d9366957011f7db76b8de4dbb0ad108c33cb504eee477daad08f7b",
+      "per_row_sha256": "215668010e05c5892e0c8cf1db6a95a308dd20c1c4aa3bfbab0952a223087b80",
+      "per_source_sha256": "5280d146db573b09949e3abd630863cc781def88a7799071dfe323406531eeb1",
+      "trainer_weight_sha256": "7db37e1a41c9e3e422ce1dd2cab037f7bffb9dc7fbf21013ce816a892602d6a8"
+    },
+    "v434_source50": {
+      "content_sha256": "06981d1960cca0f0ade861c7952300ccb8b0db2f6fbf70d7a2408cc354515b41",
+      "file_sha256": "e27f4c446c261fc7e1e2209a4d196a24ba4af740981226c0e55c228b9779e056",
+      "normalized_weight_sha256": "725e115ac0e4c4f20653e6c95f163edda0602621ff9d83f0c7d94b5f81b29890",
+      "path": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/weighting_audit_v434_source50_v49d.json",
+      "per_category_sha256": "450c811da6ff0a6d63a673f09f0ab079105f97c1efdd4662bc995ba54900c510",
+      "per_row_sha256": "4733367b8fb29277f9e8119dbc6df4c019436eb7b1280ce9b18528094f9ed5f6",
+      "per_source_sha256": "84a51e3237d2e35dfcc4a94b655bb742bead9f77ecd1c4d86cc2aa322bd9a4c9",
+      "trainer_weight_sha256": "49e160524a46bd8a8dd4407d51dd23415df9591110b5a34c0f9de1aa80ac9f16"
+    }
+  }
+}
