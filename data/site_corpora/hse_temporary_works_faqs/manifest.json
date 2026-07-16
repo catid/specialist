@@ -1,0 +1,115 @@
+{
+  "schema": "site-corpus-manifest",
+  "schema_version": "1.0",
+  "corpus_schema": "non-bondage-uk-construction-governance-markdown",
+  "corpus_schema_version": "1.0",
+  "package_id": "hse_temporary_works_faqs",
+  "title": "HSE temporary-works governance: bounded construction lessons",
+  "direct_training_ready": true,
+  "evidence_domain": "non-bondage United Kingdom construction temporary-works governance",
+  "displayed_source_date": "2026-03-11",
+  "displayed_source_date_human": "11 March 2026",
+  "source_ids": [
+    "HSE-TW-FAQ-2026",
+    "HSE-COPYRIGHT-OGL",
+    "HSE-ROBOTS-2026",
+    "TNA-OGL-V3",
+    "TNA-ROBOTS-2026"
+  ],
+  "technical_source_ids": [
+    "HSE-TW-FAQ-2026"
+  ],
+  "rights_and_access_provenance_source_ids": [
+    "HSE-COPYRIGHT-OGL",
+    "HSE-ROBOTS-2026",
+    "TNA-OGL-V3",
+    "TNA-ROBOTS-2026"
+  ],
+  "license_spdx": "OGL-UK-3.0",
+  "attribution": "Contains public sector information published by the Health and Safety Executive and licensed under the Open Government Licence.",
+  "robots_enforcement": "The National Archives robots file states ai-train=no. No National Archives licence-page wording or substantive body is present in CORPUS.md; that body is used only for rights provenance.",
+  "training_artifacts": [
+    "CORPUS.md"
+  ],
+  "non_training_audit_artifacts": [
+    "README.md",
+    "REPORT.md",
+    "components.jsonl",
+    "source_snapshot/provenance.json",
+    "sources.jsonl",
+    "surfaces.jsonl",
+    "tests/test_corpus.py"
+  ],
+  "retained_scope": [
+    "temporary duration does not reduce criticality",
+    "end-to-end organizing responsibility and handoffs",
+    "validation of generic assumptions against actual site conditions",
+    "proprietary systems still require competent load-and-condition assessment",
+    "side, atypical and contextual actions can be missed",
+    "competence depends on relevant training, experience and task context",
+    "design and coordination are distinct roles"
+  ],
+  "excluded_scope": [
+    "standards text, standard identifiers, legal claims and universal-law advice",
+    "numerical examples, calculations, values, dimensions, formulas, capacities, thresholds and sizing",
+    "proprietary names, product examples, equipment types, supplier directions and selection",
+    "installation, assembly, setup, checking, loading, maintenance, removal, testing, proof-load, design and certification recipes",
+    "linked-document and external-site bodies",
+    "logos, SVGs, icons, images, illustrations, multimedia, styling and image-derived claims",
+    "third-party and uncertain components",
+    "operational use for ceiling tension, hardpoints, anchors, uplines, body support, bondage or human suspension"
+  ],
+  "statistics": {
+    "allowed_source_bodies": 5,
+    "technical_source_bodies": 1,
+    "rights_and_access_provenance_bodies": 4,
+    "corpus_words": 1212,
+    "corpus_claim_paragraphs": 25,
+    "corpus_claim_citations": 25,
+    "material_surfaces": 49,
+    "faq_surfaces": 21,
+    "copyright_surfaces": 12,
+    "ogl_surfaces": 11,
+    "robots_surfaces": 5,
+    "component_records": 30,
+    "retained_governance_components": 7,
+    "retained_identity_components": 1,
+    "controlled_exclusion_components": 17,
+    "rights_provenance_components": 3,
+    "access_provenance_components": 2
+  },
+  "artifacts": [
+    {
+      "path": "CORPUS.md",
+      "sha256": "b7b3004be7c29dded2ca82a0105f115534b2a36a493a47b63cf17a906c3227c8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "c09c5bbc312116a50db20e6e708375437911a8c59064801ca7a7460200efe92f"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "7ae8f5dd3360b49d6ebfd16f21aa0014151f208168619c72c65e7691bb1d6a5e"
+    },
+    {
+      "path": "components.jsonl",
+      "sha256": "3a80c8d00b57d83e210ead30e6daa44d2e8658a04c8cb79d4a33ca6f83446511"
+    },
+    {
+      "path": "source_snapshot/provenance.json",
+      "sha256": "51ee099d52b1f62c838eff01cec1639e9bcc75bb6128b51e50dadaef5fdcdfc2"
+    },
+    {
+      "path": "sources.jsonl",
+      "sha256": "95fb5d4e4f11566e9d8eaf108810a08fe479eed396d63400006d64b0cd6fe7d3"
+    },
+    {
+      "path": "surfaces.jsonl",
+      "sha256": "9aa16b33916f027bc9dd7326dc9fc1d0a9bdc689cc070cc44bbf74034e5dab32"
+    },
+    {
+      "path": "tests/test_corpus.py",
+      "sha256": "5881be7ae347ab8bdbd11fce92db4c5aae0738455b8e79d879505c5e68042a12"
+    }
+  ]
+}

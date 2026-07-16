@@ -1,0 +1,132 @@
+{
+  "schema": "site-corpus-provenance",
+  "schema_version": "1.0",
+  "package_id": "hse_temporary_works_faqs",
+  "retrieved_at": "2026-07-16T15:15:20Z",
+  "retrieval_policy": {
+    "allowed_urls": [
+      "https://www.hse.gov.uk/construction/faq-temporary-works.htm",
+      "https://www.hse.gov.uk/help/copyright.htm",
+      "https://www.hse.gov.uk/robots.txt",
+      "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "https://www.nationalarchives.gov.uk/robots.txt"
+    ],
+    "allowed_bodies_retrieved": 5,
+    "technical_source_bodies": 1,
+    "rights_and_access_provenance_bodies": 4,
+    "site_crawl_performed": false,
+    "mirrors_or_archives_used": false,
+    "search_snippets_used": false,
+    "linked_technical_bodies_retrieved": 0,
+    "linked_rights_bodies_retrieved": 1,
+    "robots_hosts_checked": 2
+  },
+  "bodies": [
+    {
+      "source_id": "HSE-TW-FAQ-2026",
+      "source_url": "https://www.hse.gov.uk/construction/faq-temporary-works.htm",
+      "retrieved_at": "2026-07-16T15:14:53Z",
+      "http_status": 200,
+      "media_type": "text/html",
+      "body_bytes": 42358,
+      "body_sha256": "449ac06366ec4bff513c6a6a2ec2ebe023e99cf5c70b2f6e6ff598c7e7861b1e",
+      "body_sha512": "8c9f46f9cd43473275585893a01fb923b38fedd564c2d196e472ca74ef46f4443be66c72ad0a9565a5c5dec102de1c7964137b81ee72fe45434ae227f9144e04",
+      "http_last_modified": "2026-06-24T18:40:57Z",
+      "use_scope": "sole technical source"
+    },
+    {
+      "source_id": "HSE-COPYRIGHT-OGL",
+      "source_url": "https://www.hse.gov.uk/help/copyright.htm",
+      "retrieved_at": "2026-07-16T15:15:04Z",
+      "http_status": 200,
+      "media_type": "text/html",
+      "body_bytes": 39349,
+      "body_sha256": "9b2c40591b2d83a890f27b8962397b8dbd78b62cc54dac6e29f805b944b9391d",
+      "body_sha512": "7e61ff604fa45429068cbea7d520a744246f987f012e5e84c34134e73a9ecb93d0c1377156fa18ce328b29d50b015076e44ba546eb129ec9693b36275b7d19b7",
+      "http_last_modified": "2026-06-24T18:43:43Z",
+      "use_scope": "rights and required-attribution provenance only"
+    },
+    {
+      "source_id": "HSE-ROBOTS-2026",
+      "source_url": "https://www.hse.gov.uk/robots.txt",
+      "retrieved_at": "2026-07-16T15:14:53Z",
+      "http_status": 200,
+      "media_type": "text/plain",
+      "body_bytes": 975,
+      "body_sha256": "1ee4f6b052e21d81c354359caddf6daf334aa7dddb8b01e39a1e71e834f43fdd",
+      "body_sha512": "74f254aa74c4c1fff61d4f9b95444812119d2a0fe26fd101bc2fe44c4f744efae4a671618681242418ac47e5cb4d38711124867605b7b7aeb02e50884385ded4",
+      "http_last_modified": "2026-02-23T14:41:30Z",
+      "use_scope": "access provenance only"
+    },
+    {
+      "source_id": "TNA-OGL-V3",
+      "source_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      "retrieved_at": "2026-07-16T15:15:20Z",
+      "http_status": 200,
+      "media_type": "text/html",
+      "body_bytes": 10450,
+      "body_sha256": "f5b2b9f2af63647cde889fa6c3508f5705925295b74912c68caa28dd37e64aa5",
+      "body_sha512": "640c599709cb045b7c7ae7bda6798dac5bc9d1c826a2e85fc1ac4ab5683b68f705937d1665f2a4ebb8b12b9186e57ffc276b846fa9484f8b0e69b498d416f3e2",
+      "use_scope": "licence identity and rights provenance only; entire body excluded from training"
+    },
+    {
+      "source_id": "TNA-ROBOTS-2026",
+      "source_url": "https://www.nationalarchives.gov.uk/robots.txt",
+      "retrieved_at": "2026-07-16T15:15:20Z",
+      "http_status": 200,
+      "media_type": "text/plain; charset=utf-8",
+      "body_bytes": 1322,
+      "body_sha256": "62d23c63718241a6b062af3fc717293e9597cc017fb0f30708b49d9c23f735f1",
+      "body_sha512": "6cf3bbc92238ccb72ffef3fb2a569e8b364e2f2848c5bc2e877d5880990fe8e275b872f6f9f78d2cb33eb6f03133bbe94b2b8cd99fae293a4e18f0c9681fe9aa",
+      "http_last_modified": "2026-07-15T10:04:31Z",
+      "use_scope": "access and AI content-signal provenance only"
+    }
+  ],
+  "displayed_date_resolution": {
+    "source_id": "HSE-TW-FAQ-2026",
+    "displayed_update_date": "2026-03-11",
+    "displayed_human_date": "11 March 2026",
+    "http_last_modified": "2026-06-24T18:40:57Z",
+    "decision": "Preserve the page's displayed 11 March 2026 content date. Treat the later HTTP Last-Modified header only as hosting provenance."
+  },
+  "rights": {
+    "license_spdx": "OGL-UK-3.0",
+    "hse_basis": "The HSE copyright page identifies website information as Crown copyright unless otherwise indicated, makes Crown material available under the Open Government Licence, supplies a preferred attribution, and warns that some images, illustrations, multimedia and logo uses are excluded or separately controlled.",
+    "ogl_basis": "The official National Archives page establishes Open Government Licence version 3.0 identity, reuse grant, attribution condition and exclusions. It is used only for rights provenance.",
+    "preferred_attribution": "Contains public sector information published by the Health and Safety Executive and licensed under the Open Government Licence.",
+    "hse_robots": {
+      "faq_route_disallowed": false,
+      "copyright_route_disallowed": false,
+      "ai_content_signal_present": false
+    },
+    "national_archives_robots": {
+      "ogl_route_disallowed": false,
+      "content_signal": {
+        "ai-train": "no",
+        "search": "yes",
+        "ai-input": "no"
+      },
+      "enforcement": "No National Archives licence-page wording or substantive body is admitted to CORPUS.md; the body is used only to make a rights decision recorded in metadata."
+    },
+    "training_text_scope": "eligible HSE Crown textual content from HSE-TW-FAQ-2026 only, plus required HSE attribution; every image, logo, third-party, linked and uncertain component excluded"
+  },
+  "audit": {
+    "source_bodies": 5,
+    "html_documents": 3,
+    "robots_documents": 2,
+    "material_surfaces": 49,
+    "faq_surfaces": 21,
+    "copyright_surfaces": 12,
+    "ogl_surfaces": 11,
+    "hse_robots_surfaces": 3,
+    "tna_robots_surfaces": 2,
+    "component_records": 30,
+    "retained_governance_components": 7,
+    "retained_identity_components": 1,
+    "controlled_exclusion_components": 17,
+    "rights_provenance_components": 3,
+    "access_provenance_components": 2,
+    "review_method": "All HTML reviewed manually from document head through template end; all eight FAQ questions and paragraphs reviewed individually; both robots bodies reviewed line by line; every material surface and controlled component dispositioned.",
+    "direct_training_ready": true
+  }
+}
