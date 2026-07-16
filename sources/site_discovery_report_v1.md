@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T11:54:13Z
-Latest batch: `discovery_batch_012`
+Latest review at: 2026-07-16T12:14:32Z
+Latest batch: `discovery_batch_013`
 
 ## Outcome
 
@@ -829,3 +829,81 @@ trainer, or unrelated source-corpus artifact was read. Public review used
 ordinary official, publisher, DOI, repository, PubMed, and license routes and
 did not bypass a login, paywall, challenge, crawler restriction, or missing
 license. Discovery wrote no reviewed source body into a training artifact.
+
+## Discovery batch 013 outcome
+
+`discovery_batch_013` reviewed 12 additional, nonduplicate candidates against
+their actual first-party body or official failure endpoint, exact license,
+methods, scale, redundancy, and cross-domain transfer risk. It produced 1
+`accept_high_priority`, 4 `accept_targeted_scope`, 5 `defer`, and 2 `reject`
+decisions. The five accepted candidates expand the canonical corpus queue from
+105 to 110 resources.
+
+The batch fills three important gaps. First, a public-domain NOAA report models
+where eight-strand construction produces contact pressure and relative movement,
+while explicitly limiting its own conclusions to qualitative, assumption-bound
+behavior. Second, two CC BY experiments make the fiber-to-yarn-to-rope scale
+problem concrete for jute yarn and prototype rayon rope. Third, bounded federal
+sources explain why an indoor wood connection or anchorage must be evaluated as
+part of its supporting structure and complete load path, rather than approved by
+appearance or a generic hardware label.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [NOAA eight-strand rope structural model](https://repository.library.noaa.gov/view/noaa/42461) | `accept_high_priority` | 40 | Public-domain MITSG 89-28 adds eight-strand geometry, strand and plied-yarn hierarchy, contact-pressure regions, relative motion, friction-limit assumptions, and lateral-contraction sensitivity. All 51 scanned pages require manual review; equations, values, design prescriptions, predictions, and all natural-rope or human-suspension transfer are excluded. |
+| [Jute-yarn mechanical uncertainty](https://pmc.ncbi.nlm.nih.gov/articles/PMC5459092/) | `accept_targeted_scope` | 33 | CC BY 4.0 evidence from 15 single-ply specimens shows why fiber measurements cannot stand in for yarn and why one natural-material batch needs explicit uncertainty. Numerical properties, possibility-distribution recipes, and transfer from one yarn batch to finished bondage rope are excluded. |
+| [Prototype rayon-rope marine degradation](https://www.sciencedirect.com/science/article/pii/S0025326X25003923) | `accept_targeted_scope` | 33 | CC BY 4.0 multiscale methods compare fiber, yarn, and eight-yarn braided prototype rope under biotic and abiotic seawater conditions. Supplier and coating caveats, five-replicate rope or yarn conditions, and request-only data remain visible; degradation values and care or retirement advice do not enter. |
+| [USFS Wood Handbook Chapter 8: Fastenings](https://research.fs.usda.gov/treesearch/62253) | `accept_targeted_scope` | 35 | A public-domain concepts digest can distinguish member, fastener, connection, and load path and preserve grain, moisture, geometry, condition, and failure-mode dependence. Every table, equation, load, sizing or installation rule, current-code claim, and DIY ceiling or hardpoint recipe is excluded. |
+| [OSHA rope-descent anchorage evaluation factors](https://www.osha.gov/laws-regs/standardinterpretations/2017-11-20) | `accept_targeted_scope` | 29 | Only the qualified-person factor list and separation of inspection, test, certification, maintenance, supervision, communication, and records enter a short public-domain digest. The historical enforcement memo is not current legal advice, an inspection checklist, or certification of any tree, ceiling, anchor, bondage rig, or human-suspension system. |
+
+### Deferred sources
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [NOAA marine rope design brief 42](https://repository.library.noaa.gov/view/noaa/46899) | 18 | The record supplies a public-domain label, MIT-T-86-008, and checksum, but its exact first-party PDF route returns 404 and no abstract exists. No mirror, cache, archive, title inference, or search snippet substitutes for body review. |
+| [Climbing-rope wear, fatigue, and heat study](https://www.sciencedirect.com/science/article/pii/S259012302502540X) | 37 | The directly relevant paper is CC BY-NC-ND 4.0 and makes high-consequence claims from one dynamic polyamide kernmantle rope type and bounded artificial exposures. Require permission and independent rope-engineering review; no results, thresholds, or visual-retirement rules enter. |
+| [Peripheral-nerve microcirculation review](https://pmc.ncbi.nlm.nih.gov/articles/PMC4145887/) | 24 | This older heterogeneous review is CC BY-NC-SA 3.0, heavily numeric, mixes nerve and experimental contexts, and overlaps stronger accepted clinical sources. Commercial and ShareAlike compatibility plus qualified clinical transfer review are unresolved. |
+| [Canadian Conservation Institute textile guide](https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/textiles-costumes.html) | 31 | The museum guide has useful fiber and deterioration vocabulary, but Canada.ca grants general reproduction only for noncommercial purposes and components have separate rights. Museum textile preservation cannot become bondage-rope cleaning, care, strength, or retirement guidance. |
+| [Synthetic-rope fatigue experimental methodology](https://www.sciencedirect.com/science/article/pii/S2452321624002543) | 38 | The full-scale bending-over-sheave or drum methodology could fill a cyclic-testing gap, but the exact publisher license is CC BY-NC-ND 4.0. Permission and qualified textile-rope review are required before any transformed method digest. |
+
+### Rejected sources
+
+| Source | Score | Reason |
+|---|---:|---|
+| [CDC wire-rope termination report](https://stacks.cdc.gov/view/cdc/206576) | 27 | The 152-page public-domain contractor report is non-peer-reviewed, metallic, mining-specific, numeric, and centered on industrial sockets, swaging, zinc or resin, and steel-wire fatigue. Its material system cannot inform textile knots, splices, bondage rope, or human suspension. |
+| [Dea Nexa personal rope advice](https://www.deanexa.com/jute-rope-maintenance-tips/) | 12 | Ordinary-copyright personal posts combine unsupported hygiene and material claims, flame and chemical hazards, subjective retirement advice, and a replicable DIY self-suspension setup framed as accessibility. Specificity and personal success are not reliable evidence. |
+
+### Batch 013 rights, evidence, and safety controls
+
+Exact article-level license links were followed rather than treating “open
+access” as permission. Two otherwise valuable fatigue studies are metadata-only
+because their publisher links resolve to CC BY-NC-ND, and the Canadian source is
+deferred because commercial transformation is not authorized. Public-domain
+labels did not rescue a missing body or an out-of-material mining report.
+
+Material hierarchy remains explicit: an elementary fiber is not a yarn, a yarn
+is not a laid or braided rope, a prototype rayon braid is not jute or hemp, an
+eight-strand marine model is not a three-strand natural rope, and steel wire is
+not textile fiber. Static endpoints remain separate from cyclic or dynamic
+behavior, abrasion, heat, moisture, aging, security, and service life.
+
+Structural material is similarly bounded. Wood fastener research and
+occupational rope-descent guidance explain variables and professional process;
+they do not tell a reader how to build, inspect, rate, or certify a ceiling,
+beam, joist, truss, tree, connector, anchor, hardpoint, upline, or human-
+suspension setup. The rejected personal blog is retained as a contamination
+quarantine, not as instructional evidence.
+
+### Batch 013 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery ledger,
+corpus queue, report, discovery tests, and first-class corpus registration work
+for independently completed source artifacts. No QA, training projection,
+manual review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe,
+trainer, or unrelated source-corpus artifact was read. Public review used
+ordinary official, publisher, DOI, repository, PubMed Central, and license
+routes. No login, paywall, challenge, crawler restriction, cache, archive, or
+third-party mirror was bypassed, and no reviewed page body was written to a
+training artifact during discovery.

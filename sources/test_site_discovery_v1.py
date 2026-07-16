@@ -1952,12 +1952,181 @@ class SourceCorpusContractTest(unittest.TestCase):
         }:
             self.assertIn(marker, friction_text)
 
+    def test_batch_013_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_013"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_high_priority": {
+                "noaa_eight_strand_rope_structural_model_1989",
+            },
+            "accept_targeted_scope": {
+                "mdpi_jute_yarn_uncertainty_2017",
+                "elsevier_rayon_rope_biodegradation_2025",
+                "usfs_wood_handbook_fastening_ch8_2021",
+                "osha_rds_anchor_evaluation_2017",
+            },
+            "defer": {
+                "noaa_marine_rope_design_brief_1986",
+                "elsevier_climbing_rope_degradation_2025",
+                "pmc_nerve_microcirculation_review_2013",
+                "canada_cci_textile_conservation",
+                "elsevier_synthetic_rope_fatigue_methodology_2024",
+            },
+            "reject": {
+                "cdc_wire_rope_terminations_1978",
+                "deanexa_high_risk_rope_advice",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(
+            queued_from_batch,
+            expected["accept_high_priority"] | expected["accept_targeted_scope"],
+        )
+
+    def test_batch_013_accepted_sources_preserve_scale_and_system_bounds(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "noaa_eight_strand_rope_structural_model_1989": {
+                "all 51 pages",
+                "two limiting friction assumptions",
+                "lateral-contraction-ratio sensitivity",
+                "qualitative-only conclusion",
+                "d791640336f80bfb98abe5863476bb366502ca26744b4a59fb4ee09422c3f9ade3c50e5c3471671cc4e0c98d913a0734b9652f1c718f63cd5c586ed78a6ed85e",
+            },
+            "mdpi_jute_yarn_uncertainty_2017": {
+                "15 specimens",
+                "fiber-versus-yarn comparison",
+                "one yarn batch",
+                "pmcid pmc5459092",
+                "finished jute rope",
+            },
+            "elsevier_rayon_rope_biodegradation_2025": {
+                "elementary-fiber versus yarn versus eight-yarn braided-rope",
+                "unreported-coating caveat",
+                "request-only data",
+                "seawater protocol as a care recipe",
+                "cc by 4.0",
+            },
+            "usfs_wood_handbook_fastening_ch8_2021": {
+                "structural member, fastener, connection and complete load path",
+                "along-grain versus across-grain",
+                "qualified local professional",
+                "diy ceiling or hardpoint recipe",
+                "public domain",
+            },
+            "osha_rds_anchor_evaluation_2017": {
+                "qualified-person determination",
+                "known use and shock-load history",
+                "deciding not to proceed is an option",
+                "not current legal advice and not an inspection checklist",
+                "never certifies",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertTrue(source["decision"].startswith("accept_"))
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_013_rights_and_contamination_quarantines_are_explicit(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        deferred_markers = {
+            "noaa_marine_rope_design_brief_1986": {
+                "returns http 404",
+                "no cache, archive, mirror",
+                "22c85311e08d83d5b44900dc9f0a3dbe4731cba23842e21a70ee3dc3341b3b00",
+                "reference_only_missing_official_body",
+            },
+            "elsevier_climbing_rope_degradation_2025": {
+                "cc by-nc-nd 4.0",
+                "one dynamic 9.8 mm polyamide-6 kernmantle rope type",
+                "visual-retirement rules",
+                "qualified textile-rope engineering review",
+            },
+            "pmc_nerve_microcirculation_review_2013": {
+                "cc by-nc-sa 3.0",
+                "sharealike",
+                "animal compression",
+                "never treat",
+            },
+            "canada_cci_textile_conservation": {
+                "noncommercial reproduction",
+                "museum fabric handling",
+                "commercial derivative and model-training permission",
+                "cannot be converted into rope care",
+            },
+            "elsevier_synthetic_rope_fatigue_methodology_2024": {
+                "cc by-nc-nd 4.0",
+                "full-scale test-bench",
+                "periodic bending-over-pulley-or-drum",
+                "qualified textile-rope engineering review",
+            },
+        }
+        for candidate_id, required in deferred_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        rejection_markers = {
+            "cdc_wire_rope_terminations_1978": {
+                "non-peer-reviewed contractor",
+                "metallic mining",
+                "material-system mismatch",
+                "rejected_out_of_material_high_consequence_numeric_scope",
+            },
+            "deanexa_high_risk_rope_advice": {
+                "open-flame defuzzing",
+                "replicable diy human-suspension recipe",
+                "personal-experience",
+                "rejected_unsupported_personal_high_risk_instruction",
+            },
+        }
+        for candidate_id, required in rejection_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "reject")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_012`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_013`", self.report)
 
 
 if __name__ == "__main__":
