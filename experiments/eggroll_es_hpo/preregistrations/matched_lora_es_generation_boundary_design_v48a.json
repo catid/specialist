@@ -1,0 +1,164 @@
+{
+  "access_contract": {
+    "benchmark_path_authorized": false,
+    "future_runtime_may_open_only": [
+      "content-addressed train rows",
+      "content-free train-only conflict-unit membership",
+      "content-free four-actor base generation evidence",
+      "sealed train-only prose and QA proxy anchors already used by V43I"
+    ],
+    "holdout_or_heldout_path_authorized": false,
+    "ood_path_authorized": false,
+    "protected_semantics_opened_during_design": false,
+    "runtime_paths_sealed_now": [],
+    "shadow_path_authorized": false,
+    "train_dataset_file_sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "v46d_or_any_holdout_artifact_bound": false
+  },
+  "content_sha256_before_self_field": "9055fd9817bee57f68264c4057e9d0c87a4e13a8d50c1eae4749056a4002aba3",
+  "created_at_utc": "2026-07-16T01:39:08.685913+00:00",
+  "current_fixed_holdout_cycle_eligible": false,
+  "fragile_subset_protocol": {
+    "equal_weight_per_selected_conflict_unit": 0.015625,
+    "maximum_rows_per_selected_conflict_unit": 1,
+    "naive_row_oversampling": false,
+    "priority_meaning": {
+      "exact": "stable exact answer vulnerable to loss",
+      "partial": "stable nonzero but non-exact generated answer",
+      "unstable": "actor prediction or numeric generation disagreement",
+      "zero": "stable zero-F1 answer with improvement headroom"
+    },
+    "selected_conflict_units": 64,
+    "selected_rows": 64,
+    "selection_seed": "v48a-train-generation-boundary-units-20260716",
+    "source_conflict_units": 208,
+    "source_train_rows": 448,
+    "stratum_cycle": [
+      "unstable",
+      "partial",
+      "unstable",
+      "partial",
+      "exact",
+      "zero"
+    ],
+    "teacher_forced_domain_rows_duplicated": false,
+    "teacher_forced_domain_weights_changed": false
+  },
+  "future_seal_requirements": [
+    "prove 448-row/208-unit train membership and row identities",
+    "prove all four base-evidence actor slots per row and seal numeric hashes",
+    "build and seal the deterministic 64-unit subset",
+    "bind integrated runtime, worker, source, dataset, membership, evidence, and subset hashes",
+    "dry-run with zero protected accesses",
+    "retain V43I exact restoration, reliability, precommit, and candidate gates"
+  ],
+  "gpu_launch_authorized": false,
+  "implementation_bindings": {
+    "design_builder": "edc6e5866140b276791eea8b640c9ba3dc492d105964fcce07fdf2c9e11e1cae",
+    "design_tests": "986f8cd1ffe72a677dab3566d27c2cb82ae047080744c86096535b05763bcf3a",
+    "generation_boundary_runtime": "b5aaa9f41d07b1f4531675bba6cd96d5f81a718308d32a0ec4902ac81e169982",
+    "generation_boundary_tests": "84656800f79ed01098b0c426a6a428c15ded464ef14143de36f9103f38290e09",
+    "matched_initial_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "matched_initial_manifest": "a2fa79e6ac06f75743d3fee8f5c0b1aabe6bb83b52b05910ed6460438e2640a2",
+    "matched_initial_weights": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "train_dataset": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "v43i_fused_anchor_runtime": "9c9d0cbe860080dc31ce747ae27996985668c61daf7b6d8ed10232e9351255e1",
+    "v43i_multi_anchor_projection": "2b1c17096831ab4636109e40980e54ccdf4712f95adb0ec250051c34f710ad04",
+    "v43i_runtime": "67c4da05a26eaf990b2710afbffe6d403825b576cd384f87f3b818af199c1555",
+    "v43m_f1_projection_runtime": "2742c460fd64d1480f7c13d55a2b5b33d364e0b48edc8a81b54962eb7c834881",
+    "v43m_identity_noop_evidence": "f08d9730e6f5b8294fe1d9486bbf17ed5c1d193cf6913e8227811c937f20f8e3"
+  },
+  "objective_protocol": {
+    "existing_full_candidate_generation_gate_retained": true,
+    "fail_closed_if_fragile_f1_population_spread_is_zero": true,
+    "fragile_generated_f1_is_direct_primary_objective": true,
+    "fragile_generated_f1_is_not_only_a_halfspace": true,
+    "primary": "equal average of unit-norm domain and fragile generated-F1 centered-rank coefficient vectors",
+    "simultaneous_projection_anchors": [
+      "domain",
+      "fragile_generation_f1",
+      "prose_lm",
+      "qa_answer_logprob"
+    ],
+    "trust_region_norm_ratio": 0.5
+  },
+  "population_protocol": {
+    "actors_per_signed_state": 4,
+    "common_random_plan_receipts_required": 64,
+    "existing_proxy_generation_completions": 2048,
+    "existing_requests_per_actor_state": 544,
+    "extra_fragile_generation_completions": 4096,
+    "extra_worst_case_decode_tokens": 262144,
+    "generation_decode_work_multiplier_vs_v43i": 3.0,
+    "new_requests_per_actor_state": 608,
+    "population_size": 8,
+    "request_count_increase_fraction": 0.11764705882352944,
+    "same_selected_items_order_and_sampling_for_all_states": true,
+    "signed_actor_states": 64,
+    "signs": [
+      "plus",
+      "minus"
+    ]
+  },
+  "problem_audit": {
+    "rejected_candidate_identity_sha256": "291027e22afc08a106e44675c73954ca5d4b0c2f1a2f5f946a82cc738748dfb3",
+    "v43i_fused_requests_per_signed_actor_state": 544,
+    "v43i_greedy_generation_used_for_population_coefficients": false,
+    "v43i_greedy_generation_used_only_for_candidate_gate": true,
+    "v43i_population_coefficient_objectives": [
+      "domain_equal_unit_answer_logprob",
+      "prose_lm",
+      "qa_answer_logprob"
+    ],
+    "v43i_population_proxy_generation_documents": 32,
+    "v43i_population_train_rows_teacher_forced": 448,
+    "v43m_coefficients_changed": false,
+    "v43m_f1_halfspace_nonbinding": true,
+    "v43m_noop_content_sha256": "b7d89edda779846efdb3ee9c8b0ac3dcb00953b751fe8de9654ad0b977ec9f91",
+    "v43m_noop_file_sha256": "f08d9730e6f5b8294fe1d9486bbf17ed5c1d193cf6913e8227811c937f20f8e3"
+  },
+  "protected_semantics_opened": false,
+  "schema": "matched-lora-es-generation-boundary-design-v48a",
+  "shadow_ood_holdout_or_benchmark_opened": false,
+  "status": "sealed_cpu_design_pending_train_only_base_evidence",
+  "train_only_base_evidence_protocol": {
+    "actors": 4,
+    "generation_params": {
+      "detokenize": true,
+      "max_tokens": 64,
+      "n": 1,
+      "seed": 2026071543,
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "greedy_completions": 1792,
+    "matched_master_sha256": "dfb8ef8981cd4a21bd8d342353fc3d9c84c5d4759c38973e1528245f2baff192",
+    "question_answer_or_generation_text_persisted": false,
+    "retained_fields": [
+      "row_sha256",
+      "actor_rank",
+      "prediction_sha256",
+      "f1",
+      "exact",
+      "nonzero"
+    ],
+    "rows": 448,
+    "same_prompt_order_and_sampling_on_all_actors": true,
+    "selection_is_never_recomputed_per_member_or_sign": true,
+    "selection_occurs_once_before_any_population_state": true,
+    "state": "exact matched V41A initialization before population"
+  },
+  "variance_and_bias": {
+    "base_only_preselection_avoids_member_adaptive_selection_bias": true,
+    "common_random_items_cancel_item_difficulty_in_antithetic_comparisons": true,
+    "downstream_full_candidate_gate_remains_required": true,
+    "equal_conflict_unit_weight_prevents_large_documents_dominating": true,
+    "fragility_selection_changes_objective_target_and_is_not_an_unbiased_full_train_f1_estimator": true
+  },
+  "why_not_launchable_yet": [
+    "train-only four-actor greedy base evidence has not been generated",
+    "content-free train conflict-unit membership artifact is not sealed",
+    "the resulting 64-unit request-order artifact is not sealed",
+    "the integrated V43I-derived GPU runtime is not yet hash-bound"
+  ]
+}
