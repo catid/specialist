@@ -1,0 +1,95 @@
+{
+  "schema": "site-corpus-manifest@1.0",
+  "package_id": "coir_ropes_french_polynesia_2024",
+  "title": "Evidence and limits for coir fibers and finished ropes in French Polynesian pearl farming",
+  "corpus_type": "source-attributed-evidence-and-limitations-digest",
+  "source_scope": "One checksum-bound official Ifremer version-of-record PDF plus DOI CSL metadata for identity and license cross-checking",
+  "evidence_scope": "French Polynesian pearl-farming context; individual coir fiber versus constructed rope; dry versus saturated state; construction quality and wet retention; fiber-to-rope prediction limit; study-specific retting result; in-situ-aging gap; production-and-transport life-cycle boundary; funding-statement absence; interests and data disclosures",
+  "excluded_scope": "All values, recipes, methods, figures, tables, images, products, ratings, selections, life-cycle results, cited-source bodies, and transfer to other materials, care, load-bearing, or human applications",
+  "rights_status": "cc-by-4.0; attribution-license-change-and-component-boundaries-recorded",
+  "license": "CC-BY-4.0",
+  "license_uri": "http://creativecommons.org/licenses/by/4.0/",
+  "source_bodies_redistributed": false,
+  "direct_training_ready": true,
+  "created_utc": "2026-07-16",
+  "token_count_method": "Unicode regex lexical tokens: \\w+(?:[’'-]\\w+)*|[^\\w\\s]",
+  "manual_audit": {
+    "source_identity": true,
+    "rights": true,
+    "all_pdf_pages_text_screened": true,
+    "all_pdf_pages_rendered_and_visually_inspected": true,
+    "independent_component_audit": true,
+    "page_10_column_interleaving_resolved": true,
+    "all_figures_tables_raster_objects_and_references_reconciled": true,
+    "all_retained_claims_manually_rewritten": true,
+    "existing_corpus_bodies_inspected": false,
+    "qa_trainer_eval_holdout_ood_probe_or_experiment_artifacts_inspected": false
+  },
+  "record_schemas": {
+    "sources.jsonl": "manual-source-provenance@1.0",
+    "surfaces.jsonl": "manual-source-surface-disposition@1.0",
+    "dispositions.jsonl": "manual-pdf-page-disposition@1.0",
+    "components.jsonl": "manual-component-disposition@1.0"
+  },
+  "statistics": {
+    "official_source_records": 2,
+    "pdf_bytes": 14365672,
+    "doi_metadata_bytes": 16952,
+    "pdf_pages_manually_reviewed": 11,
+    "pdf_pages_partially_retained": 10,
+    "pdf_pages_fully_excluded": 1,
+    "source_surfaces_manually_decided": 18,
+    "component_records": 32,
+    "figures_excluded": 15,
+    "tables_excluded": 6,
+    "embedded_raster_objects_excluded": 7,
+    "reference_entries_excluded": 43,
+    "cited_source_bodies_acquired": 0,
+    "novelty_phrases_with_zero_allowed_surface_matches": 7,
+    "corpus_bytes": 7296,
+    "corpus_words": 954,
+    "corpus_lexical_tokens": 1254,
+    "corpus_claim_paragraphs": 19,
+    "corpus_evidence_paragraphs": 15,
+    "corpus_boundary_paragraphs": 4,
+    "corpus_terminal_citations": 19
+  },
+  "artifacts": {
+    "CORPUS.md": {
+      "bytes": 7296,
+      "sha256": "3cc2a6007de29f2e8d8f6eda186fa75f4ce7a1064fb0a86c8e84b55ba89f7948"
+    },
+    "README.md": {
+      "bytes": 3336,
+      "sha256": "1688e9439dd3e62e9e3b7a4be502cd36d211e105cb6c0dea52c45b21f14b5d70"
+    },
+    "REPORT.md": {
+      "bytes": 8716,
+      "sha256": "3c73980c9a5a599736f1030ae95ee9b02a23c82fcab23b72bcefc4b674173b30"
+    },
+    "components.jsonl": {
+      "bytes": 10994,
+      "sha256": "e683a67eca3b72d534f5939dd35f92eedeedf65785159b58e69ca74666941d19"
+    },
+    "dispositions.jsonl": {
+      "bytes": 6018,
+      "sha256": "a0600b883ebc3281fbeaf5f580703a82297f6e5dacac1d0564c94e962a1fc16a"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 6626,
+      "sha256": "40d520f2bc8bfc690a934e6a25e9412953db359915a848da16c30d823c06100e"
+    },
+    "sources.jsonl": {
+      "bytes": 2426,
+      "sha256": "b146dbc52f78f94a6e7868abca12445aed6c8599f831b918798718ba1a63ab32"
+    },
+    "surfaces.jsonl": {
+      "bytes": 8052,
+      "sha256": "775aae189335e1b087e2b5825721ee6285de6ed1e6f5c5f3721289dbc2f07cfd"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 20326,
+      "sha256": "9176fa672dfe730f93b1a19180b0772c5c168032d58762c6fa1bde88eab83899"
+    }
+  }
+}
