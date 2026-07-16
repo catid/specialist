@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T09:17:20Z
-Latest batch: `discovery_batch_006`
+Latest review at: 2026-07-16T09:43:06Z
+Latest batch: `discovery_batch_007`
 
 ## Outcome
 
@@ -374,3 +374,72 @@ corpus artifact was read. Public-web review used ordinary public routes,
 respected current robots and rightsholder terms, and did not bypass a login,
 purchase, challenge, EULA, missing body, license, or crawler restriction. No
 reviewed page body was copied into a training artifact during discovery.
+
+## Discovery batch 007 outcome
+
+`discovery_batch_007` manually reviewed 11 additional candidates against their
+actual public body, authoritative metadata, current robots policy, and governing
+reuse terms. It produced 2 `accept_high_priority`, 2
+`accept_targeted_scope`, 4 `defer`, and 3 `reject` decisions. The four accepted
+candidates expand the canonical corpus queue from 77 to 81 resources.
+
+This batch fills three especially useful gaps: a current clinical review of
+entrapment-neuropathy mechanisms and diagnostic limits, a current federal
+hazard-tree guide that explicitly preserves prediction uncertainty, and exact
+National Diet Library authority identities for recurring Japanese people and a
+publication title. A short NPS curriculum is accepted only as an assessment
+map. It is not treated as rope instruction or human-suspension certification.
+
+### Accepted sources
+
+| Source | Decision | Score | Distinct value and extraction boundary |
+|---|---|---:|---|
+| [USDA Region 5 Hazard Tree Identification and Mitigation](https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf) | `accept_high_priority` | 41 | Current official framework for failure, defects, targets, inspection context, roots, leans, decay, site disturbance, multiple defects, weather, and monitoring. Preserve its statement that even excellent care cannot predict all failures or eliminate risk; capture general screening concepts only, audit credited components, and never certify a tree, branch, anchor, load, or human-suspension setup. |
+| [Entrapment neuropathies contemporary review](https://europepmc.org/article/MED/32766466) | `accept_high_priority` | 41 | CC BY 4.0 clinical review, bound to PMCID PMC7382548, PMID 32766466, and DOI 10.1097/PR9.0000000000000829 through the authorized EMBL-EBI JATS route. Preserve human-versus-preclinical evidence, heterogeneous mechanisms and presentation, assessment limits, and uncertainty; derive no safe rope pressure, placement, timing, prognosis, or treatment. |
+| [Web NDL Authorities rope-history identities](https://id.ndl.go.jp/auth/ndla/) | `accept_targeted_scope` | 22 | Rights-clear structured identity fields for Seiu Ito (00023065), Chimuo Nureki (00731050), and the *Kitan Club* uniform title (034485143). Capture exact fields and dates with NDL attribution, not biography, lineage, teaching relationships, or publication roles. |
+| [NPS New River Gorge climbing-guide curriculum](https://www.nps.gov/neri/planyourvisit/climbing-guide-certification-guidelines.htm) | `accept_targeted_scope` | 23 | Compact professional competency map covering named knot families, backup instruction, anchor assessment, redundancy and load distribution, belaying, rappelling, assistance, pulley raising, inspection, environmental hazards, and measured proficiency. It remains specific to an old park permit-equivalency context and supplies no construction steps or certification transfer. |
+
+### Deferred sources
+
+| Source | Decision | Score | Reason |
+|---|---|---:|---|
+| [Army TC 21-24 Tower and Helicopter Rappelling](https://rdl.train.army.mil/catalog-ws/view/100.ATSC/718741EE-0DC1-4458-86AA-43F7DEA0F451-1740684333183/TC21_24.pdf) | `defer` | 38 | Official indexing identifies the current 25 February 2025 public-release edition and useful roles, checks, communication, inspection, and emergency workflow, but the RDL host did not resolve. No mirror was used; retry the official route and never directly transfer military rappelling into bondage. |
+| [Live Performance Australia HG06 Performer Hazards](https://liveperformance.com.au/wp-content/uploads/2019/03/HG06-Performers-Sept-2024.pdf) | `defer` | 35 | The September 2024 guide has strong lifecycle risk-assessment, engineered-point, cross-check, rescue-plan, stop, rehearsal, and touring practices. LPA terms reserve rights and limit reuse to personal/internal informational use, so derivative corpus and training permission must be obtained first. |
+| [Ritsumeikan Murakami/*Kitan Club* paper](https://ritsumei.repo.nii.ac.jp/records/2005134) | `defer` | 32 | Unique source-critical postwar intellectual history, but the file row displays no license and university policy requires permission for reproduction, modification, or distribution. Retain DOI/metadata only and do not enter robots-disallowed API, OAI, export, or data routes. |
+| [Shibari kinbaku: el bondage entra en escena](https://sedici.unlp.edu.ar/handle/10915/174364?show=full) | `defer` | 23 | Peer-reviewed Spanish-language analysis of two La Plata performance/teaching experiences adds a valuable local perspective, but CC BY-NC-SA is not assumed compatible with the intended use. Retain metadata and seek commercial/derivative permission; do not promote its broad historical framing into technical or lineage authority. |
+
+### Rejected sources
+
+| Source | Decision | Score | Reason |
+|---|---|---:|---|
+| [OpenStax Anatomy and Physiology](https://openstax.org/books/anatomy-and-physiology/pages/13-4-the-peripheral-nervous-system) | `reject` | 34 | Book pages explicitly prohibit LLM or generative-AI training without permission, and robots disallow GPTBot from `/books/`. This use restriction overrides the otherwise attractive CC license for this corpus; no body, mirror, export, or older copy may be used. |
+| [Army TM 3-34.86 Rigging Techniques, Procedures, and Applications](https://rdl.train.army.mil/catalog-ws/view/100.ATSC/1676C9DD-7ADF-4E41-9130-6BCEE7BBC5A9-1343151324082/tm3_34x86.pdf) | `reject` | 23 | Its own front matter says the 2012 conversion is identical to 1995 content, integrates no later doctrine, and may cite obsolete sources. It is also currently unreachable, heavily duplicates the accepted 2024 USFS rigging corpus, and includes hazardous improvised structures. |
+| [RopeWiki Riggings](https://ropewiki.com/Category%3ARiggings) | `reject` | 20 | Anonymous CC BY-NC-SA canyoneering pages cover FiddleStick/toggle, retrievable, releasable, ghosting, block, and other high-consequence systems. Stronger accepted sources exist, and direct transfer into bondage, performer flying, hardpoints, human suspension, or rescue would be unsafe. |
+
+### Batch 007 rights, evidence, and safety controls
+
+Permissive presentation did not override explicit use limits. OpenStax's AI ban
+caused rejection despite its Creative Commons textbook license. LPA,
+Ritsumeikan, and SEDICI remain citation-and-permission leads, not body-text
+sources. The two Army manuals were not fetched from mirrors when the official
+host failed: the current circular is deferred for a clean official retry, while
+the explicitly unchanged 1995 rigging manual is rejected as obsolete and
+duplicative.
+
+The accepted safety sources preserve domain boundaries. The clinical review is
+not rope-specific and cannot supply a safe pressure or time threshold. The
+tree report evaluates potential failure and targets, not load-rated anchors;
+tree health is not hardpoint capacity. The NPS page and NDL records provide a
+curriculum map and authority fields respectively, not technique, biography,
+lineage proof, certification, or QA trivia.
+
+### Batch 007 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery ledger,
+corpus queue, report, and discovery tests. No QA, training projection, manual
+review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe, or source
+corpus artifact was read. Public-web review used ordinary public pages and the
+authorized EMBL-EBI API, respected current robots, crawl delays, licenses, and
+rightsholder terms, and did not bypass a login, purchase, challenge, missing
+body, license, crawler restriction, or unreachable host. No reviewed page body
+was copied into a training artifact during discovery.

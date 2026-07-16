@@ -352,6 +352,12 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "pmid": "34383118",
                 "stale_pmids": set(),
             },
+            "europepmc_entrapment_neuropathy_review": {
+                "pmcid": "PMC7382548",
+                "doi": "10.1097/PR9.0000000000000829",
+                "pmid": "32766466",
+                "stale_pmids": set(),
+            },
         }
         for candidate_id, identifiers in expected.items():
             row = by_id[candidate_id]
@@ -391,6 +397,7 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "https://europepmc.org/article/MED/37384078",
                 "https://europepmc.org/article/MED/38071341",
                 "https://europepmc.org/article/MED/34383118",
+                "https://europepmc.org/article/MED/32766466",
             },
         )
 
@@ -923,12 +930,200 @@ class SourceCorpusContractTest(unittest.TestCase):
             self.assertIn(marker, museum_text)
         self.assertIn("do not label ito the father", museum_text)
 
+    def test_batch_007_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_007"
+        }
+        self.assertEqual(len(batch), 11)
+        expected = {
+            "accept_high_priority": {
+                "usfs_region5_hazard_tree_2022",
+                "europepmc_entrapment_neuropathy_review",
+            },
+            "accept_targeted_scope": {
+                "ndl_rope_history_authority_data",
+                "nps_new_river_climbing_guide_curriculum",
+            },
+            "defer": {
+                "army_tc_21_24_2025_rappelling",
+                "live_performance_australia_performer_hazards_2024",
+                "sedici_shibari_stage_paper",
+                "ritsumeikan_kitan_murakami_paper",
+            },
+            "reject": {
+                "openstax_anatomy_physiology",
+                "ropewiki_riggings",
+                "army_tm_3_34_86_rigging",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(
+            queued_from_batch,
+            expected["accept_high_priority"] | expected["accept_targeted_scope"],
+        )
+
+    def test_batch_007_rights_and_access_blocks_are_explicit(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        openstax = by_id["openstax_anatomy_physiology"]
+        self.assertEqual(openstax["decision"], "reject")
+        self.assertFalse(openstax["accessible"])
+        openstax_text = (
+            openstax["access_notes"] + " " + openstax["recommended_crawl_scope"]
+        ).lower()
+        for marker in {
+            "large language models",
+            "gptbot",
+            "/books/",
+            "mirror",
+            "permission",
+        }:
+            self.assertIn(marker, openstax_text)
+
+        lpa = by_id["live_performance_australia_performer_hazards_2024"]
+        self.assertEqual(lpa["decision"], "defer")
+        lpa_text = (lpa["access_notes"] + " " + lpa["recommended_crawl_scope"]).lower()
+        for marker in {
+            "personal or internal corporate",
+            "commercial gain",
+            "written permission",
+            "five-minute",
+        }:
+            self.assertIn(marker, lpa_text)
+
+        sedici = by_id["sedici_shibari_stage_paper"]
+        self.assertEqual(sedici["decision"], "defer")
+        sedici_text = (
+            sedici["access_notes"] + " " + sedici["recommended_crawl_scope"]
+        ).lower()
+        for marker in {"cc by-nc-sa 4.0", "crawl-delay 8", "written commercial"}:
+            self.assertIn(marker, sedici_text)
+
+        rits = by_id["ritsumeikan_kitan_murakami_paper"]
+        self.assertEqual(rits["decision"], "defer")
+        rits_text = (rits["access_notes"] + " " + rits["recommended_crawl_scope"]).lower()
+        for marker in {"no reuse license", "30-second", "api", "oai", "permission"}:
+            self.assertIn(marker, rits_text)
+
+        for candidate_id in {
+            "army_tc_21_24_2025_rappelling",
+            "army_tm_3_34_86_rigging",
+        }:
+            army = by_id[candidate_id]
+            self.assertFalse(army["accessible"])
+            self.assertIn("mirror", army["recommended_crawl_scope"].lower())
+
+    def test_batch_007_accepted_scopes_preserve_nontransfer_limits(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        tree = by_id["usfs_region5_hazard_tree_2022"]
+        self.assertEqual(tree["decision"], "accept_high_priority")
+        tree_scope = tree["recommended_crawl_scope"].lower()
+        for marker in {
+            "no inspection predicts all failures",
+            "certified arborist",
+            "root lifting",
+            "uncompensated lean",
+            "tree health establishes anchor capacity",
+            "bondage setup",
+        }:
+            self.assertIn(marker, tree_scope)
+
+        nerve = by_id["europepmc_entrapment_neuropathy_review"]
+        self.assertEqual(nerve["decision"], "accept_high_priority")
+        nerve_text = (
+            nerve["access_notes"] + " " + nerve["recommended_crawl_scope"]
+        ).lower()
+        for marker in {
+            "pmc7382548",
+            "32766466",
+            "10.1097/pr9.0000000000000829",
+            "cc by 4.0",
+            "preclinical models",
+            "safe rope pressure",
+            "qualified medical evaluation",
+        }:
+            self.assertIn(marker, nerve_text)
+
+        ndl = by_id["ndl_rope_history_authority_data"]
+        self.assertEqual(ndl["decision"], "accept_targeted_scope")
+        ndl_text = (ndl["access_notes"] + " " + ndl["recommended_crawl_scope"]).lower()
+        for marker in {
+            "00023065",
+            "00731050",
+            "034485143",
+            "web ndl authorities",
+            "personal-information",
+            "teaching relationships",
+        }:
+            self.assertIn(marker, ndl_text)
+
+        nps = by_id["nps_new_river_climbing_guide_curriculum"]
+        self.assertEqual(nps["decision"], "accept_targeted_scope")
+        nps_scope = nps["recommended_crawl_scope"].lower()
+        for marker in {
+            "24-hour minimum plus proficiency exam",
+            "redundancy and load distribution",
+            "natural-versus-artificial anchors",
+            "do not claim the page is current amga curriculum",
+            "human suspension",
+        }:
+            self.assertIn(marker, nps_scope)
+
+    def test_batch_007_rejects_obsolete_or_unsafe_domain_transfer(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        ropewiki = by_id["ropewiki_riggings"]
+        self.assertEqual(ropewiki["decision"], "reject")
+        ropewiki_text = (
+            ropewiki["access_notes"] + " " + ropewiki["recommended_crawl_scope"]
+        ).lower()
+        for marker in {
+            "cc by-nc-sa",
+            "fiddlestick",
+            "retrievable",
+            "canyoneering",
+            "human suspension",
+            "crawl-delay",
+        }:
+            self.assertIn(marker, ropewiki_text)
+
+        manual = by_id["army_tm_3_34_86_rigging"]
+        self.assertEqual(manual["decision"], "reject")
+        manual_text = (
+            manual["access_notes"] + " " + manual["recommended_crawl_scope"]
+        ).lower()
+        for marker in {
+            "identical to superseded fm 5-125",
+            "no doctrine changes",
+            "1995",
+            "improvised lifting structures",
+            "human suspension",
+        }:
+            self.assertIn(marker, manual_text)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_006`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_007`", self.report)
 
 
 if __name__ == "__main__":

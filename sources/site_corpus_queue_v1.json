@@ -1093,6 +1093,64 @@
         "aesthetics_performance",
         "terminology_cultural_context"
       ]
+    },
+    {
+      "resource_id": "ndl_rope_history_authority_data",
+      "url": "https://id.ndl.go.jp/auth/ndla/",
+      "scope": "Capture only the exact structured authority fields for NDL IDs 00023065, 00731050, and 034485143 through their public HTML or JSON-LD records; record retrieval date, record creation/update dates, source fields, and explicit attribution to Web NDL Authorities. Preserve Japanese script, katakana transcription, romanization, authorized-versus-variant or related-name status, personal-information caution, and the distinction between a person authority and the Kitan Club uniform title. Do not expand into bulk unrelated NDL data, external VIAF/Wikidata/Wikipedia content, book bodies, biography, teaching relationships, publication roles, kinbaku lineage, or claims that an authority record does not make.",
+      "status": "pending",
+      "discovery_candidate_id": "ndl_rope_history_authority_data",
+      "discovery_priority_score": 22,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "terminology_cultural_context",
+        "teaching_evaluation"
+      ]
+    },
+    {
+      "resource_id": "usfs_region5_hazard_tree_2022",
+      "url": "https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf",
+      "scope": "Create a source-attributed digest of general tree-risk concepts: failure/defect/hazard/target distinctions; inspection context and frequency; cracks, dead wood or tops, decay and cankers, root damage or disease, recent uncompensated lean versus corrected lean, poor architecture, multiple defects, target exposure, soil disturbance or compaction, erosion, fire, flooding or saturation, construction and traffic, root lifting, soil cracks or mounding, monitoring, weather, uncertainty, and referral to a certified arborist where expertise is absent. Preserve the Region 5/California scope and the explicit statement that no inspection predicts all failures or eliminates risk. Exclude administrative forms, mitigation or cutting instructions, species/disease detail unless independently useful, and unreviewed images or third-party material. Do not turn the report's rating system into a universal score, certify any tree, branch, sling, anchor, hardpoint, suspension load, or bondage setup, or imply that tree health establishes anchor capacity; require both qualified arboricultural assessment and qualified rigging/structural judgment.",
+      "status": "pending",
+      "discovery_candidate_id": "usfs_region5_hazard_tree_2022",
+      "discovery_priority_score": 41,
+      "supported_taxonomy_categories": [
+        "uplines_suspension_hardpoints",
+        "anatomy_injury_prevention",
+        "rigging_mechanics",
+        "emergency_procedures",
+        "teaching_evaluation"
+      ]
+    },
+    {
+      "resource_id": "europepmc_entrapment_neuropathy_review",
+      "url": "https://europepmc.org/article/MED/32766466",
+      "scope": "Capture only the CC BY 4.0 JATS through the EMBL-EBI Europe PMC REST endpoint and bind PMCID PMC7382548, PMID 32766466, and DOI 10.1097/PR9.0000000000000829. Preserve review design, evidence type, distinctions between preclinical models and human entrapment, heterogeneity of mechanisms and presentation, ischemia, edema and blood-nerve barrier change, fibrosis, demyelination and nodal change, axonal transport, neuroinflammation, central mechanisms, symptom-versus-sign-versus-diagnosis distinctions, test limitations, and uncertainty. Explain that the paper primarily concerns common clinical entrapment disorders, not rope bondage. Do not convert animal or disease pressure observations into safe rope pressure, placement, duration, release timing, recovery, prognosis, or treatment advice; exclude medication and procedural management as self-care instruction, and direct suspected rope-related neurologic symptoms to qualified medical evaluation.",
+      "status": "pending",
+      "discovery_candidate_id": "europepmc_entrapment_neuropathy_review",
+      "discovery_priority_score": 41,
+      "supported_taxonomy_categories": [
+        "anatomy_injury_prevention",
+        "bottoming_skills",
+        "emergency_procedures",
+        "teaching_evaluation"
+      ]
+    },
+    {
+      "resource_id": "nps_new_river_climbing_guide_curriculum",
+      "url": "https://www.nps.gov/neri/planyourvisit/climbing-guide-certification-guidelines.htm",
+      "scope": "Create a compact source-attributed curriculum map preserving its specific New River Gorge permit-equivalency context, 24-hour minimum plus proficiency exam, named knot families, backup instruction, belay-device categories, anchor position and assessment, redundancy and load distribution, natural-versus-artificial anchors, connector loading awareness, backup belays, rappelling, ascending to assist, pulley raising, equipment inspection/replacement, and environmental hazards. Exclude the photograph, marks, examples that function as device endorsement, and all construction or operational steps. Do not claim the page is current AMGA curriculum, certify any person, knot, anchor, hardpoint, tree, rescue system, bondage setup, or human suspension, or directly transfer climbing standards; use it only to inform pedagogy and the need for instruction plus demonstrated assessment.",
+      "status": "pending",
+      "discovery_candidate_id": "nps_new_river_climbing_guide_curriculum",
+      "discovery_priority_score": 23,
+      "supported_taxonomy_categories": [
+        "ties_knots_frictions",
+        "uplines_suspension_hardpoints",
+        "rigging_mechanics",
+        "emergency_procedures",
+        "rope_handling",
+        "teaching_evaluation"
+      ]
     }
   ]
 }
