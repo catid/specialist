@@ -14,6 +14,10 @@ CORPUS_QUEUE = ROOT / "site_corpus_queue_v1.json"
 DISCOVERY_QUEUE = ROOT / "site_discovery_queue_v1.json"
 CANDIDATE_LEDGER = ROOT / "site_discovery_candidates_v1.jsonl"
 DISCOVERY_REPORT = ROOT / "site_discovery_report_v1.md"
+CORPUS_REGISTRY = (
+    ROOT.parent
+    / "data/site_corpora/registry/site_corpus_registry_v1.json"
+)
 
 
 SCORE_FIELDS = {
@@ -39,6 +43,7 @@ class SourceCorpusContractTest(unittest.TestCase):
             if line.strip()
         ]
         cls.report = DISCOVERY_REPORT.read_text(encoding="utf-8")
+        cls.registry = json.loads(CORPUS_REGISTRY.read_text(encoding="utf-8"))
 
     def test_markdown_and_qa_are_distinct_required_layers(self) -> None:
         layers = self.corpus["dataset_layers"]
@@ -191,8 +196,11 @@ class SourceCorpusContractTest(unittest.TestCase):
             self.assertEqual(len(categories), len(set(categories)))
             self.assertTrue(set(categories).issubset(approved), row["candidate_id"])
 
-    def test_accepted_candidates_are_pending_in_extraction_queue(self) -> None:
+    def test_accepted_candidates_have_pending_or_registered_extraction(self) -> None:
         queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        registry_by_id = {
+            row["resource_id"]: row for row in self.registry["artifacts"]
+        }
         legacy_urls = {
             row["url"]
             for row in self.corpus["queue"]
@@ -205,7 +213,7 @@ class SourceCorpusContractTest(unittest.TestCase):
         for candidate in accepted:
             self.assertNotIn(candidate["canonical_url"], legacy_urls)
             queued = queue_by_id[candidate["candidate_id"]]
-            self.assertEqual(queued["status"], "pending")
+            self.assertIn(queued["status"], {"pending", "complete"})
             self.assertEqual(queued["url"], candidate["canonical_url"])
             self.assertEqual(queued["scope"], candidate["recommended_crawl_scope"])
             self.assertEqual(
@@ -218,6 +226,28 @@ class SourceCorpusContractTest(unittest.TestCase):
                 queued["supported_taxonomy_categories"],
                 candidate["supported_taxonomy_categories"],
             )
+            if queued["status"] == "complete":
+                artifact = registry_by_id[candidate["candidate_id"]]
+                self.assertEqual(
+                    queued["registry_artifact_id"], artifact["artifact_id"]
+                )
+
+    def test_registered_discovery_candidates_are_not_left_pending(self) -> None:
+        registry_by_id = {
+            row["resource_id"]: row for row in self.registry["artifacts"]
+        }
+        for queued in self.corpus["queue"]:
+            if "discovery_candidate_id" not in queued:
+                continue
+            artifact = registry_by_id.get(queued["resource_id"])
+            if artifact is None:
+                self.assertEqual(queued["status"], "pending")
+                self.assertNotIn("registry_artifact_id", queued)
+            else:
+                self.assertEqual(queued["status"], "complete")
+                self.assertEqual(
+                    queued["registry_artifact_id"], artifact["artifact_id"]
+                )
 
     def test_deferred_and_rejected_candidates_are_not_queued(self) -> None:
         queued_candidate_ids = {

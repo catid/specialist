@@ -1218,3 +1218,13 @@ body or unrelated repository artifact was read. No login, protected report,
 paywall, challenge, robots restriction, mirror, cache, archive or snippet
 reconstruction was bypassed, and no reviewed source body entered a training
 artifact during discovery.
+
+## Queue completion synchronization
+
+The extraction queue now treats the sealed direct-training Markdown registry
+as the completion authority. Twenty discovery candidates that already had a
+registered canonical Markdown artifact were changed from `pending` to
+`complete` and bound to their exact `canonical-markdown:<resource_id>` artifact
+IDs. A contract test rejects both stale pending entries for registered sources
+and unregistered sources falsely marked complete. This prevents conversion
+workers from repeatedly selecting already finished high-priority sources.
