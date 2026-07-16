@@ -1,0 +1,471 @@
+{
+  "access_firewall": {
+    "evaluation_launched": false,
+    "gpu_accessed": false,
+    "ood_semantics_opened_during_dry_run": false,
+    "ood_semantics_opened_during_preregistration": false,
+    "shadow_semantics_opened": false,
+    "terminal_holdout_semantics_opened": false,
+    "training_dataset_opened": false
+  },
+  "arms": [
+    "base_a",
+    "base_b",
+    "base_c",
+    "base_d",
+    "v434_equal_a",
+    "v55b_candidate_a",
+    "v434_equal_b",
+    "v55b_candidate_b"
+  ],
+  "artifacts": {
+    "aggregate_report": "/home/catid/specialist/experiments/eval_reports/v55b_vs_v434_replicated_ood_only_v56.json",
+    "aggregate_report_contains_no_question_answer_or_prose_text": true,
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v56_v55b_vs_v434_replicated_ood_only.attempt.json",
+    "complete_attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v56_v55b_vs_v434_replicated_ood_only.attempt.complete.json",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v56_v55b_vs_v434_replicated_ood_only/failure_v56.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v56_v55b_vs_v434_replicated_ood_only/gpu_activity_v56.jsonl",
+    "raw_local": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v56_v55b_vs_v434_replicated_ood_only/raw_items_v56.json",
+    "raw_local_git_eligible": false,
+    "raw_local_mode": "0600",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v56_v55b_vs_v434_replicated_ood_only"
+  },
+  "base_determinism_arms": [
+    "base_a",
+    "base_b",
+    "base_c",
+    "base_d"
+  ],
+  "candidate_definitions": [
+    {
+      "logical_candidate": "v434_equal",
+      "replica_arms": [
+        "v434_equal_a",
+        "v434_equal_b"
+      ],
+      "replica_outputs_required_bit_exact": false,
+      "replicas_use_identical_staged_bytes": true,
+      "source_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "source_train_only_provenance": {
+        "all_four_training_gpus_attributed_positive": true,
+        "arm": "v434_equal",
+        "attempt_content_sha256": "23bdce550604555c76a2a8842c1862d7e31daa3eabf3b3553131ea33674ec103",
+        "attempt_file_sha256": "0ccdd6efa829cc449c70f255f48d1a369c662f936c35a161e0225572d2794688",
+        "completed_steps": 48,
+        "gpu_log_file_sha256": "b3c0ba4ab983487b9cc8a6c64a78d120a6ae5e5801a5b5c36845c898485d1c78",
+        "report_content_sha256": "a8de8805238335ba27db11359fc9f75ad65431d64b25f6a6c10eb5e0f3bdba0e",
+        "report_file_sha256": "0f669d188046849ccb6a3013938f9979214711f5e83c0d9e54290c9c20c850d8",
+        "schema": "v49d-train-only-success-provenance",
+        "shadow_ood_holdout_or_heldout_opened": false,
+        "source_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+        "source_weights_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+        "weight_identity_sha256": "a8cbc597f865123100de870fdbc22a2529ed5ec3534531f897d27763baa4492f"
+      },
+      "source_weights_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+      "stage_manifest_content_sha256": "ea328ada018e1c0d182d329d2a9cb81f8f0375aef93738f3b9c0a00f63c82da3",
+      "stage_manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+      "staged_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d",
+      "staged_weights_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+      "transformed_identity_sha256": "f210bf05e7fe38481d0a7d9c641a7f902e575521b50e98bdc021bf11b49cb1c8"
+    },
+    {
+      "logical_candidate": "v55b_candidate",
+      "replica_arms": [
+        "v55b_candidate_a",
+        "v55b_candidate_b"
+      ],
+      "replica_outputs_required_bit_exact": false,
+      "replicas_use_identical_staged_bytes": true,
+      "source_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "source_train_only_provenance": {
+        "all_nine_train_endpoint_gates_passed": true,
+        "arm": "v55b_maximin_ratio0p25",
+        "canonical_candidate_sha256": "78fa46a9f77387f7872a09202658e471b2c03969687abcbccc253f5f194980fc",
+        "evidence_commit": "570a2cbf4fc9e86951b59b5e9d72764fb79b9bb8",
+        "evidence_file_sha256": "3db9ad07e7d028a347dfc9e6a90a5ddcc3c87763439d13b80a1b33d86a0af96f",
+        "four_actor_consensus_passed": true,
+        "internal_report_content_sha256": "3ef62178ef3b8179758944e8da98abe47297a43b8558befdde83d1879a095297",
+        "internal_report_file_sha256": "955218f6f6defbcafdf1734e3fad37e3ff2cf37ee4aa5f214c15f721a1ba5629",
+        "p16_gate_content_sha256": "c5b54a709afb37f45ed3bfbfe6c3109875775b437952a0f0e70c5d1a5b41e499",
+        "p16_gate_file_sha256": "17bbc43d7821b6e01d02e131a88d75519720e4a22a2d036f1e551909a0f2aecc",
+        "runtime_bf16_values_sha256": "3745c5578db05102f1784f2b5489f39e9910eae4bf55f5c9edaa5485c48fda4c",
+        "schema": "v55b-maximin-train-only-success-provenance-v56",
+        "selected_target_norm_ratio": 0.25,
+        "selection_data_opened": false,
+        "shadow_ood_holdout_or_heldout_opened": false,
+        "source_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+        "source_weights_sha256": "d13a62107b29ca2a17682d2fa0d2eb424ef3eb90ad8aafc0bc0f5c5786b7bf9c",
+        "wrapper_report_content_sha256": "bf6738e97034092570c98d6d309fbaed7ebbe147a9ef7f82a0e4eea4283f4849",
+        "wrapper_report_file_sha256": "c7e68279f22d3b3b90802e90a9b18c3ccc096860a2d2008777b85d36a54bd9ac"
+      },
+      "source_weights_sha256": "d13a62107b29ca2a17682d2fa0d2eb424ef3eb90ad8aafc0bc0f5c5786b7bf9c",
+      "stage_manifest_content_sha256": "a39359184a96b52008eabbce50f0f83ab1bda39513f6ed6c731dbdcdb093c6ce",
+      "stage_manifest_file_sha256": "43d779ddf1c37d11c0016159739832c431ea223b8b5e9345e29ac3e3ed341483",
+      "staged_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v55b_maximin_ratio0p25_lora_es_qwen35_vllm_namespace_v56",
+      "staged_weights_sha256": "e30ab8173b4f979e6a5b4621908042cce66411246f3e242541ded945acaa7608",
+      "transformed_identity_sha256": "1638967e98ef1b677a651c49f6b97abb1656c4fce1b6776423aaccc3662e3cf5"
+    }
+  ],
+  "content_sha256_before_self_field": "11c23e1f773cc9ac31088061dd64ab2ccc898f8bbee67c45d7737bb65b386e21",
+  "direct_v55b_vs_v434_gates": {
+    "both_v55b_replicas_must_independently_pass": true,
+    "generated_qa_paired_item_bootstrap_gates": {
+      "answer_logprob_lcb_minimum": 0.0,
+      "generated_exact_lcb_minimum": 0.0,
+      "generated_nonzero_lcb_minimum": 0.0,
+      "generated_reward_f1_lcb_minimum": 0.0,
+      "per_pair_seeds": {
+        "replica_a": 2026071601,
+        "replica_b": 2026071602
+      },
+      "percentiles": [
+        0.025,
+        0.975
+      ],
+      "samples": 20000
+    },
+    "generated_qa_point_gates": {
+      "answer_token_logprob_delta_minimum": 0.0,
+      "equal_unit_f1_delta_minimum": 0.0,
+      "exact_count_delta_minimum": 0,
+      "nonzero_count_delta_minimum": 0,
+      "row_mean_reward_delta_minimum": 0.0
+    },
+    "pairs": [
+      {
+        "candidate": "v55b_candidate_a",
+        "pair": "replica_a",
+        "reference": "v434_equal_a"
+      },
+      {
+        "candidate": "v55b_candidate_b",
+        "pair": "replica_b",
+        "reference": "v434_equal_b"
+      }
+    ],
+    "prose_gates": {
+      "mean_token_logprob_delta_minimum": 0.0,
+      "paired_document_bootstrap_lcb_minimum": 0.0,
+      "perplexity_delta_maximum": 0.0
+    },
+    "protocol_or_leak_counter_increase_allowed": false,
+    "selection_or_promotion_role": "none; OOD evidence only"
+  },
+  "evaluation_launch_authorized": true,
+  "implementation_bindings": {
+    "builder_v56": "01e7ff65febad2a06573135bca77c03210c013097eb3098647e060e21b9acfc5",
+    "canonical_stage_runtime": "8559cb3a2c2870bed7e5ef99ee9ed177929e4c2d8680b61cccc73aad26a2f691",
+    "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "core_runtime": "188858e5083f3bc9c6f0cafd68ad4398fdd4f61d9b16b954c6fa7417cfe3c9a7",
+    "environment": {
+      "four_tp1_runtime_environment": true,
+      "module_files": {
+        "es_at_scale": "/home/catid/specialist/es-at-scale/es_at_scale/__init__.py",
+        "ray": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/ray/__init__.py",
+        "torch": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/torch/__init__.py",
+        "vllm": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/__init__.py"
+      },
+      "packages": {
+        "ray": "2.56.0",
+        "safetensors": "0.8.0",
+        "torch": "2.11.0",
+        "vllm": "0.25.0"
+      },
+      "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+      "sys_executable": "/usr/bin/python3.12",
+      "sys_prefix": "/home/catid/specialist/es-at-scale/.venv",
+      "vllm_importable": true
+    },
+    "gitignore": "47e397951a27e870eb9e26b6938c5b18ec7cea1b4724e82f926f8dbe4e853925",
+    "identity_registry": "907886ccf689618cd58e68eff05e8212a29826a6c7655c7698632164f9ec5bc8",
+    "identity_registry_builder": "793d0e064ace04addf5a6a4a425dc941884809dbec184ddc5014f9ffc1713d72",
+    "metric_runtime": "04933a8d8cb43c504fc7dc6b5f2efad75e4607596e8dd61d9796f2e434825fbe",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "ood_gate_runtime": "493b050bd075fd0b14bc4f684824bab5b53149c4d1e95fc3ca1c80f90cb050a4",
+    "resolver_runtime_v40c": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+    "runtime_v56": "7bed9e424d1f41b8a811d29e20454780f8832686dde240bc27a9005653b94219",
+    "semantic_rule_runtime": "81ca63c230995d44dfdb739a78b4a1a0f85d09724ba5915860ae36f78ccc3da9",
+    "source_faithful_parser_runtime": "06e7fe81e31018f4d4303d966772b47fa14fcbf3eae5692bbd12fc0739d9717f",
+    "source_seals": {
+      "v434_equal": {
+        "all_four_training_gpus_attributed_positive": true,
+        "arm": "v434_equal",
+        "attempt_content_sha256": "23bdce550604555c76a2a8842c1862d7e31daa3eabf3b3553131ea33674ec103",
+        "attempt_file_sha256": "0ccdd6efa829cc449c70f255f48d1a369c662f936c35a161e0225572d2794688",
+        "completed_steps": 48,
+        "gpu_log_file_sha256": "b3c0ba4ab983487b9cc8a6c64a78d120a6ae5e5801a5b5c36845c898485d1c78",
+        "report_content_sha256": "a8de8805238335ba27db11359fc9f75ad65431d64b25f6a6c10eb5e0f3bdba0e",
+        "report_file_sha256": "0f669d188046849ccb6a3013938f9979214711f5e83c0d9e54290c9c20c850d8",
+        "schema": "v49d-train-only-success-provenance",
+        "shadow_ood_holdout_or_heldout_opened": false,
+        "source_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+        "source_weights_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+        "weight_identity_sha256": "a8cbc597f865123100de870fdbc22a2529ed5ec3534531f897d27763baa4492f"
+      },
+      "v55b_candidate": {
+        "all_nine_train_endpoint_gates_passed": true,
+        "arm": "v55b_maximin_ratio0p25",
+        "canonical_candidate_sha256": "78fa46a9f77387f7872a09202658e471b2c03969687abcbccc253f5f194980fc",
+        "evidence_commit": "570a2cbf4fc9e86951b59b5e9d72764fb79b9bb8",
+        "evidence_file_sha256": "3db9ad07e7d028a347dfc9e6a90a5ddcc3c87763439d13b80a1b33d86a0af96f",
+        "four_actor_consensus_passed": true,
+        "internal_report_content_sha256": "3ef62178ef3b8179758944e8da98abe47297a43b8558befdde83d1879a095297",
+        "internal_report_file_sha256": "955218f6f6defbcafdf1734e3fad37e3ff2cf37ee4aa5f214c15f721a1ba5629",
+        "p16_gate_content_sha256": "c5b54a709afb37f45ed3bfbfe6c3109875775b437952a0f0e70c5d1a5b41e499",
+        "p16_gate_file_sha256": "17bbc43d7821b6e01d02e131a88d75519720e4a22a2d036f1e551909a0f2aecc",
+        "runtime_bf16_values_sha256": "3745c5578db05102f1784f2b5489f39e9910eae4bf55f5c9edaa5485c48fda4c",
+        "schema": "v55b-maximin-train-only-success-provenance-v56",
+        "selected_target_norm_ratio": 0.25,
+        "selection_data_opened": false,
+        "shadow_ood_holdout_or_heldout_opened": false,
+        "source_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+        "source_weights_sha256": "d13a62107b29ca2a17682d2fa0d2eb424ef3eb90ad8aafc0bc0f5c5786b7bf9c",
+        "wrapper_report_content_sha256": "bf6738e97034092570c98d6d309fbaed7ebbe147a9ef7f82a0e4eea4283f4849",
+        "wrapper_report_file_sha256": "c7e68279f22d3b3b90802e90a9b18c3ccc096860a2d2008777b85d36a54bd9ac"
+      }
+    },
+    "stage_v434_runtime": "cb263f40ead897d42bde27b5b364200c36796411c538e4d485deefc59c477b64",
+    "stage_v55b_runtime": "eff776b634154e112757d66c51ebd6e54b6059ec639f936141b35adfb86936d6",
+    "tests_v56": "d24e1d03d320635633c4e70562047ebc191d3ac97c6f14e5afd860c24229172e",
+    "topology_runtime": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "url_normalization_runtime": "bbea54a6d9255f6edaa1d5d20a013e7e0aa1a280baebbc145f897392c574d7d5",
+    "v434_source_attempt": "0ccdd6efa829cc449c70f255f48d1a369c662f936c35a161e0225572d2794688",
+    "v434_source_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "v434_source_gpu_log": "b3c0ba4ab983487b9cc8a6c64a78d120a6ae5e5801a5b5c36845c898485d1c78",
+    "v434_source_report": "0f669d188046849ccb6a3013938f9979214711f5e83c0d9e54290c9c20c850d8",
+    "v434_source_weights": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+    "v434_stage_manifest": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+    "v434_staged_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "v434_staged_weights": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+    "v55b_source_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "v55b_source_evidence": "3db9ad07e7d028a347dfc9e6a90a5ddcc3c87763439d13b80a1b33d86a0af96f",
+    "v55b_source_internal_report": "955218f6f6defbcafdf1734e3fad37e3ff2cf37ee4aa5f214c15f721a1ba5629",
+    "v55b_source_p16_gate": "17bbc43d7821b6e01d02e131a88d75519720e4a22a2d036f1e551909a0f2aecc",
+    "v55b_source_weights": "d13a62107b29ca2a17682d2fa0d2eb424ef3eb90ad8aafc0bc0f5c5786b7bf9c",
+    "v55b_source_wrapper_report": "c7e68279f22d3b3b90802e90a9b18c3ccc096860a2d2008777b85d36a54bd9ac",
+    "v55b_stage_manifest": "43d779ddf1c37d11c0016159739832c431ea223b8b5e9345e29ac3e3ed341483",
+    "v55b_staged_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "v55b_staged_weights": "e30ab8173b4f979e6a5b4621908042cce66411246f3e242541ded945acaa7608"
+  },
+  "input_scope": {
+    "document_identity_definitions": {
+      "ood_prose": "SHA256 of the exact prose text field",
+      "ood_qa": "exact sealed OOD-QA JSONL file SHA256 for every row; eval-v3 rows have no document_sha256 field"
+    },
+    "exact_labels": [
+      "ood_qa",
+      "ood_prose"
+    ],
+    "same_content_addressed_inputs_for_every_arm": true,
+    "same_qa_and_prose_parsers_for_every_arm": true,
+    "semantic_read_count_at_execute": 2,
+    "semantic_reads_during_builder_or_dry_run": 0,
+    "shadow_bound": false,
+    "source_faithful_single_access_required": true,
+    "terminal_holdout_bound": false,
+    "training_runtime_bound_or_read": false
+  },
+  "logical_candidate_replicas": {
+    "v434_equal": [
+      "v434_equal_a",
+      "v434_equal_b"
+    ],
+    "v55b_candidate": [
+      "v55b_candidate_a",
+      "v55b_candidate_b"
+    ]
+  },
+  "logical_candidates": [
+    "v434_equal",
+    "v55b_candidate"
+  ],
+  "promotion_authorized": false,
+  "protected_semantics_opened_by_builder": false,
+  "raw_base_determinism_controls": {
+    "arms": [
+      "base_a",
+      "base_b",
+      "base_c",
+      "base_d"
+    ],
+    "failure_closed": true,
+    "ood_prose_aggregate_outputs_all_four_bit_exact": true,
+    "ood_prose_raw_outputs_all_four_bit_exact": true,
+    "ood_qa_aggregate_outputs_all_four_bit_exact": true,
+    "ood_qa_raw_outputs_all_four_bit_exact": true
+  },
+  "runtime": {
+    "all_four_gpus_busy_in_every_wave": true,
+    "candidate_wave_is_interleaved_by_direct_replica_pair": true,
+    "engine_count": 4,
+    "every_gpu_receives_one_request_per_wave": true,
+    "generation_seed": 20260715,
+    "identical_prompts_sampling_parameters_and_seed_for_all_arms": true,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "no_partial_or_third_wave": true,
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "qa_bootstrap_samples_per_direct_replica": 20000,
+    "qa_bootstrap_seeds": {
+      "replica_a": 2026071601,
+      "replica_b": 2026071602
+    },
+    "tensor_parallel_size_per_engine": 1,
+    "trainer_resolver_capability_preflight": {
+      "checked_without_model_or_gpu_creation": true,
+      "resolver_runtime_file_sha256": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+      "v40c_make_trainer_attaches_resolve": true,
+      "v44a_make_trainer_dispatches_to_v40c": true
+    },
+    "trainer_resolver_required_before_identity_rpc": true,
+    "trainer_resolver_surface": "current V40C resolver attached by V44A make_trainer_v44a",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d",
+    "tuned_table_file_content_sha256": "a4f82f53b037f766536013bdc10c8ca1e49873603a8f44972ef8007ed406de84",
+    "tuned_table_projection_preflight": {
+      "checked_without_model_or_gpu_creation": true,
+      "file_content_sha256": "a4f82f53b037f766536013bdc10c8ca1e49873603a8f44972ef8007ed406de84",
+      "normalization": "remove triton_version and cast table keys to int",
+      "runtime_projection_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+    },
+    "two_full_fixed_waves": [
+      [
+        {
+          "arm": "base_a",
+          "engine_index": 0
+        },
+        {
+          "arm": "base_b",
+          "engine_index": 1
+        },
+        {
+          "arm": "base_c",
+          "engine_index": 2
+        },
+        {
+          "arm": "base_d",
+          "engine_index": 3
+        }
+      ],
+      [
+        {
+          "arm": "v434_equal_a",
+          "engine_index": 0
+        },
+        {
+          "arm": "v55b_candidate_a",
+          "engine_index": 1
+        },
+        {
+          "arm": "v434_equal_b",
+          "engine_index": 2
+        },
+        {
+          "arm": "v55b_candidate_b",
+          "engine_index": 3
+        }
+      ]
+    ]
+  },
+  "schema": "v55b-vs-v434-replicated-ood-only-v56",
+  "shadow_access_authorized": false,
+  "single_access_inputs": {
+    "ood_prose": {
+      "file_sha256": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+      "path": "/home/catid/specialist/data/ood_prose_v3.jsonl"
+    },
+    "ood_qa": {
+      "file_sha256": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+      "path": "/home/catid/specialist/data/ood_qa_v3.jsonl"
+    }
+  },
+  "staged_adapters": {
+    "v434_equal_a": {
+      "adapter_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "adapter_id": 1,
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d",
+      "elements": 4528128,
+      "logical_candidate": "v434_equal",
+      "manifest_content_sha256": "ea328ada018e1c0d182d329d2a9cb81f8f0375aef93738f3b9c0a00f63c82da3",
+      "manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+      "replica_arm": "v434_equal_a",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "f210bf05e7fe38481d0a7d9c641a7f902e575521b50e98bdc021bf11b49cb1c8",
+      "weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a"
+    },
+    "v434_equal_b": {
+      "adapter_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "adapter_id": 3,
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d",
+      "elements": 4528128,
+      "logical_candidate": "v434_equal",
+      "manifest_content_sha256": "ea328ada018e1c0d182d329d2a9cb81f8f0375aef93738f3b9c0a00f63c82da3",
+      "manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+      "replica_arm": "v434_equal_b",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "f210bf05e7fe38481d0a7d9c641a7f902e575521b50e98bdc021bf11b49cb1c8",
+      "weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a"
+    },
+    "v55b_candidate_a": {
+      "adapter_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "adapter_id": 2,
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v55b_maximin_ratio0p25_lora_es_qwen35_vllm_namespace_v56",
+      "elements": 4528128,
+      "logical_candidate": "v55b_candidate",
+      "manifest_content_sha256": "a39359184a96b52008eabbce50f0f83ab1bda39513f6ed6c731dbdcdb093c6ce",
+      "manifest_file_sha256": "43d779ddf1c37d11c0016159739832c431ea223b8b5e9345e29ac3e3ed341483",
+      "replica_arm": "v55b_candidate_a",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "1638967e98ef1b677a651c49f6b97abb1656c4fce1b6776423aaccc3662e3cf5",
+      "weights_file_sha256": "e30ab8173b4f979e6a5b4621908042cce66411246f3e242541ded945acaa7608"
+    },
+    "v55b_candidate_b": {
+      "adapter_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "adapter_id": 4,
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v55b_maximin_ratio0p25_lora_es_qwen35_vllm_namespace_v56",
+      "elements": 4528128,
+      "logical_candidate": "v55b_candidate",
+      "manifest_content_sha256": "a39359184a96b52008eabbce50f0f83ab1bda39513f6ed6c731dbdcdb093c6ce",
+      "manifest_file_sha256": "43d779ddf1c37d11c0016159739832c431ea223b8b5e9345e29ac3e3ed341483",
+      "replica_arm": "v55b_candidate_b",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "1638967e98ef1b677a651c49f6b97abb1656c4fce1b6776423aaccc3662e3cf5",
+      "weights_file_sha256": "e30ab8173b4f979e6a5b4621908042cce66411246f3e242541ded945acaa7608"
+    }
+  },
+  "status": "preregistered_before_single_ood_access",
+  "terminal_holdout_access_authorized": false,
+  "train_identity_registry": {
+    "all_four_domains_must_be_disjoint_before_model_creation": true,
+    "content_minimized": true,
+    "content_sha256": "aea5b80183b2d98cf0dff37fd5f68cd6a8573901cf71c13a4558417c851cae8a",
+    "file_sha256": "907886ccf689618cd58e68eff05e8212a29826a6c7655c7698632164f9ec5bc8",
+    "four_required_identity_domains": [
+      "document_sha256",
+      "normalized_url",
+      "raw_lineage_identity_sha256",
+      "semantic_cluster_identity"
+    ],
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v56_v434_train_disjoint_identity_registry.json",
+    "runtime_train_row_reads": 0,
+    "semantic_comparison": {
+      "equality_only_is_sufficient": false,
+      "matching_identity": "exact train semantic_cluster_sha256",
+      "rule": "pairwise frozen V13 lexical semantic thresholds against stored train question/answer token feature sets"
+    },
+    "train_rows": 448
+  },
+  "training_access_authorized": false
+}
