@@ -1,0 +1,64 @@
+{
+  "content_sha256_before_self_field": "40e9723c6de9d7e8ba3b69649aae9d5727229a043be1d9f6bd6c5c6d1a6a6632",
+  "evaluation_policy": {
+    "primary_shadow": "original immutable v412 fold-3 shadow",
+    "primary_shadow_targets_refreshed_after_training": false,
+    "reason": "changing nine validation answers after the original split would confound the effect of the 42 edited training rows",
+    "refreshed_v430_shadow_authorized_as_selection_input": false
+  },
+  "inputs": {
+    "original_frozen_fold3_shadow": {
+      "conflict_units": 51,
+      "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_shadow_dev.jsonl",
+      "rows": 83,
+      "sha256": "6d5b72f7506a752fd5275425739ec785e25f0ff486f5c03b68e91c8e99d7ebeb"
+    },
+    "refreshed_fold3_shadow_lineage_proof_only": {
+      "conflict_units": 51,
+      "path": "/home/catid/specialist/experiments/sft_controls/v47c_lineage_stable_train_refresh_v430/fold_3_shadow_dev.jsonl",
+      "rows": 83,
+      "sha256": "8481e2ad14c8660e54b4c1bd06281918a8396f6c6dc48c372435ce09b43962ef"
+    },
+    "v412_projection": {
+      "path": "/home/catid/specialist/experiments/sft_controls/v36a_v412/train_v412.jsonl",
+      "rows": 531,
+      "sha256": "44a5482e49073d23a35bdc4c574d6c52c9e8d7f946559dfa722dda16eec5882b"
+    },
+    "v430_projection": {
+      "path": "/home/catid/specialist/experiments/sft_controls/v47c_lineage_stable_train_refresh_v430/train_v430.jsonl",
+      "rows": 531,
+      "sha256": "a230b0f0c32a53e8b40140bd5881cfe7e7102f565dd2b3989e38b1fe9a8804c2"
+    }
+  },
+  "replay_scope": {
+    "accepted_edit_decisions": 51,
+    "edited_rows_by_frozen_fold": {
+      "0": 16,
+      "1": 13,
+      "2": 4,
+      "3": 9,
+      "4": 9
+    },
+    "edited_rows_entering_fold3_train": 42,
+    "edited_rows_excluded_in_frozen_fold3_shadow": 9,
+    "edited_units_by_frozen_fold": {
+      "0": 10,
+      "1": 11,
+      "2": 4,
+      "3": 3,
+      "4": 9
+    },
+    "edited_units_entering_fold3_train": 34,
+    "edited_units_excluded_in_frozen_fold3_shadow": 3,
+    "final_edited_successor_rows": 51,
+    "fold_assignment_changes": 0
+  },
+  "schema": "specialist-v47c-edit-scope-audit-v1",
+  "semantic_access": {
+    "content_free_hash_and_membership_processing_only": true,
+    "manual_question_answer_or_evidence_inspection": false,
+    "ood_holdout_or_benchmark_opened": false,
+    "question_answer_or_evidence_persisted": false
+  },
+  "status": "complete_content_free_pre_evaluation_audit"
+}
