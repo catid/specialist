@@ -1,0 +1,95 @@
+{
+  "corpus_id": "noaa_eight_strand_rope_structural_model_1989",
+  "content_kind": "manual_claim_cited_historical_structural_methods_digest",
+  "created_at_utc": "2026-07-16",
+  "direct_training_ready": true,
+  "files": {
+    "CORPUS.md": {
+      "bytes": 18158,
+      "sha256": "4c5b2b1ad715b29cb3230cf6c6987b3b67dbdf1cd3d444041de0a6a76b080b37"
+    },
+    "README.md": {
+      "bytes": 1713,
+      "sha256": "68dc2c47f3a7481902bdd85ac292cbb6c3edd0e7ff34bb00473b607005decee8"
+    },
+    "REPORT.md": {
+      "bytes": 14245,
+      "sha256": "1a2ec6871e6d4b801bc63534284c30dff5660f659e71b4b070136d76950d8aa6"
+    },
+    "dispositions.jsonl": {
+      "bytes": 11847,
+      "sha256": "9bba6b918d1fbc0543822888ee4712485288a56361445672113c6bf73f02b13f"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 6999,
+      "sha256": "479c1f7351f4a0c34d383566c00759987fe254b125db37e9706c031c60d3d75a"
+    },
+    "sources.jsonl": {
+      "bytes": 1987,
+      "sha256": "cb7bd134ee76932ec9cf74b4922aa98d310ec6b795e53eb6adb8105583a4282d"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 14938,
+      "sha256": "9ff19af0609b3538826ef20a3a1ae7bfb14dc731e7df1508abc33140f9324317"
+    }
+  },
+  "language": "en",
+  "primary_source": {
+    "authors": [
+      "Youjiang Wang",
+      "Stanley Backer"
+    ],
+    "repository_id": "noaa:42461",
+    "sea_grant_document_number": "MIT-T-89-002",
+    "series": "MITSG 89-28",
+    "title": "Structural Modeling of the Tensile Behavior of Eight-Strand Ropes",
+    "year": 1989
+  },
+  "relationship_source": {
+    "corpus_id": "noaa_synthetic_rope_deterioration_1990",
+    "population_boundary": "synthetic double-braided rope, not the current source's eight-strand plaited rope",
+    "role": "relationship_and_nonconflation_only",
+    "title": "Modelling of Synthetic Fiber Ropes Deterioration Caused by Internal Abrasion and Tensile Fatigue",
+    "year": 1990
+  },
+  "rights": {
+    "component_caveat": "Photographs, logos, figures, formulas, numerical parameters, plotted outputs, strength and fatigue predictions, and blending or design prescriptions are excluded.",
+    "legal_advice": false,
+    "record_checksum_algorithm": "sha512",
+    "record_checksum_match": true,
+    "repository_designation": "Public Domain",
+    "source_bodies_retained": false,
+    "status": "accepted_manual_public_domain_adaptation"
+  },
+  "schema": "site-corpus-manifest-v1",
+  "schema_version": 1,
+  "source_ids": [
+    "NOAA-IR-42461",
+    "NOAA-1989-PDF",
+    "RELATED-NOAA-1990-PDF"
+  ],
+  "split_hygiene": {
+    "allowed": [
+      "training_source"
+    ],
+    "forbidden": [
+      "validation",
+      "holdout",
+      "evaluation",
+      "ood",
+      "probe"
+    ],
+    "qa_derivation": "separate_training_only_artifact_after_manual_review"
+  },
+  "status": "accepted",
+  "stats": {
+    "claim_citations": 41,
+    "corpus_words": 2535,
+    "disposition_rows": 51,
+    "report_words": 1890,
+    "source_pdf_pages_reviewed": 51,
+    "sources": 3
+  },
+  "summary": "Manual historical digest of a qualitative 1989 structural model for eight-strand plaited synthetic marine rope, preserving nested geometry, inter-yarn friction endpoints, contact pressure, relative motion, and lateral-contraction limits while explicitly separating it from the 1990 double-braided-rope deterioration model.",
+  "version": 1
+}
