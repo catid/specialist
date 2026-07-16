@@ -35,6 +35,24 @@ and deterministic coverage tests. Corpus completeness means complete coverage
 of substantive accessible text, not a verbatim website mirror and not an
 attempt to reconstruct visual-only or gated instructions.
 
+## Completed policy exclusions
+
+Some requested sites can be inventoried but cannot supply direct-training
+text under their current access terms. These artifacts retain the policy
+snapshot, sitemap coverage, and an explicit zero-content disposition so a
+later worker cannot silently treat public readability as training permission:
+
+- [`theduchy/CORPUS.md`](theduchy/CORPUS.md) — `direct_training_ready=false`;
+  the live robots content signal disallows AI training.
+- [`shibari_study/CORPUS.md`](shibari_study/CORPUS.md) —
+  `direct_training_ready=false`; the live terms prohibit the requested
+  collection, copying, storage, and database compilation.
+
+Neither exclusion notice, its URL inventory, nor URL/title metadata is a
+substitute training corpus. If a site's policy later changes, it requires a
+fresh dated audit and a new corpus build rather than reinterpreting these
+snapshots.
+
 ## Training-boundary requirements
 
 Before a corpus is promoted into a model-training mixture:
