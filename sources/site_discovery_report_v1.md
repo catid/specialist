@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T09:43:06Z
-Latest batch: `discovery_batch_007`
+Latest review at: 2026-07-16T10:16:37Z
+Latest batch: `discovery_batch_008`
 
 ## Outcome
 
@@ -171,9 +171,10 @@ Every decision distinguishes discovery from extraction. Public availability was 
 
 `discovery_batch_004` manually reviewed 12 additional, nonduplicate public
 sources, including the actual body or official metadata, current access policy,
-and visible reuse terms. It produced 1 `accept_high_priority`, 5
-`accept_targeted_scope`, 5 `defer`, and 1 `reject` decisions. The six accepted
-candidates expand the canonical corpus queue from 62 to 68 resources.
+and visible reuse terms. After the official-access correction recorded in
+batch 008, it contains 2 `accept_high_priority`, 5 `accept_targeted_scope`, 4
+`defer`, and 1 `reject` decisions. The seven accepted candidates expand the
+canonical corpus queue from 62 to 69 resources.
 
 This batch concentrates on first-party Japanese practitioner testimony and
 lineage, named rope-school progressions, knot/friction and upline curriculum
@@ -187,6 +188,7 @@ systems.
 | Source | Decision | Score | Distinct value and extraction boundary |
 |---|---|---:|---|
 | [Heartland Kinbaku public guides](https://www.heartlandkinbaku.com/resources) | `accept_high_priority` | 36 | Explicitly shareable-with-attribution beginner, bottom, and physical-preparation guides plus a 20-class progression; every medical, anatomy, exercise, timing, and load claim must be independently adjudicated or quarantined. |
+| [USDA National Tree Climbing Guide](https://www.govinfo.gov/app/details/GOVPUB-A13-PURL-gpo215987) | `accept_high_priority` | 39 | An official GovInfo package now supplies the 2015 federal guide through a durable permitted route. Capture only bounded planning, role, inspection/retirement, knot-function, line-management, communication, and rescue-readiness concepts; exclude operational climbing, ratings, body-weight anchor tests, credited material, and all transfer into bondage or human suspension. |
 | [Osada-ryu primary writings](https://www.osada-ryu.com/?page_id=184) | `accept_targeted_scope` | 34 | Quotation-light, fully attributed digest of first-person Akechi, Nureki, Yukimura, and Osada-ryu testimony; speaker, interviewer, date, framing, recollection, and later synthesis remain distinct. |
 | [Devil Mask Studio curriculum](https://devilmaskstud.io/preflight/) | `accept_targeted_scope` | 30 | Detailed prerequisite map for body-adapted harnesses, uplines, lockoffs, force vectors, ground tests, go/no-go reasoning, bamboo, hashira, inversions, and transitions; descriptions are not reconstructed tutorials. |
 | [Rope Study progression](https://ropestudy.com/) | `accept_targeted_scope` | 29 | Current 101–401 competency progression and partnered-practice pedagogy; capture only normally browsable pages during the incomplete May 2026 rebuild, without bypassing ModSecurity. |
@@ -197,7 +199,6 @@ systems.
 
 | Source | Decision | Score | Reason |
 |---|---|---:|---|
-| [USDA National Tree Climbing Guide](https://research.fs.usda.gov/treesearch/49660) | `defer` | 39 | The official 88-page manual is highly relevant, but its current host publishes a universal robots prohibition and the former official path is 404; no mirror or workaround was used. |
 | [Ritsumeikan Nureki biography/interview study](https://ritsumei.repo.nii.ac.jp/records/2003261) | `defer` | 37 | Exceptional source-critical scholarship, but the repository displays no reuse license and university policy requires prior permission for duplication, modification, or distribution. |
 | [Early *Kitan Club* bibliography](https://www.jstage.jst.go.jp/article/antitled/4/0/4_273/_article/-char/ja) | `defer` | 33 | Public metadata is retained, but ordinary copyright applies and J-STAGE robots disallow the `*_pdf` capture route; body use requires both a permitted endpoint and permission. |
 | [RebornRopes technical guides](https://www.rebornropes.com/pages/shibari-how-to-jute-rope-care) | `defer` | 25 | Broad materials and friction coverage is mixed with disputed knot equivalences, unsafe single-column framing, unsupported respiratory claims, uncited load claims, and heavy commerce; specialist adjudication is required first. |
@@ -222,9 +223,12 @@ claim-level evidence review.
 
 Permissive licensing alone was not treated as a quality signal. The German
 Wikibooks manual was rejected after body review, and RebornRopes was deferred
-despite its accessible technical library. Conversely, strong relevance did not
-override access or rights: USDA robots, J-STAGE's PDF restriction, Ritsumeikan's
-reuse policy, and Full Circle's missing official asset all block corpus capture.
+despite its accessible technical library. Strong relevance did not override
+access or rights: J-STAGE's PDF restriction, Ritsumeikan's reuse policy, and
+Full Circle's missing official asset all block corpus capture. The USDA guide's
+original Research Station route remains crawler-restricted, but batch 008 found
+the same federal edition in an official, durable GovInfo package; this is a new
+authorized route, not a mirror or workaround.
 
 ### Batch 004 access and clean-room statement
 
@@ -243,7 +247,7 @@ opening the actual public body, official metadata, or live failure endpoint and
 checking current access and reuse boundaries. It produced 2
 `accept_high_priority`, 4 `accept_targeted_scope`, 4 `defer`, and 2 `reject`
 decisions. The six accepted candidates expand the canonical corpus queue from
-68 to 74 resources.
+69 to 75 resources.
 
 This batch prioritizes primary lineage testimony, source-critical history,
 licensed forensic evidence, structural-wood engineering, progressive rope
@@ -316,7 +320,7 @@ the actual public body where access and rights allowed, or only official
 metadata and governing terms where they did not. It produced 0
 `accept_high_priority`, 3 `accept_targeted_scope`, 5 `defer`, and 3 `reject`
 decisions. The three accepted candidates expand the canonical corpus queue from
-74 to 77 resources.
+75 to 78 resources.
 
 This batch adds two complementary curriculum architectures and an official
 museum chronology. It also records unusually valuable but unusable leads rather
@@ -381,7 +385,7 @@ reviewed page body was copied into a training artifact during discovery.
 actual public body, authoritative metadata, current robots policy, and governing
 reuse terms. It produced 2 `accept_high_priority`, 2
 `accept_targeted_scope`, 4 `defer`, and 3 `reject` decisions. The four accepted
-candidates expand the canonical corpus queue from 77 to 81 resources.
+candidates expand the canonical corpus queue from 78 to 82 resources.
 
 This batch fills three especially useful gaps: a current clinical review of
 entrapment-neuropathy mechanisms and diagnostic limits, a current federal
@@ -443,3 +447,82 @@ authorized EMBL-EBI API, respected current robots, crawl delays, licenses, and
 rightsholder terms, and did not bypass a login, purchase, challenge, missing
 body, license, crawler restriction, or unreachable host. No reviewed page body
 was copied into a training artifact during discovery.
+
+## Discovery batch 008 outcome
+
+`discovery_batch_008` manually reviewed 12 new, nonduplicate source candidates
+against their substantive pages, primary metadata, current reuse terms, and
+training suitability. It produced 1 `accept_high_priority`, 3
+`accept_targeted_scope`, 7 `defer`, and 1 `reject` decisions. The four new
+accepted candidates expand the corrected canonical corpus queue from 82 to 86
+resources.
+
+This batch makes reuse status explicit rather than equating public readability
+with permission. Eligible HSE Crown text is OGL v3.0, two Project Gutenberg
+works are public domain in the USA, and unmarked NIST federal information is
+reusable. Strong CDC, SAAIL, Cordage Institute, Samson, practitioner, clinical,
+and local-history sources remain reference-only where policy, copyright, or
+license terms conflict with transformed training use.
+
+Batch 008 also found the exact 2015 USDA National Tree Climbing Guide in an
+official GovInfo package. Candidate
+`usfs_national_tree_climbing_guide` is therefore promoted from `defer` to
+`accept_high_priority` in its original batch-004 record. The Research Station
+route remains disallowed; GovInfo is an independent official federal endpoint,
+not a mirror or access workaround. This correction adds one queue entry and
+shifts the historical queue boundaries in batches 004–007 without changing
+their newly reviewed candidate counts.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [HSE treework lifting and climbing guidance](https://www.hse.gov.uk/treework/safety-topics/arboriculture.htm) | `accept_high_priority` | 33 | Current OGL-licensed Crown text on planning, competence, inspection records, separately anchored lines, load and anchor-system framing, ground-team communication, reassessment, rope management, and rescue readiness. Preserve UK occupational treework context; exclude images, linked third-party material, operational climbing, ratings, device endorsement, and any certification or direct transfer to bondage. |
+| [The Use of Ropes and Tackle](https://www.gutenberg.org/ebooks/56585) | `accept_targeted_scope` | 33 | Public-domain historical terminology, topology, classification, idealized tackle geometry, and handling categories. Exclude every historical strength/load/efficiency table, wire-rope or industrial procedure, figure-derived instruction, body restraint, and human-suspension claim; cross-check mechanics against current sources. |
+| [Knots, Splices and Rope Work](https://www.gutenberg.org/ebooks/13510) | `accept_targeted_scope` | 26 | Public-domain historical vocabulary for rope construction, whipping, seizing, bends, hitches, splices, lashings, crowns, and decorative families. Exclude nooses, body restraint, values, repair-strength or absolute-security claims, fire/chemical processing, and current-safety presentation. |
+| [NBS Report 8308: Heating Characteristics of Cordage Fibers](https://www.nist.gov/publications/heating-characteristics-cordage-fibers) | `accept_targeted_scope` | 35 | Primary federal measurements and modeling for three abaca and one Haitian sisal sample in bulk-bale/storage contexts. Preserve method, assumptions, sample identity, and historical limits; do not generalize to jute or finished rope or derive boiling, singeing, treatment, storage, fire, strength, or care advice. |
+
+### Deferred sources
+
+| Source | Score | Why it is reference-only |
+|---|---:|---|
+| [Cordage Institute publications](https://ropecord.com/publications-catalog/) | 34 | The strongest current standards lead found, including 2024–2025 editions, but the publisher expressly prohibits reproduction without prior written permission and many documents are paid. Retain identifiers, titles, dates, scope, and a permission list only. |
+| [Samson technical documents](https://www.samsonrope.com/resources/technical-documents) | 34 | Excellent manufacturer evidence on inspection, retirement, abrasion, compression, cuts, glazing, chemicals, friction, twist, measurement, and creep, but manuals are all-rights-reserved and product/application specific. Retain metadata and seek training permission. |
+| [Clinical Guidelines for Working with Clients Involved in Kink](https://doi.org/10.1080/0092623X.2023.2232801) | 34 | Strong peer-reviewed clinical and anti-stigma framing, PMID 37439228, under CC BY-NC 4.0. NonCommercial compatibility with intended training use is not assumed; retain citation and permission/use review only. |
+| [SAAIL autism, kink, and BDSM toolkit](https://www.autlives.com/kink-and-bdsm) | 31 | Valuable six-participant, co-produced work on direct communication, sensory needs, overwhelm, pacing, privacy, and event access, but © 2023–2026 with no open reuse license. Preserve study metadata and seek permission. |
+| [NIOSH suspension-scaffold failure Alert](https://www.cdc.gov/niosh/docs/92-108/) | 30 | Five incident reports and six deaths support inspection and hazard concepts, but CDC's no-substantive-changes reuse guidance conflicts with the required original paraphrase and its 1992 regulatory context is obsolete. Defer pending policy clarification. |
+| [WykD practitioner archive](https://wykd.com/) | 19 | First-person pedagogy, declared influences, injury responsibility, and terminology are mixed with heavy promotion and overlap. All rights are reserved; retain metadata and seek permission for a strict article allowlist. |
+| [Ropewalk / Story of Rope](https://www.storyofrope.org/) | 17 | Useful Hooven & Allison, Xenia, fiber-transition, film, and bibliography leads, but CC BY-NC-ND 4.0 prohibits transformed Markdown and the text is sparse. Retain only source and archive metadata. |
+
+### Rejected source
+
+| Source | Score | Reason |
+|---|---:|---|
+| [Louis Kordexe rope articles](https://louiskordexe.com/resources-and-articles/) | 18 | Ordinary copyright combines with unsupported instructions involving optional boiling, roughly 72-hour tension drying, about 100 friction pulls, multiple torch passes, exact oil/wax treatment, and bacterial, mold, inhalation, or degradation claims. No body, QA, or training facts should be derived from it. |
+
+### Batch 008 rights, evidence, and safety controls
+
+Every batch-008 ledger row records a `training_use` disposition and a
+`rights_basis`. The four accepted sources are
+`direct_training_bounded`; deferred sources are explicitly reference-only;
+the rejected practitioner source is `rejected_no_use`. Project Gutenberg's
+license, attribution, marks rules, public-domain-in-the-USA status, and
+territorial warning must accompany snapshots. HSE logos, images, video, and
+third-party material are excluded from the OGL scope. NIST figures, tables, or
+other marked material require a separate rights audit.
+
+Historical and cross-domain texts are not modern bondage instructions. Neither
+the two public-domain manuals nor the USDA/HSE/NIST sources can certify knots,
+rope, trees, branches, indoor hardpoints, anchors, people, bondage systems, or
+human suspension. Numerical ratings, body-weight branch tests, operational
+climbing or hoisting steps, and domain-specific equipment claims are excluded.
+
+### Batch 008 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery ledger,
+corpus queue, report, and discovery tests. No QA, training projection, manual
+review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe, trainer, or
+existing source-corpus artifact was read. Public review used ordinary
+rightsholder and official government routes, respected access and reuse terms,
+and did not bypass a login, purchase, challenge, crawler restriction, missing
+body, or license. Discovery wrote no reviewed page body to a training artifact.

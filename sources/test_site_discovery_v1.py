@@ -482,6 +482,7 @@ class SourceCorpusContractTest(unittest.TestCase):
         expected = {
             "accept_high_priority": {
                 "heartland_kinbaku_public_guides",
+                "usfs_national_tree_climbing_guide",
             },
             "accept_targeted_scope": {
                 "osada_ryu_primary_writings",
@@ -491,7 +492,6 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "rope_study_progression",
             },
             "defer": {
-                "usfs_national_tree_climbing_guide",
                 "ritsumeikan_nureki_biography_interviews",
                 "antitled_early_kitan_club_bibliography",
                 "fullcircle_bondage_beginner_handout",
@@ -521,16 +521,32 @@ class SourceCorpusContractTest(unittest.TestCase):
             for row in self.corpus["queue"]
             if "discovery_candidate_id" in row
         }
-        self.assertEqual(len(accepted), 6)
+        self.assertEqual(len(accepted), 7)
         self.assertTrue(accepted.issubset(queued))
 
     def test_batch_004_access_and_rights_blocks_are_explicit(self) -> None:
         by_id = {row["candidate_id"]: row for row in self.candidates}
 
         usfs = by_id["usfs_national_tree_climbing_guide"]
-        self.assertEqual(usfs["decision"], "defer")
-        self.assertIn("universal", usfs["access_notes"].lower())
-        self.assertIn("robots", usfs["access_notes"].lower())
+        self.assertEqual(usfs["decision"], "accept_high_priority")
+        self.assertTrue(usfs["accessible"])
+        self.assertEqual(
+            usfs["canonical_url"],
+            "https://www.govinfo.gov/app/details/GOVPUB-A13-PURL-gpo215987",
+        )
+        usfs_text = (
+            usfs["access_notes"] + " " + usfs["recommended_crawl_scope"]
+        ).lower()
+        for marker in {
+            "govinfo",
+            "public domain",
+            "body-weight anchor tests",
+            "human suspension",
+            "bondage",
+        }:
+            self.assertIn(marker, usfs_text)
+        self.assertEqual(usfs["training_use"], "direct_training_bounded")
+        self.assertIn("17 u.s.c.", usfs["rights_basis"].lower())
 
         antitled = by_id["antitled_early_kitan_club_bibliography"]
         self.assertEqual(antitled["decision"], "defer")
@@ -1118,12 +1134,172 @@ class SourceCorpusContractTest(unittest.TestCase):
         }:
             self.assertIn(marker, manual_text)
 
+    def test_batch_008_decisions_and_training_use_are_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_008"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_high_priority": {
+                "hse_treework_lifting_and_climbing",
+            },
+            "accept_targeted_scope": {
+                "gutenberg_verrill_knots_splices",
+                "gutenberg_dana_pearl_ropes_tackle",
+                "nist_cordage_fiber_heating_8308",
+            },
+            "defer": {
+                "niosh_suspension_scaffold_failures",
+                "saail_autism_kink_toolkit",
+                "cordage_institute_publications",
+                "samson_rope_technical_documents",
+                "wykd_practitioner_archive",
+                "kink_clinical_guidelines_2023",
+                "ropewalk_story_of_rope",
+            },
+            "reject": {
+                "louis_kordexe_rope_articles",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        for row in batch.values():
+            self.assertTrue(row["rights_basis"].strip())
+            if row["decision"].startswith("accept_"):
+                self.assertEqual(row["training_use"], "direct_training_bounded")
+            elif row["decision"] == "defer":
+                self.assertTrue(row["training_use"].startswith("reference_only"))
+            else:
+                self.assertEqual(row["training_use"], "rejected_no_use")
+
+        accepted = expected["accept_high_priority"] | expected["accept_targeted_scope"]
+        queue = {
+            row["discovery_candidate_id"]: row
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in accepted
+        }
+        self.assertEqual(set(queue), accepted)
+        for candidate_id, row in queue.items():
+            self.assertEqual(row["training_use"], "direct_training_bounded")
+            self.assertTrue(row["rights_basis"].strip(), candidate_id)
+
+    def test_batch_008_rights_and_domain_transfer_limits_are_explicit(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+
+        hse = by_id["hse_treework_lifting_and_climbing"]
+        hse_text = (
+            hse["access_notes"]
+            + " "
+            + hse["recommended_crawl_scope"]
+            + " "
+            + hse["rights_basis"]
+        ).lower()
+        for marker in {
+            "open government licence v3.0",
+            "eligible crown text",
+            "separate lines and anchors",
+            "rescue",
+            "human suspension",
+            "third-party",
+        }:
+            self.assertIn(marker, hse_text)
+
+        for candidate_id in {
+            "gutenberg_verrill_knots_splices",
+            "gutenberg_dana_pearl_ropes_tackle",
+        }:
+            source = by_id[candidate_id]
+            text = (
+                source["access_notes"]
+                + " "
+                + source["recommended_crawl_scope"]
+                + " "
+                + source["rights_basis"]
+            ).lower()
+            for marker in {
+                "public domain in the usa",
+                "territorial warning",
+                "human suspension",
+                "historical",
+            }:
+                self.assertIn(marker, text)
+
+        nist = by_id["nist_cordage_fiber_heating_8308"]
+        nist_text = (
+            nist["access_notes"] + " " + nist["recommended_crawl_scope"]
+        ).lower()
+        for marker in {
+            "approved for public release",
+            "abaca",
+            "haitian sisal",
+            "do not generalize results to jute",
+            "bulk-bale",
+        }:
+            self.assertIn(marker, nist_text)
+
+        for candidate_id in {
+            "saail_autism_kink_toolkit",
+            "cordage_institute_publications",
+            "samson_rope_technical_documents",
+            "wykd_practitioner_archive",
+            "kink_clinical_guidelines_2023",
+            "ropewalk_story_of_rope",
+        }:
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertIn(
+                "permission",
+                source["recommended_crawl_scope"].lower(),
+                candidate_id,
+            )
+
+        niosh = by_id["niosh_suspension_scaffold_failures"]
+        self.assertEqual(niosh["training_use"], "reference_only_policy_conflict")
+        niosh_text = (
+            niosh["access_notes"] + " " + niosh["recommended_crawl_scope"]
+        ).lower()
+        for marker in {
+            "not to make substantive changes",
+            "1992",
+            "obsolete",
+            "human suspension",
+        }:
+            self.assertIn(marker, niosh_text)
+
+    def test_batch_008_rejects_unsafe_rope_conditioning_content(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        source = by_id["louis_kordexe_rope_articles"]
+        self.assertEqual(source["decision"], "reject")
+        self.assertEqual(source["training_use"], "rejected_no_use")
+        text = (
+            source["access_notes"] + " " + source["recommended_crawl_scope"]
+        ).lower()
+        for marker in {
+            "boiling",
+            "100 friction pulls",
+            "torch",
+            "oil/wax",
+            "bacterial",
+            "mold",
+        }:
+            self.assertIn(marker, text)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_007`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_008`", self.report)
 
 
 if __name__ == "__main__":

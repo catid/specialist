@@ -434,6 +434,64 @@
       "whitespace_delimited_word_count": 341843
     },
     {
+      "artifact_id": "canonical-markdown:usfs_region5_hazard_tree_2022",
+      "byte_length": 28577,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/usfs_region5_hazard_tree_2022/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "fcc884caf47a765e9d796be0b36f8a13395d0c30a8f26fbe43a30baf84a899d7",
+      "markdown_path": "data/site_corpora/usfs_region5_hazard_tree_2022/CORPUS.md",
+      "markdown_sha256": "17c8eca67538c64c8f624972ec1965aa7f764180412a3598108a1d00d34eae9e",
+      "non_qa": true,
+      "qwen36_token_count": 5864,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:94c02596c7e4f54bfab53e21edc569b534538945bb25f340d1eb32974be14538",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "usfs_region5_hazard_tree_2022",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "Eligible United States Government explanatory text is treated as presumptively public domain under 17 U.S.C. 105.",
+        "license": "eligible_US_government_text",
+        "limitations": [
+          "No blanket rights conclusion applies to credited or third-party components.",
+          "Cover art, figures, diagrams, raster tables, forms, maps, quick lists, application screenshots, cited standards, and other visual or externally supplied matter are excluded.",
+          "The registry records the corpus rights basis and does not provide a legal opinion."
+        ],
+        "promotion_gate": "ready_with_component_audit_and_domain_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "all_tree_failures_cannot_be_predicted_and_risk_is_reduced_not_eliminated",
+        "forest_service_region5_hazard_tree_context",
+        "no_mitigation_cutting_construction_or_numerical_rating_transfer",
+        "no_tree_branch_sling_hardpoint_load_bondage_or_human_suspension_certification",
+        "separate_qualified_arboricultural_and_rigging_or_structural_assessments_required",
+        "tree_risk_screening_is_not_anchor_capacity"
+      ],
+      "source_document_identity": {
+        "canonical_pdf_url": "https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf",
+        "identity_type": "government_technical_report",
+        "publication_revision": "March 2022",
+        "region": "USDA Forest Service Pacific Southwest Region (Region 5)",
+        "report_number": "FHP Report RO-22-01",
+        "source_resource_id": "usfs_region5_hazard_tree_2022"
+      },
+      "source_document_identity_sha256": "94c02596c7e4f54bfab53e21edc569b534538945bb25f340d1eb32974be14538",
+      "source_label": "Hazard Tree Identification and Mitigation, Pacific Southwest Region, March 2022",
+      "unicode_word_count": 4201,
+      "whitespace_delimited_word_count": 4226
+    },
+    {
       "artifact_id": "canonical-markdown:usfs_rigging_for_trail_work",
       "byte_length": 40592,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -490,7 +548,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "43a94a3b03988403661bbf3ccfba96fd149bf5bdd1b0619bde752d3df41bae81"
+    "sha256": "5b5d1d6f146de04dc1a7d23eab85dedd47571890b61c11b36bbc3b9031508d4e"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -529,7 +587,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "693a59e4493494ebf07771f312c5b702dbe4bb6bad9c17c02d02fa5b1326268a",
+  "source_tree_fingerprint_sha256": "1dd8840548cfe4b9b09b8db052ece57382e3bbaa0d20f895f3e97ad71e0c52f4",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -539,11 +597,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 9,
-    "byte_length": 3813603,
-    "qwen36_token_count": 1130602,
-    "source_document_split_group_count": 9,
-    "unicode_word_count": 499483,
-    "whitespace_delimited_word_count": 387734
+    "artifact_count": 10,
+    "byte_length": 3842180,
+    "qwen36_token_count": 1136466,
+    "source_document_split_group_count": 10,
+    "unicode_word_count": 503684,
+    "whitespace_delimited_word_count": 391960
   }
 }

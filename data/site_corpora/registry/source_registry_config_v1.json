@@ -280,6 +280,41 @@
         "manufacturer_standards_and_qualified_evaluation_control",
         "source_assumptions_and_failure_consequences_must_be_preserved"
       ]
+    },
+    {
+      "resource_id": "usfs_region5_hazard_tree_2022",
+      "source_label": "Hazard Tree Identification and Mitigation, Pacific Southwest Region, March 2022",
+      "manifest_path": "data/site_corpora/usfs_region5_hazard_tree_2022/manifest.json",
+      "markdown_path": "data/site_corpora/usfs_region5_hazard_tree_2022/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "government_technical_report",
+        "canonical_pdf_url": "https://www.fs.usda.gov/sites/nfs/files/legacy-media/r05/Hazard%20Tree%20Identification%20and%20Mitigation%20-%202022.pdf",
+        "report_number": "FHP Report RO-22-01",
+        "publication_revision": "March 2022",
+        "region": "USDA Forest Service Pacific Southwest Region (Region 5)",
+        "source_resource_id": "usfs_region5_hazard_tree_2022"
+      },
+      "rights_basis": {
+        "status": "federal_text_public_domain_presumption",
+        "basis": "Eligible United States Government explanatory text is treated as presumptively public domain under 17 U.S.C. 105.",
+        "license": "eligible_US_government_text",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_component_audit_and_domain_limits",
+        "limitations": [
+          "No blanket rights conclusion applies to credited or third-party components.",
+          "Cover art, figures, diagrams, raster tables, forms, maps, quick lists, application screenshots, cited standards, and other visual or externally supplied matter are excluded.",
+          "The registry records the corpus rights basis and does not provide a legal opinion."
+        ]
+      },
+      "safety_transfer_flags": [
+        "forest_service_region5_hazard_tree_context",
+        "all_tree_failures_cannot_be_predicted_and_risk_is_reduced_not_eliminated",
+        "tree_risk_screening_is_not_anchor_capacity",
+        "no_tree_branch_sling_hardpoint_load_bondage_or_human_suspension_certification",
+        "separate_qualified_arboricultural_and_rigging_or_structural_assessments_required",
+        "no_mitigation_cutting_construction_or_numerical_rating_transfer"
+      ]
     }
   ]
 }
