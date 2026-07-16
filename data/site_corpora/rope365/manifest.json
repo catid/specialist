@@ -1,0 +1,629 @@
+{
+  "artifact": {
+    "bytes": 90243,
+    "headings": 75,
+    "path": "data/site_corpora/rope365/rope365.md",
+    "sha256": "2ed4419e5a9b3267d618faaf5e9677cc08835749882efbff27b5f2b283c598ff",
+    "words": 13293
+  },
+  "artifact_role": "canonical_trainable_source_corpus",
+  "build_inputs": {
+    "guide_source": "data/site_corpora/rope365/guide_source.md",
+    "source_snapshot": "data/site_corpora/rope365/source_snapshot.json",
+    "source_snapshot_sha256": "3d8eec4886dba7d84965a9b2b8862645445734a27ff22daa378e40157e0131cf"
+  },
+  "builder": "data/site_corpora/rope365/build_rope365_corpus.py",
+  "canonical_resource_url": "https://rope365.com/",
+  "coverage": {
+    "discovered_canonical_urls": 232,
+    "excluded_pages": 121,
+    "excluded_urls": [
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/175-2/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/365-challenges-and-daily-posting/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/7673-2/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/about/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/author-and-collaborators/"
+      },
+      {
+        "reason": "placeholder, gallery, performance listing, or media-only page with no inferable instructional steps",
+        "url": "https://rope365.com/bamboo-exploration/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/blog/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/body/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/book-excepts-featuring-akechi-denki/"
+      },
+      {
+        "reason": "resource/directory listing; excluded to avoid URL-title trivia and volatile recommendations",
+        "url": "https://rope365.com/books/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/box-tie-hand-positions/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/box-tie-kimono-tie/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/box-tie/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/cart/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/category/uncategorized-en/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/cf-campaign-form/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/cf-dashboard/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/cf-listing-page/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/cf-user-registration/"
+      },
+      {
+        "reason": "placeholder, gallery, performance listing, or media-only page with no inferable instructional steps",
+        "url": "https://rope365.com/chain-sinnet/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/checkout/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/chest/"
+      },
+      {
+        "reason": "resource/directory listing; excluded to avoid URL-title trivia and volatile recommendations",
+        "url": "https://rope365.com/communities/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/contact/"
+      },
+      {
+        "reason": "placeholder, gallery, performance listing, or media-only page with no inferable instructional steps",
+        "url": "https://rope365.com/contributor-writings/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/cordespace-reservation/"
+      },
+      {
+        "reason": "placeholder, gallery, performance listing, or media-only page with no inferable instructional steps",
+        "url": "https://rope365.com/ebimcknotty-performances-2011-2016/"
+      },
+      {
+        "reason": "placeholder, gallery, performance listing, or media-only page with no inferable instructional steps",
+        "url": "https://rope365.com/ebimcknotty-performances/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/ebimcknotty/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/es/aprendiendo/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/es/bienvenido-a-rope365/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/es/compras-de-cuerda/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/es/el-consentimiento-y-la-comunicacion/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/es/empezando/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/es/seguridad/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/es/vocabulario/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/fall-and-winter-major-update-now-with-photos-and-links/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/fall-is-completed/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/fall/"
+      },
+      {
+        "reason": "resource/directory listing; excluded to avoid URL-title trivia and volatile recommendations",
+        "url": "https://rope365.com/finding-a-local-community/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/foundation/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/apprendre-le-ligotage/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/atelier-avec-air-workshop-with-air/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/bienvenue-a-cordespace/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/bienvenue/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/cabaret-shibari/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/category/uncategorized/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/commencez-ici/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/communication-fr/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/cordespace-annulations-et-remboursements/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/cordespace-boutique/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/cordespace-calendrier-provisoire/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/cordespace-cordesquisse/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/cordespace-reservation-2/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/cordespace-semi-prive/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/debuter-avec-la-corde/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/extension/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/fondation/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/frictions-fr/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/improvisation-fr/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/infolettre/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/kannuki/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/magasinage-de-corde/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/noeud-de-colonne-simple/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/printemps/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/rangement/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/rendez-vous-cordiaux-cours-prives/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/rendezvouscordiaux/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/rendezvouscordiauxdescription/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/securite/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/verrouillage/"
+      },
+      {
+        "reason": "translation duplicate, local venue material, event/calendar material, or language archive",
+        "url": "https://rope365.com/fr/vocabulaire/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/frog-tie/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/future-updates-on-patreon/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/getting-started-resources-and-more-updates/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/getting-started-section-and-writing-progress/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/getting-started/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/hello-world/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/hitches/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/hog-tie/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/layout-test/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/my-account/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/new-anatomy-writings-summary-update-and-feedback-wanted-happy-new-year/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/newsletter/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/overcoming-challenges-and-writing-again/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/overview/"
+      },
+      {
+        "reason": "placeholder, gallery, performance listing, or media-only page with no inferable instructional steps",
+        "url": "https://rope365.com/performances-by-ebi-mcknotty-2011-2016/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/projet-recap-after-1-year-of-writing/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/rendezvouscordiaux-2/"
+      },
+      {
+        "reason": "resource/directory listing; excluded to avoid URL-title trivia and volatile recommendations",
+        "url": "https://rope365.com/rope-artists-references/"
+      },
+      {
+        "reason": "resource/directory listing; excluded to avoid URL-title trivia and volatile recommendations",
+        "url": "https://rope365.com/rope-resources/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/rope/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/rope365-getting-started-improvements-and-another-new-year/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/rope365-nerves-chest-and-a-happy-new-year/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/rope365-new-year-update-upcoming-book-videos-and-more/"
+      },
+      {
+        "reason": "placeholder, gallery, performance listing, or media-only page with no inferable instructional steps",
+        "url": "https://rope365.com/rope365-now-with-videos/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/setting-goals-for-2019/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/shop/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/sitemap/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/spring-week-summaries-are-completed/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/spring/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/starter/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/starting-again-4-years-of-writing/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/starting-with-rope-video-series-and-patreon/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/summer-is-complete/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/summer/"
+      },
+      {
+        "reason": "commerce, account, form, newsletter, contact, or support page",
+        "url": "https://rope365.com/support/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/talk-show-this-sunday/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/test/"
+      },
+      {
+        "reason": "resource/directory listing; excluded to avoid URL-title trivia and volatile recommendations",
+        "url": "https://rope365.com/videos/"
+      },
+      {
+        "reason": "resource/directory listing; excluded to avoid URL-title trivia and volatile recommendations",
+        "url": "https://rope365.com/websites/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/week-1-foundation-is-now-available/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/week-2-hitch-is-now-available/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/week-3-the-chest-now-available/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/week-5-box-tie-now-available/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/week-5-frog-ties-now-available/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/week-6-the-hogtie-now-available/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/week-7-and-more/"
+      },
+      {
+        "reason": "news, project update, biography, announcement, auto-transcript, or other material outside the source scope",
+        "url": "https://rope365.com/winter-a-whole-year-of-rope-exercises-now-available-and-some-updates/"
+      },
+      {
+        "reason": "landing page, archive, deprecated duplicate, test page, or navigation-only seasonal/weekly index",
+        "url": "https://rope365.com/winter/"
+      }
+    ],
+    "included_pages": 111,
+    "included_urls": [
+      "https://rope365.com/aesthetics/",
+      "https://rope365.com/assembling-ties/",
+      "https://rope365.com/asymmetric-arms/",
+      "https://rope365.com/bamboo-postures/",
+      "https://rope365.com/bed/",
+      "https://rope365.com/body-challenges/",
+      "https://rope365.com/box-tie-chest/",
+      "https://rope365.com/box-tie-cuffs/",
+      "https://rope365.com/box-tie-front-v/",
+      "https://rope365.com/box-tie-one-rope/",
+      "https://rope365.com/box-tie-open-diamonds/",
+      "https://rope365.com/box-tie-two-ropes/",
+      "https://rope365.com/box-tie-variations/",
+      "https://rope365.com/challenges/",
+      "https://rope365.com/chest-diamond/",
+      "https://rope365.com/chest-knots/",
+      "https://rope365.com/chestasymmetry/",
+      "https://rope365.com/chestladder/",
+      "https://rope365.com/chicken-wing/",
+      "https://rope365.com/cinches/",
+      "https://rope365.com/clove-hitch-lock/",
+      "https://rope365.com/clove-hitch/",
+      "https://rope365.com/coiling/",
+      "https://rope365.com/communication/",
+      "https://rope365.com/cow-hitch/",
+      "https://rope365.com/crafting/",
+      "https://rope365.com/creativity/",
+      "https://rope365.com/crossing-hitch/",
+      "https://rope365.com/crotch/",
+      "https://rope365.com/diy-freestanding-hardpoints/",
+      "https://rope365.com/elbow-ties/",
+      "https://rope365.com/exposed/",
+      "https://rope365.com/extending-rope/",
+      "https://rope365.com/feet-and-toes/",
+      "https://rope365.com/frictions/",
+      "https://rope365.com/frog-chaos/",
+      "https://rope365.com/frog-cinches/",
+      "https://rope365.com/frog-diamonds/",
+      "https://rope365.com/frog-frictions/",
+      "https://rope365.com/frog-starting-points/",
+      "https://rope365.com/furniture/",
+      "https://rope365.com/games/",
+      "https://rope365.com/half-hitch/",
+      "https://rope365.com/handling/",
+      "https://rope365.com/hands-and-fingers/",
+      "https://rope365.com/hands-in-front/",
+      "https://rope365.com/hands-in-the-back/",
+      "https://rope365.com/head/",
+      "https://rope365.com/hips-and-butt/",
+      "https://rope365.com/history/",
+      "https://rope365.com/hogtie-ankles-crossing/",
+      "https://rope365.com/hogtie-asymmetry/",
+      "https://rope365.com/hogtie-chest-harness/",
+      "https://rope365.com/hogtie-flipping/",
+      "https://rope365.com/hogtie-legs-crossing/",
+      "https://rope365.com/hogtie-shoulders-to-ankles/",
+      "https://rope365.com/hogtie-wrists-to-ankles/",
+      "https://rope365.com/hojojutsu/",
+      "https://rope365.com/improvisation/",
+      "https://rope365.com/inline-cuff/",
+      "https://rope365.com/intimacy/",
+      "https://rope365.com/knis-equipment-primer/",
+      "https://rope365.com/knis-rope-materials-primer/",
+      "https://rope365.com/learning/",
+      "https://rope365.com/lower-body-structures/",
+      "https://rope365.com/mind/",
+      "https://rope365.com/mobility-lower/",
+      "https://rope365.com/mobility/",
+      "https://rope365.com/more-columns/",
+      "https://rope365.com/more-hitches/",
+      "https://rope365.com/more-knots/",
+      "https://rope365.com/more-single-column-ties/",
+      "https://rope365.com/more-techniques/",
+      "https://rope365.com/movement/",
+      "https://rope365.com/multitasking/",
+      "https://rope365.com/naming-things-and-progress-update/",
+      "https://rope365.com/neck-restriction-ties/",
+      "https://rope365.com/neck/",
+      "https://rope365.com/nerves-lower/",
+      "https://rope365.com/nerves/",
+      "https://rope365.com/pain/",
+      "https://rope365.com/partnership/",
+      "https://rope365.com/predicaments/",
+      "https://rope365.com/quick-release/",
+      "https://rope365.com/restrictions/",
+      "https://rope365.com/reversed-crossing-hitch/",
+      "https://rope365.com/rope-care/",
+      "https://rope365.com/rope-color/",
+      "https://rope365.com/rope-construction/",
+      "https://rope365.com/rope-ends/",
+      "https://rope365.com/rope-maintenance/",
+      "https://rope365.com/rope-material/",
+      "https://rope365.com/rope-shopping/",
+      "https://rope365.com/rope-size/",
+      "https://rope365.com/sabotage/",
+      "https://rope365.com/safety/",
+      "https://rope365.com/sculpture/",
+      "https://rope365.com/serpentine/",
+      "https://rope365.com/sharing/",
+      "https://rope365.com/single-column-tie/",
+      "https://rope365.com/sitting/",
+      "https://rope365.com/storing-rope/",
+      "https://rope365.com/tension/",
+      "https://rope365.com/tied-together/",
+      "https://rope365.com/torso/",
+      "https://rope365.com/touch/",
+      "https://rope365.com/tying-shibari-with-slippery-rope/",
+      "https://rope365.com/upper-body-structures/",
+      "https://rope365.com/vocab/",
+      "https://rope365.com/weavings/",
+      "https://rope365.com/work-out/"
+    ],
+    "raw_snapshot_records": 346,
+    "unique_raw_urls": 211
+  },
+  "qa_derivation": "later, separate, manually reviewed layer; not created or modified by this build",
+  "resource_id": "rope365",
+  "retrieval_date": "2026-07-16",
+  "schema": "site-corpus-manifest-v1",
+  "scope": "All substantive instructional, safety, terminology, practice, and rope-care pages.",
+  "training_use": "direct source-corpus training input"
+}
