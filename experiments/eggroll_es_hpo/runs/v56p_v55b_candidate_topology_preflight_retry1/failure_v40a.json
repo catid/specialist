@@ -1,0 +1,9 @@
+{
+  "content_sha256_before_self_field": "e575761b60b0a2b7c89855abfebb54f5a0bd3d4b5ba22dc1d217ab9214a809c6",
+  "dataset_or_evaluation_accessed": false,
+  "failed_at_utc": "2026-07-16T07:39:02.228634+00:00",
+  "message": "'TopologyTrainerV40A' object has no attribute '_resolve'",
+  "schema": "lora-topology-probe-failure-v40a",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_lora_topology_probe_v40a.py\", line 433, in main\n    actor_ids = trainer._resolve([\n                ^^^^^^^^^^^^^^^^\nAttributeError: 'TopologyTrainerV40A' object has no attribute '_resolve'\n",
+  "type": "AttributeError"
+}
