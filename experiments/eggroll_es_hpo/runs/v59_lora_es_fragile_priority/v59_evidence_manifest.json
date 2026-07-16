@@ -1,0 +1,211 @@
+{
+  "artifacts": {
+    "compatibility_report": {
+      "content_sha256": "c359859ba1e0fca05a36d0574537b61d86a75edd6527567a2c4b7ab2f5272589",
+      "file_sha256": "dbd316f68d242b56542da8cf7d8943c9047d1aadfb1f6ae112f0d0c81a452c23"
+    },
+    "internal_report": {
+      "content_sha256": "9f89ba1dfab7e4c09e77872f64cff5c709a21bb72be08794ab928e1abf0cb120",
+      "file_sha256": "08857732f3e3c11abe6fdff69871ca5101e4408d8f750cc7f7d5a78d6c349c62"
+    },
+    "p16_train_gate": {
+      "content_sha256": "d4a381a7c0713de7ab086e65d46ceb00d79798574e938c25d57d24f9b957e038",
+      "file_sha256": "1b894a23e0e98f3942d775d67ae87aaf952e042ef5c99501c031bec4a73c2487"
+    }
+  },
+  "attempt": {
+    "content_sha256": "b3cc8d56633f0e41fd4deaf1f8cd3399b98f630e7edcc7ff192f7cafa6ef35dd",
+    "file_sha256": "a4478cb7ea779284e7e55e35b6c5c914bf0a815e7642852018fb957dbf60b0c2"
+  },
+  "candidate_snapshot": {
+    "adapter_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "adapter_model_file_sha256": "c2665b60928b16120a2b98fdf137fafd250644852c86a02d797689f02105c6c8",
+    "candidate_exactly_aborted_after_snapshot": true,
+    "canonical_fp32_candidate_sha256": "1713987fcad93f3e6368a309415faf5de2f4230eaf3c44baf23b8e9a2edf2a3d",
+    "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/selected_candidate_v59",
+    "elements": 4528128,
+    "optimizer_master_committed": false,
+    "readback_verified": true,
+    "runtime_bf16_values_sha256": "ad5dd995de7cad3c9d116d64deb3aa67b9db46fbdf4e3f8a6ab5ee37340b5923",
+    "snapshot_manifest_sha256": "e477cac0ed5fbed2cf106d0a5640648a9a533e683e94c06d4571e57cef5c85d7",
+    "tensor_count": 70,
+    "worker_consensus_count": 4
+  },
+  "completed_at_utc": "2026-07-16T08:49:49.136007+00:00",
+  "content_sha256_before_self_field": "d5c36306918cbc1420ba377cc9d6e36a282820a00b3814bf0cd9cb505e6b9aca",
+  "document_disjoint_evaluation_doctrine_preserved": true,
+  "final_gpu_idle": {
+    "all_four_compute_process_lists_empty": true,
+    "memory_used_mib": {
+      "0": 4,
+      "1": 4,
+      "2": 4,
+      "3": 4
+    }
+  },
+  "instrumentation_status": {
+    "dedicated_wrapper_report_written": false,
+    "error": "projection no-rerun sleep incorrectly required positive utilization on every GPU",
+    "p16_phase_correct_requirement": "all four expected actor PIDs resident and positive",
+    "projection_phase_correct_requirement": "all four expected actor PIDs resident; no foreign compute",
+    "runner_exit_code": 1,
+    "runner_file_sha256": "d5d288a8b541d4a7c6d7b98b284839b5e70ddf3a04f62f79e709a768245658ad",
+    "scientific_executor_and_snapshot_completed_before_wrapper_error": true,
+    "selection_gate_or_candidate_bytes_changed_by_finalizer": false
+  },
+  "ood_shadow_opened": false,
+  "optimizer_master_committed": false,
+  "p8_evaluation_performed": false,
+  "population_rerun_performed": false,
+  "preregistration": {
+    "content_sha256": "e21bb2dd54b4e557d04b9989748f3475fbbdf9c498611a193a1d407bde34c49b",
+    "file_sha256": "b299d8cb0d6f16a6a00cd00c66cb70e458a8a3c734191a5674383f49be08d997"
+  },
+  "projection": {
+    "direction_sha256": "f80db1bde940053c93e559c9305dc750e82f5231d8df4f52fcf1b85c06dc0522",
+    "maximum_kkt_complementarity_residual": 5.952652862508419e-16,
+    "maximum_kkt_stationarity_residual": 5.326131202743056e-11,
+    "minimum_fragile_f1_actor_margin": 0.47021686822275277,
+    "minimum_other_actor_objective_margin": 0.14999999999999908,
+    "per_objective_minimum_projected_margins": {
+      "domain": 0.14999999999999986,
+      "fragile_generation_f1": 0.47021686822275277,
+      "fragile_generation_nonzero": 0.18019463335670846,
+      "prose_lm": 0.1500000000000002,
+      "qa_answer_logprob": 0.14999999999999908,
+      "qa_generation_f1": 0.14999999999999966
+    },
+    "required_other_margin_floor": 0.15,
+    "v58_direction_cosine": 0.9206650055681261
+  },
+  "protected_semantics_opened": false,
+  "schema": "lora-es-fragile-priority-evidence-v59",
+  "scientific_result": {
+    "all_nine_calibrated_endpoint_gates_passed": true,
+    "evaluated_ratio_prefix": [
+      0.5,
+      0.375,
+      0.25
+    ],
+    "four_actor_candidate_consensus_passed": true,
+    "per_ratio_failed_checks": {
+      "0.25": [],
+      "0.375": [
+        "fragile_generation_nonzero_noninferiority"
+      ],
+      "0.5": [
+        "fragile_generation_f1_noninferiority",
+        "qa_logprob_noninferiority"
+      ]
+    },
+    "ratio_0p25_gate_checks": {
+      "domain_point_improvement": true,
+      "fragile_generation_exact_noninferiority": true,
+      "fragile_generation_f1_noninferiority": true,
+      "fragile_generation_nonzero_noninferiority": true,
+      "prose_lm_noninferiority": true,
+      "qa_generation_exact_noninferiority": true,
+      "qa_generation_f1_noninferiority": true,
+      "qa_generation_nonzero_noninferiority": true,
+      "qa_logprob_noninferiority": true
+    },
+    "ratio_0p25_paired_actor_median_deltas": {
+      "domain": 0.0005809388655986236,
+      "prose_lm": 0.00024065305733089737,
+      "qa_answer_logprob": 0.0003586533249061441,
+      "qa_generation_exact_count": 0.0,
+      "qa_generation_f1": 0.002038333096353151,
+      "qa_generation_nonzero_count": 0.0
+    },
+    "selected_target_norm_ratio": 0.25,
+    "train_only_pass": true
+  },
+  "status": "complete_scientific_train_pass_candidate_saved_wrapper_telemetry_false_negative",
+  "telemetry": {
+    "foreign_compute_pid_rows": 0,
+    "gpu_log_file_sha256": "b07c3c9afdc3913d5fce5e7424686d5fc7e4dc127bfe170d2ac1df98bbd2256e",
+    "p16_train_gate": {
+      "by_gpu": {
+        "0": {
+          "expected_pid": 4135108,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 40.9698275862069,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 100,
+          "positive_utilization_samples": 140,
+          "samples": 232
+        },
+        "1": {
+          "expected_pid": 4135109,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 40.633620689655174,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 100,
+          "positive_utilization_samples": 139,
+          "samples": 232
+        },
+        "2": {
+          "expected_pid": 4135110,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 41.133620689655174,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 100,
+          "positive_utilization_samples": 143,
+          "samples": 232
+        },
+        "3": {
+          "expected_pid": 4135111,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 41.02155172413793,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 100,
+          "positive_utilization_samples": 138,
+          "samples": 232
+        }
+      },
+      "phase": "p16_backtracking_train_gate"
+    },
+    "projection_no_work_barrier": {
+      "by_gpu": {
+        "0": {
+          "expected_pid": 4135108,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 0.0,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 0,
+          "positive_utilization_samples": 0,
+          "samples": 3
+        },
+        "1": {
+          "expected_pid": 4135109,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 0.6666666666666666,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 2,
+          "positive_utilization_samples": 1,
+          "samples": 3
+        },
+        "2": {
+          "expected_pid": 4135110,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 0.0,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 0,
+          "positive_utilization_samples": 0,
+          "samples": 3
+        },
+        "3": {
+          "expected_pid": 4135111,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 0.0,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 0,
+          "positive_utilization_samples": 0,
+          "samples": 3
+        }
+      },
+      "phase": "v59_fragile_priority_projection_no_population_rerun"
+    }
+  },
+  "terminal_holdout_opened": false
+}
