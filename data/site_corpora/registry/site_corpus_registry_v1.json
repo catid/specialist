@@ -897,6 +897,67 @@
       "whitespace_delimited_word_count": 1521
     },
     {
+      "artifact_id": "canonical-markdown:sage_aramid_three_strand_contact_forces_2025",
+      "byte_length": 11683,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/sage_aramid_three_strand_contact_forces_2025/manifest.json",
+      "manifest_schema": {
+        "name": "specialist-corpus-manifest-v1",
+        "version": null
+      },
+      "manifest_sha256": "051c6fd2569d2290fe5b75e08a086cc768d2be0ab6e61903ce53d7eec8f1963e",
+      "markdown_path": "data/site_corpora/sage_aramid_three_strand_contact_forces_2025/CORPUS.md",
+      "markdown_sha256": "e69a9c89ba049129ffa32a1c1b6d5001230cf3ac7fdc5d31253109fc85ef88af",
+      "non_qa": true,
+      "qwen36_token_count": 2469,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:d0b1e4ab5f80c557169c30bdfd3f898018d87a454638d6e2fd7144b166eec3ea",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "sage_aramid_three_strand_contact_forces_2025",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The official University of Twente record labels the final published version CC BY, links to Creative Commons Attribution 4.0, and serves the checksum-bound final SAGE article; the manual adaptation records attribution and changes.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "limitations": [
+          "Figures, tables, equations, plotted or numerical results, references, performance projections, correction values, confidence intervals, and separately credited components are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, extraction, contact sheet, or source body is retained.",
+          "Open licensing does not turn measurements on tested Twaron 2200 laid three-strand specimens into a calculator, rating, lifetime rule, product endorsement, or evidence for natural fiber, other constructions, knots, care, bondage, body contact, uplines, anchors, or human suspension."
+        ],
+        "promotion_gate": "ready_with_attribution_component_audit_disclosures_and_exact_specimen_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "contradictory_page_16_contact_width_sentence_must_not_be_taught_as_a_result",
+        "dataset_fitted_ideal_helix_adjustment_is_not_a_portable_model_or_calculator",
+        "no_natural_fiber_other_construction_knot_care_bondage_body_contact_upline_anchor_or_human_suspension_transfer",
+        "nwo_teijin_support_specimen_provision_and_declared_financial_conflict_must_travel_with_source",
+        "pressure_film_spatial_resolution_edge_effects_and_replication_limits_must_be_preserved",
+        "qualitative_interstrand_contact_measurements_not_strength_damage_lifetime_or_rating_evidence",
+        "tested_twaron_2200_laid_three_strand_specimen_scope_required"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://research.utwente.nl/en/publications/experimental-analysis-of-contact-forces-between-strands-in-three-/",
+        "doi": "10.1177/00405175251333381",
+        "identity_type": "journal_article",
+        "journal": "Textile Research Journal",
+        "official_pdf_sha256": "b4167e64051dfd9ccafe8cdf7dfc90ebd1e04c01ab18043fc1a9a4cf4c5a6803",
+        "publication_year": 2025,
+        "source_resource_id": "sage_aramid_three_strand_contact_forces_2025"
+      },
+      "source_document_identity_sha256": "d0b1e4ab5f80c557169c30bdfd3f898018d87a454638d6e2fd7144b166eec3ea",
+      "source_label": "Experimental analysis of contact forces between strands in three-strand ropes with varying twist parameters and filament counts",
+      "unicode_word_count": 1663,
+      "whitespace_delimited_word_count": 1655
+    },
+    {
       "artifact_id": "canonical-markdown:shibari_atlas",
       "byte_length": 3485840,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1064,7 +1125,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "77331034e39c882929c00669af831914879f1aa3764f0cc552926e5a8c25594c"
+    "sha256": "617d3cdf35ae3f017ceaa36ccd3513b212c25ce347b14058b59cb9b345664fb7"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1103,7 +1164,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "4dbc8dc0899a751b401859d530bc4d13a1ec251b7f321c0d727d952eb4b719a7",
+  "source_tree_fingerprint_sha256": "1dda373d20503fdfe4ffbc679d261e21950edc7be97db94037dfc2ca8741817b",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1113,11 +1174,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 19,
-    "byte_length": 4018633,
-    "qwen36_token_count": 1173628,
-    "source_document_split_group_count": 19,
-    "unicode_word_count": 528503,
-    "whitespace_delimited_word_count": 416577
+    "artifact_count": 20,
+    "byte_length": 4030316,
+    "qwen36_token_count": 1176097,
+    "source_document_split_group_count": 20,
+    "unicode_word_count": 530166,
+    "whitespace_delimited_word_count": 418232
   }
 }
