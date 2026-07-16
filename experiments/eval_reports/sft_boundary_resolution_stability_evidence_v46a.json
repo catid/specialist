@@ -1,0 +1,103 @@
+{
+  "boundary_comparison": {
+    "sft_v42g_remained_eligible": true,
+    "sft_v42g_shadow_generated_equal_unit_mean_reward": 0.08865545812394282,
+    "sft_v42i_minus_sft_v42g_shadow_reward": 0.004095719764428241,
+    "sft_v42i_ood_prose_gate": {
+      "baseline": -1.2648933536355633,
+      "bootstrap": {
+        "document_count": 16,
+        "percentiles": [
+          0.025,
+          0.975
+        ],
+        "samples": 20000,
+        "seed": 20260715,
+        "unit": "normalized_source_url"
+      },
+      "bootstrap_lcb_non_degradation_passed": true,
+      "delta": 0.003952431158062986,
+      "final": -1.2609409224775003,
+      "higher_is_better": true,
+      "max_degradation": 0.0,
+      "metric": "mean_token_logprob",
+      "paired_document_bootstrap_95_ci": [
+        0.0014719414021468371,
+        0.006519001536584916
+      ],
+      "passed": true,
+      "point_non_degradation_passed": true
+    },
+    "sft_v42i_ood_qa_gate": {
+      "bootstrap": {
+        "ci_is_informational_point_gates_are_preregistered": true,
+        "item_count": 24,
+        "percentiles": [
+          0.025,
+          0.975
+        ],
+        "samples": 20000,
+        "seed": 20260715,
+        "unit": "ood_qa_item"
+      },
+      "exact_count_delta": 0,
+      "exact_non_degradation_passed": true,
+      "exact_rate_delta_paired_item_bootstrap_95_ci": [
+        0.0,
+        0.0
+      ],
+      "mean_reward_delta": 0.0005140692640691613,
+      "mean_reward_non_degradation_passed": true,
+      "passed": true,
+      "reward_mean_delta_paired_item_bootstrap_95_ci": [
+        -0.006569264069264073,
+        0.010059523809523815
+      ]
+    },
+    "sft_v42i_shadow_generated_equal_unit_mean_reward": 0.09275117788837106
+  },
+  "content_sha256_before_self_field": "279eb1bb3892b47af7da7bc90bfd058e249506881e3191770ee826a714638cb6",
+  "created_at_utc": "2026-07-15T23:43:46.251203+00:00",
+  "current_sft_control": {
+    "all_tensor_bytes_preserved_exactly": true,
+    "arm": "sft_v42i",
+    "completed_steps": 48,
+    "learning_rate": 5.5e-05,
+    "source_config_sha256": "0e8060efd40772233390f3f97ace489e473b2bc76572e7566b83afe3dd83cc51",
+    "source_report_content_sha256": "16d8898b6b81da33a6968c254e2d5c5684dd6a284ee0874b9f762bfc140b4341",
+    "source_report_file_sha256": "3076ff21d7d7910cc9ae33f1c00c69b10d8e72c6c8366bb1029ceca17812cee6",
+    "source_weights_sha256": "9e83783c20dfb5eec91b7217d885270efed8aec216c80374444dcbc55fd7dab8",
+    "stage_manifest_content_sha256": "040f13fbddcb16b15d8771f736cedac1a89a5b987805c442da8e03445cc1c838",
+    "stage_manifest_file_sha256": "f3bc58058032fd3cc00176ddda9de861d2cc3a989b8ce2e7499e15f1adb6d0c5",
+    "staged_config_sha256": "0e8060efd40772233390f3f97ace489e473b2bc76572e7566b83afe3dd83cc51",
+    "staged_weights_sha256": "79207dd2c0b46aaef4af5933aaac9fbbaf837db91241ab9d352e652b5c53afad",
+    "transformed_identity_sha256": "d185cbe52414054759188334fd38b96dbda601957bc8931256fd1e3c0fe71041"
+  },
+  "heldout_or_holdout_opened": false,
+  "prior_repetition_evidence": {
+    "content_sha256": "c49ab2394c0f0a4a55c7ad7d5c5a748a1107b831aa12c314d4ba02d04b195f46",
+    "file_sha256": "c4e2351d22889f4f8ab606c2ba4270c12bdf0edfd0f6639755bb58b684393340",
+    "finding": "V42G selected, OOD-eligible, and strict-gate-passing in 3/3 repetitions despite documented numerical spread",
+    "path": "/home/catid/specialist/experiments/eval_reports/v45_sft_v42g_repetition_evidence_v46a.json"
+  },
+  "protected_semantics_accessed_while_building": false,
+  "replication_scope": {
+    "v42g_has_three_repetitions": true,
+    "v42i_has_one_boundary_evaluation": true,
+    "v42i_repeated_stability_claimed": false,
+    "v43i_ood_first_resolution_required_before_holdout_launch": true
+  },
+  "schema": "sft-boundary-resolution-stability-evidence-v46a",
+  "status": "complete_aggregate_only_holdout_unopened",
+  "v45d_boundary_report": {
+    "all_four_base_duplicates_exact_all_splits": true,
+    "all_four_gpus_positive_each_phase": true,
+    "content_sha256": "f39a12fc33e55c957b540033220eb1ff82d0e1459e962ee30f591024d0b6a9a8",
+    "file_sha256": "a38ef3b9e947f2b6a6328f9eea679d7031a515ce59c8d0804144ae6d587985be",
+    "heldout_or_holdout_opened": false,
+    "path": "/home/catid/specialist/experiments/eval_reports/matched_lora_sft_boundary_ood_eligible_eval_v45d.json",
+    "selected_arm": "sft_v42i",
+    "selected_arm_ood_eligible": true,
+    "strict_final_gate_passed": true
+  }
+}

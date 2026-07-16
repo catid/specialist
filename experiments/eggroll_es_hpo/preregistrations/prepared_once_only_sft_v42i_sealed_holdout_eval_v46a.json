@@ -1,0 +1,236 @@
+{
+  "base_duplicate_arms": [
+    "base_a",
+    "base_b",
+    "base_c"
+  ],
+  "boundary_evidence": {
+    "content_sha256": "279eb1bb3892b47af7da7bc90bfd058e249506881e3191770ee826a714638cb6",
+    "current_sft_control": "sft_v42i",
+    "file_sha256": "7de60d7267dca4d4dea0bdb9bb5b2ed5a1fbd0fec5a714ba837460f47791caa1",
+    "heldout_or_holdout_opened": false,
+    "path": "/home/catid/specialist/experiments/eval_reports/sft_boundary_resolution_stability_evidence_v46a.json",
+    "v42g_repeat_stability": "3/3",
+    "v42i_boundary_evaluation_count": 1,
+    "v43i_ood_first_resolution_required_before_holdout_launch": true
+  },
+  "candidate_selection_permitted": false,
+  "content_sha256_before_self_field": "612e3b511a588fa6ac085dd4e29899e093cf48d8c6bc3f810e99945987a1e84b",
+  "created_at_utc": "2026-07-15T23:47:40.547450+00:00",
+  "fixed_arms": [
+    "base_a",
+    "base_b",
+    "base_c",
+    "sft_v42i"
+  ],
+  "fixed_candidate_arm": "sft_v42i",
+  "fixed_gate": {
+    "candidate_selection_performed": false,
+    "exact_count_point_delta_gte_zero": true,
+    "mean_reward_point_delta_gte_zero": true,
+    "nonzero_count_point_delta_gte_zero": true,
+    "paired_item_bootstrap_cis_informational_only": true,
+    "protocol_or_leak_counter_increase_forbidden": true,
+    "teacher_forced_metric_informational_only": true
+  },
+  "fixed_source_candidate": {
+    "all_tensor_bytes_preserved_exactly": true,
+    "arm": "sft_v42i",
+    "completed_steps": 48,
+    "learning_rate": 5.5e-05,
+    "source_config_sha256": "0e8060efd40772233390f3f97ace489e473b2bc76572e7566b83afe3dd83cc51",
+    "source_directory": "/home/catid/specialist/experiments/sft_controls/v42i_matched_init_equal_unit_fold3_v412_lr5p5e5/middle_late_r32_seed17_init20260715041/final",
+    "source_report_content_sha256": "16d8898b6b81da33a6968c254e2d5c5684dd6a284ee0874b9f762bfc140b4341",
+    "source_report_file_sha256": "3076ff21d7d7910cc9ae33f1c00c69b10d8e72c6c8366bb1029ceca17812cee6",
+    "source_report_path": "/home/catid/specialist/experiments/sft_controls/v42i_matched_init_equal_unit_fold3_v412_lr5p5e5/runtime_report_v42i.json",
+    "source_weights_sha256": "9e83783c20dfb5eec91b7217d885270efed8aec216c80374444dcbc55fd7dab8",
+    "stage_manifest_content_sha256": "040f13fbddcb16b15d8771f736cedac1a89a5b987805c442da8e03445cc1c838",
+    "stage_manifest_file_sha256": "f3bc58058032fd3cc00176ddda9de861d2cc3a989b8ce2e7499e15f1adb6d0c5",
+    "staged_config_sha256": "0e8060efd40772233390f3f97ace489e473b2bc76572e7566b83afe3dd83cc51",
+    "staged_weights_sha256": "79207dd2c0b46aaef4af5933aaac9fbbaf837db91241ab9d352e652b5c53afad",
+    "training_family": "matched SFT",
+    "transformed_identity_sha256": "d185cbe52414054759188334fd38b96dbda601957bc8931256fd1e3c0fe71041"
+  },
+  "fixed_staged_candidate": {
+    "adapter_config_file_sha256": "0e8060efd40772233390f3f97ace489e473b2bc76572e7566b83afe3dd83cc51",
+    "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42i_sft_qwen35_vllm_namespace_v45d",
+    "elements": 4528128,
+    "manifest_content_sha256": "040f13fbddcb16b15d8771f736cedac1a89a5b987805c442da8e03445cc1c838",
+    "manifest_file_sha256": "f3bc58058032fd3cc00176ddda9de861d2cc3a989b8ce2e7499e15f1adb6d0c5",
+    "target_namespace": "base_model.model.model.language_model.layers.*",
+    "tensor_bytes_preserved_exactly": true,
+    "tensor_count": 70,
+    "transformed_identity_sha256": "d185cbe52414054759188334fd38b96dbda601957bc8931256fd1e3c0fe71041",
+    "weights_file_sha256": "79207dd2c0b46aaef4af5933aaac9fbbaf837db91241ab9d352e652b5c53afad"
+  },
+  "fresh_artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v46a_prepared_once_only_sft_v42i_sealed_holdout_eval.attempt.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v46a_prepared_once_only_sft_v42i_sealed_holdout_eval/gpu_activity_v46a.jsonl",
+    "report": "/home/catid/specialist/experiments/eval_reports/prepared_once_only_sft_v42i_sealed_holdout_eval_v46a.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v46a_prepared_once_only_sft_v42i_sealed_holdout_eval"
+  },
+  "holdout_access_authorized_once": true,
+  "holdout_access_count_before_preregistration": 0,
+  "holdout_commitment": {
+    "bytes": 172209,
+    "content_free_commitment_only": true,
+    "document_disjoint_from_candidate_training_by_normalized_source_url": true,
+    "eval_build_report_file_sha256": "245097c9fab935558b246d577c55c5fe3d64df534de8690e75256f10a8d05d9f",
+    "eval_build_report_path": "/home/catid/specialist/data/eval_v3.report.json",
+    "file_sha256": "ab9a391e249910e876826dfab9c8e2f8e17a7b8695e6f018a3e515e5aa69603b",
+    "heldout_documents": 11,
+    "heldout_quality_buckets": {
+      "safety_relevant_grounded": 2,
+      "standard_grounded": 16
+    },
+    "heldout_rows": 18,
+    "heldout_sources": {
+      "esinem": 3,
+      "kinbakutoday": 8,
+      "rope365": 6,
+      "wikipedia": 1
+    },
+    "holdout_file_opened_or_hashed": false,
+    "path": "/home/catid/specialist/data/eval_qa_v3.jsonl",
+    "split_seed": "specialist-eval-v3-s5-20260714",
+    "total_rows": 59,
+    "validation_documents": 22,
+    "validation_rows": 41,
+    "validation_vs_heldout_document_intersection_empty": true
+  },
+  "holdout_opened_or_hashed_while_building": false,
+  "implementation_bindings": {
+    "boundary_evidence": "7de60d7267dca4d4dea0bdb9bb5b2ed5a1fbd0fec5a714ba837460f47791caa1",
+    "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "core_runtime": "188858e5083f3bc9c6f0cafd68ad4398fdd4f61d9b16b954c6fa7417cfe3c9a7",
+    "engine_runtime": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+    "eval_build_report": "245097c9fab935558b246d577c55c5fe3d64df534de8690e75256f10a8d05d9f",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "qa_quality": "9429accd25b629297b3a121ac843aba5ed3b6e39cb0a2938677a8038d92eb106",
+    "reward_runtime": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+    "runtime": "98cce1b56ecfa293ef88dca2847c3e82154a0d4d09397d52b5ac875899f148c3",
+    "source_config": "0e8060efd40772233390f3f97ace489e473b2bc76572e7566b83afe3dd83cc51",
+    "source_faithful_parser_runtime": "06e7fe81e31018f4d4303d966772b47fa14fcbf3eae5692bbd12fc0739d9717f",
+    "source_report": "3076ff21d7d7910cc9ae33f1c00c69b10d8e72c6c8366bb1029ceca17812cee6",
+    "source_weights": "9e83783c20dfb5eec91b7217d885270efed8aec216c80374444dcbc55fd7dab8",
+    "stage_manifest": "f3bc58058032fd3cc00176ddda9de861d2cc3a989b8ce2e7499e15f1adb6d0c5",
+    "staged_config": "0e8060efd40772233390f3f97ace489e473b2bc76572e7566b83afe3dd83cc51",
+    "staged_weights": "79207dd2c0b46aaef4af5933aaac9fbbaf837db91241ab9d352e652b5c53afad",
+    "trainer_projection_runtime": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "v39a_metric_runtime": "04933a8d8cb43c504fc7dc6b5f2efad75e4607596e8dd61d9796f2e434825fbe"
+  },
+  "launch_interlock": {
+    "real_launch_permitted": false,
+    "reason": "V43I OOD-first comparison is not yet resolved",
+    "resolution_requires_new_runtime_and_preregistration_seal": true,
+    "resolved": false
+  },
+  "post_result_policy": {
+    "holdout_may_not_be_reopened": true,
+    "result_is_terminal_for_this_frozen_holdout_cycle": true,
+    "result_may_not_trigger_checkpoint_selection": true,
+    "result_may_not_trigger_data_selection_or_resampling": true,
+    "result_may_not_trigger_hyperparameter_tuning": true
+  },
+  "post_result_tuning_or_selection_permitted": false,
+  "pre_result_commitments": {
+    "base_identity_is_fixed": true,
+    "candidate_identity_is_fixed": true,
+    "holdout_identity_and_split_are_fixed": true,
+    "metrics_and_gate_are_fixed": true,
+    "no_candidate_ranking": true
+  },
+  "protected_semantics_accessed_while_building": false,
+  "purpose": "prepare a once-only aggregate evaluation of the current exact V42I SFT control against three exact base duplicates",
+  "report_hash_chain": {
+    "hash_chain_is_cryptographically_closed": true,
+    "v45a_v45b_v45c": "bound by boundary_evidence -> prior_repetition_evidence; the prior evidence contains every aggregate file and content hash",
+    "v45d": "bound directly by boundary evidence file/content hash and internally by V45D aggregate file/content hash"
+  },
+  "runtime": {
+    "all_four_gpus_must_be_resident_and_positive": true,
+    "all_four_gpus_receive_identical_prompt_batches": true,
+    "bootstrap_samples": 20000,
+    "bootstrap_seed": 20260715,
+    "dry_run_accesses_zero_holdout_semantics": true,
+    "dry_run_does_not_stat_hash_or_open_holdout": true,
+    "four_independent_tp1_engines": true,
+    "generation_seed": 20260715,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "one_full_fixed_wave": [
+      {
+        "arm": "base_a",
+        "engine_index": 0
+      },
+      {
+        "arm": "base_b",
+        "engine_index": 1
+      },
+      {
+        "arm": "base_c",
+        "engine_index": 2
+      },
+      {
+        "arm": "sft_v42i",
+        "engine_index": 3
+      }
+    ],
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "precision": "bfloat16",
+    "real_launch_currently_interlocked": true,
+    "required_python_environment": {
+      "four_tp1_runtime_environment": true,
+      "module_files": {
+        "es_at_scale": "/home/catid/specialist/es-at-scale/es_at_scale/__init__.py",
+        "ray": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/ray/__init__.py",
+        "torch": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/torch/__init__.py",
+        "vllm": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/__init__.py"
+      },
+      "packages": {
+        "ray": "2.56.0",
+        "safetensors": "0.8.0",
+        "torch": "2.11.0",
+        "vllm": "0.25.0"
+      },
+      "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+      "sys_executable": "/usr/bin/python3.12",
+      "sys_prefix": "/home/catid/specialist/es-at-scale/.venv",
+      "vllm_importable": true
+    },
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "prepared-once-only-fixed-sft-v42i-holdout-preregistration-v46a",
+  "single_access_policy": {
+    "aggregate_only_report": true,
+    "attempt_marker_written_before_any_holdout_access": true,
+    "combined_eval_container_read_exactly_once": true,
+    "expected_holdout_semantic_access_count": 1,
+    "failure_after_access_consumes_attempt": true,
+    "raw_questions_answers_or_generations_persisted": false,
+    "retry_after_failure_forbidden": true
+  },
+  "status": "preregistered_before_once_only_holdout_access",
+  "stratified_reporting": {
+    "dimensions": [
+      "source",
+      "quality_bucket"
+    ],
+    "metrics": [
+      "rows",
+      "mean_reward",
+      "exact_count",
+      "exact_rate",
+      "nonzero_count",
+      "nonzero_rate"
+    ],
+    "strata_do_not_select_or_tune_candidate": true
+  }
+}

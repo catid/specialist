@@ -1,0 +1,145 @@
+{
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v43c_matched_lora_es_fold3_pop8_step1_contract_retry.attempt.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43c_matched_lora_es_fold3_pop8_step1_contract_retry/gpu_activity_v43c.jsonl",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43c_matched_lora_es_fold3_pop8_step1_contract_retry/matched_lora_es_report_v43c.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43c_matched_lora_es_fold3_pop8_step1_contract_retry",
+    "snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43c_matched_lora_es_fold3_pop8_step1_contract_retry/adapter_step1_v43c"
+  },
+  "content_sha256_before_self_field": "4f2454d4929a5f4c06fe3c7e54168b0605abcebe601698e205d95ba2a3e90487",
+  "created_at_utc": "2026-07-15T22:07:45.068367+00:00",
+  "implementation_bindings": {
+    "base_runtime": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+    "builder": "c38af44a81aaca58035d0e7769477796faf45cc0e472c8f53572f162b7202b6c",
+    "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "dataset": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "dense_reward_runtime_v4": "9b771f5f5578cc233bea9b92ee48dbad8bbf7f363fae44d4dadde5e926f6cd65",
+    "equal_unit_runtime_v38": "a76dc19b0c1c9d5b57bebd66544662553935dfbc23f72a47e172f4366cba5852",
+    "initialization_builder": "2d1bb1b36d1aec160e6a50972c02c2d667e055e09ec5fd8015c1dff1b523a512",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "resolver_runtime_v40c": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+    "runtime": "79babd3983b4d7807c68ffe3f74073ef5031c79c181c6dee08949d9ed946c25d",
+    "runtime_v40a": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+    "source_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "source_manifest": "a2fa79e6ac06f75743d3fee8f5c0b1aabe6bb83b52b05910ed6460438e2640a2",
+    "source_weights": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+    "staged_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "staged_manifest": "bdefd41d5537501e660426b81297b59ddfbeb66a268dd12d14be8bbae4959c38",
+    "staged_weights": "9c4382048a2bb001995586715eac53f51672a161f3351080a604543b8384a09b",
+    "staging_runtime": "7b37e8bf9db2fe6b72e44baaf1b2ecbe2c60d5e8a58bc017632d3dd76ae2b064",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "worker": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+    "worker_v3": "636698c7ea8e8155ea08298e428b5c40c01141ff10db59290d74831db360e5b1"
+  },
+  "parents": {
+    "canonical_state_smoke": {
+      "content_sha256": "46666aa50afbd3e26a9cc1ac4c7a6e255cc9817dfdfca305951c665830b233e1",
+      "file_sha256": "2f691ba071393a87988e6c6aeb6f7e31a32c99991e56687aa6319a790fc4739a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v41a_canonical_lora_es_state_smoke_retry_r2/lora_es_state_smoke_report_v41a_retry_r2.json"
+    },
+    "equal_unit_dense_precedent": {
+      "content_sha256": "bc5fde297206f607bf36b69afc14a232db5a2bea925c9df7efed3d3828974643",
+      "file_sha256": "1fb0bf9090e9dc5606d907857ba403f16e50e5e925987182167a67714f4250f6",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/equal_unit_fold3_nonzero_v38a.json"
+    }
+  },
+  "purpose": "Run one nonzero LoRA EGGROLL-ES update from the exact matched nonzero-A/zero-B initialization using the frozen v412 fold-3 equal-conflict-unit train objective.",
+  "quality_selection_or_promotion_authorized": false,
+  "recipe": {
+    "alpha": 0.00015,
+    "antithetic_sign_order": [
+      1,
+      -1
+    ],
+    "canonical_elements": 4528128,
+    "canonical_tensor_count": 70,
+    "canonical_trainable_dtype": "float32",
+    "coefficient_standardization": "population z-score with epsilon 1e-8",
+    "conflict_units": 208,
+    "dataset": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_train.jsonl",
+    "dataset_rows": 448,
+    "dataset_sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "dense_reward_config": {
+      "aggregation": "mean_tokens_per_example_then_mean_examples",
+      "generation": {
+        "detokenize": false,
+        "max_tokens": 1,
+        "prompt_logprobs": 1,
+        "temperature": 0.0,
+        "top_p": 1.0
+      },
+      "objective": "teacher_forced_gold_answer_prompt_logprob",
+      "schema": "eggroll-es-dense-qa-reward-v1",
+      "scored_positions": "answer_tokens_only",
+      "text_construction": "exact_prompt_plus_answer",
+      "tokenization": {
+        "add_special_tokens": false,
+        "append_eos": false,
+        "max_total_tokens": 1024,
+        "require_prompt_token_prefix": true,
+        "truncation": false
+      }
+    },
+    "engine_count": 4,
+    "initialization": "35 independently seeded nonzero Kaiming A tensors and 35 exact-zero B tensors",
+    "matched_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/initial_adapters/matched_lora_initialization_v41a_seed20260715041",
+    "matched_initialization_tensor_identity_sha256": "2dcb9ab45ec26c7041b9782a30fe3c82b987b605b6b0bd95ab5b905b1371ae2e",
+    "matched_initialization_weights_sha256": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "objective": "teacher-forced gold-answer token logprob; mean answer tokens within row, equal mass per conservative conflict unit",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "population_size": 8,
+    "runtime_adapter_dtype": "bfloat16",
+    "runtime_view_count": 82,
+    "seed_sha256": "ae75999cf3285db204ea406a28633d934add917fd5fb52aead99b6016a02de4f",
+    "seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570
+    ],
+    "sigma": 0.0003,
+    "signed_sequence_presentations": 7168,
+    "split_manifest": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/manifest_v37a.json",
+    "split_manifest_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+    "staged_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/matched_lora_initialization_v41b",
+    "staged_initialization_weights_sha256": "9c4382048a2bb001995586715eac53f51672a161f3351080a604543b8384a09b",
+    "staging": "key-only Qwen3.5 outer language_model namespace transform",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "ba0a951f153b60fb5729e0169a4d780277d9d860cbacb1f95fc7433afc875e19",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d",
+    "worker_extension": "eggroll_es_worker_lora_v41a.LoRAAdapterStateWorkerExtensionV41A"
+  },
+  "required_gates": {
+    "all_four_gpus_have_attributed_positive_activity": true,
+    "all_ranks_commit_identical_canonical_state": true,
+    "all_signed_directions_complete": true,
+    "base_weights_unchanged_at_every_state_boundary": true,
+    "canonical_install_preserves_matched_init_train_score": true,
+    "distributed_update_uses_fp32_collective": true,
+    "exact_restore_preserves_prepopulation_train_score": true,
+    "final_all_gpu_idle_cleanup": true,
+    "population_response_has_nonzero_spread": true,
+    "rank_zero_snapshot_exact_readback": true
+  },
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "matched-lora-es-preregistration-v43c",
+  "sealed_holdout_opened": false,
+  "shadow_dev_external_eval_ood_or_holdout_authorized": false,
+  "status": "preregistered_before_train_only_launch"
+}

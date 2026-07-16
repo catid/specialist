@@ -1,0 +1,1014 @@
+{
+  "arms": [
+    "base_a",
+    "base_b",
+    "base_c",
+    "sft_v42b_step16",
+    "sft_v42b_step32",
+    "sft_v42b",
+    "sft_v42c",
+    "sft_v42d",
+    "lora_es_v43d",
+    "sft_v42e",
+    "sft_v42f",
+    "sft_v42g"
+  ],
+  "base_duplicate_arms": [
+    "base_a",
+    "base_b",
+    "base_c"
+  ],
+  "candidate_arms": [
+    "sft_v42b_step16",
+    "sft_v42b_step32",
+    "sft_v42b",
+    "sft_v42c",
+    "sft_v42d",
+    "lora_es_v43d",
+    "sft_v42e",
+    "sft_v42f",
+    "sft_v42g"
+  ],
+  "candidate_definitions": [
+    {
+      "adapter_id": 1,
+      "arm": "sft_v42b_step16",
+      "completed_steps": 16,
+      "learning_rate": 0.0001,
+      "source_artifact_prefix": "checkpoint-16",
+      "source_weights_sha256": "1d4b6c795bcdf57964c08853ca90243dad5ad852347dde98b51c021fc88a1656",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42b_step16_sft_qwen35_vllm_namespace_v45a",
+      "training_family": "matched SFT"
+    },
+    {
+      "adapter_id": 2,
+      "arm": "sft_v42b_step32",
+      "completed_steps": 32,
+      "learning_rate": 0.0001,
+      "source_artifact_prefix": "checkpoint-32",
+      "source_weights_sha256": "670a830955192e3a090c57df3a720cbec98079ee74b975f8983ecc3c75c479c4",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42b_step32_sft_qwen35_vllm_namespace_v45a",
+      "training_family": "matched SFT"
+    },
+    {
+      "adapter_id": 3,
+      "arm": "sft_v42b",
+      "completed_steps": 48,
+      "learning_rate": 0.0001,
+      "source_artifact_prefix": "final",
+      "source_weights_sha256": "08595565b891254b18b57522819d6b029509f483661c8a06ec267890975fffd8",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42b_sft_qwen35_vllm_namespace_v44a_all_candidates",
+      "training_family": "matched SFT"
+    },
+    {
+      "adapter_id": 4,
+      "arm": "sft_v42c",
+      "completed_steps": 48,
+      "learning_rate": 3e-05,
+      "source_artifact_prefix": "final",
+      "source_weights_sha256": "3ed4ca7e2acb7940dcb9ae3db202e2d406b8abbd57bbc4577097ef3ebd511021",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42c_sft_qwen35_vllm_namespace_v44a_all_candidates",
+      "training_family": "matched SFT"
+    },
+    {
+      "adapter_id": 5,
+      "arm": "sft_v42d",
+      "completed_steps": 48,
+      "learning_rate": 1e-05,
+      "source_artifact_prefix": "final",
+      "source_weights_sha256": "3cae0bd835631b7374c807cbfc1aa3a1d187fb9b08e8a566189647cac9c592db",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42d_sft_qwen35_vllm_namespace_v44a_all_candidates",
+      "training_family": "matched SFT"
+    },
+    {
+      "adapter_id": 6,
+      "arm": "lora_es_v43d",
+      "completed_steps": 1,
+      "learning_rate": null,
+      "source_artifact_prefix": "post_update_step1",
+      "source_weights_sha256": "75de1765d9fbdff4964c446a49dc9d7fd72a0195a89f1b71058bc77cb4253158",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v43d_lora_es_qwen35_vllm_namespace_v44a_all_candidates",
+      "training_family": "LoRA-ES"
+    },
+    {
+      "adapter_id": 7,
+      "arm": "sft_v42e",
+      "completed_steps": 48,
+      "learning_rate": 0.0003,
+      "source_artifact_prefix": "final",
+      "source_weights_sha256": "98f4dbed55eb1b016cbf0d0a785450ac3a9a35173916c312f024af21b8ce5df9",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42e_sft_qwen35_vllm_namespace_v45a",
+      "training_family": "matched SFT"
+    },
+    {
+      "adapter_id": 8,
+      "arm": "sft_v42f",
+      "completed_steps": 48,
+      "learning_rate": 0.001,
+      "source_artifact_prefix": "final",
+      "source_weights_sha256": "6ad5a43627ef20d85f960dc74749ac739cf0edd34c0489e23cd2cecdaed660c9",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42f_sft_qwen35_vllm_namespace_v45a",
+      "training_family": "matched SFT"
+    },
+    {
+      "adapter_id": 9,
+      "arm": "sft_v42g",
+      "completed_steps": 48,
+      "learning_rate": 5e-05,
+      "source_artifact_prefix": "final",
+      "source_weights_sha256": "b5820bd3a01605bbd7c488900bdeb27dc2dbaf5073e9712edfbff0f7402f3bd0",
+      "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42g_sft_qwen35_vllm_namespace_v45a",
+      "training_family": "matched SFT"
+    }
+  ],
+  "content_sha256_before_self_field": "a962b29a0dcdd8af91bbe1e9d775a93e09596734aa972b5d7d96ec9d887af2c0",
+  "cpu_preflight_expected": {
+    "all_four_authorized_inputs_parsed_once": true,
+    "content_sha256_before_self_field": "6ff9d87955efd93f7e0037115a4fea6de8bec7b6c232300124c797dd6c0735bd",
+    "holdout_or_heldout_opened": false,
+    "parser_runtime_sha256": "06e7fe81e31018f4d4303d966772b47fa14fcbf3eae5692bbd12fc0739d9717f",
+    "protected_file_sha256": {
+      "ood_prose": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+      "ood_qa": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+      "shadow": "6d5b72f7506a752fd5275425739ec785e25f0ff486f5c03b68e91c8e99d7ebeb",
+      "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d"
+    },
+    "schema": "source-faithful-protected-parser-preflight-v44c",
+    "schema_receipts": [
+      {
+        "bundle_numeric_identity_sha256": "5951e0898b1078800cd2a61210bef327c58447270a486ad35748f03b910474f5",
+        "field_type_counts": [
+          {
+            "count": 83,
+            "field": "answer",
+            "type": "str"
+          },
+          {
+            "count": 2,
+            "field": "canonical_resource_url",
+            "type": "str"
+          },
+          {
+            "count": 23,
+            "field": "claim_type",
+            "type": "str"
+          },
+          {
+            "count": 72,
+            "field": "curation",
+            "type": "dict"
+          },
+          {
+            "count": 83,
+            "field": "document_sha256",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "evidence",
+            "type": "str"
+          },
+          {
+            "count": 23,
+            "field": "evidence_sha256",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "evidence_url",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "fact_id",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "kind",
+            "type": "str"
+          },
+          {
+            "count": 12,
+            "field": "paraphrase_rationale",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "quality_schema",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "question",
+            "type": "str"
+          },
+          {
+            "count": 23,
+            "field": "resource_id",
+            "type": "str"
+          },
+          {
+            "count": 2,
+            "field": "review",
+            "type": "dict"
+          },
+          {
+            "count": 21,
+            "field": "reviewer",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "source",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "source_lineage",
+            "type": "dict"
+          },
+          {
+            "count": 2,
+            "field": "supplied_url",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "text",
+            "type": "str"
+          },
+          {
+            "count": 21,
+            "field": "topic",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "url",
+            "type": "str"
+          },
+          {
+            "count": 21,
+            "field": "verified_at",
+            "type": "str"
+          }
+        ],
+        "item_id_inventory_sha256": null,
+        "keyset_counts": [
+          {
+            "count": 2,
+            "keys": [
+              "answer",
+              "canonical_resource_url",
+              "claim_type",
+              "curation",
+              "document_sha256",
+              "evidence",
+              "evidence_sha256",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "quality_schema",
+              "question",
+              "resource_id",
+              "review",
+              "source",
+              "source_lineage",
+              "supplied_url",
+              "text",
+              "url"
+            ]
+          },
+          {
+            "count": 1,
+            "keys": [
+              "answer",
+              "claim_type",
+              "curation",
+              "document_sha256",
+              "evidence",
+              "evidence_sha256",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "paraphrase_rationale",
+              "quality_schema",
+              "question",
+              "resource_id",
+              "reviewer",
+              "source",
+              "source_lineage",
+              "text",
+              "topic",
+              "url",
+              "verified_at"
+            ]
+          },
+          {
+            "count": 9,
+            "keys": [
+              "answer",
+              "claim_type",
+              "curation",
+              "document_sha256",
+              "evidence",
+              "evidence_sha256",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "quality_schema",
+              "question",
+              "resource_id",
+              "reviewer",
+              "source",
+              "source_lineage",
+              "text",
+              "topic",
+              "url",
+              "verified_at"
+            ]
+          },
+          {
+            "count": 11,
+            "keys": [
+              "answer",
+              "claim_type",
+              "document_sha256",
+              "evidence",
+              "evidence_sha256",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "paraphrase_rationale",
+              "quality_schema",
+              "question",
+              "resource_id",
+              "reviewer",
+              "source",
+              "source_lineage",
+              "text",
+              "topic",
+              "url",
+              "verified_at"
+            ]
+          },
+          {
+            "count": 60,
+            "keys": [
+              "answer",
+              "curation",
+              "document_sha256",
+              "evidence",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "quality_schema",
+              "question",
+              "source",
+              "source_lineage",
+              "text",
+              "url"
+            ]
+          }
+        ],
+        "label": "shadow",
+        "parsed_pair_identity_sha256": "6fc0b91f40fb8a1549be4608eb831f003850704c0f9a439e8a018f4693e9acdf",
+        "rows": 83
+      },
+      {
+        "evaluation_identity_sha256": "62a8d773036ecdeb8fe5066b1c003d352e48e11a1027b0468c5868de64f24d1f",
+        "field_type_counts": [
+          {
+            "count": 24,
+            "field": "answer",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "domain",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "item_id",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "normalized_source_url",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "quality_bucket",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "question",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "source",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "split",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "url",
+            "type": "str"
+          }
+        ],
+        "item_id_inventory_sha256": "57fdc3e1dcafd52360ce16e69a12cf81ab11e39d726387197494210918f194af",
+        "keyset_counts": [
+          {
+            "count": 24,
+            "keys": [
+              "answer",
+              "domain",
+              "item_id",
+              "normalized_source_url",
+              "quality_bucket",
+              "question",
+              "source",
+              "split",
+              "url"
+            ]
+          }
+        ],
+        "label": "ood_qa",
+        "parsed_pair_identity_sha256": "3251fc0011195b4bd3d36360b9026a4b01786375227f1b9abcfab18412e094c8",
+        "rows": 24,
+        "serialization": "explicit_question_answer_fields_no_text_field"
+      },
+      {
+        "field_type_counts": [
+          {
+            "count": 16,
+            "field": "domain",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "item_id",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "normalized_source_url",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "quality_bucket",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "source",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "split",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "text",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "title",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "url",
+            "type": "str"
+          }
+        ],
+        "item_id_inventory_sha256": "214ead78abeaed1dc77b254f5cd80971e7edb31aad59afc3ddb0c3fdf8b282b5",
+        "keyset_counts": [
+          {
+            "count": 16,
+            "keys": [
+              "domain",
+              "item_id",
+              "normalized_source_url",
+              "quality_bucket",
+              "source",
+              "split",
+              "text",
+              "title",
+              "url"
+            ]
+          }
+        ],
+        "label": "ood_prose",
+        "rows": 16,
+        "source_text_identity_sha256": "818fef78d631fc6d941f1830fc19b0304a8be798f7e8e4e24f02d59e2386abf1"
+      }
+    ],
+    "semantic_access_counts": {
+      "ood_prose": 1,
+      "ood_qa": 1,
+      "shadow": 1,
+      "split_manifest": 1
+    },
+    "split_manifest_schema_identity_sha256": "6fa8d6b60f24a06668872637c21acbca109d79134294694fcd39334dd1e17637",
+    "status": "complete_before_model_creation"
+  },
+  "created_at_utc": "2026-07-15T23:09:41.333959+00:00",
+  "evaluation_metrics_observed_before_v44c_preregistration": false,
+  "fresh_artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v45a_matched_lora_hpo_earlystop_ood_eligible_eval.attempt.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v45a_matched_lora_hpo_earlystop_ood_eligible_eval/gpu_activity_v45a.jsonl",
+    "raw_local": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v45a_matched_lora_hpo_earlystop_ood_eligible_eval/raw_items_v45a.json",
+    "report": "/home/catid/specialist/experiments/eval_reports/matched_lora_hpo_earlystop_ood_eligible_eval_v45a.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v45a_matched_lora_hpo_earlystop_ood_eligible_eval"
+  },
+  "heldout_or_holdout_access_authorized": false,
+  "heldout_or_holdout_opened_before_preregistration": false,
+  "heldout_or_holdout_opened_during_schema_audit": false,
+  "implementation_bindings": {
+    "additional_candidate_artifacts": {
+      "sft_v42b_step16_source_config": "60bd216e895cba461a7cda482dc72635ac4037f301ee0f0c295e00d5a1247f5d",
+      "sft_v42b_step16_source_report": "303a9ecfdcb32ad49f16a990e47ee1ab85f5e0d026427c91ea3fadc16567e7e7",
+      "sft_v42b_step16_source_trainer_state": "0b161cf9953bc40e6c8d20d60297202bf44a53364f87a16dc402dd54bbaa425f",
+      "sft_v42b_step16_source_weights": "1d4b6c795bcdf57964c08853ca90243dad5ad852347dde98b51c021fc88a1656",
+      "sft_v42b_step16_stage_manifest": "5a68bc4fd2bf880c9f63e31197653c55a5740635ed17cf4c946f821609f78afd",
+      "sft_v42b_step16_staged_config": "60bd216e895cba461a7cda482dc72635ac4037f301ee0f0c295e00d5a1247f5d",
+      "sft_v42b_step16_staged_weights": "7ed036e69fd5d5b08155b77f52efdafb49d35e94da27ea29572eb142ca29073e",
+      "sft_v42b_step32_source_config": "60bd216e895cba461a7cda482dc72635ac4037f301ee0f0c295e00d5a1247f5d",
+      "sft_v42b_step32_source_report": "303a9ecfdcb32ad49f16a990e47ee1ab85f5e0d026427c91ea3fadc16567e7e7",
+      "sft_v42b_step32_source_trainer_state": "73f89186be2038224225b635b0315e24336e05011f91e4162d14494c925b08c2",
+      "sft_v42b_step32_source_weights": "670a830955192e3a090c57df3a720cbec98079ee74b975f8983ecc3c75c479c4",
+      "sft_v42b_step32_stage_manifest": "01dbb9a943b50506922aea6f475c9832967598d5cd050cb8f71fed2f4296c1ef",
+      "sft_v42b_step32_staged_config": "60bd216e895cba461a7cda482dc72635ac4037f301ee0f0c295e00d5a1247f5d",
+      "sft_v42b_step32_staged_weights": "d0ba729da2467ec61b572b39879f496cf4a85ac89deda64c03aa2602e68a1c58",
+      "sft_v42e_source_config": "3b536e46822842c3627e02077dcb3d6e76d1c22f3bcc5746a70744356ef3c2a2",
+      "sft_v42e_source_report": "ae741a2f526fa44515df67f9aa4caaf04ed222b87fd7a9529d14c5e0dba36c9a",
+      "sft_v42e_source_weights": "98f4dbed55eb1b016cbf0d0a785450ac3a9a35173916c312f024af21b8ce5df9",
+      "sft_v42e_stage_manifest": "055bb461523f2d3ee28756af821dec6d6f9b45713e7ec3b51c594cd709c5564f",
+      "sft_v42e_staged_config": "3b536e46822842c3627e02077dcb3d6e76d1c22f3bcc5746a70744356ef3c2a2",
+      "sft_v42e_staged_weights": "35782cd7e94b6a67339ce3ff474522f35914599d78287a48351f38a6d3673c3a",
+      "sft_v42f_source_config": "13ddbd761d4000a453ee8d5361a1cce9a4c3595c44a85f8d485230cffbd67ae9",
+      "sft_v42f_source_report": "c47bc8ebeabb71843edbd646409de04dfa5e43f7043962e2fb682dd7bc747b28",
+      "sft_v42f_source_weights": "6ad5a43627ef20d85f960dc74749ac739cf0edd34c0489e23cd2cecdaed660c9",
+      "sft_v42f_stage_manifest": "12cdd19da1a78c90e8d5e67c7b387b7ac50e9a11c14ab2e26c0b012bac40e19c",
+      "sft_v42f_staged_config": "13ddbd761d4000a453ee8d5361a1cce9a4c3595c44a85f8d485230cffbd67ae9",
+      "sft_v42f_staged_weights": "363b22e0309f8299d06ed7ecfb83589952ccf38ed3dec4a060a312a4889db8ae",
+      "sft_v42g_source_config": "99548642c32678b1a69f0e2c1151c96f10b87b821e6588feefebd353684f2178",
+      "sft_v42g_source_report": "82633c37a17e597961ca8a69d2a1a07218dbd6d0df53d9ebb75217ba54549430",
+      "sft_v42g_source_weights": "b5820bd3a01605bbd7c488900bdeb27dc2dbaf5073e9712edfbff0f7402f3bd0",
+      "sft_v42g_stage_manifest": "dae592e2e8322bb1bd72e3b68146d843082e8c689617e5659c0acd1869b9e373",
+      "sft_v42g_staged_config": "99548642c32678b1a69f0e2c1151c96f10b87b821e6588feefebd353684f2178",
+      "sft_v42g_staged_weights": "0ae7050347b885cdbde042ec3ef0cfbdbc9d4040e432fab2a85536282c6d7f16"
+    },
+    "core_and_original_four_candidates": {
+      "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+      "es_source_attempt": "af72c78b5cd15a974112ab0feeaf623bd5f31c98f3382e2950d64f8f140b38a1",
+      "es_source_failure": "cf359c0ee8d89e98e3f9b3624ec57b1830de7275c99c5463110b31d162c8f820",
+      "es_source_preregistration": "928ae4930d0b52f7c51159b8d8644bafc9fa0bc0049aaf88ac2f68a1a9c36415",
+      "lora_es_v43d_source_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+      "lora_es_v43d_source_weights": "75de1765d9fbdff4964c446a49dc9d7fd72a0195a89f1b71058bc77cb4253158",
+      "lora_es_v43d_stage_manifest": "468a2ba74e0a1c4082df0f3b55b1a4d0856401aab6ebf0b2374d6978219bbd08",
+      "lora_es_v43d_staged_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+      "lora_es_v43d_staged_weights": "16a91c22f591b82339e9322d0c5c2e1d67704e962d6e32db9e2dd72671c3bfe8",
+      "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+      "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+      "qa_quality": "9429accd25b629297b3a121ac843aba5ed3b6e39cb0a2938677a8038d92eb106",
+      "reward_runtime": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+      "runtime": "188858e5083f3bc9c6f0cafd68ad4398fdd4f61d9b16b954c6fa7417cfe3c9a7",
+      "sft_v42b_source_config": "60bd216e895cba461a7cda482dc72635ac4037f301ee0f0c295e00d5a1247f5d",
+      "sft_v42b_source_seal": "303a9ecfdcb32ad49f16a990e47ee1ab85f5e0d026427c91ea3fadc16567e7e7",
+      "sft_v42b_source_weights": "08595565b891254b18b57522819d6b029509f483661c8a06ec267890975fffd8",
+      "sft_v42b_stage_manifest": "a10ea5b0cdd7c86861001a6541d1785f75ddb5a7a90090eca3e8f1491f65e466",
+      "sft_v42b_staged_config": "60bd216e895cba461a7cda482dc72635ac4037f301ee0f0c295e00d5a1247f5d",
+      "sft_v42b_staged_weights": "e65fd770101a197b69036afd1f556698485da782402d5e22e88bab143b84367c",
+      "sft_v42c_source_config": "8cf1f688544215124a8ec6570c9e734899de1be2e2ff6e6bc7973d484ad93a17",
+      "sft_v42c_source_seal": "a328ac874ba32e27326d8037b493b7282498dcaa3a9d55f5239273bcc5416bd7",
+      "sft_v42c_source_weights": "3ed4ca7e2acb7940dcb9ae3db202e2d406b8abbd57bbc4577097ef3ebd511021",
+      "sft_v42c_stage_manifest": "a1cfd32ae10db58c5d6e9717e04713182a7e84a620508fcc115d254e62672b2a",
+      "sft_v42c_staged_config": "8cf1f688544215124a8ec6570c9e734899de1be2e2ff6e6bc7973d484ad93a17",
+      "sft_v42c_staged_weights": "0b1f6d4054abb88dd1315fae54ef0b3dbb3af30aee7f24d64c074038a6c925aa",
+      "sft_v42d_source_config": "00229a1011c8f2bd28e10df8af3c0942cdf9b04dc0aedc4e5981899802bfaed6",
+      "sft_v42d_source_seal": "2768f91ae537cd47e399de2030c9361e28c971506224c4e09a41783b530ce0a1",
+      "sft_v42d_source_weights": "3cae0bd835631b7374c807cbfc1aa3a1d187fb9b08e8a566189647cac9c592db",
+      "sft_v42d_stage_manifest": "11174b397920e955d5314c72bee342a347ef7e66062ddae9761d091da84564e8",
+      "sft_v42d_staged_config": "00229a1011c8f2bd28e10df8af3c0942cdf9b04dc0aedc4e5981899802bfaed6",
+      "sft_v42d_staged_weights": "ab4e3a0e00292c20585cd9b9e980af0df707cd619a61900be7429380a30c0e8d",
+      "staging_runtime": "8559cb3a2c2870bed7e5ef99ee9ed177929e4c2d8680b61cccc73aad26a2f691",
+      "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+      "v39a_metric_runtime": "04933a8d8cb43c504fc7dc6b5f2efad75e4607596e8dd61d9796f2e434825fbe",
+      "v40a_engine_runtime": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+      "v40c_tuned_projection_runtime": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd"
+    },
+    "environment": {
+      "four_tp1_runtime_environment": true,
+      "module_files": {
+        "es_at_scale": "/home/catid/specialist/es-at-scale/es_at_scale/__init__.py",
+        "ray": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/ray/__init__.py",
+        "torch": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/torch/__init__.py",
+        "vllm": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/__init__.py"
+      },
+      "packages": {
+        "ray": "2.56.0",
+        "safetensors": "0.8.0",
+        "torch": "2.11.0",
+        "vllm": "0.25.0"
+      },
+      "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+      "sys_executable": "/usr/bin/python3.12",
+      "sys_prefix": "/home/catid/specialist/es-at-scale/.venv",
+      "vllm_importable": true
+    },
+    "environment_runtime": "455f5b345e2c3fce505850439ab062613b2738135e04e203126944ed49766f6b",
+    "runtime": "493b050bd075fd0b14bc4f684824bab5b53149c4d1e95fc3ca1c80f90cb050a4",
+    "source_faithful_parser_runtime": "06e7fe81e31018f4d4303d966772b47fa14fcbf3eae5692bbd12fc0739d9717f",
+    "v44c_finding": {
+      "content_sha256": "ff2b4571cf81a9d73fa890e9a179a087b1af912d6f16b16d3c3e81e13534864c",
+      "file_sha256": "3b3a55b9b208fd563825f09c36f855d74f05cad2bf9201467fb454a08105b076",
+      "finding": "shadow-first V42B selection failed OOD while a lower-shadow arm was point-safe; V45A therefore filters every arm through frozen OOD gates before shadow ranking",
+      "heldout_or_holdout_opened": false,
+      "path": "/home/catid/specialist/experiments/eval_reports/matched_lora_sft_hpo_es_fold3_ood_eval_v44c.json",
+      "selection_metrics_observed_before_v45a_preregistration": true
+    },
+    "v45_staging_runtime": "698d0013b11e4407c6510d1f1f2ab36535174de3d8ec7515665f0eae18a815d0",
+    "worker_extension": "d487ff4657a2a6fbd7d2d0f9200a63547dd79b258cc488b93382fdf26b52cf05"
+  },
+  "ood_gates": {
+    "evaluated_for_every_candidate_before_shadow_ranking": true,
+    "ood_filters_candidates_and_does_not_rank_eligible_candidates": true,
+    "per_arm_gate_table_persisted_in_aggregate": true,
+    "prose_point_and_paired_document_bootstrap_lcb_non_degradation": true,
+    "qa_mean_reward_and_exact_count_point_non_degradation": true,
+    "qa_paired_item_bootstrap_cis_reported": true
+  },
+  "persistence": {
+    "aggregate_report": "/home/catid/specialist/experiments/eval_reports/matched_lora_sft_es_fold3_ood_eval_v44a.json",
+    "raw_local_git_eligible": false,
+    "raw_local_mode": "0600",
+    "raw_questions_answers_or_generations_in_aggregate": false,
+    "single_semantic_read_per_protected_input": true
+  },
+  "raw_shadow_or_ood_content_opened_before_preregistration": true,
+  "retry_of": {
+    "aggregate_report_persisted": false,
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v44b_matched_lora_sft_es_fold3_ood_eval_retry_env.attempt.json",
+    "attempt_content_sha256": "259fc25e3cbe806a955929dee6361560a84c066e08ace59a9dc218de4a414d98",
+    "attempt_file_sha256": "4886a7d3130557e5eec9f25a4014ad19a43a0c84a9fc92cf5c385d808c020553",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v44b_matched_lora_sft_es_fold3_ood_eval_retry_env/failure_v44a.json",
+    "failure_after_model_creation": true,
+    "failure_content_sha256": "e3459fee5848e2695ef4971c4cec27ceec1d9cb8148228416f7865677239e530",
+    "failure_file_sha256": "d929e8b77fbc10340723aba09405dc3d64fc7efc746576738b7d1081d988e7f9",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v44b_matched_lora_sft_es_fold3_ood_eval_retry_env/gpu_activity_v44b.jsonl",
+    "gpu_log_file_sha256": "6df2d223c408fa3cedbb0f092767f4c1d73027268e6465a0d27f101eca949eb9",
+    "heldout_or_holdout_opened": false,
+    "known_protected_semantic_access_order": [
+      "split_manifest",
+      "shadow",
+      "ood_qa"
+    ],
+    "ood_prose_known_unread_by_control_flow": true,
+    "raw_item_artifact_persisted": false,
+    "shadow_metrics_persisted_or_observed": false
+  },
+  "retry_reason": "V44B exposed an explicit-field-only OOD QA schema that the strict serialized-text helper rejected; V44C accepts source question/answer fields when text is absent and still requires exact agreement when both representations exist",
+  "runtime": {
+    "all_four_authorized_inputs_parsed_once_before_model_creation": true,
+    "all_four_engines_receive_positive_work_each_evaluation_phase": true,
+    "arm_wave_plan": [
+      [
+        {
+          "arm": "base_a",
+          "engine_index": 0
+        },
+        {
+          "arm": "base_b",
+          "engine_index": 1
+        },
+        {
+          "arm": "sft_v42b",
+          "engine_index": 2
+        },
+        {
+          "arm": "sft_v42c",
+          "engine_index": 3
+        }
+      ],
+      [
+        {
+          "arm": "sft_v42d",
+          "engine_index": 2
+        },
+        {
+          "arm": "lora_es_v43d",
+          "engine_index": 3
+        }
+      ]
+    ],
+    "bootstrap_samples": 20000,
+    "bootstrap_seed": 20260715,
+    "every_gpu_receives_one_request_per_wave": true,
+    "four_independent_tp1_engines": true,
+    "generation_seed": 20260715,
+    "identical_prompts_sampling_params_and_seed_for_all_arms": true,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "obsolete_full_weight_layer_plan_or_snapshot_path_authorized": false,
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "precision": "bfloat16",
+    "protected_parser_preflight_before_model_creation": true,
+    "protected_preflight_expected_content_sha256": "6ff9d87955efd93f7e0037115a4fea6de8bec7b6c232300124c797dd6c0735bd",
+    "required_python_environment": {
+      "four_tp1_runtime_environment": true,
+      "module_files": {
+        "es_at_scale": "/home/catid/specialist/es-at-scale/es_at_scale/__init__.py",
+        "ray": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/ray/__init__.py",
+        "torch": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/torch/__init__.py",
+        "vllm": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/vllm/__init__.py"
+      },
+      "packages": {
+        "ray": "2.56.0",
+        "safetensors": "0.8.0",
+        "torch": "2.11.0",
+        "vllm": "0.25.0"
+      },
+      "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+      "sys_executable": "/usr/bin/python3.12",
+      "sys_prefix": "/home/catid/specialist/es-at-scale/.venv",
+      "vllm_importable": true
+    },
+    "three_full_fixed_waves": [
+      [
+        {
+          "arm": "base_a",
+          "engine_index": 0
+        },
+        {
+          "arm": "base_b",
+          "engine_index": 1
+        },
+        {
+          "arm": "base_c",
+          "engine_index": 2
+        },
+        {
+          "arm": "sft_v42b_step16",
+          "engine_index": 3
+        }
+      ],
+      [
+        {
+          "arm": "sft_v42b_step32",
+          "engine_index": 0
+        },
+        {
+          "arm": "sft_v42b",
+          "engine_index": 1
+        },
+        {
+          "arm": "sft_v42c",
+          "engine_index": 2
+        },
+        {
+          "arm": "sft_v42d",
+          "engine_index": 3
+        }
+      ],
+      [
+        {
+          "arm": "lora_es_v43d",
+          "engine_index": 0
+        },
+        {
+          "arm": "sft_v42e",
+          "engine_index": 1
+        },
+        {
+          "arm": "sft_v42f",
+          "engine_index": 2
+        },
+        {
+          "arm": "sft_v42g",
+          "engine_index": 3
+        }
+      ]
+    ],
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "matched-lora-ood-eligible-eval-preregistration-v45a",
+  "schema_audit_scope": [
+    "record key inventories",
+    "field types",
+    "row counts",
+    "strict QA parse agreement",
+    "content-addressed aggregate identities"
+  ],
+  "schema_only_authorized_inputs_opened_before_preregistration": true,
+  "scientific_contract_changed_from_v44a": false,
+  "scientific_question": "Which matched-init equal-unit LoRA update is best on document-disjoint fold-3 shadow-dev without QA or prose OOD degradation?",
+  "selection_metrics_observed_before_v45a_preregistration": true,
+  "selection_protocol_v45a": {
+    "candidate_order_affects_eligibility": false,
+    "candidate_order_used_only_for_exact_final_ties": true,
+    "no_eligible_candidate_behavior": "select base_a operational sentinel and fail shadow improvement gate",
+    "order": [
+      "evaluate every arm with identical shadow, OOD QA, and OOD prose prompts/settings",
+      "construct eligibility independently for every candidate",
+      "exclude every ineligible candidate",
+      "rank only the eligible set on frozen shadow metrics",
+      "apply shadow improvement requirement to the eligible winner"
+    ],
+    "per_arm_eligibility": {
+      "ood_prose_mean_token_logprob_point_delta_gte_zero": true,
+      "ood_prose_paired_document_bootstrap_95_lcb_gte_zero": true,
+      "ood_qa_exact_count_delta_gte_zero": true,
+      "ood_qa_mean_reward_point_delta_gte_zero": true,
+      "ood_qa_paired_item_bootstrap_ci_reported_informationally": true,
+      "shadow_protocol_or_leak_counter_increase_forbidden": true
+    },
+    "shadow_rank_key": [
+      "generated_equal_unit_mean_reward",
+      "generated_exact_count",
+      "generated_nonzero_count",
+      "teacher_forced_equal_unit_mean_answer_logprob"
+    ],
+    "unsafe_higher_shadow_arm_cannot_mask_safe_lower_shadow_arm": true
+  },
+  "selection_rule_or_gate_changed_from_v44a": false,
+  "shadow_protocol": {
+    "base_duplicate_exact_equivalence_required": true,
+    "conflict_units": 51,
+    "document_disjoint_from_fold3_train_required": true,
+    "equal_conflict_unit_weighting": true,
+    "fold": 3,
+    "no_protocol_or_leak_counter_increase_required": true,
+    "rows": 83,
+    "selection_candidates": [
+      "sft_v42b_step16",
+      "sft_v42b_step32",
+      "sft_v42b",
+      "sft_v42c",
+      "sft_v42d",
+      "lora_es_v43d",
+      "sft_v42e",
+      "sft_v42f",
+      "sft_v42g"
+    ],
+    "selection_rule": "OOD-eligible-set first, then frozen lexicographic shadow ranking",
+    "shadow_improvement_over_base_a_required": true,
+    "three_base_duplicate_exact_equivalence_required": true
+  },
+  "single_access_inputs": {
+    "ood_prose": {
+      "file_sha256": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+      "path": "/home/catid/specialist/data/ood_prose_v3.jsonl"
+    },
+    "ood_qa": {
+      "file_sha256": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+      "path": "/home/catid/specialist/data/ood_qa_v3.jsonl"
+    },
+    "shadow": {
+      "file_sha256": "6d5b72f7506a752fd5275425739ec785e25f0ff486f5c03b68e91c8e99d7ebeb",
+      "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_shadow_dev.jsonl"
+    },
+    "split_manifest": {
+      "file_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+      "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/manifest_v37a.json"
+    }
+  },
+  "staged_adapters": {
+    "lora_es_v43d": {
+      "adapter_config_file_sha256": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v43d_lora_es_qwen35_vllm_namespace_v44a_all_candidates",
+      "elements": 4528128,
+      "manifest_content_sha256": "6e7d365dee943edb9f0d4140406dd9a9a082f50e0a26878811962a1bec2331b2",
+      "manifest_file_sha256": "468a2ba74e0a1c4082df0f3b55b1a4d0856401aab6ebf0b2374d6978219bbd08",
+      "target_namespace": "base_model.model.model.language_model.layers.*",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "e9146b36d7aad57575a9a426590ddffc809ea52e62402ed0bafad4d8f4ed68ce",
+      "weights_file_sha256": "16a91c22f591b82339e9322d0c5c2e1d67704e962d6e32db9e2dd72671c3bfe8"
+    },
+    "sft_v42b": {
+      "adapter_config_file_sha256": "60bd216e895cba461a7cda482dc72635ac4037f301ee0f0c295e00d5a1247f5d",
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42b_sft_qwen35_vllm_namespace_v44a_all_candidates",
+      "elements": 4528128,
+      "manifest_content_sha256": "408dcd3f8459b0c7f694e2d4e1adeb494bee7f92d23519ced158932e1ec3f381",
+      "manifest_file_sha256": "a10ea5b0cdd7c86861001a6541d1785f75ddb5a7a90090eca3e8f1491f65e466",
+      "target_namespace": "base_model.model.model.language_model.layers.*",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "0579338e87fba7fbd6f38e7b322c31b14c82ba07e00872f5f3c64d2ab0d58741",
+      "weights_file_sha256": "e65fd770101a197b69036afd1f556698485da782402d5e22e88bab143b84367c"
+    },
+    "sft_v42b_step16": {
+      "adapter_config_file_sha256": "60bd216e895cba461a7cda482dc72635ac4037f301ee0f0c295e00d5a1247f5d",
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42b_step16_sft_qwen35_vllm_namespace_v45a",
+      "elements": 4528128,
+      "manifest_content_sha256": "b10a5232c222bafdef31113dfbca3e080b17e3a116b497977cfcdb05208d7e90",
+      "manifest_file_sha256": "5a68bc4fd2bf880c9f63e31197653c55a5740635ed17cf4c946f821609f78afd",
+      "target_namespace": "base_model.model.model.language_model.layers.*",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "23bea5ba090b380b6d28a8ea15dff43f0ea3173fc7d5cf04ce899df2589a5b82",
+      "weights_file_sha256": "7ed036e69fd5d5b08155b77f52efdafb49d35e94da27ea29572eb142ca29073e"
+    },
+    "sft_v42b_step32": {
+      "adapter_config_file_sha256": "60bd216e895cba461a7cda482dc72635ac4037f301ee0f0c295e00d5a1247f5d",
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42b_step32_sft_qwen35_vllm_namespace_v45a",
+      "elements": 4528128,
+      "manifest_content_sha256": "4c011aa5d5da1f9d6d6582bdb934b78f776d8382b8b92131c6753ef15baf7315",
+      "manifest_file_sha256": "01dbb9a943b50506922aea6f475c9832967598d5cd050cb8f71fed2f4296c1ef",
+      "target_namespace": "base_model.model.model.language_model.layers.*",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "6afbcc2afe7c9d49d243fd7935a0cc875d3b47e9e9c7f58c2f47774113c67b90",
+      "weights_file_sha256": "d0ba729da2467ec61b572b39879f496cf4a85ac89deda64c03aa2602e68a1c58"
+    },
+    "sft_v42c": {
+      "adapter_config_file_sha256": "8cf1f688544215124a8ec6570c9e734899de1be2e2ff6e6bc7973d484ad93a17",
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42c_sft_qwen35_vllm_namespace_v44a_all_candidates",
+      "elements": 4528128,
+      "manifest_content_sha256": "be7a84aa87d2b92bbabdd24d866951c2b2574a0b6950449e8d5a5c52db32c508",
+      "manifest_file_sha256": "a1cfd32ae10db58c5d6e9717e04713182a7e84a620508fcc115d254e62672b2a",
+      "target_namespace": "base_model.model.model.language_model.layers.*",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "a056b499b82827942a7c73e3c2b61e9e48321681c30e7f393b91dfa41c130e91",
+      "weights_file_sha256": "0b1f6d4054abb88dd1315fae54ef0b3dbb3af30aee7f24d64c074038a6c925aa"
+    },
+    "sft_v42d": {
+      "adapter_config_file_sha256": "00229a1011c8f2bd28e10df8af3c0942cdf9b04dc0aedc4e5981899802bfaed6",
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42d_sft_qwen35_vllm_namespace_v44a_all_candidates",
+      "elements": 4528128,
+      "manifest_content_sha256": "15b694ac47782d7b3def756cf1ed36cfd9e09b0f0fd4862a15c915484777e987",
+      "manifest_file_sha256": "11174b397920e955d5314c72bee342a347ef7e66062ddae9761d091da84564e8",
+      "target_namespace": "base_model.model.model.language_model.layers.*",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "b1555f6889ab154c34a44c68d8351844492af44cb950f5ec0de8eb2782e8d694",
+      "weights_file_sha256": "ab4e3a0e00292c20585cd9b9e980af0df707cd619a61900be7429380a30c0e8d"
+    },
+    "sft_v42e": {
+      "adapter_config_file_sha256": "3b536e46822842c3627e02077dcb3d6e76d1c22f3bcc5746a70744356ef3c2a2",
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42e_sft_qwen35_vllm_namespace_v45a",
+      "elements": 4528128,
+      "manifest_content_sha256": "19fed1aaee2d1602d499f31ed3523a5ed1d95c7fe51fc82e32e11a5b0810c229",
+      "manifest_file_sha256": "055bb461523f2d3ee28756af821dec6d6f9b45713e7ec3b51c594cd709c5564f",
+      "target_namespace": "base_model.model.model.language_model.layers.*",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "6601b5c028daf5d54e68cffc60dfcbddd0225077b3e208b774224bd770a29e5c",
+      "weights_file_sha256": "35782cd7e94b6a67339ce3ff474522f35914599d78287a48351f38a6d3673c3a"
+    },
+    "sft_v42f": {
+      "adapter_config_file_sha256": "13ddbd761d4000a453ee8d5361a1cce9a4c3595c44a85f8d485230cffbd67ae9",
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42f_sft_qwen35_vllm_namespace_v45a",
+      "elements": 4528128,
+      "manifest_content_sha256": "8cca78ca529bcdf470de98ef775aa6a8ec36c72ff6571a67de939a1e06f06a85",
+      "manifest_file_sha256": "12cdd19da1a78c90e8d5e67c7b387b7ac50e9a11c14ab2e26c0b012bac40e19c",
+      "target_namespace": "base_model.model.model.language_model.layers.*",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "488273f84648d309a99b10bb0c2c8c7b0c02224eff6739400892a86fab6b7a7b",
+      "weights_file_sha256": "363b22e0309f8299d06ed7ecfb83589952ccf38ed3dec4a060a312a4889db8ae"
+    },
+    "sft_v42g": {
+      "adapter_config_file_sha256": "99548642c32678b1a69f0e2c1151c96f10b87b821e6588feefebd353684f2178",
+      "directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42g_sft_qwen35_vllm_namespace_v45a",
+      "elements": 4528128,
+      "manifest_content_sha256": "dd7eb90c411726a53ae6bc6c3fbe68a94107a02b99e6bc403e4fd76da8bcc533",
+      "manifest_file_sha256": "dae592e2e8322bb1bd72e3b68146d843082e8c689617e5659c0acd1869b9e373",
+      "target_namespace": "base_model.model.model.language_model.layers.*",
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_count": 70,
+      "transformed_identity_sha256": "598727b73b094d7f55647accf009cf9b315766f9bf45182e5be4e228debc04a2",
+      "weights_file_sha256": "0ae7050347b885cdbde042ec3ef0cfbdbc9d4040e432fab2a85536282c6d7f16"
+    }
+  },
+  "status": "preregistered_before_fresh_ood_eligible_evaluation",
+  "v44c_observed_finding": {
+    "content_sha256": "ff2b4571cf81a9d73fa890e9a179a087b1af912d6f16b16d3c3e81e13534864c",
+    "file_sha256": "3b3a55b9b208fd563825f09c36f855d74f05cad2bf9201467fb454a08105b076",
+    "finding": "shadow-first V42B selection failed OOD while a lower-shadow arm was point-safe; V45A therefore filters every arm through frozen OOD gates before shadow ranking",
+    "heldout_or_holdout_opened": false,
+    "path": "/home/catid/specialist/experiments/eval_reports/matched_lora_sft_hpo_es_fold3_ood_eval_v44c.json",
+    "selection_metrics_observed_before_v45a_preregistration": true
+  }
+}

@@ -1,0 +1,274 @@
+{
+  "access_contract": {
+    "builder_reads_protected_examples": false,
+    "builder_reads_train_examples": false,
+    "dry_run_hashes_bound_input_files": true,
+    "dry_run_launches_gpu": false,
+    "dry_run_loads_model_runtime": false,
+    "dry_run_reads_train_examples": false,
+    "only_runtime_train_path_may_open": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_train.jsonl",
+    "protected_semantic_access": false,
+    "v43f_parent_use": "aggregate numeric diagnostics only"
+  },
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v43g_matched_lora_es_fold3_pop8_robust.attempt.json",
+    "calibration": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43g_matched_lora_es_fold3_pop8_robust/numeric_calibration_v43g.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43g_matched_lora_es_fold3_pop8_robust/gpu_activity_v43g.jsonl",
+    "population_reliability": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43g_matched_lora_es_fold3_pop8_robust/population_reliability_v43g.json",
+    "post_update_consensus": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43g_matched_lora_es_fold3_pop8_robust/post_update_consensus_v43g.json",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43g_matched_lora_es_fold3_pop8_robust/matched_lora_es_report_v43g.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43g_matched_lora_es_fold3_pop8_robust",
+    "snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43g_matched_lora_es_fold3_pop8_robust/adapter_step1_v43g"
+  },
+  "content_sha256_before_self_field": "33cb3c2ed71d67f6e2eaa3540f78b32a1d90014ff45808d177e3312fc4e87299",
+  "created_at_utc": "2026-07-15T23:00:50.153104+00:00",
+  "implementation_bindings": {
+    "base_runtime": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+    "builder": "dc175215d0d1404a72f63d40c7b9acf8a24d0b900aa550b897f6ca9b4c7e212d",
+    "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "dataset": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "dense_reward_runtime_v4": "9b771f5f5578cc233bea9b92ee48dbad8bbf7f363fae44d4dadde5e926f6cd65",
+    "equal_unit_runtime_v38": "a76dc19b0c1c9d5b57bebd66544662553935dfbc23f72a47e172f4366cba5852",
+    "initialization_builder": "2d1bb1b36d1aec160e6a50972c02c2d667e055e09ec5fd8015c1dff1b523a512",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "numeric_consensus": "f989042ed6699557ecebe7697eb22d5e211f9755d5e42ff5d29d4f18d20abec1",
+    "numeric_consensus_v43f": "de44b0765e8f083f75a4bebb171916a283f906f6ddd92e0a88094c36d42fa561",
+    "resolver_runtime_v40c": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+    "runtime": "c2d4275d35c88ccbb47f68e3eaab3aba3670a1e60b7486aa71464ffd309cd6ae",
+    "runtime_v40a": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+    "source_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "source_manifest": "a2fa79e6ac06f75743d3fee8f5c0b1aabe6bb83b52b05910ed6460438e2640a2",
+    "source_weights": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+    "staged_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "staged_manifest": "bdefd41d5537501e660426b81297b59ddfbeb66a268dd12d14be8bbae4959c38",
+    "staged_weights": "9c4382048a2bb001995586715eac53f51672a161f3351080a604543b8384a09b",
+    "staging_runtime": "7b37e8bf9db2fe6b72e44baaf1b2ecbe2c60d5e8a58bc017632d3dd76ae2b064",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "worker": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+    "worker_v3": "636698c7ea8e8155ea08298e428b5c40c01141ff10db59290d74831db360e5b1"
+  },
+  "numeric_calibration": {
+    "bootstrap_method": "conflict-unit cluster bootstrap of maximum actor range over repeats",
+    "bootstrap_resamples": 10000,
+    "bootstrap_rng": "numpy.random.PCG64",
+    "bootstrap_seed": 2026071543701,
+    "familywise_confidence": 0.99,
+    "historical_catastrophic_divergence_ceiling": 0.001802103667415178,
+    "persist_per_actor_repeat_conflict_unit_aggregates": true,
+    "population_gate_use": "fresh observed fixed-panel maximum actor spread must not exceed the V43F historical ceiling",
+    "population_response_scale_use": false,
+    "post_update_equivalence_margin_use": true,
+    "retained_repeats_per_actor": 8,
+    "same_exact_state_on_all_four_actors": true,
+    "state": "sealed master plus one fixed Gaussian direction",
+    "synthetic_noise_seed": 1906431947,
+    "synthetic_sigma": 5.3033008588991055e-05,
+    "synthetic_sigma_derivation": "alpha/sqrt(population_size)",
+    "threshold_fitted_to_v43g_population": false,
+    "two_metric_bonferroni_adjustment": true,
+    "warmup_repeats": 2,
+    "warmups_discarded": true
+  },
+  "parents": {
+    "canonical_state_smoke": {
+      "content_sha256": "46666aa50afbd3e26a9cc1ac4c7a6e255cc9817dfdfca305951c665830b233e1",
+      "file_sha256": "2f691ba071393a87988e6c6aeb6f7e31a32c99991e56687aa6319a790fc4739a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v41a_canonical_lora_es_state_smoke_retry_r2/lora_es_state_smoke_report_v41a_retry_r2.json"
+    },
+    "equal_unit_dense_precedent": {
+      "content_sha256": "bc5fde297206f607bf36b69afc14a232db5a2bea925c9df7efed3d3828974643",
+      "file_sha256": "1fb0bf9090e9dc5606d907857ba403f16e50e5e925987182167a67714f4250f6",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/equal_unit_fold3_nonzero_v38a.json"
+    },
+    "v43f_failure": {
+      "content_sha256": "cc648cee462599868b7537aa386a1bada6a587d6cf6843b86b580bb7b20b0531",
+      "file_sha256": "ebb9c19c9f7d2a086afbc9c64f735fa2e2c237fb0e4a068e89f5d6a6215884ce",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43f_matched_lora_es_fold3_pop8_calibrated_retry/failure_v43f.json",
+      "used_for": "train-only design motivation and frozen derivation"
+    },
+    "v43f_numeric_calibration": {
+      "content_sha256": "ed2d1648821b235e75c462519a1de0d7628d745bfecb0d458d8b7a00ed683b83",
+      "file_sha256": "ac0c0a951287c8bfe2034396125636f6bf872c486d2323d80759c2a89d63c58e",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43f_matched_lora_es_fold3_pop8_calibrated_retry/numeric_calibration_v43f.json",
+      "used_for": "historical numerical ceiling and frozen diagnosis"
+    },
+    "v43f_population_reliability": {
+      "content_sha256": "7313c119dc3be070b353acc9524299950af8b83618cc1e9d25c9702ecb88cedf",
+      "file_sha256": "57d5ee2191594c91b601cee2b42e796b4885fcd8aca21b0ea3c3789ecbbde1a4",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43f_matched_lora_es_fold3_pop8_calibrated_retry/population_reliability_v43f.json",
+      "used_for": "frozen SNR projection; no acceptance threshold fit"
+    }
+  },
+  "post_update_consensus": {
+    "acceptance": "all pairwise intervals and both actor-mean spreads inside the pre-population calibration margins",
+    "bootstrap_method": "paired conflict-unit and repeat bootstrap with Bonferroni simultaneous intervals for all six actor pairs and two metrics",
+    "bootstrap_resamples": 10000,
+    "bootstrap_rng": "numpy.random.PCG64",
+    "bootstrap_seed": 2026071543702,
+    "exact_score_hash_equality_required": false,
+    "exact_score_hashes_retained": true,
+    "familywise_confidence": 0.99,
+    "persist_per_actor_repeat_conflict_unit_aggregates": true,
+    "retained_repeats_per_actor": 8
+  },
+  "purpose": "Raise train-only LoRA-ES response SNR with doubled exploration sigma, a complete four-actor antithetic block, robust median aggregation, and EGGROLL centered-rank fitness shaping while retaining exact FP32 state consensus and post-update numerical equivalence.",
+  "quality_selection_or_promotion_authorized": false,
+  "recipe": {
+    "alpha": 0.00015,
+    "antithetic_sign_order": [
+      1,
+      -1
+    ],
+    "canonical_elements": 4528128,
+    "canonical_tensor_count": 70,
+    "canonical_trainable_dtype": "float32",
+    "conflict_units": 208,
+    "dataset": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_train.jsonl",
+    "dataset_rows": 448,
+    "dataset_sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "dense_reward_config": {
+      "aggregation": "mean_tokens_per_example_then_mean_examples",
+      "generation": {
+        "detokenize": false,
+        "max_tokens": 1,
+        "prompt_logprobs": 1,
+        "temperature": 0.0,
+        "top_p": 1.0
+      },
+      "objective": "teacher_forced_gold_answer_prompt_logprob",
+      "schema": "eggroll-es-dense-qa-reward-v1",
+      "scored_positions": "answer_tokens_only",
+      "text_construction": "exact_prompt_plus_answer",
+      "tokenization": {
+        "add_special_tokens": false,
+        "append_eos": false,
+        "max_total_tokens": 1024,
+        "require_prompt_token_prefix": true,
+        "truncation": false
+      }
+    },
+    "engine_count": 4,
+    "fitness_shaping": "centered ranks over 16 median signed scores; coefficient=u_plus-u_minus",
+    "initialization": "35 independently seeded nonzero Kaiming A tensors and 35 exact-zero B tensors",
+    "matched_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/initial_adapters/matched_lora_initialization_v41a_seed20260715041",
+    "matched_initialization_tensor_identity_sha256": "2dcb9ab45ec26c7041b9782a30fe3c82b987b605b6b0bd95ab5b905b1371ae2e",
+    "matched_initialization_weights_sha256": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "minimum_response_reliability": 0.8,
+    "minimum_split_half_spearman": 0.7,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "objective": "teacher-forced gold-answer token logprob; mean answer tokens within row, equal mass per conservative conflict unit",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "population_size": 8,
+    "robust_central_location": "median-of-four paired central differences",
+    "runtime_adapter_dtype": "bfloat16",
+    "runtime_view_count": 82,
+    "seed_sha256": "ae75999cf3285db204ea406a28633d934add917fd5fb52aead99b6016a02de4f",
+    "seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570
+    ],
+    "sigma": 0.0006,
+    "sigma_change_from_v43f": "0.0003 to 0.0006; alpha remains 0.00015",
+    "signed_replicates_per_direction": 4,
+    "signed_replication_assignment": "complete four-actor paired antithetic block per direction",
+    "signed_score_location": "median-of-four actor scores per sign",
+    "signed_sequence_presentations": 28672,
+    "split_half_actor_groups": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "split_manifest": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/manifest_v37a.json",
+    "split_manifest_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+    "staged_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/matched_lora_initialization_v41b",
+    "staged_initialization_weights_sha256": "9c4382048a2bb001995586715eac53f51672a161f3351080a604543b8384a09b",
+    "staging": "key-only Qwen3.5 outer language_model namespace transform",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "ba0a951f153b60fb5729e0169a4d780277d9d860cbacb1f95fc7433afc875e19",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d",
+    "worker_extension": "eggroll_es_worker_lora_v41a.LoRAAdapterStateWorkerExtensionV41A"
+  },
+  "required_gates": {
+    "all_four_gpus_have_attributed_positive_activity": true,
+    "all_ranks_commit_identical_canonical_fp32_state": true,
+    "all_ranks_finalize_identical_committed_state_before_snapshot": true,
+    "all_runtime_materialization_hashes_exact_across_ranks": true,
+    "all_signed_directions_have_complete_four_actor_blocks": true,
+    "base_weights_unchanged_at_every_state_boundary": true,
+    "calibration_records_persist_before_population": true,
+    "calibration_restores_exact_master": true,
+    "canonical_install_preserves_matched_init_train_score": true,
+    "centered_rank_utility_update_nonzero": true,
+    "distributed_update_uses_fp32_collective": true,
+    "exact_restore_preserves_prepopulation_train_score": true,
+    "final_all_gpu_idle_cleanup": true,
+    "fixed_nonzero_calibration_state_exact_across_ranks": true,
+    "fresh_calibration_inside_v43f_historical_ceiling": true,
+    "population_response_reliability_at_least_0_8": true,
+    "population_split_half_spearman_at_least_0_7": true,
+    "post_update_actor_mean_spreads_inside_calibrated_bounds": true,
+    "post_update_pairwise_99pct_simultaneous_equivalence": true,
+    "rank_zero_snapshot_exact_readback": true,
+    "replicated_direction_state_hashes_exact": true
+  },
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "matched-lora-es-preregistration-v43g",
+  "sealed_holdout_opened": false,
+  "shadow_dev_external_eval_ood_or_holdout_authorized": false,
+  "status": "preregistered_before_train_only_launch",
+  "v43f_train_only_diagnostic_derivation": {
+    "bootstrap_to_observed_spread_ratio": 3.2534248199613267,
+    "calibration_bootstrap_upper_actor_spread": 0.001802103667415178,
+    "calibration_observed_maximum_actor_spread": 0.0005539097311726415,
+    "central_response_std": 0.0003973802524275008,
+    "content_sha256": "4ca8489bcf47284635960c075cbd6d7a59163c23916737f49dbeda11346b8426",
+    "interpretation": {
+      "cluster_bootstrap_used_as_finite_panel_response_scale": true,
+      "exact_state_failure_observed": false,
+      "fixed_actor_bias_supported": false,
+      "transient_heavy_tail_evaluation_noise_supported": true,
+      "weakening_v43f_gate_alone_supported": false
+    },
+    "largest_replicate_disagreement_direction_indices": [
+      3,
+      4,
+      7
+    ],
+    "largest_replicate_disagreements": [
+      0.0008827628958960609,
+      0.0007020084803495141,
+      0.0005596040043076567
+    ],
+    "leave_direction_3_out_reliability": 0.8054091497119735,
+    "linear_response_projected_v43g_reliability": 0.9390432439905053,
+    "mean_calibration_repeat_actor_pattern_correlation": 0.020314037745154334,
+    "observed_spread_to_response_std": 1.3939035163145115,
+    "schema": "v43f-train-only-failure-diagnostic-v43g",
+    "v43f_calibration_bound_fraction": 4.5349602966089995,
+    "v43f_reliability": 0.6581937522502567,
+    "v43g_sigma_multiplier": 2.0,
+    "v43g_signed_replicates": 4
+  }
+}

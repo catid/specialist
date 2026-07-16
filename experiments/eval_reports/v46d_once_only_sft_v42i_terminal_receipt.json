@@ -1,0 +1,69 @@
+{
+  "aggregate_only_artifacts_inspected": true,
+  "audited_outcome": {
+    "all_four_gpus_idle_after_cleanup": true,
+    "all_four_gpus_resident_and_positive": true,
+    "bootstrap_ci_is_informational": true,
+    "candidate_selection_performed": false,
+    "document_disjointness_verified": true,
+    "exact_count_delta": 0,
+    "fixed_candidate": "sft_v42i",
+    "fixed_gate_passed": false,
+    "holdout_semantic_access_count": 1,
+    "mean_reward_delta": -0.0036501348892653135,
+    "nonzero_count_delta": 0,
+    "only_failed_point_gate": "mean_reward_point_non_degradation",
+    "protocol_or_leak_counter_increase": false,
+    "raw_questions_answers_or_generations_persisted": false,
+    "reward_mean_delta_paired_item_bootstrap_95_ci": [
+      -0.01880541439237092,
+      0.010188405797101454
+    ],
+    "single_holdout_access_consumed": true,
+    "three_base_duplicates_exact": true
+  },
+  "bindings": {
+    "aggregate_report": {
+      "content_sha256": "33730688cb62a0fa6fbf5c96c402853c7a858480ee7c8af0a0405cb348534332",
+      "file_sha256": "2aa501987500df5c9df931e8c2bb0f769a8de6559ab6755d1493c2d18b94ec21",
+      "path": "/home/catid/specialist/experiments/eval_reports/once_only_sft_v42i_sealed_holdout_eval_v46d.json"
+    },
+    "attempt_before_access": {
+      "content_sha256": "7e1a768d40e6141a8f73da69c147934718e4188f4140ef38019bbd7212f371a5",
+      "file_sha256": "3446adc43afbab0e4afd098e9a20a31b0ee08c6daa041fb0b404461e6942d3c6",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v46d_once_only_sft_v42i_sealed_holdout_eval.attempt.json"
+    },
+    "attempt_complete": {
+      "content_sha256": "426d9b04179ec7efc205c35f953a58cd2b36b65fa15eff890d25ec72f0658660",
+      "file_sha256": "cb44acc9a79ddfbc5a82b10623e3f68ab2a2e53695625389f9d7da10fd2eb55d",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v46d_once_only_sft_v42i_sealed_holdout_eval.attempt.complete.json"
+    },
+    "gpu_log": {
+      "file_sha256": "e4a6f4ec5f7277a9f71f4798d117e1c071c201b5a32fa68740e780f678edeef6",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v46d_once_only_sft_v42i_sealed_holdout_eval/gpu_activity_v46d.jsonl"
+    },
+    "preregistration": {
+      "content_sha256": "841f8c25234424927a12f19e5446da588d1e9907ed2634de2d2c1b6e072fe7cb",
+      "file_sha256": "80f2c165e8f60b129e776b47da73bd9f7dba15adb949214879bb11e00f608084",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/once_only_sft_v42i_sealed_holdout_eval_v46d.json"
+    }
+  },
+  "content_sha256_before_self_field": "e8154d99443a5deaa7a02b4d775f6fce3626bf742671ec161a64807209b0285c",
+  "created_at_utc": "2026-07-16T00:23:14.515335+00:00",
+  "gpu_log_content_inspected": false,
+  "holdout_reopened_or_rehashed_while_building_receipt": false,
+  "protected_or_holdout_semantics_inspected_while_building_receipt": false,
+  "schema": "once-only-sft-v42i-holdout-terminal-receipt-v46d",
+  "status": "terminal_holdout_consumed_gate_failed_no_retry",
+  "terminal_policy": {
+    "additional_holdout_evaluation_permitted": false,
+    "descriptive_reporting_of_preregistered_aggregate_permitted": true,
+    "retry_or_reopen_holdout_permitted": false,
+    "terminal_reason": "the preregistered single access is consumed regardless of pass/fail outcome",
+    "use_result_for_candidate_selection_permitted": false,
+    "use_result_for_checkpoint_selection_permitted": false,
+    "use_result_for_dataset_selection_or_resampling_permitted": false,
+    "use_result_for_hyperparameter_tuning_permitted": false,
+    "use_result_for_training_recipe_tuning_permitted": false
+  }
+}

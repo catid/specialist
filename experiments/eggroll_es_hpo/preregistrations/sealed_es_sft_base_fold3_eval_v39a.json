@@ -1,0 +1,182 @@
+{
+  "arms": {
+    "base_a": "untouched base duplicate A",
+    "base_b": "untouched base duplicate B",
+    "es_v38a": "sealed selected runtime snapshot loaded with V38A identity verification",
+    "sft_v37a": "sealed rank-32 LoRA served by exact vLLM LoRARequest"
+  },
+  "content_sha256_before_self_field": "c1327d276e2fc3a9cc73feb3798c645ea2a279ea59990f65aceb854fe125f237",
+  "created_at_utc": "2026-07-15T21:12:00+00:00",
+  "firewall": {
+    "aggregate_only": true,
+    "aggregate_report": "/home/catid/specialist/experiments/eval_reports/sealed_es_sft_base_fold3_eval_v39a.json",
+    "each_bound shadow/manifest/OOD file semantically read": "exactly once after preregistration",
+    "heldout_or_holdout_paths": "forbidden by path guard and never enumerated",
+    "raw_items": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v39a_sealed_es_sft_base_fold3_eval/raw_items_v39a.json",
+    "raw_items_git_eligible": false
+  },
+  "heldout_or_holdout_access_authorized": false,
+  "implementation_bindings": {
+    "es_report": "a16860677528c6c623114e3a42dc05f21c6e1dd52150e8ffae04ed70bb591b1e",
+    "es_snapshot": "b982eab799bfab760bf97bb67203d4275258326f84ece14cd9d624887d67e6fd",
+    "layer_plan": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "ood_prose": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+    "ood_qa": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+    "qa_quality": "9429accd25b629297b3a121ac843aba5ed3b6e39cb0a2938677a8038d92eb106",
+    "reward": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+    "runtime": "04933a8d8cb43c504fc7dc6b5f2efad75e4607596e8dd61d9796f2e434825fbe",
+    "runtime_v38a": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "sft_adapter_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "sft_adapter_weights": "9336ee124c9bab7ec95ecfc68b80e20d28c38a777e7408f81584eb294c45b0dc",
+    "sft_report": "aae3adcc439b9fb6011cb9ffdde036fa64596648b3b24b46ffc29aeca3a22aac",
+    "shadow": "6d5b72f7506a752fd5275425739ec785e25f0ff486f5c03b68e91c8e99d7ebeb",
+    "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+    "trainer_v38a": "a76dc19b0c1c9d5b57bebd66544662553935dfbc23f72a47e172f4366cba5852",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "worker_v38a": "0b5a2a86a0aa51f34e38ddad653d34bfdbb7779e409fd6e47a4d9f3dcb3fec50"
+  },
+  "ood_gates": {
+    "prose_bootstrap_lcb": {
+      "lower_percentile": 0.025,
+      "paired_unit": "normalized_source_url",
+      "requirement": "lower bound >= 0",
+      "samples": 20000,
+      "seed": 20260715
+    },
+    "prose_point": "selected mean token logprob delta >= 0",
+    "qa": "selected generated mean reward >= base and exact count >= base"
+  },
+  "raw_shadow_or_ood_content_opened_before_preregistration": false,
+  "required_gates": {
+    "all_four_positive_activity_on_shadow_ood_qa_ood_prose": true,
+    "base_duplicate_equivalence_all_splits": true,
+    "es_snapshot_identity_exact": true,
+    "exact_four_pg_created_to_removed": true,
+    "exact_four_physical_pid_attribution_no_foreign_process": true,
+    "exact_tuned_table_loaded_all_actors": true,
+    "exclusive_idle_preflight": true,
+    "final_gpu_idle": true,
+    "no_heldout_or_holdout_access": true
+  },
+  "runtime": {
+    "dtype": "bfloat16",
+    "enable_lora": true,
+    "engine_count": 4,
+    "gpu_memory_utilization": 0.82,
+    "layer_plan_sha256": "03745c603a6b48898b41afbd4d9121aef276d7e45ca1a3ae14607ec5d1042cb9",
+    "max_lora_rank": 32,
+    "max_model_len": 2048,
+    "moe_backend": "triton",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "placement_group_lifetime": "driver_scoped",
+    "tensor_parallel_size": 1,
+    "tuned_table_content_sha256": "a4f82f53b037f766536013bdc10c8ca1e49873603a8f44972ef8007ed406de84",
+    "tuned_table_file_sha256": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "tuned_table_probe": "get_moe_configs(256,512,None) on every actor"
+  },
+  "schema": "sealed-candidate-eval-preregistration-v39a",
+  "sealed_inputs": {
+    "es_final_identity": {
+      "checkpoint_to_runtime_mapping_sha256": "7ebd15cb9c04cfe8dab67009dc2af5c0054131a11c15a6c8e83f277ffef4585c",
+      "dense_reward_sha256": "4941f2e94091b1f8e7ab7b5294ebc6520b80aba1326b7dc6ccea5140a3da5da2",
+      "layer_plan_file_sha256": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
+      "layer_plan_sha256": "03745c603a6b48898b41afbd4d9121aef276d7e45ca1a3ae14607ec5d1042cb9",
+      "runtime_selected_name_sha256": "5e5996a2865f55dad42d876fdcc8f22efbb3584901ef6e963f390f5dc839aa68",
+      "schema": "eggroll-es-partitioned-weight-state-v4",
+      "selected": {
+        "checkpoint_to_runtime_mapping_sha256": "7ebd15cb9c04cfe8dab67009dc2af5c0054131a11c15a6c8e83f277ffef4585c",
+        "dense_reward_sha256": "4941f2e94091b1f8e7ab7b5294ebc6520b80aba1326b7dc6ccea5140a3da5da2",
+        "layer_plan_file_sha256": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
+        "layer_plan_sha256": "03745c603a6b48898b41afbd4d9121aef276d7e45ca1a3ae14607ec5d1042cb9",
+        "parameter_count": 23,
+        "partition": "selected",
+        "runtime_selected_name_sha256": "5e5996a2865f55dad42d876fdcc8f22efbb3584901ef6e963f390f5dc839aa68",
+        "schema": "eggroll-es-parameter-partition-sha256-v4",
+        "selected_parameter_manifest_sha256": "385bdb1c82c67c92335b54f3cc2cf4edb7fbb312374c77e06b9e969102e14208",
+        "sha256": "e54808414983b0689ac781899213b96f1f91841f54e26177b68ba79403814703",
+        "total_bytes": 285999104,
+        "total_elements": 142999552
+      },
+      "selected_parameter_manifest_sha256": "385bdb1c82c67c92335b54f3cc2cf4edb7fbb312374c77e06b9e969102e14208",
+      "sha256": "735d3df0fe357cb7706ba082f667f23ad8519cd29d0587abfb9e7d89fefebbb5",
+      "source_unit_count": 35,
+      "unselected": {
+        "checkpoint_to_runtime_mapping_sha256": "7ebd15cb9c04cfe8dab67009dc2af5c0054131a11c15a6c8e83f277ffef4585c",
+        "dense_reward_sha256": "4941f2e94091b1f8e7ab7b5294ebc6520b80aba1326b7dc6ccea5140a3da5da2",
+        "layer_plan_file_sha256": "d65d702969dcec7a56ca4fcf461d402c44642966191a57c2ef092ec339e3e3df",
+        "layer_plan_sha256": "03745c603a6b48898b41afbd4d9121aef276d7e45ca1a3ae14607ec5d1042cb9",
+        "parameter_count": 550,
+        "partition": "unselected",
+        "runtime_selected_name_sha256": "5e5996a2865f55dad42d876fdcc8f22efbb3584901ef6e963f390f5dc839aa68",
+        "schema": "eggroll-es-parameter-partition-sha256-v4",
+        "selected_parameter_manifest_sha256": "385bdb1c82c67c92335b54f3cc2cf4edb7fbb312374c77e06b9e969102e14208",
+        "sha256": "0cba053c08121ecff55b9954ebde2ecbf89fbe0ffa08c776865179a8103527e7",
+        "total_bytes": 69035224192,
+        "total_elements": 34517611136
+      }
+    },
+    "es_report_content_sha256": "b32c1e1f63784fa2c01a72780e8d1021ec2edb6316e32fc715f5d6c0a9a8bc82",
+    "sft_global_step": 48,
+    "sft_report_content_sha256": "4382fa4b49447178c8aeba5b305ecd8752e49abcb61dd20cc82573ab4273ce0a"
+  },
+  "selection_rule": {
+    "candidates": [
+      "sft_v37a",
+      "es_v38a"
+    ],
+    "final_tie_preference": "es_v38a",
+    "lexicographic_higher_is_better": [
+      "generated equal-unit mean reward",
+      "generated exact count",
+      "generated nonzero count",
+      "teacher-forced equal-unit mean answer logprob"
+    ],
+    "shadow_gate": "candidate tuple strictly exceeds base and no protocol/leak counter increases"
+  },
+  "shadow_protocol": {
+    "base_duplicate_equivalence": "exact aggregate and hashed per-item numeric/output manifest",
+    "conflict_units": 51,
+    "generated": {
+      "max_tokens": 64,
+      "reward": "specialist_reward using audited answer_score",
+      "seed": 20260715,
+      "temperature": 0.0,
+      "template": "specialist_template",
+      "top_p": 1.0
+    },
+    "protocol_leak_counters": [
+      "protocol token emission",
+      "normalized prompt echo",
+      "empty extracted answer"
+    ],
+    "rows": 83,
+    "teacher_forced": "mean answer-token logprob per row, row mean within unit, uniform mean of 51 units"
+  },
+  "single_access_inputs": {
+    "ood_prose": {
+      "file_sha256": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+      "path": "/home/catid/specialist/data/ood_prose_v3.jsonl"
+    },
+    "ood_qa": {
+      "file_sha256": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+      "path": "/home/catid/specialist/data/ood_qa_v3.jsonl"
+    },
+    "shadow": {
+      "file_sha256": "6d5b72f7506a752fd5275425739ec785e25f0ff486f5c03b68e91c8e99d7ebeb",
+      "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_shadow_dev.jsonl"
+    },
+    "split_manifest": {
+      "file_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+      "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/manifest_v37a.json"
+    }
+  },
+  "status": "preregistered_before_shadow_access"
+}

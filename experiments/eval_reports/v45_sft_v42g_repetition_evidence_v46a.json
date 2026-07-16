@@ -1,0 +1,225 @@
+{
+  "consistency": {
+    "base_duplicate_equivalence_count": 3,
+    "base_duplicates_exact_in_all_repetitions": true,
+    "ood_eligible_in_all_repetitions": true,
+    "repetition_count": 3,
+    "selected_in_all_repetitions": true,
+    "sft_v42g_ood_eligible_count": 3,
+    "sft_v42g_selected_count": 3,
+    "strict_final_gate_pass_count": 3,
+    "strict_gate_passed_in_all_repetitions": true
+  },
+  "content_sha256_before_self_field": "c49ab2394c0f0a4a55c7ad7d5c5a748a1107b831aa12c314d4ba02d04b195f46",
+  "created_at_utc": "2026-07-15T23:37:47.823963+00:00",
+  "fixed_candidate_identity": {
+    "all_tensor_bytes_preserved_exactly": true,
+    "arm": "sft_v42g",
+    "completed_steps": 48,
+    "elements": 4528128,
+    "learning_rate": 5e-05,
+    "source_config_sha256": "99548642c32678b1a69f0e2c1151c96f10b87b821e6588feefebd353684f2178",
+    "source_report_content_sha256": "5c9f0d80061b0cd6f95ac401802fe96fdff42e585c94737a536a65186bd66986",
+    "source_report_file_sha256": "82633c37a17e597961ca8a69d2a1a07218dbd6d0df53d9ebb75217ba54549430",
+    "source_report_path": "/home/catid/specialist/experiments/sft_controls/v42g_matched_init_equal_unit_fold3_v412_lr5e5/runtime_report_v42g.json",
+    "source_weights_path": "/home/catid/specialist/experiments/sft_controls/v42g_matched_init_equal_unit_fold3_v412_lr5e5/middle_late_r32_seed17_init20260715041/final/adapter_model.safetensors",
+    "source_weights_sha256": "b5820bd3a01605bbd7c488900bdeb27dc2dbaf5073e9712edfbff0f7402f3bd0",
+    "stage_manifest_content_sha256": "dd7eb90c411726a53ae6bc6c3fbe68a94107a02b99e6bc403e4fd76da8bcc533",
+    "stage_manifest_file_sha256": "dae592e2e8322bb1bd72e3b68146d843082e8c689617e5659c0acd1869b9e373",
+    "stage_manifest_path": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42g_sft_qwen35_vllm_namespace_v45a/stage_manifest_v44a.json",
+    "staged_config_sha256": "99548642c32678b1a69f0e2c1151c96f10b87b821e6588feefebd353684f2178",
+    "staged_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v42g_sft_qwen35_vllm_namespace_v45a",
+    "staged_weights_sha256": "0ae7050347b885cdbde042ec3ef0cfbdbc9d4040e432fab2a85536282c6d7f16",
+    "tensor_count": 70,
+    "training_family": "matched SFT",
+    "transformed_identity_sha256": "598727b73b094d7f55647accf009cf9b315766f9bf45182e5be4e228debc04a2"
+  },
+  "heldout_or_holdout_opened": false,
+  "interpretation": {
+    "conclusion": "V42G remains selected, OOD-eligible, and strict-gate-safe in 3/3 repetitions despite small generated-score/count and teacher-forced numerical spread",
+    "generation_is_numerically_bitwise_identical": false,
+    "selection_and_gate_decisions_are_identical": true
+  },
+  "metric_spread": {
+    "ood_prose_delta": {
+      "max": 0.0035476663050504342,
+      "mean": 0.0033708988125898585,
+      "min": 0.0031441530336662193,
+      "range": 0.0004035132713842149,
+      "values_by_run": {
+        "v45a": 0.0034208770990529214,
+        "v45b": 0.0031441530336662193,
+        "v45c": 0.0035476663050504342
+      }
+    },
+    "ood_prose_mean_token_logprob": {
+      "max": -1.2613456873305129,
+      "mean": -1.2615224548229735,
+      "min": -1.261749200601897,
+      "range": 0.0004035132713842149,
+      "values_by_run": {
+        "v45a": -1.2614724765365104,
+        "v45b": -1.261749200601897,
+        "v45c": -1.2613456873305129
+      }
+    },
+    "ood_qa_exact_count_delta": {
+      "max": 0.0,
+      "mean": 0.0,
+      "min": 0.0,
+      "range": 0.0,
+      "values_by_run": {
+        "v45a": 0,
+        "v45b": 0,
+        "v45c": 0
+      }
+    },
+    "ood_qa_generated_equal_unit_mean_reward": {
+      "max": 0.715021645021645,
+      "mean": 0.715021645021645,
+      "min": 0.715021645021645,
+      "range": 0.0,
+      "values_by_run": {
+        "v45a": 0.715021645021645,
+        "v45b": 0.715021645021645,
+        "v45c": 0.715021645021645
+      }
+    },
+    "ood_qa_generated_exact_count": {
+      "max": 16.0,
+      "mean": 16.0,
+      "min": 16.0,
+      "range": 0.0,
+      "values_by_run": {
+        "v45a": 16,
+        "v45b": 16,
+        "v45c": 16
+      }
+    },
+    "ood_qa_generated_nonzero_count": {
+      "max": 23.0,
+      "mean": 23.0,
+      "min": 23.0,
+      "range": 0.0,
+      "values_by_run": {
+        "v45a": 23,
+        "v45b": 23,
+        "v45c": 23
+      }
+    },
+    "ood_qa_mean_reward_delta": {
+      "max": 0.0008928571428570287,
+      "mean": 0.0008928571428570287,
+      "min": 0.0008928571428570287,
+      "range": 0.0,
+      "values_by_run": {
+        "v45a": 0.0008928571428570287,
+        "v45b": 0.0008928571428570287,
+        "v45c": 0.0008928571428570287
+      }
+    },
+    "ood_qa_teacher_forced_equal_unit_mean_answer_logprob": {
+      "max": -0.3017140711352768,
+      "mean": -0.30189445325164305,
+      "min": -0.30208004386368464,
+      "range": 0.00036597272840782624,
+      "values_by_run": {
+        "v45a": -0.3018892447559676,
+        "v45b": -0.30208004386368464,
+        "v45c": -0.3017140711352768
+      }
+    },
+    "shadow_generated_equal_unit_mean_reward": {
+      "max": 0.08960796246901744,
+      "mean": 0.08874102842046687,
+      "min": 0.08766265270363847,
+      "range": 0.0019453097653789608,
+      "values_by_run": {
+        "v45a": 0.08960796246901744,
+        "v45b": 0.08766265270363847,
+        "v45c": 0.08895247008874471
+      }
+    },
+    "shadow_generated_exact_count": {
+      "max": 0.0,
+      "mean": 0.0,
+      "min": 0.0,
+      "range": 0.0,
+      "values_by_run": {
+        "v45a": 0,
+        "v45b": 0,
+        "v45c": 0
+      }
+    },
+    "shadow_generated_nonzero_count": {
+      "max": 80.0,
+      "mean": 79.66666666666667,
+      "min": 79.0,
+      "range": 1.0,
+      "values_by_run": {
+        "v45a": 80,
+        "v45b": 79,
+        "v45c": 80
+      }
+    },
+    "shadow_generated_row_mean_reward": {
+      "max": 0.08337951979372292,
+      "mean": 0.08287186827195203,
+      "min": 0.0820689175936806,
+      "range": 0.001310602200042324,
+      "values_by_run": {
+        "v45a": 0.08337951979372292,
+        "v45b": 0.0820689175936806,
+        "v45c": 0.08316716742845258
+      }
+    },
+    "shadow_teacher_forced_equal_unit_mean_answer_logprob": {
+      "max": -2.4298418670376702,
+      "mean": -2.4300857170223504,
+      "min": -2.4303308481611463,
+      "range": 0.0004889811234760622,
+      "values_by_run": {
+        "v45a": -2.4303308481611463,
+        "v45b": -2.430084435868235,
+        "v45c": -2.4298418670376702
+      }
+    }
+  },
+  "protected_semantics_accessed_while_building": false,
+  "purpose": "bind three independent aggregate evaluations and quantify the documented generation numerical spread before any holdout access",
+  "raw_questions_answers_or_generations_read": false,
+  "report_bindings": {
+    "v45a": {
+      "base_duplicate_equivalence_all_splits": true,
+      "content_sha256": "419c5855dbbaf7365d259a22d588e58ce593d340efb502b1c2682067d9b57c7b",
+      "file_sha256": "64f0edab64c66aa208a03759f759a3fe62d3bc886e6fce55180abe7b57cb919d",
+      "heldout_or_holdout_opened": false,
+      "path": "/home/catid/specialist/experiments/eval_reports/matched_lora_hpo_earlystop_ood_eligible_eval_v45a.json",
+      "selected_arm": "sft_v42g",
+      "sft_v42g_ood_eligible": true,
+      "strict_final_gate_passed": true
+    },
+    "v45b": {
+      "base_duplicate_equivalence_all_splits": true,
+      "content_sha256": "779e69731374a5a1c4300ecce27b8aced82e21dfa1e5f81f16bdcde05a65941e",
+      "file_sha256": "cd24ac92b97efa2940594c1929b1b02f611c50812830ecff2b13b02a5a15dbf1",
+      "heldout_or_holdout_opened": false,
+      "path": "/home/catid/specialist/experiments/eval_reports/matched_lora_hpo_v43g_ood_eligible_eval_v45b.json",
+      "selected_arm": "sft_v42g",
+      "sft_v42g_ood_eligible": true,
+      "strict_final_gate_passed": true
+    },
+    "v45c": {
+      "base_duplicate_equivalence_all_splits": true,
+      "content_sha256": "3a1737796e442ae99a464ce128aa2721ef8c91516ba84ac97f13489e53dcadb0",
+      "file_sha256": "2081b319a777a5c9bbe5129cd123b7661b50c9915594f277ca7676486fa09daf",
+      "heldout_or_holdout_opened": false,
+      "path": "/home/catid/specialist/experiments/eval_reports/matched_lora_hpo_v42h_v43g_ood_eligible_eval_v45c.json",
+      "selected_arm": "sft_v42g",
+      "sft_v42g_ood_eligible": true,
+      "strict_final_gate_passed": true
+    }
+  },
+  "schema": "v45-sft-v42g-repetition-evidence-v46a",
+  "status": "complete_aggregate_only_three_of_three_stable"
+}

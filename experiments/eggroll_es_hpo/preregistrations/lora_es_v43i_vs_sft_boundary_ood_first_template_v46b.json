@@ -1,0 +1,638 @@
+{
+  "arms": [
+    "base_a",
+    "base_b",
+    "base_c",
+    "base_d",
+    "sft_boundary_winner_a",
+    "sft_boundary_winner_b",
+    "lora_es_v43i_a",
+    "lora_es_v43i_b"
+  ],
+  "base_duplicate_arms": [
+    "base_a",
+    "base_b",
+    "base_c",
+    "base_d"
+  ],
+  "candidate_artifact_seals": {
+    "lora_es_v43i": {
+      "required": {
+        "canonical_adapter_identity_sha256": null,
+        "snapshot_config_sha256": null,
+        "snapshot_directory": null,
+        "snapshot_weights_sha256": null,
+        "stage_manifest_sha256": null,
+        "staged_config_sha256": null,
+        "staged_directory": null,
+        "staged_weights_sha256": null,
+        "train_report_content_sha256": null,
+        "train_report_file_sha256": null,
+        "train_report_path": null
+      },
+      "status": "pending_exact_post_v43i_run_seal"
+    },
+    "sft_boundary_winner": {
+      "required": {
+        "selected_arm": null,
+        "selected_source_config_sha256": null,
+        "selected_source_report_content_sha256": null,
+        "selected_source_report_file_sha256": null,
+        "selected_source_weights_sha256": null,
+        "stage_manifest_sha256": null,
+        "staged_config_sha256": null,
+        "staged_directory": null,
+        "staged_weights_sha256": null,
+        "v45d_report_content_sha256": null,
+        "v45d_report_file_sha256": null,
+        "v45d_report_path": null
+      },
+      "status": "pending_fixed_v45d_winner_and_exact_artifact_seal"
+    }
+  },
+  "candidate_families": {
+    "lora_es_v43i": [
+      "lora_es_v43i_a",
+      "lora_es_v43i_b"
+    ],
+    "sft_boundary_winner": [
+      "sft_boundary_winner_a",
+      "sft_boundary_winner_b"
+    ]
+  },
+  "candidate_replica_arms": [
+    "sft_boundary_winner_a",
+    "sft_boundary_winner_b",
+    "lora_es_v43i_a",
+    "lora_es_v43i_b"
+  ],
+  "content_sha256_before_self_field": "bfec8f2205007f164dbb1ddd1342f8e707de1931af53183dd665edd7f709dab2",
+  "cpu_preflight_expected": {
+    "all_four_authorized_inputs_parsed_once": true,
+    "content_sha256_before_self_field": "6ff9d87955efd93f7e0037115a4fea6de8bec7b6c232300124c797dd6c0735bd",
+    "holdout_or_heldout_opened": false,
+    "parser_runtime_sha256": "06e7fe81e31018f4d4303d966772b47fa14fcbf3eae5692bbd12fc0739d9717f",
+    "protected_file_sha256": {
+      "ood_prose": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+      "ood_qa": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+      "shadow": "6d5b72f7506a752fd5275425739ec785e25f0ff486f5c03b68e91c8e99d7ebeb",
+      "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d"
+    },
+    "schema": "source-faithful-protected-parser-preflight-v44c",
+    "schema_receipts": [
+      {
+        "bundle_numeric_identity_sha256": "5951e0898b1078800cd2a61210bef327c58447270a486ad35748f03b910474f5",
+        "field_type_counts": [
+          {
+            "count": 83,
+            "field": "answer",
+            "type": "str"
+          },
+          {
+            "count": 2,
+            "field": "canonical_resource_url",
+            "type": "str"
+          },
+          {
+            "count": 23,
+            "field": "claim_type",
+            "type": "str"
+          },
+          {
+            "count": 72,
+            "field": "curation",
+            "type": "dict"
+          },
+          {
+            "count": 83,
+            "field": "document_sha256",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "evidence",
+            "type": "str"
+          },
+          {
+            "count": 23,
+            "field": "evidence_sha256",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "evidence_url",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "fact_id",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "kind",
+            "type": "str"
+          },
+          {
+            "count": 12,
+            "field": "paraphrase_rationale",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "quality_schema",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "question",
+            "type": "str"
+          },
+          {
+            "count": 23,
+            "field": "resource_id",
+            "type": "str"
+          },
+          {
+            "count": 2,
+            "field": "review",
+            "type": "dict"
+          },
+          {
+            "count": 21,
+            "field": "reviewer",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "source",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "source_lineage",
+            "type": "dict"
+          },
+          {
+            "count": 2,
+            "field": "supplied_url",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "text",
+            "type": "str"
+          },
+          {
+            "count": 21,
+            "field": "topic",
+            "type": "str"
+          },
+          {
+            "count": 83,
+            "field": "url",
+            "type": "str"
+          },
+          {
+            "count": 21,
+            "field": "verified_at",
+            "type": "str"
+          }
+        ],
+        "item_id_inventory_sha256": null,
+        "keyset_counts": [
+          {
+            "count": 2,
+            "keys": [
+              "answer",
+              "canonical_resource_url",
+              "claim_type",
+              "curation",
+              "document_sha256",
+              "evidence",
+              "evidence_sha256",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "quality_schema",
+              "question",
+              "resource_id",
+              "review",
+              "source",
+              "source_lineage",
+              "supplied_url",
+              "text",
+              "url"
+            ]
+          },
+          {
+            "count": 1,
+            "keys": [
+              "answer",
+              "claim_type",
+              "curation",
+              "document_sha256",
+              "evidence",
+              "evidence_sha256",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "paraphrase_rationale",
+              "quality_schema",
+              "question",
+              "resource_id",
+              "reviewer",
+              "source",
+              "source_lineage",
+              "text",
+              "topic",
+              "url",
+              "verified_at"
+            ]
+          },
+          {
+            "count": 9,
+            "keys": [
+              "answer",
+              "claim_type",
+              "curation",
+              "document_sha256",
+              "evidence",
+              "evidence_sha256",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "quality_schema",
+              "question",
+              "resource_id",
+              "reviewer",
+              "source",
+              "source_lineage",
+              "text",
+              "topic",
+              "url",
+              "verified_at"
+            ]
+          },
+          {
+            "count": 11,
+            "keys": [
+              "answer",
+              "claim_type",
+              "document_sha256",
+              "evidence",
+              "evidence_sha256",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "paraphrase_rationale",
+              "quality_schema",
+              "question",
+              "resource_id",
+              "reviewer",
+              "source",
+              "source_lineage",
+              "text",
+              "topic",
+              "url",
+              "verified_at"
+            ]
+          },
+          {
+            "count": 60,
+            "keys": [
+              "answer",
+              "curation",
+              "document_sha256",
+              "evidence",
+              "evidence_url",
+              "fact_id",
+              "kind",
+              "quality_schema",
+              "question",
+              "source",
+              "source_lineage",
+              "text",
+              "url"
+            ]
+          }
+        ],
+        "label": "shadow",
+        "parsed_pair_identity_sha256": "6fc0b91f40fb8a1549be4608eb831f003850704c0f9a439e8a018f4693e9acdf",
+        "rows": 83
+      },
+      {
+        "evaluation_identity_sha256": "62a8d773036ecdeb8fe5066b1c003d352e48e11a1027b0468c5868de64f24d1f",
+        "field_type_counts": [
+          {
+            "count": 24,
+            "field": "answer",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "domain",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "item_id",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "normalized_source_url",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "quality_bucket",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "question",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "source",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "split",
+            "type": "str"
+          },
+          {
+            "count": 24,
+            "field": "url",
+            "type": "str"
+          }
+        ],
+        "item_id_inventory_sha256": "57fdc3e1dcafd52360ce16e69a12cf81ab11e39d726387197494210918f194af",
+        "keyset_counts": [
+          {
+            "count": 24,
+            "keys": [
+              "answer",
+              "domain",
+              "item_id",
+              "normalized_source_url",
+              "quality_bucket",
+              "question",
+              "source",
+              "split",
+              "url"
+            ]
+          }
+        ],
+        "label": "ood_qa",
+        "parsed_pair_identity_sha256": "3251fc0011195b4bd3d36360b9026a4b01786375227f1b9abcfab18412e094c8",
+        "rows": 24,
+        "serialization": "explicit_question_answer_fields_no_text_field"
+      },
+      {
+        "field_type_counts": [
+          {
+            "count": 16,
+            "field": "domain",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "item_id",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "normalized_source_url",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "quality_bucket",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "source",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "split",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "text",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "title",
+            "type": "str"
+          },
+          {
+            "count": 16,
+            "field": "url",
+            "type": "str"
+          }
+        ],
+        "item_id_inventory_sha256": "214ead78abeaed1dc77b254f5cd80971e7edb31aad59afc3ddb0c3fdf8b282b5",
+        "keyset_counts": [
+          {
+            "count": 16,
+            "keys": [
+              "domain",
+              "item_id",
+              "normalized_source_url",
+              "quality_bucket",
+              "source",
+              "split",
+              "text",
+              "title",
+              "url"
+            ]
+          }
+        ],
+        "label": "ood_prose",
+        "rows": 16,
+        "source_text_identity_sha256": "818fef78d631fc6d941f1830fc19b0304a8be798f7e8e4e24f02d59e2386abf1"
+      }
+    ],
+    "semantic_access_counts": {
+      "ood_prose": 1,
+      "ood_qa": 1,
+      "shadow": 1,
+      "split_manifest": 1
+    },
+    "split_manifest_schema_identity_sha256": "6fa8d6b60f24a06668872637c21acbca109d79134294694fcd39334dd1e17637",
+    "status": "complete_before_model_creation"
+  },
+  "created_at_utc": "2026-07-15T23:59:00+00:00",
+  "evaluation_launch_authorized": false,
+  "fresh_artifacts_reserved_but_not_creatable_by_template": {
+    "aggregate_report": "/home/catid/specialist/experiments/eval_reports/lora_es_v43i_vs_sft_boundary_ood_first_eval_v46b.json",
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v46b_lora_es_v43i_vs_sft_boundary_ood_first_eval.attempt.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v46b_lora_es_v43i_vs_sft_boundary_ood_first_eval/gpu_activity_v46b.jsonl",
+    "raw_local": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v46b_lora_es_v43i_vs_sft_boundary_ood_first_eval/raw_items_v46b.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v46b_lora_es_v43i_vs_sft_boundary_ood_first_eval"
+  },
+  "future_sealing_policy": {
+    "bind_final_runtime_builder_tests_and_every_candidate_artifact": true,
+    "mutate_this_template_in_place": false,
+    "require_new_content_addressed_revision": true,
+    "stage_both_candidates_byte_exactly_before_final_preregistration": true,
+    "verify_v43i_report_status_and_candidate_gate_passed": true,
+    "verify_v43i_snapshot_readback_identity": true,
+    "verify_v45d_report_is_aggregate_only_and_holdout_false": true,
+    "verify_v45d_selected_arm_was_ood_eligible_before_shadow_ranking": true
+  },
+  "gpu_launch_authorized": false,
+  "heldout_or_holdout_access_authorized": false,
+  "implementation_bindings": {
+    "builder": "5b63e80f478de6558d3b5445de97198aed9d06cbe7c7c3c93c3cd2379a447d74",
+    "ood_first_selection_runtime": "493b050bd075fd0b14bc4f684824bab5b53149c4d1e95fc3ca1c80f90cb050a4",
+    "protected_firewall_runtime": "188858e5083f3bc9c6f0cafd68ad4398fdd4f61d9b16b954c6fa7417cfe3c9a7",
+    "runtime": "fa805bfbb803ed3bc5a0ab0c02907da3ea8d5a7a284b1380990ce53fdaf65102",
+    "source_faithful_preflight_runtime": "06e7fe81e31018f4d4303d966772b47fa14fcbf3eae5692bbd12fc0739d9717f",
+    "tests": "dc3da878d1bcc203e5dbaaf7a5acd6f6673a25437ebfbcf6c984332fff1bb24c",
+    "v43i_preregistration": "00c545926b217a64acabbc541f3e92e071a1a199dbabef121383c788f574272e",
+    "v45d_preregistration": "bc06e84381b35e8f477baf1b0df0a846e9b51e0ca7a210279b79fe0b62812d25"
+  },
+  "launch_blockers": [
+    "V43I completed train report file/content hashes are absent",
+    "V43I exact snapshot weights/config/canonical identity hashes are absent",
+    "V43I staged vLLM adapter hashes are absent",
+    "V45D aggregate report file/content hashes and fixed selected arm are absent",
+    "V45D selected source and staged adapter hashes are absent",
+    "a new post-result runtime/preregistration revision has not been sealed"
+  ],
+  "ood_first_selection_protocol": {
+    "candidate_families": [
+      "sft_boundary_winner",
+      "lora_es_v43i"
+    ],
+    "eligibility_surfaces": [
+      "OOD QA mean reward point non-degradation",
+      "OOD QA exact-count point non-degradation",
+      "OOD prose point non-degradation",
+      "OOD prose paired-document bootstrap LCB non-degradation",
+      "no shadow protocol/leak counter increase"
+    ],
+    "exact_tie_order": [
+      "sft_boundary_winner",
+      "lora_es_v43i"
+    ],
+    "fallback_when_no_candidate_is_eligible": "base_a",
+    "ineligible_family_shadow_metrics_cannot_affect_selection": true,
+    "per_family_ood_eligibility_finalized_before_shadow_ranking": true,
+    "selected_candidate_must_also_improve_over_base_shadow": true,
+    "shadow_ranking": "lexicographic generated equal-unit mean, exact count, nonzero count, teacher-forced equal-unit answer logprob"
+  },
+  "parents": {
+    "v43i_train_preregistration_only_not_result": {
+      "content_sha256": "086d94f1b69732a9a0d7913c8bab7789b15f64131f125ba4381eea3bcc228c5a",
+      "file_sha256": "00c545926b217a64acabbc541f3e92e071a1a199dbabef121383c788f574272e",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_fold3_pop8_multi_anchor_v43i.json",
+      "snapshot_identity_available": false
+    },
+    "v45d_eval_preregistration_only_not_result": {
+      "content_sha256": "20c6608e77e4b6de79ff9110092cb458501dfa13682d36e9d554f1f8cc2dc04f",
+      "file_sha256": "bc06e84381b35e8f477baf1b0df0a846e9b51e0ca7a210279b79fe0b62812d25",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_sft_boundary_ood_eligible_eval_v45d.json",
+      "winner_identity_available_to_template": false
+    }
+  },
+  "protected_access_firewall": {
+    "holdout_or_heldout_path_tokens_forbidden": true,
+    "implementation": "SingleSemanticAccessV44A plus V44C source-faithful preflight",
+    "protected_files_hashed_or_opened_by_dry_run": false,
+    "protected_files_hashed_or_opened_by_template_builder": false,
+    "protected_input_labels": [
+      "shadow",
+      "split_manifest",
+      "ood_qa",
+      "ood_prose"
+    ],
+    "raw_content_in_aggregate": false,
+    "raw_local_mode": "0600",
+    "semantic_read_count_per_input": 1
+  },
+  "protected_semantics_inspected_during_v46b_revision": false,
+  "purpose": "Freeze a balanced four-GPU comparison of the eventual V43I LoRA-ES snapshot and the fixed V45D SFT boundary winner, with OOD eligibility decided before any shadow ranking.",
+  "runtime": {
+    "all_four_gpus_receive_one_identical_batch_per_wave": true,
+    "engine_count": 4,
+    "four_exact_base_duplicates_required_on_every_surface": true,
+    "identical_prompts_sampling_params_and_seed_for_every_arm": true,
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tensor_parallel_size_per_engine": 1,
+    "two_exact_inference_replicas_required_per_candidate_family": true,
+    "two_full_fixed_waves": [
+      [
+        {
+          "arm": "base_a",
+          "engine_index": 0
+        },
+        {
+          "arm": "base_b",
+          "engine_index": 1
+        },
+        {
+          "arm": "base_c",
+          "engine_index": 2
+        },
+        {
+          "arm": "base_d",
+          "engine_index": 3
+        }
+      ],
+      [
+        {
+          "arm": "sft_boundary_winner_a",
+          "engine_index": 0
+        },
+        {
+          "arm": "sft_boundary_winner_b",
+          "engine_index": 1
+        },
+        {
+          "arm": "lora_es_v43i_a",
+          "engine_index": 2
+        },
+        {
+          "arm": "lora_es_v43i_b",
+          "engine_index": 3
+        }
+      ]
+    ]
+  },
+  "schema": "lora-es-v43i-vs-sft-ood-first-eval-template-v46b",
+  "single_access_inputs": {
+    "ood_prose": {
+      "file_sha256": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+      "path": "/home/catid/specialist/data/ood_prose_v3.jsonl"
+    },
+    "ood_qa": {
+      "file_sha256": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+      "path": "/home/catid/specialist/data/ood_qa_v3.jsonl"
+    },
+    "shadow": {
+      "file_sha256": "6d5b72f7506a752fd5275425739ec785e25f0ff486f5c03b68e91c8e99d7ebeb",
+      "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_shadow_dev.jsonl"
+    },
+    "split_manifest": {
+      "file_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+      "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/manifest_v37a.json"
+    }
+  },
+  "status": "blocked_pending_v43i_and_v45d_exact_candidate_seals"
+}

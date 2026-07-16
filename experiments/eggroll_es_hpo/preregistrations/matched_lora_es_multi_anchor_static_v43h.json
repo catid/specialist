@@ -1,0 +1,164 @@
+{
+  "content_sha256_before_self_field": "c7a7f70742517d9923c261091b53ecf1b3818f7498bd33ab519ccacd3e103c3a",
+  "created_at_utc": "2026-07-15T23:10:00+00:00",
+  "gpu_launch_authorized": false,
+  "implementation_bindings": {
+    "legacy_single_anchor": "a5e71ae4eebf36907e9a8da2d91e61fe46d0c581b5ef286a0668124feb02af52",
+    "multi_anchor_projection": "bade77513d3288a4800a049b52367f0089077d9dc05748132e8c4b05d5760f2b",
+    "projection_tests": "65d703a3b5fe20c30b76c562200f826346fe54181410092da0b34dbd46937e34",
+    "qa_proxy_builder": "d2d1e9368c7ff0a6fbbd5659870c25d2f579582c4ced7a9b7ee40ff1ed57ce67"
+  },
+  "launch_blocker": "A GPU runtime integrating fused anchor scoring, precommit candidate gating, exact abort, and sealed implementation hashes is not yet built.",
+  "model_or_gpu_opened_by_builder": false,
+  "parents": {
+    "approved_prose_anchor": {
+      "file_sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+      "path": "/home/catid/specialist/data/general_prose_anchor_v1.jsonl",
+      "report_file_sha256": "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5",
+      "report_path": "/home/catid/specialist/data/general_prose_anchor_v1.report.json"
+    },
+    "general_qa_proxy_anchor": {
+      "file_sha256": "d250980c5b88308452aba4ee8d3e43090b1444c250547c2515c838593f2f391f",
+      "path": "/home/catid/specialist/data/general_qa_proxy_anchor_v43h.jsonl",
+      "report_content_sha256": "3e97428abfbbe769e2895eb65febb557107a54fb1e42632837911dc4a2f5c84f",
+      "report_file_sha256": "b176f4ea0d1d4b466c83b68c243bfb4a9e315df8574d9ba2c606333fbfc4ee8f",
+      "report_path": "/home/catid/specialist/data/general_qa_proxy_anchor_v43h.report.json"
+    },
+    "v43g_train_only_preregistration": {
+      "content_sha256": "33cb3c2ed71d67f6e2eaa3540f78b32a1d90014ff45808d177e3312fc4e87299",
+      "file_sha256": "b923bd72ed9d09936200b7aae0f6c25671f901a41d26e062e18371eab845e3a6",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_fold3_pop8_robust_v43g.json"
+    },
+    "v44c_aggregate_only_evidence": {
+      "file_sha256": "3b3a55b9b208fd563825f09c36f855d74f05cad2bf9201467fb454a08105b076",
+      "numeric_evidence": {
+        "content_sha256": "ff2b4571cf81a9d73fa890e9a179a087b1af912d6f16b16d3c3e81e13534864c",
+        "heldout_or_holdout_opened": false,
+        "ood_prose_gate_passed": false,
+        "ood_prose_paired_95_ci": [
+          -0.0018113212382170451,
+          0.007535356011299148
+        ],
+        "ood_prose_point_delta": 0.0028665085535493073,
+        "ood_qa_exact_count_delta": -11,
+        "ood_qa_gate_passed": false,
+        "ood_qa_mean_reward_delta": -0.4081396422205246,
+        "raw_semantics_persisted": false,
+        "schema": "matched-lora-candidate-eval-aggregate-v44a",
+        "selected_arm": "sft_v42b",
+        "shadow_improvement": true
+      },
+      "path": "/home/catid/specialist/experiments/eval_reports/matched_lora_sft_hpo_es_fold3_ood_eval_v44c.json"
+    },
+    "v45a_aggregate_only_counterevidence": {
+      "file_sha256": "64f0edab64c66aa208a03759f759a3fe62d3bc886e6fce55180abe7b57cb919d",
+      "interpretation": "conservative SFT/early stopping can avoid the V44C collapse; V43H anchors specifically defend ES against the observed high-update overfit mode, not against all fine-tuning",
+      "numeric_evidence": {
+        "content_sha256": "419c5855dbbaf7365d259a22d588e58ce593d340efb502b1c2682067d9b57c7b",
+        "final_gate_passed": true,
+        "heldout_or_holdout_opened": false,
+        "ood_prose_paired_95_ci": [
+          0.0009978454741227994,
+          0.005823299740205844
+        ],
+        "ood_prose_point_delta": 0.0034208770990529214,
+        "ood_qa_exact_count_delta": 0,
+        "ood_qa_mean_reward_delta": 0.0008928571428570287,
+        "raw_semantics_persisted": false,
+        "schema": "matched-lora-candidate-eval-aggregate-v44a",
+        "selected_arm": "sft_v42g",
+        "shadow_equal_unit_base": 0.06265412348445877,
+        "shadow_equal_unit_selected": 0.08960796246901744
+      },
+      "path": "/home/catid/specialist/experiments/eval_reports/matched_lora_hpo_earlystop_ood_eligible_eval_v45a.json"
+    }
+  },
+  "prose_anchor_audit": {
+    "rows": 128,
+    "snippet_join_double_period_rows": 119,
+    "unique_documents": 128,
+    "unique_texts": 128,
+    "use": "preservation constraint, not quality-target corpus expansion",
+    "word_count_min_median_max": [
+      81,
+      131.5,
+      242
+    ]
+  },
+  "purpose": "Preserve train-only general prose and general-knowledge instruction behavior while optimizing the specialist objective, in response to V44C aggregate evidence that in-domain selection can hide OOD-QA loss.",
+  "recipe": {
+    "alpha": 0.00015,
+    "domain_fitness": "V43G equal-conflict-unit teacher-forced answer logprob",
+    "per_objective_shaping": "median-of-four signed scores then centered ranks over 16 signs; coefficient=u_plus-u_minus",
+    "population_anchor_panel": {
+      "document_identity_sha256": "f96e6250b131646f64d17df7ff887a520a7e42fc415b01604f3e558211387e7b",
+      "full_candidate_acceptance_items": 128,
+      "item_identity_sha256": "c13dd90f53c54ce368c7956a6a85a8c15f20392cb74fe761c164a0b63c067c5a",
+      "items": 32,
+      "seed": "v43h-fixed-multi-anchor-panel-20260715",
+      "selection": "keyed SHA-256 order without semantic selection"
+    },
+    "population_size": 8,
+    "projection": {
+      "constraints": "coefficient dot each anchor >= 0",
+      "method": "simultaneous Euclidean active-set projection",
+      "restandardize_after_projection": false,
+      "sequential_projection_forbidden": true,
+      "trust_region_max_norm_ratio": 0.5,
+      "zero_spread_required_anchor": "skip update"
+    },
+    "prose_scoring": "teacher-forced selected-token mean logprob on approved prose text",
+    "qa_generation_role": "full-anchor executed-candidate non-degradation gate; not a required gradient because greedy generation may have zero population spread",
+    "qa_generation_scoring": {
+      "max_tokens": 64,
+      "metrics": [
+        "normalized_token_f1",
+        "exact_count",
+        "nonzero_count"
+      ],
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "qa_logprob_scoring": "teacher-forced answer-token mean logprob under fixed instruction chat",
+    "required_gradient_anchors": [
+      "prose_lm",
+      "qa_answer_logprob"
+    ],
+    "sigma": 0.0006,
+    "signed_replicates_per_direction": 4
+  },
+  "required_future_runtime_gates": {
+    "all_four_gpus_attributed_positive_activity": true,
+    "all_required_anchor_halfspaces_satisfied": true,
+    "all_v43g_exact_state_and_restore_gates_preserved": true,
+    "coefficient_norm_at_most_half_domain_norm": true,
+    "full_train_only_multi_anchor_candidate_gate_passed_before_commit": true,
+    "no_eval_ood_heldout_or_benchmark_semantic_access": true,
+    "runtime_and_worker_hashes_sealed_before_launch": true
+  },
+  "schema": "matched-lora-es-multi-anchor-preregistration-v43h",
+  "sealed_holdout_opened": false,
+  "shadow_dev_eval_ood_or_benchmark_semantics_authorized": false,
+  "source_firewall": {
+    "direct_hotpotqa_benchmark_opened": false,
+    "direct_hotpotqa_benchmark_qa_authorized": false,
+    "direct_hotpotqa_path": "/home/catid/specialist/sglang/benchmark/react/hotpotqa_100.jsonl",
+    "protected_semantics_used_for_anchor_construction": false,
+    "qa_proxy_parent_collision_receipt_inherited": true,
+    "qa_proxy_semantic_source": "/home/catid/specialist/data/general_prose_anchor_v1.jsonl"
+  },
+  "status": "cpu_static_design_preregistered_runtime_not_implemented",
+  "uncommitted_candidate_gate": {
+    "all_four_actor_states_exact": true,
+    "full_anchor_documents": 128,
+    "prepopulation_numeric_calibration": "fit per-metric fixed-panel inference margin before population; margin must remain under the historical V43F catastrophic ceiling",
+    "protocol": "prepare and execute exact FP32 sharded candidate; score before commit; commit only on all gates, otherwise abort to exact master",
+    "required": [
+      "specialist train equal-unit point delta positive",
+      "prose logprob paired delta inside prefit noninferiority margin",
+      "QA answer logprob paired delta inside prefit noninferiority margin",
+      "QA generation F1/exact/nonzero counts do not degrade beyond prefit jitter",
+      "abort restores exact canonical master on any failure"
+    ]
+  }
+}

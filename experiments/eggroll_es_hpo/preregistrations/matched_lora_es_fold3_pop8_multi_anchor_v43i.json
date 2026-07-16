@@ -1,0 +1,200 @@
+{
+  "access_contract": {
+    "builder_reads_protected_examples": false,
+    "builder_reads_train_examples": false,
+    "direct_benchmark_source_authorized": false,
+    "direct_benchmark_source_opened": false,
+    "dry_run_hashes_bound_input_files": true,
+    "dry_run_launches_gpu": false,
+    "dry_run_loads_model_runtime": false,
+    "dry_run_reads_train_examples": false,
+    "only_runtime_train_paths_may_open": [
+      "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_train.jsonl",
+      "/home/catid/specialist/data/general_prose_anchor_v1.jsonl",
+      "/home/catid/specialist/data/general_qa_proxy_anchor_v43h.jsonl"
+    ],
+    "protected_semantic_access": false
+  },
+  "anchor_calibration": {
+    "actors": 4,
+    "documents": 128,
+    "fit_before_population": true,
+    "generation_count_margin_ceiling": 1,
+    "generation_f1_margin_ceiling": 0.01,
+    "logprob_margin_ceiling": 0.001802103667415178,
+    "retained_repeats": 8,
+    "state": "same fixed nonzero synthetic adapter state on all actors",
+    "warmup_repeats": 2
+  },
+  "artifacts": {
+    "anchor_calibration": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor/anchor_calibration_v43i.json",
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v43i_matched_lora_es_fold3_pop8_multi_anchor.attempt.json",
+    "candidate_gate": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor/candidate_gate_v43i.json",
+    "exact_abort": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor/exact_abort_v43i.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor/gpu_activity_v43i.jsonl",
+    "numeric_calibration": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor/numeric_calibration_v43i.json",
+    "population_reliability": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor/population_reliability_v43i.json",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor/matched_lora_es_report_v43i.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor",
+    "snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor/adapter_step1_v43i",
+    "uncommitted_candidate_consensus": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v43i_matched_lora_es_fold3_pop8_multi_anchor/post_update_consensus_v43i.json"
+  },
+  "content_sha256_before_self_field": "086d94f1b69732a9a0d7913c8bab7789b15f64131f125ba4381eea3bcc228c5a",
+  "created_at_utc": "2026-07-15T23:38:21.410162+00:00",
+  "gpu_launch_authorized": true,
+  "implementation_bindings": {
+    "base_runtime": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+    "builder": "f8056e00e551c4db7657ebfb891fd2d4849e5bdac76b90948bc386a0f4fbb5b8",
+    "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "dataset": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "dense_reward_runtime_v4": "9b771f5f5578cc233bea9b92ee48dbad8bbf7f363fae44d4dadde5e926f6cd65",
+    "equal_unit_runtime_v38": "a76dc19b0c1c9d5b57bebd66544662553935dfbc23f72a47e172f4366cba5852",
+    "fused_anchor_runtime": "e8158f60b93abd9722aa6b996470a68cdc176cc0c1344b1304e79fac3c6abc2f",
+    "fused_anchor_tests": "a962954db8e6f43a7d6d69a31ea8f5b4cb3a7a71e9de59533a04e9fc46ef8e29",
+    "initialization_builder": "2d1bb1b36d1aec160e6a50972c02c2d667e055e09ec5fd8015c1dff1b523a512",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "multi_anchor_projection": "bade77513d3288a4800a049b52367f0089077d9dc05748132e8c4b05d5760f2b",
+    "multi_anchor_projection_tests": "65d703a3b5fe20c30b76c562200f826346fe54181410092da0b34dbd46937e34",
+    "numeric_consensus": "f989042ed6699557ecebe7697eb22d5e211f9755d5e42ff5d29d4f18d20abec1",
+    "numeric_consensus_v43f": "de44b0765e8f083f75a4bebb171916a283f906f6ddd92e0a88094c36d42fa561",
+    "prose_anchor": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+    "prose_report": "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5",
+    "qa_anchor": "d250980c5b88308452aba4ee8d3e43090b1444c250547c2515c838593f2f391f",
+    "qa_report": "b176f4ea0d1d4b466c83b68c243bfb4a9e315df8574d9ba2c606333fbfc4ee8f",
+    "resolver_runtime_v40c": "c5772b0864b211217ab7a75961e43febce26db4a8a1d6675ed9f3aa694343fcd",
+    "runtime": "67c4da05a26eaf990b2710afbffe6d403825b576cd384f87f3b818af199c1555",
+    "runtime_v40a": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+    "source_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "source_manifest": "a2fa79e6ac06f75743d3fee8f5c0b1aabe6bb83b52b05910ed6460438e2640a2",
+    "source_weights": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "split_manifest": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+    "staged_config": "ede582c12e82fb50eb97ac934ff08eb553a79d2c2d999235abcd8b29795b1d52",
+    "staged_manifest": "bdefd41d5537501e660426b81297b59ddfbeb66a268dd12d14be8bbae4959c38",
+    "staged_weights": "9c4382048a2bb001995586715eac53f51672a161f3351080a604543b8384a09b",
+    "staging_runtime": "7b37e8bf9db2fe6b72e44baaf1b2ecbe2c60d5e8a58bc017632d3dd76ae2b064",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "worker": "4bd6c2ce66c46a14ce1190435b336eae37d061f2e77746997ac4fa9a32e9af08",
+    "worker_base_v41a": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+    "worker_v3": "636698c7ea8e8155ea08298e428b5c40c01141ff10db59290d74831db360e5b1"
+  },
+  "multi_anchor_projection": {
+    "constraints": "coefficient dot each required anchor >= 0",
+    "method": "simultaneous Euclidean active-set halfspace projection",
+    "required_gradient_anchors": [
+      "prose_lm",
+      "qa_answer_logprob"
+    ],
+    "restandardize_after_projection": false,
+    "trust_region_max_norm_ratio": 0.5,
+    "zero_spread_required_anchor": "fail closed before update"
+  },
+  "numeric_calibration": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 2026071543701,
+    "familywise_confidence": 0.99,
+    "historical_catastrophic_divergence_ceiling": 0.001802103667415178,
+    "retained_repeats_per_actor": 8,
+    "synthetic_noise_seed": 1906431947,
+    "synthetic_sigma": 5.3033008588991055e-05,
+    "warmup_repeats": 2
+  },
+  "parents": {
+    "v43g_verified_runtime_recipe": {
+      "content_sha256": "33cb3c2ed71d67f6e2eaa3540f78b32a1d90014ff45808d177e3312fc4e87299",
+      "file_sha256": "b923bd72ed9d09936200b7aae0f6c25671f901a41d26e062e18371eab845e3a6",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_fold3_pop8_robust_v43g.json"
+    },
+    "v43h_static_multi_anchor_design": {
+      "content_sha256": "c7a7f70742517d9923c261091b53ecf1b3818f7498bd33ab519ccacd3e103c3a",
+      "file_sha256": "bbe0affa76f65f0d19b2be3492542e14a88c8bf423e06546dc618432f11aa661",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_multi_anchor_static_v43h.json"
+    }
+  },
+  "post_update_consensus": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 2026071543702,
+    "executed_while_candidate_uncommitted": true,
+    "familywise_confidence": 0.99,
+    "retained_repeats_per_actor": 8
+  },
+  "purpose": "Project robust LoRA-ES domain utility against train-only prose and general-QA proxy utilities, then require full-anchor preservation while the exact FP32 candidate remains uncommitted.",
+  "quality_selection_or_promotion_authorized": false,
+  "recipe": {
+    "alpha": 0.00015,
+    "candidate_anchor_documents": 128,
+    "conflict_units": 208,
+    "dataset": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_train.jsonl",
+    "dataset_rows": 448,
+    "dataset_sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "engine_count": 4,
+    "fitness_shaping": "centered ranks over 16 median signed scores; coefficient=u_plus-u_minus",
+    "fused_requests_per_population_actor_state": 544,
+    "matched_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/initial_adapters/matched_lora_initialization_v41a_seed20260715041",
+    "matched_initialization_weights_sha256": "29fe0beead8a491cf06e9f562a1838d9c44e94a74e6a4024549e87f10557111f",
+    "minimum_response_reliability": 0.8,
+    "minimum_split_half_spearman": 0.7,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "population_anchor_documents": 32,
+    "population_size": 8,
+    "seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570
+    ],
+    "sigma": 0.0006,
+    "signed_replicates_per_direction": 4,
+    "signed_replication_assignment": "complete four-actor paired antithetic block per direction",
+    "split_manifest": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/manifest_v37a.json",
+    "split_manifest_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+    "staged_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/matched_lora_initialization_v41b",
+    "staged_initialization_weights_sha256": "9c4382048a2bb001995586715eac53f51672a161f3351080a604543b8384a09b",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "ba0a951f153b60fb5729e0169a4d780277d9d860cbacb1f95fc7433afc875e19",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d",
+    "worker_extension": "eggroll_es_worker_lora_v43i.LoRAAdapterStateWorkerExtensionV43I"
+  },
+  "required_gates": {
+    "accepted_snapshot_has_exact_rank_zero_readback": true,
+    "all_four_gpus_have_attributed_positive_activity": true,
+    "all_required_anchor_halfspaces_satisfied": true,
+    "all_signed_states_use_one_fused_request_batch_per_actor": true,
+    "any_preaccept_exception_exactly_restores_master_and_runtime": true,
+    "base_weights_unchanged_at_every_state_boundary": true,
+    "candidate_executed_without_commit": true,
+    "final_all_gpu_idle_cleanup": true,
+    "full_anchor_candidate_gate_passes_before_commit": true,
+    "projected_norm_at_most_half_domain_norm": true
+  },
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "matched-lora-es-preregistration-v43i",
+  "sealed_holdout_opened": false,
+  "shadow_dev_external_eval_ood_or_holdout_authorized": false,
+  "status": "preregistered_before_train_only_launch",
+  "uncommitted_candidate_gate": {
+    "abort_on_any_failure": true,
+    "all_four_actors": true,
+    "anchor_noninferiority_uses_prefit_fixed_state_margins": true,
+    "domain_point_delta_must_be_positive": true,
+    "exact_abort_requires_master_and_runtime_hash_readback": true,
+    "full_anchor_documents": 128,
+    "greedy_qa_required": true,
+    "score_before_commit": true,
+    "snapshot_before_gate_forbidden": true
+  }
+}
