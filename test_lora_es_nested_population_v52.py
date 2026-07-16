@@ -77,6 +77,17 @@ def test_v52_reliability_gate_accepts_stable_p16_and_rejects_shape():
     assert result["passed"] is True
     assert result["reliability"] == pytest.approx(1.0)
     assert result["split_half_spearman"] == pytest.approx(1.0)
+    assert result[
+        "estimated_signal_standard_deviation_clears_fresh_calibration_maximum"
+    ] is True
+    below_fresh_noise = [[index * 1e-5] * 4 for index in range(16)]
+    rejected = design.reliability_gate_v52(below_fresh_noise, 0.0007)
+    assert rejected["reliability"] == pytest.approx(1.0)
+    assert rejected["split_half_spearman"] == pytest.approx(1.0)
+    assert rejected[
+        "estimated_signal_standard_deviation_clears_fresh_calibration_maximum"
+    ] is False
+    assert rejected["passed"] is False
     with pytest.raises(ValueError, match="8x4 or 16x4"):
         design.reliability_gate_v52([[1.0] * 4] * 12, 0.0007)
 
@@ -401,18 +412,24 @@ def test_v52_preregistration_freezes_gates_and_compute_plan():
     assert value["launcher_fix"]["required_python"] == str(
         design.REQUIRED_PYTHON_V52
     )
-    assert value["retry_science_equivalence"]["byte_equivalent"] is True
-    assert value["retry_science_equivalence"][
-        "original_science_content_sha256"
-    ] == value["retry_science_equivalence"][
-        "retry_science_content_sha256"
-    ]
+    assert value["retry3_equivalence_and_protocol_delta"][
+        "treatment_contract_byte_equivalent"
+    ] is True
+    assert value["retry3_equivalence_and_protocol_delta"][
+        "non_reliability_train_gates_byte_equivalent"
+    ] is True
+    assert value["retry3_equivalence_and_protocol_delta"][
+        "whole_science_and_gates_byte_equivalent_claimed"
+    ] is False
     assert value["measurement_contract"][
         "cross_actor_score_bit_equality_required"
     ] is False
     assert value["measurement_contract"][
-        "postinstall_each_actor_must_equal_own_preinstall"
+        "postinstall_score_replay_is_descriptive_nonbinding"
     ] is True
+    assert value["measurement_contract"][
+        "score_or_output_replay_used_as_restoration_gate"
+    ] is False
     assert value["measurement_contract"]["population_actor_reducer"] == (
         "fixed arithmetic mean in ascending actor-rank order"
     )
@@ -450,6 +467,10 @@ def test_v52_preregistration_freezes_gates_and_compute_plan():
     assert value["train_only_selection"][
         "historical_v48e_calibration_values_reused"
     ] is False
+    assert value["train_only_selection"][
+        "estimated_signal_standard_deviation_must_strictly_clear_fresh_"
+        "maximum_repeat_actor_spread"
+    ] is True
     assert value["artifacts"]["p8_candidate_snapshot"] == str(
         runtime.P8_SNAPSHOT
     )
@@ -471,9 +492,19 @@ def test_v52_preregistration_freezes_gates_and_compute_plan():
     assert value["sealed_holdout_opened"] is False
 
 
-def test_v52_actor_self_identity_allows_cross_actor_difference_but_not_drift():
+def test_v52_score_replay_delta_is_descriptive_and_nonbinding():
     def record(rank, value):
-        score = {"aggregate": {"equal_unit_mean": value}}
+        units = [{
+            "unit_identity_sha256": f"{index + 1000:064x}",
+            "mean_answer_token_logprob": value,
+        } for index in range(208)]
+        score = {
+            "aggregate": {
+                "equal_unit_mean": value,
+                "unweighted_row_mean": value + 0.5,
+            },
+            "units": units,
+        }
         return {
             "actor_rank": rank,
             "score": score,
@@ -487,16 +518,70 @@ def test_v52_actor_self_identity_allows_cross_actor_difference_but_not_drift():
         }
 
     baseline = {"actors": [record(rank, float(rank)) for rank in range(4)]}
-    same = json.loads(json.dumps(baseline))
-    receipt = runtime.require_actor_self_score_identity_v52(
-        baseline, same, phase="postinstall",
+    replay = json.loads(json.dumps(baseline))
+    replay["actors"][2]["score"]["aggregate"]["equal_unit_mean"] += 1e-12
+    replay["actors"][2]["score"]["units"][0][
+        "mean_answer_token_logprob"
+    ] += 2e-12
+    replay["actors"][2]["exact_score_sha256"] = design.canonical_sha256_v52(
+        replay["actors"][2]["score"]
     )
-    assert receipt["all_four_actor_self_identities_exact"] is True
+    receipt = runtime.describe_actor_score_replay_delta_v52(
+        baseline, replay, phase="postinstall",
+    )
+    assert receipt["all_four_actor_replays_exact"] is False
+    assert receipt["used_as_restoration_or_continuation_gate"] is False
+    assert receipt["actors"][2]["changed_unit_aggregates"] == 1
     assert len({item["exact_score_sha256"] for item in baseline["actors"]}) == 4
-    same["actors"][2]["score"]["aggregate"]["equal_unit_mean"] += 1e-12
-    with pytest.raises(RuntimeError, match="within an actor"):
-        runtime.require_actor_self_score_identity_v52(
-            baseline, same, phase="postpopulation",
+
+
+def test_v52_exact_state_certificate_gate_is_byte_exact_and_quiescent():
+    master = {"sha256": design.MASTER_SHA256_V52, "tensor_count": 70}
+
+    def certificate():
+        return {
+            "schema": "canonical-lora-state-certificate-v52",
+            "adapter_id": 1,
+            "slot": 0,
+            "current_identity": master,
+            "reference_identity": master,
+            "reference_generation": 2,
+            "reference_fresh": True,
+            "update_sequence": 0,
+            "materialization": {
+                "runtime_values_sha256": design.MASTER_RUNTIME_SHA256_V52,
+            },
+            "base_identity": {"unchanged": True},
+            "transaction_state_quiescent": True,
+            "active_perturbation": None,
+            "pending_update": None,
+            "committed_rollback": None,
+            "accepted_rollback": None,
+            "active_plan_id": None,
+        }
+
+    certificates = [certificate() for _ in range(4)]
+    receipt = runtime.validate_exact_master_state_certificates_v52(
+        certificates, master, design.MASTER_RUNTIME_SHA256_V52,
+        phase="postpopulation", reference_generation=2, update_sequence=0,
+        controller_transaction_quiescent=True,
+    )
+    assert receipt["all_four_canonical_fp32_master_identities_exact"] is True
+    assert receipt["all_four_bf16_runtime_identities_exact"] is True
+    assert receipt["score_or_output_replay_used_as_gate"] is False
+    changed = json.loads(json.dumps(certificates))
+    changed[3]["materialization"]["runtime_values_sha256"] = "0" * 64
+    with pytest.raises(RuntimeError, match="exact adapter state changed"):
+        runtime.validate_exact_master_state_certificates_v52(
+            changed, master, design.MASTER_RUNTIME_SHA256_V52,
+            phase="postpopulation", reference_generation=2,
+            update_sequence=0, controller_transaction_quiescent=True,
+        )
+    with pytest.raises(RuntimeError, match="controller transaction"):
+        runtime.validate_exact_master_state_certificates_v52(
+            certificates, master, design.MASTER_RUNTIME_SHA256_V52,
+            phase="final_restored", reference_generation=2,
+            update_sequence=0, controller_transaction_quiescent=False,
         )
 
 

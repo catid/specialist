@@ -23,6 +23,26 @@ class LoRAAdapterStateWorkerExtensionV52(
 ):
     """Retain V51 scheduling while returning derived state identities."""
 
+    def adapter_state_certificate_v52(self):
+        """Certify the exact adapter state and every transaction namespace."""
+        certificate = super().adapter_state_certificate_v41a()
+        accepted = getattr(self, "_v43i_accepted_rollback", None)
+        active_plan_id = getattr(self, "_v41_active_plan_id", None)
+        if accepted is not None:
+            raise RuntimeError("v52 certificate found an accepted rollback")
+        if active_plan_id is not None:
+            raise RuntimeError("v52 certificate found an active update plan")
+        return {
+            **certificate,
+            "schema": "canonical-lora-state-certificate-v52",
+            "transaction_state_quiescent": True,
+            "active_perturbation": None,
+            "pending_update": None,
+            "committed_rollback": None,
+            "accepted_rollback": None,
+            "active_plan_id": None,
+        }
+
     def transition_derived_antithetic_from_pinned_master_v52(
         self,
         state_index,

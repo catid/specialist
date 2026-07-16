@@ -22,13 +22,22 @@ ROOT = Path(__file__).resolve().parent
 REQUIRED_PYTHON_V52 = (
     ROOT / "es-at-scale/.venv/bin/python"
 ).absolute()
-RETRY_REVISION_V52 = "retry2_actor_indexed_nondeterminism_measurement"
+RETRY_REVISION_V52 = (
+    "retry3_state_certificate_repair_and_shared_reliability_tightening"
+)
 RETRY1_GPU_LOG_V52 = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
     "v52_matched_lora_es_nested_p8_vs_p16_retry1/gpu_activity_v52.jsonl"
 ).resolve()
 RETRY1_GPU_LOG_SHA256_V52 = (
     "bb1e9b4cb88273998346966755564fb547f34215381dfadfdba67f500466357e"
+)
+RETRY2_GPU_LOG_V52 = (
+    ROOT / "experiments/eggroll_es_hpo/runs/"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry2/gpu_activity_v52.jsonl"
+).resolve()
+RETRY2_GPU_LOG_SHA256_V52 = (
+    "2d2df6c965d25edbdb35b6e44a6b892db42eef10dd336cd0c821c5bc34d54a75"
 )
 POPULATION_SIZES_V52 = (8, 16)
 P8_SEEDS_V52 = (
@@ -165,6 +174,26 @@ EDGE_IDENTITY_KEYS_V52 = (
 )
 
 SEALED_NUMERIC_PARENTS_V52 = {
+    "v52_retry2_preregistration": {
+        "path": ROOT / "experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52_retry2.json",
+        "file_sha256": "a9bcae8c3d178163d585456006d6f2e94e198179b824a96bb2ce95b771bf3035",
+        "content_sha256": "d754114e3d4f8ab8776016dbf787d952cf2c6a4365d7c83f4d143d0318050cf5",
+    },
+    "v52_retry2_attempt": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/.v52_matched_lora_es_nested_p8_vs_p16_retry2.attempt.json",
+        "file_sha256": "f4166abe06260db6a3ec3f4690905eb17d42015684a2f0d3ed3eec50d8134025",
+        "content_sha256": "30e83962ce0c179b7bcd642f40eb862eee553aaa0fd231ca95a11019076aa0cd",
+    },
+    "v52_retry2_preinstall_baseline": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry2/preinstall_actor_baseline_v52.json",
+        "file_sha256": "4193d63f09b0a9adbcd417ac58480ddf3236bccee29cb5d091fb4cfe17fc9653",
+        "content_sha256": "276f2fe9d00c84b220e66f18a2546e78c16024ffad56191e5394d896c2dd8cc7",
+    },
+    "v52_retry2_failure": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry2/failure_v52.json",
+        "file_sha256": "e87f99cddde971a57c849073a7a7a89044bc8946f069e6dc4307376ce81a92de",
+        "content_sha256": "2e627c460f3e5f104beaf5c50b375e03bca4850e4ca4c78f1a65122b3f78ffc3",
+    },
     "v52_retry1_preregistration": {
         "path": ROOT / "experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52_retry1.json",
         "file_sha256": "c051ed9a595735f18cc721e6fbcc09a73ed3cc197c66375f3168323a2c306f94",
@@ -391,6 +420,7 @@ def reliability_gate_v52(
     single_noise = float(np.var(values, axis=1, ddof=1, dtype=np.float64).mean())
     mean_noise = single_noise / 4.0
     signal = max(0.0, observed - mean_noise)
+    signal_standard_deviation = math.sqrt(signal)
     reliability = signal / observed if observed > 0.0 else 0.0
     left = values[:, :2].mean(axis=1, dtype=np.float64)
     right = values[:, 2:].mean(axis=1, dtype=np.float64)
@@ -402,12 +432,17 @@ def reliability_gate_v52(
         math.isfinite(fresh_calibration_observed_maximum)
         and 0.0 <= fresh_calibration_observed_maximum <= 0.001802103667415178
     )
+    signal_clears_fresh_calibration = bool(
+        calibration_safe
+        and signal_standard_deviation > fresh_calibration_observed_maximum
+    )
     result = {
         "schema": "nested-population-reliability-v52",
         "population_size": int(values.shape[0]),
         "central_replicates": values.tolist(),
         "reliability": reliability,
         "minimum_reliability": 0.8,
+        "estimated_signal_standard_deviation": signal_standard_deviation,
         "split_half_spearman": spearman,
         "minimum_split_half_spearman": 0.7,
         "fresh_calibration_observed_maximum_actor_spread": float(
@@ -415,7 +450,15 @@ def reliability_gate_v52(
         ),
         "historical_calibration_ceiling": 0.001802103667415178,
         "fresh_calibration_inside_historical_ceiling": calibration_safe,
-        "passed": bool(reliability >= 0.8 and spearman >= 0.7 and calibration_safe),
+        "estimated_signal_standard_deviation_clears_fresh_calibration_maximum": (
+            signal_clears_fresh_calibration
+        ),
+        "passed": bool(
+            reliability >= 0.8
+            and spearman >= 0.7
+            and calibration_safe
+            and signal_clears_fresh_calibration
+        ),
     }
     result["content_sha256"] = canonical_sha256_v52(result)
     return result

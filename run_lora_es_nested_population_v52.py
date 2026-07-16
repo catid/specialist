@@ -29,14 +29,14 @@ import lora_es_nested_population_v52 as design
 ROOT = Path(__file__).resolve().parent
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "matched_lora_es_nested_p8_vs_p16_v52_retry2.json"
+    "matched_lora_es_nested_p8_vs_p16_v52_retry3.json"
 ).resolve()
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
-    "v52_matched_lora_es_nested_p8_vs_p16_retry2"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry3"
 ).resolve()
 ATTEMPT = (
-    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16_retry2.attempt.json"
+    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16_retry3.attempt.json"
 ).resolve()
 WORKER_EXTENSION_V52 = (
     "eggroll_es_worker_lora_v52.LoRAAdapterStateWorkerExtensionV52"
@@ -285,7 +285,9 @@ def verify_adapter_contract_v52() -> dict:
         "file_sha256": observed,
         "canonical_fp32_master_sha256": design.MASTER_SHA256_V52,
         "bf16_runtime_values_sha256": design.MASTER_RUNTIME_SHA256_V52,
-        "preinstall_postinstall_equality_required": True,
+        "preinstall_postinstall_score_equality_required": False,
+        "preinstall_postinstall_score_replay_is_descriptive_only": True,
+        "exact_adapter_state_certificate_restoration_required": True,
     }
 
 
@@ -326,27 +328,67 @@ def load_preregistration_v52(args) -> dict:
         or value.get("artifacts") != _expected_artifacts_v52()
         or launcher.get("required_python") != str(design.REQUIRED_PYTHON_V52)
         or launcher.get("change_scope")
-        != "fresh_retry2_artifact_paths_only"
-        or launcher.get("failure_before_model_or_gpu_actor_creation") is not True
-        or launcher.get("science_seeds_master_data_and_gates_changed") is not False
-        or value.get("retry_science_equivalence", {}).get("byte_equivalent")
+        != (
+            "fresh_retry3_artifact_paths_plus_measurement_only_state_"
+            "certificate_repair_and_preregistered_shared_reliability_"
+            "tightening"
+        )
+        or launcher.get("retry2_failure_after_four_actor_model_load")
         is not True
+        or launcher.get(
+            "treatment_seeds_sigma_alpha_panels_order_backtracking_changed"
+        ) is not False
+        or launcher.get("candidate_repeat_consensus_gate_changed") is not False
+        or launcher.get("population_reliability_gate_stricter") is not True
+        or value.get("retry3_equivalence_and_protocol_delta", {}).get(
+            "treatment_contract_byte_equivalent"
+        ) is not True
+        or value.get("retry3_equivalence_and_protocol_delta", {}).get(
+            "non_reliability_train_gates_byte_equivalent"
+        ) is not True
+        or value.get("retry3_equivalence_and_protocol_delta", {}).get(
+            "whole_science_and_gates_byte_equivalent_claimed"
+        ) is not False
         or value.get("measurement_contract", {}).get(
             "cross_actor_score_bit_equality_required"
         ) is not False
         or value.get("measurement_contract", {}).get(
-            "postinstall_each_actor_must_equal_own_preinstall"
+            "postinstall_score_replay_is_descriptive_nonbinding"
         ) is not True
         or value.get("measurement_contract", {}).get(
-            "postpopulation_each_actor_must_equal_own_preinstall"
-        ) is not True
-        or value.get("measurement_contract", {}).get(
-            "final_restored_each_actor_must_equal_own_preinstall"
-        ) is not True
+            "score_or_output_replay_used_as_restoration_gate"
+        ) is not False
+        or value.get("measurement_contract", {}).get("restoration_phases")
+        != [
+            "postinstall", "post_numeric_calibration",
+            "post_anchor_calibration", "postpopulation", "final_restored",
+        ]
         or value.get("measurement_contract", {}).get(
             "population_actor_reducer"
         ) != "fixed arithmetic mean in ascending actor-rank order"
+        or value.get("measurement_contract", {}).get(
+            "fresh_numeric_retained_repeats_authoritative"
+        ) is not True
+        or value.get("measurement_contract", {}).get(
+            "fresh_maximum_repeat_actor_spread_authoritative"
+        ) is not True
+        or value.get("measurement_contract", {}).get(
+            "candidate_gate_remains_repeat_consensus_based"
+        ) is not True
+        or value.get("retry3_protocol_delta", {}).get(
+            "sealed_before_any_v52_population_observation"
+        ) is not True
+        or value.get("retry3_protocol_delta", {}).get(
+            "shared_identically_by_p8_and_p16"
+        ) is not True
+        or value.get("retry3_protocol_delta", {}).get(
+            "strict_clearance_required"
+        ) is not True
         or recipe.get("matched_initialization") != str(design.SOURCE_V52)
+        or value.get("train_only_selection", {}).get(
+            "estimated_signal_standard_deviation_must_strictly_clear_fresh_"
+            "maximum_repeat_actor_spread"
+        ) is not True
         or recipe.get("staged_initialization") != str(design.STAGED_V52)
         or recipe.get("source_weights_sha256")
         != design.SOURCE_WEIGHTS_SHA256_V52
@@ -465,9 +507,16 @@ def actor_indexed_base_score_v52(
     return result
 
 
-def require_actor_self_score_identity_v52(
+def describe_actor_score_replay_delta_v52(
     baseline: dict, observed: dict, *, phase: str,
 ) -> dict:
+    """Persist exact replay deltas without using them as a state gate.
+
+    Retry2 established that this TP1 MoE inference path is not bit-repeatable
+    even when the canonical FP32 and materialized BF16 adapter identities are
+    unchanged.  The replay remains useful diagnostic evidence, but only exact
+    adapter-state certificates may authorize continuation.
+    """
     before = baseline.get("actors", [])
     after = observed.get("actors", [])
     if (
@@ -477,30 +526,173 @@ def require_actor_self_score_identity_v52(
         != list(range(design.ACTORS_V52))
     ):
         raise RuntimeError(f"v52 {phase} actor order changed")
-    matches = []
+    actors = []
     for actor_rank, (left, right) in enumerate(zip(before, after, strict=True)):
-        matched = bool(
+        exact_replay = bool(
             left["exact_score_sha256"] == right["exact_score_sha256"]
             and left["output_manifests"] == right["output_manifests"]
             and left["score"] == right["score"]
         )
-        matches.append({
+        left_aggregate = left["score"]["aggregate"]
+        right_aggregate = right["score"]["aggregate"]
+        left_units = left["score"].get("units", [])
+        right_units = right["score"].get("units", [])
+        if (
+            len(left_units) != len(right_units)
+            or [item.get("unit_identity_sha256") for item in left_units]
+            != [item.get("unit_identity_sha256") for item in right_units]
+            or left["output_manifests"].get("scored_answer_tokens")
+            != right["output_manifests"].get("scored_answer_tokens")
+            or left["output_manifests"].get("unit_count")
+            != right["output_manifests"].get("unit_count")
+        ):
+            raise RuntimeError(f"v52 {phase} replay structure changed")
+        unit_deltas = [
+            float(right_unit["mean_answer_token_logprob"])
+            - float(left_unit["mean_answer_token_logprob"])
+            for left_unit, right_unit in zip(
+                left_units, right_units, strict=True,
+            )
+        ]
+        actors.append({
             "actor_rank": actor_rank,
             "baseline_exact_score_sha256": left["exact_score_sha256"],
             "observed_exact_score_sha256": right["exact_score_sha256"],
-            "score_and_output_manifests_exact": matched,
+            "baseline_output_manifests": left["output_manifests"],
+            "observed_output_manifests": right["output_manifests"],
+            "score_and_output_manifests_exact": exact_replay,
+            "equal_unit_mean_delta": (
+                float(right_aggregate["equal_unit_mean"])
+                - float(left_aggregate["equal_unit_mean"])
+            ),
+            "unweighted_row_mean_delta": (
+                float(right_aggregate["unweighted_row_mean"])
+                - float(left_aggregate["unweighted_row_mean"])
+            ),
+            "changed_unit_aggregates": sum(
+                delta != 0.0 for delta in unit_deltas
+            ),
+            "maximum_absolute_unit_aggregate_delta": (
+                max(map(abs, unit_deltas)) if unit_deltas else 0.0
+            ),
         })
-    if not all(item["score_and_output_manifests_exact"] for item in matches):
-        raise RuntimeError(
-            f"v52 {phase} score/output manifest changed within an actor"
-        )
-    return {
-        "schema": "actor-self-score-identity-v52",
+    result = {
+        "schema": "actor-indexed-descriptive-score-replay-delta-v52",
         "phase": phase,
-        "actors": matches,
-        "all_four_actor_self_identities_exact": True,
+        "actors": actors,
+        "fixed_four_actor_mean_delta": {
+            metric: math.fsum(
+                float(item["score"]["aggregate"][metric])
+                for item in after
+            ) / design.ACTORS_V52 - math.fsum(
+                float(item["score"]["aggregate"][metric])
+                for item in before
+            ) / design.ACTORS_V52
+            for metric in ("equal_unit_mean", "unweighted_row_mean")
+        },
+        "all_four_actor_replays_exact": all(
+            item["score_and_output_manifests_exact"] for item in actors
+        ),
+        "descriptive_nondeterministic_measurement_only": True,
+        "used_as_restoration_or_continuation_gate": False,
+        "adapter_state_certificate_is_authoritative": True,
         "numeric_tolerance_used": False,
     }
+    result["content_sha256"] = design.canonical_sha256_v52(result)
+    return result
+
+
+def validate_exact_master_state_certificates_v52(
+    certificates: list[dict], master: dict, runtime_sha: str, *, phase: str,
+    reference_generation: int, update_sequence: int,
+    controller_transaction_quiescent: bool,
+) -> dict:
+    """Require byte-exact four-actor state, reference, and sequence identity."""
+    if len(certificates) != design.ACTORS_V52:
+        raise RuntimeError(f"v52 {phase} certificate actor coverage changed")
+    if controller_transaction_quiescent is not True:
+        raise RuntimeError(f"v52 {phase} controller transaction is not quiescent")
+    actors = []
+    for actor_rank, certificate in enumerate(certificates):
+        if (
+            certificate.get("schema")
+            != "canonical-lora-state-certificate-v52"
+            or certificate.get("adapter_id") != 1
+            or certificate.get("slot") != 0
+            or certificate.get("current_identity") != master
+            or certificate.get("reference_identity") != master
+            or certificate.get("reference_generation")
+            != int(reference_generation)
+            or certificate.get("reference_fresh") is not True
+            or certificate.get("update_sequence") != int(update_sequence)
+            or certificate.get("materialization", {}).get(
+                "runtime_values_sha256"
+            ) != runtime_sha
+            or certificate.get("base_identity", {}).get("unchanged")
+            is not True
+            or certificate.get("transaction_state_quiescent") is not True
+            or any(
+                certificate.get(key) is not None for key in (
+                    "active_perturbation", "pending_update",
+                    "committed_rollback", "accepted_rollback",
+                    "active_plan_id",
+                )
+            )
+        ):
+            raise RuntimeError(f"v52 {phase} exact adapter state changed")
+        actors.append({
+            "actor_rank": actor_rank,
+            "certificate_sha256": design.canonical_sha256_v52(certificate),
+            "canonical_fp32_master_sha256": certificate[
+                "current_identity"
+            ]["sha256"],
+            "bf16_runtime_values_sha256": certificate[
+                "materialization"
+            ]["runtime_values_sha256"],
+            "reference_identity_sha256": certificate[
+                "reference_identity"
+            ]["sha256"],
+            "reference_generation": certificate["reference_generation"],
+            "reference_fresh": True,
+            "update_sequence": certificate["update_sequence"],
+            "worker_quiescence_proven_by_certificate_rpc": True,
+        })
+    if len({item["certificate_sha256"] for item in actors}) != 1:
+        raise RuntimeError(f"v52 {phase} four-actor certificate differs")
+    result = {
+        "schema": "four-actor-exact-master-state-certificate-v52",
+        "phase": phase,
+        "actors": actors,
+        "certificates": certificates,
+        "all_four_canonical_fp32_master_identities_exact": True,
+        "all_four_bf16_runtime_identities_exact": True,
+        "all_four_reference_identities_exact_and_fresh": True,
+        "all_four_update_sequences_exact": True,
+        "worker_transactions_quiescent": True,
+        "controller_transaction_quiescent": True,
+        "score_or_output_replay_used_as_gate": False,
+        "numeric_tolerance_used": False,
+    }
+    result["content_sha256"] = design.canonical_sha256_v52(result)
+    return result
+
+
+def exact_master_state_certificates_v52(
+    trainer, v40a, master: dict, runtime_sha: str, *, phase: str,
+    reference_generation: int, update_sequence: int,
+    transaction_tracker: dict,
+) -> dict:
+    certificates = v40a._rpc_all(
+        trainer, "adapter_state_certificate_v52",
+    )
+    return validate_exact_master_state_certificates_v52(
+        certificates, master, runtime_sha, phase=phase,
+        reference_generation=reference_generation,
+        update_sequence=update_sequence,
+        controller_transaction_quiescent=(
+            transaction_tracker.get("value") is None
+        ),
+    )
 
 
 def seal_runtime_state_consensus_v52(
@@ -1431,7 +1623,7 @@ def evaluate_train_arm_v52(
 @contextmanager
 def patched_runtime_v52(prior):
     values = {
-        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16_retry2",
+        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16_retry3",
         "RUN_DIR": RUN_DIR,
         "ATTEMPT": ATTEMPT,
         "REPORT": RUN_DIR / "nested_population_report_v52.json",
@@ -1509,11 +1701,10 @@ def _execute_v52(preregistration: dict) -> int:
     started = time.monotonic()
     p8_gate = p16_gate = None
     numeric_calibration = anchor_calibration = None
-    post_numeric_calibration = post_anchor_calibration = None
-    preinstall = postinstall = post_population = final_score = None
+    preinstall = postinstall = postinstall_replay_delta = None
     preinstall_artifact = master_identity_artifact = None
-    postinstall_identity = post_numeric_identity = None
-    post_anchor_identity = postpopulation_identity = final_identity = None
+    postinstall_state = post_numeric_state = None
+    post_anchor_state = postpopulation_state = final_state = None
     installations = certificates = references = final_certificates = None
     adapter_contract = None
     cleanup = idle = gpu = None
@@ -1609,8 +1800,15 @@ def _execute_v52(preregistration: dict) -> int:
             postinstall = actor_indexed_base_score_v52(
                 trainer, prior, bundle, dense_items, requests,
             )
-            postinstall_identity = require_actor_self_score_identity_v52(
+            postinstall_replay_delta = describe_actor_score_replay_delta_v52(
                 preinstall, postinstall, phase="postinstall",
+            )
+            postinstall_state = exact_master_state_certificates_v52(
+                trainer, v40a, master, master_runtime_sha,
+                phase="postinstall", reference_generation=(
+                    reference_generation
+                ), update_sequence=0,
+                transaction_tracker=transaction_tracker,
             )
             master_identity_artifact = _persist_v52(
                 prior, MASTER_IDENTITY_AUDIT, {
@@ -1622,9 +1820,12 @@ def _execute_v52(preregistration: dict) -> int:
                     "runtime_values_sha256": master_runtime_sha,
                     "all_four_fp32_master_identities_exact": True,
                     "all_four_bf16_runtime_identities_exact": True,
-                    "postinstall_actor_self_score_identity": (
-                        postinstall_identity
+                    "postinstall_score_replay": postinstall,
+                    "postinstall_descriptive_score_replay_delta": (
+                        postinstall_replay_delta
                     ),
+                    "postinstall_exact_adapter_state_gate": postinstall_state,
+                    "score_replay_used_as_restoration_gate": False,
                     "preinstall_baseline_file_sha256": v40a.file_sha256(
                         PREINSTALL_BASELINE
                     ),
@@ -1640,12 +1841,12 @@ def _execute_v52(preregistration: dict) -> int:
             fresh_calibration_maximum = numeric_bounds[
                 "equal_unit_mean"
             ]["observed_maximum_repeat_actor_spread"]
-            post_numeric_calibration = actor_indexed_base_score_v52(
-                trainer, prior, bundle, dense_items, requests,
-            )
-            post_numeric_identity = require_actor_self_score_identity_v52(
-                preinstall, post_numeric_calibration,
+            post_numeric_state = exact_master_state_certificates_v52(
+                trainer, v40a, master, master_runtime_sha,
                 phase="post_numeric_calibration",
+                reference_generation=reference_generation,
+                update_sequence=0,
+                transaction_tracker=transaction_tracker,
             )
 
             phase.value = "shared_v434_anchor_calibration"
@@ -1653,12 +1854,12 @@ def _execute_v52(preregistration: dict) -> int:
                 trainer, full_anchors, master["sha256"], master_runtime_sha,
             )
             anchor_margins = anchor_calibration["calibrated_margins"]
-            post_anchor_calibration = actor_indexed_base_score_v52(
-                trainer, prior, bundle, dense_items, requests,
-            )
-            post_anchor_identity = require_actor_self_score_identity_v52(
-                preinstall, post_anchor_calibration,
+            post_anchor_state = exact_master_state_certificates_v52(
+                trainer, v40a, master, master_runtime_sha,
                 phase="post_anchor_calibration",
+                reference_generation=reference_generation,
+                update_sequence=0,
+                transaction_tracker=transaction_tracker,
             )
 
             phase.value = "nested_p16_population_v52"
@@ -1672,11 +1873,12 @@ def _execute_v52(preregistration: dict) -> int:
                 prior, population_path, population,
             )
             phase.value = "verify_post_population_master"
-            post_population = actor_indexed_base_score_v52(
-                trainer, prior, bundle, dense_items, requests,
-            )
-            postpopulation_identity = require_actor_self_score_identity_v52(
-                preinstall, post_population, phase="postpopulation",
+            postpopulation_state = exact_master_state_certificates_v52(
+                trainer, v40a, master, master_runtime_sha,
+                phase="postpopulation",
+                reference_generation=reference_generation,
+                update_sequence=0,
+                transaction_tracker=transaction_tracker,
             )
 
             full_plan = prior.fused.fused_requests_v43i(
@@ -1708,26 +1910,14 @@ def _execute_v52(preregistration: dict) -> int:
             p16_artifact = _persist_v52(prior, p16_gate_path, p16_gate)
 
             phase.value = "verify_final_exact_master"
-            final_score = actor_indexed_base_score_v52(
-                trainer, prior, bundle, dense_items, requests,
+            final_state = exact_master_state_certificates_v52(
+                trainer, v40a, master, master_runtime_sha,
+                phase="final_restored",
+                reference_generation=reference_generation,
+                update_sequence=0,
+                transaction_tracker=transaction_tracker,
             )
-            final_identity = require_actor_self_score_identity_v52(
-                preinstall, final_score, phase="final_restored",
-            )
-            final_certificates = v40a._rpc_all(
-                trainer, "adapter_state_certificate_v41a",
-            )
-            if (
-                any(
-                    item["current_identity"] != master
-                    or item["materialization"]["runtime_values_sha256"]
-                    != master_runtime_sha
-                    or item["update_sequence"] != 0
-                    or item["reference_fresh"] is not True
-                    for item in final_certificates
-                )
-            ):
-                raise RuntimeError("v52 final master reconstruction changed")
+            final_certificates = final_state["certificates"]
             stop.set()
             monitor.join(timeout=10)
             if monitor.is_alive() or not failures.empty():
@@ -1766,17 +1956,27 @@ def _execute_v52(preregistration: dict) -> int:
             "score_audits": {
                 "preinstall": preinstall,
                 "postinstall": postinstall,
-                "postinstall_actor_self_identity": postinstall_identity,
-                "post_numeric_calibration": post_numeric_calibration,
-                "post_numeric_actor_self_identity": post_numeric_identity,
-                "post_anchor_calibration": post_anchor_calibration,
-                "post_anchor_actor_self_identity": post_anchor_identity,
-                "post_population": post_population,
-                "postpopulation_actor_self_identity": postpopulation_identity,
-                "final": final_score,
-                "final_actor_self_identity": final_identity,
-                "each_actor_score_and_output_manifest_preserved": True,
+                "postinstall_descriptive_replay_delta": (
+                    postinstall_replay_delta
+                ),
+                "postinstall_replay_persisted": True,
+                "postinstall_replay_is_nonbinding": True,
+                "post_numeric_calibration_replay_eliminated": True,
+                "post_anchor_calibration_replay_eliminated": True,
+                "post_population_replay_eliminated": True,
+                "final_replay_eliminated": True,
+                "score_or_output_replay_used_as_restoration_gate": False,
                 "cross_actor_bitwise_score_equality_required": False,
+            },
+            "exact_adapter_state_gates": {
+                "postinstall": postinstall_state,
+                "post_numeric_calibration": post_numeric_state,
+                "post_anchor_calibration": post_anchor_state,
+                "postpopulation": postpopulation_state,
+                "final_restored": final_state,
+                "all_five_gates_use_exact_fp32_bf16_reference_sequence_"
+                "and_quiescence_certificates": True,
+                "numeric_tolerance_used": False,
             },
             "preinstall_actor_baseline": {
                 "path": str(PREINSTALL_BASELINE),
@@ -1937,15 +2137,17 @@ def _execute_v52(preregistration: dict) -> int:
             "actor_indexed_score_audit": {
                 "preinstall": preinstall,
                 "postinstall": postinstall,
-                "postinstall_identity": postinstall_identity,
-                "post_numeric_calibration": post_numeric_calibration,
-                "post_numeric_identity": post_numeric_identity,
-                "post_anchor_calibration": post_anchor_calibration,
-                "post_anchor_identity": post_anchor_identity,
-                "post_population": post_population,
-                "postpopulation_identity": postpopulation_identity,
-                "final": final_score,
-                "final_identity": final_identity,
+                "postinstall_descriptive_replay_delta": (
+                    postinstall_replay_delta
+                ),
+                "score_or_output_replay_used_as_restoration_gate": False,
+            },
+            "exact_adapter_state_gates": {
+                "postinstall": postinstall_state,
+                "post_numeric_calibration": post_numeric_state,
+                "post_anchor_calibration": post_anchor_state,
+                "postpopulation": postpopulation_state,
+                "final_restored": final_state,
             },
             "adapter_contract": adapter_contract,
             "installations": installations,
