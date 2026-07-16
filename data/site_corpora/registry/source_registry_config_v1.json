@@ -261,6 +261,45 @@
       ]
     },
     {
+      "resource_id": "maib_zarga_hmpe_inspection_failure_2017",
+      "source_label": "MAIB Report 13/2017: Zarga jacketed-HMPE mooring-line failure",
+      "manifest_path": "data/site_corpora/maib_zarga_hmpe_inspection_failure_2017/manifest.json",
+      "markdown_path": "data/site_corpora/maib_zarga_hmpe_inspection_failure_2017/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "government_accident_investigation_report",
+        "canonical_url": "https://www.gov.uk/maib-reports/failure-of-mooring-line-on-board-lng-carrier-zarga-with-1-person-injured",
+        "corporate_author": "Marine Accident Investigation Branch",
+        "official_pdf_sha256": "1a0b6aaab013406d0b7a604786d2eaea8a989ee850a77198fd74f0ae659538a4",
+        "publication_date": "2017-06-15",
+        "report_number": "13/2017",
+        "source_resource_id": "maib_zarga_hmpe_inspection_failure_2017"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The GOV.UK page applies Open Government Licence version 3 except where otherwise stated, and the checksum-bound MAIB report's Crown copyright notice permits attributed reuse while separating third-party material.",
+        "license": "OGL-UK-3.0",
+        "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_crown_attribution_checksum_component_audit_and_industrial_case_limits",
+        "limitations": [
+          "All forty-one figures, five tables, sixteen annexes, twenty-seven credited source blocks, captions, logos, image-derived claims, and separately owned matter are excluded.",
+          "Standards, legal text, vendor or operator material, product identities, equations, measurements, loads, ratios, dimensions, quantitative capacity claims, thresholds, and operational procedures are excluded.",
+          "The artifact is a fresh manual, claim-cited Crown-text adaptation; no PDF, rendered page, extraction, contact sheet, annex bundle, or source body is retained.",
+          "This single 2017 jacketed-HMPE ship-mooring failure is not a rope-selection, care, inspection, service-decision, retirement, bondage, body-loading, anchor, hardpoint, upline, or human-suspension authority."
+        ]
+      },
+      "safety_transfer_flags": [
+        "historical_2017_industrial_ship_mooring_jacketed_hmpe_case_scope_required",
+        "jacket_core_observability_tradeoff_and_external_visual_inspection_limits_are_construction_specific",
+        "line_tail_fittings_routing_environment_and_information_flow_form_a_coupled_system",
+        "axial_compression_cyclic_bending_contact_friction_heat_abrasion_and_kinking_are_case_mechanisms_not_universal_rules",
+        "offshore_test_method_transfer_failure_does_not_supply_a_replacement_test_or_inspection_recipe",
+        "no_natural_fiber_bondage_body_contact_anchor_hardpoint_upline_or_human_suspension_transfer",
+        "all_third_party_vendor_operator_test_guidance_standard_figure_table_and_annex_content_excluded"
+      ]
+    },
+    {
       "resource_id": "mdpi_knot_efficiency_statistics_2022",
       "source_label": "Basic Statistical Properties of the Knot Efficiency",
       "manifest_path": "data/site_corpora/mdpi_knot_efficiency_statistics_2022/manifest.json",

@@ -444,6 +444,68 @@
       "whitespace_delimited_word_count": 4129
     },
     {
+      "artifact_id": "canonical-markdown:maib_zarga_hmpe_inspection_failure_2017",
+      "byte_length": 16730,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/maib_zarga_hmpe_inspection_failure_2017/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": "site-corpus-manifest-v1.0"
+      },
+      "manifest_sha256": "457a0764991cc87ec0d83ded4f7614cb28fa5f242c0cea76512af2e955b30c55",
+      "markdown_path": "data/site_corpora/maib_zarga_hmpe_inspection_failure_2017/CORPUS.md",
+      "markdown_sha256": "32cf266d64c1fdecef76d41c238d35ec7e82bcd9ee1a12f381f84e0a06d8479a",
+      "non_qa": true,
+      "qwen36_token_count": 4139,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:b6863d04b7bfbb75b07dd49a0b9623d522fbeac8c6ea20d3ac97af2631ca52c8",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "maib_zarga_hmpe_inspection_failure_2017",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The GOV.UK page applies Open Government Licence version 3 except where otherwise stated, and the checksum-bound MAIB report's Crown copyright notice permits attributed reuse while separating third-party material.",
+        "license": "OGL-UK-3.0",
+        "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "limitations": [
+          "All forty-one figures, five tables, sixteen annexes, twenty-seven credited source blocks, captions, logos, image-derived claims, and separately owned matter are excluded.",
+          "Standards, legal text, vendor or operator material, product identities, equations, measurements, loads, ratios, dimensions, quantitative capacity claims, thresholds, and operational procedures are excluded.",
+          "The artifact is a fresh manual, claim-cited Crown-text adaptation; no PDF, rendered page, extraction, contact sheet, annex bundle, or source body is retained.",
+          "This single 2017 jacketed-HMPE ship-mooring failure is not a rope-selection, care, inspection, service-decision, retirement, bondage, body-loading, anchor, hardpoint, upline, or human-suspension authority."
+        ],
+        "promotion_gate": "ready_with_crown_attribution_checksum_component_audit_and_industrial_case_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "all_third_party_vendor_operator_test_guidance_standard_figure_table_and_annex_content_excluded",
+        "axial_compression_cyclic_bending_contact_friction_heat_abrasion_and_kinking_are_case_mechanisms_not_universal_rules",
+        "historical_2017_industrial_ship_mooring_jacketed_hmpe_case_scope_required",
+        "jacket_core_observability_tradeoff_and_external_visual_inspection_limits_are_construction_specific",
+        "line_tail_fittings_routing_environment_and_information_flow_form_a_coupled_system",
+        "no_natural_fiber_bondage_body_contact_anchor_hardpoint_upline_or_human_suspension_transfer",
+        "offshore_test_method_transfer_failure_does_not_supply_a_replacement_test_or_inspection_recipe"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.gov.uk/maib-reports/failure-of-mooring-line-on-board-lng-carrier-zarga-with-1-person-injured",
+        "corporate_author": "Marine Accident Investigation Branch",
+        "identity_type": "government_accident_investigation_report",
+        "official_pdf_sha256": "1a0b6aaab013406d0b7a604786d2eaea8a989ee850a77198fd74f0ae659538a4",
+        "publication_date": "2017-06-15",
+        "report_number": "13/2017",
+        "source_resource_id": "maib_zarga_hmpe_inspection_failure_2017"
+      },
+      "source_document_identity_sha256": "b6863d04b7bfbb75b07dd49a0b9623d522fbeac8c6ea20d3ac97af2631ca52c8",
+      "source_label": "MAIB Report 13/2017: Zarga jacketed-HMPE mooring-line failure",
+      "unicode_word_count": 2376,
+      "whitespace_delimited_word_count": 2363
+    },
+    {
       "artifact_id": "canonical-markdown:mdpi_knot_efficiency_statistics_2022",
       "byte_length": 16083,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1186,7 +1248,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "84c4fe725f2466ab61a10c8c3db83420ccdd2c6ab987f7bd6e74dc6472a0ca03"
+    "sha256": "f7225ca4ab379f1d2eae42ed1d0ca9585bec7c91078a8974e0458af730274db7"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1225,7 +1287,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "bf90c4cbc71ca4a138b56e176290fc30213b402336db8b50d3d9ca5f0eae86e8",
+  "source_tree_fingerprint_sha256": "9ddebeffb7312133c3f5d4f4d54c24ab2c9542a6496028d35a88a1aed868269a",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1235,11 +1297,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 21,
-    "byte_length": 4044489,
-    "qwen36_token_count": 1179149,
-    "source_document_split_group_count": 21,
-    "unicode_word_count": 532099,
-    "whitespace_delimited_word_count": 420157
+    "artifact_count": 22,
+    "byte_length": 4061219,
+    "qwen36_token_count": 1183288,
+    "source_document_split_group_count": 22,
+    "unicode_word_count": 534475,
+    "whitespace_delimited_word_count": 422520
   }
 }
