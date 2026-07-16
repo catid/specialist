@@ -444,6 +444,63 @@
       "whitespace_delimited_word_count": 4129
     },
     {
+      "artifact_id": "canonical-markdown:mdpi_knot_efficiency_statistics_2022",
+      "byte_length": 16083,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/mdpi_knot_efficiency_statistics_2022/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "ac6d9793a06a6c0febd204560d5b442b811e73ec70cb2b45093a67c7286f7bbc",
+      "markdown_path": "data/site_corpora/mdpi_knot_efficiency_statistics_2022/CORPUS.md",
+      "markdown_sha256": "8124b2268b48a40efab7ba0b8be83c3dc20d5751ee9410d6f4c4770167d33f18",
+      "non_qa": true,
+      "qwen36_token_count": 3471,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:6c2bbe46b698c9d96f927f543970f20874256ce68c553a83b35494da2d3448b2",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "mdpi_knot_efficiency_statistics_2022",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The official MDPI publisher PDF and JATS XML identify the article as Creative Commons Attribution 4.0; the manual adaptation records article attribution, the licence, and changes.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "limitations": [
+          "Equations, proofs, figures, tables, numerical examples, standards, brands, vendor material, references, and separately credited components are excluded.",
+          "The article models a population ratio under explicit input-distribution and independence assumptions using measurements inherited from earlier work; it is not a new 2022 experimental campaign or a sampling distribution for estimated parameters.",
+          "Open licensing does not turn a source-specific statistical model into an operational calculator, efficiency rating, safety factor, safe-load rule, knot choice, or validation for natural fiber, bondage, body contact, uplines, dynamic or cyclic loading, or human suspension."
+        ],
+        "promotion_gate": "ready_with_attribution_component_audit_and_statistical_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "efficiency_is_calculated_ratio_not_direct_measurement",
+        "failure_to_reject_normality_is_not_proof_and_parameter_uncertainty_remains",
+        "no_dynamic_cyclic_wet_aged_damaged_natural_fiber_bondage_body_contact_upline_or_human_suspension_transfer",
+        "no_numeric_efficiency_rating_safety_factor_safe_load_or_knot_selection_rule",
+        "population_ratio_distribution_not_sampling_distribution_or_confidence_bound"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.mdpi.com/2073-8994/14/9/1926",
+        "doi": "10.3390/sym14091926",
+        "identity_type": "journal_article",
+        "journal": "Symmetry",
+        "source_resource_id": "mdpi_knot_efficiency_statistics_2022"
+      },
+      "source_document_identity_sha256": "6c2bbe46b698c9d96f927f543970f20874256ce68c553a83b35494da2d3448b2",
+      "source_label": "Basic Statistical Properties of the Knot Efficiency",
+      "unicode_word_count": 2300,
+      "whitespace_delimited_word_count": 2249
+    },
+    {
       "artifact_id": "canonical-markdown:mdpi_tree_climbing_friction_hitch_2021",
       "byte_length": 20333,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -830,7 +887,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "5d8cad34ba613268c5278d240a26a1e9802f71cf5ea78c902c0ee54367545cc2"
+    "sha256": "e4448ccd498e52f0bf0167e64dae97d1cd0cc60268c80c1a1d21c35734a23782"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -869,7 +926,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "b3b666dbb74c69d1f4a0d1abb699964c60786a8f9e07b8b3cf25acdf9818cdba",
+  "source_tree_fingerprint_sha256": "01ed57ddc23da2c9d000e5c3beb49acb7bdac9481025e5e94f559eb0fd3d0e14",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -879,11 +936,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 15,
-    "byte_length": 3951340,
-    "qwen36_token_count": 1158925,
-    "source_document_split_group_count": 15,
-    "unicode_word_count": 519022,
-    "whitespace_delimited_word_count": 407223
+    "artifact_count": 16,
+    "byte_length": 3967423,
+    "qwen36_token_count": 1162396,
+    "source_document_split_group_count": 16,
+    "unicode_word_count": 521322,
+    "whitespace_delimited_word_count": 409472
   }
 }

@@ -261,6 +261,40 @@
       ]
     },
     {
+      "resource_id": "mdpi_knot_efficiency_statistics_2022",
+      "source_label": "Basic Statistical Properties of the Knot Efficiency",
+      "manifest_path": "data/site_corpora/mdpi_knot_efficiency_statistics_2022/manifest.json",
+      "markdown_path": "data/site_corpora/mdpi_knot_efficiency_statistics_2022/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "journal_article",
+        "canonical_url": "https://www.mdpi.com/2073-8994/14/9/1926",
+        "doi": "10.3390/sym14091926",
+        "journal": "Symmetry",
+        "source_resource_id": "mdpi_knot_efficiency_statistics_2022"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The official MDPI publisher PDF and JATS XML identify the article as Creative Commons Attribution 4.0; the manual adaptation records article attribution, the licence, and changes.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_component_audit_and_statistical_limits",
+        "limitations": [
+          "Equations, proofs, figures, tables, numerical examples, standards, brands, vendor material, references, and separately credited components are excluded.",
+          "The article models a population ratio under explicit input-distribution and independence assumptions using measurements inherited from earlier work; it is not a new 2022 experimental campaign or a sampling distribution for estimated parameters.",
+          "Open licensing does not turn a source-specific statistical model into an operational calculator, efficiency rating, safety factor, safe-load rule, knot choice, or validation for natural fiber, bondage, body contact, uplines, dynamic or cyclic loading, or human suspension."
+        ]
+      },
+      "safety_transfer_flags": [
+        "efficiency_is_calculated_ratio_not_direct_measurement",
+        "failure_to_reject_normality_is_not_proof_and_parameter_uncertainty_remains",
+        "no_dynamic_cyclic_wet_aged_damaged_natural_fiber_bondage_body_contact_upline_or_human_suspension_transfer",
+        "no_numeric_efficiency_rating_safety_factor_safe_load_or_knot_selection_rule",
+        "population_ratio_distribution_not_sampling_distribution_or_confidence_bound"
+      ]
+    },
+    {
       "resource_id": "mdpi_tree_climbing_friction_hitch_2021",
       "source_label": "Tensile Strength of Ropes and Friction Hitch Used in Tree Climbing Work",
       "manifest_path": "data/site_corpora/mdpi_tree_climbing_friction_hitch_2021/manifest.json",

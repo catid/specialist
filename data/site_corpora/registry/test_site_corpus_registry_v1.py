@@ -232,6 +232,26 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             hitch["safety_transfer_flags"],
         )
 
+        knot_statistics = self.by_id["mdpi_knot_efficiency_statistics_2022"]
+        self.assertEqual(
+            knot_statistics["source_document_identity"]["doi"],
+            "10.3390/sym14091926",
+        )
+        self.assertEqual(
+            knot_statistics["rights_basis"]["status"], "explicit_open_license"
+        )
+        self.assertEqual(
+            knot_statistics["rights_basis"]["license"], "CC BY 4.0"
+        )
+        self.assertIn(
+            "failure_to_reject_normality_is_not_proof_and_parameter_uncertainty_remains",
+            knot_statistics["safety_transfer_flags"],
+        )
+        self.assertIn(
+            "no_numeric_efficiency_rating_safety_factor_safe_load_or_knot_selection_rule",
+            knot_statistics["safety_transfer_flags"],
+        )
+
         loop_knots = self.by_id["acta_loop_knot_efficiency_experiments_2020"]
         self.assertEqual(
             loop_knots["source_document_identity"]["doi"],
