@@ -1,0 +1,208 @@
+{
+  "schema": "site-corpus-manifest-v1",
+  "schema_version": 1,
+  "resource_id": "mdpi_tree_climbing_friction_hitch_2021",
+  "source_id": "doi-10.3390-f12111457",
+  "artifact_role": "canonical_markdown_direct_training_source",
+  "direct_training_ready": true,
+  "non_qa": true,
+  "generated_at": "2026-07-16T11:09:52Z",
+  "retrieved_at": "2026-07-16T10:58:54Z",
+  "source_type": "peer_reviewed_open_access_arborist_rope_hitch_bench_study",
+  "work": {
+    "title": "Tensile Strength of Ropes and Friction Hitch Used in Tree Climbing Work",
+    "authors": [
+      "Leonardo Bianchini",
+      "Rodolfo Picchio",
+      "Andrea Colantoni",
+      "Marco Scotolati",
+      "Valerio Di Stefano",
+      "Massimo Cecchini"
+    ],
+    "journal": "Forests",
+    "publication_date": "2021-10-26",
+    "citation": "Forests 2021, 12(11), 1457",
+    "doi": "10.3390/f12111457"
+  },
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "identifier": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "legal_code_url": "https://creativecommons.org/licenses/by/4.0/legalcode.en",
+    "article_copyright": "© 2021 by the authors",
+    "complete_author_attribution": true,
+    "doi_and_canonical_source_linked": true,
+    "adaptation_notice_present": true,
+    "changes_described": true,
+    "adapted_output_license": "CC BY 4.0",
+    "endorsement_implied": false,
+    "additional_restrictions_added": false,
+    "legal_opinion": false
+  },
+  "entries": [
+    {
+      "source_id": "MDPI-PDF",
+      "url": "https://mdpi-res.com/d_attachment/forests/forests-12-01457/article_deploy/forests-12-01457.pdf",
+      "content_type": "application/pdf",
+      "byte_length": 17049016,
+      "sha256": "55832e9cb3ed23942315922fad01a5c79fd239e0fcf50b690fddb58bd519910d",
+      "digital_page_count": 12,
+      "disposition": "reviewed_not_retained_manually_transformed",
+      "direct_training": false,
+      "reason": "Complete hashed official article source; all pages manually reviewed, with figures, table layouts, references, brands, standards detail, recipes, and overgeneralization excluded."
+    },
+    {
+      "source_id": "MDPI-HTML",
+      "url": "https://www.mdpi.com/1999-4907/12/11/1457",
+      "content_type": "text/html",
+      "browser_rendered_line_count": 493,
+      "shell_status": 403,
+      "shell_access_denial_sha256": "8c5572a5ee28579ebd140703df19e31ccb28e1830a83ee5c77398e95b4d88df4",
+      "disposition": "canonical_identity_and_browser_crosscheck_not_retained",
+      "direct_training": false,
+      "reason": "Canonical page and licence statement reviewed through read-only browser rendering; shell denial body recorded but never treated as article content."
+    },
+    {
+      "source_id": "DOI",
+      "url": "https://doi.org/10.3390/f12111457",
+      "content_type": "text/html;charset=utf-8",
+      "http_status": 302,
+      "response_body_byte_length": 167,
+      "response_body_sha256": "d0fcd73743f846637da34424e1b43c247b1918f81fa4044bd14f6f23114ee8bb",
+      "disposition": "persistent_identity_resolution_only",
+      "direct_training": false,
+      "reason": "Verified resolution to canonical MDPI article; DOI recall excluded from QA."
+    },
+    {
+      "source_id": "CC-BY",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "content_type": "text/html",
+      "byte_length": 32178,
+      "sha256": "231a5dac65bbf135ba27145969a63cd289faadc172f1512c4810a6c60ba91036",
+      "disposition": "license_metadata_only_not_training",
+      "direct_training": false,
+      "reason": "Used only to verify attribution, licence link, indication of changes, no-endorsement, and no-additional-restrictions metadata."
+    },
+    {
+      "source_id": "CC-LEGAL",
+      "url": "https://creativecommons.org/licenses/by/4.0/legalcode.en",
+      "content_type": "text/html",
+      "byte_length": 48970,
+      "sha256": "6d55b998ed5c54f43426d059a8c549ed58a3321e5463e6a6af1c6b56ab78c333",
+      "disposition": "license_legal_metadata_only_not_training",
+      "direct_training": false,
+      "reason": "Used solely to validate compatible rights metadata; no legal-code text is direct training content."
+    }
+  ],
+  "training_document_count": 1,
+  "h2_section_count": 16,
+  "h3_subsection_count": 0,
+  "direct_training_word_count": 2945,
+  "whitespace_delimited_word_count": 2913,
+  "word_count_method": "Unicode regex [\\w\\u2019'-]+ over CORPUS.md; whitespace count recorded separately",
+  "claim_level_citation_count": 43,
+  "source_ledger_record_count": 5,
+  "disposition_record_count": 56,
+  "included_or_narrowed_disposition_count": 36,
+  "excluded_or_metadata_disposition_count": 20,
+  "supported_categories": [
+    "rope_materials_care",
+    "rigging_mechanics",
+    "uplines_suspension_hardpoints",
+    "research_literacy",
+    "teaching_evaluation"
+  ],
+  "category_scope_note": "The hardpoint and suspension mappings contain only comparative bench-study interpretation and explicit non-transfer boundaries. They offer no tying method, rating, recommendation, field clearance, natural-fiber result, bondage instruction, or human-suspension approval.",
+  "evidence_scope": {
+    "design": "36 slow-pull semi-static bench runs in a balanced two-rope by two-hitch design with nine runs per treatment",
+    "specimens": "Axis 11 mm polyester-polyamide and XTC 16 nominal 13 mm polyamide work ropes with 8 mm polyester-Technora hitch cord",
+    "hitches": "Prusik and Valdotain tresse",
+    "treatments": "AP, AT, XP, XT",
+    "observation_window": "initial state and five 50 mm increments over a 250 mm machine stroke",
+    "measurements": "applied load, hitch slip, rope-diameter change, start-end near-hitch temperature, ambient temperature, and humidity",
+    "analysis": "factorial multivariate comparisons, post-hoc comparisons, one-factor temperature analysis, and separate plus combined regressions",
+    "retained_results": "hitch effect on load and slip; rope effect on diameter; observed extrema; treatment trends; partial regression relationships; nonsignificant between-treatment endpoint-temperature comparison",
+    "excluded": "figures, copied tables, manufacturers, catalog ratings, instruments, hardware, standards identifiers, operational setup, full equations, third-party results, dynamic or cyclic inference, safe ratings, recommendations, and cross-domain transfer"
+  },
+  "rights_status": "cc_by_4_0_attributed_adapted_no_endorsement",
+  "loading_scope_status": "slow_semistatic_250mm_modified_bench_method_no_dynamic_or_cyclic_transfer",
+  "specimen_status": "axis_11mm_and_xtc16_13mm_with_8mm_synthetic_hitch_cord_exact_only",
+  "factorial_design_status": "two_ropes_by_two_hitches_four_treatments_nine_runs_each_36_total",
+  "replication_status": "nine_runs_per_treatment_with_three_piece_three_cord_repeated_test_structure",
+  "measurement_status": "load_slip_diameter_change_endpoint_temperature_and_ambient_context",
+  "statistics_status": "factorial_multivariate_posthoc_and_regression_relationships_not_field_calculators",
+  "rating_status": "observed_values_only_no_breaking_strength_working_load_safety_factor_or_threshold",
+  "hitch_result_status": "hitch_affected_load_and_slip_prusik_more_grip_higher_load_less_slip_no_safer_claim",
+  "rope_result_status": "rope_affected_diameter_xtc_more_deformation_no_single_property_causal_claim",
+  "regression_status": "partial_nonlinear_associations_no_causality_failure_prediction_or_extrapolation",
+  "temperature_status": "start_end_changes_no_treatment_difference_no_dynamic_peak_or_heat_safety_claim",
+  "purpose_status": "preliminary_relationship_study_explicitly_not_best_knot_selection",
+  "dynamic_transfer_status": "forbidden_no_drop_fall_shock_cycle_hysteresis_swing_live_climber_or_rescue_test",
+  "cross_domain_status": "forbidden_no_natural_fiber_bondage_shibari_kinbaku_or_human_suspension_generalization",
+  "operational_detail_status": "excluded_no_tying_assembly_preload_connection_climbing_suspension_or_rescue_recipe",
+  "component_status": {
+    "source_raster_occurrences": 10,
+    "source_images_reused": 0,
+    "source_table_layouts_reused": 0,
+    "source_references_reproduced": 0,
+    "raw_pdf_retained": false,
+    "raw_html_retained": false,
+    "audit_extraction_retained": false,
+    "minimally_retained_specimen_model_labels": [
+      "Axis",
+      "XTC 16"
+    ],
+    "manufacturers_or_instrument_brands_retained": 0
+  },
+  "qa_derivation_policy": {
+    "allowed": "factorial design, treatment identities, replication structure, bench window, measured outcomes, comparative factor effects, descriptive observations, partial regressions, temperature interpretation, preliminary purpose, and explicit transfer limitations",
+    "forbidden": "author order, DOI digit, URL, publication date, journal-coordinate, manufacturer, brand, instrument, hardware, catalog rating, standard, figure, table, reference, file hash, citation order, tying, assembly, preload, connection, climbing, suspension, rescue, safe rating, breaking-strength generalization, best-knot ranking, equipment recommendation, natural-fiber transfer, bondage transfer, or human-suspension approval",
+    "inherit_document_split": true
+  },
+  "sampling_guidance": {
+    "source_weighting": "one DOI source-family document, not one document per treatment, result, table, displacement point, or numerical value",
+    "recommended_unit": "chunks retaining exact specimens, hitch treatment, 36-run structure, slow semi-static 250 mm bench boundary, and no-rating or no-transfer limitation",
+    "avoid": "isolating a load or slip number from its observed-bench status; converting statistical significance to safety; ranking hitches; treating repeated observations as equipment diversity; or separating any result from the dynamic, cyclic, natural-fiber, bondage, and human-suspension exclusions"
+  },
+  "document_disjoint_requirement": "Assign the official article HTML identity, official PDF, DOI record, this Markdown, and every derivative to one source-family split before chunking or derivation.",
+  "protected_split_requirement": "Exclude QA, dataset-review, dataset, trainer, training-projection, evaluation, validation, holdout, OOD, shadow, benchmark, probe, unrelated-corpus, sealed-holdout, and protected-QA documents from every training layer.",
+  "source_snapshot": {
+    "provenance": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 11556,
+      "sha256": "4857be59c97181b0befd36b91bc46559e87f1dcc5edcb2c385e24c361f7a5922"
+    }
+  },
+  "outputs": {
+    "CORPUS.md": {
+      "path": "CORPUS.md",
+      "byte_length": 20333,
+      "sha256": "ec02c592bd21de3bf1c3ff812a3f486772e591193e457e83c394c111a8a26ce7"
+    },
+    "REPORT.md": {
+      "path": "REPORT.md",
+      "byte_length": 13068,
+      "sha256": "c0efde27fe42bab0db74a9d40c74e53285abdf1df07be7fc175451200ee83636"
+    },
+    "sources.jsonl": {
+      "path": "sources.jsonl",
+      "byte_length": 4960,
+      "sha256": "3c98cc412d60deadbb741d8b584a857117ff7afca03568dc18752a7b1b84ac5e"
+    },
+    "dispositions.jsonl": {
+      "path": "dispositions.jsonl",
+      "byte_length": 15488,
+      "sha256": "2082c6ddf4c26e37c83882731e6c6bd65a86f406f49e749f1e7510a03e362816"
+    },
+    "source_snapshot/provenance.json": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 11556,
+      "sha256": "4857be59c97181b0befd36b91bc46559e87f1dcc5edcb2c385e24c361f7a5922"
+    },
+    "tests/test_corpus.py": {
+      "path": "tests/test_corpus.py",
+      "byte_length": 28271,
+      "sha256": "417efb0c21225535d2161e70dea38f40b4d2c7652c0aa4bb706eef994a574733"
+    }
+  }
+}

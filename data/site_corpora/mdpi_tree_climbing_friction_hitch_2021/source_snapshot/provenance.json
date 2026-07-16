@@ -1,0 +1,293 @@
+{
+  "schema": "site-corpus-provenance-v1",
+  "resource_id": "mdpi_tree_climbing_friction_hitch_2021",
+  "source_family_id": "doi-10.3390-f12111457",
+  "review_started_at": "2026-07-16T10:57:24Z",
+  "review_completed_at": "2026-07-16T11:04:22Z",
+  "article": {
+    "title": "Tensile Strength of Ropes and Friction Hitch Used in Tree Climbing Work",
+    "authors": [
+      "Leonardo Bianchini",
+      "Rodolfo Picchio",
+      "Andrea Colantoni",
+      "Marco Scotolati",
+      "Valerio Di Stefano",
+      "Massimo Cecchini"
+    ],
+    "journal": "Forests",
+    "year": 2021,
+    "volume": 12,
+    "issue": 11,
+    "article_number": 1457,
+    "publication_date": "2021-10-26",
+    "doi": "10.3390/f12111457",
+    "canonical_url": "https://www.mdpi.com/1999-4907/12/11/1457"
+  },
+  "network_boundary": {
+    "successful_or_identity_routes": [
+      "https://www.mdpi.com/1999-4907/12/11/1457",
+      "https://mdpi-res.com/d_attachment/forests/forests-12-01457/article_deploy/forests-12-01457.pdf",
+      "https://doi.org/10.3390/f12111457",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://creativecommons.org/licenses/by/4.0/legalcode.en"
+    ],
+    "canonical_html_access": "A read-only browser renderer returned the complete 493-line article. A shell request received a 403 access-denial body; that denial digest is recorded and was not treated as article content.",
+    "official_pdf_asset_access": "The official MDPI article PDF asset returned 200 and is the hashed substantive source of record.",
+    "doi_resolution": "The DOI route returned 302 to the canonical MDPI article URL.",
+    "unsuccessful_official_article_routes": [
+      {
+        "route": "https://www.mdpi.com/1999-4907/12/11/1457/pdf",
+        "status": 429,
+        "use": "none"
+      },
+      {
+        "route": "https://www.mdpi.com/1999-4907/12/11/1457/pdf-vor",
+        "status": 403,
+        "use": "none"
+      },
+      {
+        "route": "https://www.mdpi.com/1999-4907/12/11/1457/xml",
+        "status": 403,
+        "use": "none"
+      },
+      {
+        "route": "https://mdpi-res.com/d_attachment/forests/forests-12-01457/article_deploy/forests-12-01457-v2.pdf",
+        "status": 404,
+        "use": "none"
+      }
+    ],
+    "article_reference_routes_accessed": false,
+    "standards_routes_accessed": false,
+    "manufacturer_routes_accessed": false,
+    "image_routes_accessed": false,
+    "promotional_routes_accessed": false,
+    "other_third_party_routes_accessed": false
+  },
+  "retrieval_summary": {
+    "source_ledger_record_count": 5,
+    "hashed_primary_article_record_count": 1,
+    "identity_record_count": 2,
+    "license_metadata_record_count": 2,
+    "hashed_successful_body_byte_length_total": 17130331,
+    "article_pdf_byte_length": 17049016,
+    "doi_response_body_byte_length": 167,
+    "license_metadata_byte_length_total": 81148,
+    "browser_rendered_article_line_count": 493,
+    "raw_sources_retained_in_repository": false,
+    "source_hashes_recorded_in": "sources.jsonl"
+  },
+  "content_audit": {
+    "pdf_digital_page_count": 12,
+    "pdf_raster_image_occurrences": 10,
+    "pdf_audit_text_byte_length": 39105,
+    "pdf_audit_text_word_count": 6149,
+    "pdf_audit_text_sha256": "78d26d2c0e2b155f421dfc46534143aac1cbbb49929c82c8483d77a09861e01d",
+    "reviewed_regions": [
+      "article identity, abstract, and copyright statement",
+      "complete introduction at purpose and limitation level",
+      "complete materials and methods",
+      "complete statistical analysis",
+      "complete results and discussion",
+      "complete conclusions",
+      "all five tables at disposition and essential-number level",
+      "all five figures and all other raster occurrences at exclusion level",
+      "references at third-party exclusion level"
+    ],
+    "excluded_visuals": [
+      "publisher and open-access graphics",
+      "bench-system diagram",
+      "thermal-camera photographs",
+      "load chart",
+      "slip chart",
+      "diameter-change chart"
+    ],
+    "source_images_reused": 0,
+    "source_table_layouts_reused": 0,
+    "source_references_reproduced": 0
+  },
+  "normalization_and_review_method": {
+    "mode": "manual_source_review_and_hand_cleanup",
+    "pdf_audit_extraction": "pypdf 6.14.2 extracted all 12 digital pages with one form-feed separator between pages; used only for completeness, verification, and deterministic audit metrics.",
+    "browser_article_review": "The official canonical HTML was reviewed through a read-only browser rendering with 493 addressable lines and crosschecked against the hashed official PDF.",
+    "manual_transformation": "Every accepted claim was selected, paraphrased, reorganized, given a section-level source label, and checked for scope. No source extraction, table layout, or figure was emitted as training prose.",
+    "direct_training_artifact": "CORPUS.md",
+    "raw_pdf_retained": false,
+    "raw_html_retained": false,
+    "audit_text_retained": false,
+    "raw_source_direct_training": false
+  },
+  "rights_review": {
+    "article_rights_statement": "The official article states © 2021 by the authors and distribution under Creative Commons Attribution 4.0 International.",
+    "license_name": "Creative Commons Attribution 4.0 International",
+    "license_identifier": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "legal_code_url": "https://creativecommons.org/licenses/by/4.0/legalcode.en",
+    "title_attributed": true,
+    "all_authors_attributed": true,
+    "doi_linked": true,
+    "canonical_article_linked": true,
+    "license_linked": true,
+    "adaptation_marked": true,
+    "changes_described": true,
+    "adapted_output_license": "CC BY 4.0",
+    "endorsement_implied": false,
+    "additional_restrictions_added": false,
+    "legal_opinion": false,
+    "license_sources_direct_training": false
+  },
+  "study_design_audit": {
+    "test_count": 36,
+    "factorial_design": "two work ropes by two friction hitches",
+    "treatment_count": 4,
+    "runs_per_treatment": 9,
+    "reported_specimen_structure": "three rope pieces and three cords per rope-hitch type, with three traction tests on each described set of sections and cords",
+    "loading_mode": "slow pull on semi-static synthetic arborist rope",
+    "bench_stroke_mm": 250,
+    "observation_positions": 6,
+    "position_spacing_mm": 50,
+    "rope_systems": [
+      "Axis model: 11 mm, polyester/polyamide",
+      "XTC 16 model: 13 mm in Table 1 and 12.7 mm in later results text, polyamide"
+    ],
+    "hitch_cord": "8 mm polyester/Technora cord",
+    "friction_hitches": [
+      "Prusik",
+      "Valdotain tresse"
+    ],
+    "treatments": [
+      "AP",
+      "AT",
+      "XP",
+      "XT"
+    ],
+    "measured_outcomes": [
+      "applied system load",
+      "friction-hitch slip",
+      "work-rope diameter change",
+      "start and end temperature near the friction hitch",
+      "ambient temperature and humidity"
+    ]
+  },
+  "results_audit": {
+    "abstract_extrema": {
+      "observed_maximum_load_kn": 18.7,
+      "observed_maximum_slip_cm": 9.6,
+      "observed_maximum_diameter_change_mm": 3.0,
+      "rating_status": "observed bench extrema only, never a safe load, breaking strength, threshold, or recommendation"
+    },
+    "factor_effects": [
+      "hitch type significantly affected load and slip in the reported analysis",
+      "rope type significantly affected diameter deformation in the reported analysis",
+      "Prusik treatments developed greater grip, higher observed load, and less slip than Valdotain-tresse treatments",
+      "XTC 16 showed greater diameter deformation than Axis"
+    ],
+    "adjusted_r_squared": {
+      "load_vs_diameter_reduction": 0.445,
+      "load_vs_slip": 0.418,
+      "diameter_reduction_vs_slip": 0.378,
+      "combined_load_vs_slip_and_diameter_reduction": 0.535
+    },
+    "temperature_status": "small start-to-end changes were measured; no significant difference among the four treatments was reported; no dynamic thermal conclusion is permitted",
+    "purpose_status": "preliminary relationship study; authors explicitly did not seek to define the best knot"
+  },
+  "limitation_boundary": {
+    "prominent_required_labels": [
+      "exact synthetic arborist equipment",
+      "two rope systems",
+      "two friction hitches",
+      "36 slow-pull runs",
+      "short 250 mm bench stroke",
+      "modified standardized method",
+      "preliminary purpose"
+    ],
+    "untested_loading_domains": [
+      "dynamic drop",
+      "fall catch",
+      "shock loading",
+      "cyclic loading",
+      "hysteresis over repeated cycles",
+      "swinging body",
+      "live climber",
+      "human suspension",
+      "rescue"
+    ],
+    "untested_material_or_condition_domains": [
+      "natural-fiber rope",
+      "other synthetic materials",
+      "other rope or cord diameters",
+      "other braids or constructions",
+      "age and wear",
+      "water or contamination",
+      "UV or freeze history",
+      "operator tying variation",
+      "different connectors anchors and geometries"
+    ],
+    "forbidden_transfers": [
+      "safe working load or safety factor",
+      "minimum breaking strength",
+      "retirement or inspection threshold",
+      "best-knot ranking",
+      "arborist field clearance",
+      "manufacturer endorsement",
+      "standards compliance",
+      "bondage shibari or kinbaku recommendation",
+      "natural-fiber recommendation",
+      "human-suspension approval",
+      "medical or anatomical safety claim"
+    ]
+  },
+  "component_and_trademark_boundary": {
+    "minimally_retained_model_labels": [
+      "Axis",
+      "XTC 16"
+    ],
+    "retention_reason": "These labels are needed to identify the exact experimental factors and are accompanied by a no-endorsement notice.",
+    "excluded_classes": [
+      "manufacturer identities",
+      "machine and camera brands",
+      "connector and plate product labels",
+      "catalog breaking loads and masses",
+      "promotional suitability descriptions",
+      "standards bodies and identifiers",
+      "assembly and preloading recipe",
+      "third-party literature claims not generated by the experiment"
+    ]
+  },
+  "citation_policy": {
+    "format": "[SOURCE-ID: article locator]",
+    "claim_level_required": true,
+    "source_id_mapping_file": "sources.jsonl",
+    "license_and_identity_citations_metadata_only": true,
+    "uncited_text_allowed": "adaptation notices, conservative transfer limitations, interpretation discipline, and dataset derivation rules"
+  },
+  "training_boundary": {
+    "non_qa": true,
+    "direct_training_document_count": 1,
+    "source_files_direct_training": false,
+    "license_pages_direct_training": false,
+    "unsafe_operational_recipe": false,
+    "safe_rating_or_recommendation": false,
+    "natural_fiber_or_bondage_generalization": false,
+    "human_suspension_generalization": false
+  },
+  "split_hygiene": {
+    "source_document_unit": "doi-10.3390-f12111457",
+    "document_disjoint_requirement": "Assign the official article HTML identity, official PDF, DOI record, this Markdown, and every derivative to one source-family split before chunking or derivation.",
+    "protected_data_accessed_during_build": false,
+    "protected_data_classes_not_accessed": [
+      "QA artifacts",
+      "dataset reviews",
+      "datasets",
+      "trainer artifacts",
+      "training projections",
+      "evaluation sets",
+      "validation sets",
+      "holdout sets",
+      "OOD sets",
+      "shadow sets",
+      "benchmarks",
+      "probes",
+      "unrelated corpus artifacts"
+    ]
+  }
+}
