@@ -1,0 +1,79 @@
+{
+  "audit": {
+    "by_decision": {
+      "drop": 0,
+      "edit": 3,
+      "keep": 0
+    },
+    "path": "data/manual_reviews/context_merit_audit_v433/context_merit_audit_v433.jsonl",
+    "rows": 3,
+    "sha256": "0f019484010d529e23df69616c7abca3b47ea241694d6cb1997162733a9eedaa"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 259,
+      "equipment_material": 23,
+      "resources_general": 84,
+      "safety_consent": 81,
+      "technique": 71
+    },
+    "before": {
+      "conflict_units": 259,
+      "equipment_material": 23,
+      "resources_general": 84,
+      "safety_consent": 81,
+      "technique": 71
+    },
+    "delta": {
+      "conflict_units": 0,
+      "equipment_material": 0,
+      "resources_general": 0,
+      "safety_consent": 0,
+      "technique": 0
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 0,
+    "output_rows": 531,
+    "output_sha256": "5d21081e044c3f5a2110212dae19e22dfdc08e4b59d483a134871cbeaa9c268c",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "decisions": 3,
+    "path": "data/manual_reviews/context_merit_audit_v433/pending_curation_context_merit_v433.jsonl",
+    "sha256": "cd2c216ce8e2dc8db4d905ff8697dbd077be59a4937948fc299540cda691e29c"
+  },
+  "prior_checkpoint": {
+    "artifacts": [
+      {
+        "path": "data/manual_reviews/context_merit_audit_v432/context_merit_audit_v432.jsonl",
+        "sha256": "08b9d1d8eeb79de8778e8cd19ec2c98dcb7f7d89092327434513f73acb8bb9a1"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v432/pending_curation_context_merit_v432.jsonl",
+        "sha256": "46f72ad35d82356b807fe4e05fff3296ba7b985aedbcfa972bee8de88c0a8afe"
+      },
+      {
+        "path": "data/manual_reviews/context_merit_audit_v432/report_context_merit_v432.json",
+        "sha256": "88a7b84955fc1c57dbd435eee76eb1de3ec9ca433fe49be6bb0acfe70fb416d2"
+      }
+    ],
+    "candidate": {
+      "rows": 531,
+      "sha256": "6bb26f0a0ef094168bed42826eadd1dc39dbd891d1ff62798032f16250c8becd"
+    }
+  },
+  "schema": "context-merit-audit-report-v433",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  }
+}
