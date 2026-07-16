@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T19:25:41Z
-Latest batch: `discovery_batch_029`
+Latest review at: 2026-07-16T19:45:00Z
+Latest batch: `discovery_batch_030`
 
 ## Outcome
 
@@ -2148,3 +2148,93 @@ cart, purchase, paywall, proof-of-work challenge, cache, archive-service or
 access-control bypass was used. Visual instructions were not reconstructed,
 private podcast material was not accessed, and no source body, audio, video or
 image entered a training artifact during discovery.
+
+## Discovery batch 030 outcome
+
+`discovery_batch_030` manually reviewed 14 exact-new source identities after
+canonical URL, title, creator, institutional record, DOI, serial and component
+deduplication. It records 0 `accept_high_priority`, 3
+`accept_targeted_scope`, 7 `defer`, and 4 `reject` decisions. The three
+accepted rights-bounded sources expand the canonical Markdown queue from 181
+to 184 resources; the discovery ledger grows from 354 to 368 records.
+
+This batch concentrates on source-critical Itō Seiu authority data, postwar
+Japanese SM serial bibliography, erotic-grotesque visual-culture scholarship,
+circus dynamic-force research, portable-frame and pulley-system engineering,
+access-centered wheelchair-user testimony and hard-to-locate academic work.
+The review separates a catalog fact from an issue's contents, an author's
+interpretation from primary evidence, open access from adaptation rights, and
+manufacturer or circus data from certification of a bondage hardpoint. A
+permissive label was not allowed to cure low factual value, unclear participant
+rights, unsafe instructions or weak evidence.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Art Platform Japan: Itō Seiu](https://artplatform.go.jp/ja/artists/A3641) | `accept_targeted_scope` | 22 | APJ-owned Government Standard Terms 2.0 authority data supports one compact attributed record of Seiu's Japanese and romanized name forms, real and art names, birth and death facts, and APJ activity field. The embedded Wikipedia excerpt, bibliography body, images, logos and external authority data are excluded. The record does not establish seme-e, kinbaku lineage, influence, teaching, technique or safety, and authority IDs remain provenance rather than trivia. |
+| [NDL postwar SM serial metadata set](https://ndlsearch.ndl.go.jp/books/R100000002-I034229049) | `accept_targeted_scope` | 24 | NDL-created bibliographic data may be reused without purpose restriction. One compact dossier may preserve the exact *Uramado*, *S&M Sniper* and *SM Spirits* title, publisher, span, frequency, status, title-relation and holdings facts, including gaps and record-identification limits. Holdings must never be presented as a complete run. Issue bodies, covers, images, commerce and unsupported claims about contents, editors, practitioners, readership, influence or lineage are excluded; URLs, call numbers and IDs are not memorization targets. |
+| [Takato Yamamoto e a arte erótico-grotesca](https://revistas.usp.br/ars/pt_BR/article/view/215682) | `accept_targeted_scope` | 23 | The official ARS article text is CC BY 4.0. A short, Portuguese-source-attributed digest may use only Alexandre Rodrigues da Costa's original prose where it directly relates bound-body imagery, kinbaku or shibari, Itō Seiu and Takato Yamamoto's visual art. Every broader historical claim requires independent checking. Artworks, figures, third-party quotations, unnecessary graphic detail and all technique, anatomy, consent, safety or lineage-authority inferences are excluded. |
+
+### Permission-, document-, or expert-review-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Itō Seiu and ghost painting](https://www.edo-tokyo-museum.or.jp/s-exhibition/ito-seiu/) | 24 | The official Edo-Tokyo Museum exhibition page provides a useful museum-authored biography and precise 2016 exhibition context, but ordinary copyright applies. Permission is required. If cleared, only museum-authored text may be digested; images, a separately authored comment and any inferred kinbaku lineage or technique remain excluded. |
+| [Nine Circus Apparatuses: A Comparative Study of Dynamic Forces](https://publications.polymtl.ca/55209/) | 36 | Cossin, Bergeron-Parenteau and Ross measured 118 movements by 34 professional or student acrobats across nine circus apparatus or discipline categories. The version of record is CC BY-NC-ND 4.0, so adaptation for this corpus requires permission. If cleared, findings remain study- and apparatus-bound; they cannot become bondage hardpoint, safe-working-load or scene prescriptions. |
+| [Single-point aerial rigging pulley systems](https://circusrigging.info/single-point-aerial-rigging-the-two-pulley-systems-and-what-is-safe-with-each/) | 28 | Mark Gibson's public 2026 article usefully distinguishes direct and shared-load arrangements, device from anchor load, redirects, backups, inspection and traceability. Ordinary copyright applies and the detailed engineering article is members-only. Permission and qualified rigging review are required; no gated content, formulas or cross-domain certification may be imported. |
+| [Can a wheelchair user be suspended in rope?](https://www.christian-red.co.uk/post/can-a-wheelchair-user-be-suspended-in-rope) | 27 | Christian Red and Cutie Crusher provide rare, labeled disabled-bottom and collaborator perspectives on asking rather than assuming, individualized access, chair and floor logistics, changing constraints, feedback and co-labbing. “Please share” means link sharing, not corpus permission. Both authors' permission plus disability-led, privacy and technical review are required; photos, diagnoses, speculative anatomy and procedural suspension detail are excluded. |
+| [Le Shibari au Japon: histoire d'un art esthétique](https://agorha.inha.fr/ark:/54721/70f21c11-84e9-4f71-b808-6ad88d594c5f) | 22 | AGORHA supplies CC BY 4.0 metadata for Ambre Pourcine's 2019 Sorbonne Master 1 thesis, but no thesis body or abstract is attached. Metadata alone cannot support a history, and the title cannot be expanded by inference. The body and its rights must be located and reviewed before any extraction. |
+| [Suspendulum specification sheet](https://suspendulum.com/specification-sheet/) | 24 | The manufacturer page contains configuration- and tube-gauge-specific claims and says professional-engineer certificates were issued in 2013 and 2018, but exposes neither those certificates nor a current manual or open license. Permission, exact revision and component documents, certificate reconciliation and independent engineering review are required before any number can enter training. Manufacturer claims do not certify another frame, ceiling, tree, hardpoint or scene. |
+| [The Composition of Decomposition](https://hdl.handle.net/2324/1806128) | 28 | Elizabeth Tinsley's 2017 peer-reviewed article is a strong source on Itō Seiu, kusōzu and erotic-grotesque visual culture, but its repository record provides no derivative license and the article contains extensive third-party images and quotations. Author and publisher permission plus component review are required. No digest may imply that kusōzu or Buddhism is a direct kinbaku lineage. |
+
+### Rejected sources
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [Obsession with the art of bondage](https://commons.wikimedia.org/wiki/File:Obsession_with_the_art_of_bondage..webm) | 5 | This visual performance video has no TimedText, little verifiable factual content and an unsupported ancient-art framing. Although Commons displays CC BY 3.0, the original-license check is bot-only and the page still requests human derivative and copyright review. No transcription, participant identification, computer vision, still extraction or technique reconstruction is permitted. |
+| [Rope Making for Bondage Use](https://en.wikibooks.org/wiki/Rope_Making_for_Bondage_Use) | 16 | CC BY-SA 3.0 does not cure an incomplete, weakly sourced manual. It includes unsupported strength and antibacterial claims, experimental fiber mixing, undefined testing, powered-drill manufacture, hard stretching, load drying, flame singeing and abrasive aging. These claims and unfinished care instructions must not seed facts or QA. |
+| [CALAFOU SHIBARI](https://archive.org/details/CALAFOUSHIBARI) | 5 | A 2016 multi-voice Spanish workshop recording is marked with Public Domain Mark 1.0, which is not a license or dedication, without provenance supporting public-domain status. Speakers, participants, workshop consent, component ownership, transcript quality and safety are unresolved. It must not be downloaded, transcribed, translated, diarized or used to reconstruct technique. |
+| [Psychotherapist's narrative of coming together through the holding of rope](https://era.ed.ac.uk/items/713fab98-99f8-4b08-953b-a4742d4cad29/full) | 13 | This unlicensed 2022 DClinPsychol thesis is a single author-subject self-case containing personal and anonymized clinical reflective material. It cannot establish that rope improves therapist presence, professional development, holding, clinical outcomes or healing. Ordinary copyright, privacy sensitivity and therapeutic-overclaim risk make the body unsuitable. |
+
+### Batch 030 rights, privacy, safety, and fact-value controls
+
+APJ permission applies only to clearly APJ-owned authority content and does not
+license an embedded encyclopedia excerpt, images, logos, bibliography bodies or
+linked authority databases. NDL's reuse statement covers NDL-created
+bibliographic data, not serial contents, covers, linked providers or commerce.
+ARS's CC BY 4.0 applies to the author's original article text, not reproduced
+artworks, figures, quotations or translated third-party components. Every
+accepted record retains attribution, source, retrieval date, change indication
+and applicable license link.
+
+Identifiers, URLs, DOIs, call numbers, page spans and issue-holdings strings are
+provenance controls, not QA targets. The NDL job teaches publication facts and
+their uncertainty, not URL memory or invented magazine contents. APJ authority
+data does not establish rope history. The ARS digest preserves authorship and
+interpretive framing and independently checks historical claims before any
+synthesis.
+
+Circus force measurements, aerial-rigging explanations and portable-frame
+manufacturer values remain in their exact domains. None certifies a bondage
+hardpoint, upline, anchor, body support, user, configuration or scene. No gated
+formula, capacity, certificate, visual step or equipment procedure enters the
+corpus without rights clearance, exact-document reconciliation and qualified
+review. Lived experience about disability and access remains attributed,
+consensual and minimized; it is never generalized to all wheelchair users or
+converted into diagnosis, anatomy or a suspension recipe.
+
+### Batch 030 access and clean-room statement
+
+The source worker read only the governing discovery ledger, queue, report,
+registry and tests plus exact public first-party pages, official museum,
+publisher, repository and catalog records, source-owned documents, rights and
+license pages, Crossref metadata and access notices needed to resolve identity,
+evidence and component boundaries. No QA, trainer, projection, evaluation,
+heldout, holdout, OOD, shadow, benchmark, probe, experiment, existing corpus
+body or unrelated repository artifact was read. No login, purchase, membership,
+paywall, challenge, cache, archive-service or access-control bypass was used.
+Members-only engineering content was not accessed, absent certificates and
+thesis bodies were not invented, visual instructions were not reconstructed,
+and no source body, audio, video or image entered a training artifact during
+discovery.
