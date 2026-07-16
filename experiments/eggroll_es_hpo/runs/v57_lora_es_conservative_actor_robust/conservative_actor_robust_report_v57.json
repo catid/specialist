@@ -1,0 +1,75 @@
+{
+  "all_candidates_exactly_aborted_to_master": true,
+  "compatibility_report": {
+    "content_sha256": "8203d8da8238adabf5e9c46d12e6c17731d4c07a6bed0e8c2e0a7c3b73dab8af",
+    "file_sha256": "9360e2f341002add11445cd1db80f82f73c1c2b21866b18abbf54c5394c3bab0",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v57_lora_es_conservative_actor_robust/compatibility_report_v55b.json"
+  },
+  "completed_at_utc": "2026-07-16T08:09:05.985561+00:00",
+  "content_sha256_before_self_field": "0255510fbffe1f2cf1be9b6b1048f04b6316c96d2e2072b8636298a066aeaa4d",
+  "document_disjoint_evaluation_doctrine_preserved": true,
+  "evaluated_ratios": [
+    0.21875,
+    0.1875,
+    0.15625,
+    0.125,
+    0.09375,
+    0.0625
+  ],
+  "internal_exact_state_report": {
+    "content_sha256": "18dd866e3bd0515189dc3348d63ce91dd6dff98b7696f0cedf79b81704485400",
+    "file_sha256": "9bb5a0b022b699ac6bf667add420635eb811801512c20daf714b92cb95c73b27",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v57_lora_es_conservative_actor_robust/nested_population_report_v52.json"
+  },
+  "ood_shadow_benchmark_holdout_or_protected_semantics_opened": false,
+  "optimizer_master_committed": false,
+  "p16_train_gate": {
+    "content_sha256": "7762a6fe7c462620c62f6b56ef87dd44c71df2f123483c920938577ac2274215",
+    "file_sha256": "b545218182a549359e883a65421572c73261405cf4fd7a6cd46bd1ea3dddb5fd",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v57_lora_es_conservative_actor_robust/p16_train_gate_v52.json"
+  },
+  "passing_candidate_saved": false,
+  "preregistration_content_sha256": "8e20fe14307ae316c117273b26d011ec56c400800e93ffb8c9539c5e228180e7",
+  "schema": "lora-es-conservative-actor-robust-report-v57",
+  "scientific_basis": "V55B train-only actor-sign fragility",
+  "selected_target_norm_ratio": null,
+  "status": "complete_train_only_no_master_commit",
+  "telemetry": {
+    "all_four_expected_actor_pids_resident": true,
+    "all_four_positive_utilization": true,
+    "by_gpu": {
+      "0": {
+        "expected_pid": 4067373,
+        "peak_memory_used_mib": 87330,
+        "peak_utilization_percent": 2,
+        "positive_utilization_samples": 1,
+        "samples": 3
+      },
+      "1": {
+        "expected_pid": 4067375,
+        "peak_memory_used_mib": 87330,
+        "peak_utilization_percent": 1,
+        "positive_utilization_samples": 1,
+        "samples": 3
+      },
+      "2": {
+        "expected_pid": 4067374,
+        "peak_memory_used_mib": 87330,
+        "peak_utilization_percent": 2,
+        "positive_utilization_samples": 1,
+        "samples": 3
+      },
+      "3": {
+        "expected_pid": 4067376,
+        "peak_memory_used_mib": 87330,
+        "peak_utilization_percent": 2,
+        "positive_utilization_samples": 1,
+        "samples": 3
+      }
+    },
+    "file_sha256": "c67e5d71e796d2e9bdea8613e909c94629ad16b6eb69798e9cbebac4b2353159",
+    "foreign_compute_pid_rows": 0,
+    "phase": "v57_conservative_actor_robust_projection_no_population_rerun"
+  },
+  "terminal_holdout_opened": false
+}
