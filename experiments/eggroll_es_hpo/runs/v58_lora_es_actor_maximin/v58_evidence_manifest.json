@@ -1,0 +1,79 @@
+{
+  "schema": "lora-es-actor-maximin-evidence-v58",
+  "status": "complete_negative_train_only_evidence",
+  "preregistration": {
+    "file_sha256": "ea34e39d439d7a1d90274a241fe1d3bf6102856aa887864e56b81178456529b9",
+    "content_sha256": "7ed6909971b52103569c72531ee489cf091b8e28564eebc07cdc42a76a79e913"
+  },
+  "attempt": {
+    "file_sha256": "9e2d4796266b1d13212f74237d5ef8fe7f1cabb44701080da74815d014db68e2",
+    "content_sha256": "7d257c55fe440c2d718536965c72b209c937cd19d16ce6d266083e529acca5ed"
+  },
+  "aggregate_report": {
+    "file_sha256": "2b7e541e0a806fea41e6d91dc718d89c42cd2920a06499e78c8c3e3001f09436",
+    "content_sha256": "14e9010f5f5485d47903b3a98c223aefc17bbffc5e29d2615d060cb9673777f9"
+  },
+  "p16_train_gate": {
+    "file_sha256": "7ead589f644eb686e6534f732995487d06a6dba0a36d8bef08c5a26ecb46d2b0",
+    "content_sha256": "ca7aac2e8cf43bc3a017d38cae88cfe16c33093fb6dc7bb4f93d2e941c194e79"
+  },
+  "internal_exact_state_report": {
+    "file_sha256": "d4015f46b330ab8ec4f3e421c5823dac87aacc5423091d503ea36f1f53d52c60",
+    "content_sha256": "0bab928349316e48aa162b20693ce86c44ab3081b9de45e1397c9b8b7fdc3919"
+  },
+  "projection": {
+    "direction_sha256": "710e824251342c7d4797f0a9ea3322a179614e8ac270c3a16d4b324461e75a0c",
+    "minimum_actor_objective_margin": 0.2443715137633462,
+    "dual_upper_bound": 0.24437153048028515,
+    "primal_dual_gap": 1.6716938944227877e-08,
+    "maximum_complementarity_residual": 9.015703133455968e-10,
+    "positive_dual_weight_count": 10,
+    "all_24_primal_margins_positive": true
+  },
+  "evaluated_ratios": [0.5, 0.375, 0.25, 0.1875, 0.125, 0.0625],
+  "selected_target_norm_ratio": null,
+  "passing_candidate_saved": false,
+  "per_ratio_failed_original_gate_checks": {
+    "0.5": ["domain_point_improvement", "fragile_generation_f1_noninferiority", "qa_logprob_noninferiority"],
+    "0.375": ["fragile_generation_f1_noninferiority"],
+    "0.25": ["fragile_generation_f1_noninferiority"],
+    "0.1875": ["fragile_generation_f1_noninferiority"],
+    "0.125": ["fragile_generation_f1_noninferiority", "qa_logprob_noninferiority"],
+    "0.0625": ["fragile_generation_f1_noninferiority", "qa_logprob_noninferiority"]
+  },
+  "train_finding": {
+    "fragile_generation_nonzero_passed_at_every_ratio": true,
+    "fragile_generation_f1_failed_at_every_ratio": true,
+    "ratios_0p375_0p25_0p1875_failed_only_fragile_generation_f1": true,
+    "all_24_positive_persisted_score_margins_did_not_predict_the_discrete_post_update_fragile_f1_gate": true,
+    "new_direction_scaling_exhausted": true
+  },
+  "p16_train_gate_gpu_activity": {
+    "source_gpu_log_file_sha256": "57f840c36a961234620a41f6d804c5a94ff65c89cecce867c390f4a1ed0fe683",
+    "phase": "p16_backtracking_train_gate",
+    "by_gpu": {
+      "0": {"expected_pid": 4101538, "samples": 354, "positive_utilization_samples": 202, "peak_utilization_percent": 100, "mean_utilization_percent": 35.20056497175141, "peak_memory_used_mib": 87330, "expected_pid_resident_all_samples": true},
+      "1": {"expected_pid": 4101540, "samples": 354, "positive_utilization_samples": 199, "peak_utilization_percent": 100, "mean_utilization_percent": 33.81073446327684, "peak_memory_used_mib": 87330, "expected_pid_resident_all_samples": true},
+      "2": {"expected_pid": 4101539, "samples": 354, "positive_utilization_samples": 206, "peak_utilization_percent": 100, "mean_utilization_percent": 34.96610169491525, "peak_memory_used_mib": 87330, "expected_pid_resident_all_samples": true},
+      "3": {"expected_pid": 4101541, "samples": 354, "positive_utilization_samples": 204, "peak_utilization_percent": 100, "mean_utilization_percent": 33.994350282485875, "peak_memory_used_mib": 87330, "expected_pid_resident_all_samples": true}
+    },
+    "all_four_expected_pids_resident_all_samples": true,
+    "all_four_positive_utilization": true,
+    "foreign_compute_pid_rows": 0
+  },
+  "final_gpu_idle": {
+    "memory_used_mib": {"0": 4, "1": 4, "2": 4, "3": 4},
+    "all_four_compute_process_lists_empty": true
+  },
+  "all_six_candidates_exactly_aborted_to_master": true,
+  "all_six_snapshots_absent": true,
+  "optimizer_master_committed": false,
+  "population_rerun_performed": false,
+  "p8_evaluation_performed": false,
+  "original_nine_calibrated_endpoint_gates_retained": true,
+  "additional_raw_actor_sign_checks_used": false,
+  "protected_semantics_opened": false,
+  "ood_shadow_opened": false,
+  "terminal_holdout_opened": false,
+  "document_disjoint_evaluation_doctrine_preserved": true
+}

@@ -1,0 +1,129 @@
+{
+  "additional_raw_actor_sign_checks_used": false,
+  "all_candidates_exactly_aborted_to_master": true,
+  "compatibility_report": {
+    "content_sha256": "dc714b113f250c9aa2c20f035b6d2cb8afb099651e6b6d744ef0e201e3e9605f",
+    "file_sha256": "65e114a3bcd906eeda7e2985dda64db7d7eb4348ec9a6c05b392cae60af0d10c",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v58_lora_es_actor_maximin/compatibility_report_v55b.json"
+  },
+  "completed_at_utc": "2026-07-16T08:29:58.750889+00:00",
+  "content_sha256_before_self_field": "14e9010f5f5485d47903b3a98c223aefc17bbffc5e29d2615d060cb9673777f9",
+  "document_disjoint_evaluation_doctrine_preserved": true,
+  "evaluated_ratios": [
+    0.5,
+    0.375,
+    0.25,
+    0.1875,
+    0.125,
+    0.0625
+  ],
+  "internal_exact_state_report": {
+    "content_sha256": "0bab928349316e48aa162b20693ce86c44ab3081b9de45e1397c9b8b7fdc3919",
+    "file_sha256": "d4015f46b330ab8ec4f3e421c5823dac87aacc5423091d503ea36f1f53d52c60",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v58_lora_es_actor_maximin/nested_population_report_v52.json"
+  },
+  "minimum_actor_objective_margin": 0.2443715137633462,
+  "ood_shadow_benchmark_holdout_or_protected_semantics_opened": false,
+  "optimizer_master_committed": false,
+  "original_nine_calibrated_endpoint_gates_retained": true,
+  "p16_train_gate": {
+    "content_sha256": "ca7aac2e8cf43bc3a017d38cae88cfe16c33093fb6dc7bb4f93d2e941c194e79",
+    "file_sha256": "7ead589f644eb686e6534f732995487d06a6dba0a36d8bef08c5a26ecb46d2b0",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v58_lora_es_actor_maximin/p16_train_gate_v52.json"
+  },
+  "passing_candidate_saved": false,
+  "preregistration_content_sha256": "7ed6909971b52103569c72531ee489cf091b8e28564eebc07cdc42a76a79e913",
+  "primal_dual_gap": 1.6716938944227877e-08,
+  "projection_direction_sha256": "710e824251342c7d4797f0a9ea3322a179614e8ac270c3a16d4b324461e75a0c",
+  "schema": "lora-es-actor-maximin-report-v58",
+  "selected_target_norm_ratio": null,
+  "status": "complete_train_only_no_master_commit",
+  "telemetry": {
+    "all_four_positive_each_required_phase": true,
+    "foreign_compute_pid_rows": 0,
+    "gpu_log_file_sha256": "57f840c36a961234620a41f6d804c5a94ff65c89cecce867c390f4a1ed0fe683",
+    "p16_train_gate": {
+      "by_gpu": {
+        "0": {
+          "expected_pid": 4101538,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 35.20056497175141,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 100,
+          "positive_utilization_samples": 202,
+          "samples": 354
+        },
+        "1": {
+          "expected_pid": 4101540,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 33.81073446327684,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 100,
+          "positive_utilization_samples": 199,
+          "samples": 354
+        },
+        "2": {
+          "expected_pid": 4101539,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 34.96610169491525,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 100,
+          "positive_utilization_samples": 206,
+          "samples": 354
+        },
+        "3": {
+          "expected_pid": 4101541,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 33.994350282485875,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 100,
+          "positive_utilization_samples": 204,
+          "samples": 354
+        }
+      },
+      "phase": "p16_backtracking_train_gate"
+    },
+    "projection": {
+      "by_gpu": {
+        "0": {
+          "expected_pid": 4101538,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 0.3333333333333333,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 1,
+          "positive_utilization_samples": 1,
+          "samples": 3
+        },
+        "1": {
+          "expected_pid": 4101540,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 0.6666666666666666,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 2,
+          "positive_utilization_samples": 1,
+          "samples": 3
+        },
+        "2": {
+          "expected_pid": 4101539,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 0.6666666666666666,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 2,
+          "positive_utilization_samples": 1,
+          "samples": 3
+        },
+        "3": {
+          "expected_pid": 4101541,
+          "expected_pid_resident_all_samples": true,
+          "mean_utilization_percent": 0.3333333333333333,
+          "peak_memory_used_mib": 87330,
+          "peak_utilization_percent": 1,
+          "positive_utilization_samples": 1,
+          "samples": 3
+        }
+      },
+      "phase": "v58_actor_maximin_projection_no_population_rerun"
+    }
+  },
+  "terminal_holdout_opened": false
+}
