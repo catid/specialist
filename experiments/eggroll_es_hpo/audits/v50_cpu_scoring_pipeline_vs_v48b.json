@@ -1,0 +1,120 @@
+{
+  "schema": "lora-es-population-pipeline-audit-v50",
+  "audited_at_utc": "2026-07-16T03:02:00+00:00",
+  "baseline": {
+    "experiment": "v48b_matched_lora_es_generation_boundary_pop8",
+    "attempt": "experiments/eggroll_es_hpo/runs/.v48b_matched_lora_es_generation_boundary_pop8.attempt.json",
+    "population": "experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/population_reliability_v48b.json",
+    "gpu_activity": "experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/gpu_activity_v48b.jsonl"
+  },
+  "candidate": {
+    "experiment": "v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline",
+    "attempt": "experiments/eggroll_es_hpo/runs/.v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline.attempt.json",
+    "population": "experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/population_reliability_v50.json",
+    "gpu_activity": "experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/gpu_activity_v50.jsonl"
+  },
+  "artifact_integrity": {
+    "all_phase_json_self_hashes_valid": true,
+    "all_cross_links_valid": true,
+    "implementation_bindings_match": true,
+    "gpu_samples": 958,
+    "gpu_log_rows": 3832,
+    "all_gpu_samples_have_complete_rank_coverage": true,
+    "foreign_compute_pids_observed": 0
+  },
+  "structural_equivalence": {
+    "actor_assignments_exact": true,
+    "common_random_plan_exact": true,
+    "requests_per_actor_state": 608,
+    "perturbation_certificates_exact": true,
+    "perturbation_certificate_count": 64,
+    "seeds_and_signs_exact": true,
+    "candidate_and_runtime_state_identities_exact": true,
+    "all_population_restores_exact": true
+  },
+  "real_run_numeric_equivalence": {
+    "passed": false,
+    "v48b_signed_score_sha256": "38b8088c5767420259ab34555995c1d6094cc027c2ea56484207a04e89d90243",
+    "v50_signed_score_sha256": "7c387e6da766ddc1059773bfd47cec28e6f40948d78b468420ed2c94c85f84c1",
+    "v48b_objective_sign_score_sha256": "885b8fc2c373257807c48cc72439c9a687c12ed05374997b57f92b89c8d53811",
+    "v50_objective_sign_score_sha256": "11ff7dc012f912fe2b2071a74c5f87c5e524e73b767f3908113899ab963c305d",
+    "objective_scalar_leaves": 256,
+    "objective_scalar_leaves_exact": 2,
+    "mean_absolute_scalar_delta": 0.00121166,
+    "maximum_absolute_scalar_delta": 0.0110875,
+    "maximum_delta_objective": "fragile_generation_f1",
+    "coefficient_cosine": 0.953831,
+    "coefficient_l2_delta": 0.133627,
+    "maximum_coefficient_component_delta": 0.080805,
+    "v48b_projection_content_sha256": "b8e5c3ee94c61a65997bcc23f0fe6d06edf7cbdc060ad11288a07c27af73084e",
+    "v50_projection_content_sha256": "4acf0659b1f7f215350100f83e999822f50eba5d9f00f487c0ec9c41a058729a"
+  },
+  "candidate_gate_comparison": {
+    "v48b_failed_checks": [
+      "fragile_generation_f1_noninferiority",
+      "prose_lm_noninferiority",
+      "qa_generation_f1_noninferiority"
+    ],
+    "v50_failed_checks": [
+      "domain_point_improvement"
+    ],
+    "promotion_authorized": false
+  },
+  "timing_seconds": {
+    "attempt_to_failure": {
+      "v48b": 542.883279,
+      "v50": 538.228376,
+      "v50_fractional_improvement": 0.008574
+    },
+    "monitored_wall": {
+      "v48b": 488.672,
+      "v50": 485.023,
+      "v50_fractional_improvement": 0.007467
+    },
+    "population": {
+      "v48b": 258.462094,
+      "v50": 254.277634,
+      "v50_fractional_improvement": 0.01619
+    }
+  },
+  "population_gpu_utilization": {
+    "v48b": {
+      "all_four_at_least_10_percent_fraction": 0.4745,
+      "none_at_least_10_percent_fraction": 0.4725,
+      "time_weighted_none_at_least_10_percent_seconds": 122.597,
+      "time_weighted_none_at_least_10_percent_fraction": 0.4743,
+      "synchronized_idle_gaps_at_least_2_seconds": 17,
+      "median_idle_gap_seconds": 7.575,
+      "maximum_idle_gap_seconds": 8.492
+    },
+    "v50": {
+      "all_four_at_least_10_percent_fraction": 0.4713,
+      "none_at_least_10_percent_fraction": 0.4851,
+      "time_weighted_none_at_least_10_percent_seconds": 123.796,
+      "time_weighted_none_at_least_10_percent_fraction": 0.4869,
+      "synchronized_idle_gaps_at_least_2_seconds": 17,
+      "median_idle_gap_seconds": 7.563,
+      "maximum_idle_gap_seconds": 9.086
+    }
+  },
+  "restoration_and_cleanup": {
+    "candidate_exact_abort_passed": true,
+    "all_four_ranks_exact": true,
+    "restored_master_sha256": "dfb8ef8981cd4a21bd8d342353fc3d9c84c5d4759c38973e1528245f2baff192",
+    "restored_runtime_values_sha256": "8ba98f0a9fad3c6faba57ba2b20f72507baaf9ece45bcbf3e4430dbf3ab61a482",
+    "transaction_quiescent": true,
+    "snapshot_created": false,
+    "post_update_artifact_created": false,
+    "worker_processes_absent_after_exit": true,
+    "strict_cleanup_receipt_present": false,
+    "strict_cleanup_gate_artifact_proven": false
+  },
+  "conclusion": {
+    "speedup_demonstrated": false,
+    "literal_numeric_equivalence_demonstrated": false,
+    "diagnosis": "The one-state CPU scoring pipeline hides scoring work but leaves materialize, generation wait, and exact restore synchronized across all four model actors. The unchanged inter-burst gaps show that exact restore plus next-state materialization and certification dominate the population critical path.",
+    "next_target": "Instrument materialize, generation, score, restore, and drain separately, then test resident or double-buffered adapter states or direct reconstruction from the pinned master with a final exact rollback."
+  },
+  "protected_semantics_opened": false,
+  "shadow_ood_holdout_or_benchmark_opened": false
+}

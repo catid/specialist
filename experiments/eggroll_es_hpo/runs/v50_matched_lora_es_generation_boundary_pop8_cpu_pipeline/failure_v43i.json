@@ -1,0 +1,21 @@
+{
+  "content_sha256_before_self_field": "eb93ca53301e8133b9484570f1d50b5ea2f9e7613a80ec3b4a01ef4b0ebf7b02",
+  "emergency_exact_abort": null,
+  "emergency_exact_abort_failure": null,
+  "failed_at_utc": "2026-07-16T02:54:25.263790+00:00",
+  "message": "v43i uncommitted candidate failed preservation gate and was exactly restored: {\"domain_point_improvement\": false, \"fragile_generation_exact_noninferiority\": true, \"fragile_generation_f1_noninferiority\": true, \"fragile_generation_nonzero_noninferiority\": true, \"prose_lm_noninferiority\": true, \"qa_generation_exact_noninferiority\": true, \"qa_generation_f1_noninferiority\": true, \"qa_generation_nonzero_noninferiority\": true, \"qa_logprob_noninferiority\": true}",
+  "persisted_phase_artifacts": {
+    "anchor_calibration": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/anchor_calibration_v50.json",
+    "calibration": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/numeric_calibration_v50.json",
+    "candidate_gate": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/candidate_gate_v50.json",
+    "exact_abort": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/exact_abort_v50.json",
+    "post_update": null,
+    "reliability": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/population_reliability_v50.json",
+    "snapshot": null
+  },
+  "schema": "matched-lora-es-failure-v43i",
+  "shadow_dev_external_eval_ood_or_holdout_opened": false,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_lora_es_multi_anchor_v43i.py\", line 1328, in main\n    raise RuntimeError(\nRuntimeError: v43i uncommitted candidate failed preservation gate and was exactly restored: {\"domain_point_improvement\": false, \"fragile_generation_exact_noninferiority\": true, \"fragile_generation_f1_noninferiority\": true, \"fragile_generation_nonzero_noninferiority\": true, \"prose_lm_noninferiority\": true, \"qa_generation_exact_noninferiority\": true, \"qa_generation_f1_noninferiority\": true, \"qa_generation_nonzero_noninferiority\": true, \"qa_logprob_noninferiority\": true}\n",
+  "transaction_accepted_before_failure": false,
+  "type": "RuntimeError"
+}
