@@ -1,0 +1,138 @@
+{
+  "audit": {
+    "by_decision": {
+      "drop": 1,
+      "edit": 4,
+      "keep": 2
+    },
+    "by_review_class": {
+      "consent_provenance_edit": 1,
+      "equipment_practical_keep": 2,
+      "equipment_provenance_edit": 1,
+      "partner_screening_provenance_edit": 1,
+      "reaction_interpretation_edit": 1,
+      "requested_resource_overlap_drop": 1
+    },
+    "full_snapshot_hash_repairs": 3,
+    "path": "data/manual_reviews/context_merit_audit_v457/context_merit_audit_v457.jsonl",
+    "rows": 7,
+    "sha256": "9d206c07e82a4bd9bba0280d8a810fe519f266eb26bf617c4c822c76edf0f9ed"
+  },
+  "baseline_checkpoint": {
+    "commit": "a777f45329af5c42606e791494b1f7cfc2aa1467",
+    "rows": 493,
+    "sha256": "c399f0175f6f10837c0b2e582ca3453a13c768838f18ae76225529547ebf237b",
+    "version": "v456"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 258,
+      "equipment_material": 21,
+      "resources_general": 77,
+      "safety_consent": 86,
+      "technique": 74
+    },
+    "before": {
+      "conflict_units": 258,
+      "equipment_material": 21,
+      "resources_general": 77,
+      "safety_consent": 86,
+      "technique": 74
+    },
+    "delta": {
+      "conflict_units": 0,
+      "equipment_material": 0,
+      "resources_general": 0,
+      "safety_consent": 0,
+      "technique": 0
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "curation_outcome": {
+    "high_value_rows_kept": 2,
+    "natural_or_provenance_repairs": 4,
+    "requested_resource_overlap_quarantined": 1
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 4,
+    "output_rows": 492,
+    "output_sha256": "029a54332329eb317b2d14b6acb7cf34e7f3dc3fef269cd0b9c21a0de4b7b903",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "manual_slice": {
+    "candidate_rows": 7,
+    "recent_passes_without_source": [
+      "v448",
+      "v449",
+      "v450",
+      "v451",
+      "v452",
+      "v453",
+      "v454",
+      "v455",
+      "v456"
+    ],
+    "source": "crash_restraint",
+    "subjects": [
+      "partner and instructor due diligence",
+      "rope-kit choices",
+      "negotiation and reaction interpretation"
+    ]
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "drop": 5
+    },
+    "decisions": 5,
+    "path": "data/manual_reviews/context_merit_audit_v457/pending_curation_context_merit_v457.jsonl",
+    "sha256": "0326e7ab5720275a7013f576898939d83898b90d291d5bc3c54f6aea0e7fdab2"
+  },
+  "replacement_additions": {
+    "path": "data/manual_reviews/context_merit_audit_v457/replacement_additions_context_merit_v457.jsonl",
+    "rows": 4,
+    "sha256": "7adcc24da1a17f23fd1c324c079f77bab50debe38b8a3444edf10c77f35f6623"
+  },
+  "requested_resource_coverage": {
+    "crash_restraint_owner_fact_present": true,
+    "manifest_urls": 24,
+    "manifest_urls_present": 24,
+    "owner_resource_facts": 24
+  },
+  "schema": "context-merit-audit-report-v457",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_received_eval_heldout_ood_shadow_or_benchmark_content": false
+  },
+  "source_boundary": {
+    "new_or_pending_corpus_inputs": 0,
+    "protected_eval_heldout_holdout_ood_shadow_probe_rows_opened": 0,
+    "raw_markdown_or_snapshot_documents_modified": 0,
+    "scout_files_opened_or_modified": 0,
+    "training_or_eval_artifacts_modified": 0
+  },
+  "source_snapshot_inventory": {
+    "documents": 3,
+    "paths": [
+      "data/raw/crash_restraint_building_rope_kit_20260714.json",
+      "data/raw/crash_restraint_getting_started_20260714.json",
+      "data/raw/crash_restraint_negotiation_consent_20260714.json"
+    ],
+    "reviewed_rows": 7,
+    "total_unique_characters": 6135
+  },
+  "training_layer_contract": {
+    "cleaned_markdown_site_corpora": "Distinct first-class source artifacts; no raw corpus output was edited or ingested by v457.",
+    "deduplication_policy": "Do not collapse a cleaned Markdown document and its derived Q&A merely because they express the same source knowledge.",
+    "derived_qa": "Distinct first-class training layer; v457 changes only existing v456 Q&A after full review of three pinned source snapshots.",
+    "provenance_requirement": "Every reviewed row is pinned to source URL, full-document text hash, snapshot file hash, and exact supporting evidence."
+  },
+  "v52_isolation": {
+    "active_v52_inputs_modified": false,
+    "candidate_status": "isolated_pending_not_promoted"
+  }
+}
