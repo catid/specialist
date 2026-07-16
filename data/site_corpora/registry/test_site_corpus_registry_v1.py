@@ -221,6 +221,17 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             kecc["safety_transfer_flags"],
         )
 
+        hitch = self.by_id["mdpi_tree_climbing_friction_hitch_2021"]
+        self.assertEqual(
+            hitch["source_document_identity"]["doi"], "10.3390/f12111457"
+        )
+        self.assertEqual(hitch["rights_basis"]["status"], "explicit_open_license")
+        self.assertEqual(hitch["rights_basis"]["license"], "CC BY 4.0")
+        self.assertIn(
+            "no_natural_fiber_bondage_shibari_kinbaku_or_human_suspension_transfer",
+            hitch["safety_transfer_flags"],
+        )
+
     def test_safety_and_domain_transfer_flags_cannot_be_empty(self) -> None:
         for item in self.artifacts:
             flags = item["safety_transfer_flags"]

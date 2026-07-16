@@ -387,6 +387,62 @@
       "whitespace_delimited_word_count": 4129
     },
     {
+      "artifact_id": "canonical-markdown:mdpi_tree_climbing_friction_hitch_2021",
+      "byte_length": 20333,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/mdpi_tree_climbing_friction_hitch_2021/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "cff6057e855cec1f14651399a29bd71c9aa985cee766103d5c0ca0ecb35b62f2",
+      "markdown_path": "data/site_corpora/mdpi_tree_climbing_friction_hitch_2021/CORPUS.md",
+      "markdown_sha256": "ec02c592bd21de3bf1c3ff812a3f486772e591193e457e83c394c111a8a26ce7",
+      "non_qa": true,
+      "qwen36_token_count": 4384,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:5039a93a4cb67b0f7b6e867db4151e10035fa3c5ac2bbe6821a422d88609c7b4",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "mdpi_tree_climbing_friction_hitch_2021",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The official MDPI article identifies the work as Creative Commons Attribution 4.0; the manually transformed corpus records full attribution, changes, the licence, and no endorsement.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "limitations": [
+          "Images, table layouts, references, standards, manufacturers, brands, instruments, hardware, catalog ratings, and other third-party components are excluded.",
+          "The source is a preliminary 36-run slow semi-static bench study of two exact synthetic arborist rope systems and two hitches, not a field, dynamic, cyclic, fall, or live-human study.",
+          "Open licensing does not turn observed loads, slips, diameter changes, or temperatures into safe ratings, certify either hitch, or authorize transfer to natural fiber, bondage, shibari, kinbaku, or human suspension."
+        ],
+        "promotion_gate": "ready_with_attribution_component_audit_and_experimental_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "exact_two_rope_two_hitch_slow_semistatic_bench_scope_required",
+        "no_best_knot_safe_rating_certification_or_equipment_recommendation",
+        "no_dynamic_cyclic_fall_shock_or_live_human_inference",
+        "no_natural_fiber_bondage_shibari_kinbaku_or_human_suspension_transfer",
+        "observed_load_slip_diameter_and_temperature_are_not_field_thresholds"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.mdpi.com/1999-4907/12/11/1457",
+        "doi": "10.3390/f12111457",
+        "identity_type": "journal_article",
+        "source_id": "doi-10.3390-f12111457"
+      },
+      "source_document_identity_sha256": "5039a93a4cb67b0f7b6e867db4151e10035fa3c5ac2bbe6821a422d88609c7b4",
+      "source_label": "Tensile Strength of Ropes and Friction Hitch Used in Tree Climbing Work",
+      "unicode_word_count": 2945,
+      "whitespace_delimited_word_count": 2913
+    },
+    {
       "artifact_id": "canonical-markdown:rope365",
       "byte_length": 90243,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -660,7 +716,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "4790554aafb0043955af028534b5f78020152f5cddf8d439bb53d0fde16f48a9"
+    "sha256": "9bbfed24db378b1e5926c791f9fb64caca82c72c97e337fecbe6935c69aef55d"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -699,7 +755,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "22b450973409a333e0b8d0f36393710184800349224c2db7337a3d5e43a90774",
+  "source_tree_fingerprint_sha256": "96114c02eec4f71d36c5d8cb4619aea89b6d2b15bf510cf7aafa5a5fae98ff0d",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -709,11 +765,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 12,
-    "byte_length": 3897276,
-    "qwen36_token_count": 1146914,
-    "source_document_split_group_count": 12,
-    "unicode_word_count": 511346,
-    "whitespace_delimited_word_count": 399694
+    "artifact_count": 13,
+    "byte_length": 3917609,
+    "qwen36_token_count": 1151298,
+    "source_document_split_group_count": 13,
+    "unicode_word_count": 514291,
+    "whitespace_delimited_word_count": 402607
   }
 }

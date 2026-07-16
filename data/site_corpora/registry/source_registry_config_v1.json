@@ -227,6 +227,39 @@
       ]
     },
     {
+      "resource_id": "mdpi_tree_climbing_friction_hitch_2021",
+      "source_label": "Tensile Strength of Ropes and Friction Hitch Used in Tree Climbing Work",
+      "manifest_path": "data/site_corpora/mdpi_tree_climbing_friction_hitch_2021/manifest.json",
+      "markdown_path": "data/site_corpora/mdpi_tree_climbing_friction_hitch_2021/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "journal_article",
+        "canonical_url": "https://www.mdpi.com/1999-4907/12/11/1457",
+        "doi": "10.3390/f12111457",
+        "source_id": "doi-10.3390-f12111457"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The official MDPI article identifies the work as Creative Commons Attribution 4.0; the manually transformed corpus records full attribution, changes, the licence, and no endorsement.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_component_audit_and_experimental_limits",
+        "limitations": [
+          "Images, table layouts, references, standards, manufacturers, brands, instruments, hardware, catalog ratings, and other third-party components are excluded.",
+          "The source is a preliminary 36-run slow semi-static bench study of two exact synthetic arborist rope systems and two hitches, not a field, dynamic, cyclic, fall, or live-human study.",
+          "Open licensing does not turn observed loads, slips, diameter changes, or temperatures into safe ratings, certify either hitch, or authorize transfer to natural fiber, bondage, shibari, kinbaku, or human suspension."
+        ]
+      },
+      "safety_transfer_flags": [
+        "exact_two_rope_two_hitch_slow_semistatic_bench_scope_required",
+        "no_best_knot_safe_rating_certification_or_equipment_recommendation",
+        "no_dynamic_cyclic_fall_shock_or_live_human_inference",
+        "no_natural_fiber_bondage_shibari_kinbaku_or_human_suspension_transfer",
+        "observed_load_slip_diameter_and_temperature_are_not_field_thresholds"
+      ]
+    },
+    {
       "resource_id": "rope365",
       "source_label": "Rope365 canonical instructional site digest",
       "manifest_path": "data/site_corpora/rope365/manifest.json",
