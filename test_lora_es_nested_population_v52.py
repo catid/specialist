@@ -412,13 +412,13 @@ def test_v52_preregistration_freezes_gates_and_compute_plan():
     assert value["launcher_fix"]["required_python"] == str(
         design.REQUIRED_PYTHON_V52
     )
-    assert value["retry4_equivalence_and_schema_repair"][
-        "retry3_science_and_gates_byte_equivalent"
+    assert value["retry5_equivalence_and_measurement_persistence"][
+        "retry4_science_and_gates_byte_equivalent"
     ] is True
-    assert value["retry4_equivalence_and_schema_repair"][
-        "retry3_shared_stricter_reliability_gate_preserved"
+    assert value["retry5_equivalence_and_measurement_persistence"][
+        "retry4_shared_stricter_reliability_gate_preserved"
     ] is True
-    assert value["retry4_equivalence_and_schema_repair"][
+    assert value["retry5_equivalence_and_measurement_persistence"][
         "original_to_retry3_whole_science_equivalence_claimed"
     ] is False
     assert value["measurement_contract"][
@@ -430,6 +430,12 @@ def test_v52_preregistration_freezes_gates_and_compute_plan():
     assert value["measurement_contract"][
         "score_or_output_replay_used_as_restoration_gate"
     ] is False
+    assert value["measurement_contract"][
+        "both_arm_reliability_receipts_persist_before_global_stop"
+    ] is True
+    assert value["measurement_contract"][
+        "projection_authorized_only_if_both_arms_reliable"
+    ] is True
     assert value["measurement_contract"]["population_actor_reducer"] == (
         "fixed arithmetic mean in ascending actor-rank order"
     )
@@ -601,6 +607,58 @@ def test_v52_extracts_real_nested_calibration_bounds_and_rejects_stale_shape():
     del stale["bootstrap"]["bounds"]
     with pytest.raises(RuntimeError, match="nested numeric calibration schema"):
         runtime.numeric_calibration_bounds_v52(stale)
+
+
+@pytest.mark.parametrize("p8_passed,p16_passed", [
+    (False, True), (True, False), (True, True),
+])
+def test_v52_persists_both_reliabilities_before_global_projection_gate(
+    p8_passed, p16_passed,
+):
+    receipts = {
+        "p8": {
+            "schema": "nested-population-reliability-v52",
+            "population_size": 8,
+            "passed": p8_passed,
+        },
+        "p16": {
+            "schema": "nested-population-reliability-v52",
+            "population_size": 16,
+            "passed": p16_passed,
+        },
+    }
+    projection_calls = []
+    arms = runtime.finalize_population_arms_v52(
+        {"sealed": "scores"}, receipts,
+        projection_fn=lambda _scores, size: (
+            projection_calls.append(size) or {"population_size": size}
+        ),
+        scale_plans_fn=lambda projection: [projection["population_size"]],
+    )
+    assert set(arms) == {"p8", "p16"}
+    assert arms["p8"]["reliability"] is receipts["p8"]
+    assert arms["p16"]["reliability"] is receipts["p16"]
+    if p8_passed and p16_passed:
+        assert projection_calls == [8, 16]
+        assert arms["p8"]["projection"] == {"population_size": 8}
+        assert arms["p16"]["projection"] == {"population_size": 16}
+    else:
+        assert projection_calls == []
+        assert arms["p8"]["projection"] is None
+        assert arms["p16"]["projection"] is None
+
+
+def test_v52_unreliable_population_stops_before_update_or_protected_calls():
+    calls = []
+
+    def downstream():
+        runtime.require_all_arms_reliable_v52({"all_arms_reliable": False})
+        calls.append("update")
+        calls.append("protected")
+
+    with pytest.raises(RuntimeError, match="persisted both-arm"):
+        downstream()
+    assert calls == []
 
 
 def test_v52_v434_content_free_train_contract_is_exact_and_source_faithful():

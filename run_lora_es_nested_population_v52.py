@@ -29,14 +29,14 @@ import lora_es_nested_population_v52 as design
 ROOT = Path(__file__).resolve().parent
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "matched_lora_es_nested_p8_vs_p16_v52_retry4.json"
+    "matched_lora_es_nested_p8_vs_p16_v52_retry5.json"
 ).resolve()
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
-    "v52_matched_lora_es_nested_p8_vs_p16_retry4"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry5"
 ).resolve()
 ATTEMPT = (
-    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16_retry4.attempt.json"
+    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16_retry5.attempt.json"
 ).resolve()
 WORKER_EXTENSION_V52 = (
     "eggroll_es_worker_lora_v52.LoRAAdapterStateWorkerExtensionV52"
@@ -329,8 +329,8 @@ def load_preregistration_v52(args) -> dict:
         or launcher.get("required_python") != str(design.REQUIRED_PYTHON_V52)
         or launcher.get("change_scope")
         != (
-            "fresh_retry4_artifact_paths_plus_validated_numeric_"
-            "calibration_bounds_schema_path_only"
+            "fresh_retry5_artifact_paths_plus_both_arm_reliability_"
+            "measurement_persistence_only"
         )
         or launcher.get("retry2_failure_after_four_actor_model_load")
         is not True
@@ -356,13 +356,23 @@ def load_preregistration_v52(args) -> dict:
         != "2054f89691154f02faf3017e08110ee6b1e49fe612dea2fc36f44bc3a5a3d710"
         or launcher.get("retry3_strict_cleanup_content_sha256")
         != "59157ed14bfbfefeee3a45478e5699fa9175da5e3b23750f1c4c505727157920"
-        or value.get("retry4_equivalence_and_schema_repair", {}).get(
-            "retry3_science_and_gates_byte_equivalent"
+        or launcher.get("retry4_failure_file_sha256")
+        != design.SEALED_NUMERIC_PARENTS_V52[
+            "v52_retry4_failure"
+        ]["file_sha256"]
+        or launcher.get("retry4_gpu_log_file_sha256")
+        != design.RETRY4_GPU_LOG_SHA256_V52
+        or launcher.get("retry4_no_update_or_protected_access") is not True
+        or launcher.get(
+            "retry4_treatment_reliability_thresholds_and_stop_changed"
+        ) is not False
+        or value.get("retry5_equivalence_and_measurement_persistence", {}).get(
+            "retry4_science_and_gates_byte_equivalent"
         ) is not True
-        or value.get("retry4_equivalence_and_schema_repair", {}).get(
-            "retry3_shared_stricter_reliability_gate_preserved"
+        or value.get("retry5_equivalence_and_measurement_persistence", {}).get(
+            "retry4_shared_stricter_reliability_gate_preserved"
         ) is not True
-        or value.get("retry4_equivalence_and_schema_repair", {}).get(
+        or value.get("retry5_equivalence_and_measurement_persistence", {}).get(
             "original_to_retry3_whole_science_equivalence_claimed"
         ) is not False
         or value.get("measurement_contract", {}).get(
@@ -391,6 +401,15 @@ def load_preregistration_v52(args) -> dict:
         or value.get("measurement_contract", {}).get(
             "candidate_gate_remains_repeat_consensus_based"
         ) is not True
+        or value.get("measurement_contract", {}).get(
+            "both_arm_reliability_receipts_persist_before_global_stop"
+        ) is not True
+        or value.get("measurement_contract", {}).get(
+            "projection_authorized_only_if_both_arms_reliable"
+        ) is not True
+        or value.get("measurement_contract", {}).get(
+            "global_stop_decision_changed_from_retry4"
+        ) is not False
         or value.get("retry3_protocol_delta", {}).get(
             "sealed_before_any_v52_population_observation"
         ) is not True
@@ -1293,9 +1312,11 @@ def replicated_population_v52(
         for rank, score in enumerate(item["actor_scores"]):
             scores[state["label"]][state["direction"]][rank] = score
             receipts.append({
+                "state_index": state["state_index"],
                 "direction": state["direction"],
                 "sign": state["label"],
                 "actor_rank": rank,
+                "score_sha256": design.canonical_sha256_v52(score),
                 "subset_content_sha256": v48b._SEALED_SUBSET[
                     "subset"
                 ]["content_sha256_before_self_field"],
@@ -1324,29 +1345,33 @@ def replicated_population_v52(
     common = _common_random_plan_v52(
         receipts, v48b._SEALED_SUBSET["subset"],
     )
-    arms = {}
+    reliabilities = {}
     for name, population_size in (("p8", 8), ("p16", 16)):
         sign_scores = design.extract_arm_sign_scores_v52(
             scores, population_size,
         )
         central = prior._central_replicates(sign_scores["domain"])
-        reliability = design.reliability_gate_v52(
+        reliabilities[name] = design.reliability_gate_v52(
             central, fresh_calibration_observed_maximum,
         )
-        if reliability["passed"] is not True:
-            raise RuntimeError(f"v52 {name} population reliability failed")
-        projection = design.project_arm_v52(scores, population_size)
-        arms[name] = {
-            "population_size": population_size,
-            "reliability": reliability,
-            "projection": projection,
-            "scale_plans": design.scale_plans_v52(projection),
-        }
+    arms = finalize_population_arms_v52(scores, reliabilities)
+    all_arms_reliable = all(
+        arms[name]["reliability"]["passed"] is True
+        for name in ("p8", "p16")
+    )
     return {
         "schema": "nested-direct-pinned-master-population-v52",
-        "status": "complete_before_any_optimizer_update",
+        "status": "complete_both_arm_reliability_before_any_optimizer_update",
         "signed_scores": scores,
+        "signed_scores_sha256": design.canonical_sha256_v52(scores),
+        "signed_score_receipts": receipts,
+        "signed_score_receipts_sha256": design.canonical_sha256_v52(receipts),
         "arms": arms,
+        "all_arms_reliable": all_arms_reliable,
+        "projection_performed": all_arms_reliable,
+        "global_stop_before_projection_update_or_train_gates": (
+            not all_arms_reliable
+        ),
         "common_random_plan": common,
         "timing": {
             "coverage": timing,
@@ -1357,9 +1382,53 @@ def replicated_population_v52(
         "actual_final_restore_actor_receipts": 4,
         "all_state_identities_sealed_by_four_actor_runtime_consensus": True,
         "final_exact_restore_passed": True,
+        "optimizer_update_or_train_gate_opened": False,
         "protected_semantics_opened": False,
         "sealed_holdout_opened": False,
     }
+
+
+def finalize_population_arms_v52(
+    scores: dict, reliabilities: dict, *, projection_fn=None,
+    scale_plans_fn=None,
+) -> dict:
+    """Persist both reliability receipts before authorizing any projection."""
+    if set(reliabilities) != {"p8", "p16"}:
+        raise RuntimeError("v52 both-arm reliability receipt coverage changed")
+    sizes = {"p8": 8, "p16": 16}
+    for name, receipt in reliabilities.items():
+        if (
+            receipt.get("schema") != "nested-population-reliability-v52"
+            or receipt.get("population_size") != sizes[name]
+            or not isinstance(receipt.get("passed"), bool)
+        ):
+            raise RuntimeError(f"v52 {name} reliability receipt changed")
+    all_reliable = all(receipt["passed"] for receipt in reliabilities.values())
+    projection_fn = projection_fn or design.project_arm_v52
+    scale_plans_fn = scale_plans_fn or design.scale_plans_v52
+    arms = {}
+    for name in ("p8", "p16"):
+        population_size = sizes[name]
+        arm = {
+            "population_size": population_size,
+            "reliability": reliabilities[name],
+            "projection": None,
+            "scale_plans": None,
+            "projection_authorized": all_reliable,
+        }
+        if all_reliable:
+            projection = projection_fn(scores, population_size)
+            arm["projection"] = projection
+            arm["scale_plans"] = scale_plans_fn(projection)
+        arms[name] = arm
+    return arms
+
+
+def require_all_arms_reliable_v52(population: dict) -> None:
+    if population.get("all_arms_reliable") is not True:
+        raise RuntimeError(
+            "v52 persisted both-arm population reliability global stop"
+        )
 
 
 def validate_final_aggregate_v52(value: dict) -> dict:
@@ -1672,7 +1741,7 @@ def evaluate_train_arm_v52(
 @contextmanager
 def patched_runtime_v52(prior):
     values = {
-        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16_retry4",
+        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16_retry5",
         "RUN_DIR": RUN_DIR,
         "ATTEMPT": ATTEMPT,
         "REPORT": RUN_DIR / "nested_population_report_v52.json",
@@ -1749,6 +1818,7 @@ def _execute_v52(preregistration: dict) -> int:
     phase = v40a.Phase()
     started = time.monotonic()
     p8_gate = p16_gate = None
+    population = population_artifact = None
     numeric_calibration = anchor_calibration = None
     preinstall = postinstall = postinstall_replay_delta = None
     preinstall_artifact = master_identity_artifact = None
@@ -1931,6 +2001,7 @@ def _execute_v52(preregistration: dict) -> int:
                 update_sequence=0,
                 transaction_tracker=transaction_tracker,
             )
+            require_all_arms_reliable_v52(population)
 
             full_plan = prior.fused.fused_requests_v43i(
                 requests, full_anchors,
@@ -2185,6 +2256,14 @@ def _execute_v52(preregistration: dict) -> int:
             "traceback": traceback.format_exc(),
             "p8_train_gate": p8_gate,
             "p16_train_gate": p16_gate,
+            "population": population,
+            "population_artifact": ({
+                "path": str(population_path),
+                "file_sha256": v40a.file_sha256(population_path),
+                "content_sha256": population_artifact[
+                    "content_sha256_before_self_field"
+                ],
+            } if population_artifact is not None else None),
             "actor_indexed_score_audit": {
                 "preinstall": preinstall,
                 "postinstall": postinstall,

@@ -15,11 +15,11 @@ import lora_es_nested_population_v52 as design
 ROOT = Path(__file__).resolve().parent
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "matched_lora_es_nested_p8_vs_p16_v52_retry4.json"
+    "matched_lora_es_nested_p8_vs_p16_v52_retry5.json"
 ).resolve()
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
-    "v52_matched_lora_es_nested_p8_vs_p16_retry4"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry5"
 ).resolve()
 TRAIN_PANEL_SELECTION_SEED_V52 = "v52-v434-content-free-generation-panel-20260716"
 
@@ -427,6 +427,34 @@ def _sealed_parent_receipts_v52() -> dict:
         is not False
         or design.file_sha256_v52(design.RETRY3_GPU_LOG_V52)
         != design.RETRY3_GPU_LOG_SHA256_V52
+        or values["v52_retry4_preregistration"].get("retry_revision")
+        != "retry4_calibration_bounds_schema_path_repair"
+        or values["v52_retry4_attempt"].get("launcher", {}).get("matched")
+        is not True
+        or values["v52_retry4_anchor_calibration"].get(
+            "calibrated_margins", {}
+        ).get("passed") is not True
+        or values["v52_retry4_failure"].get("message")
+        != "v52 p8 population reliability failed"
+        or values["v52_retry4_failure"].get("p8_train_gate") is not None
+        or values["v52_retry4_failure"].get("p16_train_gate") is not None
+        or values["v52_retry4_failure"].get("emergency_exact_abort")
+        is not None
+        or design.canonical_sha256_v52(
+            values["v52_retry4_failure"].get("emergency_exact_restore")
+        ) != "3ad620d05878c3f0894b6cb65b801516c4a0dbc4d66a81c82009eed3b05c3a15"
+        or design.canonical_sha256_v52(
+            values["v52_retry4_failure"].get("strict_cleanup")
+        ) != "080627e271051aca1f70c18e3a128657c57d40e2dbcab6ff7719028f3c6f6cbb"
+        or design.canonical_sha256_v52(
+            values["v52_retry4_failure"].get("final_gpu_idle")
+        ) != "7ff0611248500ff79f380d163e62a045f38a3bf9902d03c715555f6fc56eb48a"
+        or values["v52_retry4_failure"].get("protected_semantics_opened")
+        is not False
+        or values["v52_retry4_failure"].get("sealed_holdout_opened")
+        is not False
+        or design.file_sha256_v52(design.RETRY4_GPU_LOG_V52)
+        != design.RETRY4_GPU_LOG_SHA256_V52
     ):
         raise RuntimeError("v52 sealed V48E/V51 evidence contract changed")
     return {
@@ -448,7 +476,7 @@ def build_v52() -> dict:
     artifacts = {
         "attempt": str(
             RUN_DIR.parent
-            / ".v52_matched_lora_es_nested_p8_vs_p16_retry4.attempt.json"
+            / ".v52_matched_lora_es_nested_p8_vs_p16_retry5.attempt.json"
         ),
         "run_directory": str(RUN_DIR),
         "population": str(RUN_DIR / "nested_population_v52.json"),
@@ -494,8 +522,8 @@ def build_v52() -> dict:
         "launcher_fix": {
             "required_python": str(design.REQUIRED_PYTHON_V52),
             "change_scope": (
-                "fresh_retry4_artifact_paths_plus_validated_numeric_"
-                "calibration_bounds_schema_path_only"
+                "fresh_retry5_artifact_paths_plus_both_arm_reliability_"
+                "measurement_persistence_only"
             ),
             "original_preregistration_file_sha256": (
                 design.SEALED_NUMERIC_PARENTS_V52[
@@ -584,6 +612,41 @@ def build_v52() -> dict:
             "numeric_calibration_extraction_change": (
                 "bootstrap.equal_unit_mean -> bootstrap.bounds.equal_unit_mean"
             ),
+            "retry4_preregistration_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry4_preregistration"
+                ]["file_sha256"]
+            ),
+            "retry4_attempt_file_sha256": design.SEALED_NUMERIC_PARENTS_V52[
+                "v52_retry4_attempt"
+            ]["file_sha256"],
+            "retry4_master_identity_audit_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry4_master_identity_audit"
+                ]["file_sha256"]
+            ),
+            "retry4_numeric_calibration_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry4_numeric_calibration"
+                ]["file_sha256"]
+            ),
+            "retry4_anchor_calibration_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry4_anchor_calibration"
+                ]["file_sha256"]
+            ),
+            "retry4_failure_file_sha256": design.SEALED_NUMERIC_PARENTS_V52[
+                "v52_retry4_failure"
+            ]["file_sha256"],
+            "retry4_gpu_log_file_sha256": design.RETRY4_GPU_LOG_SHA256_V52,
+            "retry4_emergency_exact_restore_content_sha256": (
+                "3ad620d05878c3f0894b6cb65b801516c4a0dbc4d66a81c82009eed3b05c3a15"
+            ),
+            "retry4_strict_cleanup_content_sha256": (
+                "080627e271051aca1f70c18e3a128657c57d40e2dbcab6ff7719028f3c6f6cbb"
+            ),
+            "retry4_no_update_or_protected_access": True,
+            "retry4_treatment_reliability_thresholds_and_stop_changed": False,
         },
         "measurement_contract": {
             "reason": (
@@ -620,6 +683,11 @@ def build_v52() -> dict:
             "fresh_numeric_retained_repeats_authoritative": True,
             "fresh_maximum_repeat_actor_spread_authoritative": True,
             "candidate_gate_remains_repeat_consensus_based": True,
+            "both_arm_reliability_receipts_persist_before_global_stop": True,
+            "signed_scores_and_receipt_hashes_persist_before_global_stop": True,
+            "projection_authorized_only_if_both_arms_reliable": True,
+            "unreliable_arm_projection_forbidden": True,
+            "global_stop_decision_changed_from_retry4": False,
             "raw_questions_answers_or_outputs_persisted": False,
         },
         "retry3_protocol_delta": {
@@ -826,35 +894,35 @@ def build_v52() -> dict:
         "shadow_ood_holdout_or_benchmark_opened": False,
         "sealed_holdout_opened": False,
     }
-    retry3_science_and_gate_keys = (
+    retry4_science_and_gate_keys = (
         "single_scientific_variable", "arms", "fixed_recipe", "runtime",
         "state_derivations", "state_derivation_inventory_sha256",
         "transition_schedule", "train_only_selection", "ood_first_gate",
         "document_disjoint_shadow_gate", "treatment_success_rule",
         "stop_go_gates", "compute_plan",
     )
-    retry3 = design.sealed_json_v52("v52_retry3_preregistration")
-    retry3_science_and_gates = {
-        key: retry3[key] for key in retry3_science_and_gate_keys
-    }
+    retry4 = design.sealed_json_v52("v52_retry4_preregistration")
     retry4_science_and_gates = {
-        key: result[key] for key in retry3_science_and_gate_keys
+        key: retry4[key] for key in retry4_science_and_gate_keys
     }
-    if retry4_science_and_gates != retry3_science_and_gates:
-        raise RuntimeError("v52 retry4 changed Retry3 science or gates")
-    result["retry4_equivalence_and_schema_repair"] = {
-        "retry3_science_and_gate_keys": list(retry3_science_and_gate_keys),
-        "retry3_science_and_gates_content_sha256": design.canonical_sha256_v52(
-            retry3_science_and_gates
-        ),
+    retry5_science_and_gates = {
+        key: result[key] for key in retry4_science_and_gate_keys
+    }
+    if retry5_science_and_gates != retry4_science_and_gates:
+        raise RuntimeError("v52 retry5 changed Retry4 science or gates")
+    result["retry5_equivalence_and_measurement_persistence"] = {
+        "retry4_science_and_gate_keys": list(retry4_science_and_gate_keys),
         "retry4_science_and_gates_content_sha256": design.canonical_sha256_v52(
             retry4_science_and_gates
         ),
-        "retry3_science_and_gates_byte_equivalent": True,
-        "retry3_shared_stricter_reliability_gate_preserved": True,
+        "retry5_science_and_gates_content_sha256": design.canonical_sha256_v52(
+            retry5_science_and_gates
+        ),
+        "retry4_science_and_gates_byte_equivalent": True,
+        "retry4_shared_stricter_reliability_gate_preserved": True,
         "sole_implementation_change": (
-            "validate bootstrap schema and extract bootstrap.bounds instead "
-            "of stale bootstrap top-level metric path"
+            "persist both reliability receipts and signed-score hashes before "
+            "enforcing the unchanged global reliability stop"
         ),
         "original_to_retry3_whole_science_equivalence_claimed": False,
     }
