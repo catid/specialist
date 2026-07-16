@@ -1,0 +1,417 @@
+{
+  "access_contract": {
+    "dry_run_loads_model_or_gpu": false,
+    "dry_run_reads_train_semantics": false,
+    "protected_eval_ood_holdout_or_benchmark_path_opened": false,
+    "runtime_train_paths_only": [
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_fold3_train_v412.jsonl",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_row_conflict_unit_membership.json",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_generation_boundary_subset.json",
+      "/home/catid/specialist/data/general_prose_anchor_v1.jsonl",
+      "/home/catid/specialist/data/general_qa_proxy_anchor_v43h.jsonl"
+    ],
+    "sealed_train_only_timing_sources": [
+      "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/population_reliability_v48b.json",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/population_reliability_v50.json",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/gpu_activity_v48b.jsonl",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/gpu_activity_v50.jsonl"
+    ]
+  },
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v51_direct_pinned_master_transition_microbenchmark_retry1.attempt.json",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/failure_v51.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/gpu_activity_v51.jsonl",
+    "population": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/population_v51.json",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/transition_microbenchmark_report_v51.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1",
+    "snapshot": null,
+    "timing": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/per_state_timing_v51.json"
+  },
+  "content_sha256_before_self_field": "02dd64eb07694c6d659c3036b63037cf607b942f5e2bc98972d75c1c4b3abf79",
+  "created_at_utc": "2026-07-16T03:27:01.936012+00:00",
+  "design": {
+    "content_sha256": "09c47291baa0ac2a079ab94400f5b0181939a2e02ccfe24ad3050614757d2ba6",
+    "deferred_alternative": {
+      "name": "two resident LoRA runtime slots",
+      "reason": "changes the verified sole-slot topology and adds resident GPU state without being necessary to remove intermediate restores",
+      "status": "deferred_until_single_slot_transition_is_measured"
+    },
+    "historical_train_only_baseline": {
+      "interpretation": "descriptive timing baseline only; independent model generations are not a bit-exact population-quality comparator",
+      "v48b": {
+        "all_four_ge10_fraction": 0.46990382272458125,
+        "all_four_ge10_seconds": 121.45232600000004,
+        "all_idle_gaps_ge2_seconds": true,
+        "none_ge10_fraction": 0.4743316905882532,
+        "none_ge10_seconds": 122.596762,
+        "samples": 510,
+        "synchronized_idle_gap_count": 17,
+        "synchronized_idle_gap_max_seconds": 8.491809,
+        "synchronized_idle_gap_median_seconds": 7.574592,
+        "wall_seconds": 258.462094
+      },
+      "v50": {
+        "all_four_ge10_fraction": 0.4715235355697856,
+        "all_four_ge10_seconds": 119.89788899999992,
+        "all_idle_gaps_ge2_seconds": true,
+        "none_ge10_fraction": 0.486855623330206,
+        "none_ge10_seconds": 123.79649599999998,
+        "samples": 505,
+        "synchronized_idle_gap_count": 17,
+        "synchronized_idle_gap_max_seconds": 9.086343,
+        "synchronized_idle_gap_median_seconds": 7.562898000000001,
+        "wall_seconds": 254.277634
+      }
+    },
+    "protected_semantics_opened": false,
+    "required_timing": {
+      "actor_phase_receipts": 320,
+      "actors_per_state": 4,
+      "controller_observed_duration_required": [
+        "generate",
+        "drain"
+      ],
+      "phases": [
+        "materialize",
+        "generate",
+        "score",
+        "restore",
+        "drain"
+      ],
+      "states": 16,
+      "worker_monotonic_duration_required": [
+        "materialize",
+        "score",
+        "final_restore"
+      ]
+    },
+    "schema": "direct-pinned-master-transition-design-v51",
+    "selected_transition": {
+      "bf16_algebraic_rollback_used": false,
+      "candidate_derived_from": "immutable canonical FP32 master",
+      "candidate_derived_from_prior_candidate": false,
+      "expected_candidate_inventory_sha256": "62c70af2382c17973c4bd8fed3f74d63658da9cc9d5a60ba87d7fd850e151b40",
+      "expected_states": [
+        {
+          "candidate_identity_sha256": "23b23d3a398ac8f82f3ff5dccc695d696d40e00b5a2f47f0b81b9b9a49c07646",
+          "direction": 0,
+          "label": "plus",
+          "runtime_values_sha256": "eb5f25aa27d2fc2c796db9f97b81275cc178cbe4b689fe923b97c19f61f54867",
+          "seed": 140002291,
+          "sign": 1,
+          "state_index": 0
+        },
+        {
+          "candidate_identity_sha256": "90e7e36650de6b650c53058387e858099bbf73d3336680c71256273187e31847",
+          "direction": 0,
+          "label": "minus",
+          "runtime_values_sha256": "206e56e9a552b2a93c84737c70d1ea17a6b3ed81b86a707952bd9f362bc41280",
+          "seed": 140002291,
+          "sign": -1,
+          "state_index": 1
+        },
+        {
+          "candidate_identity_sha256": "0b6a875b678799ccac1273a1dd50867268d128926f879d03f199150016c25d62",
+          "direction": 1,
+          "label": "plus",
+          "runtime_values_sha256": "a4045f2a12343e57ad90adc7133a78f4c82adaacc0adb51de11db3841030da72",
+          "seed": 1028842752,
+          "sign": 1,
+          "state_index": 2
+        },
+        {
+          "candidate_identity_sha256": "f0dd8c59cdcc6709aa7fdfe64ceb01bdf8255d57521267c0591fb3510ee06780",
+          "direction": 1,
+          "label": "minus",
+          "runtime_values_sha256": "50457257c8f9d56096bc63aedb9c8b7b7e09208c4364cfb626e8e00530ea33f5",
+          "seed": 1028842752,
+          "sign": -1,
+          "state_index": 3
+        },
+        {
+          "candidate_identity_sha256": "f47e59fb97233ba3dd0ead002f721a935cac552984b952433997d65b26a76eeb",
+          "direction": 2,
+          "label": "plus",
+          "runtime_values_sha256": "f80e18026fb3750e5d13ba7764d58d6cd9986da1ccef5656a8ff3ca2101fcba8",
+          "seed": 480373990,
+          "sign": 1,
+          "state_index": 4
+        },
+        {
+          "candidate_identity_sha256": "e2a7126f7c581618cbebf38d55fa923f5012a10a49efbd64e80c41544e0ef935",
+          "direction": 2,
+          "label": "minus",
+          "runtime_values_sha256": "784fc5d505bbbf12863984a3fce5f2f63b18d3cd2e1c9bff0be679460df42c14",
+          "seed": 480373990,
+          "sign": -1,
+          "state_index": 5
+        },
+        {
+          "candidate_identity_sha256": "a3439ae42bade04aa83ec0db70589ef6270a81626fe80185b4316cce638a1763",
+          "direction": 3,
+          "label": "plus",
+          "runtime_values_sha256": "0353f6040c54fc191a8ce5aa97a9ed3bbc1e53bb4e11073029843287b8a28a77",
+          "seed": 1037026679,
+          "sign": 1,
+          "state_index": 6
+        },
+        {
+          "candidate_identity_sha256": "12e20252865ec6001f116f3614e75e6b1a7481a45bf5c9dfe499abf5d68a1358",
+          "direction": 3,
+          "label": "minus",
+          "runtime_values_sha256": "d43a4f946e57330c91029c426b0a09b45334dad5ca351446f50e10d000f7da7b",
+          "seed": 1037026679,
+          "sign": -1,
+          "state_index": 7
+        },
+        {
+          "candidate_identity_sha256": "2462e382b1de30f2a450ba3a897603e5ecf41939ad98e8268de37115c5b13459",
+          "direction": 4,
+          "label": "plus",
+          "runtime_values_sha256": "b5533631407e7adba25f2fe90a62aeef490cc96b3455588e33b2a763ecf4d694",
+          "seed": 759861149,
+          "sign": 1,
+          "state_index": 8
+        },
+        {
+          "candidate_identity_sha256": "686aa88457988d03947a11be2bf114121a59a3a47c73715a9d5d7208ff0c40cd",
+          "direction": 4,
+          "label": "minus",
+          "runtime_values_sha256": "5e9d1888f7348bf7837e0b2886ec9e54e55da812706c1f003a0f2c6aa8391374",
+          "seed": 759861149,
+          "sign": -1,
+          "state_index": 9
+        },
+        {
+          "candidate_identity_sha256": "2021871c2b2602deb9e3d6993dc7cf7dd46edfd5a3c55604a659890f6f8377d6",
+          "direction": 5,
+          "label": "plus",
+          "runtime_values_sha256": "f6a385789e8cfc3e5adf5a455be9f64e4a91c22311d4d0461413ba8326543d99",
+          "seed": 227761095,
+          "sign": 1,
+          "state_index": 10
+        },
+        {
+          "candidate_identity_sha256": "f03651bfa6c89a2684bb3af04fe0de135167162ae3a9bf0172e58f7c7910ea41",
+          "direction": 5,
+          "label": "minus",
+          "runtime_values_sha256": "ca3e81f07fe3954583d4ad75ecb07e2c779f1bf0107587fec7bc7811644920a3",
+          "seed": 227761095,
+          "sign": -1,
+          "state_index": 11
+        },
+        {
+          "candidate_identity_sha256": "f7ab297b755d52cb4683c08d10e2e372d6519a0b96f88564288c40ffe7414661",
+          "direction": 6,
+          "label": "plus",
+          "runtime_values_sha256": "9d5463b1e9aac68e5dc581dcec9c4666cb4e78d5700e2dc0f547899ea2c2859f",
+          "seed": 428721957,
+          "sign": 1,
+          "state_index": 12
+        },
+        {
+          "candidate_identity_sha256": "3ed1d1c0ac50c7418d6fe6ba1e259874590acf468134e5c31000c4c599387de7",
+          "direction": 6,
+          "label": "minus",
+          "runtime_values_sha256": "50590c6da12e5240ac48a1c4ba35f246df91b5e4db91bed19e4155caadbd757b",
+          "seed": 428721957,
+          "sign": -1,
+          "state_index": 13
+        },
+        {
+          "candidate_identity_sha256": "32bfdc8da6826f1d8ec9e19b2009efc8b6efc601643521e6b0f3e2a79a5deebf",
+          "direction": 7,
+          "label": "plus",
+          "runtime_values_sha256": "8a6faeea013516f59b0807bd47ef63dfa8e78f696ebd68a70f103d34a3819570",
+          "seed": 150663570,
+          "sign": 1,
+          "state_index": 14
+        },
+        {
+          "candidate_identity_sha256": "edafa747b3a7aa28057303092bd55c45e773a296bfbd0c8d6f2a338a63fa80af",
+          "direction": 7,
+          "label": "minus",
+          "runtime_values_sha256": "e2e49828c9e95ed5bcde30edd18d5944f3a1ecd223f531bb1c78736a0372afc7",
+          "seed": 150663570,
+          "sign": -1,
+          "state_index": 15
+        }
+      ],
+      "extra_gpu_memory_required": false,
+      "final_exact_master_restores_retained": 1,
+      "final_master_sha256": "dfb8ef8981cd4a21bd8d342353fc3d9c84c5d4759c38973e1528245f2baff192",
+      "final_runtime_values_sha256": "8ba98f0a9fad3c6faba57ba2b20f72507baaf9ece45bcb3e4430dbf3ab61a482",
+      "intermediate_master_restores_eliminated": 15,
+      "name": "single-slot direct pinned-master rematerialization",
+      "runtime_slots": 1,
+      "state_materializations_retained": 16,
+      "states": 16
+    },
+    "shadow_ood_holdout_or_benchmark_opened": false,
+    "source_artifacts": {
+      "files": {
+        "v48b_gpu_log": [
+          "d947202d586128af38a3615313229ca94e75b978a92f4b105e8e220dca122add",
+          null
+        ],
+        "v48b_population": [
+          "6b620ef5febfd2c6af9f10c75541caa66c6e7a52b83de83ab144e9b595d5fdd8",
+          "d909c5f7c013529025f16f9000bebf18dc5060957af89b2ab4480ca4ba7c0a59"
+        ],
+        "v50_gpu_log": [
+          "cd2050101ede6c42f7cbc9e4111de782d6f8f5068c3abb3a7711d1d87b3a2e37",
+          null
+        ],
+        "v50_population": [
+          "0226c703c14e672fb30b1d3ebb5b5414fc9c26e5c0f4c26dfff7d1be405164f4",
+          "0df65209d45ae51385808d0776528193b8e3d013199af80bfbaf7e8d2a2afa63"
+        ]
+      },
+      "v48b_gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/gpu_activity_v48b.jsonl",
+      "v48b_population": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48b_matched_lora_es_generation_boundary_pop8/population_reliability_v48b.json",
+      "v50_gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/gpu_activity_v50.jsonl",
+      "v50_population": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/population_reliability_v50.json"
+    }
+  },
+  "gpu_launch_authorized": true,
+  "implementation_bindings": {
+    "builder_v51": "af325055bb235025cc16f75e65f6c218461ee9d2a55241409ab9cc96ada3c6e9",
+    "parent_preregistration_v48b": "34e19fe84ff061b98a8627f07daab59f5cbb8c718668fc479454114fef67c3d0",
+    "pipeline_v51": "5a3f24852dbe2b74ed0aa1cbd251efcfbf540f97e95b4d9b6b7ae728d30bb9ab",
+    "planning_v51": "726b194827bb5afc6693ce37e3bbd33b0f562716cc012b16fe850eef6479c545",
+    "runtime_v48b": "fa02c9568c7f027d4f9083ec270d4d2b132867fcfb733be8a23151f64c9e6401",
+    "runtime_v51": "daa9ed8645deed0eb3b07e649fb30003774df75a3a67fe1ae2b8647a25fff319",
+    "tests_v51": "20ad37de4bf87b49cd04e76f4da7e75fd23052850d13a0b8f7ce8617dff45403",
+    "worker_v51": "57c7e9356b45f330b2e0ea1b0f814482aff71fc93cccc13b4b956376e3252389"
+  },
+  "instrumentation": {
+    "actors_per_state": 4,
+    "controller_observed_generation_and_drain_completion": true,
+    "per_state_phases": [
+      "materialize",
+      "generate",
+      "score",
+      "restore",
+      "drain"
+    ],
+    "required_actor_phase_receipts": 320,
+    "states": 16,
+    "timing_does_not_change_objective_or_gate": true,
+    "worker_clocks_are_duration_only_not_cross_process_comparable": true
+  },
+  "microbenchmark_only": true,
+  "optimizer_update_authorized": false,
+  "parents": {
+    "v48b_preregistration": {
+      "content_sha256": "4d5e17a07551377f0ef39c3dfa306fda68b9b669eeafd3c78ebbfff894072d1e",
+      "file_sha256": "34e19fe84ff061b98a8627f07daab59f5cbb8c718668fc479454114fef67c3d0",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_generation_boundary_pop8_v48b.json",
+      "requests_objectives_and_sampling_inherited": true
+    }
+  },
+  "performance_interpretation": {
+    "historical_v50_median_synchronized_idle_gap_seconds": 7.562898000000001,
+    "historical_v50_population_wall_seconds": 254.277634,
+    "independent_population_scores_are_not_required_bit_exact": true,
+    "speed_signal_is_descriptive_not_quality_promotion": true,
+    "state_candidate_and_runtime_identities_are_required_bit_exact": true,
+    "useful_speed_signal": "at least 10% lower population wall and at least 20% lower median synchronized idle gap than sealed V50"
+  },
+  "protected_semantic_access_authorized": false,
+  "protected_semantics_opened": false,
+  "purpose": "Measure and remove the repeated exact restore-to-master before the next antithetic materialization, while reconstructing every runtime state independently from the pinned canonical FP32 master.",
+  "quality_selection_or_promotion_authorized": false,
+  "recipe": {
+    "alpha": 0.00015,
+    "conflict_units": 208,
+    "dataset": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_fold3_train_v412.jsonl",
+    "dataset_rows": 448,
+    "dataset_sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "engine_count": 4,
+    "fragile_generation_documents": 64,
+    "fused_requests_per_population_actor_state": 608,
+    "matched_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/initial_adapters/matched_lora_initialization_v41a_seed20260715041",
+    "membership": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_row_conflict_unit_membership.json",
+    "membership_file_sha256": "13f30232dd735451d4b90682b335072cbcc86de263c0984170f931721f764a9f",
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "population_size": 8,
+    "request_order_sha256": "8823e00d9600dc1ce56b2f5f5024a184d0b46ada034523ea2acbe6c7cd920dc7",
+    "seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570
+    ],
+    "sigma": 0.0006,
+    "signed_replicates_per_direction": 4,
+    "staged_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/matched_lora_initialization_v41b",
+    "subset": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_generation_boundary_subset.json",
+    "subset_content_sha256": "99fa38820a55d3ba7af0a10b5ae26238ffff754fded001a6cc248319cfcc23ca",
+    "subset_file_sha256": "e1c3601d1328ee2a1345423632e423628857147042755b8ac15e21a2506a0060",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "bc58bed21f60f6665b666b12c11d084b0e681b72e160918c871866b31d23ca99",
+    "worker_extension": "eggroll_es_worker_lora_v51.LoRAAdapterStateWorkerExtensionV51"
+  },
+  "required_gates": {
+    "15_intermediate_restores_elided": true,
+    "all_16_candidate_and_runtime_identities_exact": true,
+    "all_16x4x5_timing_receipts": true,
+    "all_candidates_reconstructed_from_pinned_master": true,
+    "all_four_gpus_attributed_positive": true,
+    "cpu_scorers_have_zero_gpu_visibility": true,
+    "final_all_four_exact_master_runtime_restore": true,
+    "no_cumulative_candidate_transition": true,
+    "no_optimizer_update_or_snapshot": true,
+    "post_population_base_score_exact": true,
+    "strict_cleanup_and_gpu_idle": true
+  },
+  "retry_of": {
+    "initial_failure": {
+      "content_sha256": "924baaee02bd4a4655af61e399ae132242394bd75fd635a01d02225ee89a9d25",
+      "file_sha256": "6f6faffbdbdf35e6bd0f1f0f9680472f1a196f2ec90c16d49e9589882beb951b",
+      "message": "'runtime'",
+      "model_or_gpu_loaded": false,
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark/failure_v51.json",
+      "protected_semantics_opened": false,
+      "type": "KeyError"
+    },
+    "initial_preregistration": {
+      "content_sha256": "558d10528ecbb8a2ad57c5ce1dc5a8b4081789edf0cc134bbd54fc363b270ba3",
+      "file_sha256": "312c8b9e6300996ecdcc23ecb501f3928bb7081a23dbda48a9932224da8f119a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_direct_pinned_master_transition_v51.json"
+    },
+    "reason": "restore omitted frozen parent runtime binding",
+    "scientific_contract_changed": false
+  },
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "matched-lora-es-direct-pinned-master-transition-preregistration-v51",
+  "shadow_ood_holdout_or_benchmark_authorized": false,
+  "shadow_ood_holdout_or_benchmark_opened": false,
+  "status": "preregistered_before_train_only_launch_retry1",
+  "transition_contract": {
+    "direct_candidate_to_candidate_delta_forbidden": true,
+    "emergency_exact_master_restore_required_on_failure": true,
+    "every_candidate_sha256_precommitted": true,
+    "every_runtime_values_sha256_precommitted": true,
+    "final_all_rank_state_certificate_required": true,
+    "final_exact_master_restore_required_on_success": true,
+    "immutable_fp32_master_retained": true,
+    "intermediate_bf16_algebraic_restore_forbidden": true,
+    "intermediate_exact_master_restores_eliminated": 15,
+    "sole_runtime_slot_retained": true,
+    "state_order": "direction ascending; plus then minus"
+  }
+}

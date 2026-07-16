@@ -20,7 +20,7 @@ import run_lora_es_generation_boundary_v48b as v48b
 
 
 ROOT = Path(__file__).resolve().parent
-EXPERIMENT = "v51_direct_pinned_master_transition_microbenchmark"
+EXPERIMENT = "v51_direct_pinned_master_transition_microbenchmark_retry1"
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs" / EXPERIMENT
 ).resolve()
@@ -32,8 +32,28 @@ TIMING_ARTIFACT = (RUN_DIR / "per_state_timing_v51.json").resolve()
 POPULATION_ARTIFACT = (RUN_DIR / "population_v51.json").resolve()
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
+    "matched_lora_es_direct_pinned_master_transition_v51_retry1.json"
+).resolve()
+INITIAL_PREREGISTRATION = (
+    ROOT / "experiments/eggroll_es_hpo/preregistrations/"
     "matched_lora_es_direct_pinned_master_transition_v51.json"
 ).resolve()
+INITIAL_PREREGISTRATION_FILE_SHA256 = (
+    "312c8b9e6300996ecdcc23ecb501f3928bb7081a23dbda48a9932224da8f119a"
+)
+INITIAL_PREREGISTRATION_CONTENT_SHA256 = (
+    "558d10528ecbb8a2ad57c5ce1dc5a8b4081789edf0cc134bbd54fc363b270ba3"
+)
+INITIAL_FAILURE = (
+    ROOT / "experiments/eggroll_es_hpo/runs/"
+    "v51_direct_pinned_master_transition_microbenchmark/failure_v51.json"
+).resolve()
+INITIAL_FAILURE_FILE_SHA256 = (
+    "6f6faffbdbdf35e6bd0f1f0f9680472f1a196f2ec90c16d49e9589882beb951b"
+)
+INITIAL_FAILURE_CONTENT_SHA256 = (
+    "924baaee02bd4a4655af61e399ae132242394bd75fd635a01d02225ee89a9d25"
+)
 PARENT_PREREGISTRATION = v48b.PREREGISTRATION
 PARENT_PREREGISTRATION_FILE_SHA256 = (
     "34e19fe84ff061b98a8627f07daab59f5cbb8c718668fc479454114fef67c3d0"
@@ -83,6 +103,50 @@ def _load_parent_v51() -> dict:
     return parent
 
 
+def _load_retry_receipts_v51() -> None:
+    if (
+        planning.file_sha256_v51(INITIAL_PREREGISTRATION)
+        != INITIAL_PREREGISTRATION_FILE_SHA256
+    ):
+        raise RuntimeError("v51 initial preregistration file changed")
+    initial = json.loads(
+        INITIAL_PREREGISTRATION.read_text(encoding="utf-8")
+    )
+    initial_compact = {
+        key: item for key, item in initial.items()
+        if key != "content_sha256_before_self_field"
+    }
+    if (
+        initial.get("content_sha256_before_self_field")
+        != INITIAL_PREREGISTRATION_CONTENT_SHA256
+        or planning.canonical_sha256_v51(initial_compact)
+        != INITIAL_PREREGISTRATION_CONTENT_SHA256
+    ):
+        raise RuntimeError("v51 initial preregistration content changed")
+    if (
+        planning.file_sha256_v51(INITIAL_FAILURE)
+        != INITIAL_FAILURE_FILE_SHA256
+    ):
+        raise RuntimeError("v51 initial failure file changed")
+    failure = json.loads(INITIAL_FAILURE.read_text(encoding="utf-8"))
+    failure_compact = {
+        key: item for key, item in failure.items()
+        if key != "content_sha256_before_self_field"
+    }
+    if (
+        failure.get("content_sha256_before_self_field")
+        != INITIAL_FAILURE_CONTENT_SHA256
+        or planning.canonical_sha256_v51(failure_compact)
+        != INITIAL_FAILURE_CONTENT_SHA256
+        or failure.get("type") != "KeyError"
+        or failure.get("message") != "'runtime'"
+        or failure.get("protected_semantics_opened") is not False
+        or failure.get("shadow_ood_holdout_or_benchmark_opened") is not False
+        or failure.get("emergency_exact_restore") is not None
+    ):
+        raise RuntimeError("v51 initial failure content changed")
+
+
 def implementation_bindings_v51() -> dict[str, str]:
     paths = {
         "runtime_v51": Path(__file__).resolve(),
@@ -112,9 +176,29 @@ def load_preregistration_v51(args) -> tuple[dict, dict]:
         if key != "content_sha256_before_self_field"
     }
     parent = _load_parent_v51()
+    _load_retry_receipts_v51()
     design = planning.build_design_v51()
     expected_recipe = dict(parent["recipe"])
     expected_recipe["worker_extension"] = WORKER_EXTENSION_V51
+    expected_runtime = dict(parent["runtime"])
+    expected_retry = {
+        "reason": "restore omitted frozen parent runtime binding",
+        "scientific_contract_changed": False,
+        "initial_preregistration": {
+            "path": str(INITIAL_PREREGISTRATION),
+            "file_sha256": INITIAL_PREREGISTRATION_FILE_SHA256,
+            "content_sha256": INITIAL_PREREGISTRATION_CONTENT_SHA256,
+        },
+        "initial_failure": {
+            "path": str(INITIAL_FAILURE),
+            "file_sha256": INITIAL_FAILURE_FILE_SHA256,
+            "content_sha256": INITIAL_FAILURE_CONTENT_SHA256,
+            "type": "KeyError",
+            "message": "'runtime'",
+            "model_or_gpu_loaded": False,
+            "protected_semantics_opened": False,
+        },
+    }
     artifacts = {
         "attempt": str(ATTEMPT),
         "run_directory": str(RUN_DIR),
@@ -132,7 +216,8 @@ def load_preregistration_v51(args) -> tuple[dict, dict]:
         != args.preregistration_content_sha256
         or value.get("schema")
         != "matched-lora-es-direct-pinned-master-transition-preregistration-v51"
-        or value.get("status") != "preregistered_before_train_only_launch"
+        or value.get("status")
+        != "preregistered_before_train_only_launch_retry1"
         or value.get("gpu_launch_authorized") is not True
         or value.get("microbenchmark_only") is not True
         or value.get("optimizer_update_authorized") is not False
@@ -140,6 +225,8 @@ def load_preregistration_v51(args) -> tuple[dict, dict]:
         or value.get("protected_semantic_access_authorized") is not False
         or value.get("shadow_ood_holdout_or_benchmark_authorized") is not False
         or value.get("recipe") != expected_recipe
+        or value.get("runtime") != expected_runtime
+        or value.get("retry_of") != expected_retry
         or value.get("design") != design
         or value.get("artifacts") != artifacts
         or value.get("implementation_bindings")
@@ -158,14 +245,6 @@ def load_preregistration_v51(args) -> tuple[dict, dict]:
         ) is not True
     ):
         raise RuntimeError("v51 preregistration contract changed")
-    recipe = value["recipe"]
-    subset = v48b.load_subset_v48b(
-        Path(recipe["subset"]), recipe["subset_file_sha256"],
-        recipe["subset_content_sha256"],
-    )
-    if subset["request_order_sha256"] != recipe["request_order_sha256"]:
-        raise RuntimeError("v51 frozen V48B request order changed")
-    v48b._SEALED_SUBSET = subset
     return value, design
 
 
@@ -693,6 +772,14 @@ def main(argv: list[str] | None = None) -> int:
             "filesystem_writes": False,
         }, sort_keys=True))
         return 0
+    recipe = prereg["recipe"]
+    subset = v48b.load_subset_v48b(
+        Path(recipe["subset"]), recipe["subset_file_sha256"],
+        recipe["subset_content_sha256"],
+    )
+    if subset["request_order_sha256"] != recipe["request_order_sha256"]:
+        raise RuntimeError("v51 frozen V48B request order changed")
+    v48b._SEALED_SUBSET = subset
     if ATTEMPT.exists() or RUN_DIR.exists():
         raise RuntimeError("v51 requires fresh artifact paths")
     preflight = v40a.gpu_preflight()

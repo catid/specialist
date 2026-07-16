@@ -14,6 +14,7 @@ import run_lora_es_transition_microbenchmark_v51 as runtime
 
 def build_v51() -> dict:
     parent = runtime._load_parent_v51()
+    runtime._load_retry_receipts_v51()
     design = planning.build_design_v51()
     recipe = dict(parent["recipe"])
     recipe["worker_extension"] = runtime.WORKER_EXTENSION_V51
@@ -22,7 +23,7 @@ def build_v51() -> dict:
             "matched-lora-es-direct-pinned-master-transition-"
             "preregistration-v51"
         ),
-        "status": "preregistered_before_train_only_launch",
+        "status": "preregistered_before_train_only_launch_retry1",
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "purpose": (
             "Measure and remove the repeated exact restore-to-master before "
@@ -46,6 +47,29 @@ def build_v51() -> dict:
             },
         },
         "recipe": recipe,
+        "runtime": dict(parent["runtime"]),
+        "retry_of": {
+            "reason": "restore omitted frozen parent runtime binding",
+            "scientific_contract_changed": False,
+            "initial_preregistration": {
+                "path": str(runtime.INITIAL_PREREGISTRATION),
+                "file_sha256": (
+                    runtime.INITIAL_PREREGISTRATION_FILE_SHA256
+                ),
+                "content_sha256": (
+                    runtime.INITIAL_PREREGISTRATION_CONTENT_SHA256
+                ),
+            },
+            "initial_failure": {
+                "path": str(runtime.INITIAL_FAILURE),
+                "file_sha256": runtime.INITIAL_FAILURE_FILE_SHA256,
+                "content_sha256": runtime.INITIAL_FAILURE_CONTENT_SHA256,
+                "type": "KeyError",
+                "message": "'runtime'",
+                "model_or_gpu_loaded": False,
+                "protected_semantics_opened": False,
+            },
+        },
         "design": design,
         "instrumentation": {
             "per_state_phases": [

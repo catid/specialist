@@ -287,6 +287,18 @@ def test_v51_preregistration_and_dry_run_are_zero_write_and_protected_free(
     tmp_path, monkeypatch, capsys,
 ):
     value = builder.build_v51()
+    parent = runtime._load_parent_v51()
+    assert value["runtime"] == parent["runtime"]
+    assert value["retry_of"]["scientific_contract_changed"] is False
+    assert value["retry_of"]["initial_failure"] == {
+        "path": str(runtime.INITIAL_FAILURE),
+        "file_sha256": runtime.INITIAL_FAILURE_FILE_SHA256,
+        "content_sha256": runtime.INITIAL_FAILURE_CONTENT_SHA256,
+        "type": "KeyError",
+        "message": "'runtime'",
+        "model_or_gpu_loaded": False,
+        "protected_semantics_opened": False,
+    }
     path = tmp_path / "prereg_v51.json"
     path.write_text(json.dumps(value, sort_keys=True) + "\n", encoding="utf-8")
     file_sha = planning.file_sha256_v51(path)
@@ -294,6 +306,12 @@ def test_v51_preregistration_and_dry_run_are_zero_write_and_protected_free(
         runtime, "RayPopulationOperationsV51",
         lambda *_args: (_ for _ in ()).throw(
             AssertionError("v51 dry-run entered GPU runtime")
+        ),
+    )
+    monkeypatch.setattr(
+        runtime.v48b, "load_subset_v48b",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(
+            AssertionError("v51 dry-run read train subset semantics")
         ),
     )
     before = set(tmp_path.iterdir())
