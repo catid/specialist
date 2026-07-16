@@ -401,6 +401,38 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
         }:
             self.assertIn(flag, t198["safety_transfer_flags"])
 
+    def test_innotrac_identity_rights_validation_and_transfer_gate_are_exact(self) -> None:
+        innotrac = self.by_id["innotrac_camera_visual_rope_inspection_2020"]
+        identity = innotrac["source_document_identity"]
+        self.assertEqual(identity["doi"], "10.14464/innotrac.v1i0.462")
+        self.assertEqual(identity["record_publication_date"], "2020-12-03")
+        self.assertEqual(identity["pdf_available_online_date"], "2020-12-07")
+        self.assertEqual(
+            identity["official_pdf_sha256"],
+            "f7b64101a3d8df7b76c8a8ecb06e631a1a892985e104bd10248f19d923559af2",
+        )
+        self.assertEqual(
+            innotrac["markdown_sha256"],
+            "84fb8d18bb2fe1b1492dd7c96f5ffb04f6a134435a66f244064e3e9e13842f17",
+        )
+        self.assertEqual(innotrac["rights_basis"]["status"], "explicit_open_license")
+        self.assertEqual(innotrac["rights_basis"]["license"], "CC BY 4.0")
+        rights_text = json.dumps(innotrac["rights_basis"], sort_keys=True).lower()
+        for marker in {
+            "held-out detection",
+            "false-positive or false-negative",
+            "discard criteria remained insufficiently researched",
+            "surface imaging cannot establish internal condition",
+        }:
+            self.assertIn(marker, rights_text)
+        for flag in {
+            "surface_appearance_does_not_establish_internal_condition_remaining_life_or_discard_readiness",
+            "no_complete_sample_inventory_held_out_detection_error_rates_blinding_replication_or_external_validation_reported",
+            "no_natural_fiber_jute_hemp_bondage_rope_knot_care_hygiene_or_retirement_transfer",
+            "no_body_contact_upline_anchor_hardpoint_bondage_or_human_suspension_transfer",
+        }:
+            self.assertIn(flag, innotrac["safety_transfer_flags"])
+
     def test_safety_and_domain_transfer_flags_cannot_be_empty(self) -> None:
         for item in self.artifacts:
             flags = item["safety_transfer_flags"]

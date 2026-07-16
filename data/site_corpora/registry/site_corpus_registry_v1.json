@@ -510,6 +510,75 @@
       "whitespace_delimited_word_count": 3605
     },
     {
+      "artifact_id": "canonical-markdown:innotrac_camera_visual_rope_inspection_2020",
+      "byte_length": 13097,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/innotrac_camera_visual_rope_inspection_2020/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest",
+        "version": "1.0"
+      },
+      "manifest_sha256": "2a667209c426215b803d4da93d087c7b1d592c8430670fc15537592ce784ef17",
+      "markdown_path": "data/site_corpora/innotrac_camera_visual_rope_inspection_2020/CORPUS.md",
+      "markdown_sha256": "84fb8d18bb2fe1b1492dd7c96f5ffb04f6a134435a66f244064e3e9e13842f17",
+      "non_qa": true,
+      "qwen36_token_count": 2822,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:d54e02437b1dee05ffebb73f6c55747fec8928fb09849bc9f0dc44631da52565",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "innotrac_camera_visual_rope_inspection_2020",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The official article record and exact final PDF both identify the article as CC BY 4.0. The adaptation preserves author, article, DOI, license, and change attribution, excludes implied endorsement, and excludes patent, trademark, visual, product, and uncertain component rights.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "limitations": [
+          "All nine figures, plots, photographs, overlays, captions, values, logos, products, patented systems, trademarks, and visual or separately owned components are excluded.",
+          "Every threshold, numerical result, logical discard rule, equation-like expression, camera or equipment setup, acquisition recipe, software workflow, algorithm, code, standard, external method, and twelve reference bodies are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, HTML, source body, extraction, rendered page, image, plot, table, algorithm, or license prose is retained as training evidence.",
+          "The exploratory industrial high-modulus synthetic-rope article reports no complete sample inventory, held-out detection, sensitivity or specificity, false-positive or false-negative analysis, blinding, independent replication, or external validation, and says discard criteria remained insufficiently researched.",
+          "Surface imaging cannot establish internal condition, remaining life, safe continuation, working load, discard readiness, or fitness of natural-fibre rope, bondage rope, knots, body contact, uplines, anchors, hardpoints, or human suspension."
+        ],
+        "promotion_gate": "ready_with_attribution_checksum_full_page_component_audit_validation_limits_and_nontransfer_boundary",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "industrial_high_modulus_synthetic_running_rope_surface_inspection_scope_required",
+        "multi_angle_imaging_and_combined_indicators_require_independent_calibration_validation_and_error_analysis",
+        "no_body_contact_upline_anchor_hardpoint_bondage_or_human_suspension_transfer",
+        "no_complete_sample_inventory_held_out_detection_error_rates_blinding_replication_or_external_validation_reported",
+        "no_natural_fiber_jute_hemp_bondage_rope_knot_care_hygiene_or_retirement_transfer",
+        "no_numeric_threshold_logical_rule_camera_setup_algorithm_product_standard_rating_or_operational_recipe",
+        "paper_states_high_modulus_fibre_rope_discard_criteria_remained_insufficiently_researched",
+        "surface_appearance_does_not_establish_internal_condition_remaining_life_or_discard_readiness"
+      ],
+      "source_document_identity": {
+        "author": "Gregor Novak",
+        "canonical_url": "https://www.bibliothek.tu-chemnitz.de/ojs/index.php/innoTRAC/article/view/462",
+        "doi": "10.14464/innotrac.v1i0.462",
+        "identity_type": "cc_by_industrial_rope_surface_inspection_article",
+        "journal": "innoTRAC Journal",
+        "official_pdf_sha256": "f7b64101a3d8df7b76c8a8ecb06e631a1a892985e104bd10248f19d923559af2",
+        "official_pdf_url": "https://www.bibliothek.tu-chemnitz.de/ojs/index.php/innoTRAC/article/view/462/186",
+        "pdf_available_online_date": "2020-12-07",
+        "printed_pages": "55-63",
+        "record_publication_date": "2020-12-03",
+        "source_resource_id": "innotrac_camera_visual_rope_inspection_2020",
+        "volume": "1"
+      },
+      "source_document_identity_sha256": "d54e02437b1dee05ffebb73f6c55747fec8928fb09849bc9f0dc44631da52565",
+      "source_label": "Camera-based Visual Rope Inspection, innoTRAC Journal (2020)",
+      "unicode_word_count": 1670,
+      "whitespace_delimited_word_count": 1648
+    },
+    {
       "artifact_id": "canonical-markdown:kink_education_code_of_conduct",
       "byte_length": 30035,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1683,7 +1752,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "a1fbed81d41590ab0f00cc0a607d8fc3289ae1ce70523067f61150af477a89ac"
+    "sha256": "de9ce4ef54c12ff93890b8664994f102bb6ff7afcd8809aa84bacbcf531947c3"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1722,7 +1791,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "9c4adc5c65ce77e12246e2f3fdb83d5bdc2d160cd2a35b16db949e7eb5daf130",
+  "source_tree_fingerprint_sha256": "a25d86bb30fa2624e730812c5c831e6cba1543e86bd1a15d6efba3964df39df9",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1732,11 +1801,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 29,
-    "byte_length": 4146054,
-    "qwen36_token_count": 1202594,
-    "source_document_split_group_count": 29,
-    "unicode_word_count": 545717,
-    "whitespace_delimited_word_count": 433651
+    "artifact_count": 30,
+    "byte_length": 4159151,
+    "qwen36_token_count": 1205416,
+    "source_document_split_group_count": 30,
+    "unicode_word_count": 547387,
+    "whitespace_delimited_word_count": 435299
   }
 }

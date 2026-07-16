@@ -304,6 +304,52 @@
       ]
     },
     {
+      "resource_id": "innotrac_camera_visual_rope_inspection_2020",
+      "source_label": "Camera-based Visual Rope Inspection, innoTRAC Journal (2020)",
+      "manifest_path": "data/site_corpora/innotrac_camera_visual_rope_inspection_2020/manifest.json",
+      "markdown_path": "data/site_corpora/innotrac_camera_visual_rope_inspection_2020/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "cc_by_industrial_rope_surface_inspection_article",
+        "canonical_url": "https://www.bibliothek.tu-chemnitz.de/ojs/index.php/innoTRAC/article/view/462",
+        "official_pdf_url": "https://www.bibliothek.tu-chemnitz.de/ojs/index.php/innoTRAC/article/view/462/186",
+        "official_pdf_sha256": "f7b64101a3d8df7b76c8a8ecb06e631a1a892985e104bd10248f19d923559af2",
+        "author": "Gregor Novak",
+        "journal": "innoTRAC Journal",
+        "volume": "1",
+        "printed_pages": "55-63",
+        "record_publication_date": "2020-12-03",
+        "pdf_available_online_date": "2020-12-07",
+        "doi": "10.14464/innotrac.v1i0.462",
+        "source_resource_id": "innotrac_camera_visual_rope_inspection_2020"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The official article record and exact final PDF both identify the article as CC BY 4.0. The adaptation preserves author, article, DOI, license, and change attribution, excludes implied endorsement, and excludes patent, trademark, visual, product, and uncertain component rights.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_checksum_full_page_component_audit_validation_limits_and_nontransfer_boundary",
+        "limitations": [
+          "All nine figures, plots, photographs, overlays, captions, values, logos, products, patented systems, trademarks, and visual or separately owned components are excluded.",
+          "Every threshold, numerical result, logical discard rule, equation-like expression, camera or equipment setup, acquisition recipe, software workflow, algorithm, code, standard, external method, and twelve reference bodies are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, HTML, source body, extraction, rendered page, image, plot, table, algorithm, or license prose is retained as training evidence.",
+          "The exploratory industrial high-modulus synthetic-rope article reports no complete sample inventory, held-out detection, sensitivity or specificity, false-positive or false-negative analysis, blinding, independent replication, or external validation, and says discard criteria remained insufficiently researched.",
+          "Surface imaging cannot establish internal condition, remaining life, safe continuation, working load, discard readiness, or fitness of natural-fibre rope, bondage rope, knots, body contact, uplines, anchors, hardpoints, or human suspension."
+        ]
+      },
+      "safety_transfer_flags": [
+        "industrial_high_modulus_synthetic_running_rope_surface_inspection_scope_required",
+        "surface_appearance_does_not_establish_internal_condition_remaining_life_or_discard_readiness",
+        "multi_angle_imaging_and_combined_indicators_require_independent_calibration_validation_and_error_analysis",
+        "no_complete_sample_inventory_held_out_detection_error_rates_blinding_replication_or_external_validation_reported",
+        "paper_states_high_modulus_fibre_rope_discard_criteria_remained_insufficiently_researched",
+        "no_numeric_threshold_logical_rule_camera_setup_algorithm_product_standard_rating_or_operational_recipe",
+        "no_natural_fiber_jute_hemp_bondage_rope_knot_care_hygiene_or_retirement_transfer",
+        "no_body_contact_upline_anchor_hardpoint_bondage_or_human_suspension_transfer"
+      ]
+    },
+    {
       "resource_id": "kink_education_code_of_conduct",
       "source_label": "Kink Education Code of Conduct (KECC), version 1",
       "manifest_path": "data/site_corpora/kink_education_code_of_conduct/manifest.json",
