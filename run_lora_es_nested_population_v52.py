@@ -47,6 +47,25 @@ NUMERIC_CALIBRATION = (RUN_DIR / "numeric_calibration_v52.json").resolve()
 ANCHOR_CALIBRATION = (RUN_DIR / "anchor_calibration_v52.json").resolve()
 PREINSTALL_BASELINE = (RUN_DIR / "preinstall_actor_baseline_v52.json").resolve()
 MASTER_IDENTITY_AUDIT = (RUN_DIR / "master_identity_audit_v52.json").resolve()
+GPU_LOG_OVERRIDE_V52: Path | None = None
+POPULATION_PHASE_OVERRIDE_V52: str | None = None
+
+
+def runtime_telemetry_contract_v52() -> dict:
+    """Expose the exact effective telemetry path/phase for sealed wrappers."""
+    path = (
+        GPU_LOG_OVERRIDE_V52
+        if GPU_LOG_OVERRIDE_V52 is not None
+        else RUN_DIR / "gpu_activity_v52.jsonl"
+    )
+    phase = (
+        POPULATION_PHASE_OVERRIDE_V52
+        if POPULATION_PHASE_OVERRIDE_V52 is not None
+        else "nested_p16_population_v52"
+    )
+    if not isinstance(path, Path) or not isinstance(phase, str) or not phase:
+        raise RuntimeError("v52 telemetry override contract changed")
+    return {"gpu_log": path.resolve(), "population_phase": phase}
 
 
 def parser() -> argparse.ArgumentParser:
@@ -1788,7 +1807,8 @@ def _execute_v52(preregistration: dict) -> int:
     p8_gate_path = RUN_DIR / "p8_train_gate_v52.json"
     p16_gate_path = RUN_DIR / "p16_train_gate_v52.json"
     report_path = RUN_DIR / "nested_population_report_v52.json"
-    gpu_log = RUN_DIR / "gpu_activity_v52.jsonl"
+    telemetry = runtime_telemetry_contract_v52()
+    gpu_log = telemetry["gpu_log"]
     failure_path = RUN_DIR / "failure_v52.json"
     if ATTEMPT.exists() or RUN_DIR.exists():
         raise RuntimeError("v52 requires fresh artifact paths")
@@ -1983,7 +2003,7 @@ def _execute_v52(preregistration: dict) -> int:
                 transaction_tracker=transaction_tracker,
             )
 
-            phase.value = "nested_p16_population_v52"
+            phase.value = telemetry["population_phase"]
             population = replicated_population_v52(
                 trainer, bundle, dense_items, requests, panel_anchors,
                 master["sha256"], master_runtime_sha,

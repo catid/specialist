@@ -760,3 +760,25 @@ def test_v52_sources_allow_only_required_v49d_artifacts_and_no_protected_paths()
     assert '["v48b_evidence"]' not in sources
     assert "strict_close_trainer_v38a" in sources
     assert "wait_for_gpu_idle" in sources
+
+
+def test_v52_telemetry_contract_is_exact_and_supports_sealed_wrapper_override(
+    monkeypatch, tmp_path,
+):
+    default = runtime.runtime_telemetry_contract_v52()
+    assert default == {
+        "gpu_log": (runtime.RUN_DIR / "gpu_activity_v52.jsonl").resolve(),
+        "population_phase": "nested_p16_population_v52",
+    }
+    target = tmp_path / "gpu_activity_v54.jsonl"
+    monkeypatch.setattr(runtime, "GPU_LOG_OVERRIDE_V52", target)
+    monkeypatch.setattr(
+        runtime, "POPULATION_PHASE_OVERRIDE_V52",
+        "v54_selected_v53_p16_score_projection_no_population_rerun",
+    )
+    assert runtime.runtime_telemetry_contract_v52() == {
+        "gpu_log": target.resolve(),
+        "population_phase": (
+            "v54_selected_v53_p16_score_projection_no_population_rerun"
+        ),
+    }
