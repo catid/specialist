@@ -393,6 +393,67 @@
       "whitespace_delimited_word_count": 1292
     },
     {
+      "artifact_id": "canonical-markdown:hse_temporary_works_faqs",
+      "byte_length": 10173,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/hse_temporary_works_faqs/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest",
+        "version": "1.0"
+      },
+      "manifest_sha256": "14d0e8c241d2fe2ef44f425b232aa91bc8fb6893d427471b4a210830cae81b10",
+      "markdown_path": "data/site_corpora/hse_temporary_works_faqs/CORPUS.md",
+      "markdown_sha256": "b7b3004be7c29dded2ca82a0105f115534b2a36a493a47b63cf17a906c3227c8",
+      "non_qa": true,
+      "qwen36_token_count": 2339,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:6ee20f43696b7bd3e6fc6997be2d17616c174a07b0e338646585dc7e8428ead6",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "hse_temporary_works_faqs",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "Eligible HSE Crown text from the exact FAQ is licensed under the Open Government Licence v3.0 and the adaptation preserves HSE attribution. The National Archives OGL body is rights provenance only and is excluded from training because its robots surface states ai-train=no.",
+        "license": "Open Government Licence v3.0",
+        "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "limitations": [
+          "Only eligible HSE Crown prose from the exact FAQ enters the training artifact; the National Archives OGL body is used for rights provenance only and excluded in full under its ai-train=no content signal.",
+          "Logos, SVGs, images, illustrations, multimedia, linked publications, standards, legal wording, numbers, calculations, products, equipment, operational procedures, external bodies, third-party components, and uncertain material are excluded.",
+          "The artifact is a fresh quotation-light, claim-cited adaptation; no HTML, source body, licence-page body, linked-document body, or visual is retained.",
+          "This is non-bondage United Kingdom construction governance, not a design, approval, selection, sizing, installation, setup, testing, proof-load, or certification source for ceiling tension, hardpoints, anchors, uplines, body support, bondage, or human suspension."
+        ],
+        "promotion_gate": "ready_with_hse_attribution_displayed_date_component_audit_robots_enforcement_and_non_bondage_governance_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "current_site_specific_verified_information_and_competent_professional_judgment_control",
+        "displayed_11_march_2026_current_page_date_must_travel",
+        "generic_assumptions_proprietary_systems_side_actions_and_role_distinctions_are_governance_only",
+        "no_ceiling_tension_hardpoint_anchor_upline_body_support_bondage_or_human_suspension_approval",
+        "no_standard_legal_numeric_product_equipment_setup_load_testing_design_or_certification_recipe",
+        "non_bondage_uk_temporary_works_governance_scope_required",
+        "tna_ogl_body_is_rights_provenance_only_and_ai_train_no_excluded_from_training"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.hse.gov.uk/construction/faq-temporary-works.htm",
+        "displayed_source_date": "2026-03-11",
+        "identity_type": "official_current_guidance_page",
+        "jurisdiction": "United Kingdom",
+        "publisher": "Health and Safety Executive (HSE)",
+        "source_resource_id": "hse_temporary_works_faqs"
+      },
+      "source_document_identity_sha256": "6ee20f43696b7bd3e6fc6997be2d17616c174a07b0e338646585dc7e8428ead6",
+      "source_label": "HSE Temporary Works FAQs, displayed update 11 March 2026",
+      "unicode_word_count": 1204,
+      "whitespace_delimited_word_count": 1212
+    },
+    {
       "artifact_id": "canonical-markdown:hse_treework_lifting_and_climbing",
       "byte_length": 25061,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1555,7 +1616,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "dc48ad9d9149b14cad63164b4f3a829a65645bcc590d3944273f364a1080ae01"
+    "sha256": "dcbb54baad4f2848dc849ef7a88870805a4129cfca77586ae52295cf0761614d"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1594,7 +1655,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "1e8ccd683e88739f086f3f469494acd9b845481e471fa077f7170064410ce087",
+  "source_tree_fingerprint_sha256": "e8b68c788e64a50e70acab1256276c8069c39d6cc0ec04943c1a571e13e0d1bd",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1604,11 +1665,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 27,
-    "byte_length": 4122375,
-    "qwen36_token_count": 1197318,
-    "source_document_split_group_count": 27,
-    "unicode_word_count": 542672,
-    "whitespace_delimited_word_count": 430610
+    "artifact_count": 28,
+    "byte_length": 4132548,
+    "qwen36_token_count": 1199657,
+    "source_document_split_group_count": 28,
+    "unicode_word_count": 543876,
+    "whitespace_delimited_word_count": 431822
   }
 }

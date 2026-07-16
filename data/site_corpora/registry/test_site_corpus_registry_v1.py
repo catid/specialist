@@ -342,6 +342,36 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             noaa["safety_transfer_flags"],
         )
 
+    def test_hse_temporary_works_identity_rights_and_transfer_gate_are_exact(self) -> None:
+        hse = self.by_id["hse_temporary_works_faqs"]
+        identity = hse["source_document_identity"]
+        self.assertEqual(
+            identity["canonical_url"],
+            "https://www.hse.gov.uk/construction/faq-temporary-works.htm",
+        )
+        self.assertEqual(identity["displayed_source_date"], "2026-03-11")
+        self.assertEqual(
+            hse["markdown_sha256"],
+            "b7b3004be7c29dded2ca82a0105f115534b2a36a493a47b63cf17a906c3227c8",
+        )
+        rights = hse["rights_basis"]
+        self.assertEqual(rights["status"], "explicit_open_license")
+        self.assertEqual(rights["license"], "Open Government Licence v3.0")
+        rights_text = json.dumps(rights, sort_keys=True).lower()
+        for marker in {
+            "hse crown text",
+            "ai-train=no",
+            "rights provenance only",
+            "non-bondage united kingdom construction governance",
+        }:
+            self.assertIn(marker, rights_text)
+        for flag in {
+            "tna_ogl_body_is_rights_provenance_only_and_ai_train_no_excluded_from_training",
+            "no_ceiling_tension_hardpoint_anchor_upline_body_support_bondage_or_human_suspension_approval",
+            "current_site_specific_verified_information_and_competent_professional_judgment_control",
+        }:
+            self.assertIn(flag, hse["safety_transfer_flags"])
+
     def test_safety_and_domain_transfer_flags_cannot_be_empty(self) -> None:
         for item in self.artifacts:
             flags = item["safety_transfer_flags"]

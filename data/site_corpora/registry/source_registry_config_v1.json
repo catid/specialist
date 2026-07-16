@@ -233,6 +233,44 @@
       ]
     },
     {
+      "resource_id": "hse_temporary_works_faqs",
+      "source_label": "HSE Temporary Works FAQs, displayed update 11 March 2026",
+      "manifest_path": "data/site_corpora/hse_temporary_works_faqs/manifest.json",
+      "markdown_path": "data/site_corpora/hse_temporary_works_faqs/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "official_current_guidance_page",
+        "publisher": "Health and Safety Executive (HSE)",
+        "jurisdiction": "United Kingdom",
+        "canonical_url": "https://www.hse.gov.uk/construction/faq-temporary-works.htm",
+        "displayed_source_date": "2026-03-11",
+        "source_resource_id": "hse_temporary_works_faqs"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "Eligible HSE Crown text from the exact FAQ is licensed under the Open Government Licence v3.0 and the adaptation preserves HSE attribution. The National Archives OGL body is rights provenance only and is excluded from training because its robots surface states ai-train=no.",
+        "license": "Open Government Licence v3.0",
+        "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_hse_attribution_displayed_date_component_audit_robots_enforcement_and_non_bondage_governance_limits",
+        "limitations": [
+          "Only eligible HSE Crown prose from the exact FAQ enters the training artifact; the National Archives OGL body is used for rights provenance only and excluded in full under its ai-train=no content signal.",
+          "Logos, SVGs, images, illustrations, multimedia, linked publications, standards, legal wording, numbers, calculations, products, equipment, operational procedures, external bodies, third-party components, and uncertain material are excluded.",
+          "The artifact is a fresh quotation-light, claim-cited adaptation; no HTML, source body, licence-page body, linked-document body, or visual is retained.",
+          "This is non-bondage United Kingdom construction governance, not a design, approval, selection, sizing, installation, setup, testing, proof-load, or certification source for ceiling tension, hardpoints, anchors, uplines, body support, bondage, or human suspension."
+        ]
+      },
+      "safety_transfer_flags": [
+        "displayed_11_march_2026_current_page_date_must_travel",
+        "non_bondage_uk_temporary_works_governance_scope_required",
+        "generic_assumptions_proprietary_systems_side_actions_and_role_distinctions_are_governance_only",
+        "tna_ogl_body_is_rights_provenance_only_and_ai_train_no_excluded_from_training",
+        "no_standard_legal_numeric_product_equipment_setup_load_testing_design_or_certification_recipe",
+        "no_ceiling_tension_hardpoint_anchor_upline_body_support_bondage_or_human_suspension_approval",
+        "current_site_specific_verified_information_and_competent_professional_judgment_control"
+      ]
+    },
+    {
       "resource_id": "hse_treework_lifting_and_climbing",
       "source_label": "HSE treework lifting and climbing guidance",
       "manifest_path": "data/site_corpora/hse_treework_lifting_and_climbing/manifest.json",
