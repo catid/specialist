@@ -249,6 +249,143 @@ class SourceCorpusContractTest(unittest.TestCase):
                 or "human-suspension" in scope
             )
 
+    def test_batch_003_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_003"
+        }
+        self.assertEqual(len(batch), 16)
+        expected = {
+            "accept_high_priority": {
+                "europepmc_rope_neuropathy_study",
+                "europepmc_icar_suspension_syndrome",
+                "ncsf_consent_incident_toolkit",
+                "usfs_rigging_for_trail_work",
+            },
+            "accept_targeted_scope": {
+                "ontario_live_performance_safety",
+                "enhance_uk_disability_bondage",
+                "actsafe_performer_flying_rigging",
+                "ashra_bondage_injury_prevalence_2025",
+                "icar_rope_connection_recommendations",
+                "alef_healing_shibari_study",
+            },
+            "defer": {
+                "itra_rope_rescue_documents",
+                "kanna_kagura_bakushi_biographies",
+                "carleton_rope_bondage_thesis",
+                "anzcor_suspension_first_aid_guideline",
+            },
+            "reject": {
+                "durham_comparative_rope_thesis",
+                "cleveland_clinic_suspension_syndrome",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+    def test_batch_003_europe_pmc_routes_and_licenses_are_explicit(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        expected = {
+            "europepmc_rope_neuropathy_study": ("PMC10294117", "CC BY 3.0"),
+            "europepmc_icar_suspension_syndrome": ("PMC10710713", "CC BY 4.0"),
+        }
+        for candidate_id, (pmcid, license_name) in expected.items():
+            row = by_id[candidate_id]
+            self.assertEqual(row["decision"], "accept_high_priority")
+            self.assertEqual(urlparse(row["canonical_url"]).netloc, "europepmc.org")
+            api_pages = [
+                page["url"]
+                for page in row["representative_pages"]
+                if "fullTextXML" in page["url"]
+            ]
+            self.assertEqual(
+                api_pages,
+                [
+                    "https://www.ebi.ac.uk/europepmc/webservices/rest/"
+                    f"{pmcid}/fullTextXML"
+                ],
+            )
+            self.assertIn(license_name, row["access_notes"])
+            scope = row["recommended_crawl_scope"]
+            self.assertIn("EMBL-EBI Europe PMC API only", scope)
+            self.assertIn("US PMC", scope)
+
+        self.assertIn(
+            "Cureus",
+            by_id["europepmc_rope_neuropathy_study"]["recommended_crawl_scope"],
+        )
+        self.assertIn(
+            "Springer",
+            by_id["europepmc_icar_suspension_syndrome"][
+                "recommended_crawl_scope"
+            ],
+        )
+
+    def test_batch_003_restricted_rights_are_not_queued(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        for candidate_id in {
+            "itra_rope_rescue_documents",
+            "kanna_kagura_bakushi_biographies",
+            "carleton_rope_bondage_thesis",
+            "anzcor_suspension_first_aid_guideline",
+        }:
+            row = by_id[candidate_id]
+            self.assertEqual(row["decision"], "defer")
+            self.assertIn("permission", row["recommended_crawl_scope"].lower())
+
+        self.assertEqual(
+            by_id["durham_comparative_rope_thesis"]["decision"], "reject"
+        )
+        self.assertIn(
+            "robots",
+            by_id["durham_comparative_rope_thesis"]["access_notes"].lower(),
+        )
+        self.assertEqual(
+            by_id["cleveland_clinic_suspension_syndrome"]["decision"],
+            "reject",
+        )
+        self.assertIn(
+            "repackage",
+            by_id["cleveland_clinic_suspension_syndrome"][
+                "recommended_crawl_scope"
+            ],
+        )
+
+    def test_batch_003_cross_domain_and_evidence_limits_are_queued(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        for candidate_id in {
+            "europepmc_icar_suspension_syndrome",
+            "ontario_live_performance_safety",
+            "usfs_rigging_for_trail_work",
+            "actsafe_performer_flying_rigging",
+            "icar_rope_connection_recommendations",
+        }:
+            scope = by_id[candidate_id]["recommended_crawl_scope"].lower()
+            self.assertTrue(
+                "bondage" in scope
+                or "human suspension" in scope
+                or "human-suspension" in scope
+            )
+
+        healing_scope = by_id["alef_healing_shibari_study"][
+            "recommended_crawl_scope"
+        ].lower()
+        self.assertIn("do not claim efficacy", healing_scope)
+        abstract_scope = by_id["ashra_bondage_injury_prevalence_2025"][
+            "recommended_crawl_scope"
+        ].lower()
+        self.assertIn("conference-abstract status", abstract_scope)
+        self.assertIn("do not reproduce", abstract_scope)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)

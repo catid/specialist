@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T06:46:06Z
-Latest batch: `discovery_batch_002`
+Latest review at: 2026-07-16T08:02:21Z
+Latest batch: `discovery_batch_003`
 
 ## Outcome
 
@@ -119,3 +119,50 @@ The cultural and lived-experience additions are evidence-type bounded. Sabukaru 
 Actual public pages, PDFs, access failures, robots directives, and visible reuse notices were reviewed. Public readability was not treated as automatic permission: two high-yield manuals were deferred for rights clearance, explicit `ai-train=no` signals were honored, and an inaccessible manual was not inferred from search snippets. Accepted copyrighted journalism is limited to concise, attributed factual digests; visual assets and extended quotations are excluded.
 
 Repository inspection remained limited to the governing source-discovery artifacts and contract test. No QA, training projection, manual-review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe, or unrelated corpus artifact was read or modified. Discovery wrote no source page body into a training artifact.
+
+## Discovery batch 003 outcome
+
+`discovery_batch_003` manually reviewed 16 additional, nonduplicate sources and the endpoint-specific access and reuse terms needed for each. It produced 4 `accept_high_priority`, 6 `accept_targeted_scope`, 4 `defer`, and 2 `reject` decisions. The ten accepted candidates are separate pending extraction jobs; all rights-limited sources use narrow, attributed scopes and all cross-domain material retains its original operating context.
+
+The most important access correction is that Europe PMC and US PubMed Central are not interchangeable capture endpoints. The two accepted clinical sources have licensed JATS available from the robots-allowed EMBL-EBI Europe PMC API. The Cureus publisher copy of the neuropathy paper prohibits AI-training collection, US PMC disallows crawling, and the Springer copy of the suspension review blocks named AI agents. Those restricted copies are excluded even though the same works can lawfully and technically be acquired from the licensed Europe PMC route.
+
+### Accepted sources
+
+| Source | Decision | Score | Distinct value and boundary |
+|---|---|---:|---|
+| [ICAR suspension syndrome review](https://europepmc.org/article/MED/38081341) | `accept_high_priority` | 43 | CC BY 4.0 review-level evidence, graded recommendations, and myth correction via EMBL-EBI JATS only; harness/rescue evidence is not silently generalized to rope bondage. |
+| [Rope neuropathy study](https://europepmc.org/article/MED/37324199) | `accept_high_priority` | 42 | CC BY 3.0 directly relevant survey evidence via EMBL-EBI JATS only; self-report associations retain denominators, uncertainty, and study limits. |
+| [Ontario live-performance safety guidelines](https://www.ontario.ca/document/safety-guidelines-live-performance-industry) | `accept_targeted_scope` | 41 | Official performer-flying, rigging, anchors, temporary/outdoor structure, competent-role, inspection, and rescue facts; transformed and jurisdiction-attributed under Crown terms. |
+| [NCSF Consent Counts](https://ncsfreedom.org/consent-counts/) | `accept_high_priority` | 41 | Consent policy, explicit prior permission, negotiation, red flags, incident reporting, response teams, confidentiality, trauma response, and survey findings; item-level licenses must be retained. |
+| [USFS Rigging for Trail Work](https://www.govinfo.gov/app/details/GOVPUB-A13-PURL-gpo235248) | `accept_high_priority` | 41 | Durable federal manual on knots, bend radius, slings, anchors, friction, blocks, mechanical advantage, inspection, and planning; credited third-party material must be audited and forestry ratings must not transfer to human suspension. |
+| [Actsafe performer-flying and rigging bulletins](https://actsafe.ca/resources/performer-flying-and-aerial-stunts/) | `accept_targeted_scope` | 38 | Qualified roles, passive secondary systems, live loading, abrasion, inspection, rehearsal, communication, and rescue; concise attributed facts only. |
+| [ICAR rope-connection recommendation](https://www.alpine-rescue.org/articles/10--rope-connections-for-kernmantle-rope-extension-tercom-recommendation-nr-4) | `accept_targeted_scope` | 35 | Revision-controlled context for joining kernmantle rescue ropes; noncommercial editorial digest only and no transfer to natural-fiber rope or human suspension. |
+| [Exploring Bondage-Related Injury Risks](https://academic.oup.com/jsm/article/22/Supplement_1/qdaf068.070/8119573) | `accept_targeted_scope` | 32 | Recent two-survey conference abstract; bibliographic metadata and minimal factual digest only, explicitly preliminary and noncausal. |
+| [Disability and Bondage](https://enhancetheuk.org/disability-and-bondage/) | `accept_targeted_scope` | 30 | Occupational-therapy prompts for positioning, support, pressure, stability, sensation, grip, pacing, and planning; excludes the unsafe solo-pulley scenario and individualized advice is not universalized. |
+| [Healing Experiences in Japanese Rope Bondage Practice](https://www.journal.aleftrust.org/index.php/cstp/article/view/46) | `accept_targeted_scope` | 28 | CC BY 4.0 qualitative methodology and attributed participant experience; no therapeutic-efficacy claim is permitted. |
+
+### Deferred and rejected sources
+
+| Source | Decision | Score | Reason |
+|---|---|---:|---|
+| [ITRA rope-rescue documents](https://www.technicalrescue.org/documents/) | `defer` | 41 | A high-value 2024 syllabus was identified, but direct TLS validation fails and the terms do not authorize corpus-scale reuse; require valid transport and written permission. |
+| [ANZCOR harness-suspension first aid](https://www.anzcor.org/home/first-aid/guideline-9-1-5-first-aid-management-of-harness-suspension-trauma) | `defer` | 37 | Strong clinical guidance, but its copyright page explicitly bars incorporation into another work without written permission; licensed ICAR evidence covers its central myth correction. |
+| [Carleton rope-bondage thesis](https://carleton.scholaris.ca/items/51e42f12-3cf6-400a-b101-5db266aaa109) | `defer` | 34 | Institutional rights allow research/teaching and link sharing but bar adaptation/derivatives and commercial use; explicit permission is needed. |
+| [Kanna/Kagura bakushi biographies](https://kanna-kagura.blogspot.com/2020/04/biographies-of-kinbakushi-of-japan.html) | `defer` | 27 | Rare translated lineage testimony, but rights are layered across the interview, translation, annotations, magazine, and later book. |
+| [Durham comparative rope thesis](https://etheses.durham.ac.uk/id/eprint/15763/) | `reject` | 32 | Repository robots explicitly block named OpenAI/AI-training agents; no body was opened and no bypass was attempted. |
+| [Cleveland Clinic suspension syndrome](https://my.clevelandclinic.org/health/diseases/suspension-syndrome) | `reject` | 29 | Reuse terms prohibit storing, repackaging, or editing, and a stronger CC BY review already covers the topic. |
+
+### Endpoint and evidence controls
+
+| Work or host | Permitted capture route | Explicitly excluded route or use |
+|---|---|---|
+| Rope neuropathy paper, PMCID PMC10294117 | `www.ebi.ac.uk/europepmc/webservices/rest/PMC10294117/fullTextXML`, CC BY 3.0 | Cureus publisher AI-training collection; US PMC crawling |
+| ICAR suspension review, PMCID PMC10710713 | `www.ebi.ac.uk/europepmc/webservices/rest/PMC10710713/fullTextXML`, CC BY 4.0 | Springer and US PMC crawler-restricted copies |
+| Ontario | Transformed, attributed facts with jurisdiction/version | Wholesale Crown-text republication or universal regulatory claims |
+| NCSF | Per-item license handling; CC BY-SA items under their terms | Assuming the whole mixed-license hub has one license |
+| USFS/GovInfo | Federal text plus official MODS metadata | Unreviewed third-party credited diagrams, tables, excerpts, or standards |
+| ICAR TERCOM | Narrow noncommercial editorial factual digest | Expressive/commercial reuse without permission; domain transfer |
+
+### Batch 003 access and clean-room statement
+
+Every decision distinguishes discovery from extraction. Public availability was not treated as permission, and alternate copies were not used to evade endpoint-specific robots or terms. No challenge, paywall, authentication, invalid TLS path, or crawler restriction was bypassed. Discovery used only governing source-discovery files and public web evidence; no existing QA, training projection, manual review, evaluation, heldout, holdout, OOD, shadow, benchmark, or probe artifact was read. No source body was written into a training artifact.
