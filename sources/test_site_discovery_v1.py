@@ -107,6 +107,27 @@ class SourceCorpusContractTest(unittest.TestCase):
         self.assertIn("novel_coverage_score_0_to_5", self.discovery["candidate_fields"])
         self.assertIn("accept_targeted_scope", self.discovery["decisions"])
 
+    def test_continuous_source_scout_is_active_and_identity_aware(self) -> None:
+        self.assertEqual(self.discovery["status"], "active_continuous_worker")
+        contract = self.discovery["discovery_contract"]
+        for field in {
+            "deduplicate_by_normalized_title_doi_pmid_pmcid_document_and_source_identity",
+            "public_access_is_not_reuse_permission",
+            "record_article_or_page_level_rights_basis",
+            "component_rights_audit_required_before_extraction",
+            "metadata_only_when_body_rights_or_access_are_unclear",
+            "preserve_source_domain_and_block_unsupported_transfer",
+        }:
+            self.assertTrue(contract[field], field)
+
+        cadence = self.discovery["cadence"]
+        self.assertEqual(cadence["worker_role"], "rights_aware_source_scout")
+        self.assertTrue(cadence["keep_discovery_worker_running_when_a_subworker_slot_is_available"])
+        self.assertTrue(cadence["reassign_worker_immediately_after_each_bounded_batch"])
+        self.assertTrue(cadence["rotate_search_toward_taxonomy_and_evidence_gaps"])
+        self.assertTrue(cadence["commit_bounded_reviewed_batches"])
+        self.assertTrue(cadence["never_start_extraction_without_a_distinct_dedicated_site_worker"])
+
     def test_candidate_ledger_has_complete_manual_review_batches(self) -> None:
         required = set(self.discovery["candidate_fields"]) | {"review_batch"}
         batches = Counter()

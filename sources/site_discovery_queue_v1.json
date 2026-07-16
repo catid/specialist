@@ -1,7 +1,7 @@
 {
   "schema": "site-discovery-queue-v1",
   "purpose": "Continuously discover, verify, and prioritize public sources whose substantive rope-bondage, shibari, or kinbaku knowledge merits a canonical Markdown corpus.",
-  "status": "queued_for_dedicated_worker",
+  "status": "active_continuous_worker",
   "taxonomy_source": "sources/site_corpus_queue_v1.json#knowledge_taxonomy",
   "discovery_contract": {
     "web_search_and_source_link_traversal_required": true,
@@ -12,6 +12,12 @@
     "do_not_bypass_login_purchase_robots_or_other_access_controls": true,
     "do_not_copy_search_engine_or_aggregator_text": true,
     "deduplicate_against_existing_corpus_queue": true,
+    "deduplicate_by_normalized_title_doi_pmid_pmcid_document_and_source_identity": true,
+    "public_access_is_not_reuse_permission": true,
+    "record_article_or_page_level_rights_basis": true,
+    "component_rights_audit_required_before_extraction": true,
+    "metadata_only_when_body_rights_or_access_are_unclear": true,
+    "preserve_source_domain_and_block_unsupported_transfer": true,
     "reject_url_title_navigation_and_storefront_only_sources": true,
     "broad_commerce_sites_need_a_narrow_bondage_relevant_scope": true,
     "separate_source_discovery_from_corpus_extraction": true,
@@ -57,7 +63,10 @@
     "tests": "sources/test_site_discovery_v1.py"
   },
   "cadence": {
+    "worker_role": "rights_aware_source_scout",
     "keep_discovery_worker_running_when_a_subworker_slot_is_available": true,
+    "reassign_worker_immediately_after_each_bounded_batch": true,
+    "rotate_search_toward_taxonomy_and_evidence_gaps": true,
     "commit_bounded_reviewed_batches": true,
     "never_start_extraction_without_a_distinct_dedicated_site_worker": true
   }
