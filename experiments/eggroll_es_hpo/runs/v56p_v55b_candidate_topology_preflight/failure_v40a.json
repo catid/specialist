@@ -1,0 +1,9 @@
+{
+  "content_sha256_before_self_field": "60d806e3f37ea3da2d29fbb5091cfb66d93296dab97e7628a2e25ae7601323a5",
+  "dataset_or_evaluation_accessed": false,
+  "failed_at_utc": "2026-07-16T07:34:48.192114+00:00",
+  "message": "No module named 'vllm'",
+  "schema": "lora-topology-probe-failure-v40a",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_lora_topology_probe_v40a.py\", line 432, in main\n    trainer = make_trainer(prereg)\n              ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_topology_probe_v40a.py\", line 169, in make_trainer\n    parent = base.load_trainer()\n             ^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/train_eggroll_es_specialist.py\", line 458, in load_trainer\n    import vllm.utils\nModuleNotFoundError: No module named 'vllm'\n",
+  "type": "ModuleNotFoundError"
+}
