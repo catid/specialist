@@ -150,6 +150,7 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             "explicit_open_license",
             "federal_text_public_domain_presumption",
             "legacy_manifest_gap",
+            "public_domain_in_usa_source_with_trademark_and_jurisdiction_limits",
         }
         for item in self.artifacts:
             rights = item["rights_basis"]
@@ -400,6 +401,43 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             "no_body_contact_upline_anchor_bondage_or_human_suspension_transfer",
         }:
             self.assertIn(flag, t198["safety_transfer_flags"])
+
+    def test_gutenberg_brady_identity_rights_and_transfer_gate_are_exact(self) -> None:
+        brady = self.by_id["gutenberg_brady_kedge_anchor_77729"]
+        identity = brady["source_document_identity"]
+        self.assertEqual(identity["author"], "William N. Brady")
+        self.assertEqual(identity["edition"], "sixth")
+        self.assertEqual(identity["ebook_release_date"], "2026-01-18")
+        self.assertEqual(
+            identity["static_unicode_sha256"],
+            "7a1c173c1f3c73201ab21f741130094a57765a923ff26d503c4c0f4c93a58cd2",
+        )
+        self.assertEqual(
+            brady["markdown_sha256"],
+            "580e3af2534aad5b0040f58c833bf7c443c1359d4d739e8527a0fa2d03e9834a",
+        )
+        self.assertEqual(brady["qwen36_token_count"], 4145)
+        rights = brady["rights_basis"]
+        self.assertEqual(
+            rights["status"],
+            "public_domain_in_usa_source_with_trademark_and_jurisdiction_limits",
+        )
+        self.assertIn("Public Domain in the United States", rights["license"])
+        rights_text = json.dumps(rights, sort_keys=True).lower()
+        for marker in {
+            "registered project gutenberg mirror",
+            "registered trademark",
+            "no worldwide public-domain conclusion",
+            "edited project gutenberg transcription",
+        }:
+            self.assertIn(marker, rights_text)
+        for flag in {
+            "historical_1852_ropework_vocabulary_and_teaching_architecture_only",
+            "no_complete_knot_hitch_bend_splice_eye_seizing_serving_mat_gasket_or_block_procedure",
+            "no_modern_terminology_security_suitability_rating_working_load_or_correctness_inference",
+            "no_body_contact_restraint_lowering_upline_anchor_hardpoint_bondage_or_human_suspension_transfer",
+        }:
+            self.assertIn(flag, brady["safety_transfer_flags"])
 
     def test_innotrac_identity_rights_validation_and_transfer_gate_are_exact(self) -> None:
         innotrac = self.by_id["innotrac_camera_visual_rope_inspection_2020"]
