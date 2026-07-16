@@ -1,0 +1,79 @@
+{
+  "corpus_id": "mdpi_knot_efficiency_statistics_2022",
+  "content_kind": "manual_claim_cited_statistical_method_digest",
+  "created_at_utc": "2026-07-16",
+  "files": {
+    "CORPUS.md": {
+      "bytes": 16083,
+      "sha256": "8124b2268b48a40efab7ba0b8be83c3dc20d5751ee9410d6f4c4770167d33f18"
+    },
+    "README.md": {
+      "bytes": 1324,
+      "sha256": "3d61276f583af6f7e9f574cce3ff3b00fa8af0373ad4218df1ac3b30027fe7bf"
+    },
+    "REPORT.md": {
+      "bytes": 7425,
+      "sha256": "3b1803a071e6cf1f4850ec362ba89691170b9191301b254240e32b7e3f264571"
+    },
+    "dispositions.jsonl": {
+      "bytes": 9907,
+      "sha256": "e717292a8f58a1348ecb6988da0b69f9fcd2372c466dba847ed67980491f3fc0"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 5057,
+      "sha256": "b65e58aca2c38288d7ba036ba61c14748620da63876ae48f24377995d42d3586"
+    },
+    "sources.jsonl": {
+      "bytes": 1883,
+      "sha256": "a7aa71c552a7572f79239895f8102d4feee87e9d337bc3ac4cac1f846219dca3"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 13493,
+      "sha256": "04b3bccd129df6879bf3c12e4418c390bb311ffaa4c7deadd92ebf7ba7d41884"
+    }
+  },
+  "language": "en",
+  "primary_source": {
+    "authors": [
+      "Ján Šimon",
+      "Branislav Ftorek"
+    ],
+    "doi": "10.3390/sym14091926",
+    "title": "Basic Statistical Properties of the Knot Efficiency",
+    "year": 2022
+  },
+  "rights": {
+    "adaptation_notice_present": true,
+    "article_level_notice_verified": true,
+    "attribution_present": true,
+    "component_caveat": "Equations, proofs, figures, tables, numerical examples, vendor material, trademarks, and third-party works are excluded.",
+    "legal_advice": false,
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "source_bodies_retained": false,
+    "status": "accepted_manual_adaptation"
+  },
+  "schema_version": "site-corpus-manifest-v1",
+  "source_ids": [
+    "DOI-RESOLVER",
+    "SYM-2022-PDF",
+    "SYM-2022-XML",
+    "CC-BY-4.0"
+  ],
+  "split_hygiene": {
+    "allowed": [
+      "training_source"
+    ],
+    "forbidden": [
+      "validation",
+      "holdout",
+      "evaluation",
+      "ood",
+      "probe"
+    ],
+    "qa_derivation": "separate_training_only_artifact_after_manual_review"
+  },
+  "status": "accepted",
+  "summary": "Manual digest of a 2022 knot-efficiency ratio-distribution paper, preserving measurement distinctions, model assumptions, normality caution, probability summaries and approximation limits without operational calculators or numerical efficiencies.",
+  "version": 1
+}

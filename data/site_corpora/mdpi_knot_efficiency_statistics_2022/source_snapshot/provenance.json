@@ -1,0 +1,140 @@
+{
+  "access_attempts": [
+    {
+      "accessed_at_utc": "2026-07-16T11:37:18Z",
+      "bytes": 401,
+      "content_type": "text/html",
+      "retained_in_repository": false,
+      "sha256": "df5e48a5b3ab79d482e97fb6f64ce066f0235b6dd4aed4e6c9c9cd5b511886dd",
+      "status": 403,
+      "url": "https://www.mdpi.com/2073-8994/14/9/1926",
+      "used_as_content_source": false
+    }
+  ],
+  "artifacts": [
+    {
+      "accessed_at_utc": "2026-07-16T11:38:33Z",
+      "bytes": 165,
+      "content_type": "text/html; charset=utf-8",
+      "id": "DOI-RESOLVER",
+      "location": "https://www.mdpi.com/2073-8994/14/9/1926",
+      "retained_in_repository": false,
+      "sha256": "5df59c48b58fd0387bded78aba51037fb52d138d47f4d71aad9688468d4771c5",
+      "status": 302,
+      "url": "https://doi.org/10.3390/sym14091926"
+    },
+    {
+      "accessed_at_utc": "2026-07-16T11:37:48Z",
+      "bytes": 711385,
+      "content_type": "application/pdf",
+      "etag": "\"632301fc-adad9\"",
+      "id": "SYM-2022-PDF",
+      "last_modified": "Thu, 15 Sep 2022 10:44:12 GMT",
+      "pdf_pages": 25,
+      "retained_in_repository": false,
+      "sha256": "2094e47d703011b122d4ff159ebcbcabbe8d108151c1da3476ae1c775ad8240e",
+      "status": 200,
+      "url": "https://mdpi-res.com/d_attachment/symmetry/symmetry-14-01926/article_deploy/symmetry-14-01926.pdf"
+    },
+    {
+      "accessed_at_utc": "2026-07-16T11:37:49Z",
+      "bytes": 542267,
+      "content_type": "text/xml; charset=UTF-8",
+      "etag": "W/\"632301fc-8463b\"",
+      "id": "SYM-2022-XML",
+      "last_modified": "Thu, 15 Sep 2022 10:44:12 GMT",
+      "retained_in_repository": false,
+      "sha256": "ea297f445f8cb58decdbb95efeb988a69208062eb1988509a68af39e6616bf9f",
+      "status": 200,
+      "url": "https://mdpi-res.com/d_attachment/symmetry/symmetry-14-01926/article_deploy/symmetry-14-01926.xml"
+    },
+    {
+      "accessed_at_utc": "2026-07-16T11:38:33Z",
+      "bytes": 32178,
+      "content_type": "text/html",
+      "id": "CC-BY-4.0",
+      "last_modified": "Tue, 09 Jun 2026 14:26:12 GMT",
+      "retained_in_repository": false,
+      "sha256": "231a5dac65bbf135ba27145969a63cd289faadc172f1512c4810a6c60ba91036",
+      "status": 200,
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "corpus_id": "mdpi_knot_efficiency_statistics_2022",
+  "extraction_audit": {
+    "extracted_alphanumeric_tokens": 11586,
+    "extracted_characters": 65137,
+    "extracted_text_retained": false,
+    "extracted_text_sha256": "899f8052729f816a1c75cef9f7c275d9d0c041caea97d0aff107b09764a3d29a",
+    "pdf_metadata_author": "Ján Šimon and Branislav Ftorek",
+    "pdf_metadata_creator": "LaTeX with hyperref",
+    "pdf_metadata_producer": "pdfTeX-1.40.21",
+    "pdf_metadata_title": "Basic Statistical Properties of the Knot Efficiency",
+    "pdf_pages": 25,
+    "raster_image_xobjects": 2,
+    "raster_image_pages": [
+      5,
+      9
+    ],
+    "source_numbered_figures": 9,
+    "source_numbered_tables": 4,
+    "xml_bytes": 542267,
+    "xml_used_for_structure_only": true
+  },
+  "manual_review": {
+    "completed": true,
+    "method": "All 25 PDF pages and every named XML section were reviewed. Extraction and XML were navigation aids; corpus prose was written manually.",
+    "review_date_utc": "2026-07-16",
+    "source_bodies_retained": false
+  },
+  "rights_screen": {
+    "article_license": "Creative Commons Attribution 4.0 International",
+    "article_license_notice_in_pdf": true,
+    "article_license_notice_in_xml": true,
+    "attribution_elements_present": [
+      "authors",
+      "title",
+      "journal, year, and article number",
+      "DOI source link",
+      "CC BY 4.0 license link",
+      "adaptation/change notice",
+      "no-endorsement notice"
+    ],
+    "conclusion": "Accepted for manual adaptation under explicit article-level CC BY 4.0, with equations, figures, tables, vendor material, and third-party components excluded.",
+    "legal_advice": false,
+    "provenance_cautions": [
+      "nine figures and four tables",
+      "data and examples inherited from cited earlier work",
+      "third-party references and propositions",
+      "commercial material and technical support acknowledgment",
+      "publisher layout and trademarks"
+    ]
+  },
+  "schema_version": "site-corpus-provenance-v1",
+  "section_inventory": [
+    "1. Introduction",
+    "2.1. Probability Density Function in General",
+    "2.2. Normally Distributed Breaking Strength",
+    "2.3. Properties of the Knot Efficiency PDF",
+    "2.4. Solid Approximation",
+    "2.5. Solid Approximation Error Management",
+    "3.1. Old Worn Rope Example",
+    "3.2. New Rope Example",
+    "4. Conclusions",
+    "Back Matter and References"
+  ],
+  "source_identity": {
+    "accepted": "2022-09-10",
+    "article_number": 1926,
+    "authors": [
+      "Ján Šimon",
+      "Branislav Ftorek"
+    ],
+    "doi": "10.3390/sym14091926",
+    "journal": "Symmetry",
+    "published": "2022-09-15",
+    "received": "2022-08-14",
+    "title": "Basic Statistical Properties of the Knot Efficiency",
+    "volume": 14
+  }
+}
