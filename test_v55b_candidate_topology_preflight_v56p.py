@@ -34,6 +34,8 @@ def test_v56p_preregistration_is_synthetic_only_and_self_hashed():
     assert value["terminal_holdout_access_authorized"] is False
     assert value["runtime"]["physical_gpu_ids"] == [0, 1, 2, 3]
     assert value["runtime"]["engine_count"] == 4
+    assert value["recovery"]["failed_before_model_creation"] is True
+    assert value["recovery"]["gpu_accessed"] is False
     content = value.pop("content_sha256_before_self_field")
     assert content == runtime.canonical_sha256(value)
     paths = json.dumps(value["implementation_bindings"]).lower()

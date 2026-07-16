@@ -36,6 +36,7 @@ def build_v56p() -> dict:
         ),
         "implementation_bindings": runtime.implementation_bindings_v56p(),
         "adapter_binding": runtime.stage_binding_v56p(),
+        "recovery": runtime.recovery_binding_v56p(),
         "runtime": {
             "physical_gpu_ids": list(parent.GPU_IDS),
             "engine_count": 4,

@@ -12,14 +12,22 @@ import stage_v55b_candidate_vllm_v56 as stage
 
 
 ROOT = Path(__file__).resolve().parent
-EXPERIMENT = "v56p_v55b_candidate_topology_preflight"
+FAILED_EXPERIMENT = "v56p_v55b_candidate_topology_preflight"
+FAILED_RUN_DIR = (
+    ROOT / "experiments/eggroll_es_hpo/runs" / FAILED_EXPERIMENT
+).resolve()
+FAILED_ATTEMPT = (
+    FAILED_RUN_DIR.parent / f".{FAILED_EXPERIMENT}.attempt.json"
+).resolve()
+FAILED_FAILURE = (FAILED_RUN_DIR / "failure_v40a.json").resolve()
+EXPERIMENT = "v56p_v55b_candidate_topology_preflight_retry1"
 RUN_DIR = (ROOT / "experiments/eggroll_es_hpo/runs" / EXPERIMENT).resolve()
 ATTEMPT = (RUN_DIR.parent / f".{EXPERIMENT}.attempt.json").resolve()
 REPORT = (RUN_DIR / "lora_topology_report_v56p.json").resolve()
 GPU_LOG = (RUN_DIR / "gpu_activity_v56p.jsonl").resolve()
 DEFAULT_PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "v55b_candidate_topology_preflight_v56p.json"
+    "v55b_candidate_topology_preflight_v56p_retry1.json"
 ).resolve()
 BUILDER = (ROOT / "build_v55b_candidate_topology_preflight_v56p.py").resolve()
 TESTS = (ROOT / "test_v55b_candidate_topology_preflight_v56p.py").resolve()
@@ -34,6 +42,10 @@ EXPECTED = {
     "stage_manifest_content": "a39359184a96b52008eabbce50f0f83ab1bda39513f6ed6c731dbdcdb093c6ce",
     "transformed_identity": "1638967e98ef1b677a651c49f6b97abb1656c4fce1b6776423aaccc3662e3cf5",
     "candidate": "78fa46a9f77387f7872a09202658e471b2c03969687abcbccc253f5f194980fc",
+    "failed_attempt": "e3c587b1952316ae67ac7b226ba10da923d5715523a01e427e8dbc21165112a7",
+    "failed_attempt_content": "1b377e4350ddcc48eb095a51c0f06b1f5b01bc8646c69be9ea8caab072b7b482",
+    "failed_failure": "022b32b491766d6fff3b89806e4e4e51290c4eb145b3dd69fdb81ab2483a3ef2",
+    "failed_failure_content": "60d806e3f37ea3da2d29fbb5091cfb66d93296dab97e7628a2e25ae7601323a5",
 }
 
 
@@ -121,10 +133,52 @@ def implementation_bindings_v56p() -> dict:
         "tuned_table": parent.TUNED_FILE,
         "base_runtime": ROOT / "train_eggroll_es_specialist.py",
         "cleanup_runtime": ROOT / "run_eggroll_es_equal_unit_v38a.py",
+        "failed_attempt": FAILED_ATTEMPT,
+        "failed_failure": FAILED_FAILURE,
     }
     result = {key: file_sha256(path) for key, path in paths.items()}
     result["model_shards_content_sha256"] = parent.MODEL_SHARDS_CONTENT_SHA256
     return result
+
+
+def recovery_binding_v56p() -> dict:
+    if (
+        file_sha256(FAILED_ATTEMPT) != EXPECTED["failed_attempt"]
+        or file_sha256(FAILED_FAILURE) != EXPECTED["failed_failure"]
+    ):
+        raise RuntimeError("V56P failed launch evidence changed")
+    attempt = json.loads(FAILED_ATTEMPT.read_text(encoding="utf-8"))
+    failure = json.loads(FAILED_FAILURE.read_text(encoding="utf-8"))
+    attempt_content = attempt.pop("content_sha256_before_self_field", None)
+    failure_content = failure.pop("content_sha256_before_self_field", None)
+    if (
+        attempt_content != EXPECTED["failed_attempt_content"]
+        or attempt_content != canonical_sha256(attempt)
+        or failure_content != EXPECTED["failed_failure_content"]
+        or failure_content != canonical_sha256(failure)
+        or attempt.get("status") != "launching"
+        or attempt.get("phase") != "before_model_launch"
+        or attempt.get("dataset_or_evaluation_accessed") is not False
+        or failure.get("type") != "ModuleNotFoundError"
+        or failure.get("message") != "No module named 'vllm'"
+        or failure.get("dataset_or_evaluation_accessed") is not False
+    ):
+        raise RuntimeError("V56P failed launch provenance changed")
+    return {
+        "failed_experiment": FAILED_EXPERIMENT,
+        "failed_attempt_file_sha256": EXPECTED["failed_attempt"],
+        "failed_attempt_content_sha256": EXPECTED["failed_attempt_content"],
+        "failed_failure_file_sha256": EXPECTED["failed_failure"],
+        "failed_failure_content_sha256": EXPECTED["failed_failure_content"],
+        "failure_type": "ModuleNotFoundError",
+        "failure_message": "No module named 'vllm'",
+        "failed_before_model_creation": True,
+        "gpu_accessed": False,
+        "dataset_or_evaluation_accessed": False,
+        "recovery_interpreter": str(
+            ROOT / "es-at-scale/.venv/bin/python"
+        ),
+    }
 
 
 def load_preregistration_v56p(args) -> dict:
@@ -145,6 +199,7 @@ def load_preregistration_v56p(args) -> dict:
         or value.get("status") != "preregistered_before_four_gpu_launch"
         or value.get("implementation_bindings") != implementation_bindings_v56p()
         or value.get("adapter_binding") != stage_binding_v56p()
+        or value.get("recovery") != recovery_binding_v56p()
         or value.get("dataset_or_evaluation_access_authorized") is not False
         or value.get("synthetic_prompt_only") is not True
         or value.get("quality_claim_authorized") is not False
