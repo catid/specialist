@@ -1,0 +1,92 @@
+{
+  "adapter_binding": {
+    "all_nine_train_endpoint_gates_passed": true,
+    "all_tensor_bytes_preserved_exactly": true,
+    "candidate": "1713987fcad93f3e6368a309415faf5de2f4230eaf3c44baf23b8e9a2edf2a3d",
+    "dataset_or_evaluation_accessed": false,
+    "elements": 4528128,
+    "source_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "source_evidence": "136bb6d5e93a0e2a8187a670ae2e8760bed1dc08396dadeba76a6c053674d4ab",
+    "source_weights": "c2665b60928b16120a2b98fdf137fafd250644852c86a02d797689f02105c6c8",
+    "stage_manifest": "c0e8c322f8c373dadd66506a2ad3859b7f9f18e56e56ff7b387999fb060f3d0e",
+    "stage_manifest_content": "4b56da407f9a764157e6c9970ad1cc0b3695ad8e6ea9ee691cf73e274ba26bf6",
+    "staged_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "staged_weights": "e189cfb9fcd6c55700babae91111266825522fc46ddbd53fc0574786711eccae",
+    "tensor_count": 70,
+    "transformed_identity": "17426568952a5d23490886db52f9b2f8e648ebdf267b98789616dceb31d1a6c6"
+  },
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v60p_v59_candidate_topology_preflight.attempt.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v60p_v59_candidate_topology_preflight/gpu_activity_v60p.jsonl",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v60p_v59_candidate_topology_preflight/lora_topology_report_v60p.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v60p_v59_candidate_topology_preflight"
+  },
+  "content_sha256_before_self_field": "567cee2c86ec9d0bdf8f6e29362d8180515cadba5168a536da57d5756ba9286f",
+  "created_at_utc": "2026-07-16T09:19:51.903779+00:00",
+  "dataset_or_evaluation_access_authorized": false,
+  "dataset_shadow_or_holdout_paths_bound": false,
+  "implementation_bindings": {
+    "base_runtime": "bbffbf16747ec514c67e48daab696560eb3309f5a3edf0a700257969cad35c23",
+    "builder": "34ad7fab06eef1aec4ee6ea446dc81cb32f323c3b863aba9c030a092afa939ef",
+    "canonical_stage_runtime": "8559cb3a2c2870bed7e5ef99ee9ed177929e4c2d8680b61cccc73aad26a2f691",
+    "cleanup_runtime": "ffe71974b4935c6943ac03dffc048754bce4fb39388e8f5b23e04521ac9851d6",
+    "model_config": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "model_index": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+    "model_shards_content_sha256": "af8ea3a900c04e97d2d8e3146b8e23be5ee3e6548dea20440020b2f43ee6656e",
+    "parent_runtime": "b2889399bdfff351b8d80fe4ecc84fd4ffb3b9a402e401803b765b3c99101cfa",
+    "runtime": "5bce1cf04e97cd8b5d51ff46710cbaa7c620ceb10138dcdd5b3470c6131cc743",
+    "source_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "source_evidence": "136bb6d5e93a0e2a8187a670ae2e8760bed1dc08396dadeba76a6c053674d4ab",
+    "source_weights": "c2665b60928b16120a2b98fdf137fafd250644852c86a02d797689f02105c6c8",
+    "stage_manifest": "c0e8c322f8c373dadd66506a2ad3859b7f9f18e56e56ff7b387999fb060f3d0e",
+    "stage_runtime": "dc516f101001151d0fa91fe623c4d34dd794bb174213dfbabb9b782277808e1a",
+    "staged_config": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "staged_weights": "e189cfb9fcd6c55700babae91111266825522fc46ddbd53fc0574786711eccae",
+    "tests": "efcb86e1ba113e2aab44c959c67ae81f07a30f849fd9c3ddc5f1f8a323568e20",
+    "tuned_table": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "worker": "d487ff4657a2a6fbd7d2d0f9200a63547dd79b258cc488b93382fdf26b52cf05"
+  },
+  "objective": "Verify the fixed V59 LoRA-ES snapshot loads identically on all four Qwen3.6 TP1 actors, exposes the expected resident topology, changes one synthetic forward after a reversible resident LoRA mutation, restores exactly, and cleans up.",
+  "probe": {
+    "all_four_gpu_attributed_positive_activity_required": true,
+    "exact_four_engine_cleanup_required": true,
+    "four_actor_forward_consensus_required": true,
+    "mutation": {
+      "must_change_forward_without_reload": true,
+      "must_restore_exact_original_forward": true,
+      "one_element_only": true,
+      "requested_delta": 1.0,
+      "target": "model.layers.23.self_attn.o_proj.lora_B[0,0]"
+    },
+    "peft_elements_expected": 4528128,
+    "peft_tensor_count_expected": 70,
+    "resident_topology_semantic_consensus_required": true
+  },
+  "quality_claim_authorized": false,
+  "runtime": {
+    "adapter_alpha": 64,
+    "adapter_rank": 32,
+    "all_four_actors_concurrent": true,
+    "enable_lora": true,
+    "engine_count": 4,
+    "max_cpu_loras": 1,
+    "max_loras": 1,
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "source_adapter": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v59_lora_es_fragile_priority/selected_candidate_v59",
+    "staged_adapter": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v59_fragile_priority_ratio0p25_lora_es_qwen35_vllm_namespace_v60",
+    "synthetic_prompt_sha256": "93c4551102b1e8a2c578258fdab0d3c8c62370e057b9d674cc9be2e8d7bfb870",
+    "tensor_parallel_size": 1,
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "v59-candidate-topology-preflight-preregistration-v60p",
+  "status": "preregistered_before_four_gpu_launch",
+  "synthetic_prompt_only": true,
+  "terminal_holdout_access_authorized": false
+}
