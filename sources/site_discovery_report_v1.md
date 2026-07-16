@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T19:03:38Z
-Latest batch: `discovery_batch_028`
+Latest review at: 2026-07-16T19:25:41Z
+Latest batch: `discovery_batch_029`
 
 ## Outcome
 
@@ -2055,3 +2055,96 @@ challenge, cache, archive-service or access-control bypass was used. An Akamai
 403 was respected, private incident reports were not accessed, visual-only
 technique was not reconstructed and no source body or image entered a training
 artifact during discovery.
+
+## Discovery batch 029 outcome
+
+`discovery_batch_029` manually reviewed 14 exact-new source identities after
+canonical URL, title, creator, institutional record, document and component
+deduplication. It records 0 `accept_high_priority`, 2
+`accept_targeted_scope`, 7 `defer`, and 5 `reject` decisions. The two accepted
+rights-clear sources expand the canonical Markdown queue from 179 to 181
+resources; the discovery ledger grows from 340 to 354 records.
+
+This batch concentrates on exact publication metadata, named European
+practitioner testimony, rope-specific consent education, self-suspension
+instruction, qualitative embodiment research and current nerve-safety
+material. It also stress-tests the fact-value gate: link directories,
+transcript placeholders, controlled-vocabulary identifiers and a museum object
+whose title merely collides with the search term are not rope facts. Public
+access, a downloadable file, a repository deposit, an informal sharing
+sentence, a noncommercial license and a no-derivatives license were not treated
+as commercial derivative model-training permission.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [National Diet Library Kitan Club serial record](https://ndlsearch.ndl.go.jp/books/R100000002-I000000004890) | `accept_targeted_scope` | 24 | NDL-created bibliographic data is reusable without purpose restriction. One compact text-only record may preserve the Japanese title and reading, dated English parallel title, call number, bibliographic ID, Osaka and publisher statements, approximate 1947 start, monthly frequency, publisher transition, title changes, issue chronology and NDL holdings gaps. It must distinguish holdings from complete publication history and exclude every issue body, image, bookstore link and inference about contents, editors, people, readership, influence or kinbaku lineage. |
+| [Sprechkontakt LUT074 Shibari](https://archive.org/details/lut074) | `accept_targeted_scope` | 25 | The first-party uploaded 2018 German episode audio is CC BY-SA 4.0. A manual speaker- and timestamp-attributed transcript plus checked English translation may retain Thomas Gasser, Vinciens and Kenyade's first-person accounts of their own learning, roles, performance, aesthetics, relationships and Vienna or European community experience. Episode art, music, the separately edited ORF broadcast, visual inference and actionable technique are excluded. Every Japan, history, etymology or lineage statement remains attributed testimony until independently corroborated. |
+
+### Permission-, methods-, or expert-review-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Rope Podcast by Fox and Mya](https://ropepodcast.neocities.org/) | 31 | More than 230 episodes offer unusually broad interviews, people, lineage, roles, bottoming and practice coverage, but the show is all rights reserved and mixes host, guest, listener, affiliate, clinical and high-risk components. Written host and episode-level contributor permission plus manual transcription are required; the archive must never be ingested automatically. |
+| [Bundna Positioner](https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A908253) | 25 | Amanda Engstrom's 2015 Swedish ethnography may add gendered embodiment, touch, affect and somatechnics evidence. Open full-text access is not a derivative license. Author permission plus sampling, reflexivity, participant-privacy, ethics and translation review are required. The institution-specific Anubis challenge was respected and not bypassed. |
+| [Knot Without Risk v1](https://www.patreon.com/posts/knot-without-to-138044716) | 21 | This multilingual August 2025 beginner guide identifies Christian Red, Cherry Blossom and two deliberately anonymous medical consultants, but CC BY-NC-ND 4.0 allows only unadapted noncommercial sharing. Commercial derivative permission and independent clinical review are required; consultant anonymity must be protected. |
+| [Seilhafen consent and communication basics](https://seilhafen.de/resources/info-for-beginners/) | 21 | The page adds useful intention matching, freeze or nonverbal capacity, changing-state, aftercare, check-in and debrief prompts, but has no open license or clear page byline. Permission and authorship resolution are required, and a numeric pain ceiling, medication prompts, simplified FRIES definitions and shared-responsibility wording must be corrected rather than inherited. |
+| [Shay Tiziano self-suspension video set](https://commons.wikimedia.org/wiki/File:Back_loading_chest_harness_for_self-suspension.webm) | 27 | Three 2015-2017 Commons videos are human-reviewed CC BY-SA 3.0 works but have no TimedText and visually teach high-risk chest, seat and foot-support constructions. They remain metadata-only pending a current, qualified, timestamped human review. No computer vision, inferred step, certification, hardpoint or load claim is permitted. |
+| [The diverse dynamics of rope](https://archive.org/details/rope-dynamics.-v-leinad-jun-2020) | 25 | Daniel Cardoso's 2020 LAMchester workshop may contribute a distinct presenter-framed account of interpersonal and psychological rope dynamics, but CC BY-NC-ND 4.0 blocks commercial transcription and adaptation. Permission, manual speaker attribution and claim review are required. |
+| [The therapeutic potential of shibari](https://dspace.cuni.cz/handle/20.500.11956/202779) | 26 | Barbora Kostkova's 2025 Czech bachelor thesis reports reflexive thematic analysis of six practitioner interviews, while the repository explicitly bars commercial use. Author and repository permission plus clinical, methods, ethics and privacy review are required. Participant perceptions cannot become efficacy, treatment or somatic-mechanism claims. |
+
+### Rejected sources
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [Kinky Queeries rope-bondage episode pair](https://www.kinkyqueeries.com/episodes/18) | 0 | Both actual pages are outbound link lists whose expanded transcript sections still say “Coming soon.” Ordinary-copyright audio, search snippets, platform descriptions, resource names and vendor links are not a factual Markdown body and must not become URL-memory questions. |
+| [Smithsonian Bo shibari](https://asia-archive.si.edu/object/S2003.8.2790.13/) | 9 | The exact record is a Tsukioka Kogyo print in the *Fifty Kyogen Plays* series, not evidence about modern erotic rope or kinbaku. Conflicting CC0 and “Usage Conditions Apply” labels exist, but rejection independently follows from this high-confidence search-term collision. |
+| [Chaotic Devices Rope Studio handouts](https://chaoticdevices.co.uk/downloads) | 10 | A broad informal use sentence conflicts with copyright notices, while the nerve handouts explicitly disclaim medical authorship and include anatomical errors, pseudo-scientific framing and unsupported palpation, circulation, breathing, diagnostic and injury claims. Evidence quality independently fails. |
+| [Homosaurus rope-bondage term](https://homosaurus.org/v3/homoit0003089) | 7 | One thin controlled-vocabulary record is CC BY-NC-ND 4.0 and cannot support history, etymology, practice or exact equivalence among context-sensitive labels. Its identifier and linked labels are not useful training trivia. |
+| [Rope Rituals Nerve Risks in Shibari V3](https://roperituals.com/wp-content/uploads/2025/12/Rope-Rituals_Free-Download_Nerve-Risk-File_V3.pdf) | 6 | The unlicensed non-medical guide contains unsafe or unsupported restriction-duration rules, an unexplained upper-arm statistic, thumb-pressure localization, self-test reliability, symptom-based injury classification, ice treatment and bottom-responsibility language. Stronger medical and practitioner sources already cover its legitimate themes. |
+
+### Batch 029 rights, privacy, safety, and fact-value controls
+
+The NDL extraction is metadata-only: its call number and bibliographic ID are
+provenance keys, not answers worth memorizing, and its holdings cannot be
+silently expanded into a complete publication run. The Sprechkontakt job is an
+attributed oral-history transcript, not a route for converting a Western
+practitioner's statements into Japanese historical authority. Attribution,
+change indication and ShareAlike remain attached; episode art, other media and
+the ORF edit have separate component boundaries.
+
+The two qualitative theses remain small, situated studies. Interviews,
+complete participant observation and reflexive thematic analysis do not prove
+universal embodiment, healing or clinical effect. Participant quotations,
+intimate narratives and identities require minimization even if a surrounding
+repository is public. Anonymous medical reviewers in *Knot Without Risk* stay
+anonymous; the corpus worker must not try to identify them as a condition of
+review.
+
+Consent frameworks remain prompts rather than proof. Freeze or nonverbal
+capacity, present condition, specific opt-in discussion, ongoing adjustment,
+revocation, aftercare and debrief may be useful after permission. A pain scale,
+safeword, FRIES acronym, completed checklist, shared-responsibility statement
+or participant reassurance never establishes physical safety or transfers
+responsibility for harm.
+
+Visual self-suspension is not converted automatically. A permissive license
+does not validate construction, body placement, critical-line use, hardpoints,
+loads or emergency readiness. Similarly, the two rejected nerve collections
+cannot seed factual records, derived QA or inherited citations. Their rejection
+markers protect the corpus from plausible-looking but unsupported exact rules.
+
+### Batch 029 access and clean-room statement
+
+The source worker read only the governing discovery ledger, queue, report,
+registry and tests plus exact first-party pages, official catalog or repository
+records, source-owned files, Internet Archive item metadata, license pages,
+robots or access notices and rights statements required to resolve identity,
+access, evidence and component boundaries. No QA, trainer, projection,
+evaluation, heldout, holdout, OOD, shadow, benchmark, probe, experiment,
+existing corpus body or unrelated repository artifact was read. No login,
+cart, purchase, paywall, proof-of-work challenge, cache, archive-service or
+access-control bypass was used. Visual instructions were not reconstructed,
+private podcast material was not accessed, and no source body, audio, video or
+image entered a training artifact during discovery.

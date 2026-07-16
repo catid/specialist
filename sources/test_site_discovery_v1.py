@@ -4293,12 +4293,168 @@ class SourceCorpusContractTest(unittest.TestCase):
         self.assertIn("weak source-critical history", rejected_text)
         self.assertIn("unsafe unsupported claims", rejected_text)
 
+    def test_batch_029_decisions_and_queue_are_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_029"
+        }
+        expected = {
+            "accept_targeted_scope": {
+                "ndl_kitan_club_serial_bibliography",
+                "sprechkontakt_lut074_shibari_podcast",
+            },
+            "defer": {
+                "rope_podcast_fox_mya_oral_history_archive",
+                "diva_bundna_positioner_kinbaku_thesis",
+                "knot_without_risk_v1",
+                "seilhafen_consent_communication_basics",
+                "commons_shay_tiziano_self_suspension_video_set",
+                "vleinad_diverse_dynamics_rope_workshop",
+                "cuni_therapeutic_potential_shibari_thesis",
+            },
+            "reject": {
+                "kinky_queeries_rope_bondage_episode_pair",
+                "smithsonian_bo_shibari_kyogen_false_relevance",
+                "chaotic_devices_rope_studio_safety_handouts",
+                "homosaurus_rope_bondage_vocabulary",
+                "rope_rituals_nerve_risks_v3",
+            },
+        }
+        self.assertEqual(len(batch), 14)
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_029_accepts_mirror_queue_and_block_identifier_trivia(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "ndl_kitan_club_serial_bibliography": {
+                "no restriction on purpose",
+                "ndl holdings",
+                "kinbaku lineage",
+                "memorization question",
+            },
+            "sprechkontakt_lut074_shibari_podcast": {
+                "cc by-sa 4.0",
+                "orf broadcast",
+                "independent corroboration",
+                "episode url",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_029_permission_review_and_false_fact_sources_are_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        deferred_markers = {
+            "rope_podcast_fox_mya_oral_history_archive": {
+                "all rights reserved",
+                "do not automatically ingest",
+                "listener-identifying trauma",
+            },
+            "diva_bundna_positioner_kinbaku_thesis": {
+                "anubis",
+                "open access is not permission",
+                "participant-privacy",
+            },
+            "knot_without_risk_v1": {
+                "cc by-nc-nd 4.0",
+                "attempting to identify them",
+                "independent clinical review",
+            },
+            "seilhafen_consent_communication_basics": {
+                "0-10 maximum-tolerable-pain",
+                "victim-blame",
+                "not law, medical advice",
+            },
+            "commons_shay_tiziano_self_suspension_video_set": {
+                "run computer vision",
+                "hardpoint capacity",
+                "current safety review",
+            },
+            "vleinad_diverse_dynamics_rope_workshop": {
+                "cc by-nc-nd 4.0",
+                "participant names",
+                "universal rope roles",
+            },
+            "cuni_therapeutic_potential_shibari_thesis": {
+                "six semi-structured",
+                "perceived potential",
+                "review ethics, recruitment",
+            },
+        }
+        for candidate_id, required in deferred_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        rejected_markers = {
+            "kinky_queeries_rope_bondage_episode_pair": {
+                "coming soon",
+                "canonical-link memorization",
+            },
+            "smithsonian_bo_shibari_kyogen_false_relevance": {
+                "kyogen",
+                "modern kinbaku lineage",
+            },
+            "chaotic_devices_rope_studio_safety_handouts": {
+                "pseudo-scientific",
+                "palpation",
+            },
+            "homosaurus_rope_bondage_vocabulary": {
+                "taxonomy-flattening",
+                "identifier",
+            },
+            "rope_rituals_nerve_risks_v3": {
+                "thumb-pressure",
+                "ice treatment",
+            },
+        }
+        for candidate_id, required in rejected_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "reject")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_028`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_029`", self.report)
 
 
 if __name__ == "__main__":
