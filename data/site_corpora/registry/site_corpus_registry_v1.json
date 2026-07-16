@@ -332,6 +332,67 @@
       "whitespace_delimited_word_count": 1519
     },
     {
+      "artifact_id": "canonical-markdown:fhwa_t5140_34_adhesive_anchors",
+      "byte_length": 10190,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/fhwa_t5140_34_adhesive_anchors/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest",
+        "version": "1.0"
+      },
+      "manifest_sha256": "15a99174f9bd3a0cb2420935a8edaa39fba0472cf23ad3aac05011a9a5aefdb2",
+      "markdown_path": "data/site_corpora/fhwa_t5140_34_adhesive_anchors/CORPUS.md",
+      "markdown_sha256": "4f362ab6e1c87073d917dccf06b6423b3ba3823e728ca6787708e137022a482b",
+      "non_qa": true,
+      "qwen36_token_count": 2215,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:781fdf543b6192682919d5c02881198f898b1b6cdbbae6fc4090b3dfd9c4c91b",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "fhwa_t5140_34_adhesive_anchors",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The checksum-bound official technical advisory identifies the Federal Highway Administration as corporate author; eligible federal prose is treated as public domain in the United States under 17 U.S.C. 105, with every incorporated standard, third-party program, visual, table, product, and uncertain component excluded.",
+        "license": "eligible_US_government_text",
+        "limitations": [
+          "Incorporated standards text, quotations, identifiers, classifications, third-party organizations or certification programs, product and material details, and separately owned components are excluded.",
+          "Every schematic, figure, table, label, calculation, load, force, duration, timeline, scenario list, installation detail, inspection method, test method, design, retrofit, replacement, maintenance recipe, threshold, rating, and capacity statement is excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, extraction, contact sheet, visual, table, or source body is retained.",
+          "The advisory identifies an investigated ceiling-panel collapse but supplies no casualty detail; it does not qualify a DIY ceiling attachment, hardpoint, rope anchor, bondage setup, or human-suspension system."
+        ],
+        "promotion_gate": "ready_with_federal_attribution_checksum_component_audit_and_civil_infrastructure_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "all_standards_programs_products_materials_loads_timelines_figures_tables_and_third_party_components_excluded",
+        "ceiling_panel_collapse_context_has_no_source_supported_casualty_detail",
+        "no_diy_ceiling_hardpoint_rope_anchor_bondage_or_human_suspension_certification",
+        "no_installation_inspection_test_design_retrofit_replacement_rating_or_capacity_recipe",
+        "non_bondage_civil_infrastructure_adhesive_anchor_failure_and_governance_scope_required",
+        "owner_installer_inspector_and_qualified_evaluation_roles_do_not_supply_a_diy_procedure",
+        "persistent_tension_creep_installation_sensitivity_system_qualification_and_continuous_inspection_are_qualitative_controls"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.fhwa.dot.gov/Bridge/t514034.pdf",
+        "corporate_author": "Federal Highway Administration",
+        "document_number": "T5140.34",
+        "identity_type": "government_technical_advisory",
+        "official_pdf_sha256": "716c49feea8867c18c32230405716edd2282886987494abccb052743f2571e9d",
+        "publication_date": "2018-01-16",
+        "source_resource_id": "fhwa_t5140_34_adhesive_anchors"
+      },
+      "source_document_identity_sha256": "781fdf543b6192682919d5c02881198f898b1b6cdbbae6fc4090b3dfd9c4c91b",
+      "source_label": "FHWA Technical Advisory T5140.34: adhesive-anchor use and inspection",
+      "unicode_word_count": 1321,
+      "whitespace_delimited_word_count": 1292
+    },
+    {
       "artifact_id": "canonical-markdown:hse_treework_lifting_and_climbing",
       "byte_length": 25061,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1370,7 +1431,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "72a0ff1cf39e97af039a56f21ae05d7090135c6d604b73a4fdf9b661db1cf67c"
+    "sha256": "f589532bce33751d5016f25e74847d9f9817475630daf52f3d1d8cf2e6b08221"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1409,7 +1470,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "2dca483056a5a6fa6b3f21657f50e3b77bb8c38398adfed350b85434a2468945",
+  "source_tree_fingerprint_sha256": "7a3b004c550823c3f31bf32697a2095ef0afb2f64d0a4e65bd7ff9e4d28eb48b",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1419,11 +1480,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 24,
-    "byte_length": 4088614,
-    "qwen36_token_count": 1189550,
-    "source_document_split_group_count": 24,
-    "unicode_word_count": 538280,
-    "whitespace_delimited_word_count": 426232
+    "artifact_count": 25,
+    "byte_length": 4098804,
+    "qwen36_token_count": 1191765,
+    "source_document_split_group_count": 25,
+    "unicode_word_count": 539601,
+    "whitespace_delimited_word_count": 427524
   }
 }
