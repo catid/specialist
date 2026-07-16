@@ -1,0 +1,230 @@
+{
+  "schema": "site-corpus-provenance-v1",
+  "resource_id": "europepmc_entrapment_neuropathy_review",
+  "retrieved_at": "2026-07-16T09:46:48Z",
+  "review_completed_at": "2026-07-16T09:52:25Z",
+  "article": {
+    "title": "Entrapment neuropathies: a contemporary approach to pathophysiology, clinical assessment, and management",
+    "authors": [
+      "Annina B Schmid",
+      "Joel Fundaun",
+      "Brigitte Tampin"
+    ],
+    "journal": "Pain Reports",
+    "volume": "5",
+    "issue": "4",
+    "article_number": "e829",
+    "publication_date": "2020-07-22",
+    "doi": "10.1097/PR9.0000000000000829",
+    "pmcid": "PMC7382548",
+    "pmid": "32766466"
+  },
+  "source_locator": {
+    "canonical_metadata_url": "https://europepmc.org/article/MED/32766466",
+    "role": "article identifier and human-facing metadata locator only; not an article-body source",
+    "accessed_during_build": false
+  },
+  "authorized_source": {
+    "provider": "EMBL-EBI Europe PMC",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7382548/fullTextXML",
+    "content_type": "application/xml",
+    "remote_raw_byte_length": 220620,
+    "remote_raw_sha256": "9d3244720e670f574c8b203635f54d6c00f7cdcfbcf89d1c8155bba486d086b5",
+    "snapshot_path": "source_snapshot/fullTextXML.xml",
+    "snapshot_byte_length": 220621,
+    "snapshot_sha256": "da030b3e0a84759e96c4639399f8b41921c277df638213a3d1bd77848e38c0cc",
+    "normalization": "The authorized XML ended with a closing angle bracket and no newline. One terminal LF was added for repository text normalization; both remote and local digests are recorded."
+  },
+  "network_boundary": {
+    "get_routes_used": [
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7382548/fullTextXML"
+    ],
+    "head_routes_used": [
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7382548/fullTextXML"
+    ],
+    "canonical_metadata_route_accessed": false,
+    "publisher_route_accessed": false,
+    "united_states_pmc_route_accessed": false,
+    "other_article_body_route_accessed": false,
+    "external_figure_or_table_route_accessed": false,
+    "excluded_routes": [
+      "Wolters Kluwer publisher article endpoint",
+      "United States PMC article and PDF endpoints",
+      "Europe PMC generated PDF and supplementary routes",
+      "all external figure, thumbnail, and image-table binaries"
+    ]
+  },
+  "license": {
+    "name": "Creative Commons Attribution 4.0 International",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "copyright_statement": "Copyright © 2020 The Author(s). Published by Wolters Kluwer Health, Inc. on behalf of The International Association for the Study of Pain.",
+    "source_license_scope": "The JATS states that unrestricted use, distribution, and reproduction are permitted in any medium when the original work is properly cited.",
+    "attribution_and_change_notice_present": true,
+    "third_party_component_policy": "No figure, thumbnail, image-based table, source visual layout, or other external binary is emitted in the training Markdown. Figure 2 is explicitly described as adapted from reference 55 and was excluded."
+  },
+  "review_method": {
+    "mode": "manual_source_review_and_hand_cleanup",
+    "source_design": "contemporary narrative review",
+    "jats_article_type_label": "research-article",
+    "automation_boundary": "XML parsing was used only to navigate metadata, sections, captions, identifiers, and integrity properties. The direct-training Markdown was manually selected, paraphrased, reorganized, clinically bounded, and checked against the JATS. Raw extraction was not emitted as training prose.",
+    "systematic_review_elements_not_reported": [
+      "systematic search strategy",
+      "prespecified eligibility criteria",
+      "duplicate study screening",
+      "study flow diagram",
+      "uniform risk-of-bias appraisal"
+    ],
+    "reviewed_regions": [
+      "front matter, identifiers, abstracts, and license",
+      "key points and introduction",
+      "all pathophysiology subsections",
+      "clinical presentation",
+      "neuropathic-pain grading and every assessment subsection",
+      "natural history, prognosis, and management at exclusion-disposition level",
+      "conclusion, disclosures, footnotes, and references at disposition level",
+      "all four figure captions and the image-based table caption at disposition level"
+    ],
+    "experimental_pressure_values_copied_to_training": false,
+    "provocation_maneuver_instructions_copied_to_training": false,
+    "management_or_prognosis_details_copied_to_training": false,
+    "source_visuals_copied_to_training": false
+  },
+  "visual_component_audit": {
+    "figures": [
+      {
+        "id": "F1",
+        "subject": "potential pathomechanisms and risk factors",
+        "binary_fetched": false,
+        "direct_training_included": false,
+        "rights_note": "No separate credit is visible in the JATS caption; exclusion avoids unnecessary component-level rights and expression risk."
+      },
+      {
+        "id": "F2",
+        "subject": "neuropathic-pain grading system",
+        "binary_fetched": false,
+        "direct_training_included": false,
+        "rights_note": "The JATS caption explicitly says the system was adapted from reference 55; the visual was excluded as third-party/adapted content."
+      },
+      {
+        "id": "F3",
+        "subject": "bedside sensory testing tools",
+        "binary_fetched": false,
+        "direct_training_included": false,
+        "rights_note": "Excluded both for visual-content review and because it could facilitate unsupervised self-testing."
+      },
+      {
+        "id": "F4",
+        "subject": "multidimensional patient profiles and proposed personalized management",
+        "binary_fetched": false,
+        "direct_training_included": false,
+        "rights_note": "Excluded because the management graphic is outside the corpus scope and unnecessary to the retained heterogeneity finding."
+      }
+    ],
+    "tables": [
+      {
+        "id": "T1",
+        "subject": "differential diagnoses and serious pathologies potentially resembling carpal tunnel syndrome or sciatica",
+        "jats_representation": "external JPEG rather than structured table text",
+        "binary_fetched": false,
+        "direct_training_included": false,
+        "rights_note": "No separate credit is visible in the JATS caption. The image was excluded and was not reconstructed as a lay screening checklist."
+      }
+    ],
+    "external_binary_count_fetched": 0
+  },
+  "evidence_audit": {
+    "central_design_limit": "The article narratively combines preclinical models, human observational findings, diagnostic-performance studies, clinical guidelines, trials, and other reviews without a systematic evidence-selection or uniform bias-assessment method.",
+    "human_preclinical_boundary": "Much mechanistic evidence comes from acute severe animal or experimental nerve-injury models, while the common human entrapments discussed may be slower, milder, and chronic. Experimental findings cannot define a safe rope exposure.",
+    "heterogeneous_mechanisms": [
+      "ischaemia and oedema",
+      "intraneural or extraneural fibrosis",
+      "demyelination and conduction disturbance",
+      "axonal degeneration",
+      "large- and small-fiber changes",
+      "neuroinflammation",
+      "axonal-transport disruption",
+      "central nervous system adaptation",
+      "contextual and psychosocial consequences"
+    ],
+    "presentation_boundaries": [
+      "symptom is not examination sign",
+      "sign is not diagnosis",
+      "pain is not synonymous with demonstrable nerve damage",
+      "radicular pain is not synonymous with radiculopathy",
+      "mechanosensitivity is neither necessary nor sufficient for a nerve lesion",
+      "anatomical distribution can be informative without being perfectly canonical"
+    ],
+    "test_limitations": [
+      "early carpal tunnel involvement may escape nerve-conduction detection",
+      "nerve-conduction value is less established for some proximal conditions",
+      "MRI can produce false positives and false negatives",
+      "the imaging level may not match the clinical examination",
+      "ultrasound nerve size is one finding rather than a standalone diagnosis",
+      "test meaning depends on condition, stage, population, protocol, reference standard, and interpreter"
+    ],
+    "excluded_source_values_and_claims": [
+      "experimental compression-pressure magnitudes",
+      "prevalence and lifetime-risk percentages",
+      "natural-history and recovery percentages",
+      "prognostic estimates and associations",
+      "treatment effects, recommendations, and selection criteria",
+      "medication, injection, therapy, and surgery claims"
+    ]
+  },
+  "clinical_boundary": {
+    "qualified_evaluation_required": "Numbness, tingling, altered sensation, electric or burning pain, weakness, loss of coordination, or other neurological symptoms after rope require evaluation by a qualified medical professional.",
+    "not_a_triage_protocol": true,
+    "forbidden_derivations": [
+      "safe rope pressure or tension",
+      "safe rope placement or body location",
+      "safe contact width, loading direction, or geometry",
+      "safe duration or checking interval",
+      "release timing or release method",
+      "waiting period after symptoms",
+      "injury grade inferred from symptoms",
+      "recovery time or prognosis",
+      "treatment or self-care",
+      "return-to-rope timing",
+      "direct claims about bondage safety or technique"
+    ],
+    "transfer_rule": "The article did not study rope bondage, acute rope compression, suspension, wraps, scene monitoring, release, or return to rope. Its clinical and experimental findings cannot be converted into operational rope guidance."
+  },
+  "training_boundary": {
+    "direct_training_artifact": "CORPUS.md",
+    "source_snapshot_direct_training": false,
+    "non_qa": true,
+    "retained_scope": [
+      "narrative-review design limitations",
+      "human-versus-preclinical evidence distinctions",
+      "heterogeneous mechanisms with causal uncertainty",
+      "symptom, sign, diagnosis, and test distinctions",
+      "professional assessment scope and test limitations",
+      "strict no-threshold and no-management rope-transfer boundary"
+    ],
+    "excluded_sensitive_or_unsafe_material": [
+      "experimental pressure values",
+      "self-provocation maneuver instructions",
+      "lay differential-diagnosis checklist",
+      "treatment, prognosis, recovery, or self-care advice",
+      "external figures, thumbnails, and image-based table",
+      "identifier-recall and URL-recall training prompts"
+    ]
+  },
+  "split_hygiene": {
+    "non_qa": true,
+    "source_document_unit": "PMC7382548",
+    "document_disjoint_requirement": "Assign PMCID PMC7382548 and all derived Markdown or QA to one split before chunking or derivation.",
+    "protected_data_accessed_during_build": false,
+    "protected_data_classes_not_accessed": [
+      "QA artifacts",
+      "training projections",
+      "evaluation sets",
+      "validation sets",
+      "OOD sets",
+      "shadow sets",
+      "benchmarks",
+      "probes",
+      "sealed holdouts"
+    ]
+  }
+}

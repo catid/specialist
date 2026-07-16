@@ -1,0 +1,150 @@
+{
+  "schema": "site-corpus-manifest-v1",
+  "schema_version": 1,
+  "resource_id": "europepmc_entrapment_neuropathy_review",
+  "source_id": "europepmc_entrapment_neuropathy_review",
+  "artifact_role": "canonical_markdown_direct_training_source",
+  "direct_training_ready": true,
+  "non_qa": true,
+  "generated_at": "2026-07-16T09:52:25Z",
+  "retrieved_at": "2026-07-16T09:46:48Z",
+  "source_type": "peer_reviewed_clinical_narrative_review",
+  "article": {
+    "title": "Entrapment neuropathies: a contemporary approach to pathophysiology, clinical assessment, and management",
+    "authors": [
+      "Annina B Schmid",
+      "Joel Fundaun",
+      "Brigitte Tampin"
+    ],
+    "journal": "Pain Reports",
+    "volume": "5",
+    "issue": "4",
+    "article_number": "e829",
+    "publication_date": "2020-07-22",
+    "doi": "10.1097/PR9.0000000000000829",
+    "pmcid": "PMC7382548",
+    "pmid": "32766466"
+  },
+  "license": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "copyright_statement": "Copyright © 2020 The Author(s). Published by Wolters Kluwer Health, Inc. on behalf of The International Association for the Study of Pain.",
+    "attribution": "Schmid AB, Fundaun J, Tampin B. Pain Reports 5(4), e829. DOI 10.1097/PR9.0000000000000829.",
+    "changes": "Manually selected, paraphrased, reorganized, clinically bounded, evidence-labeled, and stripped of experimental pressure values, treatment and prognosis detail, self-test procedures, source visuals, and unsupported rope transfer."
+  },
+  "entries": [
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7382548/fullTextXML",
+      "content_type": "application/xml",
+      "disposition": "retained_provenance_not_direct_training_terminal_lf_normalized",
+      "snapshot_path": "source_snapshot/fullTextXML.xml",
+      "remote_raw_byte_length": 220620,
+      "remote_raw_sha256": "9d3244720e670f574c8b203635f54d6c00f7cdcfbcf89d1c8155bba486d086b5",
+      "snapshot_byte_length": 220621,
+      "snapshot_sha256": "da030b3e0a84759e96c4639399f8b41921c277df638213a3d1bd77848e38c0cc",
+      "reason": "Sole authorized EMBL-EBI JATS body retained for source fidelity and offline audit; only the manually curated CORPUS.md is direct-training ready."
+    }
+  ],
+  "canonical_metadata_locator": "https://europepmc.org/article/MED/32766466",
+  "canonical_metadata_locator_role": "identifier_only_not_article_body_not_accessed",
+  "excluded_routes": [
+    "Wolters Kluwer publisher article endpoint",
+    "United States PMC article and PDF endpoints",
+    "Europe PMC generated PDF and supplementary routes",
+    "all external figure, thumbnail, and image-table binaries"
+  ],
+  "training_document_count": 1,
+  "training_section_count": 16,
+  "direct_training_word_count": 2977,
+  "whitespace_delimited_word_count": 3002,
+  "word_count_method": "Unicode regex [\\w\\u2019'-]+ over CORPUS.md; whitespace count recorded separately",
+  "disposition_record_count": 25,
+  "included_or_narrowed_disposition_count": 19,
+  "excluded_disposition_count": 6,
+  "supported_categories": [
+    "anatomy_injury_prevention",
+    "emergency_procedures",
+    "teaching_evaluation",
+    "terminology_cultural_context"
+  ],
+  "evidence_scope": {
+    "review_design": "narrative review without reported systematic search, prespecified eligibility criteria, duplicate screening, flow diagram, or uniform risk-of-bias appraisal",
+    "evidence_mix": "animal and other preclinical models, human observational and imaging findings, diagnostic-performance studies, clinical guidelines, trials, and other reviews",
+    "retained_mechanisms": "ischaemia, oedema, proposed fibrosis, demyelination, conduction disturbance, axonal injury, large- and small-fiber changes, neuroinflammation, axonal-transport disruption, and central adaptation, each with design and uncertainty labels",
+    "retained_clinical_distinctions": "symptom versus sign versus diagnosis; radicular pain versus radiculopathy; pain versus demonstrable damage; mechanosensitivity versus lesion; anatomical pattern versus perfect territorial rule",
+    "retained_test_limits": "early nerve-conduction detection limits, uncertain proximal utility, MRI false positives and negatives, imaging-clinical level mismatch, and non-standalone ultrasound findings"
+  },
+  "pressure_transfer_status": "forbidden_values_omitted_no_safe_threshold",
+  "experimental_transfer_status": "forbidden_no_human_rope_threshold_or_operational_transfer",
+  "placement_duration_release_status": "forbidden_no_safe_location_geometry_duration_check_interval_or_release_timing",
+  "management_transfer_status": "forbidden_section_excluded_no_treatment_self_care_or_return_to_rope",
+  "prognosis_recovery_status": "forbidden_clinical_cohorts_do_not_predict_acute_rope_outcomes",
+  "direct_bondage_claim_status": "forbidden_source_did_not_study_rope",
+  "diagnostic_test_status": "supportive_not_standalone_not_clearance",
+  "clinical_evaluation_status": "neurological_symptoms_after_rope_require_qualified_medical_evaluation",
+  "visual_component_status": {
+    "source_figure_count": 4,
+    "source_image_table_count": 1,
+    "external_binary_count_fetched": 0,
+    "direct_training_visual_count": 0,
+    "adapted_third_party_component": "Figure 2 caption states that the neuropathic-pain grading system was adapted from reference 55; excluded",
+    "table_note": "Table 1 exists only as an external JPEG in the JATS and was not fetched or reconstructed"
+  },
+  "qa_derivation_policy": {
+    "allowed": "narrative-review design, human-versus-preclinical distinctions, mechanism uncertainty, symptom-sign-diagnosis distinctions, radicular terminology, mechanosensitivity limits, and diagnostic-test limitations, always with the clinical and rope-transfer gate",
+    "forbidden": "title, author, DOI, PMCID, PMID, publication date, page, URL, figure, table, pressure, duration, placement, release, treatment, prognosis, recovery, self-care, return-to-rope, or other identifier and operational recall; self-testing; diagnosis; direct bondage claims",
+    "inherit_document_split": true
+  },
+  "sampling_guidance": {
+    "source_weighting": "one narrative review document, not one training document per cited study, mechanism, disorder, or visual",
+    "recommended_unit": "section chunks that retain the evidence label, human-preclinical boundary, relevant test limitation, and no-rope-threshold warning",
+    "avoid": "isolating mechanism statements from design qualifiers; extracting experimental values; oversampling medical harm material; generating self-triage, self-care, prognosis, or rope-configuration prompts"
+  },
+  "document_disjoint_requirement": "Assign PMCID PMC7382548 and all derived Markdown or QA to one split before chunking or derivation.",
+  "protected_split_requirement": "Exclude QA, training-projection, validation, evaluation, OOD, shadow, benchmark, probe, sealed-holdout, and protected-QA documents from every training layer.",
+  "source_snapshot": {
+    "full_text_xml": {
+      "path": "source_snapshot/fullTextXML.xml",
+      "byte_length": 220621,
+      "sha256": "da030b3e0a84759e96c4639399f8b41921c277df638213a3d1bd77848e38c0cc",
+      "direct_training": false
+    },
+    "provenance": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 11223,
+      "sha256": "3157e5f3d3ddf6893adb89acf4b3cfab988e1c822c14c81b5195a1cf6e8a6c27"
+    }
+  },
+  "outputs": {
+    "CORPUS.md": {
+      "path": "CORPUS.md",
+      "byte_length": 21809,
+      "sha256": "142190b91f7999969aa38fc25c56992e9295bc836d6721bb582bbfaf3ebb0186"
+    },
+    "REPORT.md": {
+      "path": "REPORT.md",
+      "byte_length": 10058,
+      "sha256": "0246a97a4fa6fc3f48880cbe2aa965782bd78289775a939e2ee8af97a5c01ccb"
+    },
+    "dispositions.jsonl": {
+      "path": "dispositions.jsonl",
+      "byte_length": 11935,
+      "sha256": "71245f90061a75b32afb9c5e4c5f9062ec63d834bd8878ee03909f2d0af816af"
+    },
+    "source_snapshot/provenance.json": {
+      "path": "source_snapshot/provenance.json",
+      "byte_length": 11223,
+      "sha256": "3157e5f3d3ddf6893adb89acf4b3cfab988e1c822c14c81b5195a1cf6e8a6c27"
+    },
+    "source_snapshot/fullTextXML.xml": {
+      "path": "source_snapshot/fullTextXML.xml",
+      "byte_length": 220621,
+      "sha256": "da030b3e0a84759e96c4639399f8b41921c277df638213a3d1bd77848e38c0cc"
+    },
+    "tests/test_corpus.py": {
+      "path": "tests/test_corpus.py",
+      "byte_length": 18810,
+      "sha256": "ed8f1561dfeb9f6734a6e7f1eafaa1fdc53034bb6655c7fbe0c6503467be2eae"
+    }
+  }
+}
