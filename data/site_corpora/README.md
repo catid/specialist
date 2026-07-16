@@ -23,6 +23,22 @@ Source discovery is governed separately by
 Both layers are retained for training. Q&A does not replace the Markdown, and
 the Markdown is not converted wholesale into automatically generated Q&A.
 
+## First-class Markdown registry
+
+Every Git-tracked direct-training Markdown artifact is sealed in
+[`registry/site_corpus_registry_v1.json`](registry/site_corpus_registry_v1.json).
+The registry records source-document identity, manifest/schema, rights basis,
+safety and domain-transfer flags, file hashes, word counts, and exact
+Qwen3.6-35B-A3B token counts. Its deterministic builder treats omission of a
+declared artifact as an error and performs no corpus merge, chunking, sampling,
+or split assignment.
+
+Snapshot builders must consume the registry and assign its required split group
+before chunking or QA derivation. The complete Markdown, every chunk, and every
+derived row inherit that one source-document group; cross-split reuse is
+forbidden. A legacy `direct_training_ready` label does not override the
+registry's rights promotion gate.
+
 ## Completed corpora
 
 - [`rope_topia/rope_topia.md`](rope_topia/rope_topia.md)
@@ -31,6 +47,9 @@ the Markdown is not converted wholesale into automatically generated Q&A.
 - [`crash_restraint/crash_restraint.md`](crash_restraint/crash_restraint.md)
 - [`europepmc_rope_neuropathy_study/europepmc_rope_neuropathy_study.md`](europepmc_rope_neuropathy_study/europepmc_rope_neuropathy_study.md)
 - [`europepmc_icar_suspension_syndrome/europepmc_icar_suspension_syndrome.md`](europepmc_icar_suspension_syndrome/europepmc_icar_suspension_syndrome.md)
+- [`europepmc_bdsm_fatality_review/CORPUS.md`](europepmc_bdsm_fatality_review/CORPUS.md)
+- [`europepmc_entrapment_neuropathy_review/CORPUS.md`](europepmc_entrapment_neuropathy_review/CORPUS.md)
+- [`usfs_rigging_for_trail_work/CORPUS.md`](usfs_rigging_for_trail_work/CORPUS.md)
 
 Each directory also contains a manifest, report, provenance or source snapshot,
 and deterministic coverage tests. Corpus completeness means complete coverage

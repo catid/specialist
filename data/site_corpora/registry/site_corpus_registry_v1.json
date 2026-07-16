@@ -1,0 +1,549 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "canonical-markdown:crash_restraint",
+      "byte_length": 115628,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/crash_restraint/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": null
+      },
+      "manifest_sha256": "6f582d82adf6ca6ef0e1659f41ab9fa1c90c6b3b80efbd48f3b83af51556a1d9",
+      "markdown_path": "data/site_corpora/crash_restraint/crash_restraint.md",
+      "markdown_sha256": "6d20498960cf7e38d17a1feb9074c10b779237df2308e99b448f9223c5342929",
+      "non_qa": true,
+      "qwen36_token_count": 24764,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:2ff54b0c6a618c9d368932677a110ed1f05a0d12b5c84d620bdc65f7b1aeba6c",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "crash_restraint",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "Publicly accessible pages were transformed into an original fact-focused digest, but the legacy corpus manifest records no explicit reuse license or permission basis.",
+        "license": "not_recorded",
+        "limitations": [
+          "Public accessibility is not a copyright license.",
+          "Do not redistribute source prose, images, PDFs, or visual-only instructions from this registry record.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ],
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "status": "legacy_manifest_gap"
+      },
+      "safety_transfer_flags": [
+        "medical_and_engineering_uncertainty_must_be_preserved",
+        "no_hardpoint_or_human_suspension_certification",
+        "source_specific_claims_require_attribution",
+        "visual_only_instruction_must_not_be_reconstructed"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://crash-restraint.com/",
+        "identity_type": "canonical_site_digest",
+        "source_resource_id": "crash_restraint"
+      },
+      "source_document_identity_sha256": "2ff54b0c6a618c9d368932677a110ed1f05a0d12b5c84d620bdc65f7b1aeba6c",
+      "source_label": "Crash Restraint full accessible site digest",
+      "unicode_word_count": 16349,
+      "whitespace_delimited_word_count": 15981
+    },
+    {
+      "artifact_id": "canonical-markdown:europepmc_bdsm_fatality_review",
+      "byte_length": 21214,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/europepmc_bdsm_fatality_review/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "01e369f6639d7e0fa939bc62bd4ad9ffbeafbb533f5cb3e5f50d6fb539a120f8",
+      "markdown_path": "data/site_corpora/europepmc_bdsm_fatality_review/CORPUS.md",
+      "markdown_sha256": "3ac2cfe01a60802e61a6ef83d3d4f62c41b4bb06983e2a9c43c5d2bfdf61ae94",
+      "non_qa": true,
+      "qwen36_token_count": 4225,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:e0f94a7d2512acdf9f1e5aa64f9451c03c9916137db755811b2a32cda6d94be2",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "europepmc_bdsm_fatality_review",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 4.0; the digest records attribution and transformation.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "limitations": [
+          "Individual case narratives, expressive table layouts, and technique reconstruction are excluded.",
+          "The license does not validate the paper's conclusions or convert selected cases into population evidence."
+        ],
+        "promotion_gate": "ready_with_attribution_and_recorded_changes",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "individual_case_narratives_excluded",
+        "no_causal_inference_from_selected_fatal_cases",
+        "no_neck_compression_breath_control_or_bondage_instruction",
+        "no_population_incidence_or_prevalence_inference",
+        "reported_source_inconsistencies_must_remain_flagged"
+      ],
+      "source_document_identity": {
+        "doi": "10.1007/s00414-021-02674-0",
+        "identity_type": "journal_article",
+        "pmcid": "PMC8813685",
+        "pmid": "34383118"
+      },
+      "source_document_identity_sha256": "e0f94a7d2512acdf9f1e5aa64f9451c03c9916137db755811b2a32cda6d94be2",
+      "source_label": "How safe is BDSM? A literature review on fatal outcome in BDSM play",
+      "unicode_word_count": 2941,
+      "whitespace_delimited_word_count": 2974
+    },
+    {
+      "artifact_id": "canonical-markdown:europepmc_entrapment_neuropathy_review",
+      "byte_length": 21809,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/europepmc_entrapment_neuropathy_review/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "dcdd11e241082784102a8d64ff399a7d4140dd55ee593f74953f065118339b32",
+      "markdown_path": "data/site_corpora/europepmc_entrapment_neuropathy_review/CORPUS.md",
+      "markdown_sha256": "142190b91f7999969aa38fc25c56992e9295bc836d6721bb582bbfaf3ebb0186",
+      "non_qa": true,
+      "qwen36_token_count": 4455,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:5b0b77d61353dc0b24237d7c3ce45910c8bf97e870c98b210290e01f30a0fd6e",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "europepmc_entrapment_neuropathy_review",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 4.0; the digest records attribution and transformation.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "limitations": [
+          "The review primarily concerns common clinical entrapment disorders rather than rope bondage.",
+          "Source figures and the image-only table are excluded, including adapted content whose component rights are not assumed.",
+          "Open licensing does not turn experimental or disease observations into a rope safety threshold or treatment protocol."
+        ],
+        "promotion_gate": "ready_with_attribution_clinical_scope_and_no_rope_transfer",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "heterogeneous_mechanisms_presentation_and_test_limits_must_be_preserved",
+        "human_clinical_and_preclinical_evidence_must_remain_distinct",
+        "no_recovery_prognosis_treatment_or_self_care_inference",
+        "no_safe_pressure_placement_duration_or_release_timing_inference",
+        "not_direct_rope_bondage_evidence",
+        "suspected_rope_neurologic_symptoms_require_qualified_medical_evaluation"
+      ],
+      "source_document_identity": {
+        "doi": "10.1097/PR9.0000000000000829",
+        "identity_type": "journal_article",
+        "pmcid": "PMC7382548",
+        "pmid": "32766466"
+      },
+      "source_document_identity_sha256": "5b0b77d61353dc0b24237d7c3ce45910c8bf97e870c98b210290e01f30a0fd6e",
+      "source_label": "Entrapment neuropathies: a contemporary approach to pathophysiology, clinical assessment, and management",
+      "unicode_word_count": 2977,
+      "whitespace_delimited_word_count": 3002
+    },
+    {
+      "artifact_id": "canonical-markdown:europepmc_icar_suspension_syndrome",
+      "byte_length": 14806,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/europepmc_icar_suspension_syndrome/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": null
+      },
+      "manifest_sha256": "a4771d2f8f757486ba2828f0791fc7e5dc7fee7583538159e7af659dcae0526a",
+      "markdown_path": "data/site_corpora/europepmc_icar_suspension_syndrome/europepmc_icar_suspension_syndrome.md",
+      "markdown_sha256": "ed7ee4b88fcde6fbed8860c38d123de41d7f5bb49faf85bb4aaff31ab9659ab3",
+      "non_qa": true,
+      "qwen36_token_count": 2847,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:b804898d83080ae10b5e88e77e1215467eb51eae8c4f72d319c7fc777d42152a",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "europepmc_icar_suspension_syndrome",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 4.0.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "limitations": [
+          "Review evidence and graded consensus recommendations remain attributed.",
+          "Publisher and United States PMC routes are excluded by the source package."
+        ],
+        "promotion_gate": "ready_with_attribution_and_domain_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "no_universal_rescue_or_first_aid_claim",
+        "not_validated_as_bondage_suspension_protocol",
+        "occupational_climbing_and_mountain_rescue_domain",
+        "recommendation_grades_and_evidence_limits_must_be_preserved"
+      ],
+      "source_document_identity": {
+        "doi": "10.1186/s13049-023-01164-z",
+        "identity_type": "journal_article",
+        "pmcid": "PMC10710713",
+        "pmid": "38071341"
+      },
+      "source_document_identity_sha256": "b804898d83080ae10b5e88e77e1215467eb51eae8c4f72d319c7fc777d42152a",
+      "source_label": "Suspension syndrome: a scoping review and ICAR MEDCOM recommendations",
+      "unicode_word_count": 1899,
+      "whitespace_delimited_word_count": 1891
+    },
+    {
+      "artifact_id": "canonical-markdown:europepmc_rope_neuropathy_study",
+      "byte_length": 11612,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/europepmc_rope_neuropathy_study/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": null
+      },
+      "manifest_sha256": "ba11a483d86c3e79f2495a9584cb22be17c3e29a340981dbe4cb565df8043d4e",
+      "markdown_path": "data/site_corpora/europepmc_rope_neuropathy_study/europepmc_rope_neuropathy_study.md",
+      "markdown_sha256": "1507aa6cbb4025b8287bd9e1646de4b91855932f9ac6e3fae0e8393ebafe4260",
+      "non_qa": true,
+      "qwen36_token_count": 2282,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:5a5729d08923123d429ed5b5e9c37ae91455eea9c988f47261385a1fd60335a8",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "europepmc_rope_neuropathy_study",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 3.0.",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0/",
+        "limitations": [
+          "Self-reported observations and clinical cases remain attributed.",
+          "Publisher and United States PMC routes are excluded by the source package."
+        ],
+        "promotion_gate": "ready_with_attribution_and_evidence_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "clinical_observations_require_attribution",
+        "injury_enriched_small_retrospective_sample",
+        "no_causal_or_preventive_protocol_claim",
+        "no_population_incidence_or_prevalence_inference",
+        "no_safe_duration_pressure_or_placement_inference"
+      ],
+      "source_document_identity": {
+        "doi": "10.7759/cureus.39588",
+        "identity_type": "journal_article",
+        "pmcid": "PMC10294117",
+        "pmid": "37384078"
+      },
+      "source_document_identity_sha256": "5a5729d08923123d429ed5b5e9c37ae91455eea9c988f47261385a1fd60335a8",
+      "source_label": "Acute Radial Compressive Neuropathy: The Most Common Injury Induced by Japanese Rope Bondage",
+      "unicode_word_count": 1536,
+      "whitespace_delimited_word_count": 1519
+    },
+    {
+      "artifact_id": "canonical-markdown:rope365",
+      "byte_length": 90243,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "legacy_manifest_canonical_trainable_source_corpus",
+      "manifest_path": "data/site_corpora/rope365/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": null
+      },
+      "manifest_sha256": "2897957fa4bb272dac5b6962f7cfe430ff2c36a6a095f2b87fb9d25d34d7b8ac",
+      "markdown_path": "data/site_corpora/rope365/rope365.md",
+      "markdown_sha256": "2ed4419e5a9b3267d618faaf5e9677cc08835749882efbff27b5f2b283c598ff",
+      "non_qa": true,
+      "qwen36_token_count": 19168,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:4b4349dc2944a3c611bac38d9766f78e296fa3f506770a7cbef1796a2d5337fe",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "rope365",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "Publicly accessible pages were transformed into an original dense digest, but the legacy corpus manifest records no explicit reuse license or permission basis.",
+        "license": "not_recorded",
+        "limitations": [
+          "Public accessibility is not a copyright license.",
+          "Do not redistribute source prose, images, video, or visual-only instructions from this registry record.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ],
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "status": "legacy_manifest_gap"
+      },
+      "safety_transfer_flags": [
+        "anatomy_and_safety_claims_require_independent_review",
+        "practitioner_source_not_medical_or_engineering_authority",
+        "source_specific_claims_require_attribution",
+        "visual_only_instruction_must_not_be_reconstructed"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://rope365.com/",
+        "identity_type": "canonical_site_digest",
+        "source_resource_id": "rope365"
+      },
+      "source_document_identity_sha256": "4b4349dc2944a3c611bac38d9766f78e296fa3f506770a7cbef1796a2d5337fe",
+      "source_label": "Rope365 canonical instructional site digest",
+      "unicode_word_count": 13337,
+      "whitespace_delimited_word_count": 12921
+    },
+    {
+      "artifact_id": "canonical-markdown:rope_topia",
+      "byte_length": 11859,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "legacy_dense_corpus_manifest_and_root_completed_list",
+      "manifest_path": "data/site_corpora/rope_topia/manifest.json",
+      "manifest_schema": {
+        "name": "rope-topia-dense-corpus-manifest-v1",
+        "version": null
+      },
+      "manifest_sha256": "ba5c1854789ae5569825a1f878b077a7e2847bcd6b3f39633ce5896e8835a26d",
+      "markdown_path": "data/site_corpora/rope_topia/rope_topia.md",
+      "markdown_sha256": "526c8740b7845f2c91dc2a7b43d348891beeb9b5b00c0f80db20c6bd803576e5",
+      "non_qa": true,
+      "qwen36_token_count": 2552,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:0609a34c3ccdeda59a7974cb439d5370f011ad487919f12c79838d3ad6996f07",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "rope_topia",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The artifact is an original dense paraphrase of manually reviewed archived pages and verified successor copies, but the legacy manifest records no explicit corpus reuse license.",
+        "license": "not_recorded",
+        "limitations": [
+          "Internet Archive availability does not grant copyright permission.",
+          "Successor-page access does not authorize redistribution of source prose or media.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ],
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "status": "legacy_manifest_gap"
+      },
+      "safety_transfer_flags": [
+        "archive_and_successor_provenance_must_be_preserved",
+        "historical_and_practitioner_claims_require_attribution",
+        "nonmedical_safety_articles_are_not_clinical_guidance",
+        "visual_only_instruction_must_not_be_reconstructed"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://rope-topia.com/",
+        "identity_type": "canonical_site_archive_digest",
+        "source_resource_id": "rope_topia"
+      },
+      "source_document_identity_sha256": "0609a34c3ccdeda59a7974cb439d5370f011ad487919f12c79838d3ad6996f07",
+      "source_label": "Rope-topia manually recovered archive and successor digest",
+      "unicode_word_count": 1649,
+      "whitespace_delimited_word_count": 1521
+    },
+    {
+      "artifact_id": "canonical-markdown:shibari_atlas",
+      "byte_length": 3485840,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "legacy_manifest_corpus_artifact_and_root_completed_list",
+      "manifest_path": "data/site_corpora/shibari_atlas/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": null
+      },
+      "manifest_sha256": "f1c51e15d5201ce224b383758a58225d22f370a544eeebea1b91cd69d98a141e",
+      "markdown_path": "data/site_corpora/shibari_atlas/shibari_atlas.md",
+      "markdown_sha256": "a7550a53ff259c12f696c03ce4131b83c2d01c773e43892de406e25bf22304e0",
+      "non_qa": true,
+      "qwen36_token_count": 1061134,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:4b1d423a3758f1973b04d00e41f4a5a72b78d69f289c20d3b9398becc9b5ae8a",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "shibari_atlas",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The artifact is an original compressed digest and states that external reference pages were not copied, but the legacy corpus manifest records no explicit reuse license for the site's own text.",
+        "license": "not_recorded",
+        "limitations": [
+          "External source-catalogue metadata does not license the referenced works.",
+          "Do not redistribute site prose, images, graph assets, or external reference bodies from this registry record.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ],
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "status": "legacy_manifest_gap"
+      },
+      "safety_transfer_flags": [
+        "contested_history_and_aliases_require_provenance",
+        "external_reference_pages_must_not_be_imputed_or_copied",
+        "historical_lineage_and_identity_claims_require_source_attribution",
+        "not_a_technical_medical_or_suspension_certification"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://shibariatlas.org/",
+        "identity_type": "canonical_site_digest",
+        "source_resource_id": "shibari_atlas"
+      },
+      "source_document_identity_sha256": "4b1d423a3758f1973b04d00e41f4a5a72b78d69f289c20d3b9398becc9b5ae8a",
+      "source_label": "Shibari Atlas canonical site and source-catalogue digest",
+      "unicode_word_count": 452693,
+      "whitespace_delimited_word_count": 341843
+    },
+    {
+      "artifact_id": "canonical-markdown:usfs_rigging_for_trail_work",
+      "byte_length": 40592,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/usfs_rigging_for_trail_work/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "0b7ff5ec512b4b8d7cf1a4cbe3793ce6f12d5c9d83db92fdeb75eef935e776bd",
+      "markdown_path": "data/site_corpora/usfs_rigging_for_trail_work/CORPUS.md",
+      "markdown_sha256": "4ba06a9c38b1270ce09de54f9e9d58eff016996ac14fe79d94a4519e1b28210a",
+      "non_qa": true,
+      "qwen36_token_count": 9175,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:1e4b621fdc2b47346bb5fd7caa46e0f9178a2a96dbc7afa77977cfd26d96d6b9",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "usfs_rigging_for_trail_work",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "Eligible United States Government text is treated as presumptively public domain under 17 U.S.C. 105.",
+        "license": "eligible_US_government_text",
+        "limitations": [
+          "No blanket rights conclusion applies to credited third-party components.",
+          "Photographs, figures, expressive tables, decorative quotations, vendor prose, and externally supplied matter are excluded.",
+          "This rights classification is not a legal opinion."
+        ],
+        "promotion_gate": "ready_with_component_audit_and_domain_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "forest_service_material_rigging_domain",
+        "manufacturer_standards_and_qualified_evaluation_control",
+        "mechanics_only_no_human_support_design_values",
+        "no_bondage_rope_tree_limb_indoor_hardpoint_or_hardware_certification",
+        "source_assumptions_and_failure_consequences_must_be_preserved"
+      ],
+      "source_document_identity": {
+        "govinfo_package_id": "GOVPUB-A13-PURL-gpo235248",
+        "identity_type": "government_publication",
+        "publication_number": "2223-2806-NTDP"
+      },
+      "source_document_identity_sha256": "1e4b621fdc2b47346bb5fd7caa46e0f9178a2a96dbc7afa77977cfd26d96d6b9",
+      "source_label": "Rigging for Trail Work: Principles, Techniques, and Lessons from the Backcountry",
+      "unicode_word_count": 6102,
+      "whitespace_delimited_word_count": 6082
+    }
+  ],
+  "config": {
+    "path": "data/site_corpora/registry/source_registry_config_v1.json",
+    "sha256": "43a94a3b03988403661bbf3ccfba96fd149bf5bdd1b0619bde752d3df41bae81"
+  },
+  "count_methods": {
+    "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
+    "unicode_word_count": "Python Unicode regex [\\w\\u2019'-]+ over the complete UTF-8 Markdown artifact",
+    "whitespace_delimited_word_count": "Python str.split() over the complete UTF-8 Markdown artifact"
+  },
+  "dataset_layer": {
+    "all_descendants_inherit_source_document_split": true,
+    "chunking_performed": false,
+    "first_class_training_layer": true,
+    "layer_id": "canonical_markdown_source_corpus",
+    "merge_performed": false,
+    "non_qa": true,
+    "omission_of_registered_artifact_is_fatal": true,
+    "source_caps_required_before_snapshot": true,
+    "split_assignment_performed": false,
+    "split_assignment_unit": "required_single_document_split_group.group_id",
+    "token_volume_alone_must_not_determine_source_weight": true
+  },
+  "excluded_nontraining_manifests": [
+    {
+      "manifest_path": "data/site_corpora/shibari_study/manifest.json",
+      "reason": "terms_of_service_prohibits_content_collection_and_storage",
+      "resource_id": "shibari_study"
+    },
+    {
+      "manifest_path": "data/site_corpora/theduchy/manifest.json",
+      "reason": "robots_and_content_signal_ai_training_disallowed",
+      "resource_id": "theduchy"
+    },
+    {
+      "manifest_path": "data/site_corpora/tree_anchor_mechanics/manifest.json",
+      "reason": "treeconsult_copyright_notice_requires_written_permission_for_text_reuse",
+      "resource_id": "tree_anchor_mechanics"
+    }
+  ],
+  "schema": "site-corpus-registry-v1",
+  "schema_version": 1,
+  "source_tree_fingerprint_sha256": "693a59e4493494ebf07771f312c5b702dbe4bb6bad9c17c02d02fa5b1326268a",
+  "tokenizer": {
+    "add_special_tokens": false,
+    "model_family": "Qwen3.6-35B-A3B",
+    "tokenizer_config_path": "models/Qwen3.6-35B-A3B/tokenizer_config.json",
+    "tokenizer_config_sha256": "5186f0defcd7f232382c7f0aebcd2252d073bb921ab240e407b7ae8745d2b29b",
+    "tokenizer_json_path": "models/Qwen3.6-35B-A3B/tokenizer.json",
+    "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+  },
+  "totals": {
+    "artifact_count": 9,
+    "byte_length": 3813603,
+    "qwen36_token_count": 1130602,
+    "source_document_split_group_count": 9,
+    "unicode_word_count": 499483,
+    "whitespace_delimited_word_count": 387734
+  }
+}

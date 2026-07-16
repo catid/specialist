@@ -1,0 +1,285 @@
+{
+  "schema": "site-corpus-registry-config-v1",
+  "records": [
+    {
+      "resource_id": "crash_restraint",
+      "source_label": "Crash Restraint full accessible site digest",
+      "manifest_path": "data/site_corpora/crash_restraint/manifest.json",
+      "markdown_path": "data/site_corpora/crash_restraint/crash_restraint.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "canonical_site_digest",
+        "canonical_url": "https://crash-restraint.com/",
+        "source_resource_id": "crash_restraint"
+      },
+      "rights_basis": {
+        "status": "legacy_manifest_gap",
+        "basis": "Publicly accessible pages were transformed into an original fact-focused digest, but the legacy corpus manifest records no explicit reuse license or permission basis.",
+        "license": "not_recorded",
+        "attribution_required": true,
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "limitations": [
+          "Public accessibility is not a copyright license.",
+          "Do not redistribute source prose, images, PDFs, or visual-only instructions from this registry record.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ]
+      },
+      "safety_transfer_flags": [
+        "source_specific_claims_require_attribution",
+        "medical_and_engineering_uncertainty_must_be_preserved",
+        "visual_only_instruction_must_not_be_reconstructed",
+        "no_hardpoint_or_human_suspension_certification"
+      ]
+    },
+    {
+      "resource_id": "europepmc_bdsm_fatality_review",
+      "source_label": "How safe is BDSM? A literature review on fatal outcome in BDSM play",
+      "manifest_path": "data/site_corpora/europepmc_bdsm_fatality_review/manifest.json",
+      "markdown_path": "data/site_corpora/europepmc_bdsm_fatality_review/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "journal_article",
+        "pmcid": "PMC8813685",
+        "pmid": "34383118",
+        "doi": "10.1007/s00414-021-02674-0"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 4.0; the digest records attribution and transformation.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_and_recorded_changes",
+        "limitations": [
+          "Individual case narratives, expressive table layouts, and technique reconstruction are excluded.",
+          "The license does not validate the paper's conclusions or convert selected cases into population evidence."
+        ]
+      },
+      "safety_transfer_flags": [
+        "no_population_incidence_or_prevalence_inference",
+        "no_causal_inference_from_selected_fatal_cases",
+        "no_neck_compression_breath_control_or_bondage_instruction",
+        "individual_case_narratives_excluded",
+        "reported_source_inconsistencies_must_remain_flagged"
+      ]
+    },
+    {
+      "resource_id": "europepmc_entrapment_neuropathy_review",
+      "source_label": "Entrapment neuropathies: a contemporary approach to pathophysiology, clinical assessment, and management",
+      "manifest_path": "data/site_corpora/europepmc_entrapment_neuropathy_review/manifest.json",
+      "markdown_path": "data/site_corpora/europepmc_entrapment_neuropathy_review/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "journal_article",
+        "pmcid": "PMC7382548",
+        "pmid": "32766466",
+        "doi": "10.1097/PR9.0000000000000829"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 4.0; the digest records attribution and transformation.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_clinical_scope_and_no_rope_transfer",
+        "limitations": [
+          "The review primarily concerns common clinical entrapment disorders rather than rope bondage.",
+          "Source figures and the image-only table are excluded, including adapted content whose component rights are not assumed.",
+          "Open licensing does not turn experimental or disease observations into a rope safety threshold or treatment protocol."
+        ]
+      },
+      "safety_transfer_flags": [
+        "human_clinical_and_preclinical_evidence_must_remain_distinct",
+        "heterogeneous_mechanisms_presentation_and_test_limits_must_be_preserved",
+        "no_safe_pressure_placement_duration_or_release_timing_inference",
+        "no_recovery_prognosis_treatment_or_self_care_inference",
+        "not_direct_rope_bondage_evidence",
+        "suspected_rope_neurologic_symptoms_require_qualified_medical_evaluation"
+      ]
+    },
+    {
+      "resource_id": "europepmc_icar_suspension_syndrome",
+      "source_label": "Suspension syndrome: a scoping review and ICAR MEDCOM recommendations",
+      "manifest_path": "data/site_corpora/europepmc_icar_suspension_syndrome/manifest.json",
+      "markdown_path": "data/site_corpora/europepmc_icar_suspension_syndrome/europepmc_icar_suspension_syndrome.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "journal_article",
+        "pmcid": "PMC10710713",
+        "pmid": "38071341",
+        "doi": "10.1186/s13049-023-01164-z"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 4.0.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_and_domain_limits",
+        "limitations": [
+          "Review evidence and graded consensus recommendations remain attributed.",
+          "Publisher and United States PMC routes are excluded by the source package."
+        ]
+      },
+      "safety_transfer_flags": [
+        "occupational_climbing_and_mountain_rescue_domain",
+        "not_validated_as_bondage_suspension_protocol",
+        "recommendation_grades_and_evidence_limits_must_be_preserved",
+        "no_universal_rescue_or_first_aid_claim"
+      ]
+    },
+    {
+      "resource_id": "europepmc_rope_neuropathy_study",
+      "source_label": "Acute Radial Compressive Neuropathy: The Most Common Injury Induced by Japanese Rope Bondage",
+      "manifest_path": "data/site_corpora/europepmc_rope_neuropathy_study/manifest.json",
+      "markdown_path": "data/site_corpora/europepmc_rope_neuropathy_study/europepmc_rope_neuropathy_study.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "journal_article",
+        "pmcid": "PMC10294117",
+        "pmid": "37384078",
+        "doi": "10.7759/cureus.39588"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 3.0.",
+        "license": "CC BY 3.0",
+        "license_url": "https://creativecommons.org/licenses/by/3.0/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_and_evidence_limits",
+        "limitations": [
+          "Self-reported observations and clinical cases remain attributed.",
+          "Publisher and United States PMC routes are excluded by the source package."
+        ]
+      },
+      "safety_transfer_flags": [
+        "injury_enriched_small_retrospective_sample",
+        "no_population_incidence_or_prevalence_inference",
+        "no_safe_duration_pressure_or_placement_inference",
+        "no_causal_or_preventive_protocol_claim",
+        "clinical_observations_require_attribution"
+      ]
+    },
+    {
+      "resource_id": "rope365",
+      "source_label": "Rope365 canonical instructional site digest",
+      "manifest_path": "data/site_corpora/rope365/manifest.json",
+      "markdown_path": "data/site_corpora/rope365/rope365.md",
+      "direct_training_declaration": "legacy_manifest_canonical_trainable_source_corpus",
+      "source_document_identity": {
+        "identity_type": "canonical_site_digest",
+        "canonical_url": "https://rope365.com/",
+        "source_resource_id": "rope365"
+      },
+      "rights_basis": {
+        "status": "legacy_manifest_gap",
+        "basis": "Publicly accessible pages were transformed into an original dense digest, but the legacy corpus manifest records no explicit reuse license or permission basis.",
+        "license": "not_recorded",
+        "attribution_required": true,
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "limitations": [
+          "Public accessibility is not a copyright license.",
+          "Do not redistribute source prose, images, video, or visual-only instructions from this registry record.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ]
+      },
+      "safety_transfer_flags": [
+        "practitioner_source_not_medical_or_engineering_authority",
+        "anatomy_and_safety_claims_require_independent_review",
+        "visual_only_instruction_must_not_be_reconstructed",
+        "source_specific_claims_require_attribution"
+      ]
+    },
+    {
+      "resource_id": "rope_topia",
+      "source_label": "Rope-topia manually recovered archive and successor digest",
+      "manifest_path": "data/site_corpora/rope_topia/manifest.json",
+      "markdown_path": "data/site_corpora/rope_topia/rope_topia.md",
+      "direct_training_declaration": "legacy_dense_corpus_manifest_and_root_completed_list",
+      "source_document_identity": {
+        "identity_type": "canonical_site_archive_digest",
+        "canonical_url": "https://rope-topia.com/",
+        "source_resource_id": "rope_topia"
+      },
+      "rights_basis": {
+        "status": "legacy_manifest_gap",
+        "basis": "The artifact is an original dense paraphrase of manually reviewed archived pages and verified successor copies, but the legacy manifest records no explicit corpus reuse license.",
+        "license": "not_recorded",
+        "attribution_required": true,
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "limitations": [
+          "Internet Archive availability does not grant copyright permission.",
+          "Successor-page access does not authorize redistribution of source prose or media.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ]
+      },
+      "safety_transfer_flags": [
+        "archive_and_successor_provenance_must_be_preserved",
+        "nonmedical_safety_articles_are_not_clinical_guidance",
+        "visual_only_instruction_must_not_be_reconstructed",
+        "historical_and_practitioner_claims_require_attribution"
+      ]
+    },
+    {
+      "resource_id": "shibari_atlas",
+      "source_label": "Shibari Atlas canonical site and source-catalogue digest",
+      "manifest_path": "data/site_corpora/shibari_atlas/manifest.json",
+      "markdown_path": "data/site_corpora/shibari_atlas/shibari_atlas.md",
+      "direct_training_declaration": "legacy_manifest_corpus_artifact_and_root_completed_list",
+      "source_document_identity": {
+        "identity_type": "canonical_site_digest",
+        "canonical_url": "https://shibariatlas.org/",
+        "source_resource_id": "shibari_atlas"
+      },
+      "rights_basis": {
+        "status": "legacy_manifest_gap",
+        "basis": "The artifact is an original compressed digest and states that external reference pages were not copied, but the legacy corpus manifest records no explicit reuse license for the site's own text.",
+        "license": "not_recorded",
+        "attribution_required": true,
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "limitations": [
+          "External source-catalogue metadata does not license the referenced works.",
+          "Do not redistribute site prose, images, graph assets, or external reference bodies from this registry record.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ]
+      },
+      "safety_transfer_flags": [
+        "historical_lineage_and_identity_claims_require_source_attribution",
+        "external_reference_pages_must_not_be_imputed_or_copied",
+        "not_a_technical_medical_or_suspension_certification",
+        "contested_history_and_aliases_require_provenance"
+      ]
+    },
+    {
+      "resource_id": "usfs_rigging_for_trail_work",
+      "source_label": "Rigging for Trail Work: Principles, Techniques, and Lessons from the Backcountry",
+      "manifest_path": "data/site_corpora/usfs_rigging_for_trail_work/manifest.json",
+      "markdown_path": "data/site_corpora/usfs_rigging_for_trail_work/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "government_publication",
+        "govinfo_package_id": "GOVPUB-A13-PURL-gpo235248",
+        "publication_number": "2223-2806-NTDP"
+      },
+      "rights_basis": {
+        "status": "federal_text_public_domain_presumption",
+        "basis": "Eligible United States Government text is treated as presumptively public domain under 17 U.S.C. 105.",
+        "license": "eligible_US_government_text",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_component_audit_and_domain_limits",
+        "limitations": [
+          "No blanket rights conclusion applies to credited third-party components.",
+          "Photographs, figures, expressive tables, decorative quotations, vendor prose, and externally supplied matter are excluded.",
+          "This rights classification is not a legal opinion."
+        ]
+      },
+      "safety_transfer_flags": [
+        "forest_service_material_rigging_domain",
+        "mechanics_only_no_human_support_design_values",
+        "no_bondage_rope_tree_limb_indoor_hardpoint_or_hardware_certification",
+        "manufacturer_standards_and_qualified_evaluation_control",
+        "source_assumptions_and_failure_consequences_must_be_preserved"
+      ]
+    }
+  ]
+}
