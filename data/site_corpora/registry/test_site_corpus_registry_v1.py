@@ -232,6 +232,24 @@ class SiteCorpusRegistryV1Test(unittest.TestCase):
             hitch["safety_transfer_flags"],
         )
 
+        loop_knots = self.by_id["acta_loop_knot_efficiency_experiments_2020"]
+        self.assertEqual(
+            loop_knots["source_document_identity"]["doi"],
+            "10.12693/APhysPolA.138.404",
+        )
+        self.assertEqual(
+            loop_knots["rights_basis"]["status"], "explicit_open_license"
+        )
+        self.assertEqual(loop_knots["rights_basis"]["license"], "CC BY 4.0")
+        self.assertIn(
+            "no_portable_efficiency_ranking_rating_safe_load_or_knot_selection_rule",
+            loop_knots["safety_transfer_flags"],
+        )
+        self.assertIn(
+            "no_natural_fiber_bondage_body_contact_upline_or_human_suspension_transfer",
+            loop_knots["safety_transfer_flags"],
+        )
+
         aramid = self.by_id["nist_aramid_rope_sling_fatigue_1976"]
         self.assertEqual(
             aramid["source_document_identity"]["doi"],

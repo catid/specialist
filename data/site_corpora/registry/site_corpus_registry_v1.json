@@ -1,6 +1,63 @@
 {
   "artifacts": [
     {
+      "artifact_id": "canonical-markdown:acta_loop_knot_efficiency_experiments_2020",
+      "byte_length": 18098,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/acta_loop_knot_efficiency_experiments_2020/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest-v1",
+        "version": 1
+      },
+      "manifest_sha256": "850d4f96d88bd13a7c3c5bc6873939aacfc63d936572cda54edcbbb47a04c4e2",
+      "markdown_path": "data/site_corpora/acta_loop_knot_efficiency_experiments_2020/CORPUS.md",
+      "markdown_sha256": "26c11bf912b9783fc68d78986401fb83764519e6c3c53b39c6174ff42dc02722",
+      "non_qa": true,
+      "qwen36_token_count": 4232,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:ad6856a102863b3ceeacd42f31bfbc551c2b7dd5c67947616d11ce3570141f9a",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "acta_loop_knot_efficiency_experiments_2020",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The current official Acta Physica Polonica A publisher policy states that all APPA articles are licensed under Creative Commons Attribution 4.0; the manual adaptation records article attribution, the licence, and changes while noting that the archive PDF itself has no embedded CC notice.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "limitations": [
+          "The rights basis is the current first-party journal policy; the official archive PDF itself does not display a Creative Commons notice.",
+          "Figures, tables, formulas, references, standards text, trademarks, vendor claims, equipment models, acknowledgments, and separately credited components are excluded.",
+          "Open licensing does not turn this expert-tied slow-static polyamide kernmantle experiment into a portable knot ranking, rating, tying recipe, or validation for natural fiber, bondage, body contact, uplines, dynamic or cyclic loading, or human suspension."
+        ],
+        "promotion_gate": "ready_with_attribution_component_audit_and_static_experiment_limits",
+        "status": "explicit_open_license"
+      },
+      "safety_transfer_flags": [
+        "break_untying_survival_and_partial_evidence_endpoints_must_remain_distinct",
+        "exact_specimen_history_loading_geometry_and_replication_must_travel_with_each_claim",
+        "no_natural_fiber_bondage_body_contact_upline_or_human_suspension_transfer",
+        "no_portable_efficiency_ranking_rating_safe_load_or_knot_selection_rule",
+        "slow_static_polyamide_kernmantle_scope_not_dynamic_cyclic_wet_or_field_validation"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://doi.org/10.12693/APhysPolA.138.404",
+        "doi": "10.12693/APhysPolA.138.404",
+        "identity_type": "journal_article",
+        "journal": "Acta Physica Polonica A",
+        "source_resource_id": "acta_loop_knot_efficiency_experiments_2020"
+      },
+      "source_document_identity_sha256": "ad6856a102863b3ceeacd42f31bfbc551c2b7dd5c67947616d11ce3570141f9a",
+      "source_label": "Revision of Commonly Used Loop Knots Efficiencies",
+      "unicode_word_count": 2608,
+      "whitespace_delimited_word_count": 2519
+    },
+    {
       "artifact_id": "canonical-markdown:crash_restraint",
       "byte_length": 115628,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -773,7 +830,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "7aab855ae40569bef3441d37549cba49d5f4dac417199bf3b3710bd50fedd533"
+    "sha256": "5d8cad34ba613268c5278d240a26a1e9802f71cf5ea78c902c0ee54367545cc2"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -812,7 +869,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "0d88aba8afbfae6c6338daaa4cd4f2fd3f99334388f6087d8009b194789f56c6",
+  "source_tree_fingerprint_sha256": "b3b666dbb74c69d1f4a0d1abb699964c60786a8f9e07b8b3cf25acdf9818cdba",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -822,11 +879,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 14,
-    "byte_length": 3933242,
-    "qwen36_token_count": 1154693,
-    "source_document_split_group_count": 14,
-    "unicode_word_count": 516414,
-    "whitespace_delimited_word_count": 404704
+    "artifact_count": 15,
+    "byte_length": 3951340,
+    "qwen36_token_count": 1158925,
+    "source_document_split_group_count": 15,
+    "unicode_word_count": 519022,
+    "whitespace_delimited_word_count": 407223
   }
 }

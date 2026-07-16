@@ -2,6 +2,40 @@
   "schema": "site-corpus-registry-config-v1",
   "records": [
     {
+      "resource_id": "acta_loop_knot_efficiency_experiments_2020",
+      "source_label": "Revision of Commonly Used Loop Knots Efficiencies",
+      "manifest_path": "data/site_corpora/acta_loop_knot_efficiency_experiments_2020/manifest.json",
+      "markdown_path": "data/site_corpora/acta_loop_knot_efficiency_experiments_2020/CORPUS.md",
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "source_document_identity": {
+        "identity_type": "journal_article",
+        "canonical_url": "https://doi.org/10.12693/APhysPolA.138.404",
+        "doi": "10.12693/APhysPolA.138.404",
+        "journal": "Acta Physica Polonica A",
+        "source_resource_id": "acta_loop_knot_efficiency_experiments_2020"
+      },
+      "rights_basis": {
+        "status": "explicit_open_license",
+        "basis": "The current official Acta Physica Polonica A publisher policy states that all APPA articles are licensed under Creative Commons Attribution 4.0; the manual adaptation records article attribution, the licence, and changes while noting that the archive PDF itself has no embedded CC notice.",
+        "license": "CC BY 4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "attribution_required": true,
+        "promotion_gate": "ready_with_attribution_component_audit_and_static_experiment_limits",
+        "limitations": [
+          "The rights basis is the current first-party journal policy; the official archive PDF itself does not display a Creative Commons notice.",
+          "Figures, tables, formulas, references, standards text, trademarks, vendor claims, equipment models, acknowledgments, and separately credited components are excluded.",
+          "Open licensing does not turn this expert-tied slow-static polyamide kernmantle experiment into a portable knot ranking, rating, tying recipe, or validation for natural fiber, bondage, body contact, uplines, dynamic or cyclic loading, or human suspension."
+        ]
+      },
+      "safety_transfer_flags": [
+        "break_untying_survival_and_partial_evidence_endpoints_must_remain_distinct",
+        "exact_specimen_history_loading_geometry_and_replication_must_travel_with_each_claim",
+        "no_natural_fiber_bondage_body_contact_upline_or_human_suspension_transfer",
+        "no_portable_efficiency_ranking_rating_safe_load_or_knot_selection_rule",
+        "slow_static_polyamide_kernmantle_scope_not_dynamic_cyclic_wet_or_field_validation"
+      ]
+    },
+    {
       "resource_id": "crash_restraint",
       "source_label": "Crash Restraint full accessible site digest",
       "manifest_path": "data/site_corpora/crash_restraint/manifest.json",
