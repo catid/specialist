@@ -1,0 +1,59 @@
+{
+  "schema": "site-corpus-manifest",
+  "schema_version": "1.0",
+  "corpus_schema": "non-bondage-civil-infrastructure-failure-governance-markdown",
+  "corpus_schema_version": "1.0",
+  "package_id": "fhwa_t5140_34_adhesive_anchors",
+  "source_ids": [
+    "FHWA-T5140.34-2018"
+  ],
+  "evidence_domain": "non-bondage civil-infrastructure adhesive-anchor failure and governance",
+  "rights_status": "public_domain_us_federal_work",
+  "direct_training_ready": true,
+  "statistics": {
+    "source_documents": 1,
+    "physical_pages_audited": 4,
+    "partially_retained_pages": 3,
+    "excluded_pages": 1,
+    "component_records": 8,
+    "figures_excluded": 1,
+    "tables_excluded": 1,
+    "corpus_words": 1305,
+    "claim_paragraphs": 26,
+    "claim_citations": 26
+  },
+  "artifacts": {
+    "CORPUS.md": {
+      "bytes": 10307,
+      "sha256": "a85b850b295a9e60b86dcdaaa14f8b3066db62238ef7eabed1fcec6cbc99d87f"
+    },
+    "README.md": {
+      "bytes": 1496,
+      "sha256": "c51e4106c98a6473d13d8f04ea4a1f36f9a051678be6882c8fab3c97cc5df423"
+    },
+    "REPORT.md": {
+      "bytes": 4259,
+      "sha256": "be1f1704e1f48e20a480e3f4b8a489f88a04b767adc4965738d472e3c0c80913"
+    },
+    "components.jsonl": {
+      "bytes": 3009,
+      "sha256": "2b36e3f0971cf381ecbd19e30e638e3c32a131337f607619a7dc064b43488550"
+    },
+    "dispositions.jsonl": {
+      "bytes": 1702,
+      "sha256": "341d0e9ef8e1b13ecd706a27eb03d2e69d2e6bc34baf0562f1fab80c443a7768"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 2469,
+      "sha256": "e1cce7ecf3d116cd1ac9d19f866805fad5a17dc10c7aac0c642a5110ecf53776"
+    },
+    "sources.jsonl": {
+      "bytes": 1286,
+      "sha256": "b3361cf123d35217d10d09713ab6cb8d6a33653c96841a8c2c42e5780e671089"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 13097,
+      "sha256": "4105ee43f20af112e675c8a0cd011fc92fcab937fc28b1f7d2e8c9a003b9b722"
+    }
+  }
+}
