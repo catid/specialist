@@ -23,7 +23,7 @@ REQUIRED_PYTHON_V52 = (
     ROOT / "es-at-scale/.venv/bin/python"
 ).absolute()
 RETRY_REVISION_V52 = (
-    "retry3_state_certificate_repair_and_shared_reliability_tightening"
+    "retry4_calibration_bounds_schema_path_repair"
 )
 RETRY1_GPU_LOG_V52 = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
@@ -38,6 +38,13 @@ RETRY2_GPU_LOG_V52 = (
 ).resolve()
 RETRY2_GPU_LOG_SHA256_V52 = (
     "2d2df6c965d25edbdb35b6e44a6b892db42eef10dd336cd0c821c5bc34d54a75"
+)
+RETRY3_GPU_LOG_V52 = (
+    ROOT / "experiments/eggroll_es_hpo/runs/"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry3/gpu_activity_v52.jsonl"
+).resolve()
+RETRY3_GPU_LOG_SHA256_V52 = (
+    "ad407725a4f1ad566da64cc187a1ac4b1677573d93e3ff81633b3e8f8ab5ce51"
 )
 POPULATION_SIZES_V52 = (8, 16)
 P8_SEEDS_V52 = (
@@ -174,6 +181,36 @@ EDGE_IDENTITY_KEYS_V52 = (
 )
 
 SEALED_NUMERIC_PARENTS_V52 = {
+    "v52_retry3_preregistration": {
+        "path": ROOT / "experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52_retry3.json",
+        "file_sha256": "f98bc057b9082d0a819d17972c3de643f4919aec418324a5957362892657cd63",
+        "content_sha256": "a1e04573d1191c84a3d6119331ae539bc77af38c7312f4fd214cbda9604cd96e",
+    },
+    "v52_retry3_attempt": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/.v52_matched_lora_es_nested_p8_vs_p16_retry3.attempt.json",
+        "file_sha256": "718d6f4319a6aef72f28bcddb1aedf3d64346944430b6c2d4aeaab9a123149a2",
+        "content_sha256": "e3e0f9bb53394875ebd9d389b6694b708704e1561e17466ab8722cc8d588d700",
+    },
+    "v52_retry3_preinstall_baseline": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry3/preinstall_actor_baseline_v52.json",
+        "file_sha256": "1440aa58371b799ff6a406af5239bbe158c9920e938e18c886a923e19c7223a4",
+        "content_sha256": "05b85bebc5011eb75a71e744d3fa4dcf08064cf9f50069c92a280dc436290f71",
+    },
+    "v52_retry3_master_identity_audit": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry3/master_identity_audit_v52.json",
+        "file_sha256": "d5b2c14e60ac34901adb89f89255a4f4f01b03e15ca69d7fe1fb609a38ca966b",
+        "content_sha256": "65dd53e3d0f5ef7452d5db08459468db7b0c27835d29fb37ed4caa4dd21b4d30",
+    },
+    "v52_retry3_numeric_calibration": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry3/numeric_calibration_v52.json",
+        "file_sha256": "b5ba4758ed101c4cea300cd64ff867afb8bcbc6d4144818d30538376ecc0b433",
+        "content_sha256": "b35ffe5a352d6404853ea6831f73763c8d3b67c0bbfcc7a87e44441097eff7eb",
+    },
+    "v52_retry3_failure": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry3/failure_v52.json",
+        "file_sha256": "e6eb487495d63fa0e198ace775119397be85c27c4d003be474b94eb9115eae97",
+        "content_sha256": "961b4c3e424ac3d37b39d650e4704de7823967da6ac6128db65675a8a28c8f71",
+    },
     "v52_retry2_preregistration": {
         "path": ROOT / "experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52_retry2.json",
         "file_sha256": "a9bcae8c3d178163d585456006d6f2e94e198179b824a96bb2ce95b771bf3035",

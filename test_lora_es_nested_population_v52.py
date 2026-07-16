@@ -412,14 +412,14 @@ def test_v52_preregistration_freezes_gates_and_compute_plan():
     assert value["launcher_fix"]["required_python"] == str(
         design.REQUIRED_PYTHON_V52
     )
-    assert value["retry3_equivalence_and_protocol_delta"][
-        "treatment_contract_byte_equivalent"
+    assert value["retry4_equivalence_and_schema_repair"][
+        "retry3_science_and_gates_byte_equivalent"
     ] is True
-    assert value["retry3_equivalence_and_protocol_delta"][
-        "non_reliability_train_gates_byte_equivalent"
+    assert value["retry4_equivalence_and_schema_repair"][
+        "retry3_shared_stricter_reliability_gate_preserved"
     ] is True
-    assert value["retry3_equivalence_and_protocol_delta"][
-        "whole_science_and_gates_byte_equivalent_claimed"
+    assert value["retry4_equivalence_and_schema_repair"][
+        "original_to_retry3_whole_science_equivalence_claimed"
     ] is False
     assert value["measurement_contract"][
         "cross_actor_score_bit_equality_required"
@@ -583,6 +583,24 @@ def test_v52_exact_state_certificate_gate_is_byte_exact_and_quiescent():
             phase="final_restored", reference_generation=2,
             update_sequence=0, controller_transaction_quiescent=False,
         )
+
+
+def test_v52_extracts_real_nested_calibration_bounds_and_rejects_stale_shape():
+    calibration = design.sealed_json_v52("v52_retry3_numeric_calibration")
+    bounds = runtime.numeric_calibration_bounds_v52(calibration)
+    assert bounds["equal_unit_mean"][
+        "observed_maximum_repeat_actor_spread"
+    ] == pytest.approx(0.0008609676171316138)
+    assert len(bounds["equal_unit_mean"][
+        "observed_repeat_actor_spreads"
+    ]) == 8
+    stale = json.loads(json.dumps(calibration))
+    stale["bootstrap"]["equal_unit_mean"] = stale["bootstrap"]["bounds"][
+        "equal_unit_mean"
+    ]
+    del stale["bootstrap"]["bounds"]
+    with pytest.raises(RuntimeError, match="nested numeric calibration schema"):
+        runtime.numeric_calibration_bounds_v52(stale)
 
 
 def test_v52_v434_content_free_train_contract_is_exact_and_source_faithful():

@@ -29,14 +29,14 @@ import lora_es_nested_population_v52 as design
 ROOT = Path(__file__).resolve().parent
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "matched_lora_es_nested_p8_vs_p16_v52_retry3.json"
+    "matched_lora_es_nested_p8_vs_p16_v52_retry4.json"
 ).resolve()
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
-    "v52_matched_lora_es_nested_p8_vs_p16_retry3"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry4"
 ).resolve()
 ATTEMPT = (
-    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16_retry3.attempt.json"
+    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16_retry4.attempt.json"
 ).resolve()
 WORKER_EXTENSION_V52 = (
     "eggroll_es_worker_lora_v52.LoRAAdapterStateWorkerExtensionV52"
@@ -329,9 +329,8 @@ def load_preregistration_v52(args) -> dict:
         or launcher.get("required_python") != str(design.REQUIRED_PYTHON_V52)
         or launcher.get("change_scope")
         != (
-            "fresh_retry3_artifact_paths_plus_measurement_only_state_"
-            "certificate_repair_and_preregistered_shared_reliability_"
-            "tightening"
+            "fresh_retry4_artifact_paths_plus_validated_numeric_"
+            "calibration_bounds_schema_path_only"
         )
         or launcher.get("retry2_failure_after_four_actor_model_load")
         is not True
@@ -340,14 +339,31 @@ def load_preregistration_v52(args) -> dict:
         ) is not False
         or launcher.get("candidate_repeat_consensus_gate_changed") is not False
         or launcher.get("population_reliability_gate_stricter") is not True
-        or value.get("retry3_equivalence_and_protocol_delta", {}).get(
-            "treatment_contract_byte_equivalent"
+        or launcher.get("retry3_treatment_and_all_gates_changed") is not False
+        or launcher.get("numeric_calibration_extraction_change")
+        != "bootstrap.equal_unit_mean -> bootstrap.bounds.equal_unit_mean"
+        or launcher.get("retry3_preregistration_file_sha256")
+        != design.SEALED_NUMERIC_PARENTS_V52[
+            "v52_retry3_preregistration"
+        ]["file_sha256"]
+        or launcher.get("retry3_failure_file_sha256")
+        != design.SEALED_NUMERIC_PARENTS_V52[
+            "v52_retry3_failure"
+        ]["file_sha256"]
+        or launcher.get("retry3_gpu_log_file_sha256")
+        != design.RETRY3_GPU_LOG_SHA256_V52
+        or launcher.get("retry3_emergency_exact_restore_content_sha256")
+        != "2054f89691154f02faf3017e08110ee6b1e49fe612dea2fc36f44bc3a5a3d710"
+        or launcher.get("retry3_strict_cleanup_content_sha256")
+        != "59157ed14bfbfefeee3a45478e5699fa9175da5e3b23750f1c4c505727157920"
+        or value.get("retry4_equivalence_and_schema_repair", {}).get(
+            "retry3_science_and_gates_byte_equivalent"
         ) is not True
-        or value.get("retry3_equivalence_and_protocol_delta", {}).get(
-            "non_reliability_train_gates_byte_equivalent"
+        or value.get("retry4_equivalence_and_schema_repair", {}).get(
+            "retry3_shared_stricter_reliability_gate_preserved"
         ) is not True
-        or value.get("retry3_equivalence_and_protocol_delta", {}).get(
-            "whole_science_and_gates_byte_equivalent_claimed"
+        or value.get("retry4_equivalence_and_schema_repair", {}).get(
+            "original_to_retry3_whole_science_equivalence_claimed"
         ) is not False
         or value.get("measurement_contract", {}).get(
             "cross_actor_score_bit_equality_required"
@@ -505,6 +521,39 @@ def actor_indexed_base_score_v52(
     }
     result["content_sha256"] = design.canonical_sha256_v52(result)
     return result
+
+
+def numeric_calibration_bounds_v52(calibration: dict) -> dict:
+    """Validate and extract the sealed V43F nested calibration bounds."""
+    bootstrap = calibration.get("bootstrap", {})
+    bounds = bootstrap.get("bounds")
+    if (
+        calibration.get("schema")
+        != "matched-lora-es-numeric-calibration-v43i"
+        or bootstrap.get("schema")
+        != "lora-es-numeric-calibration-bootstrap-v43f"
+        or calibration.get("retained_repeats_per_actor") != 8
+        or bootstrap.get("retained_repeats") != 8
+        or bootstrap.get("actors") != design.ACTORS_V52
+        or not isinstance(bounds, dict)
+        or set(bounds) != {"equal_unit_mean", "unweighted_row_mean"}
+    ):
+        raise RuntimeError("v52 nested numeric calibration schema changed")
+    for metric, receipt in bounds.items():
+        spreads = receipt.get("observed_repeat_actor_spreads")
+        observed = receipt.get("observed_maximum_repeat_actor_spread")
+        upper = receipt.get("upper_actor_spread")
+        if (
+            not isinstance(spreads, list) or len(spreads) != 8
+            or not all(isinstance(item, (int, float)) for item in spreads)
+            or not isinstance(observed, (int, float))
+            or not isinstance(upper, (int, float))
+            or not all(math.isfinite(float(item)) and float(item) >= 0.0
+                       for item in [*spreads, observed, upper])
+            or float(observed) != max(float(item) for item in spreads)
+        ):
+            raise RuntimeError(f"v52 {metric} calibration bounds changed")
+    return bounds
 
 
 def describe_actor_score_replay_delta_v52(
@@ -1623,7 +1672,7 @@ def evaluate_train_arm_v52(
 @contextmanager
 def patched_runtime_v52(prior):
     values = {
-        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16_retry3",
+        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16_retry4",
         "RUN_DIR": RUN_DIR,
         "ATTEMPT": ATTEMPT,
         "REPORT": RUN_DIR / "nested_population_report_v52.json",
@@ -1837,7 +1886,9 @@ def _execute_v52(preregistration: dict) -> int:
             numeric_calibration = prior._calibrate_numeric_path(
                 trainer, bundle, dense_items, requests, master["sha256"],
             )
-            numeric_bounds = numeric_calibration["bootstrap"]
+            numeric_bounds = numeric_calibration_bounds_v52(
+                numeric_calibration
+            )
             fresh_calibration_maximum = numeric_bounds[
                 "equal_unit_mean"
             ]["observed_maximum_repeat_actor_spread"]

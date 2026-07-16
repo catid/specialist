@@ -1,0 +1,986 @@
+{
+  "access_contract": {
+    "aggregate_only_ood_and_shadow_artifacts": true,
+    "dry_run_filesystem_writes": false,
+    "dry_run_imports_torch_ray_or_model_runtime": false,
+    "dry_run_queries_gpu": false,
+    "dry_run_reads_only_preregistration_and_code_hashes": true,
+    "dry_run_reads_train_semantics": false,
+    "forbidden_path_tokens": [
+      "holdout",
+      "heldout",
+      "eval_qa_v3",
+      "ood_qa_v3",
+      "ood_prose_v3",
+      "shadow_dev"
+    ],
+    "raw_protected_examples_may_not_be_persisted": true,
+    "runtime_train_paths_are_hash_pinned": true,
+    "sealed_holdout_path_may_not_be_opened": true
+  },
+  "arms": {
+    "p16": {
+      "alpha": 0.00015,
+      "generation_panel_request_order_sha256": "0a08356fafc4086a48dc75f5fd8e4875505b25af1196de4db509b1c64a4e97ca",
+      "initial_master_runtime_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+      "initial_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "population_size": 16,
+      "primary": "equal average of unit-norm domain and fragile generated-F1 centered-rank coefficient vectors",
+      "projection_halfspaces": [
+        "domain",
+        "fragile_generation_f1",
+        "prose_lm",
+        "qa_answer_logprob",
+        "qa_generation_f1"
+      ],
+      "scale_order": [
+        0.5,
+        0.25,
+        0.125,
+        0.0625,
+        0.03125,
+        0.015625
+      ],
+      "seeds": [
+        140002291,
+        1028842752,
+        480373990,
+        1037026679,
+        759861149,
+        227761095,
+        428721957,
+        150663570,
+        863156398,
+        658045682,
+        947615772,
+        615729462,
+        958574585,
+        1048698881,
+        573870406,
+        938961107
+      ],
+      "shared_fresh_prepopulation_calibration": true,
+      "sigma": 0.0006,
+      "signed_replicates_per_direction": 4,
+      "train_bundle_content_sha256": "c94a7e8e8c30dbc2586351c4ef0ff13e3e9cc8551a21b9e055d34fbfa94bf44a",
+      "train_dataset_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+      "train_gate_names": [
+        "domain_point_improvement",
+        "prose_lm_noninferiority",
+        "qa_logprob_noninferiority",
+        "qa_generation_f1_noninferiority",
+        "qa_generation_exact_noninferiority",
+        "qa_generation_nonzero_noninferiority",
+        "fragile_generation_f1_noninferiority",
+        "fragile_generation_exact_noninferiority",
+        "fragile_generation_nonzero_noninferiority"
+      ]
+    },
+    "p8": {
+      "alpha": 0.00015,
+      "generation_panel_request_order_sha256": "0a08356fafc4086a48dc75f5fd8e4875505b25af1196de4db509b1c64a4e97ca",
+      "initial_master_runtime_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+      "initial_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "population_size": 8,
+      "primary": "equal average of unit-norm domain and fragile generated-F1 centered-rank coefficient vectors",
+      "projection_halfspaces": [
+        "domain",
+        "fragile_generation_f1",
+        "prose_lm",
+        "qa_answer_logprob",
+        "qa_generation_f1"
+      ],
+      "scale_order": [
+        0.5,
+        0.25,
+        0.125,
+        0.0625,
+        0.03125,
+        0.015625
+      ],
+      "seeds": [
+        140002291,
+        1028842752,
+        480373990,
+        1037026679,
+        759861149,
+        227761095,
+        428721957,
+        150663570
+      ],
+      "shared_fresh_prepopulation_calibration": true,
+      "sigma": 0.0006,
+      "signed_replicates_per_direction": 4,
+      "train_bundle_content_sha256": "c94a7e8e8c30dbc2586351c4ef0ff13e3e9cc8551a21b9e055d34fbfa94bf44a",
+      "train_dataset_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+      "train_gate_names": [
+        "domain_point_improvement",
+        "prose_lm_noninferiority",
+        "qa_logprob_noninferiority",
+        "qa_generation_f1_noninferiority",
+        "qa_generation_exact_noninferiority",
+        "qa_generation_nonzero_noninferiority",
+        "fragile_generation_f1_noninferiority",
+        "fragile_generation_exact_noninferiority",
+        "fragile_generation_nonzero_noninferiority"
+      ]
+    }
+  },
+  "artifacts": {
+    "anchor_calibration": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/anchor_calibration_v52.json",
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v52_matched_lora_es_nested_p8_vs_p16_retry4.attempt.json",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/failure_v52.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/gpu_activity_v52.jsonl",
+    "master_identity_audit": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/master_identity_audit_v52.json",
+    "numeric_calibration": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/numeric_calibration_v52.json",
+    "ood_aggregate": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/ood_first_aggregate_v52.json",
+    "p16_candidate_snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/p16_candidate_v52",
+    "p16_train_gate": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/p16_train_gate_v52.json",
+    "p8_candidate_snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/p8_candidate_v52",
+    "p8_train_gate": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/p8_train_gate_v52.json",
+    "population": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/nested_population_v52.json",
+    "preinstall_actor_baseline": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/preinstall_actor_baseline_v52.json",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/nested_population_report_v52.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4",
+    "sealed_holdout_artifact": null,
+    "shadow_aggregate": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry4/document_disjoint_shadow_v52.json"
+  },
+  "compute_plan": {
+    "actors_per_state": 4,
+    "conservative_shared_fresh_calibration_seconds": 232.434364602,
+    "content_sha256": "4c9cdc925b08845f6b2f9344455e7cf138f9b7d7d506b67a9d08a9dbb106fde5",
+    "directions": 16,
+    "estimated_end_to_end_wall_seconds": [
+      1183.5217713550262,
+      1353.5217713550262
+    ],
+    "estimated_four_gpu_hours": [
+      1.3150241903944735,
+      1.5039130792833624
+    ],
+    "interpretation": "linear estimate from accepted V51 population timing plus two worst-case six-scale V48E backtracking arms, the full observed V48B attempt-to-anchor interval for one shared fresh calibration, and aggregate-only OOD/shadow evaluation",
+    "linear_32_state_population_seconds": 417.832412,
+    "observed_startup_cleanup_seconds": 84.02839110299271,
+    "phase_actor_receipts": 640,
+    "schema": "sealed-v51-linear-compute-plan-v52",
+    "state_actor_receipts": 128,
+    "states": 32,
+    "train_before_fresh_calibration_seconds": 881.0874067530261,
+    "v51_observed_16_state_population_seconds": 208.916206,
+    "worst_case_two_arm_train_only_seconds": 1113.5217713550262
+  },
+  "content_sha256_before_self_field": "bc9cd566586cfea2307892740da3bd8ddec43ba9ddd32e97c310d8c06f566c24",
+  "created_at_utc": "2026-07-16T05:18:08.195108+00:00",
+  "current_fixed_holdout_cycle_eligible": false,
+  "document_disjoint_shadow_gate": {
+    "candidate_must_beat_exact_master": true,
+    "conflict_units": 51,
+    "opened_only_for_ood_eligible_arms": true,
+    "rank": "mean replicated generated equal-unit reward, exact count, nonzero count, teacher-forced equal-unit answer logprob",
+    "required_zero_intersection_keys": [
+      "document_sha256",
+      "normalized_url",
+      "raw_lineage",
+      "semantic_cluster"
+    ],
+    "rows": 83,
+    "split_manifest_content_sha256": "3fcc2820e8dffe6a21198d0520365aace049735ac84bda179ea44bc8ad0881eb",
+    "split_manifest_file_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d"
+  },
+  "fixed_recipe": {
+    "dataset": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/train_v434_fold3_v49d.jsonl",
+    "dataset_conflict_units": 208,
+    "dataset_rows": 448,
+    "dataset_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+    "engine_count": 4,
+    "full_candidate_requests_per_actor": 896,
+    "generation_panel": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v52_v434_train_generation_panel.json",
+    "generation_panel_conflict_units": 64,
+    "generation_panel_content_sha256": "cdfa9d10669171d5d814b55df1f674a89dfa557c5376b45c8d0073e5d1acaec7",
+    "generation_panel_file_sha256": "dd2c857b75617351d64cfce29f5a8e5d79ce9da212e4db50d22f2de3795c70a1",
+    "generation_panel_selection": "content-free deterministic v434 conflict-unit panel; no model outcomes used",
+    "master_bytes": 18112512,
+    "master_element_count": 4528128,
+    "master_ordered_key_sha256": "ddee26a3a4a10683a51f089e8b7028e4a8d9607e0827dab7a314e04e3ece2280",
+    "master_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+    "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+    "master_tensor_count": 70,
+    "matched_initialization": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/v434_equal_r32_seed17_init20260715041/final",
+    "membership": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v52_v434_train_row_conflict_unit_membership.json",
+    "membership_content_sha256": "a8870fdce8fbf631b3d3472fd03690f6987590ee6e8758dc8fdcb4556dcc9096",
+    "membership_file_sha256": "e9b073369966e21912a0bda86da501ab0975646df2a7d80bf5675c3dfec8c121",
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "population_requests_per_actor_state": 608,
+    "request_order_sha256": "0a08356fafc4086a48dc75f5fd8e4875505b25af1196de4db509b1c64a4e97ca",
+    "runtime_assignment_sha256": "bac008805d7fc7c6279c47255d8d1563b0be978cb21109e8c013114f143e09df",
+    "runtime_element_count": 4921344,
+    "runtime_view_count": 82,
+    "source_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "source_weights_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+    "staged_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "staged_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d",
+    "staged_manifest_content_sha256": "ea328ada018e1c0d182d329d2a9cb81f8f0375aef93738f3b9c0a00f63c82da3",
+    "staged_manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+    "staged_ordered_values_sha256": "26daf52fac11a584891f745e9682c4409ff4aee3119814f0a083a91a192bdf45",
+    "staged_transformed_identity_sha256": "f210bf05e7fe38481d0a7d9c641a7f902e575521b50e98bdc021bf11b49cb1c8",
+    "staged_weights_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "c94a7e8e8c30dbc2586351c4ef0ff13e3e9cc8551a21b9e055d34fbfa94bf44a",
+    "worker_extension": "eggroll_es_worker_lora_v52.LoRAAdapterStateWorkerExtensionV52"
+  },
+  "gpu_launch_authorized": true,
+  "implementation_bindings": {
+    "builder_v52": "5f0a35ed0d26fafb59dc620fa81a2227f3a9fd955d29ba4410bc036e349e1dbb",
+    "design_v52": "6e97027bc73302a2882736b7e4514f649b16d77590303394670906063337a774",
+    "runner_v52": "abef094102943b41ba2082633f2bc2e102465769eb985da83bbb492372dc746f",
+    "source_config_v434_equal": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "source_weights_v434_equal": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+    "staged_config_v434_equal": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "staged_manifest_v434_equal": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+    "staged_weights_v434_equal": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+    "tests_v52": "b22ca6f8afd8e9fbf13ce7a0397ec3720c021cb56c7efdffe0c163eae9b638c4",
+    "train_dataset_v434_fold3": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+    "train_generation_panel_v52": "dd2c857b75617351d64cfce29f5a8e5d79ce9da212e4db50d22f2de3795c70a1",
+    "train_membership_v52": "e9b073369966e21912a0bda86da501ab0975646df2a7d80bf5675c3dfec8c121",
+    "v48b_runtime": "fa02c9568c7f027d4f9083ec270d4d2b132867fcfb733be8a23151f64c9e6401",
+    "v48e_projection": "3b0a20a532bb6539dd11f51b58a2ef86fa0f083dc9286d6348184e51821f3ee5",
+    "v51_pipeline": "5a3f24852dbe2b74ed0aa1cbd251efcfbf540f97e95b4d9b6b7ae728d30bb9ab",
+    "v51_worker": "57c7e9356b45f330b2e0ea1b0f814482aff71fc93cccc13b4b956376e3252389",
+    "worker_v52": "f5e04e752e6b20fc7e380d366bcd282c519ea7aa4d280345671ec428ff39356a"
+  },
+  "launcher_fix": {
+    "candidate_repeat_consensus_gate_changed": false,
+    "change_scope": "fresh_retry4_artifact_paths_plus_validated_numeric_calibration_bounds_schema_path_only",
+    "failed_attempt_file_sha256": "39584acfac8051010973a26b6660d94fcd7d77d5e5a40795e6bd9cdd155434bd",
+    "failure_before_model_or_gpu_actor_creation": true,
+    "failure_file_sha256": "0b5ef9458665174757bdb57b44df9ceb98c6f7f1cc36230890cfded226604727",
+    "failure_type": "ModuleNotFoundError",
+    "numeric_calibration_extraction_change": "bootstrap.equal_unit_mean -> bootstrap.bounds.equal_unit_mean",
+    "original_preregistration_content_sha256": "007f89c39593219040ca10783d7b4ae7bd3e7c5163a383ad90a1594302304f5f",
+    "original_preregistration_file_sha256": "b8ea48b11a9ea91ba3ece09bc854d74a7a17bb28e6f9496e4f186e0c574eb15d",
+    "population_reliability_gate_stricter": true,
+    "required_python": "/home/catid/specialist/es-at-scale/.venv/bin/python",
+    "retry1_failure_file_sha256": "0f5bdb6b5d42621f1aa25d627ee11706c0203b2372cfec27a5dc126ff0399ac4",
+    "retry1_gpu_log_file_sha256": "bb1e9b4cb88273998346966755564fb547f34215381dfadfdba67f500466357e",
+    "retry2_attempt_file_sha256": "f4166abe06260db6a3ec3f4690905eb17d42015684a2f0d3ed3eec50d8134025",
+    "retry2_failure_after_four_actor_model_load": true,
+    "retry2_failure_file_sha256": "e87f99cddde971a57c849073a7a7a89044bc8946f069e6dc4307376ce81a92de",
+    "retry2_gpu_log_file_sha256": "2d2df6c965d25edbdb35b6e44a6b892db42eef10dd336cd0c821c5bc34d54a75",
+    "retry2_preinstall_baseline_file_sha256": "4193d63f09b0a9adbcd417ac58480ddf3236bccee29cb5d091fb4cfe17fc9653",
+    "retry3_attempt_file_sha256": "718d6f4319a6aef72f28bcddb1aedf3d64346944430b6c2d4aeaab9a123149a2",
+    "retry3_emergency_exact_restore_content_sha256": "2054f89691154f02faf3017e08110ee6b1e49fe612dea2fc36f44bc3a5a3d710",
+    "retry3_failure_file_sha256": "e6eb487495d63fa0e198ace775119397be85c27c4d003be474b94eb9115eae97",
+    "retry3_final_gpu_idle_content_sha256": "7ff0611248500ff79f380d163e62a045f38a3bf9902d03c715555f6fc56eb48a",
+    "retry3_gpu_log_file_sha256": "ad407725a4f1ad566da64cc187a1ac4b1677573d93e3ff81633b3e8f8ab5ce51",
+    "retry3_master_identity_audit_file_sha256": "d5b2c14e60ac34901adb89f89255a4f4f01b03e15ca69d7fe1fb609a38ca966b",
+    "retry3_numeric_calibration_file_sha256": "b5ba4758ed101c4cea300cd64ff867afb8bcbc6d4144818d30538376ecc0b433",
+    "retry3_preregistration_file_sha256": "f98bc057b9082d0a819d17972c3de643f4919aec418324a5957362892657cd63",
+    "retry3_strict_cleanup_content_sha256": "59157ed14bfbfefeee3a45478e5699fa9175da5e3b23750f1c4c505727157920",
+    "retry3_treatment_and_all_gates_changed": false,
+    "treatment_seeds_sigma_alpha_panels_order_backtracking_changed": false
+  },
+  "measurement_contract": {
+    "candidate_gate_remains_repeat_consensus_based": true,
+    "cross_actor_score_bit_equality_required": false,
+    "final_full_domain_replay_eliminated": true,
+    "four_actor_master_identity_consensus_required": true,
+    "four_actor_runtime_identity_consensus_required": true,
+    "fresh_maximum_repeat_actor_spread_authoritative": true,
+    "fresh_numeric_retained_repeats_authoritative": true,
+    "missing_or_reordered_actor": "fail_closed",
+    "numeric_tolerance_used_for_identity": false,
+    "population_actor_count": 4,
+    "population_actor_reducer": "fixed arithmetic mean in ascending actor-rank order",
+    "postanchor_full_domain_replay_eliminated": true,
+    "postinstall_actor_indexed_replay_and_exact_deltas_persisted": true,
+    "postinstall_score_replay_is_descriptive_nonbinding": true,
+    "postnumeric_full_domain_replay_eliminated": true,
+    "postpopulation_full_domain_replay_eliminated": true,
+    "preinstall_actor_indexed_score_and_output_manifests_persisted": true,
+    "raw_questions_answers_or_outputs_persisted": false,
+    "reason": "retry2 proved actor-local full-domain score replays are not bit-repeatable despite exact FP32 and BF16 adapter identity",
+    "restoration_gate": "exact four-actor canonical FP32 master, BF16 runtime, fresh reference generation, update sequence, and transaction quiescence certificates",
+    "restoration_phases": [
+      "postinstall",
+      "post_numeric_calibration",
+      "post_anchor_calibration",
+      "postpopulation",
+      "final_restored"
+    ],
+    "score_or_output_replay_used_as_restoration_gate": false
+  },
+  "ood_first_gate": {
+    "bootstrap_samples": 20000,
+    "bootstrap_seed": 20260715,
+    "both_replicas_independently_required": true,
+    "candidate_replicas": 2,
+    "evaluated_before_shadow_ranking": true,
+    "prose_documents": 16,
+    "prose_paired_document_bootstrap_95_lcb_minimum": 0.0,
+    "prose_point_delta_minimum": 0.0,
+    "protocol_or_leak_counter_increase_maximum": 0,
+    "qa_exact_count_delta_minimum": 0,
+    "qa_items": 24,
+    "qa_mean_reward_delta_minimum": 0.0,
+    "raw_questions_answers_or_generations_persisted": false
+  },
+  "optimizer_update_authorized": true,
+  "protected_semantic_access_authorized": false,
+  "protected_semantics_opened": false,
+  "purpose": "Test whether doubling antithetic LoRA-ES directions from eight to sixteen yields a train-gate-feasible, OOD-safe, document-disjoint shadow improvement.",
+  "quality_selection_or_promotion_authorized_only_after_all_gates": true,
+  "retry3_protocol_delta": {
+    "comparison": "estimated_population_signal_scale > fresh_numeric_noise_scale",
+    "estimated_population_signal_scale": "sqrt(max(0, observed actor-mean central response variance minus mean-of-four actor noise variance))",
+    "fresh_numeric_noise_scale": "maximum retained-repeat actor spread from the shared fresh equal-unit calibration",
+    "historical_calibration_ceiling_unchanged": 0.001802103667415178,
+    "population_reliability_eligibility_stricter_than_retry2": true,
+    "reliability_minimum_unchanged": 0.8,
+    "sealed_before_any_v52_population_observation": true,
+    "shared_identically_by_p8_and_p16": true,
+    "split_half_spearman_minimum_unchanged": 0.7,
+    "strict_clearance_required": true
+  },
+  "retry4_equivalence_and_schema_repair": {
+    "original_to_retry3_whole_science_equivalence_claimed": false,
+    "retry3_science_and_gate_keys": [
+      "single_scientific_variable",
+      "arms",
+      "fixed_recipe",
+      "runtime",
+      "state_derivations",
+      "state_derivation_inventory_sha256",
+      "transition_schedule",
+      "train_only_selection",
+      "ood_first_gate",
+      "document_disjoint_shadow_gate",
+      "treatment_success_rule",
+      "stop_go_gates",
+      "compute_plan"
+    ],
+    "retry3_science_and_gates_byte_equivalent": true,
+    "retry3_science_and_gates_content_sha256": "b1d4351eebec280934bc5392779b1cbe9c3cdf19c5d2fd4fe0a0eccc392a869e",
+    "retry3_shared_stricter_reliability_gate_preserved": true,
+    "retry4_science_and_gates_content_sha256": "b1d4351eebec280934bc5392779b1cbe9c3cdf19c5d2fd4fe0a0eccc392a869e",
+    "sole_implementation_change": "validate bootstrap schema and extract bootstrap.bounds instead of stale bootstrap top-level metric path"
+  },
+  "retry_revision": "retry4_calibration_bounds_schema_path_repair",
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "matched-lora-es-nested-p8-vs-p16-preregistration-v52",
+  "sealed_holdout_access_authorized": false,
+  "sealed_holdout_opened": false,
+  "sealed_numeric_parents": {
+    "v40c_topology_report": {
+      "content_sha256": "9394ed06a80fffb1c4cc1532ac59741ab4c4a1c5a481136f29415b463eaf747d",
+      "file_sha256": "7672f835239b91e66a03a512ad9fbe3cbbaff31783a7b1a26bdd136d98b55050",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v40c_v37_lora_topology_probe_tuned_projection_retry/lora_topology_report_v40c.json"
+    },
+    "v46f_ood_first_preregistration": {
+      "content_sha256": "db5a8d1489b4a92b135ca0f977c7c4335f42d6200e1bb7fe473f35da725c542e",
+      "file_sha256": "8e9533dc64435a3c0c18c51b5fe100c7cead77555f4a6d63d2923bf30a3cd1c8",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/base_vs_lora_es_v43l_replicated_ood_first_eval_v46f.json"
+    },
+    "v48b_preregistration": {
+      "content_sha256": "4d5e17a07551377f0ef39c3dfa306fda68b9b669eeafd3c78ebbfff894072d1e",
+      "file_sha256": "34e19fe84ff061b98a8627f07daab59f5cbb8c718668fc479454114fef67c3d0",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_generation_boundary_pop8_v48b.json"
+    },
+    "v48e_preregistration": {
+      "content_sha256": "48f694dc9bd8a4466f413315b8a9a507df9f8a2f3111e54f43f8a752ee5fac7f",
+      "file_sha256": "bd3b4ebb0c2d125c809fc2a4f80d816be3a59b235706cbde1ab9800b30bc3b91",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_generation_boundary_reprojection_backtracking_v48e.json"
+    },
+    "v48e_report": {
+      "content_sha256": "0ff2f5effe7cb4318f9c3f9c25353312c382db73916891e1cdb1fed16a91aa28",
+      "file_sha256": "8d78b6588ce05df17130ca7f3e0fb6c0827cf34e55a57620292f94aa917b7e64",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v48e_generation_boundary_reprojection_backtracking/generation_boundary_reprojection_backtracking_report_v48e.json"
+    },
+    "v49d_equal_train_report": {
+      "content_sha256": "a8de8805238335ba27db11359fc9f75ad65431d64b25f6a6c10eb5e0f3bdba0e",
+      "file_sha256": "0f669d188046849ccb6a3013938f9979214711f5e83c0d9e54290c9c20c850d8",
+      "path": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/runtime_report_v434_equal.json"
+    },
+    "v49d_stage_manifest": {
+      "content_sha256": "ea328ada018e1c0d182d329d2a9cb81f8f0375aef93738f3b9c0a00f63c82da3",
+      "file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d/stage_manifest_v44a.json"
+    },
+    "v49e_replicated_shadow_report": {
+      "content_sha256": "fed27cb9202ba7f7f0e7cc3b882b62c50c4748ea101a366c077a75679bb1aa3c",
+      "file_sha256": "9bb57c48d77c45ff91b8296a7f7fe65c67e91a26473c286c84dc074107c6a6eb",
+      "path": "/home/catid/specialist/experiments/eval_reports/sft_v434_equal_replicated_shadow_only_v49e.json"
+    },
+    "v51_acceptance_audit": {
+      "content_sha256": "60e55b62bfec09be64acd5c612a394dc54a3cf9596bdf2ef949c6ef93f5bd25d",
+      "file_sha256": "ceb5ada0f4b6a3a994260079f62a614be1bf91eb6d954a3e9ffd5c53e5a147c2",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/audits/v51_direct_master_transition_vs_v50.json"
+    },
+    "v51_report": {
+      "content_sha256": "42b31602793aa727dcfc5622fce4c0e1c1a094e2b8234f3f6f402f52db68ba37",
+      "file_sha256": "a727990745f6d41e0eb36104a19ce1d92c1645c2bf01bfb7ce3b02e4bbe29b1f",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v51_direct_pinned_master_transition_microbenchmark_retry1/transition_microbenchmark_report_v51.json"
+    },
+    "v52_original_preregistration": {
+      "content_sha256": "007f89c39593219040ca10783d7b4ae7bd3e7c5163a383ad90a1594302304f5f",
+      "file_sha256": "b8ea48b11a9ea91ba3ece09bc854d74a7a17bb28e6f9496e4f186e0c574eb15d",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52.json"
+    },
+    "v52_pre_model_attempt": {
+      "content_sha256": "958d966296edad689c0d9f3b18bfdd8b6c085c9b2de99b3b803c6f02f59a22ec",
+      "file_sha256": "39584acfac8051010973a26b6660d94fcd7d77d5e5a40795e6bd9cdd155434bd",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v52_matched_lora_es_nested_p8_vs_p16.attempt.json"
+    },
+    "v52_pre_model_failure": {
+      "content_sha256": "d1f4e6e9e8489dffb2cff2457e48f00691ae618de467a1245091a01121422e1a",
+      "file_sha256": "0b5ef9458665174757bdb57b44df9ceb98c6f7f1cc36230890cfded226604727",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16/failure_v52.json"
+    },
+    "v52_retry1_attempt": {
+      "content_sha256": "651fc5056314633af4a8694eedaa2b7c35a26a9a11b36e920a182bd18f964a86",
+      "file_sha256": "fcba8593976019f086df95b104745cbc341ee738153be0f119b27b2509c0cda4",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v52_matched_lora_es_nested_p8_vs_p16_retry1.attempt.json"
+    },
+    "v52_retry1_failure": {
+      "content_sha256": "fc6804d0861b1e1f1e9b71ecd222792e7f8937ce8338161aad461d84dcd19ac3",
+      "file_sha256": "0f5bdb6b5d42621f1aa25d627ee11706c0203b2372cfec27a5dc126ff0399ac4",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry1/failure_v52.json"
+    },
+    "v52_retry1_preregistration": {
+      "content_sha256": "feaead0c4ef1b9aabb46adcd8b7c0923794e2f29478cbdb2193522d44769e6eb",
+      "file_sha256": "c051ed9a595735f18cc721e6fbcc09a73ed3cc197c66375f3168323a2c306f94",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52_retry1.json"
+    },
+    "v52_retry2_attempt": {
+      "content_sha256": "30e83962ce0c179b7bcd642f40eb862eee553aaa0fd231ca95a11019076aa0cd",
+      "file_sha256": "f4166abe06260db6a3ec3f4690905eb17d42015684a2f0d3ed3eec50d8134025",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v52_matched_lora_es_nested_p8_vs_p16_retry2.attempt.json"
+    },
+    "v52_retry2_failure": {
+      "content_sha256": "2e627c460f3e5f104beaf5c50b375e03bca4850e4ca4c78f1a65122b3f78ffc3",
+      "file_sha256": "e87f99cddde971a57c849073a7a7a89044bc8946f069e6dc4307376ce81a92de",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry2/failure_v52.json"
+    },
+    "v52_retry2_preinstall_baseline": {
+      "content_sha256": "276f2fe9d00c84b220e66f18a2546e78c16024ffad56191e5394d896c2dd8cc7",
+      "file_sha256": "4193d63f09b0a9adbcd417ac58480ddf3236bccee29cb5d091fb4cfe17fc9653",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry2/preinstall_actor_baseline_v52.json"
+    },
+    "v52_retry2_preregistration": {
+      "content_sha256": "d754114e3d4f8ab8776016dbf787d952cf2c6a4365d7c83f4d143d0318050cf5",
+      "file_sha256": "a9bcae8c3d178163d585456006d6f2e94e198179b824a96bb2ce95b771bf3035",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52_retry2.json"
+    },
+    "v52_retry3_attempt": {
+      "content_sha256": "e3e0f9bb53394875ebd9d389b6694b708704e1561e17466ab8722cc8d588d700",
+      "file_sha256": "718d6f4319a6aef72f28bcddb1aedf3d64346944430b6c2d4aeaab9a123149a2",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v52_matched_lora_es_nested_p8_vs_p16_retry3.attempt.json"
+    },
+    "v52_retry3_failure": {
+      "content_sha256": "961b4c3e424ac3d37b39d650e4704de7823967da6ac6128db65675a8a28c8f71",
+      "file_sha256": "e6eb487495d63fa0e198ace775119397be85c27c4d003be474b94eb9115eae97",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry3/failure_v52.json"
+    },
+    "v52_retry3_master_identity_audit": {
+      "content_sha256": "65dd53e3d0f5ef7452d5db08459468db7b0c27835d29fb37ed4caa4dd21b4d30",
+      "file_sha256": "d5b2c14e60ac34901adb89f89255a4f4f01b03e15ca69d7fe1fb609a38ca966b",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry3/master_identity_audit_v52.json"
+    },
+    "v52_retry3_numeric_calibration": {
+      "content_sha256": "b35ffe5a352d6404853ea6831f73763c8d3b67c0bbfcc7a87e44441097eff7eb",
+      "file_sha256": "b5ba4758ed101c4cea300cd64ff867afb8bcbc6d4144818d30538376ecc0b433",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry3/numeric_calibration_v52.json"
+    },
+    "v52_retry3_preinstall_baseline": {
+      "content_sha256": "05b85bebc5011eb75a71e744d3fa4dcf08064cf9f50069c92a280dc436290f71",
+      "file_sha256": "1440aa58371b799ff6a406af5239bbe158c9920e938e18c886a923e19c7223a4",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16_retry3/preinstall_actor_baseline_v52.json"
+    },
+    "v52_retry3_preregistration": {
+      "content_sha256": "a1e04573d1191c84a3d6119331ae539bc77af38c7312f4fd214cbda9604cd96e",
+      "file_sha256": "f98bc057b9082d0a819d17972c3de643f4919aec418324a5957362892657cd63",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52_retry3.json"
+    }
+  },
+  "shadow_ood_holdout_or_benchmark_opened": false,
+  "single_scientific_variable": {
+    "all_other_scientific_fields_equal": true,
+    "control": 8,
+    "p8_is_exact_nested_prefix_of_p16": true,
+    "sole_scientific_variable": "antithetic_direction_population_size",
+    "treatment": 16
+  },
+  "state_derivation_inventory_sha256": "485f2072412469656ae044c41e88191fdf54f936fbf43cd5049ae392c41160b6",
+  "state_derivations": [
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 0,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 140002291,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 0
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 0,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 140002291,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 1
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 1,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 1028842752,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 2
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 1,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 1028842752,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 3
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 2,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 480373990,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 4
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 2,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 480373990,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 5
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 3,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 1037026679,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 6
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 3,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 1037026679,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 7
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 4,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 759861149,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 8
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 4,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 759861149,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 9
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 5,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 227761095,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 10
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 5,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 227761095,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 11
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 6,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 428721957,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 12
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 6,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 428721957,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 13
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 7,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 150663570,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 14
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 7,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 150663570,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 15
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 8,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 863156398,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 16
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 8,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 863156398,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 17
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 9,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 658045682,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 18
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 9,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 658045682,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 19
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 10,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 947615772,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 20
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 10,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 947615772,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 21
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 11,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 615729462,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 22
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 11,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 615729462,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 23
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 12,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 958574585,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 24
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 12,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 958574585,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 25
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 13,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 1048698881,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 26
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 13,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 1048698881,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 27
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 14,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 573870406,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 28
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 14,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 573870406,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 29
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 15,
+      "label": "plus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 938961107,
+      "sigma": 0.0006,
+      "sign": 1,
+      "state_index": 30
+    },
+    {
+      "candidate_identity_policy": "four-actor GPU-runtime consensus required before scoring",
+      "derivation": "V41A antithetic candidate from pinned FP32 master",
+      "direction": 15,
+      "label": "minus",
+      "master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "runtime_identity_policy": "four-actor BF16-runtime consensus required before scoring",
+      "seed": 938961107,
+      "sigma": 0.0006,
+      "sign": -1,
+      "state_index": 31
+    }
+  ],
+  "status": "preregistered_after_content_free_v434_train_contract_and_before_v52_model_gpu_or_nontrain_semantic_access",
+  "stop_go_gates": {
+    "go_to_shadow_only_for_ood_eligible_arm": true,
+    "never_open_sealed_holdout": true,
+    "promote_only_if_treatment_success_rule_passes": true,
+    "stop_arm_on_any_ood_degradation": true,
+    "stop_if_neither_arm_passes_all_train_checks": true,
+    "stop_on_population_identity_or_reliability_failure": true
+  },
+  "train_only_selection": {
+    "all_nine_checks_required": true,
+    "calibration_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+    "calibration_shared_by_both_arms": true,
+    "candidate_actor_consensus_required": true,
+    "estimated_signal_standard_deviation_must_strictly_clear_fresh_maximum_repeat_actor_spread": true,
+    "every_rejection_exactly_aborted_before_next_scale": true,
+    "five_halfspaces": [
+      "domain",
+      "fragile_generation_f1",
+      "prose_lm",
+      "qa_answer_logprob",
+      "qa_generation_f1"
+    ],
+    "historical_v48e_calibration_values_reused": false,
+    "largest_strictly_passing_scale_per_arm": true,
+    "neither_arm_passes": "stop_no_update_no_ood_or_shadow_access",
+    "reliability_minimum": 0.8,
+    "required_checks": [
+      "domain_point_improvement",
+      "prose_lm_noninferiority",
+      "qa_logprob_noninferiority",
+      "qa_generation_f1_noninferiority",
+      "qa_generation_exact_noninferiority",
+      "qa_generation_nonzero_noninferiority",
+      "fragile_generation_f1_noninferiority",
+      "fragile_generation_exact_noninferiority",
+      "fragile_generation_nonzero_noninferiority"
+    ],
+    "scale_order": [
+      0.5,
+      0.25,
+      0.125,
+      0.0625,
+      0.03125,
+      0.015625
+    ],
+    "shared_fresh_calibration_before_population": true,
+    "shared_reliability_tightening_preregistered_before_population": true,
+    "split_half_spearman_minimum": 0.7
+  },
+  "transition_schedule": {
+    "accepted_source": "V51 direct pinned-master single-slot transition",
+    "all_32x4x5_phase_receipts_required": true,
+    "candidate_and_runtime_hash_policy": "four GPU actors must produce one identical hash pair before the state may be scored; CPU-derived hashes are forbidden",
+    "candidate_derived_from_prior_candidate": false,
+    "each_candidate_derived_from_immutable_fp32_master": true,
+    "emergency_exact_master_restore_required": true,
+    "final_exact_master_restore_required": true,
+    "intermediate_exact_master_restores_eliminated": 31,
+    "runtime_slots": 1,
+    "scientific_variable": false,
+    "state_order": "direction ascending; plus then minus",
+    "states": 32
+  },
+  "treatment_success_rule": "P16 must be OOD eligible and beat exact master on document-disjoint shadow; if P8 is OOD eligible, P16 must also beat P8",
+  "v49d_isolation": {
+    "launch_not_performed_by_builder_or_tests": true,
+    "launch_requires_no_foreign_gpu_compute_processes": true,
+    "new_v52_files_and_run_directory_only": true,
+    "v49d_artifact_read_allowlist": [
+      "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/train_v434_fold3_v49d.jsonl",
+      "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/v434_equal_r32_seed17_init20260715041/final/adapter_model.safetensors",
+      "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/v434_equal_r32_seed17_init20260715041/final/adapter_config.json",
+      "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/runtime_report_v434_equal.json"
+    ],
+    "v49d_artifacts_may_not_be_written_or_imported": true,
+    "v49d_protected_inputs_may_not_be_opened": true
+  }
+}

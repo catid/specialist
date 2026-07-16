@@ -15,11 +15,11 @@ import lora_es_nested_population_v52 as design
 ROOT = Path(__file__).resolve().parent
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "matched_lora_es_nested_p8_vs_p16_v52_retry3.json"
+    "matched_lora_es_nested_p8_vs_p16_v52_retry4.json"
 ).resolve()
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
-    "v52_matched_lora_es_nested_p8_vs_p16_retry3"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry4"
 ).resolve()
 TRAIN_PANEL_SELECTION_SEED_V52 = "v52-v434-content-free-generation-panel-20260716"
 
@@ -397,6 +397,36 @@ def _sealed_parent_receipts_v52() -> dict:
         } != {design.MASTER_RUNTIME_SHA256_V52}
         or design.file_sha256_v52(design.RETRY2_GPU_LOG_V52)
         != design.RETRY2_GPU_LOG_SHA256_V52
+        or values["v52_retry3_preregistration"].get("retry_revision")
+        != "retry3_state_certificate_repair_and_shared_reliability_tightening"
+        or values["v52_retry3_attempt"].get("launcher", {}).get("matched")
+        is not True
+        or values["v52_retry3_master_identity_audit"].get(
+            "postinstall_exact_adapter_state_gate", {}
+        ).get("all_four_canonical_fp32_master_identities_exact") is not True
+        or values["v52_retry3_numeric_calibration"].get("schema")
+        != "matched-lora-es-numeric-calibration-v43i"
+        or set(values["v52_retry3_numeric_calibration"].get(
+            "bootstrap", {}
+        ).get("bounds", {})) != {"equal_unit_mean", "unweighted_row_mean"}
+        or values["v52_retry3_failure"].get("type") != "KeyError"
+        or values["v52_retry3_failure"].get("message")
+        != "'equal_unit_mean'"
+        or design.canonical_sha256_v52(
+            values["v52_retry3_failure"].get("emergency_exact_restore")
+        ) != "2054f89691154f02faf3017e08110ee6b1e49fe612dea2fc36f44bc3a5a3d710"
+        or design.canonical_sha256_v52(
+            values["v52_retry3_failure"].get("strict_cleanup")
+        ) != "59157ed14bfbfefeee3a45478e5699fa9175da5e3b23750f1c4c505727157920"
+        or design.canonical_sha256_v52(
+            values["v52_retry3_failure"].get("final_gpu_idle")
+        ) != "7ff0611248500ff79f380d163e62a045f38a3bf9902d03c715555f6fc56eb48a"
+        or values["v52_retry3_failure"].get("protected_semantics_opened")
+        is not False
+        or values["v52_retry3_failure"].get("sealed_holdout_opened")
+        is not False
+        or design.file_sha256_v52(design.RETRY3_GPU_LOG_V52)
+        != design.RETRY3_GPU_LOG_SHA256_V52
     ):
         raise RuntimeError("v52 sealed V48E/V51 evidence contract changed")
     return {
@@ -418,7 +448,7 @@ def build_v52() -> dict:
     artifacts = {
         "attempt": str(
             RUN_DIR.parent
-            / ".v52_matched_lora_es_nested_p8_vs_p16_retry3.attempt.json"
+            / ".v52_matched_lora_es_nested_p8_vs_p16_retry4.attempt.json"
         ),
         "run_directory": str(RUN_DIR),
         "population": str(RUN_DIR / "nested_population_v52.json"),
@@ -464,9 +494,8 @@ def build_v52() -> dict:
         "launcher_fix": {
             "required_python": str(design.REQUIRED_PYTHON_V52),
             "change_scope": (
-                "fresh_retry3_artifact_paths_plus_measurement_only_state_"
-                "certificate_repair_and_preregistered_shared_reliability_"
-                "tightening"
+                "fresh_retry4_artifact_paths_plus_validated_numeric_"
+                "calibration_bounds_schema_path_only"
             ),
             "original_preregistration_file_sha256": (
                 design.SEALED_NUMERIC_PARENTS_V52[
@@ -516,6 +545,45 @@ def build_v52() -> dict:
             ),
             "candidate_repeat_consensus_gate_changed": False,
             "population_reliability_gate_stricter": True,
+            "retry3_preregistration_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry3_preregistration"
+                ]["file_sha256"]
+            ),
+            "retry3_attempt_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry3_attempt"
+                ]["file_sha256"]
+            ),
+            "retry3_master_identity_audit_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry3_master_identity_audit"
+                ]["file_sha256"]
+            ),
+            "retry3_numeric_calibration_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry3_numeric_calibration"
+                ]["file_sha256"]
+            ),
+            "retry3_failure_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_retry3_failure"
+                ]["file_sha256"]
+            ),
+            "retry3_gpu_log_file_sha256": design.RETRY3_GPU_LOG_SHA256_V52,
+            "retry3_emergency_exact_restore_content_sha256": (
+                "2054f89691154f02faf3017e08110ee6b1e49fe612dea2fc36f44bc3a5a3d710"
+            ),
+            "retry3_strict_cleanup_content_sha256": (
+                "59157ed14bfbfefeee3a45478e5699fa9175da5e3b23750f1c4c505727157920"
+            ),
+            "retry3_final_gpu_idle_content_sha256": (
+                "7ff0611248500ff79f380d163e62a045f38a3bf9902d03c715555f6fc56eb48a"
+            ),
+            "retry3_treatment_and_all_gates_changed": False,
+            "numeric_calibration_extraction_change": (
+                "bootstrap.equal_unit_mean -> bootstrap.bounds.equal_unit_mean"
+            ),
         },
         "measurement_contract": {
             "reason": (
@@ -758,50 +826,37 @@ def build_v52() -> dict:
         "shadow_ood_holdout_or_benchmark_opened": False,
         "sealed_holdout_opened": False,
     }
-    frozen_treatment_keys = (
+    retry3_science_and_gate_keys = (
         "single_scientific_variable", "arms", "fixed_recipe", "runtime",
         "state_derivations", "state_derivation_inventory_sha256",
-        "transition_schedule", "ood_first_gate",
+        "transition_schedule", "train_only_selection", "ood_first_gate",
         "document_disjoint_shadow_gate", "treatment_success_rule",
         "stop_go_gates", "compute_plan",
     )
-    retry2 = design.sealed_json_v52("v52_retry2_preregistration")
-    prior_treatment = {key: retry2[key] for key in frozen_treatment_keys}
-    retry3_treatment = {key: result[key] for key in frozen_treatment_keys}
-    if retry3_treatment != prior_treatment:
-        raise RuntimeError("v52 retry3 changed the frozen treatment contract")
-    added_selection_fields = {
-        "estimated_signal_standard_deviation_must_strictly_clear_fresh_"
-        "maximum_repeat_actor_spread",
-        "shared_reliability_tightening_preregistered_before_population",
+    retry3 = design.sealed_json_v52("v52_retry3_preregistration")
+    retry3_science_and_gates = {
+        key: retry3[key] for key in retry3_science_and_gate_keys
     }
-    retry3_selection_base = {
-        key: item for key, item in result["train_only_selection"].items()
-        if key not in added_selection_fields
+    retry4_science_and_gates = {
+        key: result[key] for key in retry3_science_and_gate_keys
     }
-    if retry3_selection_base != retry2["train_only_selection"]:
-        raise RuntimeError("v52 retry3 changed a non-reliability train gate")
-    result["retry3_equivalence_and_protocol_delta"] = {
-        "frozen_treatment_keys": list(frozen_treatment_keys),
-        "retry2_treatment_content_sha256": design.canonical_sha256_v52(
-            prior_treatment
+    if retry4_science_and_gates != retry3_science_and_gates:
+        raise RuntimeError("v52 retry4 changed Retry3 science or gates")
+    result["retry4_equivalence_and_schema_repair"] = {
+        "retry3_science_and_gate_keys": list(retry3_science_and_gate_keys),
+        "retry3_science_and_gates_content_sha256": design.canonical_sha256_v52(
+            retry3_science_and_gates
         ),
-        "retry3_treatment_content_sha256": design.canonical_sha256_v52(
-            retry3_treatment
+        "retry4_science_and_gates_content_sha256": design.canonical_sha256_v52(
+            retry4_science_and_gates
         ),
-        "treatment_contract_byte_equivalent": True,
-        "retry2_train_selection_base_content_sha256": (
-            design.canonical_sha256_v52(retry2["train_only_selection"])
+        "retry3_science_and_gates_byte_equivalent": True,
+        "retry3_shared_stricter_reliability_gate_preserved": True,
+        "sole_implementation_change": (
+            "validate bootstrap schema and extract bootstrap.bounds instead "
+            "of stale bootstrap top-level metric path"
         ),
-        "retry3_train_selection_base_content_sha256": (
-            design.canonical_sha256_v52(retry3_selection_base)
-        ),
-        "non_reliability_train_gates_byte_equivalent": True,
-        "explicit_preregistered_protocol_change": (
-            "shared stricter population signal-scale versus fresh numeric "
-            "noise-scale clearance"
-        ),
-        "whole_science_and_gates_byte_equivalent_claimed": False,
+        "original_to_retry3_whole_science_equivalence_claimed": False,
     }
     result["content_sha256_before_self_field"] = design.canonical_sha256_v52(
         result
