@@ -200,7 +200,7 @@ class CorpusTests(unittest.TestCase):
 
     def test_required_failure_and_governance_lessons(self) -> None:
         required_phrases = (
-            "fatal suspended-ceiling failure",
+            "investigated ceiling-panel collapse in a Boston tunnel",
             "inadequate creep resistance in the adhesive system as the primary cause",
             "irregular overhead installation as a contributing factor",
             "when tension persists, time-dependent creep must be considered",
@@ -217,13 +217,13 @@ class CorpusTests(unittest.TestCase):
             self.assertIn(phrase, self.corpus, phrase)
 
         self.assertIn(
-            "The advisory itself identifies the investigated event as a ceiling-panel collapse",
+            "It provides no casualty detail",
             self.corpus,
         )
-        self.assertIn(
-            "supplies no casualty narrative",
-            self.corpus,
+        evidence_artifacts = "\n".join(
+            (self.corpus, self.report, json.dumps(self.provenance, sort_keys=True))
         )
+        self.assertNotRegex(evidence_artifacts, r"\bfatal(?:ity|ities)?\b")
 
     def test_no_standards_products_recipes_examples_or_embedded_media(self) -> None:
         prohibited_terms = (
@@ -303,8 +303,8 @@ class CorpusTests(unittest.TestCase):
             "eight categorical exclusions",
             "one structural schematic",
             "one third-party table",
-            "PDF itself says only “ceiling panel collapse”",
-            "does not state a casualty count",
+            "Investigated suspended-ceiling and ceiling-panel collapse context",
+            "provides no casualty detail",
             "Any certification, sizing, selection, rating, or capacity statement",
             "The original PDF is not redistributed",
         )

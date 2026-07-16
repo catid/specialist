@@ -4,7 +4,7 @@
 
 Non-bondage civil-infrastructure evidence: This digest is derived from the Federal Highway Administration technical advisory *Use and Inspection of Adhesive Anchors in Federal-Aid Projects*. The advisory is dated January 16, 2018 and addresses governance of adhesive-anchor systems in Federal-aid civil-infrastructure work. [FHWA-T5140.34-2018, PDF p. 1]
 
-Non-bondage civil-infrastructure evidence boundary: The accepted-source record characterizes the initiating event as a fatal suspended-ceiling failure. The advisory itself identifies the investigated event as a ceiling-panel collapse in a Boston tunnel and supplies no casualty narrative. This digest retains that high-consequence context without adding victim details. [FHWA-T5140.34-2018, PDF p. 1; accepted-source scope]
+Non-bondage civil-infrastructure evidence boundary: The advisory identifies its initiating context as the investigated ceiling-panel collapse in a Boston tunnel. It provides no casualty detail, so this digest does not characterize consequences beyond the documented collapse. [FHWA-T5140.34-2018, PDF p. 1]
 
 Non-bondage civil-infrastructure evidence boundary: This is civil-infrastructure governance evidence, not a design, installation, testing, or maintenance guide. It does not certify, size, select, rate, or establish capacity for a ceiling attachment, DIY hardpoint, rope anchor, or human-suspension system. [FHWA-T5140.34-2018, PDF pp. 1–4]
 

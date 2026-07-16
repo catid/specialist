@@ -24,7 +24,7 @@ The component audit identifies eight categorical exclusions. These include the p
 
 ## Retained civil-infrastructure lessons
 
-- Fatal suspended-ceiling failure context, with an explicit note that the PDF itself says only “ceiling panel collapse” and provides no casualty detail.
+- Investigated suspended-ceiling and ceiling-panel collapse context, with an explicit note that the PDF provides no casualty detail.
 - Inadequate adhesive-system creep resistance as primary cause and irregular overhead installation as contributing cause in FHWA's failure account.
 - Persistent tension and creep as time-dependent system concerns.
 - Orientation alone does not determine whether an anchor experiences sustained tension.
@@ -50,6 +50,6 @@ Every retained claim paragraph is labeled `Non-bondage civil-infrastructure evid
 
 The advisory does not identify an individual author, funding statement, conflict-of-interest statement, or data-availability statement. FHWA is the corporate author.
 
-The accepted-source record characterizes the initiating event as fatal. The four-page advisory itself identifies an investigated ceiling-panel collapse and does not state a casualty count. The corpus makes that evidence boundary explicit rather than silently attributing unsupported casualty detail to the PDF.
+The four-page advisory identifies an investigated ceiling-panel collapse and provides no casualty detail. The corpus therefore does not characterize consequences beyond the documented collapse.
 
 The original PDF is not redistributed. Exact first-party retrieval metadata, checksums, rights basis, page decisions, and categorical component exclusions are preserved in package metadata.
