@@ -915,6 +915,66 @@
       "whitespace_delimited_word_count": 2486
     },
     {
+      "artifact_id": "canonical-markdown:nps_textile_fiber_aging_appendix_k_2002",
+      "byte_length": 16780,
+      "dataset_layer": "canonical_markdown_source_corpus",
+      "declared_direct_training_ready": true,
+      "direct_training_declaration": "manifest_direct_training_ready_true",
+      "manifest_path": "data/site_corpora/nps_textile_fiber_aging_appendix_k_2002/manifest.json",
+      "manifest_schema": {
+        "name": "site-corpus-manifest",
+        "version": "1.0"
+      },
+      "manifest_sha256": "08c51ca0fb7802fcffccc11a1d49ab39ba97b7890c48538dfffdd2d9804dd956",
+      "markdown_path": "data/site_corpora/nps_textile_fiber_aging_appendix_k_2002/CORPUS.md",
+      "markdown_sha256": "04949a4d3685ad91b052ba81224a770b39328c2715ebc5fc8284bebf34d33453",
+      "non_qa": true,
+      "qwen36_token_count": 3947,
+      "required_single_document_split_group": {
+        "assign_before": "markdown_chunking_or_qa_derivation",
+        "assignment_unit": "source_document",
+        "cross_split_reuse_forbidden": true,
+        "group_id": "source-document-v1:d97c3b1d0c195c74ca26af2d9bb72adefbbf64dec350a7e8b70c39ee97e28af2",
+        "members": "the complete Markdown artifact, every chunk, and every derived QA or other descendant",
+        "required": true
+      },
+      "resource_id": "nps_textile_fiber_aging_appendix_k_2002",
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The checksum-bound official appendix identifies the National Park Service, U.S. Department of the Interior as corporate author; eligible federal text is treated as public domain in the United States under 17 U.S.C. 105, with every credited, permission-controlled, commercial, and uncertain component excluded.",
+        "license": "eligible_US_government_text",
+        "limitations": [
+          "All sixteen numbered figures, photographs, drawings, diagrams, captions, three controlled source blocks, vendor or trademark matter, bibliography, external resource directions, and separately owned content are excluded.",
+          "Numerical temperature, relative-humidity and illumination prescriptions and all storage, display, pollution, pest, handling, cleaning, treatment, chemical, transport, emergency and conservation recipes are excluded.",
+          "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, extraction, contact sheet, visual, bibliography, or source body is retained.",
+          "This 2002 museum-textile handbook scope does not establish functional-rope strength, hygiene, conditioning, drying, inspection, service, retirement, bondage, body-loading, upline, anchor, hardpoint, or human-suspension rules."
+        ],
+        "promotion_gate": "ready_with_federal_attribution_checksum_component_audit_and_museum_textile_limits",
+        "status": "federal_text_public_domain_presumption"
+      },
+      "safety_transfer_flags": [
+        "all_figures_controlled_blocks_vendor_material_numeric_prescriptions_and_conservation_recipes_excluded",
+        "animal_plant_synthetic_and_cellulose_bast_leaf_seed_taxonomy_is_not_finished_rope_evidence",
+        "historical_2002_museum_textile_preventive_conservation_scope_required",
+        "molecular_chain_brittleness_hygroscopic_stress_light_heat_moisture_pollution_pest_and_abrasion_mechanisms_are_qualitative",
+        "no_bondage_body_loading_upline_anchor_hardpoint_or_human_suspension_transfer",
+        "no_jute_hemp_functional_rope_strength_hygiene_conditioning_drying_inspection_service_or_retirement_inference"
+      ],
+      "source_document_identity": {
+        "canonical_url": "https://www.nps.gov/subjects/museums/upload/MHI_AppK_TextilesObjects.pdf",
+        "corporate_author": "National Park Service, U.S. Department of the Interior",
+        "identity_type": "government_museum_handbook_appendix",
+        "official_pdf_sha256": "08b5aafe64a97c579b1e3415cff936b25871463914dd4382e5be9918f0ea1217",
+        "publication_year": 2002,
+        "selected_printed_pages": "K:2-K:13",
+        "source_resource_id": "nps_textile_fiber_aging_appendix_k_2002"
+      },
+      "source_document_identity_sha256": "d97c3b1d0c195c74ca26af2d9bb72adefbbf64dec350a7e8b70c39ee97e28af2",
+      "source_label": "NPS Museum Handbook Appendix K: Curatorial Care of Textile Objects",
+      "unicode_word_count": 2288,
+      "whitespace_delimited_word_count": 2209
+    },
+    {
       "artifact_id": "canonical-markdown:phm_synthetic_fiber_rope_condition_monitoring_review_2017",
       "byte_length": 14173,
       "dataset_layer": "canonical_markdown_source_corpus",
@@ -1310,7 +1370,7 @@
   ],
   "config": {
     "path": "data/site_corpora/registry/source_registry_config_v1.json",
-    "sha256": "caccf4d0be846e790a67ec47cefae921e972a396beea407fec01dafc8b8b5404"
+    "sha256": "72a0ff1cf39e97af039a56f21ae05d7090135c6d604b73a4fdf9b661db1cf67c"
   },
   "count_methods": {
     "qwen36_token_count": "tokenizers.Tokenizer from the sealed Qwen3.6-35B-A3B tokenizer.json; encode(add_special_tokens=False) over the complete Markdown artifact",
@@ -1349,7 +1409,7 @@
   ],
   "schema": "site-corpus-registry-v1",
   "schema_version": 1,
-  "source_tree_fingerprint_sha256": "333aa0fee97cb23afdeba76e6d3e14ef413db4cfcf1588351768c9c9175b7206",
+  "source_tree_fingerprint_sha256": "2dca483056a5a6fa6b3f21657f50e3b77bb8c38398adfed350b85434a2468945",
   "tokenizer": {
     "add_special_tokens": false,
     "model_family": "Qwen3.6-35B-A3B",
@@ -1359,11 +1419,11 @@
     "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
   },
   "totals": {
-    "artifact_count": 23,
-    "byte_length": 4071834,
-    "qwen36_token_count": 1185603,
-    "source_document_split_group_count": 23,
-    "unicode_word_count": 535992,
-    "whitespace_delimited_word_count": 424023
+    "artifact_count": 24,
+    "byte_length": 4088614,
+    "qwen36_token_count": 1189550,
+    "source_document_split_group_count": 24,
+    "unicode_word_count": 538280,
+    "whitespace_delimited_word_count": 426232
   }
 }
