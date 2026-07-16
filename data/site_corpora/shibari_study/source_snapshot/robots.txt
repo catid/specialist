@@ -1,0 +1,107 @@
+# robots.txt for shibaristudy.com
+# Updated May 22, 2026
+# Purpose: Block turbo_stream, contents, additional parameter and route cleanup
+
+User-agent: *
+
+# ============================================================
+# CRITICAL: Block all parameter-based URLs (duplicates)
+# These create duplicate content and waste crawl budget
+# ============================================================
+
+Disallow: /*?*&*
+Disallow: /*?*category_id=
+Disallow: /*?*ref_comment_id=
+Disallow: /*?*catalog_filter=
+Disallow: /*?*thread_id=
+Disallow: /*?*hide=
+Disallow: /*?*utm_source=
+Disallow: /*?*utm_medium=
+Disallow: /*?*utm_campaign=
+Disallow: /*?*utm_content=
+Disallow: /*?*utm_term=
+Disallow: /*?*cid=
+Disallow: /*?*comment_id=
+Disallow: /*?*permalink=
+Disallow: /*?*categoryId=
+Disallow: /*?id=*
+Disallow: /*?from_home_page=*
+Disallow: /*?podcast=*
+Disallow: /*?vertical=*
+Disallow: /*?activity_type=*
+Disallow: /*?format=*
+
+# ============================================================
+# BLOCK: Private/Member Pages (user account areas)
+# ============================================================
+
+Disallow: /users/
+Disallow: /account/
+Disallow: /accounts/
+Disallow: /orders/
+Disallow: /my_plan/
+Disallow: /login/
+Disallow: /signin/
+Disallow: /sign_in/
+Disallow: /signup/
+Disallow: /sign_up/
+Disallow: /register/
+Disallow: /registration/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /basket/
+Disallow: /dashboard/
+Disallow: /catalog/
+Disallow: /gift_card_redemptions/
+Disallow: /reset-password
+
+# ============================================================
+# BLOCK: Uscreen Internal Routes
+# ============================================================
+
+Disallow: /*.turbo_stream
+Disallow: /*.turbo_stream?*
+Disallow: /contents/
+Disallow: /authors/*/watched_videos
+Disallow: /categories/*/watched_videos
+
+# ============================================================
+# BLOCK: Deprecated/Legacy Pages
+# ============================================================
+
+Disallow: /black-friday*
+Disallow: /halloween*
+Disallow: /pages/black-friday*
+Disallow: /pages/halloween*
+
+# ============================================================
+# BLOCK: Admin/Management Pages
+# ============================================================
+
+Disallow: /admin/
+Disallow: /manage/
+Disallow: /moderator/
+Disallow: /staff/
+
+# ============================================================
+# BLOCK: Community
+# ============================================================
+
+Disallow: /community/
+
+# ============================================================
+# ALLOW: Core Content (explicitly permitted)
+# Must come AFTER disallows so specifics take priority
+# ============================================================
+
+Allow: /programs/
+Allow: /categories/
+Allow: /authors/
+Allow: /pages/
+Allow: /
+
+# ============================================================
+# SITEMAP
+# ============================================================
+
+Sitemap: https://shibaristudy.com/sitemap-index.xml

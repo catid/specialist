@@ -1,0 +1,71 @@
+{
+  "artifact_role": "policy_exclusion_notice",
+  "canonical_instructional_body_snapshots_retained": 0,
+  "content_record_count": 0,
+  "direct_training_ready": false,
+  "document_disjoint_requirement": "assign canonical source document before Markdown chunking or QA derivation",
+  "generated_at": "2026-07-16T06:55:44.842968Z",
+  "inventory_record_count": 597,
+  "non_qa": true,
+  "outputs": {
+    "CORPUS.md": {
+      "byte_length": 1262,
+      "sha256": "57a66ad9f4b2db8327a9338c73ab6efe3e4b401846b877fa31320dc5e3e9c015"
+    },
+    "REPORT.md": {
+      "byte_length": 702,
+      "sha256": "1a11f29c5077a32df144915d860b9ab09f2c644cf1f010d7bdf19960fbadee7c"
+    },
+    "content_records.jsonl": {
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "inventory.jsonl": {
+      "byte_length": 172324,
+      "sha256": "3b60187b07f302fc6b6bb0869725d617827b5cd681ba08d154a95f8f06561f79"
+    },
+    "url_dispositions.jsonl": {
+      "byte_length": 173058,
+      "sha256": "311eea1874ece8524bf9a27c07427e64004f3e55c39b6b7037baf7600447dd2c"
+    }
+  },
+  "policy_decision": {
+    "path": "policy_decision.json",
+    "sha256": "2b985eeab16d387db96b22b17269124610fd6581c9da079043270577eb74402c"
+  },
+  "policy_reason": "terms_of_service_prohibits_content_collection_and_storage",
+  "resource_id": "shibari_study",
+  "schema_version": 1,
+  "source_capture_scope": "robots_and_sitemap_metadata_only",
+  "source_snapshot": [
+    {
+      "byte_length": 2972,
+      "path": "source_snapshot/robots.txt",
+      "retrieved_at": "2026-07-16T06:55:44.579067Z",
+      "sha256": "154e069247388a9eb22024d57841163ba176d9b7db48eeb23345ef1d9606d159",
+      "url": "https://shibaristudy.com/robots.txt"
+    },
+    {
+      "byte_length": 10410,
+      "path": "source_snapshot/sitemap-blog.xml",
+      "retrieved_at": "2026-07-16T06:55:44.805260Z",
+      "sha256": "53bd4d386efb5ac81ea2cd5d33e12135f7a200650ac0d9ba511dbf50d889c912",
+      "url": "https://shibaristudy.com/sitemap-blog.xml"
+    },
+    {
+      "byte_length": 281,
+      "path": "source_snapshot/sitemap-index.xml",
+      "retrieved_at": "2026-07-16T06:55:44.614867Z",
+      "sha256": "b0b82c08db3048f98d5bdfc9efab38d8aae3f3ff0bbd7e047bafb7b9ec2e9f3a",
+      "url": "https://shibaristudy.com/sitemap-index.xml"
+    },
+    {
+      "byte_length": 90454,
+      "path": "source_snapshot/sitemap.xml",
+      "retrieved_at": "2026-07-16T06:55:44.650550Z",
+      "sha256": "daa7f53e6d46e3afd701538ff32a21156e3c61515420f64b091d05735e175170",
+      "url": "https://shibaristudy.com/sitemap.xml"
+    }
+  ],
+  "taxonomy_mappings": []
+}
