@@ -1,0 +1,362 @@
+{
+  "schema": "specialist-qwen36-v434-vllm-throughput-frontier-v62",
+  "status": "cpu_only_posthoc_synthetic_throughput_report_no_launch_authority",
+  "created_at_utc": "2026-07-16",
+  "scope": {
+    "purpose": "Bounded posthoc summary of existing random synthetic vLLM throughput JSON artifacts.",
+    "source_globs": [
+      "/tmp/v61e_frontier_*.json",
+      "/tmp/v62_frontier_*.json"
+    ],
+    "source_files": 56,
+    "v61e_source_files": 48,
+    "v62_source_files": 8,
+    "source_total_bytes": 10638,
+    "canonical_sorted_filename_file_sha256_manifest_sha256": "576d2fc3ab1d9d4250523ecbfcb50a84dd3c1d92f7f84b9c29ebeca0d5fc7423",
+    "concatenated_sorted_raw_file_bytes_sha256": "09885cc5c1fe7ea3068a10c3b66679de7e622e1b18b092d3d90ffece1291c15d",
+    "source_snapshot_policy": "The report is frozen to the initial 56-file artifact set observed when this CPU-only task began; later /tmp frontier files are outside scope and were not read into the report.",
+    "source_artifacts_copied_into_repository": false,
+    "gpu_or_model_accessed_while_building_report": false,
+    "active_v62a_run_read_or_modified": false
+  },
+  "exact_runtime_identities": {
+    "hardware": {
+      "device_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+      "physical_gpu_count": 4,
+      "benchmark_topology": "one independent TP1 engine on one physical GPU per artifact"
+    },
+    "software": {
+      "vllm_version": "0.25.0",
+      "dtype": "bfloat16",
+      "tensor_parallel_size": 1,
+      "enforce_eager": true,
+      "moe_backend": "triton",
+      "async_scheduling_default": false,
+      "scheduling_policy_default": "fcfs",
+      "VLLM_BATCH_INVARIANT": false,
+      "gpu_memory_utilization": 0.82
+    },
+    "model": {
+      "name": "Qwen3.6-35B-A3B",
+      "model_config_file_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99"
+    },
+    "v434_lora": {
+      "adapter_weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+      "adapter_config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+      "explicit_lora_artifacts_use_v434": true,
+      "explicit_base_artifacts_are_unadapted": true,
+      "custom_lora_kernel_config_found": false,
+      "lora_kernel_path": "vllm_defaults"
+    },
+    "v27c_moe_tuning": {
+      "config_file_sha256": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+      "exact_device_specific_tuned_table_required": true
+    }
+  },
+  "workload_and_interpretation_caveats": {
+    "dataset": "vllm random synthetic workload",
+    "semantic_dataset_rows_used": 0,
+    "requested_input_and_output_lengths_are_fixed_per_artifact": true,
+    "default_frontier_input_tokens": 256,
+    "default_frontier_output_tokens": 64,
+    "max_num_seqs_input_output_and_gpu_are_encoded_in_filenames": true,
+    "num_requests_and_total_tokens_are_read_from_each_json": true,
+    "reported_tokens_per_second_definition": "total_num_tokens divided by elapsed_time; total_num_tokens includes requested input plus output tokens",
+    "all_artifacts_satisfy_total_tokens_equals_requests_times_input_plus_output": true,
+    "model_load_is_outside_timing_boundary": true,
+    "ordinary_warmup_requests": 4,
+    "warm88_filename_warmup_requests": 88,
+    "random_seeds": "varied across runs and are not recoverable from the aggregate JSON artifacts",
+    "run_order_fully_counterbalanced": false,
+    "confidence_intervals_available": false,
+    "cross_length_absolute_tps_is_not_cost_equivalent": "Prompt and decode tokens have different costs; only matched-length concurrency ratios are interpreted.",
+    "causal_claims_authorized": false,
+    "semantic_quality_claims_authorized": false,
+    "hpo_or_training_recipe_claims_authorized": false
+  },
+  "concurrency_frontier": {
+    "workload": {
+      "input_tokens": 256,
+      "output_tokens": 64,
+      "tokens_per_request": 320,
+      "scheduling": "sync_fcfs",
+      "adapter_state_inferred_from_aggregate_json": false
+    },
+    "coarse_points": [
+      {"max_num_seqs": 1, "gpu": 0, "num_requests": 68, "tokens_per_second": 98.5285472499225, "source": "v61e_frontier_seq1_sync_gpu0.json"},
+      {"max_num_seqs": 4, "gpu": 1, "num_requests": 272, "tokens_per_second": 384.7791162566564, "source": "v61e_frontier_seq4_sync_gpu1.json"},
+      {"max_num_seqs": 8, "gpu": 0, "num_requests": 272, "tokens_per_second": 732.7911789895345, "source": "v61e_frontier_seq8_sync_gpu0.json"},
+      {"max_num_seqs": 16, "gpu": 3, "num_requests": 1024, "tokens_per_second": 1428.0681839079289, "source": "v61e_frontier_seq16_sync_gpu3.json"},
+      {"max_num_seqs": 32, "gpu": 2, "num_requests": 1024, "tokens_per_second": 2716.5492194248873, "source": "v61e_frontier_seq32_sync_gpu2.json"},
+      {"max_num_seqs": 48, "gpu": 0, "num_requests": 1024, "tokens_per_second": 3738.501466833909, "source": "v61e_frontier_seq48_sync_gpu0.json"},
+      {"max_num_seqs": 56, "gpu": 1, "num_requests": 1024, "tokens_per_second": 4175.8903403740715, "source": "v61e_frontier_seq56_sync_gpu1.json"},
+      {"max_num_seqs": 64, "gpu": 2, "num_requests": 1024, "tokens_per_second": 4739.912141008178, "source": "v61e_frontier_seq64_sync_gpu2.json"},
+      {"max_num_seqs": 68, "gpu": 1, "num_requests": 1024, "tokens_per_second": 4824.930291342257, "source": "v61e_frontier_seq68_sync_gpu1.json"},
+      {"max_num_seqs": 72, "gpu": 3, "num_requests": 1024, "tokens_per_second": 4940.7845212486445, "source": "v61e_frontier_seq72_sync_gpu3.json"}
+    ],
+    "high_points_1024_requests": [
+      {"max_num_seqs": 72, "gpu": 0, "tokens_per_second": 5034.2463167665655, "source": "v61e_frontier_seq72_sync_high_gpu0.json"},
+      {"max_num_seqs": 76, "gpu": 1, "tokens_per_second": 5371.807396135049, "source": "v61e_frontier_seq76_sync_high_gpu1.json"},
+      {"max_num_seqs": 80, "gpu": 2, "tokens_per_second": 5627.951908180855, "source": "v61e_frontier_seq80_sync_high_gpu2.json"},
+      {"max_num_seqs": 84, "gpu": 3, "tokens_per_second": 5580.414806007004, "source": "v61e_frontier_seq84_sync_high_gpu3.json"}
+    ],
+    "confirm_points_2048_requests": [
+      {"max_num_seqs": 78, "gpu": 0, "tokens_per_second": 5393.534801949785, "source": "v61e_frontier_seq78_sync_confirm_gpu0.json"},
+      {"max_num_seqs": 80, "gpu": 1, "tokens_per_second": 5607.996710264194, "source": "v61e_frontier_seq80_sync_confirm_gpu1.json"},
+      {"max_num_seqs": 82, "gpu": 2, "tokens_per_second": 5753.950980091884, "source": "v61e_frontier_seq82_sync_confirm_gpu2.json"},
+      {"max_num_seqs": 84, "gpu": 3, "tokens_per_second": 5779.423442021431, "source": "v61e_frontier_seq84_sync_confirm_gpu3.json"}
+    ],
+    "upper_points_2048_requests": [
+      {"max_num_seqs": 84, "gpu": 0, "tokens_per_second": 5718.368780771742, "source": "v61e_frontier_seq84_sync_upper_gpu0.json"},
+      {"max_num_seqs": 88, "gpu": 1, "tokens_per_second": 5817.832165280249, "source": "v61e_frontier_seq88_sync_upper_gpu1.json"},
+      {"max_num_seqs": 92, "gpu": 2, "tokens_per_second": 5744.157728491388, "source": "v61e_frontier_seq92_sync_upper_gpu2.json"},
+      {"max_num_seqs": 96, "gpu": 3, "tokens_per_second": 5776.593954694627, "source": "v61e_frontier_seq96_sync_upper_gpu3.json"}
+    ],
+    "crossover_points_4096_requests": [
+      {"max_num_seqs": 84, "gpu": 3, "tokens_per_second": 5794.1256576589185, "source": "v61e_frontier_seq84_sync_crossover_gpu3.json"},
+      {"max_num_seqs": 88, "gpu": 2, "tokens_per_second": 5800.224067901382, "source": "v61e_frontier_seq88_sync_crossover_gpu2.json"},
+      {"max_num_seqs": 92, "gpu": 1, "tokens_per_second": 5853.401884016819, "source": "v61e_frontier_seq92_sync_crossover_gpu1.json"},
+      {"max_num_seqs": 96, "gpu": 0, "tokens_per_second": 5592.006777583803, "source": "v61e_frontier_seq96_sync_crossover_gpu0.json"}
+    ],
+    "summary": {
+      "observed_plateau_max_num_seqs": [84, 88, 92],
+      "best_long_crossover_max_num_seqs": 92,
+      "best_long_crossover_tokens_per_second": 5853.401884016819,
+      "seq84_below_seq92_percent": 1.0230400557424302,
+      "seq88_below_seq92_percent": 0.9168234794535657,
+      "seq96_vs_seq92_percent": -4.465695532486436,
+      "seq68_four_gpu_repeat_mean_tokens_per_second": 4805.111277053871,
+      "seq68_repeat_mean_as_fraction_of_seq92_crossover": 0.8209091691063638,
+      "seq92_crossover_gain_over_seq68_repeat_mean_percent": 21.816156723964153,
+      "interpretation": "For this 256+64 synthetic cohort, throughput rises through 84-92, then the longest 4096-request cohort drops at 96. This is a frontier observation, not a recipe change."
+    },
+    "sync_async_diagnostics": [
+      {
+        "max_num_seqs": 1,
+        "sync_gpu": 0,
+        "async_gpu": 2,
+        "sync_tokens_per_second": 98.5285472499225,
+        "async_tokens_per_second": 100.76240868397282,
+        "async_vs_sync_percent": 2.267222542502356,
+        "sources": ["v61e_frontier_seq1_sync_gpu0.json", "v61e_frontier_seq1_async_gpu2.json"]
+      },
+      {
+        "max_num_seqs": 68,
+        "sync_gpu": 1,
+        "async_gpu": 3,
+        "sync_tokens_per_second": 4824.930291342257,
+        "async_tokens_per_second": 4786.848721397009,
+        "async_vs_sync_percent": -0.7892667384973517,
+        "sources": ["v61e_frontier_seq68_sync_gpu1.json", "v61e_frontier_seq68_async_gpu3.json"]
+      }
+    ],
+    "sync_async_interpretation": "The sign changes between seq1 and seq68, and GPU/seed are not paired; these two diagnostics do not establish a scheduling advantage."
+  },
+  "matched_length_interactions_seq88_vs_seq68": [
+    {
+      "input_tokens": 128,
+      "output_tokens": 64,
+      "num_requests": 2048,
+      "seq68_tokens_per_second": 3184.968920582509,
+      "seq88_tokens_per_second": 3901.0327177283452,
+      "seq88_vs_seq68_percent": 22.48259920272231,
+      "sources": ["v61e_frontier_in128_out64_seq68_gpu0.json", "v61e_frontier_in128_out64_seq88_gpu1.json"]
+    },
+    {
+      "input_tokens": 512,
+      "output_tokens": 64,
+      "num_requests": 2048,
+      "seq68_tokens_per_second": 7301.844229396235,
+      "seq88_tokens_per_second": 8466.784150285574,
+      "seq88_vs_seq68_percent": 15.954050569847112,
+      "sources": ["v61e_frontier_in512_out64_seq68_gpu2.json", "v61e_frontier_in512_out64_seq88_gpu3.json"]
+    },
+    {
+      "input_tokens": 1024,
+      "output_tokens": 64,
+      "num_requests": 1024,
+      "seq68_tokens_per_second": 10032.633232813341,
+      "seq88_tokens_per_second": 10484.6527536654,
+      "seq88_vs_seq68_percent": 4.505492330504568,
+      "sources": ["v61e_frontier_in1024_out64_seq68_gpu0.json", "v61e_frontier_in1024_out64_seq88_gpu1.json"]
+    },
+    {
+      "input_tokens": 256,
+      "output_tokens": 128,
+      "num_requests": 1024,
+      "seq68_tokens_per_second": 3094.255134164388,
+      "seq88_tokens_per_second": 3717.0506668326666,
+      "seq88_vs_seq68_percent": 20.127478364400165,
+      "sources": ["v61e_frontier_in256_out128_seq68_gpu2.json", "v61e_frontier_in256_out128_seq88_gpu3.json"]
+    },
+    {
+      "input_tokens": 256,
+      "output_tokens": 256,
+      "num_requests": 512,
+      "seq68_tokens_per_second": 2142.654268192174,
+      "seq88_tokens_per_second": 2394.8037441589377,
+      "seq88_vs_seq68_percent": 11.76808968716685,
+      "sources": ["v61e_frontier_in256_out256_seq68_gpu0.json", "v61e_frontier_in256_out256_seq88_gpu1.json"]
+    },
+    {
+      "input_tokens": 256,
+      "output_tokens": 512,
+      "num_requests": 256,
+      "seq68_tokens_per_second": 1701.4884706197047,
+      "seq88_tokens_per_second": 1688.7187984796626,
+      "seq88_vs_seq68_percent": -0.7505000686481966,
+      "sources": ["v61e_frontier_in256_out512_seq68_gpu2.json", "v61e_frontier_in256_out512_seq88_gpu3.json"]
+    }
+  ],
+  "length_interaction_summary": {
+    "fixed_output64_seq88_gain_declines_as_input_grows": true,
+    "fixed_input256_seq88_gain_declines_as_output_grows": true,
+    "seq88_hurts_in256_out512_in_this_sample": true,
+    "interpretation": "Concurrency should be selected against the actual prompt/decode mix; the 256+64 frontier does not transfer uniformly to longer decode workloads."
+  },
+  "lora_vs_base_paired_results": [
+    {
+      "pair": "v61e_in256_out64_seq88",
+      "input_tokens": 256,
+      "output_tokens": 64,
+      "max_num_seqs": 88,
+      "num_requests": 2048,
+      "warmup_requests": 4,
+      "base_gpu": 0,
+      "lora_gpu": 1,
+      "base_tokens_per_second": 7456.19542432806,
+      "lora_tokens_per_second": 6026.439653919017,
+      "lora_over_base_ratio": 0.8082459365611531,
+      "lora_vs_base_percent": -19.175406343884692,
+      "sources": ["v61e_frontier_base_in256_out64_seq88_gpu0.json", "v61e_frontier_lora_in256_out64_seq88_gpu1.json"]
+    },
+    {
+      "pair": "v62_swapped_gpu_in256_out64_seq88",
+      "input_tokens": 256,
+      "output_tokens": 64,
+      "max_num_seqs": 88,
+      "num_requests": 2048,
+      "warmup_requests": 4,
+      "base_gpu": 1,
+      "lora_gpu": 0,
+      "base_tokens_per_second": 7752.196961417975,
+      "lora_tokens_per_second": 5553.785360717351,
+      "lora_over_base_ratio": 0.7164143775445939,
+      "lora_vs_base_percent": -28.358562245540607,
+      "sources": ["v62_frontier_base_in256_out64_seq88_gpu1_swap.json", "v62_frontier_lora_in256_out64_seq88_gpu0_swap.json"]
+    },
+    {
+      "pair": "v62_warm88_in256_out64_seq88",
+      "input_tokens": 256,
+      "output_tokens": 64,
+      "max_num_seqs": 88,
+      "num_requests": 2048,
+      "warmup_requests": 88,
+      "base_gpu": 0,
+      "lora_gpu": 1,
+      "base_tokens_per_second": 7465.070197737922,
+      "lora_tokens_per_second": 5879.479019564348,
+      "lora_over_base_ratio": 0.7875986245040211,
+      "lora_vs_base_percent": -21.240137549597893,
+      "sources": ["v62_frontier_base_in256_out64_seq88_warm88_gpu0.json", "v62_frontier_lora_in256_out64_seq88_warm88_gpu1.json"]
+    },
+    {
+      "pair": "in1024_out256_seq68",
+      "input_tokens": 1024,
+      "output_tokens": 256,
+      "max_num_seqs": 68,
+      "num_requests": 256,
+      "warmup_requests": 4,
+      "base_gpu": 2,
+      "lora_gpu": 2,
+      "base_tokens_per_second": 6121.096277748626,
+      "lora_tokens_per_second": 4429.914215861198,
+      "lora_over_base_ratio": 0.7237125532504359,
+      "lora_vs_base_percent": -27.62874467495641,
+      "sources": ["v62_frontier_base_in1024_out256_seq68_gpu2.json", "v61e_frontier_lora_in1024_out256_seq68_gpu2.json"]
+    },
+    {
+      "pair": "in1024_out256_seq88",
+      "input_tokens": 1024,
+      "output_tokens": 256,
+      "max_num_seqs": 88,
+      "num_requests": 256,
+      "warmup_requests": 4,
+      "base_gpu": 3,
+      "lora_gpu": 3,
+      "base_tokens_per_second": 7053.478731845185,
+      "lora_tokens_per_second": 4421.265225104283,
+      "lora_over_base_ratio": 0.6268205226370169,
+      "lora_vs_base_percent": -37.31794773629831,
+      "sources": ["v62_frontier_base_in1024_out256_seq88_gpu3.json", "v61e_frontier_lora_in1024_out256_seq88_gpu3.json"]
+    }
+  ],
+  "lora_vs_base_summary": {
+    "all_five_observed_lora_over_base_ratios_below_one": true,
+    "observed_lora_deficit_percent_range": [-37.31794773629831, -19.175406343884692],
+    "warm88_lora_vs_base_percent": -21.240137549597893,
+    "gpu_swap_preserves_direction": true,
+    "same_gpu_long_context_pairs_preserve_direction": true,
+    "interpretation": "Adapter-enabled V434 throughput was lower in every recorded matched configuration. The magnitude is configuration-sensitive. Default LoRA kernels, unrecoverable random seeds, run order, and lack of confidence intervals prevent attribution to a single kernel or scheduler cause."
+  },
+  "actor_variability": {
+    "base_frontier_seq68_four_gpu_repeats": {
+      "input_tokens": 256,
+      "output_tokens": 64,
+      "max_num_seqs": 68,
+      "num_requests_per_gpu": 1024,
+      "per_gpu_tokens_per_second": {
+        "0": 4761.509491602606,
+        "1": 4839.671434360256,
+        "2": 4809.151768615431,
+        "3": 4810.112413637193
+      },
+      "mean_tokens_per_second": 4805.111277053871,
+      "population_standard_deviation": 28.003826108070808,
+      "population_coefficient_of_variation": 0.005827924577272355,
+      "range_tokens_per_second": 78.16194275764974,
+      "range_as_percent_of_mean": 1.626641679057487,
+      "sources": [
+        "v61e_frontier_seq68_sync_repeat_gpu0.json",
+        "v61e_frontier_seq68_sync_repeat_gpu1.json",
+        "v61e_frontier_seq68_sync_repeat_gpu2.json",
+        "v61e_frontier_seq68_sync_repeat_gpu3.json"
+      ]
+    },
+    "v434_lora_seq68_gpu2_gpu3_short_pair": {
+      "input_tokens": 256,
+      "output_tokens": 64,
+      "max_num_seqs": 68,
+      "num_requests_per_gpu": 272,
+      "gpu2_tokens_per_second": 5040.209439068898,
+      "gpu3_tokens_per_second": 5040.116534823853,
+      "absolute_range_tokens_per_second": 0.09290424504524708,
+      "range_as_percent_of_mean": 0.001843278586146157,
+      "sources": [
+        "v62_frontier_lora_actorvar_seq68_gpu2.json",
+        "v62_frontier_lora_actorvar_seq68_gpu3.json"
+      ]
+    },
+    "interpretation": "Observed actor variation is much smaller than the five base-versus-LoRA gaps, but the repeat designs are too small and seeds are not recoverable, so they are descriptive rather than an inferential variance model."
+  },
+  "bounded_findings": [
+    "The 256+64 synthetic crossover cohort peaks at max_num_seqs 92; 84 and 88 are within about one percent, while 96 is 4.47 percent below 92.",
+    "The existing max_num_seqs 68 four-GPU repeat mean is 82.09 percent of the seq92 crossover throughput for this synthetic shape.",
+    "The seq88 benefit over seq68 falls as prompt or decode length grows and is slightly negative for 256 input plus 512 output tokens.",
+    "Every explicit matched base-versus-V434 LoRA comparison favors base throughput, including the warm88 and swapped-GPU checks.",
+    "The aggregate JSONs do not preserve seeds, command lines, latency distributions, output identities, semantic scores, or confidence intervals."
+  ],
+  "authorization": {
+    "semantic_dataset_access_authorized": false,
+    "semantic_quality_conclusion_authorized": false,
+    "hpo_launch_authorized": false,
+    "adapter_update_authorized": false,
+    "training_recipe_change_authorized": false,
+    "max_num_seqs_change_authorized": false,
+    "lora_kernel_change_authorized": false,
+    "ood_shadow_holdout_terminal_or_protected_access_authorized": false,
+    "gpu_launch_authorized": false,
+    "required_next_step_before_recipe_change": "Separately preregister and reproduce on the actual generation-only evaluator workload with paired seeds, fixed run order or counterbalancing, all four actors, and task-level integrity gates."
+  },
+  "content_sha256_before_self_field": "7b310912700d15294209f2d654190fd9671cae1863b79c4ec122f529394a9574"
+}
