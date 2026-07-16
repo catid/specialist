@@ -1,0 +1,150 @@
+{
+  "actor_influence": {
+    "full_four_actor_f1_point": -0.0013946006839627148,
+    "leave_one_actor_out_f1_points": [
+      -0.0013325098702399868,
+      -0.0007991297379378757,
+      -0.0018878801587831216,
+      -0.0015588829688898747
+    ],
+    "maximum_absolute_leave_one_actor_out_shift": 0.000595470946024839,
+    "schema": "v65a-ranking64-actor-influence"
+  },
+  "actors": 4,
+  "adapter_update_candidate_hpo_or_promotion_performed": false,
+  "content_sha256_before_self_field": "7d3af98967ef7de61b4969ec7f9f9e44b07ca17d0f604cb4a1955daa8ed11f66",
+  "exact_sentinel_logic_present": false,
+  "future_v65_null_bound_transfer": {
+    "bounds": {
+      "B_C": 0.003342082625628486,
+      "B_C_pass": 0.005444770775652155,
+      "B_F": 0.003342016907628832,
+      "B_S": 0.003504215149251085
+    },
+    "calibration_outcome_may_not_change_mapping_or_gates": true,
+    "failed_required_alpha_zero_gate_forbids_bound_rebinding_and_v65_launch": true,
+    "outcome_independent_field_mapping": {
+      "B_C": "primary_cluster_bootstrap.intervals.joint_composite.null_radius",
+      "B_C_pass": "primary_cluster_bootstrap.B_C_pass",
+      "B_F": "primary_cluster_bootstrap.intervals.generated_f1_delta.null_radius",
+      "B_S": "primary_cluster_bootstrap.intervals.stability_improvement.null_radius"
+    },
+    "rebind_or_launch_eligible_only_if_required_alpha_zero_gate_passed": false,
+    "required_future_v65_spread_gates": {
+      "each_pass_joint_composite_direction_spread_strictly_greater_than": "2*B_C_pass",
+      "generated_f1_direction_spread_when_used_strictly_greater_than": "2*B_F",
+      "pooled_joint_composite_direction_spread_strictly_greater_than": "2*B_C",
+      "stability_coefficient_enabled_only_when_spread_strictly_greater_than": "2*B_S",
+      "stability_coefficient_when_gate_not_met": 0.0,
+      "stability_gate_not_met_causes_population_failure": false
+    },
+    "schema": "v65a-to-v65-null-bound-transfer"
+  },
+  "paired_replicas_per_unit": 8,
+  "pairs_per_actor": 2,
+  "primary_cluster_bootstrap": {
+    "B_C_pass": 0.005444770775652155,
+    "B_C_pass_definition": "max(pair_0.null_radius,pair_1.null_radius)",
+    "actors": 4,
+    "bootstrap_index_matrix_sha256": "2655c01169827ce8980fc7c67c5250a365c29e523b4caebfbcab0518b9ce6e89",
+    "bootstrap_replicates": 4096,
+    "bootstrap_seed": 2026071612,
+    "exact_is_numeric_diagnostic_not_gate": true,
+    "intervals": {
+      "generated_exact_delta_diagnostic": {
+        "contains_zero": true,
+        "halfwidth": 0.0,
+        "lcb": 0.0,
+        "null_radius": 0.0,
+        "point": 0.0,
+        "ucb": 0.0
+      },
+      "generated_f1_delta": {
+        "contains_zero": true,
+        "halfwidth": 0.0018032639829489152,
+        "lcb": -0.003342016907628832,
+        "null_radius": 0.003342016907628832,
+        "point": -0.0013946006839627148,
+        "ucb": 0.0002645110582689982
+      },
+      "generated_nonzero_delta": {
+        "contains_zero": true,
+        "halfwidth": 0.0,
+        "lcb": 0.0,
+        "null_radius": 0.0,
+        "point": 0.0,
+        "ucb": 0.0
+      },
+      "joint_composite": {
+        "contains_zero": true,
+        "halfwidth": 0.001758897527941605,
+        "lcb": -0.003342082625628486,
+        "null_radius": 0.003342082625628486,
+        "point": -0.0014311162208716722,
+        "ucb": 0.00017571243025472384
+      },
+      "stability_improvement": {
+        "contains_zero": true,
+        "halfwidth": 0.0020614952094699197,
+        "lcb": -0.003504215149251085,
+        "null_radius": 0.003504215149251085,
+        "point": -0.0012617426948060024,
+        "ucb": 0.0006187752696887544
+      }
+    },
+    "joint_composite_weights": {
+      "f1_delta": 0.8,
+      "nonzero_delta": 0.2,
+      "stability_improvement": 0.25
+    },
+    "joint_distribution_bootstrapped_before_quantiles": true,
+    "later_v65_pass_specific_spread_gate": "each pass-specific direction spread must be strictly greater than 2*B_C_pass",
+    "one_sided_alpha": 0.05,
+    "paired_replicas_per_unit_preserved_and_averaged": 8,
+    "pairs_per_actor": 2,
+    "resampled_axis": "conflict_unit_only",
+    "schema": "v65a-ranking64-paired-cluster-bootstrap",
+    "temporal_pair_joint_composite_intervals": {
+      "pair_0": {
+        "contains_zero": true,
+        "halfwidth": 0.0029545548673513768,
+        "lcb": -0.005444770775652155,
+        "null_radius": 0.005444770775652155,
+        "point": -0.0022494861972621205,
+        "ucb": 0.00046433895905059817
+      },
+      "pair_1": {
+        "contains_zero": true,
+        "halfwidth": 0.0010021237247330806,
+        "lcb": -0.0016462423942832222,
+        "null_radius": 0.0016462423942832222,
+        "point": -0.0005486492467909128,
+        "ucb": 0.00035800505518293916
+      }
+    },
+    "units": 64
+  },
+  "protected_semantics_opened": false,
+  "raw_question_answer_prompt_or_generation_text_persisted": false,
+  "required_alpha_zero_gate": {
+    "checks": {
+      "actor_leave_one_out_shift_within_v62b_limit": true,
+      "generated_f1_primary_ci_halfwidth_within_v62b_limit": false,
+      "generated_f1_primary_interval_contains_zero": true,
+      "joint_composite_interval_contains_zero": true,
+      "stability_improvement_interval_contains_zero": true
+    },
+    "exact_or_sentinel_gate_applied": false,
+    "maximum_actor_leave_one_out_shift": 0.0012119648781783704,
+    "maximum_primary_ci_halfwidth": 0.000773822590292528,
+    "passed": false,
+    "schema": "v65a-ranking64-alpha-zero-gate"
+  },
+  "row_64_or_later_opened": false,
+  "rows": 64,
+  "schema": "v65a-ranking64-alpha-zero-analysis",
+  "scored_periods": 4,
+  "source_evidence_content_sha256": "54fc306a29a7f54b05f9feff0beda5fd9115f91d527c49ab297284f616a9650d",
+  "status": "complete_numeric_only_calibration",
+  "warmup_periods_excluded_from_every_metric": 4
+}
