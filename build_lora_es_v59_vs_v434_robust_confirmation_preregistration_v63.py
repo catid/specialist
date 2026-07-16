@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Seal V63 V59-versus-V434 confirmation before any live access."""
+"""Seal V63 before staged semantics, base-model load, or CUDA compute."""
 
 from __future__ import annotations
 
@@ -22,11 +22,13 @@ def build_v63() -> dict:
         "schema": (
             "v63-v59-vs-v434-train-only-robust-confirmation-preregistration"
         ),
-        "status": "preregistered_before_train_semantics_model_or_gpu_access",
+        "status": (
+            "preregistered_before_train_semantics_model_or_cuda_compute"
+        ),
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
         "specific_v63_confirmation_gpu_launch_authorized": True,
         "eligibility_or_static_support_alone_authorizes_launch": False,
-        "builder_or_dry_run_performed_gpu_launch": False,
+        "builder_or_dry_run_performed_cuda_compute_launch": False,
         "update_hpo_candidate_promotion_or_protected_access_authorized": False,
         "purpose": (
             "Run one fixed train-only, four-actor, generation-only robust "
@@ -37,6 +39,9 @@ def build_v63() -> dict:
         "scientific_scope": runtime.scientific_scope_v63(),
         "v62b_finalized_eligibility": eligibility,
         "installed_two_adapter_static_support": support,
+        "base_model_artifact_expectation": (
+            runtime.base_model_artifact_expectation_v63()
+        ),
         "access_contract": runtime.access_contract_v63(),
         "fixed_confirmation_recipe": runtime.fixed_recipe_v63(),
         "primary_numeric_estimator": runtime.primary_estimator_v63(),
@@ -71,7 +76,12 @@ def main(argv=None) -> int:
         "content_sha256": value["content_sha256_before_self_field"],
         "specific_v63_confirmation_gpu_launch_authorized": True,
         "update_hpo_candidate_promotion_or_protected_access_authorized": False,
-        "builder_staged_dataset_model_or_gpu_accessed": False,
+        "builder_staged_dataset_or_base_model_accessed": False,
+        "builder_model_directory_bytes_read": False,
+        "builder_committed_model_seal_read": True,
+        "builder_cuda_compute_initialized": False,
+        "builder_zero_nvidia_device_node_reads_claimed": False,
+        "builder_process_wide_zero_filesystem_writes_claimed": False,
         "protected_semantics_opened": False,
     }, sort_keys=True))
     return 0

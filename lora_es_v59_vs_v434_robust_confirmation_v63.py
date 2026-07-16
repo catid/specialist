@@ -177,6 +177,7 @@ def _validate_state_receipts_v63(
                 "before",
                 "after",
                 "actor_request_assignments",
+                "active_adapter_receipts",
                 "both_adapter_files_exact_and_unchanged",
             }
             or receipt.get("period_kind") != period_kind
@@ -187,6 +188,8 @@ def _validate_state_receipts_v63(
             or receipt.get("both_adapter_files_exact_and_unchanged") is not True
             or not isinstance(assignments, list)
             or len(assignments) != ACTORS_V63
+            or not isinstance(receipt.get("active_adapter_receipts"), list)
+            or len(receipt["active_adapter_receipts"]) != ACTORS_V63
         ):
             raise ValueError(f"v63 {period_kind} adapter identity changed")
         for actor_rank, assignment in enumerate(assignments):
@@ -205,6 +208,31 @@ def _validate_state_receipts_v63(
             }:
                 raise ValueError(
                     f"v63 {period_kind} actor request identity changed"
+                )
+            active = receipt["active_adapter_receipts"][actor_rank]
+            loaded = active.get("loaded_cpu_cache_lora_ids", [])
+            if (
+                set(active) != {
+                    "actor_rank", "schema", "expected_lora_int_id",
+                    "active_lora_ids", "loaded_cpu_cache_lora_ids",
+                    "active_matches_expected", "max_loras", "max_cpu_loras",
+                }
+                or active.get("actor_rank") != actor_rank
+                or active.get("schema")
+                != "v63-effective-active-lora-receipt"
+                or active.get("expected_lora_int_id") != expected["lora_int_id"]
+                or active.get("active_lora_ids") != [expected["lora_int_id"]]
+                or active.get("active_matches_expected") is not True
+                or active.get("max_loras") != 1
+                or active.get("max_cpu_loras") != 2
+                or not isinstance(loaded, list)
+                or loaded != sorted(set(loaded))
+                or not 1 <= len(loaded) <= 2
+                or not set(loaded).issubset({1, 2})
+                or expected["lora_int_id"] not in loaded
+            ):
+                raise ValueError(
+                    f"v63 {period_kind} effective active adapter changed"
                 )
     return receipts
 
