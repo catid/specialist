@@ -2475,12 +2475,159 @@ class SourceCorpusContractTest(unittest.TestCase):
             for marker in required:
                 self.assertIn(marker, text, candidate_id)
 
+    def test_batch_016_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_016"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_targeted_scope": {
+                "nist_nbsir_76_1146_personal_fall_safety_1977",
+                "gutenberg_hasluck_knotting_splicing_1907",
+                "mansoura_cotton_yarn_dynamic_friction_part2_1986",
+                "wong_mcgrouther_surgical_knot_security_review_2023",
+                "frontiers_bazzini_action_observation_execution_knots_2022",
+                "plos_cross_physical_observational_knot_learning_2017",
+                "frontiers_dempsey_coping_model_process_feedback_2017",
+                "frontiers_ohrn_repeated_knot_skill_transfer_2025",
+            },
+            "defer": {
+                "nps_conserve_o_gram_leather_dressings_2025",
+                "smithsonian_nayland_blake_oral_history_2016",
+                "nps_npf_lgbtq_america_leather_history_2016",
+                "springer_gunning_disability_bdsm_communication_2023",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_016_accepts_preserve_methods_and_transfer_blocks(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "nist_nbsir_76_1146_personal_fall_safety_1977": {
+                "date conflict",
+                "obsolete non-bondage",
+                "environmental conditioning",
+                "human-suspension",
+            },
+            "gutenberg_hasluck_knotting_splicing_1907": {
+                "verrill and dana",
+                "territorial warning",
+                "nooses",
+                "figure-dependent",
+            },
+            "mansoura_cotton_yarn_dynamic_friction_part2_1986": {
+                "1986, 2020 and 2021",
+                "noarchive",
+                "yarn is not finished rope",
+                "knot security",
+            },
+            "wong_mcgrouther_surgical_knot_security_review_2023": {
+                "single-extractor",
+                "registered protocol",
+                "static and cyclic",
+                "secure bondage knot",
+            },
+            "frontiers_bazzini_action_observation_execution_knots_2022": {
+                "54 knot-naive",
+                "intermediate-step",
+                "no-retention",
+                "no-safety-outcome",
+            },
+            "plos_cross_physical_observational_knot_learning_2017": {
+                "22 completers",
+                "surprise reconstruction",
+                "confound",
+                "exploratory fmri",
+            },
+            "frontiers_dempsey_coping_model_process_feedback_2017": {
+                "baseline self-efficacy imbalance",
+                "process-versus-outcome",
+                "self-efficacy and competence",
+                "human-suspension",
+            },
+            "frontiers_ohrn_repeated_knot_skill_transfer_2025": {
+                "two analyzed chains",
+                "no functional/load testing",
+                "tested educational prescription",
+                "noose stimulus",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_016_deferrals_are_permission_or_policy_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        markers = {
+            "nps_conserve_o_gram_leather_dressings_2025": {
+                "joint authorship",
+                "nonfederal",
+                "page-specific",
+                "treatment steps",
+            },
+            "smithsonian_nayland_blake_oral_history_2016": {
+                "ai-train=no",
+                "ordinary copyright",
+                "first-person recollections",
+                "universal history",
+            },
+            "nps_npf_lgbtq_america_leather_history_2016": {
+                "all rights reserved",
+                "national park foundation",
+                "federal hosting",
+                "japanese rope lineage",
+            },
+            "springer_gunning_disability_bdsm_communication_2023": {
+                "exclusive license",
+                "ended",
+                "seven-person kink subset",
+                "participant quote",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_015`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_016`", self.report)
 
 
 if __name__ == "__main__":

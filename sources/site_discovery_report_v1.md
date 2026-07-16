@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T13:35:49Z
-Latest batch: `discovery_batch_015`
+Latest review at: 2026-07-16T14:00:24Z
+Latest batch: `discovery_batch_016`
 
 ## Outcome
 
@@ -1072,3 +1072,73 @@ ordinary official, publisher, DOI, repository, PubMed Central, and license
 routes. No login, paywall, challenge, crawler restriction, cache, archive, or
 third-party mirror was bypassed, and no reviewed page body was written to a
 training artifact during discovery.
+
+## Discovery batch 016 outcome
+
+`discovery_batch_016` reviewed 12 exact-new source identities after normalized
+title, DOI, PMID, PMCID, document and source-identity comparison with the
+existing ledger and queue. It produced 0 `accept_high_priority`, 8
+`accept_targeted_scope`, 4 `defer`, and 0 `reject` decisions. The eight accepted
+sources expand the canonical Markdown queue from 122 to 130 resources.
+
+This batch strengthens two underrepresented layers without inventing rope
+facts. Four controlled or observational knot-learning studies support bounded
+curriculum design: alternate concise egocentric demonstration with immediate
+practice, assess intermediate topology as well as final form, demonstrate
+recognizable errors and recovery, provide process feedback, and retain an
+expert reference to detect learner-to-learner drift. A systematic review adds
+the testing principle that knot-security results depend on material,
+configuration, environment and loading method. Cotton-yarn research adds a
+similarly bounded construction-and-contact-geometry lesson. None establishes a
+secure bondage knot, load rating or suspension method.
+
+### Newly accepted sources
+
+| Source | Score | Exact useful scope and boundary |
+|---|---:|---|
+| [Action observation plus execution for knot learning](https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2022.793849/full) | 40 | CC BY controlled study of 54 knot-naive participants supports interleaving concise egocentric demonstration and immediate execution and checking both intermediate steps and final form. Preserve its short-term, no-retention and no-safety-outcome limits; exclude recipes, media, effects, neuroscience overclaim and rope-suspension transfer. |
+| [Repeated knot-skill transmission chains](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1545120/full) | 38 | CC BY exploratory pilot found accumulated learner-to-learner form changes. Retaining an expert reference and checking topology or function is an inference, not a tested prescription. Preserve the two-chain, 16-analyzed-participant, constrained fMRI and no-functional-test limits; exclude the noose stimulus and all safety inference. |
+| [Coping models and process feedback](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2017.01171/full) | 36 | CC BY simulation supports showing common errors and recovery and giving feedback on process plus the next adjustment. Preserve baseline imbalance, multiple-teacher and artificial-material limits and the distinction between self-efficacy and competence; exclude surgical steps and transfer. |
+| [Physical and observational knot learning](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0185044) | 34 | CC BY 4.0 study can support combining egocentric observation with physical rehearsal and a surprise reconstruction check. Preserve its 22-completer scale, condition confound, no familiarity control, restricted data and exploratory neuroscience; exclude recipes and safety claims. |
+| [Surgical knot-security systematic review](https://doi.org/10.1097/JS9.0000000000000298) | 34 | CC BY 4.0 EMBL-EBI JATS supports only the principle that configuration, material, size, environment and loading protocol affect measured security and that static and cyclic tests differ. Preserve the single-extractor and review-protocol limits; exclude all surgical recipes, rankings, numbers and rope transfer. |
+| [Egyptian cotton-yarn dynamic-friction experiment](https://mej.researchcommons.org/home/vol11/iss2/5/) | 30 | CC BY 4.0 methods digest may state that measured friction depended on tested yarn construction, processing, speed, wraps and guides. Preserve the conflicting 1986, 2020 and 2021 date signals and noarchive header; yarn is not finished jute, hemp or bondage rope. |
+| [NBSIR 76-1146 historical fall-safety study](https://www.nist.gov/publications/study-personal-fall-safety-equipment) | 31 | Eligible federal text adds only historical experimental-design, environmental-conditioning and component-versus-system evaluation cautions. Preserve the scan-versus-metadata date conflict and obsolete fall-arrest context; exclude every number, configuration, standard, physiology claim and human-suspension transfer. |
+| [Hasluck, *Knotting and Splicing Ropes and Cordage*](https://www.gutenberg.org/ebooks/70874) | 24 | Public-domain supplement may retain exact-new text-supported topology and vocabulary for meshing, netting, mats, lashings, whipping, seizing and decorative patterns after comparison with Verrill and Dana. Exclude nooses, restraint, scaffold, wire, figures, security claims and obsolete practices. |
+
+### Permission-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [NPS Conserve O Gram on fatty-acid spew](https://www.nps.gov/articles/conserve-o-gram-9-1-leather-dressings.htm) | 35 | General NPS public-domain language does not resolve possible joint authorship with a nonfederal conservator. Seek page-specific permission; photos, quoted reports, diagnosis and treatment instructions remain excluded even if the general material-aging caution is cleared. |
+| [Nayland Blake oral history](https://www.aaa.si.edu/collections/interviews/oral-history-interview-nayland-blake-17406) | 35 | Rare first-person leather-scene, performance-art and restraint-sculpture history remains ordinary copyright, and the Smithsonian host signals `ai-train=no`. Retain metadata only pending explicit permission; never generalize one recollection into universal history or instruction. |
+| [*LGBTQ America* theme study](https://www.nps.gov/subjects/lgbtqheritage/upload/lgbtqtheme-index.pdf) | 32 | The National Park Foundation PDFs are expressly all rights reserved despite federal hosting. Relevant Western leather and S/M chapter/page leads remain metadata-only pending permission and must not be conflated with Japanese rope lineage or technical evidence. |
+| [Disability and BDSM communication study](https://doi.org/10.1007/s12119-022-10058-8) | 27 | Springer holds an exclusive license, and PMC's special COVID-era reuse term ended with the WHO public-health emergency in 2023. Sensitive participant narratives, mixed self-disclosed disabilities and the seven-person kink subset remain body-excluded pending current permission. |
+
+### Batch 016 evidence, transfer, and access controls
+
+Pedagogy findings remain tied to each study's task, comparison condition,
+sample, timing and outcome. Correctness, self-efficacy, recall, shorter
+demonstrations and fMRI patterns are not interchangeable with functional knot
+security or safe rope practice. Surgical suture, cotton yarn, historical
+fall-arrest equipment and century-old ropecraft are each distinct from modern
+finished bondage rope. Every accepted extraction scope blocks ratings, recipes,
+body contact, anchors, uplines and human-suspension transfer.
+
+Open licenses were verified at the article level. Project Gutenberg's license
+and territorial notice remain attached to the public-domain work; the Mansoura
+`noarchive` signal permits transformed Markdown but bars raw-PDF retention.
+Possible nonfederal joint authorship, all-rights-reserved third-party work on a
+federal host, ordinary oral-history copyright, an explicit `ai-train=no`
+signal, an exclusive publisher license and expired temporary reuse language all
+remain hard body-ingestion gates.
+
+### Batch 016 access and clean-room statement
+
+Discovery read only the governing candidate ledger, queue, report and tests
+plus ordinary first-party public sources, official preservation copies and
+their explicit license, terms or robots routes. No QA, trainer, projection,
+evaluation, heldout, holdout, OOD, shadow, benchmark, probe, unrelated corpus
+body or unrelated repository artifact was read. No login, paywall, challenge,
+robots restriction, mirror, cache, archive or snippet reconstruction was
+bypassed, and no reviewed source body entered a training artifact during
+discovery.
