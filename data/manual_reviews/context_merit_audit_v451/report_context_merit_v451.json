@@ -1,0 +1,136 @@
+{
+  "audit": {
+    "by_decision": {
+      "drop": 3,
+      "edit": 5,
+      "keep": 2
+    },
+    "by_knowledge_scope": {
+      "access formats for a BIPOC community education program": 1,
+      "actionable division of event and facility accessibility responsibility": 1,
+      "author's teaching criterion, not a universal credential rule": 1,
+      "course-listing claim, not validated safety instruction": 1,
+      "prerequisite warning extracted from a commercial course page": 1,
+      "promotional video description and title-specific trivia": 1,
+      "reflective teaching and visual self-review": 1,
+      "site-specific curriculum navigation": 1,
+      "source-attributed school-fit and evidence checks, not proof of competence": 1,
+      "vendor catalog-level navigation": 1
+    },
+    "by_review_class": {
+      "accessibility_routing_keep": 1,
+      "course_catalog_trivia_drop": 1,
+      "course_scope_provenance_edit": 1,
+      "curriculum_navigation_drop": 1,
+      "learning_access_format_keep": 1,
+      "promotional_video_trivia_drop": 1,
+      "reflective_practice_edit": 1,
+      "suspension_prerequisite_edit": 1,
+      "teacher_evaluation_edit": 1,
+      "teaching_knowledge_edit": 1
+    },
+    "path": "data/manual_reviews/context_merit_audit_v451/context_merit_audit_v451.jsonl",
+    "rows": 10,
+    "sha256": "93559a9a42913aa7426bcaf5f000f32d36b004db4b0a9053defc43a844aec419"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 258,
+      "equipment_material": 21,
+      "resources_general": 77,
+      "safety_consent": 84,
+      "technique": 76
+    },
+    "before": {
+      "conflict_units": 259,
+      "equipment_material": 21,
+      "resources_general": 78,
+      "safety_consent": 84,
+      "technique": 76
+    },
+    "delta": {
+      "conflict_units": -1,
+      "equipment_material": 0,
+      "resources_general": -1,
+      "safety_consent": 0,
+      "technique": 0
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "curation_outcome": {
+    "navigation_catalog_or_promotion_rows_quarantined": 3,
+    "teaching_or_evaluation_repairs": 5,
+    "useful_access_rows_kept": 2
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 0,
+    "output_rows": 504,
+    "output_sha256": "d91cbfbc0c4865e57e84f9a187402f39573b2039d075fa4159e7262023ba3ebe",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "drop": 3,
+      "edit": 5
+    },
+    "decisions": 8,
+    "path": "data/manual_reviews/context_merit_audit_v451/pending_curation_context_merit_v451.jsonl",
+    "sha256": "18584e06c2db50eee2fa1ef13e765fe6b6935e52b0fbcd3baef86dce9cc513a1"
+  },
+  "schema": "context-merit-audit-report-v451",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  },
+  "source_boundary": {
+    "new_or_pending_corpus_inputs": 0,
+    "protected_eval_heldout_holdout_ood_shadow_probe_rows_opened": 0,
+    "training_or_eval_artifacts_modified": 0
+  },
+  "source_snapshot_inventory": {
+    "documents": 10,
+    "paths": [
+      "data/raw/esinem_7c6ce8a699d42f64.json",
+      "data/raw/esinem_aed5c1bb8a4ad341.json",
+      "data/raw/kinbakutoday_1775dd4176b24104.json",
+      "data/raw/kinbakutoday_b776fccd348e2538.json",
+      "data/raw/rope_resources_v1/atx_empty_space__a9598a537db1b5e31278.json",
+      "data/raw/rope_resources_v1/rope365__6e0315421ed26706d440.json",
+      "data/raw/rope_resources_v1/rope365__8968990b22adfe53bf97.json",
+      "data/raw/rope_resources_v1/tethered_together__0b96b6c5488d3a68347e.json",
+      "data/rope_resource_manual_v1.jsonl",
+      "sources/manual_facts/resource_group_a.jsonl"
+    ],
+    "reviewed_rows": 10,
+    "total_unique_characters": 41709
+  },
+  "surviving_owner_resource_facts": {
+    "surviving_facts": [
+      "fact-433bdbf1247c4ed36895",
+      "fact-749ad10e8c33dcc729eb",
+      "fact-966eb937bef6831c819a"
+    ],
+    "urls": [
+      "https://shibaristudy.com/",
+      "https://tetheredtogether.net/",
+      "https://www.atxempty.space/space-schedule"
+    ]
+  },
+  "training_layer_contract": {
+    "cleaned_markdown_site_corpora": "Distinct first-class future training artifacts; no corpus output was ingested by v451.",
+    "deduplication_policy": "Do not collapse a cleaned Markdown document and its derived Q&A merely because they express the same source knowledge.",
+    "derived_qa": "Distinct first-class training layer; v451 changes only existing sealed Q&A using attached evidence and pinned source snapshots.",
+    "provenance_requirement": "Link future derived Q&A to cleaned source documents through stable source URL and document or snapshot hashes."
+  },
+  "v52_isolation": {
+    "active_v52_inputs_modified": false,
+    "candidate_status": "isolated_pending_not_promoted"
+  }
+}
