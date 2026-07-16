@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T18:31:02Z
-Latest batch: `discovery_batch_027`
+Latest review at: 2026-07-16T19:03:38Z
+Latest batch: `discovery_batch_028`
 
 ## Outcome
 
@@ -1966,3 +1966,92 @@ existing corpus body or unrelated repository artifact was read. No login,
 cart, purchase, paywall, challenge, cache, archive-service or access-control
 bypass was used; no source body or image entered a training artifact during
 discovery.
+
+## Discovery batch 028 outcome
+
+`discovery_batch_028` manually reviewed 12 exact-new source identities after
+canonical-URL, title, DOI, author, organization and document deduplication. It
+records 0 `accept_high_priority`, 2 `accept_targeted_scope`, 9 `defer`, and 1
+`reject` decision. The two accepted rights-clear transcript sources expand the
+canonical Markdown queue from 177 to 179 resources; the discovery ledger grows
+from 328 to 340 records.
+
+This batch targets underrepresented first-person bottoming perspectives,
+rope-specific negotiation tools, qualitative incident reporting, queer and
+photographic history, Latin American practice research, and a transferable
+risk-assessment framework. Public access, an adaptable template, an informal
+educational-distribution statement, a repository deposit agreement and a
+noncommercial license were not treated as permission for commercial
+derivative model training. Visual-only technique remains metadata-only until
+a qualified person performs a current, timestamped safety review.
+
+### Newly accepted source
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Midori and Zoë Ligon: Japanese Rope Bondage](https://commons.wikimedia.org/wiki/File:Japanese_Rope_Bondage_-_Sex_Stuff.webm) | `accept_targeted_scope` | 33 | The exact 2018 Commons video is CC BY 3.0 with human-reviewed source-license provenance and has an English TimedText route. A text-only, speaker- and time-attributed record may retain negotiation of purpose and desired or undesired responses, day-to-day variability, a first-time bottom's sensory and communication experience, transition, cuddling aftercare and debriefing. It must remove the false claim that nobody discussed Japanese rope bondage before Midori; keep Midori's custody-origin comment limited to her particular style; and exclude all media, visual technique, material generalizations, neck-adjacent content and present-day safety inference. Nonverbal negotiation never replaces explicit agreement, direct check-ins or a stop mechanism. Component-level CC BY, Commons CC BY-SA and CC0 obligations remain attached. |
+| [The Endless Knot Episode 94 with Isobel Williams](https://www.alliterative.net/episode-94-transcript) | `accept_targeted_scope` | 30 | The exact official transcript and podcast are CC BY-SA 4.0. A manually audio-proofed, speaker- and time-attributed record may retain first-person observations about a London Japanese-rope performance community, Gorgone, rehearsed performance, expert-peer audiences, bottom/top/rigger vocabulary, power moving between roles, women tying heavier partners, rope as live art and its influence on translation. The mostly automatic transcript must be corrected; quoted poems, translations, book text, third-party criticism, tie-name strings and technical instructions are excluded. Claims that the community is safer than a pub remain attributed testimony, not a safety protocol. |
+
+### Permission-, access-, methods-, or review-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Escola de Shibari incident synthesis](https://escoladeshibari.com/seguranca-em-shibari-o-que-137-incidentes-nos-ensinaram/) | 30 | The Portuguese article can support later incident-theme education, but the private volunteer reports cannot be audited and the page's free educational-distribution language is not a clear commercial derivative license. Permission, methods, provenance, privacy and ethics review are required. No narrative, prevalence, causality, threshold, treatment or operational instruction is approved. |
+| [Kinbaku Japan Voices](https://note.com/yuna_zombie/m/m44712c56283e) | 29 | Yuna's three English transcripts offer rare Japanese ukete-centered testimony on agency, co-created timing and whose voices lineage stories center. They are ordinary-copyright creator works without a model-training grant. Direct permission is required, and the surrounding account's secondary medical summaries are excluded. |
+| [Rope Radar](https://roperadar.com/) | 34 | This bounded framework usefully distinguishes desired relational qualities from agreed practices and boundaries and asks people to define terms together for each context. Private, personal-modification and workshop permissions do not authorize publication in a training corpus. The HOW may be narrowed or stopped at any time and never expanded without renewed agreement; a completed radar does not prove consent or safety. |
+| [AYCO and ACE basic risk assessment](https://www.americanyouthcircus.org/safety-in-circus) | 32 | Jonathan Deull's 2020 circus guide offers qualitative hazard identification, control hierarchy, emergency planning, reassessment and documentation. Permission to adapt its template does not license all prose or quoted standards components. No matrix, legal threshold or claim that the guide certifies a bondage hardpoint, load system, rigger or scene is approved. |
+| [4toscuro and the view of people under the ropes](http://eventosacademicos.filo.uba.ar/index.php/FIICT/JPAMA/paper/view/8392) | 25 | This self-reflective three-author conference paper may illuminate photographic exposure, image selection, later audiences and ambivalence despite consent. Its item-level CC BY 3.0 signal conflicts with the site's CC BY-NC footer. Editor, author, participant and component resolution is required; photographs, quotations, intimate disclosures and participant-identifying narrative are excluded. |
+| [Shibari and the construction of communication](https://repository.udistrital.edu.co/items/29734187-decf-4b21-ab2b-e787f27e131d) | 24 | The 2026 Universidad Distrital thesis may add a Latin American practice-research perspective, but a repository deposit agreement is not a public derivative license. Author permission, methods, privacy and evidence review are required, especially before any communication, emotional-connection or transformative claim. |
+| [Between Erotic Representation and Minority Identity](https://doi.org/10.3390/h15010001) | 29 | Crossref identifies Soojung Park's article and an immediate CC BY 4.0 version-of-record license, but MDPI's official body is currently blocked by Akamai in this environment. No snippet, cache or ResearchGate substitute was used. When the official work becomes accessible, article and third-party magazine-component review must precede any queue decision. |
+| [Shay Tiziano beginner column-tie videos](https://commons.wikimedia.org/wiki/File:Single_column_tie_for_bondage_beginners.webm) | 20 | Both Commons files are human-reviewed CC BY-SA 3.0 works, but they have no TimedText and teach visually. They remain metadata-only pending qualified manual, timestamped and current safety review. No automated vision reconstruction, inferred step or claim of suspension suitability is permitted. |
+| [Rope makes me fuzzy inside](https://kohljournal.press/rope-makes-me-fuzzy) | 32 | Tiffany Kagure Mugo's article offers unusually valuable African queer and gender-nonconforming perspectives on rope, bodily autonomy, vulnerability, agency, trust and co-created safety. Its CC BY-NC-SA 4.0 license does not authorize unrestricted or commercial training reuse. Author, publisher and sensitive-component permission are required; every voice must remain attributed lived experience rather than a universal fact. |
+
+### Rejected source
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [On the Art of Shibari as a Form of Writing](https://soctech.spbstu.ru/userfiles/files/articles/2023/3/49-58.pdf) | 10 | The 2023 practitioner essay is CC BY-NC 4.0, so its license is incompatible with the intended use. Independently, its philosophical metaphor does not compensate for weak source-critical history and unsupported categorical circulation, timing and body-placement claims. It is not a history, anatomy, technique or safety source. |
+
+### Batch 028 rights, evidence, and safety controls
+
+The accepted jobs are confined to the exact licensed Commons interview and
+the exact licensed Endless Knot transcript. Extraction workers must retain
+speaker, date, source, timestamp, testimonial framing, attribution, change
+indication, license links and ShareAlike where applicable. Video, audio, still
+images, music, interface material, promotion and inferred visual steps are not
+part of the text corpus. License clearance does not validate a claim: a
+demonstrably false historical statement is removed, other historical remarks
+remain explicitly attributed and limited to the speaker's described style,
+and automatic transcription must be manually checked against official audio.
+Separately authored poems, translations, books and criticism do not inherit a
+podcast's blanket license.
+
+The incident collection is self-selected and privately hosted, with no public
+denominator or complete audit trail, so its counts cannot become prevalence or
+causal estimates. Three self-reflective paper authors are not an external
+sample; a thesis abstract is not evidence of transformation; first-person
+testimony is not universal Japanese practice; and a philosophical practitioner
+essay is not medical evidence. Photographs, sensitive narratives, participant
+quotations and identifying detail have independent privacy and component
+boundaries even when a surrounding work appears openly licensed.
+
+Risk tools and negotiation aids preserve their original domains. Circus risk
+assessment can contribute a method after permission, but cannot certify a
+rope-bondage anchor or scene. Rope Radar may structure conversation, but cannot
+replace vetting, present-state and physical-limit discussion, direct check-ins,
+revocation or emergency planning. Desired or undesired observable responses
+are pre-negotiated preferences, never proof of continuing consent.
+
+### Batch 028 access and clean-room statement
+
+The source worker read only the governing discovery ledger, corpus queue,
+report, registry and tests plus exact first-party pages, official repository or
+publisher records, rights notices, license pages, Crossref metadata, robots
+policies and source-owned files needed to resolve identity, access, evidence
+and component boundaries. No QA, trainer, projection, evaluation, heldout,
+holdout, OOD, shadow, benchmark, probe, experiment, existing corpus body or
+unrelated repository artifact was read. No login, cart, purchase, paywall,
+challenge, cache, archive-service or access-control bypass was used. An Akamai
+403 was respected, private incident reports were not accessed, visual-only
+technique was not reconstructed and no source body or image entered a training
+artifact during discovery.
