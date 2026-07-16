@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T15:50:26Z
-Latest batch: `discovery_batch_021`
+Latest review at: 2026-07-16T16:31:02Z
+Latest batch: `discovery_batch_022`
 
 ## Outcome
 
@@ -1519,3 +1519,80 @@ viewer prohibitions, did not retrieve the SafeLink toolkit body or Waseda
 images, and did not use a mirror during discovery. No login, paywall,
 challenge, access block, cache, archive or snippet reconstruction was bypassed,
 and no reviewed source body entered a training artifact during discovery.
+
+## Discovery batch 022 outcome
+
+`discovery_batch_022` manually reviewed 10 exact-new source identities after
+title, DOI, document, article, wiki and canonical-URL deduplication. It records
+2 `accept_targeted_scope`, 7 `defer`, and 1 `reject`. The accepted sources
+expand the canonical Markdown queue from 157 to 159 resources; the discovery
+ledger grows from 267 to 277 records.
+
+The batch adds two unusually useful category boundaries. A 1933 NIST paper
+explicitly says its Manila-rope fiber-color study did not test serviceability
+and documents several reasons appearance can mislead. A 2024 CC BY primary
+study establishes microbial retting as a jute-fiber production stage, not
+evidence about the hygiene of finished rope. Both are queued as bounded
+evidence-and-limitations digests, not procedures or safety rules.
+
+The batch also records strong edge-failure, industrial incident, climbing-rope
+care, anatomy teaching, synthetic degradation, school-lineage and Japanese
+knot-history leads without crossing copyright, `ai-train=no`, NoDerivatives,
+clinical-provenance, PDF-robots or contamination gates.
+
+### Newly accepted sources
+
+| Source | Score | Exact useful scope and boundary |
+|---|---:|---|
+| [NIST, *Evaluation of Manila-Rope Fiber for Color*](https://doi.org/10.6028/jres.011.057) | 38 | The public-domain 1933 primary paper explicitly did not test serviceability. It adds the bounded lesson that fiber color or finished-rope appearance alone cannot establish strength, deterioration, remaining life or fitness, because lubricant, dust, exposure, bleaching and construction can change appearance. Exclude every measurement recipe, value, figure, table, specification and color-based discard rule; do not transfer it to modern jute or hemp, care, hygiene, body contact or suspension. |
+| [Datta et al., jute water-retting study](https://doi.org/10.1186/s12870-024-04970-4) | 35 | CC BY primary evidence defines retting as a microbial production stage that degrades pectin and other cementing material so bast-fiber bundles separate from stem tissue. Preserve the one-cultivar laboratory design, commercial-consortium and funding disclosures, and under- or over-retting quality boundary. It did not study spun yarn, finished rope, cleaning, mold, hygiene, care, body contact or suspension. |
+
+### Permission-, access-, license-, or evidence-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [UIAA and Norwegian Climbing Federation sharp-edge report](https://www.theuiaa.org/special-report-sharp-edges-and-rope-cuts/) | 34 | The June 2025 revised report is a valuable edge-cut mechanism, incident and uncertainty lead, but UIAA copyright and translation or component rights require express derivative commercial training permission. Dynamic climbing-rope incidents cannot set a natural-fiber padding, edge-tolerance or human-suspension rule. |
+| [IRATA historical safety bulletins](https://irata.org/safety-bulletins) | 30 | Current robots expressly declares `ai-train=no`, `use=reference` and named-agent blocks. IRATA also says historical recommendations may not reflect current best practice and should be disregarded in favor of current guidance. Do not retrieve or transform bulletin bodies without written access, training and component permission plus currentness review. |
+| [BMC climbing-rope guide](https://www.thebmc.co.uk/en/ropes-a-guide-for-climbers-and-mountaineers) | 20 | BMC terms restrict copying, adaptation and derivatives to personal noncommercial use and require written permission otherwise. Most rope-type, care, retirement and fall-factor coverage also overlaps stronger sources and cannot transfer to natural-fiber body support. |
+| [BDSM Dojo anatomy and safety resources](https://www.bdsmdojo.com/links/class-resources) | 24 | Public Google Drive viewing is not a reuse license. The handouts, slides, nerve card and videos need rightsholder permission, component clearance and qualified independent clinical review; an unspecified medical-professional role does not validate medical claims. |
+| [Oman et al. climbing-rope degradation study](https://doi.org/10.1016/j.rineng.2025.106471) | 28 | CC BY-NC-ND does not authorize a transformed commercial digest. Its single dynamic polyamide kernmantle product and controlled abrasion, cyclic-load and high-temperature exposures cannot establish natural-fiber care, ordinary heat effects, retirement or human-suspension safety. |
+| [Harukumo-Juku encyclopedia](https://harukumo.com/en/enzyklopaedie/) | 17 | First-party school lineage, philosophy and terminology could be useful if permission is granted, but the ordinary-copyright site also mixes commerce with durations, body configurations, relative-safety claims, suspension directions and a rope-collar exercise. Those operational claims remain quarantined even if lineage text is cleared. |
+| [Nukada knotting studies, 1956 and 1958](https://doi.org/10.14890/minkennewseries.19.3-4_179) | 25 | The two J-STAGE records have society copyright, no CC license and PDF routes disallowed by robots. Publisher permission, an authorized converter route, Japanese specialist review and contextualization of obsolete or offensive anthropology are required; harmful restraint and strangulation material remains excluded. |
+
+### Rejected source
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [Kinbakuwiki](https://kinbaku.wiki/index.php?title=Hauptseite) | 8 | No usable contributor-text license was found. Sampled content is weakly and circularly sourced, heavily duplicates stronger lineage references and generalizes that role framing can replace explicit verbal negotiation in Japan. That cultural consent claim is unsafe; status, role and implied expectations are not consent. |
+
+### Batch 022 rights, evidence, and safety controls
+
+The two accepted bodies have affirmative transformation routes: eligible NIST
+federal public information and article-level CC BY 4.0. Attribution, edition,
+checksum, component and modification controls remain mandatory. Public access,
+a free PDF, a Google Drive share, an institutional platform or robots allowance
+was never treated as reuse permission. Ordinary copyright, personal-
+noncommercial-only terms, CC BY-NC-ND, absent contributor licenses, explicit
+`ai-train=no` and robots-disallowed PDF routes remain hard gates.
+
+Neither accepted source produces an operational rule. The NIST paper is
+negative evidence against visual overconfidence, not a color-based inspection
+method. The jute study describes plant-stem processing, not finished-rope
+contamination. Deferred synthetic climbing, industrial rope-access and
+mountaineering evidence cannot be silently transferred to natural-fiber
+bondage rope. Practitioner status, school identity or role framing does not
+establish clinical authority, safety or consent. No candidate supplies a load,
+capacity, hardpoint, upline, medical-treatment or human-suspension rule.
+
+### Batch 022 access and clean-room statement
+
+Discovery read only the governing candidate ledger, queue, report and tests,
+ordinary first-party source and rights pages, the complete two accepted source
+bodies, and reference-only metadata needed to resolve gates. No QA, trainer,
+projection, evaluation, heldout, holdout, OOD, shadow, benchmark, probe,
+experiment, existing corpus body or unrelated repository artifact was read.
+The scout stopped at IRATA's `ai-train=no` signal and J-STAGE's PDF prohibition,
+did not retrieve the gated bodies for corpus use, and did not use a mirror,
+cache, archive or snippet reconstruction. No login, paywall, challenge or
+access block was bypassed, and no reviewed source body entered a training
+artifact during discovery.

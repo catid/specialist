@@ -3390,12 +3390,141 @@ class SourceCorpusContractTest(unittest.TestCase):
         }:
             self.assertFalse(by_id[candidate_id]["accessible"])
 
+    def test_batch_022_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_022"
+        }
+        self.assertEqual(len(batch), 10)
+        expected = {
+            "accept_targeted_scope": {
+                "nist_manila_rope_color_serviceability_1933",
+                "datta_jute_water_retting_2024",
+            },
+            "defer": {
+                "uiaa_sharp_edges_rope_cuts_2025",
+                "irata_historical_rope_failure_bulletins",
+                "bmc_climbing_rope_guide",
+                "bdsm_dojo_absolute_bondage_safety_resources",
+                "oman_dynamic_climbing_rope_wear_2025",
+                "harukumo_juku_lineage_encyclopedia",
+                "jstage_nukada_japanese_knotting_1956_1958",
+            },
+            "reject": {"kinbakuwiki_german_reference"},
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_022_accepts_mirror_queue_and_preserve_limits(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "nist_manila_rope_color_serviceability_1933": {
+                "did not test serviceability",
+                "lubricant",
+                "color-based keep or discard rule",
+                "human suspension",
+            },
+            "datta_jute_water_retting_2024": {
+                "microbial production stage",
+                "crijaf sona",
+                "finished rope",
+                "dirty or safe",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_022_rights_access_and_contamination_are_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        markers = {
+            "uiaa_sharp_edges_rope_cuts_2025": {
+                "derivative commercial model-training permission",
+                "abandoned-test limitation",
+                "dynamic rope incidents",
+            },
+            "irata_historical_rope_failure_bulletins": {
+                "ai-train=no",
+                "do not retrieve, copy, paraphrase",
+                "historical recommendations",
+            },
+            "bmc_climbing_rope_guide": {
+                "personal noncommercial",
+                "prior written permission",
+                "dynamic synthetic climbing-rope guidance",
+            },
+            "bdsm_dojo_absolute_bondage_safety_resources": {
+                "google drive",
+                "qualified current clinical review",
+                "unspecified medical-professional",
+            },
+            "oman_dynamic_climbing_rope_wear_2025": {
+                "cc by-nc-nd",
+                "dynamic polyamide kernmantle",
+                "every exact value",
+            },
+            "kinbakuwiki_german_reference": {
+                "do not crawl, copy, paraphrase",
+                "role labels",
+                "unsafe cultural generalization",
+            },
+            "harukumo_juku_lineage_encyclopedia": {
+                "rope-collar exercises",
+                "simplest or safest",
+                "first-party accounts",
+            },
+            "jstage_nukada_japanese_knotting_1956_1958": {
+                "pdf robots prohibition",
+                "obsolete and offensive",
+                "strangulation",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            self.assertIn(source["decision"], {"defer", "reject"})
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        self.assertFalse(
+            by_id["irata_historical_rope_failure_bulletins"]["accessible"]
+        )
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_021`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_022`", self.report)
 
 
 if __name__ == "__main__":

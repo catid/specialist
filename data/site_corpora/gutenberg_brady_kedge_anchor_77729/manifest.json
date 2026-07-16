@@ -1,0 +1,96 @@
+{
+  "schema": "site-corpus-manifest",
+  "schema_version": "1.0",
+  "package_id": "gutenberg_brady_kedge_anchor_77729",
+  "title": "Historical ropework vocabulary and teaching architecture from Brady's Kedge-Anchor (1852)",
+  "corpus_type": "quotation-light-historical-ropework-vocabulary-markdown",
+  "source_scope": "one exact static Unicode artifact for Project Gutenberg ebook 77729 from an officially registered Project Gutenberg mirror, with official policy and item surfaces used only for access, identity, rights, credit, trademark, and fidelity provenance",
+  "evidence_scope": "exact-new historical knot, hitch, bend, splice, eye, seizing, serving, mat, gasket, grommet, small-cordage, and block vocabulary plus component-to-family teaching decomposition",
+  "excluded_application_scope": "complete procedures, images, figure-dependent steps, numbers, load rules, tools, equipment and chemical recipes, naval operations, obsolete safety, body lowering, restraint, human support, human suspension, and all present-day suitability or certification",
+  "rights_status": "public-domain-in-usa-source; independent rewritten derivative",
+  "license_spdx": "LicenseRef-Public-Domain-US",
+  "trademark_boundary": "Project Gutenberg is a registered trademark; attribution does not imply endorsement",
+  "jurisdiction_boundary": "No worldwide public-domain claim; users outside the United States must evaluate local law",
+  "source_fidelity_boundary": "One edited Project Gutenberg transcription, not a diplomatic print facsimile",
+  "direct_training_ready": true,
+  "created_at": "2026-07-16",
+  "manual_audit": {
+    "official_access_policy_before_body": true,
+    "registered_mirror_before_body": true,
+    "exact_item_and_edition_before_body": true,
+    "rights_trademark_jurisdiction_and_fidelity_before_body": true,
+    "all_source_lines": true,
+    "all_parts_and_tables": true,
+    "all_illustration_markers": true,
+    "existing_corpus_bodies_not_inspected": true,
+    "novelty_checked_only_in_existing_metadata_reports_and_readmes": true,
+    "application_transfer_boundary": true
+  },
+  "schemas": {
+    "sources": "site-corpus-source@1.0",
+    "provenance": "site-corpus-provenance@1.0",
+    "surfaces": "manual-web-surface-disposition@1.0",
+    "dispositions": "manual-text-range-disposition@1.0",
+    "components": "manual-component-disposition@1.0"
+  },
+  "statistics": {
+    "content_source_bodies": 1,
+    "access_provenance_response_bodies": 1,
+    "known_item_body_gets": 1,
+    "main_site_body_gets": 0,
+    "web_surfaces_reviewed": 9,
+    "source_bytes": 1479083,
+    "source_lines_manually_reviewed": 26071,
+    "source_whitespace_words": 239369,
+    "manual_text_range_dispositions": 14,
+    "partially_retained_ranges": 4,
+    "excluded_ranges": 10,
+    "controlled_exclusion_components": 10,
+    "illustration_markers_excluded": 101,
+    "novelty_phrases_with_zero_existing_metadata_matches": 17,
+    "corpus_bytes": 16174,
+    "corpus_words": 2248,
+    "corpus_claim_paragraphs": 38,
+    "corpus_evidence_paragraphs": 32,
+    "corpus_boundary_paragraphs": 6,
+    "corpus_citations": 38
+  },
+  "artifacts": {
+    "CORPUS.md": {
+      "bytes": 16174,
+      "sha256": "580e3af2534aad5b0040f58c833bf7c443c1359d4d739e8527a0fa2d03e9834a"
+    },
+    "README.md": {
+      "bytes": 4033,
+      "sha256": "42cf19fdb0cf2e80b0584f30455321d7c2adcb6fb1f3ab37064647759b81ec76"
+    },
+    "REPORT.md": {
+      "bytes": 9309,
+      "sha256": "47d12c24e25845b47d14b51218db988dd924aa00f3e3ced6a0354249b692e13d"
+    },
+    "components.jsonl": {
+      "bytes": 4710,
+      "sha256": "731b57c25c4a113de45b7d9ff2cf028db7aaf577fa28fd6035a0181c44638ad4"
+    },
+    "dispositions.jsonl": {
+      "bytes": 5301,
+      "sha256": "d3e060066d1b48504a7ab01dc93c8d12038cde45e248847279fcbfa235afb1c7"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 6872,
+      "sha256": "6b303aa8f871ff8d4f6f69233f3c8bfb0b867b3304130feff5eb30d32c1c43e2"
+    },
+    "sources.jsonl": {
+      "bytes": 1922,
+      "sha256": "07a1e7588c5fc692743555a838dfa58573ae847ec2934a4ab1be5d9e0cca58d4"
+    },
+    "surfaces.jsonl": {
+      "bytes": 4625,
+      "sha256": "6e2716b8bd443b46d47e92813a61e347362be2c808a95b31275fd0694734217f"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 14781,
+      "sha256": "af260a321ad86348b8565ff2c7ebc2e5e6a44fe7dd34805e88046b2c7b0bd1a8"
+    }
+  }
+}
