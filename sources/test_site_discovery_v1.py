@@ -211,6 +211,44 @@ class SourceCorpusContractTest(unittest.TestCase):
         }
         self.assertEqual(queued_candidate_ids, expected_accepted)
 
+    def test_batch_002_reuse_and_cross_domain_limits_are_enforced(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        for candidate_id in {
+            "vvolfy_aerial_rig_manual",
+            "performance_real_kinbaku_ritual",
+        }:
+            row = by_id[candidate_id]
+            self.assertEqual(row["decision"], "reject")
+            self.assertIn("ai-train=no", row["access_notes"])
+
+        for candidate_id in {
+            "simply_circus_rigging_essentials",
+            "simply_circus_rescue",
+        }:
+            row = by_id[candidate_id]
+            self.assertEqual(row["decision"], "defer")
+            self.assertIn("clearance", row["recommended_crawl_scope"])
+
+        for candidate_id in {
+            "petzl_professional_technical_tips",
+            "dmm_technical_knowledge",
+            "arboricultural_association_safety_guides",
+            "treeconsult_rigging_research",
+            "fedec_safety_rigging_manual",
+            "equity_fit_to_fly",
+            "hilti_anchor_technical_guides",
+            "animated_knots_search_rescue",
+            "usbr_rope_access_guidelines",
+        }:
+            row = by_id[candidate_id]
+            self.assertTrue(row["decision"].startswith("accept_"))
+            scope = row["recommended_crawl_scope"].lower()
+            self.assertTrue(
+                "bondage" in scope
+                or "human suspension" in scope
+                or "human-suspension" in scope
+            )
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
