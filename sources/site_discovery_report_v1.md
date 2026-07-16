@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T16:54:26Z
-Latest batch: `discovery_batch_023`
+Latest review at: 2026-07-16T17:45:24Z
+Latest batch: `discovery_batch_025`
 
 ## Outcome
 
@@ -1673,3 +1673,146 @@ experiment, existing corpus body or unrelated repository artifact was read.
 No login, paywall, challenge, crawler restriction, cache, archive or snippet
 reconstruction was bypassed, and no reviewed source body entered a training
 artifact during discovery.
+
+## Discovery batch 024 outcome
+
+`discovery_batch_024` manually reviewed 10 exact-new source identities after
+title, DOI, document, record, organization and canonical-URL deduplication. It
+records 1 `accept_high_priority`, 4 `accept_targeted_scope`, 5 `defer`, and 0
+`reject` decisions. The five accepted sources expand the canonical Markdown
+queue from 162 to 167 resources; the discovery ledger grows from 287 to 297
+records.
+
+This batch follows mechanics and incident evidence back to first-party or
+primary records. It adds a CC BY analytical rope–sheave model, an explicitly
+unverified ATSB Manila-rope occurrence brief, a federal structural-support
+concept page, and tightly bounded DOE and NASA lifecycle-governance material.
+It rejects the tempting but wrong inference that public federal hosting makes
+incorporated consensus standards reusable government text.
+
+The batch also preserves a high-value clove-hitch paper, a disability-led
+sexual-health toolkit, a physical-knot mechanics paper, a natural-fiber
+climbing-rope incident alert and a recent first-person Naka-associated lineage
+record without crossing `ai-train=no`, NoDerivatives, NonCommercial, AAAS,
+ordinary-copyright, currentness, component or corroboration gates.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Static rope–sheave contact model](https://doi.org/10.1016/j.mechmachtheory.2023.105334) | `accept_high_priority` | 35 | CC BY primary mechanics distinguishes fully stuck and saturated-friction contact regions under a defined idealized static model. Preserve assumptions and why a dynamic or impending-slip capstan relation is not universal; exclude equations, numbers, designs and every transfer from an ideal rod and elevator sheave to natural rope, body contact or suspension. |
+| [ATSB occurrence MB-2025-001](https://www.atsb.gov.au/occurrence-briefs/mb-2025-001) | `accept_targeted_scope` | 39 | CC BY official record adds a finished-Manila-side-rope failure and several operator-reported possible contributors. Front-load that ATSB did not investigate and did not verify the supplied information; exclude third-party media, ISO material, values, instructions and causal or bondage-rope generalization. |
+| [DOE-STD-1090-2020](https://www.energy.gov/ehss/articles/doe-std-1090-2020) | `accept_targeted_scope` | 35 | Current federal material can add DOE-original high-level accountability, classification, role, competence, change-control and record concepts only. Paragraph-level review must exclude every ASME, ANSI, consensus-standard, OSHA, regulatory, visual, value and operational component. |
+| [OSHA Anchorages and Attachments eTool](https://www.osha.gov/etools/shipyard/general-requirements/scaffolds/hanging-staging/key-components1) | `accept_targeted_scope` | 35 | Federal-authored concepts add the useful boundary that support condition and connection geometry jointly determine the force path and a visible point is not a qualified hardpoint. Exclude VSRA media, regulations, numbers, attachment rankings and any conclusion about a tree, ceiling, beam or human support. |
+| [NASA-STD-8719.9C](https://standards.nasa.gov/node/278) | `accept_targeted_scope` | 35 | NASA-specific lifecycle framing connects design, hazard analysis, testing, inspection, maintenance, operations, records, personnel and mishap-driven revision. Exclude all OSHA and voluntary-consensus material, Appendix A, values, equipment procedures and transfer to bondage or human suspension. |
+
+### Permission-, access-, currentness-, or corroboration-gated sources
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [The mechanics of a clove hitch](https://doi.org/10.1016/j.eml.2022.101788) | 36 | Valuable cylinder-contact, self-contact-nip and localized-tension mechanics are blocked by CC BY-NC-ND plus EPFL's explicit `ai-train=no`. Do not retrieve or transform the body without written authorization. |
+| [Topological mechanics of knots and tangles](https://doi.org/10.1126/science.aaz0135) | 35 | The specialized elastic-fiber study could add crossing, handedness, writhe, stress, stability and untying concepts, but the accessible PDF says some rights reserved under an exclusive AAAS license. |
+| [ASAN/NCIL Real Talk](https://autisticadvocacy.org/projects/completed/realtalk/) | 30 | Disability-led autonomy, accommodation, intersectionality and direct-communication principles are valuable, but the site is ordinary copyright. Permission is required and any rope-scene application must be labeled as an inference. |
+| [DIO Safety Alert SA 2021/08](https://assets.publishing.service.gov.uk/media/61c1a4558fa8f5037ac74533/SA_2021-08_Failure_of_assault_course_climbing_ropes.pdf) | 25 | The natural-fiber climbing-rope failure is a useful lead, but no canonical status or rescission record was found and Defence, JSP and British Standards components require reconciliation. |
+| [KinbakuOdyssey lineage profile](https://www.kinbakuodyssey.com/index.php/about/) | 18 | Self-reported Odys, Akira Naka, Nawa Naka Kai and Semenawa Research Meetings chronology may document a recent lineage branch, but 2026 site copyright requires permission and broader lineage claims need independent corroboration. |
+
+### Batch 024 rights, evidence, and safety controls
+
+The Escalona article has an explicit repository-level CC BY 4.0 route. ATSB
+and eligible federal text have affirmative reuse routes only after their own
+component exclusions. DOE and NASA standards are mixed works: eligible agency-
+original prose does not carry ASME, ANSI, OSHA, regulatory or voluntary-
+consensus material into the corpus. DOL federal status likewise does not cover
+VSRA photographs. ATSB's license excludes third-party graphics, logos and the
+Coat of Arms, and unresolved robots retrieval requires manual low-rate capture.
+
+No source becomes an operational recipe or rating. An analytical rod–sheave
+model is not a natural-fiber redirect; DOE, NASA and shipyard governance do not
+qualify a domestic hardpoint; and an operator-supplied occurrence narrative is
+not an investigated causal finding. None of the accepted sources establishes a
+rope, knot, load, capacity, attachment, inspection threshold, care method,
+body-contact practice, upline, anchor, bondage system or human suspension.
+
+### Batch 024 access and clean-room statement
+
+The delegated scout and foreground reviewer read only the governing discovery
+ledger, queue, report and contract, ordinary first-party publisher,
+institutional-repository, government, practitioner, rights and robots pages,
+and source bodies needed to resolve scope and component gates. No QA, trainer,
+projection, evaluation, heldout, holdout, OOD, shadow, benchmark, probe,
+experiment, existing corpus body or unrelated repository artifact was read.
+The scout stopped at EPFL's `ai-train=no`, did not treat author-hosted or public
+PDFs as permission, and used no login, paywall, challenge, cache, archive or
+access-control bypass. No reviewed source body entered a training artifact
+during discovery.
+
+## Discovery batch 025 outcome
+
+`discovery_batch_025` manually reviewed 10 exact-new source identities after
+title, record, organization and canonical-URL deduplication. It records 5
+`accept_high_priority`, 2 `accept_targeted_scope`, 3 `defer`, and 0 `reject`
+decisions. The seven accepted sources expand the canonical Markdown queue from
+167 to 174 resources; the discovery ledger grows from 297 to 307 records.
+
+This batch fills consent, disability-autonomy, accessible-communication,
+trauma-aware teaching and primary Japanese historical-source gaps. It adds
+three Australian government resources, three OGL government resources and one
+exact public-domain National Diet Library work. It also records why a
+page-specific restriction overrides a general government license, why public
+health pages whose terms prohibit storage cannot become corpus text, and why
+an NDL work published by copyright arbitration remains protected.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Consent.gov.au resources](https://www.consent.gov.au/) | `accept_high_priority` | 35 | CC BY text can cover free, informed, active, specific and ongoing consent, check-ins, withdrawal, privacy and separate image permissions. Images, third-party resources, legal claims and culturally or linguistically separate components require exclusion or their own audit. |
+| [NDIS supported decision-making and intimacy](https://www.ndiscommission.gov.au/rules-and-standards/ndis-practice-standards/core-module-rights-and-responsibilities) | `accept_high_priority` | 39 | CC BY material adds understandable communication, sufficient time, dignity of risk, intimacy, will and preferences, and decisions made by the person rather than for them. Disability never establishes incapacity, and NDIS duties do not become general rope rules. |
+| [eSafety consent and image privacy](https://www.esafety.gov.au/key-topics/staying-safe/consent) | `accept_high_priority` | 39 | CC BY text separates consent to activity, recording, screenshots and each sharing action; permission for one recipient is not onward-sharing permission. Images, videos, songs, third-party research and legal or platform details are excluded. |
+| [Trauma-informed practice working definition](https://www.gov.uk/government/publications/working-definition-of-trauma-informed-practice/working-definition-of-trauma-informed-practice) | `accept_targeted_scope` | 27 | OGL text can preserve safety, trust, choice, collaboration, empowerment and cultural consideration, while clearly distinguishing trauma-informed conduct from specialist treatment. Rope application is an inference, not diagnosis, therapy or certification. |
+| [Disability, loneliness and relationships thematic report](https://www.gov.uk/government/publications/disability-loneliness-and-relationships-a-thematic-report/disability-loneliness-and-relationships-a-thematic-report) | `accept_high_priority` | 39 | OGL government synthesis adds assumed asexuality, infantilization, overprotection, privacy, support without substitution, communication exclusion and intersecting stigma. Preserve the qualitative sample and underrepresentation limits; exclude third-party quotations and generalization to individuals. |
+| [Accessible communication formats](https://www.gov.uk/government/publications/inclusive-communication/accessible-communication-formats) | `accept_targeted_scope` | 33 | OGL guidance can improve Markdown, education and consent communication through co-design, HTML, plain language, Easy Read and alternative formats. A format never proves understanding or consent; third-party standards, symbols, examples and vendor content are excluded. |
+| [伊藤晴雨『責の話』, 1929](https://ndlsearch.ndl.go.jp/books/R100000002-I000000607148) | `accept_high_priority` | 31 | The exact NDL work is marked PDM and may support source-critical first-person history and terminology after Japanese expert, OCR, translation, territorial and frame-level review. Exclude every image and operational coercive technique; infer neither direct hojojutsu-to-kinbaku lineage nor an inventor claim. |
+
+### Permission- or rights-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [NSW Make No Doubt](https://www.nsw.gov.au/family-and-relationships/make-no-doubt) | 21 | A page-specific notice says third-party copyright limitations permit social-media sharing but require permission for other uses. That specific restriction overrides the site's general CC BY policy; metadata and permission contact only. |
+| [Better Health disability and sexuality](https://www.betterhealth.vic.gov.au/health/servicesandsupport/disability-and-sexuality) | 22 | Official terms prohibit adaptation, reproduction, storage, derivative works and commercialisation without permission. Preserve only metadata and a permission lead; any later use also needs disability, medical and language review. |
+| [野村昌靖『捕縄術押送監視研究之栞』, 1921](https://ndlsearch.ndl.go.jp/books/R100000039-I964857) | 34 | NDL records undetermined rights and internet publication by Commissioner for Cultural Affairs arbitration. NDL says this status remains protected; metadata only, with permission and exceptional Japanese historical and harm review required before even non-operational use. |
+
+### Batch 025 rights, evidence, and safety controls
+
+The Australian sources use only eligible government-authored text under their
+respective CC BY policies; Coat of Arms, logos, trademarks, images, media,
+third-party bodies and separately identified components remain excluded.
+Consent.gov.au, NDIS and eSafety robots retrieval did not resolve during
+review, so their jobs require manual low-rate acquisition only after policy is
+resolved. The GOV.UK pages carry page-level OGL notices and permit their public
+content paths, but cited and other third-party components are not swept into
+that license.
+
+The Ito Seiu acceptance applies to the exact 1929 edition and its NDL PDM
+record, not to an author's collected output or every scan component. It needs
+Japanese-language historical, OCR, translation, territorial, moral-rights,
+human-rights, privacy and frame-level review. Historical description is not
+modern consent or safety guidance, and operational restraint, torture and
+unsafe technique remain excluded. The separate 1921 police-restraint title is
+not public-domain corpus material merely because NDL makes it internet-public.
+
+Nothing in this batch adjudicates an individual's capacity, diagnoses or
+treats trauma, certifies consent, or establishes a rope, knot, load, tie,
+hardpoint, upline, body-contact practice or suspension rule. Accessible
+presentation supports communication but does not prove comprehension or
+agreement.
+
+### Batch 025 access and clean-room statement
+
+The source worker read only the governing discovery ledger, queue, report and
+tests plus first-party government, library, rights, robots and source pages
+needed to resolve identity, scope and reuse gates. No QA, trainer, projection,
+evaluation, heldout, holdout, OOD, shadow, benchmark, probe, experiment,
+existing corpus body or unrelated repository artifact was read. No login,
+paywall, challenge, cache, archive or access-control bypass was used, and no
+reviewed source body entered a training artifact during discovery.
