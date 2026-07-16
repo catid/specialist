@@ -1,0 +1,66 @@
+{
+  "capture_boundary": {
+    "authorized_get_routes": [
+      "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10710713/fullTextXML"
+    ],
+    "excluded_routes": [
+      "Springer publisher endpoint",
+      "United States PMC endpoint"
+    ],
+    "request_count": 1
+  },
+  "counts": {
+    "documents": 1,
+    "included_studies": 23,
+    "sections": 18,
+    "source_tables_reviewed": 3,
+    "words": 1899
+  },
+  "direct_training_ready": true,
+  "evidence_level": {
+    "bondage_transfer_validated": false,
+    "design": "scoping review plus ICAR MEDCOM consensus recommendations",
+    "epidemiology_studies": 2,
+    "exact_incidence_known": false,
+    "experimental_prevention_diagnosis_treatment_studies": 0,
+    "pathophysiology_studies": 21,
+    "quality_fair": 8,
+    "quality_good": 9,
+    "quality_poor": 6,
+    "randomized_intervention_studies": 0
+  },
+  "genuine_gaps": [
+    "current representative incidence and outcome registry",
+    "later-stage pathophysiology after presyncope",
+    "validated diagnostic classification",
+    "experimental prevention, diagnosis, and treatment evidence",
+    "randomized intervention evidence",
+    "direct evidence for bondage-suspension transfer"
+  ],
+  "hashes": {
+    "manifest_sha256": "a4771d2f8f757486ba2828f0791fc7e5dc7fee7583538159e7af659dcae0526a",
+    "markdown_sha256": "ed7ee4b88fcde6fbed8860c38d123de41d7f5bb49faf85bb4aaff31ab9659ab3",
+    "provenance_sha256": "405a0b1ff96399621f002394e232dc52725ef1219310b6a567b152456a9688b5",
+    "source_snapshot_sha256": "ffffb650be036b8cb55ef0bb85528ca0c9bb3fdc66bb6038205905b9e6d54682"
+  },
+  "non_qa": true,
+  "recommendation_grades_preserved": [
+    "1C",
+    "1B",
+    "2B",
+    "2B",
+    "2C",
+    "1A",
+    "2C"
+  ],
+  "repository_provenance_discrepancy": {
+    "jats_pmid": "38071341",
+    "queued_canonical_url": "https://europepmc.org/article/MED/38081341",
+    "queued_pmid": "38081341",
+    "resolution": "corpus identity is anchored to the authorized PMCID route and its JATS DOI/PMID; no MED or publisher route was queried"
+  },
+  "resource_id": "europepmc_icar_suspension_syndrome",
+  "role": "canonical_markdown_direct_training_source",
+  "schema": "site-corpus-report-v1",
+  "source_claim_policy": "Review findings and consensus recommendations remain attributed and graded; harness-rescue evidence is not presented as validated for bondage suspension."
+}
