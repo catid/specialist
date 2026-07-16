@@ -138,8 +138,15 @@
       "resource_id": "rope365",
       "url": "https://rope365.com/",
       "scope": "All substantive instructional, safety, terminology, practice, and rope-care pages.",
-      "status": "in_progress",
+      "status": "complete",
       "worker": "rope365_corpus_clean",
+      "commit": "30222126ffaf67404417f8dd892c18c2f956e1e0",
+      "artifacts": {
+        "manifest": "data/site_corpora/rope365/manifest.json",
+        "markdown": "data/site_corpora/rope365/rope365.md",
+        "report": "data/site_corpora/rope365/report.json",
+        "tests": "data/site_corpora/rope365/test_rope365_corpus.py"
+      },
       "discarded_attempt": "rope365_corpus was stopped before acceptance after a broad repository search exposed evaluation snippets"
     },
     {
@@ -273,6 +280,246 @@
       "url": "https://www.bightbound.com/",
       "scope": "Stable educational philosophy, technique/style, safety, prerequisites, and class-scope information.",
       "status": "pending"
+    },
+    {
+      "resource_id": "kinbaku_today",
+      "url": "https://www.kinbakutoday.com/",
+      "scope": "Inventory the same-domain journal and retain substantive History, Translations, Interviews, Articles, and text-bearing How To pages. Exclude announcements, event notices, galleries without explanatory prose, reviews that contain only commerce metadata, comments, author/category navigation, account/cart pages, and image- or video-only detail. Preserve author, publication date, translator, cited-source, uncertainty, and first-person/opinion attribution.",
+      "status": "pending",
+      "discovery_candidate_id": "kinbaku_today",
+      "discovery_priority_score": 38,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "terminology_cultural_context",
+        "aesthetics_performance",
+        "teaching_evaluation"
+      ]
+    },
+    {
+      "resource_id": "nawapedia",
+      "url": "https://nawapedia.net/index.php?title=Main_Page",
+      "scope": "Crawl substantive article-namespace pages for people, organizations, publications, chronology, terminology, and technique-history records. Exclude edit/history/talk pages, user pages, category and index shells, event listings with no durable context, venue directories, navigation, and media-only entries. Keep citations, aliases, uncertainty markers, original Japanese names, and source-specific claims; do not treat wiki synthesis as primary evidence when a cited primary source is available.",
+      "status": "pending",
+      "discovery_candidate_id": "nawapedia",
+      "discovery_priority_score": 33,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "terminology_cultural_context",
+        "aesthetics_performance"
+      ]
+    },
+    {
+      "resource_id": "kinbaku_books",
+      "url": "https://kokoro-kinbaku.com/",
+      "scope": "Retain substantive historical essays, bibliographic research, and complete public translations with translator, editor, source publication, date, and uncertainty attribution. Deduplicate current-domain and legacy WordPress copies. Exclude donation prompts, comments, navigation, tag/date archives, book entries containing only cover or ISBN metadata, and image-only scans; never infer untranslated or obscured text from images.",
+      "status": "pending",
+      "discovery_candidate_id": "kinbaku_books",
+      "discovery_priority_score": 34,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "terminology_cultural_context",
+        "aesthetics_performance"
+      ]
+    },
+    {
+      "resource_id": "la_quarta_corda",
+      "url": "https://www.laquartacorda.it/en/",
+      "scope": "Inventory the English educational webbook first and add untranslated unique Italian material only when it adds facts. Include substantive safety, consent/negotiation, rope and technique, history, glossary, interview, bottoming, and suspension/upline pages. Deduplicate language translations and repeated series navigation. Exclude galleries, events, cookie text, comments, tag/date archives, and video-only technique beyond explicit surrounding prose; flag potentially medical claims for attribution and later review.",
+      "status": "pending",
+      "discovery_candidate_id": "la_quarta_corda",
+      "discovery_priority_score": 37,
+      "supported_taxonomy_categories": [
+        "ties_knots_frictions",
+        "uplines_suspension_hardpoints",
+        "anatomy_injury_prevention",
+        "rope_materials_maintenance",
+        "rigging_mechanics",
+        "consent_scene_management",
+        "bottoming_skills",
+        "pattern_architecture",
+        "emergency_procedures",
+        "rope_handling",
+        "teaching_evaluation",
+        "terminology_cultural_context"
+      ]
+    },
+    {
+      "resource_id": "twisted_windows",
+      "url": "https://www.twistedwindows.com/bondagesafety",
+      "scope": "Crawl the complete Bondage Safety hub and same-domain substantive rope safety, hardpoint/frame, health, nerve, emergency, cutting/lowering, communication, and bottoming articles. Preserve named authors, citations, uncertainty, and changes from the former Remedial Ropes site. Exclude events, class sales/logistics, performance galleries, comments, and unrelated kink topics; deduplicate migrated Remedial Ropes copies.",
+      "status": "pending",
+      "discovery_candidate_id": "twisted_windows",
+      "discovery_priority_score": 40,
+      "supported_taxonomy_categories": [
+        "uplines_suspension_hardpoints",
+        "anatomy_injury_prevention",
+        "rigging_mechanics",
+        "consent_scene_management",
+        "bottoming_skills",
+        "emergency_procedures",
+        "teaching_evaluation",
+        "accessibility_adaptation"
+      ]
+    },
+    {
+      "resource_id": "self_suspend",
+      "url": "https://www.selfsuspend.com/",
+      "scope": "Inventory all public substantive safety, preparation, equipment, upline, pulley, harness/body-mechanics, emergency, nerve, transition, and self-suspension technique pages. Preserve first-person incident attribution and warnings. Exclude gallery-only pages, biography, link directories, comments, and external product availability; mark visual-only technique steps and do not present self-suspension as safely performed alone.",
+      "status": "pending",
+      "discovery_candidate_id": "self_suspend",
+      "discovery_priority_score": 41,
+      "supported_taxonomy_categories": [
+        "uplines_suspension_hardpoints",
+        "anatomy_injury_prevention",
+        "rope_materials_maintenance",
+        "rigging_mechanics",
+        "bottoming_skills",
+        "pattern_architecture",
+        "emergency_procedures",
+        "rope_handling",
+        "teaching_evaluation",
+        "accessibility_adaptation"
+      ]
+    },
+    {
+      "resource_id": "rope_bottom_guide",
+      "url": "https://theropebottomguide.com/",
+      "scope": "Extract only the official public Rope Bottom Guide PDF and any official version/translation metadata. Preserve author, version, headings, cautions, checklists, and distinctions between personal variation and general guidance. Do not infer content from diagrams, reproduce photography, or ingest mirrors and book/store listings.",
+      "status": "pending",
+      "discovery_candidate_id": "rope_bottom_guide",
+      "discovery_priority_score": 40,
+      "supported_taxonomy_categories": [
+        "anatomy_injury_prevention",
+        "consent_scene_management",
+        "bottoming_skills",
+        "pattern_architecture",
+        "emergency_procedures",
+        "teaching_evaluation",
+        "accessibility_adaptation"
+      ]
+    },
+    {
+      "resource_id": "helsinki_shibari",
+      "url": "https://www.helsinkishibari.com/",
+      "scope": "Include substantive English articles plus unique Finnish material on rope risks, nerves, negotiation, consent, safer-space practice, reporting, intervention, and accessibility. Deduplicate translations. Exclude calendars, event descriptions, current staff lists, contact details, venue promotions, and repeated navigation; retain dates and authors because community policies and safety guidance can change.",
+      "status": "pending",
+      "discovery_candidate_id": "helsinki_shibari",
+      "discovery_priority_score": 33,
+      "supported_taxonomy_categories": [
+        "anatomy_injury_prevention",
+        "consent_scene_management",
+        "bottoming_skills",
+        "emergency_procedures",
+        "teaching_evaluation",
+        "accessibility_adaptation"
+      ]
+    },
+    {
+      "resource_id": "anatomie_studio",
+      "url": "https://www.anatomiestudio.com/",
+      "scope": "Crawl substantive Education, Community & Culture, accessibility, code, consent/etiquette, nerve-safety, bottoming, history, and performance-planning pages. Exclude calendar, tickets, class schedules, store/catalog, testimonials, gallery-only pages, venue news, contact/location details, and generic promotional copy. Attribute pregnancy, biochemistry, and other health claims and require later safety review.",
+      "status": "pending",
+      "discovery_candidate_id": "anatomie_studio",
+      "discovery_priority_score": 28,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "consent_scene_management",
+        "bottoming_skills",
+        "teaching_evaluation",
+        "accessibility_adaptation",
+        "aesthetics_performance",
+        "terminology_cultural_context"
+      ]
+    },
+    {
+      "resource_id": "twisted_monk_education",
+      "url": "https://www.twistedmonk.com/",
+      "scope": "Allowlist only substantive rope-care, fiber/material, upline/loading, safety, consent/partner selection, and accessibility/body-diversity education pages. Exclude products, collections, prices, stock, reviews, shipping, sales, customer stories, newsletters, travel posts, repetitive Shopify chrome, and unsupported marketing claims. Keep all material and strength claims attributed to the vendor or named guest author.",
+      "status": "pending",
+      "discovery_candidate_id": "twisted_monk_education",
+      "discovery_priority_score": 26,
+      "supported_taxonomy_categories": [
+        "uplines_suspension_hardpoints",
+        "rope_materials_maintenance",
+        "rigging_mechanics",
+        "consent_scene_management",
+        "bottoming_skills",
+        "accessibility_adaptation"
+      ]
+    },
+    {
+      "resource_id": "ropelab",
+      "url": "https://www.ropelab.com.au/",
+      "scope": "Crawl only public/free articles, calculators, quizzes, and reports directly relevant to human suspension: forces/vectors, multi-point anchors, redirects, friction, mechanical advantage, pulleys, dynamic loading, rope abrasion, connectors, tripods, redundancy, and rescue/lowering. Do not access member content or bypass gates. Exclude events, comments, newsletters, unrelated industrial scenarios, and product availability. Preserve professional-rigging context and never convert industrial/rescue values into bondage-specific guarantees without explicit source support.",
+      "status": "pending",
+      "discovery_candidate_id": "ropelab",
+      "discovery_priority_score": 40,
+      "supported_taxonomy_categories": [
+        "uplines_suspension_hardpoints",
+        "rope_materials_maintenance",
+        "rigging_mechanics",
+        "emergency_procedures",
+        "teaching_evaluation"
+      ]
+    },
+    {
+      "resource_id": "discover_kinbaku",
+      "url": "https://discoverkinbaku.com/en/",
+      "scope": "Include substantive public pages on terminology, history, declared lineage/influences, semenawa philosophy, Elements methodology, somatics/body scans for bottoms, and explicit educational prerequisites/safety. Exclude bookings, schedules, galleries, testimonials, studio promotion, shop links, podcast embeds without transcripts, and thin workshop advertisements. Label history and philosophy as the authors' perspective and deduplicate German/English translations.",
+      "status": "pending",
+      "discovery_candidate_id": "discover_kinbaku",
+      "discovery_priority_score": 27,
+      "supported_taxonomy_categories": [
+        "lineage_history_people",
+        "consent_scene_management",
+        "bottoming_skills",
+        "teaching_evaluation",
+        "aesthetics_performance",
+        "terminology_cultural_context"
+      ]
+    },
+    {
+      "resource_id": "frozen_meursault_rope_safety",
+      "url": "https://www.frozenmeursault.com/",
+      "scope": "Allowlist only public rope anatomy, nerve assessment, restraint removal/cutting, and medical-emergency material directly applicable to rope bondage. Preserve author credentials, citations, disclaimers, and tool-specific limitations. Exclude waterboarding, choking/breath play, blood play, rape play, rough body play, caning, class logistics, testimonials, comments, and unrelated reference PDFs.",
+      "status": "pending",
+      "discovery_candidate_id": "frozen_meursault_rope_safety",
+      "discovery_priority_score": 36,
+      "supported_taxonomy_categories": [
+        "anatomy_injury_prevention",
+        "emergency_procedures",
+        "teaching_evaluation"
+      ]
+    },
+    {
+      "resource_id": "mi_ropes_safety_handout",
+      "url": "https://www.miropes.com/",
+      "scope": "Extract only the official 2023 MI Ropes Rope Safety PDF and official version/author metadata. Exclude fire-cupping and other unrelated handouts, event/conference information, and the resource URL list as training trivia. Preserve warnings and distinguish the handout's recommendations from cross-source consensus; do not infer visual-only details.",
+      "status": "pending",
+      "discovery_candidate_id": "mi_ropes_safety_handout",
+      "discovery_priority_score": 26,
+      "supported_taxonomy_categories": [
+        "anatomy_injury_prevention",
+        "consent_scene_management",
+        "bottoming_skills",
+        "emergency_procedures",
+        "teaching_evaluation"
+      ]
+    },
+    {
+      "resource_id": "shibari_studio_berlin_journal",
+      "url": "https://www.shibari-studio.com/",
+      "scope": "Review and allowlist only complete public journal articles containing substantive rope safety, consent, bottoming, pedagogy, or performance knowledge. Exclude tuition, bookings, services, store, event promotion, gallery, portfolio, testimonials, city SEO, and generic inspirational copy. Preserve named author and disclaimer; attribute health claims and exclude any unsupported medical or physiological generalization during extraction.",
+      "status": "pending",
+      "discovery_candidate_id": "shibari_studio_berlin_journal",
+      "discovery_priority_score": 23,
+      "supported_taxonomy_categories": [
+        "anatomy_injury_prevention",
+        "consent_scene_management",
+        "bottoming_skills",
+        "teaching_evaluation",
+        "aesthetics_performance"
+      ]
     }
   ]
 }
