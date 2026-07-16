@@ -1,0 +1,109 @@
+{
+  "audit": {
+    "by_decision": {
+      "drop": 2,
+      "edit": 5,
+      "keep": 3
+    },
+    "by_review_class": {
+      "complete_operational_keep": 3,
+      "knot_function_tradeoff_edit": 2,
+      "label_only_redundant_drop": 1,
+      "pattern_architecture_edit": 2,
+      "pattern_handling_edit": 1,
+      "unsupported_visual_step_drop": 1
+    },
+    "path": "data/manual_reviews/context_merit_audit_v447/context_merit_audit_v447.jsonl",
+    "rows": 10,
+    "sha256": "3850215783c06c3d51abc6aae6c74e09276290c87eac61f4364a1134a72521a9"
+  },
+  "conservative_capacity": {
+    "after": {
+      "conflict_units": 260,
+      "equipment_material": 22,
+      "resources_general": 78,
+      "safety_consent": 85,
+      "technique": 75
+    },
+    "before": {
+      "conflict_units": 260,
+      "equipment_material": 22,
+      "resources_general": 78,
+      "safety_consent": 86,
+      "technique": 74
+    },
+    "delta": {
+      "conflict_units": 0,
+      "equipment_material": 0,
+      "resources_general": 0,
+      "safety_consent": -1,
+      "technique": 1
+    },
+    "grouping": "shared document SHA, normalized URL, raw lineage family, or pinned v13 lexical-semantic cluster"
+  },
+  "curation_outcome": {
+    "complete_operational_rows_kept": 3,
+    "knot_function_tradeoff_repairs": 2,
+    "low_merit_rows_quarantined": 2,
+    "pattern_architecture_repairs": 2,
+    "pattern_handling_repairs": 1
+  },
+  "isolated_build_projection": {
+    "automated_projection_runs": 2,
+    "new_additions_applied": 0,
+    "output_rows": 513,
+    "output_sha256": "fca887a130f04ed5c6f229eb81aaeccd1bf39aada0620cc9507a7d6b759e8518",
+    "repeat_dataset_byte_identical": true,
+    "repeat_projection_report_byte_identical": true,
+    "sealed_eval_fact_count_reported_by_tooling": 612
+  },
+  "new_pending_curation": {
+    "by_action": {
+      "drop": 2,
+      "edit": 5
+    },
+    "decisions": 7,
+    "path": "data/manual_reviews/context_merit_audit_v447/pending_curation_context_merit_v447.jsonl",
+    "sha256": "4b175e72dae88a2870b31271cf9fbe58438f6f86dabd7caf5d2d0ef3f830bd0d"
+  },
+  "redundancy_quarantine": {
+    "dropped_to_surviving_fact": {
+      "fact-42526efd7c67bf9799a3": "fact-b381baeee64c518a057b",
+      "fact-f6faf5703b157e22121d": "fact-4d9cba14a6eb00ad7e1d"
+    }
+  },
+  "schema": "context-merit-audit-report-v447",
+  "sealed_evaluation_policy": {
+    "automated_collision_tool_reads_sealed_content": true,
+    "automated_read_scope": "fact-ID collision exclusion and aggregate eval_fact_count reporting only",
+    "manual_worker_opened_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_opened_eval_or_heldout_content": false,
+    "manual_worker_received_eval_heldout_ood_shadow_or_benchmark_content": false,
+    "manual_worker_received_eval_or_heldout_content": false
+  },
+  "source_snapshot_inventory": {
+    "documents": 8,
+    "paths": [
+      "data/raw/rope365_085ee19dfa760651.json",
+      "data/raw/rope365_25f1b23eb40be00e.json",
+      "data/raw/rope365_6ab0025843fd73d5.json",
+      "data/raw/rope365_8e6f4abea3bf4f6d.json",
+      "data/raw/rope365_bc4120687a97c8c3.json",
+      "data/raw/rope365_d9c48a4547717047.json",
+      "data/raw/rope_resources_v1/rope365__255e7fa505a2f3f096a9.json",
+      "data/raw/rope_resources_v1/rope365__e156eea7b8dfda8b39a9.json"
+    ],
+    "reviewed_rows": 10,
+    "total_unique_characters": 24956
+  },
+  "training_layer_contract": {
+    "cleaned_markdown_site_corpora": "Distinct first-class future training artifacts; unfinished corpus output was neither read nor ingested by v447.",
+    "deduplication_policy": "Do not collapse a cleaned Markdown document and its derived Q&A merely because they express the same source knowledge.",
+    "derived_qa": "Distinct first-class training layer; v447 changes only existing sealed Q&A using attached evidence and pinned raw snapshots.",
+    "provenance_requirement": "Link future derived Q&A to the cleaned source document through stable source URL and document or snapshot hashes."
+  },
+  "v52_isolation": {
+    "active_v52_inputs_modified": false,
+    "candidate_status": "isolated_pending_not_promoted"
+  }
+}
