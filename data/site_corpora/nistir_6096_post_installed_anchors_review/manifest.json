@@ -1,0 +1,91 @@
+{
+  "schema": "site-corpus-manifest",
+  "schema_version": "1.0",
+  "corpus_schema": "non-bondage-historical-concrete-anchor-review-markdown",
+  "corpus_schema_version": "1.0",
+  "package_id": "nistir_6096_post_installed_anchors_review",
+  "title": "NISTIR 6096 historical concrete-anchor vocabulary and evidence gaps",
+  "direct_training_ready": true,
+  "evidence_domain": "non-bondage historical concrete-anchor review evidence",
+  "historical_status": "secondary literature review published in January 1998",
+  "authors": [
+    "Geraldine S. Cheok",
+    "Long T. Phan"
+  ],
+  "source_ids": [
+    "NIST-PUBREC-6096",
+    "NISTIR-6096-1998",
+    "NIST-TECHSERIES-RIGHTS"
+  ],
+  "rights_status": "public_domain_us_federal_work_with_nist_residual_foreign_rights_grant",
+  "rights_scope": "eligible NIST employee-authored historical synthesis only; rights page used solely for provenance; every third-party or uncertain component excluded",
+  "retained_scope": [
+    "historical failure-mode vocabulary",
+    "distinctions among historical research variables",
+    "historical evidence gaps and model limits",
+    "internal source-citation leads requiring separate audits",
+    "current site-specific qualified-engineering boundary"
+  ],
+  "excluded_scope": [
+    "capacities, loads, thresholds, dimensions, units and numerical performance",
+    "products, configurations, installation matter and manufacturer directions",
+    "testing, proof-load, design, reinforcement, acceptance and certification recipes",
+    "equations, coefficients, fitted relations, sample calculations and appendices",
+    "standards, codes, design guides, third-party quotations and external study bodies",
+    "figures, tables, captions, plots, diagrams, seals and other visual matter",
+    "operational selection or sizing for ceilings, hardpoints, anchors, bondage, body support or human suspension"
+  ],
+  "statistics": {
+    "allowed_source_bodies": 3,
+    "corpus_words": 1786,
+    "corpus_claim_paragraphs": 36,
+    "corpus_claim_citations": 36,
+    "html_surfaces": 14,
+    "pdf_pages": 109,
+    "pdf_pages_partially_retained": 26,
+    "pdf_pages_excluded": 83,
+    "blank_pdf_pages": 6,
+    "figures_excluded": 13,
+    "tables_excluded": 4,
+    "controlled_exclusion_blocks": 10,
+    "component_records": 27
+  },
+  "artifacts": [
+    {
+      "path": "CORPUS.md",
+      "sha256": "17a916f5b7c50f1577b6d93797797577c34f974023019a4882891875e3ed15d5"
+    },
+    {
+      "path": "README.md",
+      "sha256": "002277b7abfe3820f6091e8a17ce8e89e77fabe52b34478f9611a3a17c9165cf"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "043045f63bfc4dfc695df103d736514013e0a1d810767ce1da08c20e6c18f9c0"
+    },
+    {
+      "path": "components.jsonl",
+      "sha256": "0e8ec3686c1063d9273c13e50895a62e37e22f37a7e9783c56ca7964900bb8fb"
+    },
+    {
+      "path": "dispositions.jsonl",
+      "sha256": "ee6ca74ce6575c7ab5eedcbe1361223e6b17b1b5e7d59a50b8440d0ef99edd81"
+    },
+    {
+      "path": "source_snapshot/provenance.json",
+      "sha256": "b5ad9dc4cbd722d062ef4f2ce92c8860fd19e41135cb268078e6c24744918a38"
+    },
+    {
+      "path": "sources.jsonl",
+      "sha256": "ae5892e907dd55553e5712dcd44d13eae2d414aa39e88dada6fe517718562c41"
+    },
+    {
+      "path": "surfaces.jsonl",
+      "sha256": "36d426e719d321ebca7b26b2fe5a3e324b48fbfd971f1556e0224862cb9c1aad"
+    },
+    {
+      "path": "tests/test_corpus.py",
+      "sha256": "8c720fbce04ea270f255bfd7a9d1edba667fad3a4e6a9b7e25df6a765e0475ea"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "schema": "site-corpus-provenance",
+  "schema_version": "1.0",
+  "package_id": "nistir_6096_post_installed_anchors_review",
+  "retrieved_at": "2026-07-16T14:53:15Z",
+  "retrieval_policy": {
+    "allowed_urls": [
+      "https://www.nist.gov/publications/post-installed-anchors-literature-review",
+      "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir6096.pdf",
+      "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications"
+    ],
+    "allowed_bodies_retrieved": 3,
+    "site_crawl_performed": false,
+    "mirrors_or_archives_used": false,
+    "linked_source_bodies_retrieved": 0
+  },
+  "bodies": [
+    {
+      "source_id": "NIST-PUBREC-6096",
+      "source_url": "https://www.nist.gov/publications/post-installed-anchors-literature-review",
+      "retrieved_at": "2026-07-16T14:53:13Z",
+      "http_status": 200,
+      "media_type": "text/html; charset=UTF-8",
+      "body_bytes": 51556,
+      "body_sha256": "2d2d93325e52467669693cfc30fa5d3484e1cff56e492ef2adc175fa90ec70c0",
+      "body_sha512": "2f301dde0b78138bfaa11b6c113f976b6acc4945548bc6ef9fc1a9848b2cd6cfddbdce09a8219d3579c22326dc30bc266a9d101fd4b8b0037bf977733f27d7b0"
+    },
+    {
+      "source_id": "NISTIR-6096-1998",
+      "source_url": "https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir6096.pdf",
+      "retrieved_at": "2026-07-16T14:53:14Z",
+      "http_status": 200,
+      "media_type": "application/pdf",
+      "body_bytes": 7053078,
+      "body_sha256": "8b6b586e65e61a634b29af302bfa686d4bb357a304f661363f9863028c6c88d7",
+      "body_sha512": "6920361c3cc96be340a758ac14fdb544df53af52de3798bc926e4d6bf0f22004d19e198f501603a14bdca299b377caa6c2025d2668b2b68f2ea6b8f9b22ea146",
+      "last_modified": "2015-08-17T19:58:38Z"
+    },
+    {
+      "source_id": "NIST-TECHSERIES-RIGHTS",
+      "source_url": "https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications",
+      "retrieved_at": "2026-07-16T14:53:15Z",
+      "http_status": 200,
+      "media_type": "text/html; charset=UTF-8",
+      "body_bytes": 94086,
+      "body_sha256": "421c832ad4aac065a5ac5e2db167c643d2e3f97b58b851d8d21b2b730a932be7",
+      "body_sha512": "79236270c1c0e3a562e89fe6f2a4e18929f98e0665e87ff05f27f72243b911d9d0c148d4063ab666590c423305838d48590978a6f33971dd4cfae9942c3942e7",
+      "use_scope": "rights provenance only"
+    }
+  ],
+  "pdf_metadata": {
+    "source_id": "NISTIR-6096-1998",
+    "pages": 109,
+    "format": "PDF 1.2",
+    "encrypted": false,
+    "page_size_points": "572 x 791",
+    "text_layer": false,
+    "creator": "Acrobat Capture Server 2.01",
+    "producer": "Acrobat PDFWriter 3.02 for Windows",
+    "created_at": "1998-12-17T21:51:16Z",
+    "modified_at": "1998-12-18T01:33:41Z"
+  },
+  "bibliographic_resolution": {
+    "report_number": "NISTIR 6096",
+    "authors": [
+      "Geraldine S. Cheok",
+      "Long T. Phan"
+    ],
+    "publication_year": 1998,
+    "evidence": "The official record gives January 1, 1998; the scanned report title page says January 1998. Later PDF and hosting dates are file provenance only."
+  },
+  "rights": {
+    "rights_status": "public_domain_us_federal_work_with_nist_residual_foreign_rights_grant",
+    "employee_authorship_evidence": "The official record and report title page identify Cheok and Phan; the title page places both within the NIST Building and Fire Research Laboratory.",
+    "domestic_basis": "NIST technical-series policy states that NIST employee works are not subject to United States copyright; 17 U.S.C. 105.",
+    "foreign_rights_basis": "NIST technical-series policy grants broad perpetual royalty-free worldwide reprint and derivative-work rights to the extent NIST asserts foreign rights.",
+    "third_party_caveat": "The policy warns that some NIST-published works may contain protected third-party material. Every figure, table, incorporated standard, third-party study body, quotation and uncertain component is excluded.",
+    "rights_page_use": "rights provenance only"
+  },
+  "audit": {
+    "html_surfaces": 14,
+    "pdf_pages": 109,
+    "pdf_pages_partially_retained": 26,
+    "pdf_pages_excluded": 83,
+    "blank_pages": 6,
+    "figures_excluded": 13,
+    "tables_excluded": 4,
+    "component_records": 27,
+    "text_review": "all 109 scan pages OCR-screened and material pages manually read; all publication-record and rights-page surfaces manually reviewed",
+    "visual_review": "all 109 rendered PDF pages manually inspected in ten ordered contact sheets; relevant pages inspected at page resolution",
+    "direct_training_ready": true
+  }
+}
