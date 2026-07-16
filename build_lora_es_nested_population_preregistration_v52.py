@@ -15,11 +15,11 @@ import lora_es_nested_population_v52 as design
 ROOT = Path(__file__).resolve().parent
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "matched_lora_es_nested_p8_vs_p16_v52.json"
+    "matched_lora_es_nested_p8_vs_p16_v52_retry1.json"
 ).resolve()
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
-    "v52_matched_lora_es_nested_p8_vs_p16"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry1"
 ).resolve()
 TRAIN_PANEL_SELECTION_SEED_V52 = "v52-v434-content-free-generation-panel-20260716"
 
@@ -332,6 +332,23 @@ def _sealed_parent_receipts_v52() -> dict:
         or values["v49e_replicated_shadow_report"].get(
             "heldout_or_holdout_opened"
         ) is not False
+        or values["v52_original_preregistration"].get("schema")
+        != "matched-lora-es-nested-p8-vs-p16-preregistration-v52"
+        or values["v52_original_preregistration"].get("sealed_holdout_opened")
+        is not False
+        or values["v52_pre_model_attempt"].get("status")
+        != "launching_train_only"
+        or values["v52_pre_model_attempt"].get("preflight", {}).get(
+            "compute_process_query_empty"
+        ) is not True
+        or values["v52_pre_model_failure"].get("type")
+        != "ModuleNotFoundError"
+        or values["v52_pre_model_failure"].get("message")
+        != "No module named 'vllm'"
+        or values["v52_pre_model_failure"].get("protected_semantics_opened")
+        is not False
+        or values["v52_pre_model_failure"].get("sealed_holdout_opened")
+        is not False
     ):
         raise RuntimeError("v52 sealed V48E/V51 evidence contract changed")
     return {
@@ -351,7 +368,10 @@ def build_v52() -> dict:
     states = design.state_derivations_v52()
     compute = design.compute_plan_v52()
     artifacts = {
-        "attempt": str(RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16.attempt.json"),
+        "attempt": str(
+            RUN_DIR.parent
+            / ".v52_matched_lora_es_nested_p8_vs_p16_retry1.attempt.json"
+        ),
         "run_directory": str(RUN_DIR),
         "population": str(RUN_DIR / "nested_population_v52.json"),
         "p8_train_gate": str(RUN_DIR / "p8_train_gate_v52.json"),
@@ -369,6 +389,7 @@ def build_v52() -> dict:
     }
     result = {
         "schema": "matched-lora-es-nested-p8-vs-p16-preregistration-v52",
+        "retry_revision": design.RETRY_REVISION_V52,
         "status": (
             "preregistered_after_content_free_v434_train_contract_and_before_"
             "v52_model_gpu_or_nontrain_semantic_access"
@@ -386,6 +407,31 @@ def build_v52() -> dict:
         "sealed_holdout_access_authorized": False,
         "current_fixed_holdout_cycle_eligible": False,
         "single_scientific_variable": variable,
+        "launcher_fix": {
+            "required_python": str(design.REQUIRED_PYTHON_V52),
+            "change_scope": "interpreter_and_fresh_retry_artifact_paths_only",
+            "original_preregistration_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_original_preregistration"
+                ]["file_sha256"]
+            ),
+            "original_preregistration_content_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_original_preregistration"
+                ]["content_sha256"]
+            ),
+            "failed_attempt_file_sha256": (
+                design.SEALED_NUMERIC_PARENTS_V52[
+                    "v52_pre_model_attempt"
+                ]["file_sha256"]
+            ),
+            "failure_file_sha256": design.SEALED_NUMERIC_PARENTS_V52[
+                "v52_pre_model_failure"
+            ]["file_sha256"],
+            "failure_type": "ModuleNotFoundError",
+            "failure_before_model_or_gpu_actor_creation": True,
+            "science_seeds_master_data_and_gates_changed": False,
+        },
         "arms": arms,
         "fixed_recipe": {
             "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
@@ -566,6 +612,28 @@ def build_v52() -> dict:
         "protected_semantics_opened": False,
         "shadow_ood_holdout_or_benchmark_opened": False,
         "sealed_holdout_opened": False,
+    }
+    science_keys = (
+        "single_scientific_variable", "arms", "fixed_recipe", "runtime",
+        "state_derivations", "state_derivation_inventory_sha256",
+        "transition_schedule", "train_only_selection", "ood_first_gate",
+        "document_disjoint_shadow_gate", "treatment_success_rule",
+        "stop_go_gates", "compute_plan",
+    )
+    original = design.sealed_json_v52("v52_original_preregistration")
+    original_science = {key: original[key] for key in science_keys}
+    retry_science = {key: result[key] for key in science_keys}
+    if retry_science != original_science:
+        raise RuntimeError("v52 retry changed the frozen scientific contract")
+    result["retry_science_equivalence"] = {
+        "keys": list(science_keys),
+        "original_science_content_sha256": design.canonical_sha256_v52(
+            original_science
+        ),
+        "retry_science_content_sha256": design.canonical_sha256_v52(
+            retry_science
+        ),
+        "byte_equivalent": True,
     }
     result["content_sha256_before_self_field"] = design.canonical_sha256_v52(
         result

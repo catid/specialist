@@ -1,0 +1,19 @@
+{
+  "content_sha256_before_self_field": "d1f4e6e9e8489dffb2cff2457e48f00691ae618de467a1245091a01121422e1a",
+  "emergency_exact_abort": null,
+  "emergency_exact_abort_failure": null,
+  "emergency_exact_restore": null,
+  "emergency_exact_restore_failure": null,
+  "failed_at_utc": "2026-07-16T04:41:27.958639+00:00",
+  "final_gpu_idle": null,
+  "message": "No module named 'vllm'",
+  "p16_train_gate": null,
+  "p8_train_gate": null,
+  "protected_semantics_opened": false,
+  "schema": "nested-population-failure-v52",
+  "sealed_holdout_opened": false,
+  "strict_cleanup": null,
+  "strict_cleanup_failure": null,
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_lora_es_nested_population_v52.py\", line 1388, in _execute_v52\n    trainer, saved = prior._make_trainer(preregistration)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_es_multi_anchor_v43i.py\", line 241, in _make_trainer\n    trainer = v40c.make_trainer_v40c(prereg)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_topology_probe_v40c.py\", line 72, in make_trainer_v40c\n    trainer = _ORIGINAL_MAKE_TRAINER(prereg)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_topology_probe_v40a.py\", line 169, in make_trainer\n    parent = base.load_trainer()\n             ^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/train_eggroll_es_specialist.py\", line 458, in load_trainer\n    import vllm.utils\nModuleNotFoundError: No module named 'vllm'\n",
+  "type": "ModuleNotFoundError"
+}

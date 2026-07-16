@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 import queue
+import sys
 import threading
 import time
 import traceback
@@ -27,14 +28,14 @@ import lora_es_nested_population_v52 as design
 ROOT = Path(__file__).resolve().parent
 PREREGISTRATION = (
     ROOT / "experiments/eggroll_es_hpo/preregistrations/"
-    "matched_lora_es_nested_p8_vs_p16_v52.json"
+    "matched_lora_es_nested_p8_vs_p16_v52_retry1.json"
 ).resolve()
 RUN_DIR = (
     ROOT / "experiments/eggroll_es_hpo/runs/"
-    "v52_matched_lora_es_nested_p8_vs_p16"
+    "v52_matched_lora_es_nested_p8_vs_p16_retry1"
 ).resolve()
 ATTEMPT = (
-    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16.attempt.json"
+    RUN_DIR.parent / ".v52_matched_lora_es_nested_p8_vs_p16_retry1.attempt.json"
 ).resolve()
 WORKER_EXTENSION_V52 = (
     "eggroll_es_worker_lora_v52.LoRAAdapterStateWorkerExtensionV52"
@@ -294,6 +295,7 @@ def load_preregistration_v52(args) -> dict:
     }
     arms = design.scientific_arms_v52()
     recipe = value.get("fixed_recipe", {})
+    launcher = value.get("launcher_fix", {})
     if (
         value.get("content_sha256_before_self_field")
         != args.preregistration_content_sha256
@@ -301,6 +303,7 @@ def load_preregistration_v52(args) -> dict:
         != args.preregistration_content_sha256
         or value.get("schema")
         != "matched-lora-es-nested-p8-vs-p16-preregistration-v52"
+        or value.get("retry_revision") != design.RETRY_REVISION_V52
         or value.get("status")
         != (
             "preregistered_after_content_free_v434_train_contract_and_before_"
@@ -316,6 +319,13 @@ def load_preregistration_v52(args) -> dict:
         or value.get("state_derivations") != design.state_derivations_v52()
         or value.get("compute_plan") != design.compute_plan_v52()
         or value.get("artifacts") != _expected_artifacts_v52()
+        or launcher.get("required_python") != str(design.REQUIRED_PYTHON_V52)
+        or launcher.get("change_scope")
+        != "interpreter_and_fresh_retry_artifact_paths_only"
+        or launcher.get("failure_before_model_or_gpu_actor_creation") is not True
+        or launcher.get("science_seeds_master_data_and_gates_changed") is not False
+        or value.get("retry_science_equivalence", {}).get("byte_equivalent")
+        is not True
         or recipe.get("matched_initialization") != str(design.SOURCE_V52)
         or recipe.get("staged_initialization") != str(design.STAGED_V52)
         or recipe.get("source_weights_sha256")
@@ -357,6 +367,20 @@ def load_preregistration_v52(args) -> dict:
     ):
         raise RuntimeError("v52 preregistration contract changed")
     return value
+
+
+def require_live_interpreter_v52(executable: str | None = None) -> dict:
+    observed = Path(executable or sys.executable).absolute()
+    if observed != design.REQUIRED_PYTHON_V52:
+        raise RuntimeError(
+            "V52 live launch requires "
+            f"{design.REQUIRED_PYTHON_V52}; observed {observed}"
+        )
+    return {
+        "required_python": str(design.REQUIRED_PYTHON_V52),
+        "observed_python": str(observed),
+        "matched": True,
+    }
 
 
 def seal_runtime_state_consensus_v52(
@@ -1287,7 +1311,7 @@ def evaluate_train_arm_v52(
 @contextmanager
 def patched_runtime_v52(prior):
     values = {
-        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16",
+        "EXPERIMENT": "v52_matched_lora_es_nested_p8_vs_p16_retry1",
         "RUN_DIR": RUN_DIR,
         "ATTEMPT": ATTEMPT,
         "REPORT": RUN_DIR / "nested_population_report_v52.json",
@@ -1347,6 +1371,7 @@ def _execute_v52(preregistration: dict) -> int:
         "preregistration_content_sha256": preregistration[
             "content_sha256_before_self_field"
         ],
+        "launcher": require_live_interpreter_v52(),
         "preflight": preflight,
         "protected_semantics_opened": False,
         "sealed_holdout_opened": False,
@@ -1775,6 +1800,7 @@ def main(argv: list[str] | None = None) -> int:
             "sealed_holdout_opened": False,
         }, sort_keys=True))
         return 0
+    require_live_interpreter_v52()
     return _execute_v52(prereg)
 
 

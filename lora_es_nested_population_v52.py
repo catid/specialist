@@ -19,6 +19,10 @@ import eggroll_es_multi_anchor_v43h as multi_anchor
 
 
 ROOT = Path(__file__).resolve().parent
+REQUIRED_PYTHON_V52 = (
+    ROOT / "es-at-scale/.venv/bin/python"
+).absolute()
+RETRY_REVISION_V52 = "retry1_launcher_environment_only"
 POPULATION_SIZES_V52 = (8, 16)
 P8_SEEDS_V52 = (
     140002291, 1028842752, 480373990, 1037026679,
@@ -154,6 +158,21 @@ EDGE_IDENTITY_KEYS_V52 = (
 )
 
 SEALED_NUMERIC_PARENTS_V52 = {
+    "v52_original_preregistration": {
+        "path": ROOT / "experiments/eggroll_es_hpo/preregistrations/matched_lora_es_nested_p8_vs_p16_v52.json",
+        "file_sha256": "b8ea48b11a9ea91ba3ece09bc854d74a7a17bb28e6f9496e4f186e0c574eb15d",
+        "content_sha256": "007f89c39593219040ca10783d7b4ae7bd3e7c5163a383ad90a1594302304f5f",
+    },
+    "v52_pre_model_attempt": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/.v52_matched_lora_es_nested_p8_vs_p16.attempt.json",
+        "file_sha256": "39584acfac8051010973a26b6660d94fcd7d77d5e5a40795e6bd9cdd155434bd",
+        "content_sha256": "958d966296edad689c0d9f3b18bfdd8b6c085c9b2de99b3b803c6f02f59a22ec",
+    },
+    "v52_pre_model_failure": {
+        "path": ROOT / "experiments/eggroll_es_hpo/runs/v52_matched_lora_es_nested_p8_vs_p16/failure_v52.json",
+        "file_sha256": "0b5ef9458665174757bdb57b44df9ceb98c6f7f1cc36230890cfded226604727",
+        "content_sha256": "d1f4e6e9e8489dffb2cff2457e48f00691ae618de467a1245091a01121422e1a",
+    },
     "v49d_equal_train_report": {
         "path": ROOT / "experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/runtime_report_v434_equal.json",
         "file_sha256": "0f669d188046849ccb6a3013938f9979214711f5e83c0d9e54290c9c20c850d8",

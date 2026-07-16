@@ -391,6 +391,21 @@ def test_v52_live_schedule_restores_and_cancels_on_failure(phase, index):
 
 def test_v52_preregistration_freezes_gates_and_compute_plan():
     value = builder.build_v52()
+    assert value["retry_revision"] == design.RETRY_REVISION_V52
+    assert value["launcher_fix"]["required_python"] == str(
+        design.REQUIRED_PYTHON_V52
+    )
+    assert value["retry_science_equivalence"]["byte_equivalent"] is True
+    assert value["retry_science_equivalence"][
+        "original_science_content_sha256"
+    ] == value["retry_science_equivalence"][
+        "retry_science_content_sha256"
+    ]
+    assert runtime.require_live_interpreter_v52(
+        str(design.REQUIRED_PYTHON_V52)
+    )["matched"] is True
+    with pytest.raises(RuntimeError, match="live launch requires"):
+        runtime.require_live_interpreter_v52(str(design.ROOT / ".venv/bin/python"))
     assert value["single_scientific_variable"]["control"] == 8
     assert value["single_scientific_variable"]["treatment"] == 16
     assert value["transition_schedule"]["intermediate_exact_master_restores_eliminated"] == 31
