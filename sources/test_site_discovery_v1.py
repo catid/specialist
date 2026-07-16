@@ -364,6 +364,12 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "pmid": "39439589",
                 "stale_pmids": set(),
             },
+            "springer_bdsm_consent_norms_2024": {
+                "pmcid": "PMC10844416",
+                "doi": "10.1007/s10508-023-02741-0",
+                "pmid": "38017253",
+                "stale_pmids": set(),
+            },
         }
         for candidate_id, identifiers in expected.items():
             row = by_id[candidate_id]
@@ -405,6 +411,7 @@ class SourceCorpusContractTest(unittest.TestCase):
                 "https://europepmc.org/article/MED/34383118",
                 "https://europepmc.org/article/MED/32766466",
                 "https://europepmc.org/article/MED/39439589",
+                "https://europepmc.org/article/MED/38017253",
             },
         )
 
@@ -2129,12 +2136,185 @@ class SourceCorpusContractTest(unittest.TestCase):
             for marker in required:
                 self.assertIn(marker, text, candidate_id)
 
+    def test_batch_014_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_014"
+        }
+        self.assertEqual(len(batch), 11)
+        expected = {
+            "accept_high_priority": {
+                "sage_aramid_three_strand_contact_forces_2025",
+            },
+            "accept_targeted_scope": {
+                "sage_yarn_abrasion_failure_mechanisms_2024",
+                "phm_synthetic_fiber_rope_condition_monitoring_review_2017",
+                "springer_bdsm_consent_norms_2024",
+                "tandf_within_person_consent_variability_2021",
+            },
+            "defer": {
+                "elsevier_hemp_rope_hierarchy_statistics_2024",
+                "arxiv_ancient_art_laying_rope_2010",
+                "elsevier_bowline_self_locking_2025",
+                "tandf_autistic_adults_bdsm_2024",
+                "tandf_plant_natural_fiber_rope_treatments_2024",
+            },
+            "reject": {
+                "deadheavy_rope_resources_directory",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(
+            queued_from_batch,
+            expected["accept_high_priority"] | expected["accept_targeted_scope"],
+        )
+
+    def test_batch_014_accepted_sources_preserve_methods_and_limits(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "sage_aramid_three_strand_contact_forces_2025": {
+                "teijin aramid bv",
+                "pressure-film placement and calibration limits",
+                "specific-material-and-construction limitation",
+                "declared financial-support conflict",
+            },
+            "sage_yarn_abrasion_failure_mechanisms_2024": {
+                "yarn-on-yarn twist-method apparatus",
+                "mechanical-wear-versus-thermal-effect interpretation",
+                "finished rope",
+                "company affiliations",
+            },
+            "phm_synthetic_fiber_rope_condition_monitoring_review_2017": {
+                "cc by 3.0 united states",
+                "continuous-versus-discrete monitoring distinction",
+                "permission-reproduced component",
+                "2017 review date",
+            },
+            "springer_bdsm_consent_norms_2024": {
+                "84 of 116",
+                "indirect new-partner open-ended measure",
+                "null injunctive",
+                "sensitivity-analysis discrepancies",
+            },
+            "tandf_within_person_consent_variability_2021": {
+                "28-day experience-sampling design",
+                "1,189 analytic partnered events",
+                "modest reliability",
+                "not a validated rope policy",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertTrue(source["decision"].startswith("accept_"))
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_014_deferrals_and_site_contamination_are_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        deferred_markers = {
+            "elsevier_hemp_rope_hierarchy_statistics_2024": {
+                "http 403",
+                "unauthorized minimized metadata",
+                "no mirror",
+                "reference_only_access_blocked_cc_by",
+            },
+            "arxiv_ancient_art_laying_rope_2010": {
+                "arxiv nonexclusive-distribution license",
+                "commercial derivative",
+                "reference_only_arxiv_distribution_license",
+            },
+            "elsevier_bowline_self_locking_2025": {
+                "vps elastomeric rod with nitinol core",
+                "cc by-nc 4.0",
+                "rescue-harness statement",
+            },
+            "tandf_autistic_adults_bdsm_2024": {
+                "six-adult",
+                "noncommercial",
+                "cloudflare challenge",
+            },
+            "tandf_plant_natural_fiber_rope_treatments_2024": {
+                "boiling",
+                "concrete-reinforcement purpose",
+                "independent natural-textile engineering",
+            },
+        }
+        for candidate_id, required in deferred_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        deadheavy = by_id["deadheavy_rope_resources_directory"]
+        self.assertEqual(deadheavy["decision"], "reject")
+        self.assertNotIn(deadheavy["candidate_id"], queued)
+        deadheavy_text = json.dumps(deadheavy, sort_keys=True).lower()
+        for marker in {
+            "url-trivia failure",
+            "adapted code of conduct",
+            "rejected_url_directory_not_factual_corpus",
+        }:
+            self.assertIn(marker, deadheavy_text)
+
+        prior_site_markers = {
+            "shibari_safety": {
+                "neither a medical professional nor a certified instructor",
+                "10:1 suspension guidance",
+                "boiling and oil recipes",
+            },
+            "shibari_academy": {
+                "waiting two hours",
+                "nerve injuries occur instantly",
+                "terms prohibit reproduction",
+            },
+            "shibari_news": {
+                "1,094 post urls",
+                "personal noncommercial extracts",
+                "no editor, author, historian or safety reviewer",
+            },
+        }
+        for candidate_id, required in prior_site_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "reject")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_013`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_014`", self.report)
 
 
 if __name__ == "__main__":

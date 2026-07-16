@@ -2,12 +2,12 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T12:14:32Z
-Latest batch: `discovery_batch_013`
+Latest review at: 2026-07-16T12:42:07Z
+Latest batch: `discovery_batch_014`
 
 ## Outcome
 
-This first bounded batch manually reviewed 20 candidate websites or official site-hosted resources by opening their actual public pages. After the evidence-quality correction described in batch 005, its decisions are 6 `accept_high_priority`, 9 `accept_targeted_scope`, 2 `defer`, and 3 `reject`. The 15 accepted sources are added to the canonical corpus queue as separate pending extraction jobs. Discovery did not copy page bodies into training data, enter a course, sign in, start a trial, defeat a challenge, or infer instructions from images or video.
+This first bounded batch manually reviewed 20 candidate websites or official site-hosted resources by opening their actual public pages. After the evidence-quality correction described in batch 005 and the three complete practitioner-site re-audits recorded in batch 014, its decisions are 6 `accept_high_priority`, 9 `accept_targeted_scope`, 0 `defer`, and 5 `reject`. The 15 accepted sources are added to the canonical corpus queue as separate pending extraction jobs. Discovery did not copy page bodies into training data, enter a course, sign in, start a trial, defeat a challenge, or infer instructions from images or video.
 
 All 20 canonical candidate URLs were compared with all 25 entries that were already in `site_corpus_queue_v1.json`; none duplicated an existing queue URL or resource ID. Rope365 was separately sealed as complete with its accepted commit and artifacts. The expanded full-site Crash Restraint scope remains unchanged.
 
@@ -46,8 +46,8 @@ The machine-readable ledger contains every required field, all component scores,
 
 | Source | Decision | Score | Reason |
 |---|---|---:|---|
-| [Shibari Academy](https://www.shibariacademy.com/) | Defer | 11 | Public prose is extensive but heavily duplicates accepted sources, funnels into paid courses/storefronts, and includes medical and fiber claims requiring specialist adjudication. No enrollment, sign-in, or trial is permitted. |
-| [Shibari Safety](https://shibarisafety.com/) | Defer | 20 | Promising structure, but named expertise and visible citations are weak; the site disclaims professional qualification, and a key page returned a challenge rather than readable content. The challenge was not bypassed. |
+| [Shibari Academy](https://www.shibariacademy.com/) | Reject | 11 | The completed public-site re-audit found restrictive no-reproduction terms plus delayed-care, instant-nerve-injury, continue-after-moving-a-knot, categorical rope, and affiliate-shop claims. Rights and evidence quality each independently fail. |
+| [Shibari Safety](https://shibarisafety.com/) | Reject | 20 | The complete eight-route re-audit found anonymous, explicitly unqualified authorship, weak circular references, unsupported medical and structural numbers, and boiling or oil recipes. Crawl permission supplies no reuse license. |
 | [Shibari.ph nerve card](https://www.shibari.ph/wp-content/uploads/2018/07/PDC-nervedamage-EN.pdf) | Reject | 17 | Useful warning signs are mixed with medication, supplement, cooling, and rubbing recommendations that conflict with more cautious cited sources; most unique value is visual. |
 | [KinbakuPedia](https://kinbakupedia.com/history/) | Reject | 0 | The reviewed history page is extremely thin, unsourced, grammatically incomplete, and overly certain about a contested hojōjutsu origin narrative. |
 | [ShibariNews](https://shibarinews.com/) | Reject | 4 | Anonymous generic articles, high duplication, course marketing, and unsupported massage/anti-inflammatory advice make it inferior to accepted first-party and cited specialist sources. |
@@ -324,6 +324,93 @@ used normal public pages and official endpoints, respected robots and
 rightsholder terms, and did not bypass a login, purchase, challenge, missing
 body, license, or platform restriction. No reviewed page body was copied into a
 training artifact during discovery.
+
+## Discovery batch 014 outcome
+
+discovery_batch_014 reviewed 11 additional, nonduplicate candidates against
+their actual first-party record or body, article-level license, methods,
+conflicts, access path, redundancy, and domain-transfer risk. It produced 1
+accept_high_priority, 4 accept_targeted_scope, 5 defer, and 1 reject decision.
+The five accepted candidates expand the canonical corpus queue from 109 to 114
+resources.
+
+This batch adds two complementary evidence lanes. Three rope-engineering sources
+cover three-strand contact force, yarn-on-yarn abrasion and condition-monitoring
+methods while keeping yarn, rope construction and material scales separate. Two
+consent studies add perceived community norms and within-person variability
+without turning group identity, arousal, body language or one survey into proof
+of an individual's consent.
+
+The manual practitioner-site screen also closed three old uncertainties.
+Shibari Safety and Shibari Academy move from defer to reject; ShibariNews
+remains rejected with a stronger sitemap, terms and provenance audit. Deadheavy's
+resource page is newly rejected as a body but its outbound destinations remain
+independent discovery leads. Large page counts and public robots access were not
+mistaken for authority, reuse permission or information density.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Three-strand aramid contact-force experiment](https://research.utwente.nl/en/publications/experimental-analysis-of-contact-forces-between-strands-in-three-/) | accept_high_priority | 39 | CC BY 4.0, 17-page primary evidence using pressure film in exact Twaron three-strand ropes. Preserve construction hierarchy, calibration limits, qualitative twist and contact distinctions, model limits, request-only data, and the NWO or Teijin funding and declared financial-support conflict. Exclude values, fitted corrections, lifetime or rating claims, supplier endorsement and all natural-fiber or human-use transfer. |
+| [Yarn-on-yarn abrasion mechanisms](https://journals.sagepub.com/doi/10.1177/15589250241228263) | accept_targeted_scope | 35 | CC BY 4.0 comparison of UHMWPE, PET, PPTA and PAR yarn under controlled abrasion, thermal imaging and microscopy. Preserve mechanical-versus-thermal mechanism distinctions and company affiliations; do not turn yarn rankings, temperatures or cycles into finished-rope or retirement advice. |
+| [Synthetic-rope condition-monitoring review](https://papers.phmsociety.org/index.php/ijphm/article/view/2619) | accept_targeted_scope | 30 | CC BY 3.0 US historical review of rope hierarchy, interacting damage mechanisms, embedded versus external sensors and continuous versus discrete monitoring. Exclude every permission-reproduced figure, patent, vendor claim, standard, discard number and remaining-life rule. |
+| [Sexual Consent Norms in a Sexually Diverse Sample](https://europepmc.org/article/MED/38017253) | accept_targeted_scope | 34 | CC BY 4.0 EMBL-EBI JATS contributes a 388-person online sample with 116 BDSM participants. Preserve overlapping identities, perceived descriptive versus injunctive norms, small or null findings, indirect measurement and sensitivity discrepancies; never infer that BDSM identity proves consent. |
+| [Within-person variability of sexual consent](https://eprints.gla.ac.uk/238155/) | accept_targeted_scope | 30 | CC BY 4.0, 28-day experience-sampling evidence from 113 adults and 1,189 analytic partnered events distinguishes internal feelings from external communication and shows event-level variability. It is not a BDSM or rope study and does not validate body-language inference, a check-in schedule or a rope policy. |
+
+### Deferred sources
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Hemp fiber-to-rope hierarchy experiment](https://www.sciencedirect.com/science/article/pii/S1359835X24002008) | 40 | The publisher metadata and CC BY 4.0 license are clear, and the 120-fiber, 55-yarn, 33-strand and 64-rope hierarchy is unusually valuable. The official PDF returns HTTP 403 and the API returns only unauthorized minimized metadata. No mirror, snippet reconstruction or access bypass substitutes for a page-level body audit. |
+| [The ancient art of laying rope](https://arxiv.org/abs/1004.0814) | 34 | Helical maximum-rotation and zero-twist ideas are relevant, but the arXiv copy carries only a nonexclusive distribution license and the identified publisher copy restricts redistribution and commercial use. Permission is required before transformation. |
+| [Self-locking and stability of the bowline knot](https://www.sciencedirect.com/science/article/pii/S2352431625001257) | 40 | The seven-page EPFL final PDF is CC BY-NC 4.0 and tests six quasi-static composite elastomeric rods, not textile rope. NonCommercial compatibility is unresolved; equations, thresholds, tying diagrams, secure claims and rescue-harness language remain quarantined. |
+| [Autistic adults' BDSM and kink experiences](https://durham-repository.worktribe.com/output/1177508/comforting-reassuring-andhot-a-qualitative-exploration-of-engaging-in-bondage-discipline-domination-submission-sadism-and-sadomasochism-and-kink-from-the-perspective-of-autistic-adults) | 38 | Rare six-person interpretative evidence may help accessibility coverage, but the accepted manuscript is noncommercial-only and direct review now meets a Cloudflare challenge. No participant narrative or identity generalization enters without permission and legitimate access. |
+| [Plant-based natural-fiber rope treatments](https://www.tandfonline.com/doi/abs/10.1080/15440478.2024.2397703) | 37 | CC BY 4.0 does not cure domain contamination. Alkali and boiling-water treatments for concrete reinforcement could be mislearned as bondage-rope cleaning or performance advice; independent textile and safety adjudication is required before body use. |
+
+### Rejected source and prior-site corrections
+
+| Source | Decision | Score | Reason |
+|---|---|---:|---|
+| [Deadheavy resources](https://deadheavy.com/resources/) | reject | 2 | Roughly 21 outbound links, book names, quotations and recommendations make a discovery directory, not a factual corpus. Copying it would create URL trivia, and its useful code of conduct names upstream adaptations with unresolved rights. |
+| [Shibari Safety](https://shibarisafety.com/) | prior defer to reject | 20 | Eight public routes were fully screened. Anonymous and expressly unqualified authorship, weak references, unsupported breathing or anatomy typologies, numeric suspension guidance, treatment recipes and absent reuse rights bar inclusion. |
+| [Shibari Academy](https://www.shibariacademy.com/) | prior defer to reject | 11 | A 143-URL commercial surface, restrictive terms and public delayed-care, nerve, knot-continuation, rope-selection and cleaning claims independently fail the rights and safety gates. |
+| [ShibariNews](https://shibarinews.com/) | reject retained | 4 | The roughly 1,094-post surface lacks named editorial or specialist provenance, repeats reductive history and unsupported body advice, funnels to Shibari Academy, and permits only personal noncommercial extracts. |
+
+### Batch 014 rights, evidence, and safety controls
+
+Article-level licenses were followed rather than inferred from an open-access
+badge. CC BY sources advance only with attribution, change indication and
+component audit. CC BY-NC, noncommercial repository terms and arXiv distribution
+permission remain metadata-only. A clear CC BY license does not authorize
+reconstructing an inaccessible first-party body from snippets or mirrors.
+
+Rope scale remains explicit. Synthetic yarn is not finished rope; an aramid
+three-strand specimen does not represent natural-fiber rope; a composite
+elastomeric rod is not textile cordage; an offshore monitoring review does not
+supply visual retirement rules for bondage rope. Static and quasi-static
+evidence does not establish cyclic, dynamic, security, capsizing, body-contact,
+upline, anchor or human-suspension behavior.
+
+Consent evidence remains population and measurement bound. Perceived group
+norms are not observed individual behavior, overlapping identity groups are not
+independent populations, internal willingness cannot be read from arousal or
+body language, and event-level variability does not prescribe a universal
+script. The studies support careful reassessment and uncertainty, not identity
+stereotypes or a guarantee of ethical conduct.
+
+### Batch 014 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery ledger,
+corpus queue, report, tests, and first-class registry work for an independently
+completed corpus. No QA, training projection, manual-review, evaluation,
+heldout, holdout, OOD, shadow, benchmark, probe, trainer or unrelated corpus
+artifact was read. Public review used ordinary first-party, official repository,
+publisher, DOI, licensed API and license routes. No login, paywall, challenge,
+Cloudflare gate, unauthorized API, cache, archive, snippet reconstruction or
+third-party mirror was bypassed, and discovery wrote no reviewed source body
+into a training artifact.
+
 
 ## Discovery batch 006 outcome
 
