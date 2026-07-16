@@ -1,0 +1,78 @@
+{
+  "corpus_id": "nist_manila_rope_statistics_1947",
+  "content_kind": "manual_claim_cited_historical_statistical_methods_digest",
+  "created_at_utc": "2026-07-16",
+  "files": {
+    "CORPUS.md": {
+      "bytes": 15165,
+      "sha256": "8968c334cacf2c205a6ea1afa44ad29009b07207895162a3547e0d752b2910bf"
+    },
+    "README.md": {
+      "bytes": 1491,
+      "sha256": "0bdd0a84352dbd8925ce37e58fd42007dcb8d08152bc7c2f7b42d2d41e822789"
+    },
+    "REPORT.md": {
+      "bytes": 10177,
+      "sha256": "3d4a80ad22f043e9c907c4d89661c2dc28ad2ec964bac51611655116eb08092c"
+    },
+    "dispositions.jsonl": {
+      "bytes": 3383,
+      "sha256": "23ed0879415f66b0459ac1944c55f4f25ad3787fc6a86812d58adfefbf1f007f"
+    },
+    "source_snapshot/provenance.json": {
+      "bytes": 5326,
+      "sha256": "88266b3621c2cde67d0a6ffc79ab24640388c500e0b0dcdac938d674f993269b"
+    },
+    "sources.jsonl": {
+      "bytes": 1969,
+      "sha256": "6efa77645650488bc8edac8256d099bb3980e396be4d2aab1b1996bec465b894"
+    },
+    "tests/test_corpus.py": {
+      "bytes": 15203,
+      "sha256": "c31b701ebda9ea7a035622ba814cbe7e894787ecb5888dbe182cd9c0cb1a20ca"
+    }
+  },
+  "language": "en",
+  "primary_source": {
+    "authors": [
+      "Sanford B. Newman",
+      "J. H. Curtiss"
+    ],
+    "doi": "10.6028/jres.039.039",
+    "research_paper": "RP1847",
+    "title": "A Statistical Analysis of Some Mechanical Properties of Manila Rope",
+    "year": 1947
+  },
+  "rights": {
+    "attribution_present": true,
+    "component_caveat": "Images, tables, graphs, equations, numerical property outputs, procurement content, and third-party references are excluded.",
+    "federal_public_domain_us": true,
+    "foreign_rights_permission_noted": true,
+    "legal_advice": false,
+    "source_bodies_retained": false,
+    "status": "accepted_manual_federal_public_domain_adaptation"
+  },
+  "schema_version": "site-corpus-manifest-v1",
+  "source_ids": [
+    "NBS-1947-PDF",
+    "DOI-VERIFIED-039",
+    "NIST-RIGHTS-FAQ",
+    "NIST-TECH-SERIES-RIGHTS"
+  ],
+  "split_hygiene": {
+    "allowed": [
+      "training_source"
+    ],
+    "forbidden": [
+      "validation",
+      "holdout",
+      "evaluation",
+      "ood",
+      "probe"
+    ],
+    "qa_derivation": "separate_training_only_artifact_after_manual_review"
+  },
+  "status": "accepted",
+  "summary": "Manual digest of RP1847's nonrandom three-strand manila-rope procurement dataset, measurement protocol, log-scale modeling assumptions, anomalies, and population-validity cautions without numerical property or operational output.",
+  "version": 1
+}
