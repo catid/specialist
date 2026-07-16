@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T14:18:38Z
-Latest batch: `discovery_batch_017`
+Latest review at: 2026-07-16T14:41:59Z
+Latest batch: `discovery_batch_018`
 
 ## Outcome
 
@@ -1165,7 +1165,7 @@ mathematical, archaeological, health-survey or surgical-education domain.
 
 | Source | Score | Exact useful scope and boundary |
 |---|---:|---|
-| [FHWA adhesive-anchor advisory T5140.34](https://www.fhwa.dot.gov/Bridge/t514034.pdf) | 41 | Eligible federal text preserves a fatal suspended-ceiling failure chain, sustained-tension and overhead adhesive-anchor creep, installation sensitivity, system qualification, trained installation and continuous inspection. Exclude standards, loads, recipes and products; never treat it as a DIY hardpoint or human-suspension qualification. |
+| [FHWA adhesive-anchor advisory T5140.34](https://www.fhwa.dot.gov/Bridge/t514034.pdf) | 41 | Eligible federal text preserves an investigated Boston tunnel suspended-ceiling and ceiling-panel collapse context, with no casualty detail in the advisory, plus sustained-tension and overhead adhesive-anchor creep, installation sensitivity, system qualification, trained installation and continuous inspection. Exclude standards, loads, recipes and products; never treat it as a DIY hardpoint or human-suspension qualification. |
 | [USBR testing and verifying rope-access anchors](https://usbr.gov/research/projects/detail.cfm?id=6390) | 39 | Eligible federal project-page and two-page bulletin text adds simulated installation defects, substrate variation, failure-mode diversity and angle-sensitive non-additive load sharing. Protected final report Document 1018 must not be requested, inferred or reconstructed; exclude every capacity, proof-load and procedure. |
 | [USACE EP 385-1-101 fall prevention and protection](https://www.publications.usace.army.mil/USACE-Publications/Engineer-Pamphlets/) | 35 | Current federal governance supports hierarchy of controls, documented authorized/competent/qualified roles, qualified-person anchorage decisions, inspection, site-specific rescue plans and drills. Use only the targeted public-library PDF; exclude incorporated standards, numbers, forms and operational procedures. |
 | [Trees as supports and anchors in forest operations](https://www.mdpi.com/1999-4907/9/8/467) | 37 | CC BY 4.0 review preserves interacting root plate, stem, decay, soil, root architecture, slope, wind, species and dynamic-load factors plus sparse-evidence and model-calibration limits. It cannot identify a safe tree, branch or human-suspension anchor. |
@@ -1228,3 +1228,75 @@ registered canonical Markdown artifact were changed from `pending` to
 IDs. A contract test rejects both stale pending entries for registered sources
 and unregistered sources falsely marked complete. This prevents conversion
 workers from repeatedly selecting already finished high-priority sources.
+
+## Discovery batch 018 outcome
+
+`discovery_batch_018` reviewed 15 exact-new source identities after normalized
+title, DOI, PMID, PMCID, report, document and source-identity comparison with
+the existing ledger and queue. It produced 0 `accept_high_priority`, 5
+`accept_targeted_scope`, 9 `defer`, and 1 `reject` decisions. The five accepted
+sources expand the canonical Markdown queue from 141 to 146 resources.
+
+This batch adds historical self-evacuation governance, structured knot-skill
+pedagogy, a clearly attributed practitioner account of Japanese-rope lineage,
+person-centered accessible communication, and historical concrete-anchor
+failure-mode vocabulary. It does not turn rescue, dental education, ADA legal
+guidance, autobiography, or legacy anchor research into bondage technique or a
+human-suspension qualification.
+
+### Newly accepted sources
+
+| Source | Score | Exact useful scope and boundary |
+|---|---:|---|
+| [HSE Operational Circular 282/31](https://www.hse.gov.uk/foi/internalops/ocs/200-299/282_31.htm) | 36 | Eligible OGL text supports a historical self-evacuation control hierarchy, compatibility, competence, practical assessment, checks and error-under-stress concepts. Preserve its 2003 version and 2013 review date; exclude old intervals, devices, standards and operational recipes, and never present it as current rescue or bondage procedure. |
+| [Structured knot-tying training randomized study](https://www.egms.de/static/en/journals/zma/2023-40/zma001630.shtml) | 35 | CC BY 4.0 HTML supports Peyton's four-step structure, feedback, deliberate practice and immediate structured assessment in 124 dental students. Preserve prior-experience, subjective-score, post-hoc-threshold and no-retention limits; exclude surgical steps, recipes, effects and transfer to rope security or suspension. |
+| [Andy Buru, “History of Japanese Rope Bondage”](https://andyburu.se/book/first-paradox/chapter-3/history-of-japanese-rope-bondage/) | 19 | The written text alone is explicitly CC BY 4.0. Retain a quotation-light, attributed practitioner-primary account with its commercial setting and historical uncertainty; exclude images, media, commerce and technique, and never present testimony as consensus or independent proof of lineage. |
+| [DOJ ADA effective-communication guidance](https://www.ada.gov/resources/effective-communication/) | 35 | Eligible public-domain text supports choosing communication methods for the person and context, consulting the person, allowing time, clarifying instead of guessing, and considering aids and training. Preserve its covered-entity legal context; do not universalize legal duties or imply that accommodation makes a rope technique safe. |
+| [NISTIR 6096 post-installed-anchor literature review](https://www.nist.gov/publications/post-installed-anchors-literature-review) | 36 | Eligible federal text adds historical failure-mode vocabulary, test-variable distinctions and evidence gaps. Exclude every capacity, load, product, standard, table, figure, installation or test recipe; it cannot approve, size, proof-test or certify a ceiling, hardpoint or human-suspension system. |
+
+### Permission- or access-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Jutsum, *Knots, Bends, Splices*](https://www.gutenberg.org/ebooks/30983) | 26 | The underlying United States work is public domain, but current Project Gutenberg terms prohibit automated acquisition. Retain metadata only unless a compliant human single-item process supplies a lawful copy; then deduplicate topology against existing historical manuals and exclude obsolete safety and strength claims. |
+| [Aldridge, *A Handbook of Knots and Marlinespike Seamanship*](https://www.gutenberg.org/ebooks/78376) | 22 | The public-domain work has the same automation gate and substantial overlap. No mirroring, deep-fetching or bypass is allowed, and Project Gutenberg marks remain excluded. |
+| [Ontario firefighter rope-rescue guidance](https://www.ontario.ca/document/guidance-notes-for-firefighters/rope-rescue) | 33 | The current guidance has no page-level Open Government Licence and default Crown terms do not authorize this commercial transformed corpus. Written permission is required; operational rescue steps and bondage transfer remain excluded. |
+| [NZQA rope-rescue skill standards 40866 and 40867](https://www.nzqa.govt.nz/nqfdocs/units/pdf/40866.pdf) | 37 | Current skill-standard material is restricted to citation or reference. Keep only competency-map metadata pending explicit commercial derivative permission; do not reproduce assessment bodies or convert them into procedure. |
+| [Finished hemp and sisal rope temperature study](https://library.csbe-scgab.ca/all-publications/2712%3Atensile-strength-and-elongation-of-hemp-and-sisal-ropes-at-different-temperatures) | 35 | No open license authorizes transformation. Its small supplier-confounded design is metadata-only pending permission and cannot establish jute equivalence, care, service, retirement or human-suspension advice. |
+| [Disability justice in BDSM and sexual consent](https://cjds.uwaterloo.ca/index.php/cjds/article/view/427) | 31 | CC BY-NC-ND does not permit the intended transformed commercial corpus. Seek permission before body use, preserve critical-essay and jurisdiction limits, and exclude technique, medical or individualized legal advice. |
+| [FEMA E-74 nonstructural earthquake guide](https://www.fema.gov/emergency-managers/risk-management/earthquake/training/fema-e-74) | 39 | Contractor authorship, extensive third-party components and a 403 on the official PDF jointly block extraction. Federal sponsorship and hosting do not establish public-domain rights; use metadata only and never equate ceiling bracing with a human-suspension hardpoint. |
+| [Japanese Rope Bondage under the Orientalist Gaze](https://iccs.chss.nycu.edu.tw/en/activity.php?USN=729) | 22 | The university event and report have no reuse license. Seek speaker, reporter and university permission; if cleared, retain only attributed interpretations and cross-check them rather than treating them as consensus history. |
+| [Western Canada Mine Rescue Manual](https://www2.gov.bc.ca/assets/gov/farming-natural-resources-and-industry/mineral-exploration-mining/documents/health-and-safety/emergency-preparedness/western_canada_mine_rescue_manual_october2017.pdf) | 37 | British Columbia terms are all rights reserved, and the manual is a mixed government-industry compilation with third-party material. Written component-level permission is required; rescue mechanics cannot be transferred directly to bondage or human suspension. |
+
+### Rejected source
+
+| Source | Score | Reason |
+|---|---:|---|
+| [Hojōjutsu Research Society](https://www.hojojutsu.org/) | 19 | The copyrighted commercial site explicitly disallows named AI and data bots across the site and includes high-risk combative-restraint material. Do not crawl or transform it; retain only organization, URL, copyright and permission-contact metadata. |
+
+### Batch 018 rights, evidence, and safety controls
+
+Rights were resolved at article, page and component level rather than inferred
+from public access, government hosting or a generic site label. A text-only CC
+BY grant does not cover images or media. OGL and federal-public-domain status do
+not cover incorporated standards, logos or third-party components. CC
+BY-NC-ND, all-rights-reserved Crown material, contractor work, missing licenses,
+and explicit AI-bot disallows remain hard transformation gates.
+
+The accepted materials stay inside their evidence domains. A historical
+self-evacuation circular is not a current rescue plan; a dental-student
+immediate post-test is not rope-safety evidence; a practitioner chapter is not
+consensus history; ADA communication guidance is not universal scene law; and
+a 1998 concrete-anchor review is not a hardpoint evaluation. Deferred natural-
+rope, ceiling, rescue, disability and lineage sources remain useful discovery
+leads without leaking unsupported body claims into training.
+
+### Batch 018 access and clean-room statement
+
+Discovery read only the governing candidate ledger, queue, report and tests
+plus ordinary first-party public sources and their explicit license, terms or
+robots routes. No QA, trainer, projection, evaluation, heldout, holdout, OOD,
+shadow, benchmark, probe, unrelated corpus body or unrelated repository
+artifact was read. No login, paywall, challenge, crawler restriction, mirror,
+cache, archive or snippet reconstruction was bypassed, and no reviewed source
+body entered a training artifact during discovery.

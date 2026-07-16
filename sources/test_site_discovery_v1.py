@@ -2720,7 +2720,7 @@ class SourceCorpusContractTest(unittest.TestCase):
         queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
         markers = {
             "fhwa_t5140_34_adhesive_anchors": {
-                "fatal tunnel",
+                "no casualty detail",
                 "continuous inspection",
                 "diy ceiling",
                 "human-suspension",
@@ -2817,12 +2817,170 @@ class SourceCorpusContractTest(unittest.TestCase):
         }:
             self.assertIn(marker, text)
 
+    def test_batch_018_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_018"
+        }
+        self.assertEqual(len(batch), 15)
+        expected = {
+            "accept_targeted_scope": {
+                "hse_oc_282_31_rope_evacuation",
+                "dasci_surgical_knot_training_rct_2023",
+                "andy_buru_history_japanese_rope_bondage",
+                "doj_ada_effective_communication",
+                "nistir_6096_post_installed_anchors_review",
+            },
+            "defer": {
+                "gutenberg_jutsum_knots_bends_splices_30983",
+                "gutenberg_aldridge_marlinespike_knots_78376",
+                "ontario_firefighter_rope_rescue_guidance",
+                "nzqa_rope_rescue_skill_standards_40866_40867",
+                "cbe_hemp_sisal_rope_temperature_2015",
+                "cjds_goldberg_disability_bdsm_law_2018",
+                "fema_e74_nonstructural_ceiling_systems",
+                "nycu_orientalist_gaze_japanese_rope_bondage",
+                "western_canada_mine_rescue_manual",
+            },
+            "reject": {"hojojutsu_research_society_primary"},
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_018_accepts_mirror_queue_and_preserve_limits(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "hse_oc_282_31_rope_evacuation": {
+                "2003 version and 2013 review date",
+                "error under stress",
+                "non-bondage self-evacuation",
+                "human-suspension",
+            },
+            "dasci_surgical_knot_training_rct_2023": {
+                "124-dental-student",
+                "peyton four-step",
+                "no retention",
+                "no transfer to rope technique",
+            },
+            "andy_buru_history_japanese_rope_bondage": {
+                "written-text-only",
+                "first-person practitioner",
+                "commercial book/school context",
+                "consensus history",
+            },
+            "doj_ada_effective_communication": {
+                "consult the person",
+                "clarify rather than guess",
+                "covered-entity legal context",
+                "makes a technique safe",
+            },
+            "nistir_6096_post_installed_anchors_review": {
+                "historical secondary-review",
+                "qualified engineering verification",
+                "non-bondage concrete-anchor",
+                "human-suspension system",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_018_deferrals_and_rejection_are_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        markers = {
+            "gutenberg_jutsum_knots_bends_splices_30983": {
+                "prohibit automated tools",
+                "manual single-item",
+                "metadata only",
+            },
+            "gutenberg_aldridge_marlinespike_knots_78376": {
+                "prohibit automated tools",
+                "high duplication",
+                "metadata only",
+            },
+            "ontario_firefighter_rope_rescue_guidance": {
+                "no visible ontario open government licence label",
+                "unmodified noncommercial",
+                "explicit permission",
+            },
+            "nzqa_rope_rescue_skill_standards_40866_40867": {
+                "citation or reference",
+                "commercial uses",
+                "no body markdown",
+            },
+            "cbe_hemp_sisal_rope_temperature_2015": {
+                "no creative commons license",
+                "supplier-confounded",
+                "model-training permission",
+            },
+            "cjds_goldberg_disability_bdsm_law_2018": {
+                "cc by-nc-nd 4.0",
+                "transformed commercial",
+                "explicit permission",
+            },
+            "fema_e74_nonstructural_ceiling_systems": {
+                "http 403",
+                "applied technology council",
+                "federal sponsorship and hosting do not establish",
+            },
+            "nycu_orientalist_gaze_japanese_rope_bondage": {
+                "ordinary copyright",
+                "speaker, reporter and university permission",
+                "consensus scholarship",
+            },
+            "western_canada_mine_rescue_manual": {
+                "all rights reserved",
+                "mixed public-private compilation",
+                "component-level clearance",
+            },
+            "hojojutsu_research_society_primary": {
+                "named ai and data bots",
+                "combative restraint",
+                "do not crawl",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            self.assertIn(source["decision"], {"defer", "reject"})
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_017`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_018`", self.report)
 
 
 if __name__ == "__main__":
