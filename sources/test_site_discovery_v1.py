@@ -3519,12 +3519,138 @@ class SourceCorpusContractTest(unittest.TestCase):
             by_id["irata_historical_rope_failure_bulletins"]["accessible"]
         )
 
+    def test_batch_023_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_023"
+        }
+        self.assertEqual(len(batch), 10)
+        expected = {
+            "accept_targeted_scope": {
+                "coir_ropes_french_polynesia_2024",
+                "scientific_reports_biodegradable_gillnet_knot_2024",
+                "scientific_reports_silk_slip_knot_mechanics_2016",
+            },
+            "defer": {
+                "qeswachaka_festuca_rope_mechanics_2024",
+                "brin_banana_peduncle_rope_2025",
+                "navsea_nstm_chapter_613_rope_1999",
+                "bioresources_antibacterial_natural_fibres_2014",
+                "rice_straw_rope_mechanics_2022",
+                "matsushita_cotton_gillnet_degradation_2008",
+            },
+            "reject": {"e3s_hibiscus_bark_rope_2020"},
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+        queued_from_batch = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if row.get("discovery_candidate_id") in batch
+        }
+        self.assertEqual(queued_from_batch, expected["accept_targeted_scope"])
+
+    def test_batch_023_accepts_mirror_queue_and_preserve_limits(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "coir_ropes_french_polynesia_2024": {
+                "machine-twisted and hand-braided",
+                "individual-fiber response",
+                "polyacht",
+                "human-support rope",
+            },
+            "scientific_reports_biodegradable_gillnet_knot_2024": {
+                "double weaver's knot",
+                "prior material degradation",
+                "only three specimens",
+                "dry synthetic fishing monofilament",
+            },
+            "scientific_reports_silk_slip_knot_mechanics_2016": {
+                "raw versus chemically degummed",
+                "one topology loosened while the other tightened",
+                "single silk fiber is not finished rope",
+                "human-suspension rule",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertEqual(source["decision"], "accept_targeted_scope")
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_023_gated_and_rejected_sources_are_quarantined(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        markers = {
+            "qeswachaka_festuca_rope_mechanics_2024": {
+                "community-centered review",
+                "four named bridge-renewal communities",
+                "heritage bridge study",
+            },
+            "brin_banana_peduncle_rope_2025": {
+                "chemical-safety review",
+                "specimen-code inconsistencies",
+                "hazardous treatment",
+            },
+            "navsea_nstm_chapter_613_rope_1999": {
+                "third-party 1999 mirror",
+                "current authenticated text",
+                "not by itself a copyright or ai-training license",
+            },
+            "bioresources_antibacterial_natural_fibres_2014": {
+                "noncommercial use only",
+                "do not automatically survive retting",
+                "finished-rope hygiene",
+            },
+            "rice_straw_rope_mechanics_2022": {
+                "ordinary elsevier copyright",
+                "one rice variety",
+                "rice straw is not jute",
+            },
+            "e3s_hibiscus_bark_rope_2020": {
+                "seven chemically treated single fibers",
+                "conflicting pdf doi",
+                "absence of finished-rope manufacture or testing",
+            },
+            "matsushita_cotton_gillnet_degradation_2008": {
+                "japanese society of fisheries science",
+                "treated cotton mesh",
+                "seawater exposure is not hygiene",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            self.assertIn(source["decision"], {"defer", "reject"})
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_022`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_023`", self.report)
 
 
 if __name__ == "__main__":

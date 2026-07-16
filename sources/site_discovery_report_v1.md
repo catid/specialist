@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T16:31:02Z
-Latest batch: `discovery_batch_022`
+Latest review at: 2026-07-16T16:54:26Z
+Latest batch: `discovery_batch_023`
 
 ## Outcome
 
@@ -1595,4 +1595,81 @@ The scout stopped at IRATA's `ai-train=no` signal and J-STAGE's PDF prohibition,
 did not retrieve the gated bodies for corpus use, and did not use a mirror,
 cache, archive or snippet reconstruction. No login, paywall, challenge or
 access block was bypassed, and no reviewed source body entered a training
+artifact during discovery.
+
+## Discovery batch 023 outcome
+
+`discovery_batch_023` manually reviewed 10 exact-new source identities after
+title, DOI, document, article, repository and canonical-URL deduplication. It
+records 3 `accept_targeted_scope`, 6 `defer`, and 1 `reject`. The accepted
+sources expand the canonical Markdown queue from 159 to 162 resources; the
+discovery ledger grows from 277 to 287 records.
+
+This gap-focused batch adds three open primary studies that isolate different
+levels of rope and knot behavior: finished coir rope, a defined fishing-knot
+and net system, and two slip-knot topologies in single silk fibers. Their value
+is not a new strength, care, knot-security or suspension rule. Together they
+show why fiber, material, knot, construction and assembled-system behavior
+must be distinguished and why friction or water exposure cannot be assigned a
+single context-free effect.
+
+The batch also preserves a technically and culturally valuable Q'eswachaka
+lead, a federal naval manual identity, alternative-fiber rope tests, a natural-
+fiber antibacterial review, rice-straw rope mechanics and cotton-net aging
+without crossing publisher, community, component, currentness, chemical-
+safety, method-quality or unsupported-transfer gates.
+
+### Newly accepted sources
+
+| Source | Score | Exact useful scope and boundary |
+|---|---:|---|
+| [Coir ropes in French Polynesia pearl farming](https://doi.org/10.1016/j.clcb.2024.100111) | 39 | CC BY primary evidence compares individual coir fiber with machine-twisted and hand-braided finished ropes, including dry and water-saturated conditions. Preserve construction-quality effects, the fiber-to-rope prediction limit, conflicts and in-situ-aging gap. Exclude all values, recipes, ratings and life-cycle numbers; coir pearl-farming rope is not jute or hemp body-support rope. |
+| [Knot strength in a biodegradable gillnet](https://www.nature.com/articles/s41598-024-66474-3) | 36 | CC BY tests PA6 and PBSAT fishing monofilaments at monofilament, double-weaver's-knot and net-panel scales. It supports only the bounded lesson that tensile behavior alone missed geometry, tightening, sliding, friction, curvature and prior degradation effects. Preserve the degraded-material and small-sample limits; exclude values, procedures, code and transfer to other knots or rope bondage. |
+| [Slip knots in raw and degummed silk](https://www.nature.com/articles/srep18222) | 29 | CC BY single-fiber evidence shows that two superficially related slip-knot topologies loosened or tightened differently under pull and that added surface friction could help or harm sliding behavior depending on topology. Exclude optimization, values, recipes and operational instructions; a silkworm-silk fiber is not finished rope and supplies no security or human-support rule. |
+
+### Permission-, provenance-, or specialist-review references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [Q'eswachaka natural-fiber rope characterization](https://publicacoes.softaliza.com.br/cilamce/article/view/8120) | 35 | Rare Festuca, Q'eswa, Maqui and Duro vocabulary and bridge-renewal context merit preservation, but ordinary copyright plus community, cultural and component authority require explicit permission and appropriate community-centered review. |
+| [NAVSEA NSTM Chapter 613](https://maritime.org/doc/nstm/ch613.pdf) | 32 | A third-party 1999 mirror and current official cross-reference establish a useful document lead, not current authenticated text, federal authorship or component rights. Find an official current body and audit every component before conversion; Navy values and policy do not transfer to bondage. |
+| [Cotton gillnet degradation](https://doi.org/10.1111/j.1444-2906.2008.01517.x) | 26 | Intermittent fishing-and-drying versus continuous seawater immersion could inform study design, but society copyright requires permission and treated cotton mesh cannot establish jute or hemp care, hygiene or retirement. |
+| [Rice-straw rope mechanics](https://www.sciencedirect.com/science/article/pii/S0926669022002126) | 25 | The fiber-to-rope hierarchy is a potential methods lead, but ordinary copyright, partial body access and one rice-variety context make this metadata-only pending permission and full review. |
+| [Antibacterial properties of hemp and other natural-fiber plants](https://bioresources.cnr.ncsu.edu/resources/antibacterial-properties-of-hemp-and-other-natural-fibre-plants-a-review/) | 20 | BioResources permits attributed noncommercial reuse only. Plant, extract, compound, isolated-fiber or composite observations do not prove finished-rope hygiene, mold resistance, cleaning or safe body contact; permission and claim-level primary-source review are required. |
+| [Banana-peduncle fiber rope characterization](https://ejournal.brin.go.id/jsmi/article/view/9439) | 18 | CC BY-SA availability does not cure small samples, apparatus limits, specimen-code inconsistencies, manufacture and treatment confounding or hazardous chemical-treatment contamination. Textile-methods and chemical-safety review are required before any body use. |
+
+### Rejected source
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [Hibiscus bark fiber promoted as rope material](https://www.e3s-conferences.org/articles/e3sconf/ref/2020/18/e3sconf_icepp2020_04007/e3sconf_icepp2020_04007.html) | 8 | Despite CC BY and a rope-focused title, the paper makes and tests no finished rope: it tests seven chemically treated single fibers, speculates about a marine application and has conflicting DOI suffixes. Open licensing does not cure those evidence failures. |
+
+### Batch 023 rights, evidence, and safety controls
+
+The three accepted articles carry article-level CC BY 4.0 and will require
+attribution, checksums, version identity, modification notices, disclosure
+retention and component exclusions. Separately linked code, supplements,
+figures and cited-source bodies are not swept into the license assumption.
+Ordinary copyright, noncommercial terms, uncertain ShareAlike compatibility,
+third-party mirrors and unresolved community or component authority remain
+hard gates even when a document is public or marked for public release.
+
+No result is treated as a recipe or rating. Coir, cotton, rice straw, banana
+peduncle, Hibiscus bark, silk, PA6 and PBSAT remain distinct materials and
+forms. A single fiber is not a yarn or rope; a fishing knot is not every knot;
+a net panel is not a bondage harness; pearl farming, naval service and marine
+immersion are not human suspension. None of these candidates supplies a body-
+contact, care, cleaning, hygiene, retirement, working-load, hardpoint, upline,
+medical-treatment or human-suspension rule.
+
+### Batch 023 access and clean-room statement
+
+Discovery read only the governing candidate ledger, queue, report and tests,
+ordinary first-party publisher, repository, government and rights pages, the
+complete bodies needed for accepted-source and rejection audits, and limited
+reference-only bodies or metadata needed to resolve gates. No QA, trainer,
+projection, evaluation, heldout, holdout, OOD, shadow, benchmark, probe,
+experiment, existing corpus body or unrelated repository artifact was read.
+No login, paywall, challenge, crawler restriction, cache, archive or snippet
+reconstruction was bypassed, and no reviewed source body entered a training
 artifact during discovery.
