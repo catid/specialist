@@ -1449,12 +1449,160 @@ class SourceCorpusContractTest(unittest.TestCase):
             self.assertEqual(source["training_use"], "rejected_low_yield")
             self.assertNotIn(candidate_id, queued)
 
+    def test_batch_010_decisions_are_complete_and_deterministic(self) -> None:
+        batch = {
+            row["candidate_id"]: row
+            for row in self.candidates
+            if row["review_batch"] == "discovery_batch_010"
+        }
+        self.assertEqual(len(batch), 12)
+        expected = {
+            "accept_high_priority": {
+                "mdpi_tree_climbing_friction_hitch_2021",
+            },
+            "accept_targeted_scope": {
+                "nist_aramid_rope_sling_fatigue_1976",
+                "openrn_nursing_skills_targeted_assessment",
+                "uk_mca_rope_access_lifting_2024_2026",
+                "uk_mca_tensioned_rope_hazards_2024",
+            },
+            "defer": {
+                "bowline_self_locking_mechanics_2025",
+                "bdsm_marks_injury_exploration_2023",
+                "kink_injury_healthcare_utilization_2021",
+                "hse_hsg221_offshore_lifting_2007",
+                "worksafe_nz_industrial_rope_access_2012",
+            },
+            "reject": {
+                "cambridge_geninka_slavery_tokugawa_2023",
+                "mdpi_bdsm_complexity_consent_2025",
+            },
+        }
+        for decision, candidate_ids in expected.items():
+            self.assertEqual(
+                {
+                    candidate_id
+                    for candidate_id, row in batch.items()
+                    if row["decision"] == decision
+                },
+                candidate_ids,
+            )
+
+    def test_batch_010_accepted_sources_preserve_evidence_bounds(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queue_by_id = {row["resource_id"]: row for row in self.corpus["queue"]}
+        markers = {
+            "mdpi_tree_climbing_friction_hitch_2021": {
+                "36 total tests",
+                "nine replicates per treatment",
+                "dynamic and cyclic",
+                "short quasi-static bench stroke",
+                "cc by 4.0",
+            },
+            "nist_aramid_rope_sling_fatigue_1976": {
+                "26 prototype aramid sling-leg specimens",
+                "inadequate manufacturer end fittings",
+                "incompletely substantiated",
+                "helicopter external-cargo sling",
+            },
+            "openrn_nursing_skills_targeted_assessment": {
+                "chapters 6, 9, 13, and 14",
+                "sensory-versus-motor",
+                "not rope-specific guidance or medical advice",
+                "cc by 4.0",
+            },
+            "uk_mca_rope_access_lifting_2024_2026": {
+                "january 7, 2026",
+                "mounts, fixings, attachments",
+                "load path",
+                "open government licence v3.0",
+            },
+            "uk_mca_tensioned_rope_hazards_2024": {
+                "snap-back",
+                "snagged-line sudden release",
+                "massive-vessel-load",
+                "open government licence v3.0",
+            },
+        }
+        for candidate_id, required in markers.items():
+            source = by_id[candidate_id]
+            queued = queue_by_id[candidate_id]
+            self.assertTrue(source["decision"].startswith("accept_"))
+            self.assertEqual(queued["scope"], source["recommended_crawl_scope"])
+            self.assertEqual(queued["training_use"], source["training_use"])
+            self.assertEqual(queued["rights_basis"], source["rights_basis"])
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+    def test_batch_010_restricted_sources_and_rejections_are_not_queued(self) -> None:
+        by_id = {row["candidate_id"]: row for row in self.candidates}
+        queued = {
+            row["discovery_candidate_id"]
+            for row in self.corpus["queue"]
+            if "discovery_candidate_id" in row
+        }
+        deferred_markers = {
+            "bowline_self_locking_mechanics_2025": {
+                "cc by-nc-sa 4.0",
+                "nearly inextensible elastic rod",
+                "licensing workaround",
+            },
+            "bdsm_marks_injury_exploration_2023": {
+                "cc by-nc 4.0",
+                "n=513",
+                "population prevalence",
+            },
+            "kink_injury_healthcare_utilization_2021": {
+                "cc by-nc-nd 4.0",
+                "n=1,398",
+                "noderivatives",
+            },
+            "hse_hsg221_offshore_lifting_2007": {
+                "all rights reserved",
+                "specific notice",
+                "written permission",
+            },
+            "worksafe_nz_industrial_rope_access_2012": {
+                "iraanz",
+                "pre-2015-law",
+                "adaptation permission",
+            },
+        }
+        for candidate_id, required in deferred_markers.items():
+            source = by_id[candidate_id]
+            self.assertEqual(source["decision"], "defer")
+            self.assertNotIn(candidate_id, queued)
+            text = json.dumps(source, sort_keys=True).lower()
+            for marker in required:
+                self.assertIn(marker, text, candidate_id)
+
+        geninka = by_id["cambridge_geninka_slavery_tokugawa_2023"]
+        self.assertEqual(geninka["decision"], "reject")
+        self.assertEqual(geninka["training_use"], "rejected_out_of_scope")
+        self.assertNotIn(geninka["candidate_id"], queued)
+        self.assertIn("enslavement and bonded labor", geninka["decision_reason"])
+        self.assertIn("never use the article to assert a shibari", geninka["recommended_crawl_scope"].lower())
+
+        consent = by_id["mdpi_bdsm_complexity_consent_2025"]
+        self.assertEqual(consent["decision"], "reject")
+        self.assertEqual(consent["training_use"], "rejected_safety_and_low_transfer")
+        self.assertNotIn(consent["candidate_id"], queued)
+        consent_text = json.dumps(consent, sort_keys=True).lower()
+        for marker in {
+            "no empirical practice evidence",
+            "capacity",
+            "immediate withdrawal",
+            "kecc",
+        }:
+            self.assertIn(marker, consent_text)
+
     def test_report_covers_each_review_batch_and_decision(self) -> None:
         for batch_id in {row["review_batch"] for row in self.candidates}:
             self.assertIn(batch_id, self.report)
         for decision in set(self.discovery["decisions"]):
             self.assertIn(decision, self.report)
-        self.assertIn("Latest batch: `discovery_batch_009`", self.report)
+        self.assertIn("Latest batch: `discovery_batch_010`", self.report)
 
 
 if __name__ == "__main__":

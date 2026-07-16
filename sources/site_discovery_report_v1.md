@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T10:37:58Z
-Latest batch: `discovery_batch_009`
+Latest review at: 2026-07-16T11:04:00Z
+Latest batch: `discovery_batch_010`
 
 ## Outcome
 
@@ -598,3 +598,77 @@ or rightsholder routes, respected access and reuse terms, and did not bypass a
 login, purchase, member area, Patreon restriction, verification challenge,
 crawler restriction, missing body, or license. Discovery wrote no reviewed page
 body to a training artifact.
+
+## Discovery batch 010 outcome
+
+`discovery_batch_010` manually reviewed 12 additional, nonduplicate source
+candidates against their primary pages, methods and limitations, current reuse
+terms, domain transfer, and safety value. It produced 1
+`accept_high_priority`, 4 `accept_targeted_scope`, 5 `defer`, and 2 `reject`
+decisions. The five accepted candidates expand the canonical corpus queue from
+89 to 94 resources.
+
+This batch deliberately separates technically strong evidence from permission
+to transform it. It adds a CC BY primary friction-hitch experiment, a federal
+aramid-rope fatigue study, a narrowly bounded CC BY nursing assessment source,
+and two current OGL maritime system-hazard families. Equally relevant bowline,
+injury, healthcare, offshore-lifting, and rope-access sources remain
+reference-only where licenses, publication-specific copyright, coauthor rights,
+or currency are unresolved.
+
+### Newly accepted sources
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [Tree-climbing rope and friction-hitch study](https://www.mdpi.com/1999-4907/12/11/1457) | `accept_high_priority` | 39 | CC BY 4.0 primary evidence from 36 slow-pull tests, two specified synthetic arborist rope systems, Prusik and Valdotain tresse hitches, and nine replicates per treatment. Preserve load, slip, diameter, temperature, statistics, preliminary status, and call for dynamic and cyclic work; do not generalize the short quasi-static bench tests to natural fiber, bondage rope, falls, safe ratings, human suspension, or a universally best hitch. |
+| [NBSIR 76-1159 aramid rope-sling fatigue study](https://www.nist.gov/publications/fatigue-and-weatherability-studies-aramid-fiber-rope-slings) | `accept_targeted_scope` | 36 | Historical federal primary research on 26 prototype aramid sling-leg specimens, two construction families, fatigue-spectrum and simulated-weathering tests, residual strength, permanent elongation, and end fittings. Preserve the report's decisive limitation: inadequate manufacturer end fittings prevented thorough evaluation and left its observations incompletely substantiated. Exclude loads, ratings, operations, vendor design, and transfer from helicopter cargo slings to bondage or human suspension. |
+| [Open RN Nursing Skills](https://www.ncbi.nlm.nih.gov/books/NBK593210/) | `accept_targeted_scope` | 27 | CC BY 4.0 clinical vocabulary from only the neurological, cardiovascular, musculoskeletal, and integumentary assessment concept sections. Preserve sensory-versus-motor and expected-versus-unexpected distinctions plus professional-assessment limits; exclude diagnosis, treatment, procedures, self-tests, and every inference about rope-safe placement, pressure, duration, release, or recovery. |
+| [MCA work-at-height and lifting guidance](https://www.gov.uk/government/publications/mgn-410-mf-amendment-3-work-at-height-regulations-2010/mgn-410-mf-amendment-3-the-merchant-shipping-and-fishing-vessels-health-and-safety-at-work-work-at-height-regulations-2010) | `accept_targeted_scope` | 33 | Current OGL text from MGN 410 amendment 3 and MGN 332 amendment 4 on planning, competence, supervision, rescue, foreseeable loads, conditional rope access, whole-system design, maintenance, examination, records, and mounts or attachments in the load path. Exclude maritime law, ratings, intervals, operations, certification, and any bondage or structural approval claim. |
+| [MCA tensioned-rope hazard guidance](https://www.gov.uk/government/publications/mgn-592-mf-anchoring-mooring-towing-or-hauling-equipment/mgn-592-mf-amendment-2-anchoring-mooring-towing-or-hauling-equipment-on-all-vessels) | `accept_targeted_scope` | 33 | Current OGL whole-system concepts for complete load paths, bights under tension, snap-back, snag release, redirects, changing hazard zones, maintenance, communication, and exclusion. Exclude every maritime operational procedure and numeric value; massive vessel-line behavior must not become bondage, upline, anchor, rescue, or human-suspension instruction. |
+
+### Deferred sources
+
+| Source | Score | Why it is reference-only |
+|---|---:|---|
+| [Self-locking and Stability of the Bowline Knot](https://arxiv.org/abs/2509.10306) | 40 | Excellent experiments and FEM, DEM, and capstan-inspired theory, but the arXiv record is CC BY-NC-SA 4.0. Retain identifiers and simplified-model limitations and seek commercial derivative/model-training permission; do not use public HTML as a licensing workaround. |
+| [Marks and injuries related to BDSM experiences](https://pmc.ncbi.nlm.nih.gov/articles/PMC10236207/) | 32 | The 2023 study is CC BY-NC 4.0. Its 513-person US convenience sample, self-selection, self-report, and broad BDSM or rough-sex scope cannot establish incidence, population prevalence, causality, safety, or rope-specific injury rates. |
+| [Injury and healthcare utilization for kink-identified patients](https://academic.oup.com/jsm/article/18/10/1721/6955925) | 32 | The 2021 article is CC BY-NC-ND 4.0. Its 1,398-person US convenience sample is useful for disclosure, stigma, and delayed or avoided care, but not population prevalence, rope injury frequency, severity, or causal claims; transformation requires permission. |
+| [HSE HSG221 offshore lifting guidance](https://www.hse.gov.uk/pubns/books/hsg221.htm) | 34 | The 2007 PDF's own all-rights-reserved notice requires prior written permission and overrides the generic current site footer. Its offshore, UK-law, and older context also needs a currency review before any narrowly transferable mechanics digest. |
+| [WorkSafe NZ industrial rope-access guidelines](https://www.worksafe.govt.nz/assets/dmsassets/3/3212WKS-2-industrial-rope-access-guidelines.pdf) | 35 | Strong anchor, documentation, inspection, rescue, and system-design leads, but the PDF credits IRAANZ copyright, the general WorkSafe policy does not clearly authorize adaptation, and pre-2015-law material may be replaced or revoked. Resolve coauthor rights and currency first. |
+
+### Rejected sources
+
+| Source | Score | Reason |
+|---|---:|---|
+| [Geninka and Slavery](https://www.cambridge.org/core/journals/itinerario/article/geninka-and-slavery-jesuit-casuistry-and-tokugawa-legislation-on-japanese-bondage-1590s1620s/37CF82521DE28A9E00EDF9F1ADE915AC) | 17 | High-quality CC BY scholarship, but “bondage” means enslavement and bonded labor, not erotic rope bondage or kinbaku. Reject this search-term false positive to prevent false lineage, etymology, and Tokugawa-slavery claims. |
+| [BDSM and the Complexity of Consent](https://www.mdpi.com/2411-5118/6/1/4) | 19 | A non-empirical, non-rope-specific theoretical paper whose detached formulations can blur clear capacity, ongoing agreement, and withdrawal boundaries. Rights are permissive, but operational transfer and safety are inferior to KECC and other clearer ethics sources. |
+
+### Batch 010 rights, evidence, and safety controls
+
+CC BY, OGL, or federal status is necessary but not sufficient for inclusion.
+Every accepted source has a component audit and a narrow domain boundary.
+Images, trademarks, linked standards, vendor material, and separately credited
+components remain excluded. The arXiv and clinical studies are not transformed
+under NonCommercial or NoDerivatives terms. HSG221's publication-specific
+notice controls over a generic footer, and WorkSafe's accurate-reproduction
+policy is not silently expanded into adaptation permission.
+
+The accepted experiments and industrial guidance are not bondage validation.
+Short quasi-static arborist tests, prototype aramid helicopter sling tests,
+nursing assessment vocabulary, and maritime systems each retain their original
+materials, scale, method, and purpose. None supplies a safe rope, knot, hitch,
+load, pressure, duration, retirement rule, anchor, hardpoint, upline, body
+placement, rescue procedure, or human-suspension guarantee. The two rejected
+sources additionally protect against false Japanese lineage and ambiguous
+consent-policy transfer.
+
+### Batch 010 access and clean-room statement
+
+Repository inspection remained restricted to the governing discovery ledger,
+corpus queue, report, and discovery tests. No QA, training projection, manual
+review, evaluation, heldout, holdout, OOD, shadow, benchmark, probe, trainer, or
+existing source-corpus artifact was read. Public review used ordinary official,
+publisher, repository, DOI, and license routes, respected current access and
+reuse terms, and did not bypass a login, paywall, challenge, crawler
+restriction, missing body, license, or publication-specific notice. Discovery
+wrote no reviewed page body to a training artifact.
