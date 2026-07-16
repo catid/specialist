@@ -1,0 +1,145 @@
+{
+  "access_contract": {
+    "base_evidence_reopened_at_population_runtime": false,
+    "builder_reads_train_semantics": false,
+    "direct_benchmark_source_opened": false,
+    "dry_run_launches_model_or_gpu": false,
+    "dry_run_reads_train_semantics": false,
+    "only_runtime_train_paths_may_open": [
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_fold3_train_v412.jsonl",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_row_conflict_unit_membership.json",
+      "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_generation_boundary_subset.json",
+      "/home/catid/specialist/data/general_prose_anchor_v1.jsonl",
+      "/home/catid/specialist/data/general_qa_proxy_anchor_v43h.jsonl"
+    ],
+    "original_split_manifest_opened_at_runtime": false,
+    "shadow_ood_holdout_or_benchmark_path_opened": false
+  },
+  "artifacts": {
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline.attempt.json",
+    "candidate_gate": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/candidate_gate_v50.json",
+    "exact_abort": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/exact_abort_v50.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/gpu_activity_v50.jsonl",
+    "population": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/population_reliability_v50.json",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/matched_lora_es_report_v50.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline",
+    "snapshot": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v50_matched_lora_es_generation_boundary_pop8_cpu_pipeline/adapter_step1_v50"
+  },
+  "content_sha256_before_self_field": "a3358681c83aff7748edd00ed0b6fa3e1c0a4b63605c13bf37330fc4627e4d77",
+  "created_at_utc": "2026-07-16T02:43:01.278514+00:00",
+  "current_fixed_holdout_cycle_eligible": false,
+  "generation_boundary_objective": {
+    "common_random_plan_receipts": 64,
+    "fail_if_fragile_generation_f1_has_zero_population_spread": true,
+    "primary": "equal average of unit-norm domain and fragile generated-F1 centered-rank coefficient vectors",
+    "projection_halfspaces": [
+      "domain",
+      "fragile_generation_f1",
+      "prose_lm",
+      "qa_answer_logprob"
+    ],
+    "trust_region_norm_ratio": 0.5
+  },
+  "gpu_launch_authorized": true,
+  "implementation_bindings": {
+    "builder_v50": "be9639d7813bd32d48db11c454653548e1908ba47d00a1b65ae6e84cf6e0ce67",
+    "parent_preregistration_v48b": "34e19fe84ff061b98a8627f07daab59f5cbb8c718668fc479454114fef67c3d0",
+    "pipeline_v50": "640c3190a63392577fcd514f0f7c5dc1a4757b19b04825d78aa52ed7b9e9153d",
+    "runtime_v48b": "fa02c9568c7f027d4f9083ec270d4d2b132867fcfb733be8a23151f64c9e6401",
+    "runtime_v50": "303cda396f1e8aadc7f57453d13f77eb985528340cba1f1a1151130f4f4f89c7",
+    "tests_v50": "53a671044433c71354c64c4152a7790f19bfd3e92c15eadc3729c8eb2a38fd88"
+  },
+  "parents": {
+    "v48b_preregistration": {
+      "content_sha256": "4d5e17a07551377f0ef39c3dfa306fda68b9b669eeafd3c78ebbfff894072d1e",
+      "file_sha256": "34e19fe84ff061b98a8627f07daab59f5cbb8c718668fc479454114fef67c3d0",
+      "objective_and_gate_contract_inherited_exactly": true,
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/matched_lora_es_generation_boundary_pop8_v48b.json"
+    }
+  },
+  "population_scoring_schedule": {
+    "completion_order_affects_placement": false,
+    "cpu_scorer_actors": 4,
+    "cpus_per_scorer_actor": 1,
+    "generation_outputs_passed_by_object_reference": true,
+    "gpus_per_scorer_actor": 0,
+    "max_outstanding_scoring_states": 1,
+    "objective_or_gate_changed": false,
+    "restore_verified_before_next_materialization": true,
+    "scorer_inputs_initialized_once_and_immutable": true,
+    "state_order": "direction ascending; plus then minus; actor rank ascending"
+  },
+  "protected_semantic_access_authorized": false,
+  "protected_semantics_opened": false,
+  "purpose": "Overlap frozen V48B per-actor CPU scoring with the next signed state's generation using a one-state bounded buffer, without changing requests, objectives, exact restores, or gates.",
+  "quality_selection_or_promotion_authorized": false,
+  "recipe": {
+    "alpha": 0.00015,
+    "conflict_units": 208,
+    "dataset": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_fold3_train_v412.jsonl",
+    "dataset_rows": 448,
+    "dataset_sha256": "97fc920ac39f67536df26977de951e8c34bf8486eb8f42fbb0a67687f025a92a",
+    "engine_count": 4,
+    "fragile_generation_documents": 64,
+    "fused_requests_per_population_actor_state": 608,
+    "matched_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/initial_adapters/matched_lora_initialization_v41a_seed20260715041",
+    "membership": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_row_conflict_unit_membership.json",
+    "membership_file_sha256": "13f30232dd735451d4b90682b335072cbcc86de263c0984170f931721f764a9f",
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "physical_gpu_ids": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "population_size": 8,
+    "request_order_sha256": "8823e00d9600dc1ce56b2f5f5024a184d0b46ada034523ea2acbe6c7cd920dc7",
+    "seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570
+    ],
+    "sigma": 0.0006,
+    "signed_replicates_per_direction": 4,
+    "staged_initialization": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/matched_lora_initialization_v41b",
+    "subset": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v48b_train_generation_boundary_subset.json",
+    "subset_content_sha256": "99fa38820a55d3ba7af0a10b5ae26238ffff754fded001a6cc248319cfcc23ca",
+    "subset_file_sha256": "e1c3601d1328ee2a1345423632e423628857147042755b8ac15e21a2506a0060",
+    "tensor_parallel_size_per_engine": 1,
+    "train_bundle_content_sha256": "bc58bed21f60f6665b666b12c11d084b0e681b72e160918c871866b31d23ca99",
+    "worker_extension": "eggroll_es_worker_lora_v43i.LoRAAdapterStateWorkerExtensionV43I"
+  },
+  "required_gates": {
+    "V43I_reliability_and_exact_restore_retained": true,
+    "V48B_population_numeric_equivalence": true,
+    "all_common_random_plan_receipts_exact": true,
+    "all_four_gpus_attributed_positive": true,
+    "all_state_restores_verified_before_successor_materialization": true,
+    "cpu_scorers_have_zero_gpu_visibility": true,
+    "deterministic_actor_rank_placement": true,
+    "direct_f1_population_spread_nonzero": true,
+    "domain_f1_prose_qa_halfspaces_all_nonnegative": true,
+    "full_candidate_gate_passes_before_commit": true,
+    "one_scoring_state_queue_bound": true,
+    "strict_cleanup_and_idle": true
+  },
+  "runtime": {
+    "tuned_folder": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d"
+  },
+  "schema": "matched-lora-es-generation-boundary-preregistration-v50",
+  "shadow_ood_holdout_or_benchmark_authorized": false,
+  "shadow_ood_holdout_or_benchmark_opened": false,
+  "status": "preregistered_before_train_only_launch",
+  "uncommitted_candidate_gate": {
+    "abort_on_any_failure": true,
+    "adds_fragile_f1_exact_and_nonzero_noninferiority": true,
+    "candidate_scored_before_commit": true,
+    "inherits_full_128_document_v43i_anchor_gate": true
+  }
+}
