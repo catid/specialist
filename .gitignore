@@ -12,6 +12,12 @@ sglang_storage/
 experiments/eggroll_es/
 experiments/eggroll_es_hpo/runs/
 experiments/eggroll_es_hpo/**/runs/
+experiments/eggroll_es_hpo/staged_adapters/
+experiments/sft_controls/**/checkpoint-*/
+experiments/sft_controls/**/final/
+experiments/sft_controls/**/.train_*.jsonl.*-input/
+experiments/sft_controls/**/gpu_activity_*.jsonl
+experiments/dataset_probes/**/eval-output/
 experiments/gpu_utilization_eggroll_es_*.jsonl
 !experiments/gpu_utilization_eggroll_es_train_smoke.jsonl
 !experiments/gpu_utilization_eggroll_es_hpo.jsonl
