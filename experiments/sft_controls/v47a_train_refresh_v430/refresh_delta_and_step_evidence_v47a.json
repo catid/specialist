@@ -1,0 +1,132 @@
+{
+  "access_firewall": {
+    "eval_ood_holdout_or_benchmark_opened": false,
+    "external_metrics_used": false,
+    "shadow_dev_opened": false,
+    "train_artifacts_opened": true
+  },
+  "content_sha256_before_self_field": "1cb5da88101e8742642ff0238ea7b8bbf04c2c5a1a0617ebc60b5c70010f11e4",
+  "inputs": {
+    "fold_manifest": {
+      "content_sha256": "326522033a8d085fe815f5a9b9b2793c687944462fc18c9a28340794f70a70f3",
+      "path": "/home/catid/specialist/experiments/sft_controls/v47a_train_refresh_v430/manifest_v47a.json",
+      "sha256": "ced1c2f48a758d6ed3318eeae2575f9a3425fc4da669f4e372701ee9d54c4106"
+    },
+    "v412": {
+      "path": "/home/catid/specialist/experiments/sft_controls/v36a_v412/train_v412.jsonl",
+      "sha256": "44a5482e49073d23a35bdc4c574d6c52c9e8d7f946559dfa722dda16eec5882b"
+    },
+    "v430": {
+      "path": "/home/catid/specialist/experiments/sft_controls/v47a_train_refresh_v430/train_v430.jsonl",
+      "sha256": "a230b0f0c32a53e8b40140bd5881cfe7e7102f565dd2b3989e38b1fe9a8804c2"
+    }
+  },
+  "refresh_delta": {
+    "accepted_edit_decisions": 51,
+    "added_rows": 0,
+    "component_membership_sets_identical": true,
+    "conflict_units_after": 259,
+    "conflict_units_before": 259,
+    "dominant_stratum_changes": 0,
+    "dropped_rows": 0,
+    "edited_units": 37,
+    "edited_units_without_identity_change": 0,
+    "expected_edit_driven_unit_identity_changes": 37,
+    "fold_3": {
+      "moved_in_row_multiplicity_histogram": {
+        "1": 22,
+        "10": 1,
+        "2": 3,
+        "3": 3
+      },
+      "moved_out_row_multiplicity_histogram": {
+        "1": 19,
+        "13": 1,
+        "2": 5,
+        "3": 2,
+        "4": 1,
+        "6": 1
+      },
+      "row_multiplicity_histogram_after": {
+        "1": 42,
+        "10": 1,
+        "2": 4,
+        "3": 4
+      },
+      "row_multiplicity_histogram_before": {
+        "1": 39,
+        "13": 1,
+        "2": 6,
+        "3": 3,
+        "4": 1,
+        "6": 1
+      },
+      "rows_after": 72,
+      "rows_before": 83,
+      "rows_moved_in": 47,
+      "rows_moved_out": 58,
+      "units_after": 51,
+      "units_before": 51,
+      "units_moved_in": 29,
+      "units_moved_out": 29,
+      "units_retained": 22
+    },
+    "fold_assignment_changes": 147,
+    "interpretation": "The graph partition and strata are unchanged. Accepted edits alter content hashes for exactly their containing units; the frozen keyed permutation consequently reorders units. Fold 3 still contains 51 components, but the 29 components entering it contain 47 rows while the 29 leaving contain 58. That fixed-component, variable-multiplicity composition explains the 83 -> 72 row change with no membership or per-unit multiplicity drift and no protected-data feedback.",
+    "refreshed_rows": 531,
+    "source_rows": 531,
+    "unedited_units_with_exact_identity_preserved": 222,
+    "unexplained_unit_identity_changes": 0,
+    "unit_row_multiplicities_identical": true,
+    "units_with_row_multiplicity_change": 0
+  },
+  "schema": "specialist-v47a-refresh-delta-and-step-evidence",
+  "status": "sealed_train_only_evidence_training_unlaunched",
+  "step_schedule": {
+    "batch_sampler_shard_iterator_source_sha256": "2cb661f648d0b91cd046d0a978e77d040dfc42e10b0375d941e897f59245541e",
+    "batch_sampler_shard_len_source_sha256": "64426395809166aa59e81d51874b2d63480ea3c70e79af36b9670ea6be6700eb",
+    "complete_three_all_row_passes_claimed": false,
+    "dataloader_drop_last": true,
+    "effective_global_batch_size": 28,
+    "epochs_argument": 3,
+    "examples_consumed_per_dataloader_epoch": 448,
+    "expected_completed_dataloader_epochs": 3,
+    "expected_optimizer_steps": 48,
+    "expected_optimizer_steps_without_cap": 48,
+    "explicit_max_steps_cap": 48,
+    "implementation": "installed Accelerate BatchSamplerShard no-split path",
+    "interpretation": "The explicit max_steps=48 cap is the terminal authority and exactly matches V42I's realized compute. With the inherited drop-last path, the installed Trainer has 16 steps per dataloader epoch, so 48 steps also lands at epoch 3.0. Each pass emits 448 of 459 rows, however, so this is 2.928 row-equivalent passes and not a claim of three complete all-row passes. The often-assumed 48/17 = 2.82 figure does not apply to this exact V42I drop-last recipe.",
+    "max_steps_is_terminal_authority": true,
+    "optimizer_steps_per_dataloader_epoch": 16,
+    "per_device_batch_size": 7,
+    "rank_batch_counts": [
+      {
+        "iterated_batches": 16,
+        "len": 16,
+        "rank": 0
+      },
+      {
+        "iterated_batches": 16,
+        "len": 16,
+        "rank": 1
+      },
+      {
+        "iterated_batches": 16,
+        "len": 16,
+        "rank": 2
+      },
+      {
+        "iterated_batches": 16,
+        "len": 16,
+        "rank": 3
+      }
+    ],
+    "row_equivalent_passes": 2.9281045751633985,
+    "source_rows_dropped_by_unsharded_incomplete_batch": 4,
+    "source_rows_not_emitted_per_dataloader_epoch": 11,
+    "total_examples_emitted": 1344,
+    "train_rows": 459,
+    "unsharded_complete_per_device_batches": 65,
+    "world_size": 4
+  }
+}
