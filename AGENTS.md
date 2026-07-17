@@ -73,6 +73,12 @@
   pack two source documents into one example.
 - Keep rights-review and policy-blocked corpora in the snapshot's explicit
   exclusion ledger. Do not silently omit them or silently override their gate.
+- When the user explicitly authorizes named rights-review corpora for training,
+  preserve the original license/rights metadata and add a separate
+  content-addressed authorization override recording the scope, rationale,
+  date, and attribution requirements. Never rewrite an unverified license as
+  verified, and never let an override for named corpora implicitly authorize
+  other blocked material.
 - A materialized snapshot is not evaluation-disjointness authority. Require a
   fresh opaque source-disjoint contract extension before launching adaptation
   on newly added corpus bytes.

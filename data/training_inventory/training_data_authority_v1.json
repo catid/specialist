@@ -1,0 +1,2156 @@
+{
+  "canonical_training_protocol": "plan.md",
+  "content_sha256_before_self_field": "ce434353ff356b62fda4029cff85367b4983284e2e76f7eccb62627c875f70bb",
+  "exclusions": {
+    "duplicate_replay_representation": [
+      {
+        "authority_id": "replay-candidate:general-prose-anchor-v1",
+        "inventory_decision": "exclude_as_separate_input",
+        "qwen36_token_count_status": "not_reported_by_safe_aggregate",
+        "qwen36_tokens": null,
+        "reason": "the selected QA proxy is derived one-to-one from these same 128 documents; concatenating both would double-count one authority",
+        "source_document_rows": 128,
+        "source_identity_sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+        "source_type": "general_behavior_replay_candidate",
+        "split_group_id": "document_identity",
+        "training_example_rows": 128
+      }
+    ],
+    "policy_blocked_markdown_manifests": [
+      {
+        "inventory_decision": "exclude",
+        "override_applied": false,
+        "qwen36_token_count_status": "not_counted_policy_excluded",
+        "qwen36_tokens": null,
+        "reason": "terms_of_service_prohibits_content_collection_and_storage",
+        "resource_id": "shibari_study",
+        "source_document_rows": null,
+        "source_identity": "data/site_corpora/shibari_study/manifest.json",
+        "source_type": "policy_excluded_markdown_manifest",
+        "split_group_id": null
+      },
+      {
+        "inventory_decision": "exclude",
+        "override_applied": false,
+        "qwen36_token_count_status": "not_counted_policy_excluded",
+        "qwen36_tokens": null,
+        "reason": "robots_and_content_signal_ai_training_disallowed",
+        "resource_id": "theduchy",
+        "source_document_rows": null,
+        "source_identity": "data/site_corpora/theduchy/manifest.json",
+        "source_type": "policy_excluded_markdown_manifest",
+        "split_group_id": null
+      },
+      {
+        "inventory_decision": "exclude",
+        "override_applied": false,
+        "qwen36_token_count_status": "not_counted_policy_excluded",
+        "qwen36_tokens": null,
+        "reason": "treeconsult_copyright_notice_requires_written_permission_for_text_reuse",
+        "resource_id": "tree_anchor_mechanics",
+        "source_document_rows": null,
+        "source_identity": "data/site_corpora/tree_anchor_mechanics/manifest.json",
+        "source_type": "policy_excluded_markdown_manifest",
+        "split_group_id": null
+      }
+    ],
+    "superseded_or_duplicate_qa": [
+      {
+        "authority_id": "qa-lineage:legacy-curated-v1",
+        "inventory_decision": "exclude",
+        "qa_resource_index_rows": 15,
+        "qwen36_token_count_status": "not_reported_by_safe_aggregate",
+        "qwen36_tokens": null,
+        "reason": "superseded divergent authority; contains 15 URL-index trivia rows; must not be concatenated with V440",
+        "source_document_row_count_status": "not_reported_by_safe_aggregate",
+        "source_document_rows": null,
+        "source_identity_sha256": "62e7ae28c86a458d4d33bf3f73f1b91b873c86e3f70ce87706a7394d1f391507",
+        "source_path": "data/train_qa_curated_v1.jsonl",
+        "source_type": "domain_qa_projection",
+        "split_group_id": null,
+        "training_example_rows": 784,
+        "verification_status": "legacy_report_only"
+      },
+      {
+        "authority_id": "qa-subset:v440-fold3-historical-train",
+        "inventory_decision": "exclude_as_separate_input",
+        "qwen36_tokens": 34212,
+        "reason": "strict subset of authoritative V440; recorded only to prevent double counting",
+        "source_document_rows": 234,
+        "source_identity_sha256": "5d3de8f7bf3cfa802837cb65597f6d3bcd5906090fc54729fd1a1ef153c98021",
+        "source_path": "experiments/sft_controls/v53a_train_refresh_v440_fold3/fold_3_train_v440.jsonl",
+        "source_type": "domain_qa_subset_receipt",
+        "training_example_rows": 448
+      }
+    ]
+  },
+  "inclusions": {
+    "authoritative_qa": [
+      {
+        "authority_id": "qa-authority:v440-minus-url-index-logical-view",
+        "inventory_decision": "authoritative_domain_qa_lineage",
+        "lineage": {
+          "accepted_edit_decisions_v413_v440": 81,
+          "manifest": "experiments/sft_controls/v53a_train_refresh_v440_fold3/manifest_v53a.json",
+          "projection_repeat_replay_byte_identical": true,
+          "root_membership_exactly_preserved": true
+        },
+        "parent_source_identity_sha256": "8988b14443dd3ab51be98be24b1aec6bc82ec4233241f3422cb0887c842af078",
+        "parent_source_path": "experiments/sft_controls/v53a_train_refresh_v440_fold3/train_projection_v440.jsonl",
+        "parent_training_example_rows": 531,
+        "parent_unfiltered_qwen36_token_accounting": {
+          "assistant_answer_tokens": 13439,
+          "eos_appended": false,
+          "prompt_mode": "es_exact",
+          "prompt_tokens": 26379,
+          "total_tokens": 39818
+        },
+        "qwen36_token_count_status": "pending_materialized_filtered_projection_and_safe_tokenizer_report",
+        "qwen36_tokens": null,
+        "required_before_training": [
+          "materialize content-addressed 516-row filtered projection",
+          "produce safe Qwen token-count report for filtered projection",
+          "immutable_source_group_split",
+          "opaque_source_disjoint_contract_extension"
+        ],
+        "selection_reason": "newer sealed V440 projection with stable root lineage, deterministic replay, and an explicit metadata-only exclusion of all 15 qa_resource_index rows",
+        "source_document_rows": 288,
+        "source_identity_sha256": "9c83cb0a30978cf36a965eecad52f1223321032cecd68a541416a829fb1ac18d",
+        "source_path": null,
+        "source_type": "domain_qa_projection",
+        "split_assignment_status": "pending_immutable_source_group_split",
+        "split_group_authority": "document_sha256",
+        "training_example_rows": 516,
+        "url_index_audit": {
+          "kind_counts": {
+            "qa_manual": 42,
+            "qa_resource_category": 4,
+            "qa_resource_direct": 20,
+            "qa_resource_index": 15,
+            "qa_resource_manual_fact": 138,
+            "qa_verified": 312
+          },
+          "qa_resource_index_rows": 15,
+          "rows": 531,
+          "selected_kind_counts": {
+            "qa_manual": 42,
+            "qa_resource_category": 4,
+            "qa_resource_direct": 20,
+            "qa_resource_manual_fact": 138,
+            "qa_verified": 312
+          },
+          "selected_non_url_index_rows": 516,
+          "selected_non_url_index_source_document_groups": 288,
+          "semantic_fields_accessed_or_emitted": false,
+          "unique_fact_ids": 531,
+          "unique_source_document_groups": 289
+        },
+        "verification_status": "logical_authority_resolved_materialized_projection_pending"
+      }
+    ],
+    "project_authorized_markdown_source_pool": [
+      {
+        "artifact_id": "canonical-markdown:acta_loop_knot_efficiency_experiments_2020",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:acta_loop_knot_efficiency_experiments_2020",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 5,
+          "materialized_qwen36_tokens": 4232,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 4232,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:ad6856a102863b3ceeacd42f31bfbc551c2b7dd5c67947616d11ce3570141f9a",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "acta_loop_knot_efficiency_experiments_2020",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The current official Acta Physica Polonica A publisher policy states that all APPA articles are licensed under Creative Commons Attribution 4.0; the manual adaptation records article attribution, the licence, and changes while noting that the archive PDF itself has no embedded CC notice.",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "limitations": [
+            "The rights basis is the current first-party journal policy; the official archive PDF itself does not display a Creative Commons notice.",
+            "Figures, tables, formulas, references, standards text, trademarks, vendor claims, equipment models, acknowledgments, and separately credited components are excluded.",
+            "Open licensing does not turn this expert-tied slow-static polyamide kernmantle experiment into a portable knot ranking, rating, tying recipe, or validation for natural fiber, bondage, body contact, uplines, dynamic or cyclic loading, or human suspension."
+          ],
+          "promotion_gate": "ready_with_attribution_component_audit_and_static_experiment_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_component_audit_and_static_experiment_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "break_untying_survival_and_partial_evidence_endpoints_must_remain_distinct",
+          "exact_specimen_history_loading_geometry_and_replication_must_travel_with_each_claim",
+          "no_natural_fiber_bondage_body_contact_upline_or_human_suspension_transfer",
+          "no_portable_efficiency_ranking_rating_safe_load_or_knot_selection_rule",
+          "slow_static_polyamide_kernmantle_scope_not_dynamic_cyclic_wet_or_field_validation"
+        ],
+        "source_identity_sha256": "ad6856a102863b3ceeacd42f31bfbc551c2b7dd5c67947616d11ce3570141f9a",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:coir_ropes_french_polynesia_2024",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:coir_ropes_french_polynesia_2024",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 2,
+          "materialized_qwen36_tokens": 1808,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 1808,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:a0340ccb3780a10179fa5bff0dcac0ec924d1b83fc5f7b544ece821e4c535342",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "coir_ropes_french_polynesia_2024",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official Ifremer-hosted version-of-record PDF, its XMP metadata, and DOI metadata identify the article as Creative Commons Attribution 4.0; the manual adaptation records authorship, DOI, license, changes, no endorsement, disclosures, and component exclusions.",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "limitations": [
+            "All figures, tables, values, equations, recipes, methods, sample labels, products, ratings, selections, life-cycle results, software workflows, acknowledgements, references, cited-source bodies, and separately contributed visual components are excluded.",
+            "The corpus preserves Polyacht material supply, an employee-author relationship, the authors' no-influence statement, data-on-request status, and the absence of a funding statement without inferring absence of funding.",
+            "The tested locally sourced coir fibers and prototype finished ropes in French Polynesian pearl-farming laboratory and modeled life-cycle contexts cannot establish properties or practices for jute, hemp, cleaning, hygiene, body contact, load-bearing, bondage, or human suspension."
+          ],
+          "promotion_gate": "ready_with_attribution_checksum_component_audit_conflict_disclosure_and_material_domain_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_checksum_component_audit_conflict_disclosure_and_material_domain_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "cc_by_article_scope_and_french_polynesian_pearl_farming_context_required",
+          "construction_quality_and_wet_retention_findings_are_source_specific",
+          "individual_coir_fiber_behavior_did_not_by_itself_predict_finished_rope_behavior",
+          "no_body_contact_upline_anchor_hardpoint_bondage_restraint_lowering_or_human_suspension_transfer",
+          "no_figures_tables_values_recipes_methods_products_lca_results_or_cited_source_bodies",
+          "no_jute_hemp_hygiene_cleaning_care_drying_storage_retirement_knots_frictions_or_working_load_transfer"
+        ],
+        "source_identity_sha256": "a0340ccb3780a10179fa5bff0dcac0ec924d1b83fc5f7b544ece821e4c535342",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:crash_restraint",
+        "authorization_does_not_establish_public_license": true,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:crash_restraint",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": null,
+          "materialized_qwen36_tokens": 0,
+          "status": "pending_authorized_snapshot_rebuild",
+          "verification": "registry_metadata_only_markdown_not_opened_by_inventory"
+        },
+        "multipage_provenance": {
+          "excluded_or_other_units": 65,
+          "included_units": 116,
+          "inventory_units": 181,
+          "manifest_receipt": {
+            "file_sha256": "6f582d82adf6ca6ef0e1659f41ab9fa1c90c6b3b80efbd48f3b83af51556a1d9",
+            "path": "data/site_corpora/crash_restraint/manifest.json"
+          }
+        },
+        "project_training_authorization_override": true,
+        "registered_qwen36_tokens": 24764,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:2ff54b0c6a618c9d368932677a110ed1f05a0d12b5c84d620bdc65f7b1aeba6c",
+        "required_before_training": [
+          "rebuild_markdown_snapshot_with_project_authorization_ledger",
+          "reconstruct_page_or_section_source_groups_from_existing_provenance",
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "crash_restraint",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "Publicly accessible pages were transformed into an original fact-focused digest, but the legacy corpus manifest records no explicit reuse license or permission basis.",
+          "license": "not_recorded",
+          "limitations": [
+            "Public accessibility is not a copyright license.",
+            "Do not redistribute source prose, images, PDFs, or visual-only instructions from this registry record.",
+            "The registry inventories the declared artifact role and does not provide a legal opinion."
+          ],
+          "promotion_gate": "rights_review_required_before_new_snapshot",
+          "status": "legacy_manifest_gap"
+        },
+        "rights_promotion_gate": "rights_review_required_before_new_snapshot",
+        "rights_status": "legacy_manifest_gap",
+        "safety_transfer_flags": [
+          "medical_and_engineering_uncertainty_must_be_preserved",
+          "no_hardpoint_or_human_suspension_certification",
+          "source_specific_claims_require_attribution",
+          "visual_only_instruction_must_not_be_reconstructed"
+        ],
+        "source_identity_sha256": "2ff54b0c6a618c9d368932677a110ed1f05a0d12b5c84d620bdc65f7b1aeba6c",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "invalidly_collapsed_digest_group_page_level_groups_required"
+      },
+      {
+        "artifact_id": "canonical-markdown:europepmc_bdsm_fatality_review",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:europepmc_bdsm_fatality_review",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 5,
+          "materialized_qwen36_tokens": 4225,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 4225,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:e0f94a7d2512acdf9f1e5aa64f9451c03c9916137db755811b2a32cda6d94be2",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "europepmc_bdsm_fatality_review",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 4.0; the digest records attribution and transformation.",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "limitations": [
+            "Individual case narratives, expressive table layouts, and technique reconstruction are excluded.",
+            "The license does not validate the paper's conclusions or convert selected cases into population evidence."
+          ],
+          "promotion_gate": "ready_with_attribution_and_recorded_changes",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_and_recorded_changes",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "individual_case_narratives_excluded",
+          "no_causal_inference_from_selected_fatal_cases",
+          "no_neck_compression_breath_control_or_bondage_instruction",
+          "no_population_incidence_or_prevalence_inference",
+          "reported_source_inconsistencies_must_remain_flagged"
+        ],
+        "source_identity_sha256": "e0f94a7d2512acdf9f1e5aa64f9451c03c9916137db755811b2a32cda6d94be2",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:europepmc_entrapment_neuropathy_review",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:europepmc_entrapment_neuropathy_review",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 5,
+          "materialized_qwen36_tokens": 4455,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 4455,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:5b0b77d61353dc0b24237d7c3ce45910c8bf97e870c98b210290e01f30a0fd6e",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "europepmc_entrapment_neuropathy_review",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 4.0; the digest records attribution and transformation.",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "limitations": [
+            "The review primarily concerns common clinical entrapment disorders rather than rope bondage.",
+            "Source figures and the image-only table are excluded, including adapted content whose component rights are not assumed.",
+            "Open licensing does not turn experimental or disease observations into a rope safety threshold or treatment protocol."
+          ],
+          "promotion_gate": "ready_with_attribution_clinical_scope_and_no_rope_transfer",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_clinical_scope_and_no_rope_transfer",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "heterogeneous_mechanisms_presentation_and_test_limits_must_be_preserved",
+          "human_clinical_and_preclinical_evidence_must_remain_distinct",
+          "no_recovery_prognosis_treatment_or_self_care_inference",
+          "no_safe_pressure_placement_duration_or_release_timing_inference",
+          "not_direct_rope_bondage_evidence",
+          "suspected_rope_neurologic_symptoms_require_qualified_medical_evaluation"
+        ],
+        "source_identity_sha256": "5b0b77d61353dc0b24237d7c3ce45910c8bf97e870c98b210290e01f30a0fd6e",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:europepmc_icar_suspension_syndrome",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:europepmc_icar_suspension_syndrome",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 3,
+          "materialized_qwen36_tokens": 2847,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 2847,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:b804898d83080ae10b5e88e77e1215467eb51eae8c4f72d319c7fc777d42152a",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "europepmc_icar_suspension_syndrome",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 4.0.",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "limitations": [
+            "Review evidence and graded consensus recommendations remain attributed.",
+            "Publisher and United States PMC routes are excluded by the source package."
+          ],
+          "promotion_gate": "ready_with_attribution_and_domain_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_and_domain_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "no_universal_rescue_or_first_aid_claim",
+          "not_validated_as_bondage_suspension_protocol",
+          "occupational_climbing_and_mountain_rescue_domain",
+          "recommendation_grades_and_evidence_limits_must_be_preserved"
+        ],
+        "source_identity_sha256": "b804898d83080ae10b5e88e77e1215467eb51eae8c4f72d319c7fc777d42152a",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:europepmc_rope_neuropathy_study",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:europepmc_rope_neuropathy_study",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 3,
+          "materialized_qwen36_tokens": 2282,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 2282,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:5a5729d08923123d429ed5b5e9c37ae91455eea9c988f47261385a1fd60335a8",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "europepmc_rope_neuropathy_study",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The authorized EMBL-EBI JATS identifies the article as Creative Commons Attribution 3.0.",
+          "license": "CC BY 3.0",
+          "license_url": "https://creativecommons.org/licenses/by/3.0/",
+          "limitations": [
+            "Self-reported observations and clinical cases remain attributed.",
+            "Publisher and United States PMC routes are excluded by the source package."
+          ],
+          "promotion_gate": "ready_with_attribution_and_evidence_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_and_evidence_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "clinical_observations_require_attribution",
+          "injury_enriched_small_retrospective_sample",
+          "no_causal_or_preventive_protocol_claim",
+          "no_population_incidence_or_prevalence_inference",
+          "no_safe_duration_pressure_or_placement_inference"
+        ],
+        "source_identity_sha256": "5a5729d08923123d429ed5b5e9c37ae91455eea9c988f47261385a1fd60335a8",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:fhwa_t5140_34_adhesive_anchors",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:fhwa_t5140_34_adhesive_anchors",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 3,
+          "materialized_qwen36_tokens": 2215,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 2215,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:781fdf543b6192682919d5c02881198f898b1b6cdbbae6fc4090b3dfd9c4c91b",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "fhwa_t5140_34_adhesive_anchors",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The checksum-bound official technical advisory identifies the Federal Highway Administration as corporate author; eligible federal prose is treated as public domain in the United States under 17 U.S.C. 105, with every incorporated standard, third-party program, visual, table, product, and uncertain component excluded.",
+          "license": "eligible_US_government_text",
+          "limitations": [
+            "Incorporated standards text, quotations, identifiers, classifications, third-party organizations or certification programs, product and material details, and separately owned components are excluded.",
+            "Every schematic, figure, table, label, calculation, load, force, duration, timeline, scenario list, installation detail, inspection method, test method, design, retrofit, replacement, maintenance recipe, threshold, rating, and capacity statement is excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, extraction, contact sheet, visual, table, or source body is retained.",
+            "The advisory identifies an investigated ceiling-panel collapse but supplies no casualty detail; it does not qualify a DIY ceiling attachment, hardpoint, rope anchor, bondage setup, or human-suspension system."
+          ],
+          "promotion_gate": "ready_with_federal_attribution_checksum_component_audit_and_civil_infrastructure_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_federal_attribution_checksum_component_audit_and_civil_infrastructure_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "all_standards_programs_products_materials_loads_timelines_figures_tables_and_third_party_components_excluded",
+          "ceiling_panel_collapse_context_has_no_source_supported_casualty_detail",
+          "no_diy_ceiling_hardpoint_rope_anchor_bondage_or_human_suspension_certification",
+          "no_installation_inspection_test_design_retrofit_replacement_rating_or_capacity_recipe",
+          "non_bondage_civil_infrastructure_adhesive_anchor_failure_and_governance_scope_required",
+          "owner_installer_inspector_and_qualified_evaluation_roles_do_not_supply_a_diy_procedure",
+          "persistent_tension_creep_installation_sensitivity_system_qualification_and_continuous_inspection_are_qualitative_controls"
+        ],
+        "source_identity_sha256": "781fdf543b6192682919d5c02881198f898b1b6cdbbae6fc4090b3dfd9c4c91b",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:gutenberg_brady_kedge_anchor_77729",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:gutenberg_brady_kedge_anchor_77729",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 5,
+          "materialized_qwen36_tokens": 4145,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 4145,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:535ab88fabb3f9f2e0527fe5fe3493f266ec3648cfa91492f72075e053bd863e",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "gutenberg_brady_kedge_anchor_77729",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official ebook record identifies ebook 77729 and its underlying text as public domain in the United States. One exact static Unicode artifact was acquired from a currently registered Project Gutenberg mirror after the main-site human-user terms, official mirror list, item identity, trademark, jurisdiction, component, and transcription-fidelity boundaries were audited.",
+          "license": "Public Domain in the United States; independent rewritten derivative",
+          "limitations": [
+            "Public-domain status is recorded for the United States only; no worldwide public-domain conclusion is made.",
+            "Project Gutenberg is a registered trademark; source identification does not imply endorsement, and trademark or wrapper language is excluded from training evidence.",
+            "The exact source is an edited Project Gutenberg transcription rather than a diplomatic print facsimile; documented and unresolved transcription differences must travel with lexical claims.",
+            "All illustrations, source prose, complete procedures, tools, recipes, numbers, load and strength rules, equipment inventories, naval operations, promotions, automated summary text, obsolete safety, body lowering, restraint, human support, and human suspension are excluded."
+          ],
+          "promotion_gate": "ready_with_item_checksum_attribution_trademark_jurisdiction_fidelity_component_and_historical_nontransfer_limits",
+          "status": "public_domain_in_usa_source_with_trademark_and_jurisdiction_limits"
+        },
+        "rights_promotion_gate": "ready_with_item_checksum_attribution_trademark_jurisdiction_fidelity_component_and_historical_nontransfer_limits",
+        "rights_status": "public_domain_in_usa_source_with_trademark_and_jurisdiction_limits",
+        "safety_transfer_flags": [
+          "exact_static_unicode_transcription_identity_checksum_and_fidelity_limits_required",
+          "historical_1852_ropework_vocabulary_and_teaching_architecture_only",
+          "no_body_contact_restraint_lowering_upline_anchor_hardpoint_bondage_or_human_suspension_transfer",
+          "no_complete_knot_hitch_bend_splice_eye_seizing_serving_mat_gasket_or_block_procedure",
+          "no_modern_terminology_security_suitability_rating_working_load_or_correctness_inference",
+          "no_numeric_load_strength_material_tool_equipment_chemical_maintenance_or_operational_recipe"
+        ],
+        "source_identity_sha256": "535ab88fabb3f9f2e0527fe5fe3493f266ec3648cfa91492f72075e053bd863e",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:hse_temporary_works_faqs",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:hse_temporary_works_faqs",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 3,
+          "materialized_qwen36_tokens": 2339,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 2339,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:6ee20f43696b7bd3e6fc6997be2d17616c174a07b0e338646585dc7e8428ead6",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "hse_temporary_works_faqs",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "Eligible HSE Crown text from the exact FAQ is licensed under the Open Government Licence v3.0 and the adaptation preserves HSE attribution. The National Archives OGL body is rights provenance only and is excluded from training because its robots surface states ai-train=no.",
+          "license": "Open Government Licence v3.0",
+          "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "limitations": [
+            "Only eligible HSE Crown prose from the exact FAQ enters the training artifact; the National Archives OGL body is used for rights provenance only and excluded in full under its ai-train=no content signal.",
+            "Logos, SVGs, images, illustrations, multimedia, linked publications, standards, legal wording, numbers, calculations, products, equipment, operational procedures, external bodies, third-party components, and uncertain material are excluded.",
+            "The artifact is a fresh quotation-light, claim-cited adaptation; no HTML, source body, licence-page body, linked-document body, or visual is retained.",
+            "This is non-bondage United Kingdom construction governance, not a design, approval, selection, sizing, installation, setup, testing, proof-load, or certification source for ceiling tension, hardpoints, anchors, uplines, body support, bondage, or human suspension."
+          ],
+          "promotion_gate": "ready_with_hse_attribution_displayed_date_component_audit_robots_enforcement_and_non_bondage_governance_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_hse_attribution_displayed_date_component_audit_robots_enforcement_and_non_bondage_governance_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "current_site_specific_verified_information_and_competent_professional_judgment_control",
+          "displayed_11_march_2026_current_page_date_must_travel",
+          "generic_assumptions_proprietary_systems_side_actions_and_role_distinctions_are_governance_only",
+          "no_ceiling_tension_hardpoint_anchor_upline_body_support_bondage_or_human_suspension_approval",
+          "no_standard_legal_numeric_product_equipment_setup_load_testing_design_or_certification_recipe",
+          "non_bondage_uk_temporary_works_governance_scope_required",
+          "tna_ogl_body_is_rights_provenance_only_and_ai_train_no_excluded_from_training"
+        ],
+        "source_identity_sha256": "6ee20f43696b7bd3e6fc6997be2d17616c174a07b0e338646585dc7e8428ead6",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:hse_treework_lifting_and_climbing",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:hse_treework_lifting_and_climbing",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 6,
+          "materialized_qwen36_tokens": 4904,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 4904,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:1e7f419f084446e0f041d2eda835b6e160fd5ec1b7bf16e67ce09a8e3db0ae61",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "hse_treework_lifting_and_climbing",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "Eligible HSE Crown text is licensed under the Open Government Licence v3.0; the corpus records transformation and attribution.",
+          "license": "Open Government Licence v3.0",
+          "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "limitations": [
+            "HSE logos, site chrome, images, illustrations, SVG, video, multimedia, linked publications, legislation, standards, and third-party material are excluded.",
+            "The corpus is a transformed synthesis rather than a legal reproduction or legal advice.",
+            "Open licensing does not transfer UK occupational treework rules into bondage or certify any tree, branch, anchor, hardpoint, rope, or human-suspension system."
+          ],
+          "promotion_gate": "ready_with_attribution_component_audit_and_domain_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_component_audit_and_domain_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "anchor_and_line_roles_do_not_establish_capacity_or_independence",
+          "no_tree_branch_anchor_hardpoint_bondage_or_human_suspension_certification",
+          "rescue_readiness_retained_without_rescue_procedure",
+          "uk_occupational_treework_context_required_no_universal_legal_transfer"
+        ],
+        "source_identity_sha256": "1e7f419f084446e0f041d2eda835b6e160fd5ec1b7bf16e67ce09a8e3db0ae61",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:innotrac_camera_visual_rope_inspection_2020",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:innotrac_camera_visual_rope_inspection_2020",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 3,
+          "materialized_qwen36_tokens": 2822,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 2822,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:d54e02437b1dee05ffebb73f6c55747fec8928fb09849bc9f0dc44631da52565",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "innotrac_camera_visual_rope_inspection_2020",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official article record and exact final PDF both identify the article as CC BY 4.0. The adaptation preserves author, article, DOI, license, and change attribution, excludes implied endorsement, and excludes patent, trademark, visual, product, and uncertain component rights.",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "limitations": [
+            "All nine figures, plots, photographs, overlays, captions, values, logos, products, patented systems, trademarks, and visual or separately owned components are excluded.",
+            "Every threshold, numerical result, logical discard rule, equation-like expression, camera or equipment setup, acquisition recipe, software workflow, algorithm, code, standard, external method, and twelve reference bodies are excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, HTML, source body, extraction, rendered page, image, plot, table, algorithm, or license prose is retained as training evidence.",
+            "The exploratory industrial high-modulus synthetic-rope article reports no complete sample inventory, held-out detection, sensitivity or specificity, false-positive or false-negative analysis, blinding, independent replication, or external validation, and says discard criteria remained insufficiently researched.",
+            "Surface imaging cannot establish internal condition, remaining life, safe continuation, working load, discard readiness, or fitness of natural-fibre rope, bondage rope, knots, body contact, uplines, anchors, hardpoints, or human suspension."
+          ],
+          "promotion_gate": "ready_with_attribution_checksum_full_page_component_audit_validation_limits_and_nontransfer_boundary",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_checksum_full_page_component_audit_validation_limits_and_nontransfer_boundary",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "industrial_high_modulus_synthetic_running_rope_surface_inspection_scope_required",
+          "multi_angle_imaging_and_combined_indicators_require_independent_calibration_validation_and_error_analysis",
+          "no_body_contact_upline_anchor_hardpoint_bondage_or_human_suspension_transfer",
+          "no_complete_sample_inventory_held_out_detection_error_rates_blinding_replication_or_external_validation_reported",
+          "no_natural_fiber_jute_hemp_bondage_rope_knot_care_hygiene_or_retirement_transfer",
+          "no_numeric_threshold_logical_rule_camera_setup_algorithm_product_standard_rating_or_operational_recipe",
+          "paper_states_high_modulus_fibre_rope_discard_criteria_remained_insufficiently_researched",
+          "surface_appearance_does_not_establish_internal_condition_remaining_life_or_discard_readiness"
+        ],
+        "source_identity_sha256": "d54e02437b1dee05ffebb73f6c55747fec8928fb09849bc9f0dc44631da52565",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:kink_education_code_of_conduct",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:kink_education_code_of_conduct",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 6,
+          "materialized_qwen36_tokens": 5544,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 5544,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:d523412f2ee8535b9db9b02a98b3e6e871bf53e2627ce8417b0a638f84f6aeab",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "kink_education_code_of_conduct",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official KECC full-version HTML, PDF, and homepage identify the version-1 work and v. 1 KECC Collective under Creative Commons Attribution-ShareAlike 4.0; the transformed corpus records attribution, changes, and ShareAlike status.",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "limitations": [
+            "The corpus is explicitly version 1 and PDF-dated 2019; it is not represented as complete or current community consensus.",
+            "Individual contributor names, operational kink examples, exact portable thresholds, and source or URL trivia are excluded.",
+            "Open licensing does not make the code law, certification, enforcement, adjudication, consent proof, or evidence that an educator, producer, venue, or practice is safe."
+          ],
+          "promotion_gate": "ready_with_attribution_sharealike_version_and_role_context",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_sharealike_version_and_role_context",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "educator_and_producer_role_context_must_be_preserved",
+          "incident_disclosure_and_privacy_tension_must_remain_together",
+          "no_current_consensus_law_certification_enforcement_or_safety_proof",
+          "no_operational_kink_medical_legal_investigation_or_response_procedure",
+          "version_1_2019_historical_scope_required"
+        ],
+        "source_identity_sha256": "d523412f2ee8535b9db9b02a98b3e6e871bf53e2627ce8417b0a638f84f6aeab",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:maib_throwbag_hidden_fused_joints_2019",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:maib_throwbag_hidden_fused_joints_2019",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 3,
+          "materialized_qwen36_tokens": 2315,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 2315,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:094d2e97dd609cc2e3a6085b216edabd0fad22d53edb09c1ecff0e38327fa8f8",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "maib_throwbag_hidden_fused_joints_2019",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The GOV.UK page applies Open Government Licence version 3 except where otherwise stated, and the checksum-bound MAIB report's Crown reuse notice permits accurate attributed reuse while requiring separate permission for identified third-party matter.",
+          "license": "OGL-UK-3.0",
+          "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "limitations": [
+            "All three numbered figures, one additional branded visual, one unnumbered table, eleven credited or externally controlled blocks, captions, logos, image-derived claims, and uncertain components are excluded.",
+            "Standards, legal text, brands, manufacturers, products, external tests, measurements, loads, counts, ratios, dimensions, material specifications, joining recipes, and rescue-use instructions are excluded.",
+            "The artifact is a fresh manual, claim-cited Crown-text adaptation; no PDF, rendered page, extraction, contact sheet, visual, table, or source body is retained.",
+            "This single 2019 manufactured rescue-line defect case does not establish defect incidence and is not a rope-joining, inspection, quality-control, bondage, body-contact, anchor, hardpoint, upline, rescue, or human-suspension procedure."
+          ],
+          "promotion_gate": "ready_with_crown_attribution_checksum_component_audit_and_single_case_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_crown_attribution_checksum_component_audit_and_single_case_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "all_figures_visuals_tables_standards_legal_vendor_external_test_and_numeric_content_excluded",
+          "hidden_fused_joint_failure_and_intact_span_behavior_are_construction_specific",
+          "historical_2019_manufactured_throw_bag_rescue_line_defect_case_scope_required",
+          "no_joining_inspection_rescue_bondage_body_contact_anchor_hardpoint_upline_or_human_suspension_transfer",
+          "random_visual_inspection_does_not_validate_an_uncontrolled_or_hidden_process",
+          "recurrence_does_not_establish_population_incidence",
+          "traceability_batch_control_process_validation_output_checks_and_independent_verification_are_distinct_quality_functions"
+        ],
+        "source_identity_sha256": "094d2e97dd609cc2e3a6085b216edabd0fad22d53edb09c1ecff0e38327fa8f8",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:maib_zarga_hmpe_inspection_failure_2017",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:maib_zarga_hmpe_inspection_failure_2017",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 5,
+          "materialized_qwen36_tokens": 4139,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 4139,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:b6863d04b7bfbb75b07dd49a0b9623d522fbeac8c6ea20d3ac97af2631ca52c8",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "maib_zarga_hmpe_inspection_failure_2017",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The GOV.UK page applies Open Government Licence version 3 except where otherwise stated, and the checksum-bound MAIB report's Crown copyright notice permits attributed reuse while separating third-party material.",
+          "license": "OGL-UK-3.0",
+          "license_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+          "limitations": [
+            "All forty-one figures, five tables, sixteen annexes, twenty-seven credited source blocks, captions, logos, image-derived claims, and separately owned matter are excluded.",
+            "Standards, legal text, vendor or operator material, product identities, equations, measurements, loads, ratios, dimensions, quantitative capacity claims, thresholds, and operational procedures are excluded.",
+            "The artifact is a fresh manual, claim-cited Crown-text adaptation; no PDF, rendered page, extraction, contact sheet, annex bundle, or source body is retained.",
+            "This single 2017 jacketed-HMPE ship-mooring failure is not a rope-selection, care, inspection, service-decision, retirement, bondage, body-loading, anchor, hardpoint, upline, or human-suspension authority."
+          ],
+          "promotion_gate": "ready_with_crown_attribution_checksum_component_audit_and_industrial_case_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_crown_attribution_checksum_component_audit_and_industrial_case_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "all_third_party_vendor_operator_test_guidance_standard_figure_table_and_annex_content_excluded",
+          "axial_compression_cyclic_bending_contact_friction_heat_abrasion_and_kinking_are_case_mechanisms_not_universal_rules",
+          "historical_2017_industrial_ship_mooring_jacketed_hmpe_case_scope_required",
+          "jacket_core_observability_tradeoff_and_external_visual_inspection_limits_are_construction_specific",
+          "line_tail_fittings_routing_environment_and_information_flow_form_a_coupled_system",
+          "no_natural_fiber_bondage_body_contact_anchor_hardpoint_upline_or_human_suspension_transfer",
+          "offshore_test_method_transfer_failure_does_not_supply_a_replacement_test_or_inspection_recipe"
+        ],
+        "source_identity_sha256": "b6863d04b7bfbb75b07dd49a0b9623d522fbeac8c6ea20d3ac97af2631ca52c8",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:mdpi_knot_efficiency_statistics_2022",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:mdpi_knot_efficiency_statistics_2022",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 4,
+          "materialized_qwen36_tokens": 3471,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 3471,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:6c2bbe46b698c9d96f927f543970f20874256ce68c553a83b35494da2d3448b2",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "mdpi_knot_efficiency_statistics_2022",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official MDPI publisher PDF and JATS XML identify the article as Creative Commons Attribution 4.0; the manual adaptation records article attribution, the licence, and changes.",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "limitations": [
+            "Equations, proofs, figures, tables, numerical examples, standards, brands, vendor material, references, and separately credited components are excluded.",
+            "The article models a population ratio under explicit input-distribution and independence assumptions using measurements inherited from earlier work; it is not a new 2022 experimental campaign or a sampling distribution for estimated parameters.",
+            "Open licensing does not turn a source-specific statistical model into an operational calculator, efficiency rating, safety factor, safe-load rule, knot choice, or validation for natural fiber, bondage, body contact, uplines, dynamic or cyclic loading, or human suspension."
+          ],
+          "promotion_gate": "ready_with_attribution_component_audit_and_statistical_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_component_audit_and_statistical_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "efficiency_is_calculated_ratio_not_direct_measurement",
+          "failure_to_reject_normality_is_not_proof_and_parameter_uncertainty_remains",
+          "no_dynamic_cyclic_wet_aged_damaged_natural_fiber_bondage_body_contact_upline_or_human_suspension_transfer",
+          "no_numeric_efficiency_rating_safety_factor_safe_load_or_knot_selection_rule",
+          "population_ratio_distribution_not_sampling_distribution_or_confidence_bound"
+        ],
+        "source_identity_sha256": "6c2bbe46b698c9d96f927f543970f20874256ce68c553a83b35494da2d3448b2",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:mdpi_tree_climbing_friction_hitch_2021",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:mdpi_tree_climbing_friction_hitch_2021",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 5,
+          "materialized_qwen36_tokens": 4384,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 4384,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:5039a93a4cb67b0f7b6e867db4151e10035fa3c5ac2bbe6821a422d88609c7b4",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "mdpi_tree_climbing_friction_hitch_2021",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official MDPI article identifies the work as Creative Commons Attribution 4.0; the manually transformed corpus records full attribution, changes, the licence, and no endorsement.",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "limitations": [
+            "Images, table layouts, references, standards, manufacturers, brands, instruments, hardware, catalog ratings, and other third-party components are excluded.",
+            "The source is a preliminary 36-run slow semi-static bench study of two exact synthetic arborist rope systems and two hitches, not a field, dynamic, cyclic, fall, or live-human study.",
+            "Open licensing does not turn observed loads, slips, diameter changes, or temperatures into safe ratings, certify either hitch, or authorize transfer to natural fiber, bondage, shibari, kinbaku, or human suspension."
+          ],
+          "promotion_gate": "ready_with_attribution_component_audit_and_experimental_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_component_audit_and_experimental_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "exact_two_rope_two_hitch_slow_semistatic_bench_scope_required",
+          "no_best_knot_safe_rating_certification_or_equipment_recommendation",
+          "no_dynamic_cyclic_fall_shock_or_live_human_inference",
+          "no_natural_fiber_bondage_shibari_kinbaku_or_human_suspension_transfer",
+          "observed_load_slip_diameter_and_temperature_are_not_field_thresholds"
+        ],
+        "source_identity_sha256": "5039a93a4cb67b0f7b6e867db4151e10035fa3c5ac2bbe6821a422d88609c7b4",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:nist_aramid_rope_sling_fatigue_1976",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:nist_aramid_rope_sling_fatigue_1976",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 4,
+          "materialized_qwen36_tokens": 3395,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 3395,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:d16537ff47fe6327d5046778f9cfde8d80d9f23f4fc3a618cd926affcd611e0c",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "nist_aramid_rope_sling_fatigue_1976",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The report identifies National Bureau of Standards employee authors, and current NIST policy treats unmarked federal information as public information while granting broad reuse of eligible technical-series material.",
+          "license": "eligible_US_government_text",
+          "limitations": [
+            "Third-party, proprietary, vendor, scan-layer, image, table, reference, and separately credited components are excluded.",
+            "The retained artifact is a fresh manual paraphrase and records attribution, changes, no endorsement, and the NIST courtesy statement.",
+            "The rights classification is a provenance screen rather than legal advice and does not validate the report's conclusions."
+          ],
+          "promotion_gate": "ready_with_attribution_component_audit_and_historical_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_attribution_component_audit_and_historical_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "end_fitting_inadequacy_and_censored_measurements_must_be_front_loaded",
+          "historical_1976_helicopter_external_cargo_prototype_context_required",
+          "no_bondage_natural_fiber_knot_upline_body_contact_or_human_suspension_transfer",
+          "no_numeric_load_rating_end_fitting_design_or_operational_recipe",
+          "prototype_observations_are_not_fully_substantiated_rope_body_conclusions"
+        ],
+        "source_identity_sha256": "d16537ff47fe6327d5046778f9cfde8d80d9f23f4fc3a618cd926affcd611e0c",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:nist_manila_rope_color_serviceability_1933",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:nist_manila_rope_color_serviceability_1933",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 2,
+          "materialized_qwen36_tokens": 1575,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 1575,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:a5e1f5ed73e9c41d15d25442340d139b8010a0a1a58c26c80325fcfa602b70dd",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "nist_manila_rope_color_serviceability_1933",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official paper identifies Bureau of Standards employee authors, and current NIST journal and technical-series policy states that eligible employee-authored federal works are not protected by United States copyright while granting broad derivative reuse of residual foreign rights to the extent NIST may assert them.",
+          "license": "Public Domain in the United States; NIST technical-series reuse permission",
+          "limitations": [
+            "All figures, tables, color scales, values, instruments, solvents, specimen preparation, sampling and procurement details, specifications, ranks, references, commercial identifiers, and third-party or uncertain components are excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, scan object, OCR output, figure, table, source body, reference body, or rights-policy prose is retained.",
+            "The 1933 paper measured prepared abaca-fiber color, explicitly did not test rope serviceability, and cannot establish current product quality, strength, deterioration, remaining life, care, hygiene, retirement, body contact, bondage, or human-suspension safety."
+          ],
+          "promotion_gate": "ready_with_nist_attribution_checksum_component_audit_and_historical_nontransfer_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_nist_attribution_checksum_component_audit_and_historical_nontransfer_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "historical_1933_abaca_fiber_color_and_finished_manila_rope_appearance_scope_required",
+          "lubricant_dust_exposure_bleaching_and_construction_are_appearance_confounders",
+          "no_color_visual_appearance_serviceability_strength_remaining_life_or_discard_rule",
+          "no_figures_tables_values_scales_instruments_solvents_procedures_specifications_or_ranks",
+          "no_jute_hemp_cleaning_hygiene_care_body_contact_upline_anchor_bondage_or_human_suspension_transfer",
+          "paper_explicitly_did_not_test_rope_serviceability"
+        ],
+        "source_identity_sha256": "a5e1f5ed73e9c41d15d25442340d139b8010a0a1a58c26c80325fcfa602b70dd",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:nist_manila_rope_statistics_1947",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:nist_manila_rope_statistics_1947",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 4,
+          "materialized_qwen36_tokens": 3291,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 3291,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:5d8eb06f2d907d9d9e20dd2fc47166238e687b60577f3887499cf80674c5deb5",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "nist_manila_rope_statistics_1947",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The National Bureau of Standards publication identifies federal employee authors; current NIST Research Library and Technical Series policies state that eligible employee-authored federal works are not protected by copyright in the United States and grant broad reprint and derivative permission to the extent NIST may assert foreign rights.",
+          "license": "Public Domain in the United States; NIST technical-series reuse permission",
+          "limitations": [
+            "Images, tables, graphs, equations, numerical property outputs, procurement content, references, and separately credited components are excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, OCR output, contact sheet, or source body is retained.",
+            "The public-domain and permission screen is not legal advice and does not validate the model or convert a nonrandom heterogeneous 1938-to-1941 procurement stream into current product, rating, natural-fiber bondage-rope, or human-suspension evidence."
+          ],
+          "promotion_gate": "ready_with_attribution_doi_correction_component_audit_and_historical_population_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_attribution_doi_correction_component_audit_and_historical_population_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "doi_039_is_verified_and_doi_037_is_an_unrelated_uranium_paper",
+          "historical_1938_to_1941_nonrandom_heterogeneous_procurement_population_required",
+          "no_numeric_property_rating_tolerance_procurement_or_operational_output",
+          "no_transfer_to_current_products_four_strand_rope_knots_wet_or_aged_behavior",
+          "no_transfer_to_modern_natural_fiber_bondage_body_contact_uplines_anchors_or_human_suspension",
+          "three_strand_conditioning_measurement_and_static_endpoint_scope_required"
+        ],
+        "source_identity_sha256": "5d8eb06f2d907d9d9e20dd2fc47166238e687b60577f3887499cf80674c5deb5",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:nist_manila_rope_tests_t198_1921",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:nist_manila_rope_tests_t198_1921",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 3,
+          "materialized_qwen36_tokens": 2937,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 2937,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:fe9a393f569f65d1329028b0dfc647868039b2c29092dbfc89e0f248e8ba336f",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "nist_manila_rope_tests_t198_1921",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The report cover identifies both authors in Bureau of Standards employee roles, the official NIST catalog binds T198, title, authors and DOI, and current NIST technical-series policy states that eligible employee-authored works are not protected by United States copyright while granting broad derivative reuse of residual foreign rights.",
+          "license": "Public Domain in the United States; NIST technical-series reuse permission",
+          "limitations": [
+            "All five figures, all three tables, formulas, equations, numerical outputs, performance values, procurement rules, standards, manufacturer remarks, commercial labels, period recommendations, visual matter, and third-party or uncertain components are excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, HTML, OCR output, rendered page, photograph, plot, table, extraction, source body, or rights-policy prose is retained.",
+            "The 1921 report reflects heterogeneous commercial three-strand regular-lay Manila rope chiefly encountered through purchase-order testing, was not an investigational sampling program, used uneven observation coverage and different machines, and reported frequent termination-region failures.",
+            "Historical construction and test-design evidence cannot establish a current product, strength, service life, care, cleaning, hygiene, storage, inspection, retirement, knot, working load, body contact, upline, anchor, bondage, or human-suspension rule."
+          ],
+          "promotion_gate": "ready_with_nist_attribution_checksum_full_page_component_audit_and_historical_nontransfer_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_nist_attribution_checksum_full_page_component_audit_and_historical_nontransfer_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "construction_vocabulary_sampling_test_design_and_negative_evidence_only",
+          "historical_1921_commercial_three_strand_regular_lay_manila_rope_scope_required",
+          "no_body_contact_upline_anchor_bondage_or_human_suspension_transfer",
+          "no_numeric_performance_formula_table_standard_procurement_recipe_rating_or_modern_recommendation",
+          "no_transfer_to_modern_products_6mm_jute_hemp_knots_care_hygiene_retirement_or_working_load",
+          "purchase_order_sample_was_not_an_investigational_program_and_had_uncontrolled_variables",
+          "uneven_observation_coverage_machine_assignment_and_termination_region_failures_limit_inference"
+        ],
+        "source_identity_sha256": "fe9a393f569f65d1329028b0dfc647868039b2c29092dbfc89e0f248e8ba336f",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:nistir_6096_post_installed_anchors_review",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:nistir_6096_post_installed_anchors_review",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 4,
+          "materialized_qwen36_tokens": 3330,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 3330,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:c0627363cf7a206c47f9d9fea613770e731bf071273cf3966c9bc5fb16da23ce",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "nistir_6096_post_installed_anchors_review",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official NIST record and report title page identify NIST employee authors; NIST technical-series policy states that eligible employee-authored federal works are not protected by United States copyright and grants broad reprint and derivative permission to the extent NIST may assert foreign rights.",
+          "license": "Public Domain in the United States; NIST technical-series reuse permission",
+          "limitations": [
+            "Every figure, table, incorporated standard, third-party study body, quotation, reference body, image, and uncertain or separately owned component is excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, OCR output, contact sheet, source body, numerical capacity, load, threshold, coefficient, equation, product, configuration, installation, testing, proof-load, design, reinforcement, acceptance, or certification recipe is retained.",
+            "This January 1998 secondary literature review is historical synthesis rather than current qualification evidence, and its rights classification is a provenance screen rather than legal advice."
+          ],
+          "promotion_gate": "ready_with_attribution_checksum_component_audit_historical_review_and_engineering_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_attribution_checksum_component_audit_historical_review_and_engineering_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "current_site_specific_qualified_engineering_and_governing_requirements_control",
+          "failure_mode_vocabulary_variable_distinctions_and_evidence_gaps_only",
+          "historical_january_1998_secondary_review_scope_required",
+          "internal_citation_leads_require_separate_source_and_rights_audits",
+          "no_capacity_load_threshold_product_configuration_installation_testing_design_proof_load_or_certification_output",
+          "no_ceiling_hardpoint_anchor_bondage_body_support_or_human_suspension_selection_sizing_or_approval"
+        ],
+        "source_identity_sha256": "c0627363cf7a206c47f9d9fea613770e731bf071273cf3966c9bc5fb16da23ce",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:noaa_eight_strand_rope_structural_model_1989",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:noaa_eight_strand_rope_structural_model_1989",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 5,
+          "materialized_qwen36_tokens": 4066,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 4066,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:98c1173a1cb6896827a136bf57f26f37981b50a03d270d732a3528d19df5aed8",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "noaa_eight_strand_rope_structural_model_1989",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official NOAA Institutional Repository record explicitly designates the checksum-bound MITSG 89-28 main document Public Domain; the manual adaptation retains attribution, source identity, changes, and strict component exclusions.",
+          "license": "Public Domain",
+          "limitations": [
+            "Photographs, logos, figures, formulas, numerical parameters, plotted outputs, references, strength or fatigue predictions, and blending or design prescriptions are excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, OCR output, contact sheet, or source body is retained.",
+            "Public-domain status does not validate the historical model or transfer an eight-strand plaited synthetic marine-rope calculation to natural fiber, other constructions, knots, care, ratings, bondage, body contact, uplines, anchors, or human suspension."
+          ],
+          "promotion_gate": "ready_with_attribution_checksum_component_audit_and_qualitative_model_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_attribution_checksum_component_audit_and_qualitative_model_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "historical_1989_eight_strand_plaited_synthetic_marine_rope_scope_required",
+          "no_equation_parameter_pressure_rating_design_or_manufacturing_recipe",
+          "no_natural_fiber_knot_care_bondage_body_contact_upline_anchor_or_human_suspension_transfer",
+          "qualitative_pre_damage_structural_model_not_strength_fatigue_or_lifetime_evidence",
+          "separate_1990_double_braided_rope_report_must_not_be_conflated",
+          "two_inter_yarn_friction_endpoints_and_lateral_contraction_uncertainty_must_be_preserved"
+        ],
+        "source_identity_sha256": "98c1173a1cb6896827a136bf57f26f37981b50a03d270d732a3528d19df5aed8",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:noaa_synthetic_rope_deterioration_1990",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:noaa_synthetic_rope_deterioration_1990",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 4,
+          "materialized_qwen36_tokens": 3875,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 3875,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:93abf1349a57ef758b7aafcda364d6b91caf1f0831ef5395a4ca548cdaa1b38c",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "noaa_synthetic_rope_deterioration_1990",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official NOAA Institutional Repository record explicitly designates the bound MITSG 90-18 main document Public Domain and publishes a SHA-256 that exactly matches the reviewed 41-page scan.",
+          "license": "Public Domain",
+          "limitations": [
+            "Tables, figures, formulas, references, commercial identifiers, cited works, operational parameters, and separately credited components are excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, OCR output, contact sheet, or source body is retained.",
+            "Public-domain status does not validate the model, cure sparse low-pressure inputs or mixed inherited validation, or make the report a service-life, load, rating, care, retirement, bondage, or human-suspension authority."
+          ],
+          "promotion_gate": "ready_with_attribution_checksum_component_audit_and_historical_model_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_attribution_checksum_component_audit_and_historical_model_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "historical_1990_offshore_double_braided_synthetic_rope_model_scope_required",
+          "internal_abrasion_and_tensile_creep_fatigue_are_modeled_mechanisms_not_universal_retirement_rules",
+          "no_equation_service_life_load_rating_safety_factor_or_operational_recipe",
+          "no_natural_fiber_knot_care_bondage_body_contact_upline_anchor_or_human_suspension_transfer",
+          "sparse_low_pressure_input_mixed_validation_and_termination_bias_must_be_preserved"
+        ],
+        "source_identity_sha256": "93abf1349a57ef758b7aafcda364d6b91caf1f0831ef5395a4ca548cdaa1b38c",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:nps_textile_fiber_aging_appendix_k_2002",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:nps_textile_fiber_aging_appendix_k_2002",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 5,
+          "materialized_qwen36_tokens": 3947,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 3947,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:d97c3b1d0c195c74ca26af2d9bb72adefbbf64dec350a7e8b70c39ee97e28af2",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "nps_textile_fiber_aging_appendix_k_2002",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The checksum-bound official appendix identifies the National Park Service, U.S. Department of the Interior as corporate author; eligible federal text is treated as public domain in the United States under 17 U.S.C. 105, with every credited, permission-controlled, commercial, and uncertain component excluded.",
+          "license": "eligible_US_government_text",
+          "limitations": [
+            "All sixteen numbered figures, photographs, drawings, diagrams, captions, three controlled source blocks, vendor or trademark matter, bibliography, external resource directions, and separately owned content are excluded.",
+            "Numerical temperature, relative-humidity and illumination prescriptions and all storage, display, pollution, pest, handling, cleaning, treatment, chemical, transport, emergency and conservation recipes are excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, extraction, contact sheet, visual, bibliography, or source body is retained.",
+            "This 2002 museum-textile handbook scope does not establish functional-rope strength, hygiene, conditioning, drying, inspection, service, retirement, bondage, body-loading, upline, anchor, hardpoint, or human-suspension rules."
+          ],
+          "promotion_gate": "ready_with_federal_attribution_checksum_component_audit_and_museum_textile_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_federal_attribution_checksum_component_audit_and_museum_textile_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "all_figures_controlled_blocks_vendor_material_numeric_prescriptions_and_conservation_recipes_excluded",
+          "animal_plant_synthetic_and_cellulose_bast_leaf_seed_taxonomy_is_not_finished_rope_evidence",
+          "historical_2002_museum_textile_preventive_conservation_scope_required",
+          "molecular_chain_brittleness_hygroscopic_stress_light_heat_moisture_pollution_pest_and_abrasion_mechanisms_are_qualitative",
+          "no_bondage_body_loading_upline_anchor_hardpoint_or_human_suspension_transfer",
+          "no_jute_hemp_functional_rope_strength_hygiene_conditioning_drying_inspection_service_or_retirement_inference"
+        ],
+        "source_identity_sha256": "d97c3b1d0c195c74ca26af2d9bb72adefbbf64dec350a7e8b70c39ee97e28af2",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:phm_synthetic_fiber_rope_condition_monitoring_review_2017",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:phm_synthetic_fiber_rope_condition_monitoring_review_2017",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 4,
+          "materialized_qwen36_tokens": 3052,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 3052,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:38b9218544f3cd0b14989eb64350ceed0936586c9071da395ea0b8b7178c2acc",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "phm_synthetic_fiber_rope_condition_monitoring_review_2017",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "Page one of the checksum-bound official PHM Society PDF gives an article-level Creative Commons Attribution 3.0 United States notice; the manual adaptation records attribution and changes.",
+          "license": "CC BY 3.0 US",
+          "license_url": "https://creativecommons.org/licenses/by/3.0/us/",
+          "limitations": [
+            "All nineteen figures and their captions are externally attributed, permission-reproduced, or contain numerical graphics and are excluded along with bibliography-only pages.",
+            "Patents, standards, vendors, products, trademarks, numerical values, equations, thresholds, rankings, correlations, discard criteria, remaining-life claims, and operational rules are excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, extraction, contact sheet, or source body is retained.",
+            "The 2017 offshore synthetic-fiber-rope review is not current validation, a complete monitoring survey, visual bondage-rope inspection advice, or evidence for natural fiber, body loading, uplines, anchors, or human suspension."
+          ],
+          "promotion_gate": "ready_with_attribution_checksum_component_audit_and_historical_offshore_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_checksum_component_audit_and_historical_offshore_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "all_permission_reproduced_figures_patents_standards_vendors_products_and_numeric_rules_excluded",
+          "filament_yarn_strand_subrope_rope_hierarchy_and_construction_dependence_must_travel_with_claims",
+          "historical_2017_offshore_synthetic_fiber_rope_review_scope_required",
+          "monitoring_taxonomy_is_not_technology_validation_discard_or_remaining_life_evidence",
+          "no_natural_fiber_jute_hemp_visual_bondage_rope_body_contact_upline_anchor_or_human_suspension_transfer",
+          "whole_length_coverage_sensor_fusion_environmental_and_model_dependence_limits_must_be_preserved"
+        ],
+        "source_identity_sha256": "38b9218544f3cd0b14989eb64350ceed0936586c9071da395ea0b8b7178c2acc",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:rope365",
+        "authorization_does_not_establish_public_license": true,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:rope365",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": null,
+          "materialized_qwen36_tokens": 0,
+          "status": "pending_authorized_snapshot_rebuild",
+          "verification": "registry_metadata_only_markdown_not_opened_by_inventory"
+        },
+        "multipage_provenance": {
+          "excluded_or_other_units": 121,
+          "included_units": 111,
+          "inventory_units": 232,
+          "manifest_receipt": {
+            "file_sha256": "2897957fa4bb272dac5b6962f7cfe430ff2c36a6a095f2b87fb9d25d34d7b8ac",
+            "path": "data/site_corpora/rope365/manifest.json"
+          }
+        },
+        "project_training_authorization_override": true,
+        "registered_qwen36_tokens": 19168,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:4b4349dc2944a3c611bac38d9766f78e296fa3f506770a7cbef1796a2d5337fe",
+        "required_before_training": [
+          "rebuild_markdown_snapshot_with_project_authorization_ledger",
+          "reconstruct_page_or_section_source_groups_from_existing_provenance",
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "rope365",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "Publicly accessible pages were transformed into an original dense digest, but the legacy corpus manifest records no explicit reuse license or permission basis.",
+          "license": "not_recorded",
+          "limitations": [
+            "Public accessibility is not a copyright license.",
+            "Do not redistribute source prose, images, video, or visual-only instructions from this registry record.",
+            "The registry inventories the declared artifact role and does not provide a legal opinion."
+          ],
+          "promotion_gate": "rights_review_required_before_new_snapshot",
+          "status": "legacy_manifest_gap"
+        },
+        "rights_promotion_gate": "rights_review_required_before_new_snapshot",
+        "rights_status": "legacy_manifest_gap",
+        "safety_transfer_flags": [
+          "anatomy_and_safety_claims_require_independent_review",
+          "practitioner_source_not_medical_or_engineering_authority",
+          "source_specific_claims_require_attribution",
+          "visual_only_instruction_must_not_be_reconstructed"
+        ],
+        "source_identity_sha256": "4b4349dc2944a3c611bac38d9766f78e296fa3f506770a7cbef1796a2d5337fe",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "invalidly_collapsed_digest_group_page_level_groups_required"
+      },
+      {
+        "artifact_id": "canonical-markdown:rope_topia",
+        "authorization_does_not_establish_public_license": true,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:rope_topia",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": null,
+          "materialized_qwen36_tokens": 0,
+          "status": "pending_authorized_snapshot_rebuild",
+          "verification": "registry_metadata_only_markdown_not_opened_by_inventory"
+        },
+        "multipage_provenance": {
+          "excluded_or_other_units": 7,
+          "included_units": 8,
+          "inventory_units": 15,
+          "manifest_receipt": {
+            "file_sha256": "ba5c1854789ae5569825a1f878b077a7e2847bcd6b3f39633ce5896e8835a26d",
+            "path": "data/site_corpora/rope_topia/manifest.json"
+          }
+        },
+        "project_training_authorization_override": true,
+        "registered_qwen36_tokens": 2552,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:0609a34c3ccdeda59a7974cb439d5370f011ad487919f12c79838d3ad6996f07",
+        "required_before_training": [
+          "rebuild_markdown_snapshot_with_project_authorization_ledger",
+          "reconstruct_page_or_section_source_groups_from_existing_provenance",
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "rope_topia",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The artifact is an original dense paraphrase of manually reviewed archived pages and verified successor copies, but the legacy manifest records no explicit corpus reuse license.",
+          "license": "not_recorded",
+          "limitations": [
+            "Internet Archive availability does not grant copyright permission.",
+            "Successor-page access does not authorize redistribution of source prose or media.",
+            "The registry inventories the declared artifact role and does not provide a legal opinion."
+          ],
+          "promotion_gate": "rights_review_required_before_new_snapshot",
+          "status": "legacy_manifest_gap"
+        },
+        "rights_promotion_gate": "rights_review_required_before_new_snapshot",
+        "rights_status": "legacy_manifest_gap",
+        "safety_transfer_flags": [
+          "archive_and_successor_provenance_must_be_preserved",
+          "historical_and_practitioner_claims_require_attribution",
+          "nonmedical_safety_articles_are_not_clinical_guidance",
+          "visual_only_instruction_must_not_be_reconstructed"
+        ],
+        "source_identity_sha256": "0609a34c3ccdeda59a7974cb439d5370f011ad487919f12c79838d3ad6996f07",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "invalidly_collapsed_digest_group_page_level_groups_required"
+      },
+      {
+        "artifact_id": "canonical-markdown:sage_aramid_three_strand_contact_forces_2025",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:sage_aramid_three_strand_contact_forces_2025",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 3,
+          "materialized_qwen36_tokens": 2469,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 2469,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:d0b1e4ab5f80c557169c30bdfd3f898018d87a454638d6e2fd7144b166eec3ea",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "sage_aramid_three_strand_contact_forces_2025",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The official University of Twente record labels the final published version CC BY, links to Creative Commons Attribution 4.0, and serves the checksum-bound final SAGE article; the manual adaptation records attribution and changes.",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0/",
+          "limitations": [
+            "Figures, tables, equations, plotted or numerical results, references, performance projections, correction values, confidence intervals, and separately credited components are excluded.",
+            "The artifact is a fresh manual, claim-cited adaptation; no PDF, rendered page, extraction, contact sheet, or source body is retained.",
+            "Open licensing does not turn measurements on tested Twaron 2200 laid three-strand specimens into a calculator, rating, lifetime rule, product endorsement, or evidence for natural fiber, other constructions, knots, care, bondage, body contact, uplines, anchors, or human suspension."
+          ],
+          "promotion_gate": "ready_with_attribution_component_audit_disclosures_and_exact_specimen_limits",
+          "status": "explicit_open_license"
+        },
+        "rights_promotion_gate": "ready_with_attribution_component_audit_disclosures_and_exact_specimen_limits",
+        "rights_status": "explicit_open_license",
+        "safety_transfer_flags": [
+          "contradictory_page_16_contact_width_sentence_must_not_be_taught_as_a_result",
+          "dataset_fitted_ideal_helix_adjustment_is_not_a_portable_model_or_calculator",
+          "no_natural_fiber_other_construction_knot_care_bondage_body_contact_upline_anchor_or_human_suspension_transfer",
+          "nwo_teijin_support_specimen_provision_and_declared_financial_conflict_must_travel_with_source",
+          "pressure_film_spatial_resolution_edge_effects_and_replication_limits_must_be_preserved",
+          "qualitative_interstrand_contact_measurements_not_strength_damage_lifetime_or_rating_evidence",
+          "tested_twaron_2200_laid_three_strand_specimen_scope_required"
+        ],
+        "source_identity_sha256": "d0b1e4ab5f80c557169c30bdfd3f898018d87a454638d6e2fd7144b166eec3ea",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:shibari_atlas",
+        "authorization_does_not_establish_public_license": true,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:shibari_atlas",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": null,
+          "materialized_qwen36_tokens": 0,
+          "status": "pending_authorized_snapshot_rebuild",
+          "verification": "registry_metadata_only_markdown_not_opened_by_inventory"
+        },
+        "multipage_provenance": {
+          "excluded_or_other_units": 364,
+          "included_units": 1714,
+          "inventory_units": 2078,
+          "manifest_receipt": {
+            "file_sha256": "f1c51e15d5201ce224b383758a58225d22f370a544eeebea1b91cd69d98a141e",
+            "path": "data/site_corpora/shibari_atlas/manifest.json"
+          }
+        },
+        "project_training_authorization_override": true,
+        "registered_qwen36_tokens": 1061134,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:4b1d423a3758f1973b04d00e41f4a5a72b78d69f289c20d3b9398becc9b5ae8a",
+        "required_before_training": [
+          "rebuild_markdown_snapshot_with_project_authorization_ledger",
+          "reconstruct_page_or_section_source_groups_from_existing_provenance",
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "shibari_atlas",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "The artifact is an original compressed digest and states that external reference pages were not copied, but the legacy corpus manifest records no explicit reuse license for the site's own text.",
+          "license": "not_recorded",
+          "limitations": [
+            "External source-catalogue metadata does not license the referenced works.",
+            "Do not redistribute site prose, images, graph assets, or external reference bodies from this registry record.",
+            "The registry inventories the declared artifact role and does not provide a legal opinion."
+          ],
+          "promotion_gate": "rights_review_required_before_new_snapshot",
+          "status": "legacy_manifest_gap"
+        },
+        "rights_promotion_gate": "rights_review_required_before_new_snapshot",
+        "rights_status": "legacy_manifest_gap",
+        "safety_transfer_flags": [
+          "contested_history_and_aliases_require_provenance",
+          "external_reference_pages_must_not_be_imputed_or_copied",
+          "historical_lineage_and_identity_claims_require_source_attribution",
+          "not_a_technical_medical_or_suspension_certification"
+        ],
+        "source_identity_sha256": "4b1d423a3758f1973b04d00e41f4a5a72b78d69f289c20d3b9398becc9b5ae8a",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "invalidly_collapsed_digest_group_page_level_groups_required"
+      },
+      {
+        "artifact_id": "canonical-markdown:usbr_testing_verifying_rope_access_anchors",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:usbr_testing_verifying_rope_access_anchors",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 3,
+          "materialized_qwen36_tokens": 2223,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 2223,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:18fff6b28d4426621795b8464bf8a3fcb51ce95f1f1517e1870ae75153fc0954",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "usbr_testing_verifying_rope_access_anchors",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "Eligible Bureau of Reclamation agency-authored prose is treated as presumptively public domain under 17 U.S.C. 105.",
+          "license": "eligible_US_government_text",
+          "limitations": [
+            "No blanket rights conclusion applies to credited, quoted, incorporated, or other third-party components.",
+            "Photographs, captions, person-attributed quotation, brands, standards, legal text, and linked operational material are excluded.",
+            "Protected final report Document 1018 was not requested or accessed and must not be inferred, reconstructed, paraphrased, or quoted.",
+            "The registry records the corpus rights basis and does not provide a legal opinion."
+          ],
+          "promotion_gate": "ready_with_component_audit_and_domain_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_component_audit_and_domain_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "current_site_specific_qualified_evaluation_controls",
+          "no_ceiling_hardpoint_anchor_bondage_body_support_or_human_suspension_certification",
+          "non_bondage_occupational_rope_access_research_domain",
+          "project_page_and_bulletin_are_incomplete_summary_evidence",
+          "protected_document_1018_is_a_hard_exclusion",
+          "qualitative_findings_only_no_capacity_configuration_procedure_or_design_transfer"
+        ],
+        "source_identity_sha256": "18fff6b28d4426621795b8464bf8a3fcb51ce95f1f1517e1870ae75153fc0954",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:usfs_region5_hazard_tree_2022",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:usfs_region5_hazard_tree_2022",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 6,
+          "materialized_qwen36_tokens": 5864,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 5864,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:94c02596c7e4f54bfab53e21edc569b534538945bb25f340d1eb32974be14538",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "usfs_region5_hazard_tree_2022",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "Eligible United States Government explanatory text is treated as presumptively public domain under 17 U.S.C. 105.",
+          "license": "eligible_US_government_text",
+          "limitations": [
+            "No blanket rights conclusion applies to credited or third-party components.",
+            "Cover art, figures, diagrams, raster tables, forms, maps, quick lists, application screenshots, cited standards, and other visual or externally supplied matter are excluded.",
+            "The registry records the corpus rights basis and does not provide a legal opinion."
+          ],
+          "promotion_gate": "ready_with_component_audit_and_domain_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_component_audit_and_domain_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "all_tree_failures_cannot_be_predicted_and_risk_is_reduced_not_eliminated",
+          "forest_service_region5_hazard_tree_context",
+          "no_mitigation_cutting_construction_or_numerical_rating_transfer",
+          "no_tree_branch_sling_hardpoint_load_bondage_or_human_suspension_certification",
+          "separate_qualified_arboricultural_and_rigging_or_structural_assessments_required",
+          "tree_risk_screening_is_not_anchor_capacity"
+        ],
+        "source_identity_sha256": "94c02596c7e4f54bfab53e21edc569b534538945bb25f340d1eb32974be14538",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      },
+      {
+        "artifact_id": "canonical-markdown:usfs_rigging_for_trail_work",
+        "authorization_does_not_establish_public_license": false,
+        "inventory_decision": "include_in_project_authorized_source_pool",
+        "lineage": {
+          "registry_artifact_id": "canonical-markdown:usfs_rigging_for_trail_work",
+          "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+        },
+        "materialization": {
+          "materialized_chunk_rows": 10,
+          "materialized_qwen36_tokens": 9175,
+          "status": "present_in_current_snapshot",
+          "verification": "exact_ordered_reconstruction_verified"
+        },
+        "project_training_authorization_override": false,
+        "registered_qwen36_tokens": 9175,
+        "registered_source_document_rows": 1,
+        "registered_split_group_id": "source-document-v1:1e4b621fdc2b47346bb5fd7caa46e0f9178a2a96dbc7afa77977cfd26d96d6b9",
+        "required_before_training": [
+          "immutable_source_disjoint_split_assignment",
+          "attribution_and_safety_flags_preserved",
+          "opaque_protected_source_disjoint_contract_extension"
+        ],
+        "resource_id": "usfs_rigging_for_trail_work",
+        "rights_basis": {
+          "attribution_required": true,
+          "basis": "Eligible United States Government text is treated as presumptively public domain under 17 U.S.C. 105.",
+          "license": "eligible_US_government_text",
+          "limitations": [
+            "No blanket rights conclusion applies to credited third-party components.",
+            "Photographs, figures, expressive tables, decorative quotations, vendor prose, and externally supplied matter are excluded.",
+            "This rights classification is not a legal opinion."
+          ],
+          "promotion_gate": "ready_with_component_audit_and_domain_limits",
+          "status": "federal_text_public_domain_presumption"
+        },
+        "rights_promotion_gate": "ready_with_component_audit_and_domain_limits",
+        "rights_status": "federal_text_public_domain_presumption",
+        "safety_transfer_flags": [
+          "forest_service_material_rigging_domain",
+          "manufacturer_standards_and_qualified_evaluation_control",
+          "mechanics_only_no_human_support_design_values",
+          "no_bondage_rope_tree_limb_indoor_hardpoint_or_hardware_certification",
+          "source_assumptions_and_failure_consequences_must_be_preserved"
+        ],
+        "source_identity_sha256": "1e4b621fdc2b47346bb5fd7caa46e0f9178a2a96dbc7afa77977cfd26d96d6b9",
+        "source_type": "raw_markdown_document",
+        "split_group_status": "registered_single_document_group"
+      }
+    ]
+  },
+  "invariants": {
+    "general_prose_and_derived_qa_proxy_concatenated": false,
+    "legacy_and_v440_qa_concatenated": false,
+    "policy_excluded_markdown_overridden": false,
+    "protected_holdout_ood_terminal_incident_or_manual_review_inputs_opened": false,
+    "semantic_training_rows_emitted": false,
+    "training_launch_authorized": false,
+    "unresolved_license_status_rewritten": false
+  },
+  "launch_gates": [
+    "rebuild Markdown snapshot so all 33 project-authorized documents are materialized",
+    "reconstruct page or section source groups for all four multi-page digests",
+    "seal immutable source-disjoint train/development/final groups before derivation",
+    "extend the opaque protected-source disjointness contract to new source bytes",
+    "promote pending public QA only after leakage, safety, and token-count reports",
+    "construct and approve category-balanced 15 percent general replay"
+  ],
+  "markdown_authority": {
+    "current_snapshot_documents": 29,
+    "current_snapshot_qwen36_tokens": 105326,
+    "current_snapshot_stale_relative_to_project_authorization": true,
+    "newly_project_authorized_license_unresolved_documents": 4,
+    "newly_project_authorized_license_unresolved_qwen36_tokens": 1107618,
+    "policy_excluded_manifests": 3,
+    "post_split_train_token_status": "unknown_until_page_level_source_groups_and_immutable_split_are_sealed",
+    "post_split_train_tokens": null,
+    "project_authorized_documents": 33,
+    "project_authorized_qwen36_tokens": 1212944,
+    "registered_documents": 33,
+    "registered_qwen36_tokens": 1212944,
+    "registry_non_legacy_gap_qwen36_tokens": 105326,
+    "registry_rights_status_qwen36_tokens": {
+      "explicit_open_license": 55288,
+      "federal_text_public_domain_presumption": 45893,
+      "legacy_manifest_gap": 1107618,
+      "public_domain_in_usa_source_with_trademark_and_jurisdiction_limits": 4145
+    }
+  },
+  "pending": {
+    "public_qa_shards": [
+      {
+        "inventory_decision": "pending_excluded_from_current_training",
+        "qa_artifact_path": "data/public_training_shards/ropeconnections_partial_suspension_v1/qa.jsonl",
+        "qa_artifact_sha256": "45258b4f043ba874ae341c5d0b9e7d9c1c0882719ac01d27cc58d97d99df0114",
+        "qwen36_token_count_status": "not_reported_by_safe_aggregate",
+        "qwen36_tokens": null,
+        "reason": "semantic leakage audit and safe Qwen token-count report are required",
+        "report_receipt": {
+          "file_sha256": "b6186e2cb2a99ab3ef42e4a901c1ca9c9bb4c4caf9679f80ec08505fe58570d1",
+          "path": "data/public_training_shards/ropeconnections_partial_suspension_v1/report.json"
+        },
+        "resource_id": "ropeconnections-partial-suspension-v1",
+        "safety_review_flags": [],
+        "source_document_rows": 1,
+        "source_identity_sha256": "b7ea5848c2106f523bce0e681cb3148b0fbeaaba16e32e7a496d75cef13d27be",
+        "source_type": "pending_public_training_qa_shard",
+        "split_group_id": "source-document-v1:b7ea5848c2106f523bce0e681cb3148b0fbeaaba16e32e7a496d75cef13d27be",
+        "training_example_rows": 6,
+        "url_memorization_questions": 0,
+        "verification_status": "manual_review_complete_promotion_pending"
+      },
+      {
+        "inventory_decision": "pending_excluded_from_current_training",
+        "qa_artifact_path": "data/public_training_shards/ropeconnections_rope_dyeing_v1/qa.jsonl",
+        "qa_artifact_sha256": "d563f8192a5694d4aa4930e313d338a1d6eac1b7b7e79fb33a31769bce1fcccf",
+        "qwen36_token_count_status": "not_reported_by_safe_aggregate",
+        "qwen36_tokens": null,
+        "reason": "semantic leakage audit and safe Qwen token-count report are required",
+        "report_receipt": {
+          "file_sha256": "45116583a51546a64d7ac000de6ace1bc512f241fac70282972cff201ae3fa7f",
+          "path": "data/public_training_shards/ropeconnections_rope_dyeing_v1/report.json"
+        },
+        "resource_id": "ropeconnections-rope-dyeing-v1",
+        "safety_review_flags": [
+          "qa_requires_downstream_material_safety_review",
+          "raw_source_requires_downstream_material_content_safety_review"
+        ],
+        "source_document_rows": 1,
+        "source_identity_sha256": "56e0d76a1fedd1de2e1286b2d099e12384e4dd11e984b6655229724748f840b0",
+        "source_type": "pending_public_training_qa_shard",
+        "split_group_id": "source-document-v1:56e0d76a1fedd1de2e1286b2d099e12384e4dd11e984b6655229724748f840b0",
+        "training_example_rows": 9,
+        "url_memorization_questions": 0,
+        "verification_status": "manual_review_complete_promotion_pending"
+      },
+      {
+        "inventory_decision": "pending_excluded_from_current_training",
+        "qa_artifact_path": "data/public_training_shards/ropeconnections_rope_ends_update_v1/qa.jsonl",
+        "qa_artifact_sha256": "e6ecdff921b9122be67b4a521bf0d4dee7e8cfff1164df748ed4eab834fe6292",
+        "qwen36_token_count_status": "not_reported_by_safe_aggregate",
+        "qwen36_tokens": null,
+        "reason": "semantic leakage audit and safe Qwen token-count report are required",
+        "report_receipt": {
+          "file_sha256": "5dd1a3e5390870f92a79657eb44abe83629f8e8d9a3010d8f107f2d3b5c26a3e",
+          "path": "data/public_training_shards/ropeconnections_rope_ends_update_v1/report.json"
+        },
+        "resource_id": "ropeconnections-rope-ends-update-v1",
+        "safety_review_flags": [
+          "raw_source_requires_downstream_content_and_safety_review"
+        ],
+        "source_document_rows": 1,
+        "source_identity_sha256": "cff238d1fa17cef3e4f776aeb241cc0e3e662ab4d64e2c9721ee98549ad6375f",
+        "source_type": "pending_public_training_qa_shard",
+        "split_group_id": "source-document-v1:cff238d1fa17cef3e4f776aeb241cc0e3e662ab4d64e2c9721ee98549ad6375f",
+        "training_example_rows": 11,
+        "url_memorization_questions": 0,
+        "verification_status": "manual_review_complete_promotion_pending"
+      },
+      {
+        "inventory_decision": "pending_excluded_from_current_training",
+        "qa_artifact_path": "data/public_training_shards/ropeconnections_rope_kit_v1/qa.jsonl",
+        "qa_artifact_sha256": "2e9f084bb6d0f40267cad5825861bfeb61514ef7ce1595d04f40af7b72ccf67c",
+        "qwen36_token_count_status": "not_reported_by_safe_aggregate",
+        "qwen36_tokens": null,
+        "reason": "semantic leakage audit and safe Qwen token-count report are required",
+        "report_receipt": {
+          "file_sha256": "c14b6bb7aeecad88153b839b4e55a8d1f07619787c8517b0a672b06d7c9fbce1",
+          "path": "data/public_training_shards/ropeconnections_rope_kit_v1/report.json"
+        },
+        "resource_id": "ropeconnections-rope-kit-v1",
+        "safety_review_flags": [],
+        "source_document_rows": 1,
+        "source_identity_sha256": "adcea1f65deab9c864ec45873145605b6fd3670ea9765814e6eb11a66aa71361",
+        "source_type": "pending_public_training_qa_shard",
+        "split_group_id": "source-document-v1:adcea1f65deab9c864ec45873145605b6fd3670ea9765814e6eb11a66aa71361",
+        "training_example_rows": 10,
+        "url_memorization_questions": 0,
+        "verification_status": "manual_review_complete_promotion_pending"
+      },
+      {
+        "inventory_decision": "pending_excluded_from_current_training",
+        "qa_artifact_path": "data/public_training_shards/ropeconnections_secondary_column_v1/qa.jsonl",
+        "qa_artifact_sha256": "df9b7e8e79cb6e8f847b3d27e9e119acc2c87e458e7a6ed71a88ae1b22fcf52c",
+        "qwen36_token_count_status": "not_reported_by_safe_aggregate",
+        "qwen36_tokens": null,
+        "reason": "semantic leakage audit and safe Qwen token-count report are required",
+        "report_receipt": {
+          "file_sha256": "6c76222038017d76eb444203593c9a3d68aab4db9bbe32ced3308b8386b1a728",
+          "path": "data/public_training_shards/ropeconnections_secondary_column_v1/report.json"
+        },
+        "resource_id": "ropeconnections-secondary-column-v1",
+        "safety_review_flags": [
+          "raw_source_requires_downstream_safety_review"
+        ],
+        "source_document_rows": 1,
+        "source_identity_sha256": "783e5b1fe5f22f5d7dff8a0d77eb7bc46c5958f897e8bbc650f4194a75bb3d2a",
+        "source_type": "pending_public_training_qa_shard",
+        "split_group_id": "source-document-v1:783e5b1fe5f22f5d7dff8a0d77eb7bc46c5958f897e8bbc650f4194a75bb3d2a",
+        "training_example_rows": 13,
+        "url_memorization_questions": 0,
+        "verification_status": "manual_review_complete_promotion_pending"
+      }
+    ],
+    "replay_candidate": [
+      {
+        "authority_id": "replay-candidate:general-qa-proxy-v43h",
+        "inventory_decision": "selected_candidate_not_yet_replay_approved",
+        "lineage": {
+          "prose_path": "/home/catid/specialist/data/general_prose_anchor_v1.jsonl",
+          "prose_sha256": "a693e23c48e558e9b72c30b0ae31f0b3e580a665371846978ad4d3eca7ef5f7d",
+          "protected_collision_receipt_inherited": true,
+          "report_path": "/home/catid/specialist/data/general_prose_anchor_v1.report.json",
+          "report_sha256": "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5"
+        },
+        "qwen36_token_count_status": "not_reported_by_safe_aggregate",
+        "qwen36_tokens": null,
+        "reason": "assistant-target proxy is format-compatible, but must be tokenized and balanced against the full replay taxonomy before use",
+        "source_document_rows": 128,
+        "source_identity_sha256": "d250980c5b88308452aba4ee8d3e43090b1444c250547c2515c838593f2f391f",
+        "source_type": "general_behavior_replay_candidate",
+        "split_group_id": "inherits_parent_document_identity",
+        "training_example_rows": 128
+      }
+    ]
+  },
+  "pending_public_qa": {
+    "counted_in_training_pool": false,
+    "qwen36_tokens": null,
+    "rows": 49,
+    "shards": 5,
+    "token_count_status": "not_reported_by_safe_aggregates"
+  },
+  "purpose": "metadata-only inclusion/exclusion authority; never a concatenated dataset",
+  "qa_authority": {
+    "authoritative_lineage": "qa-authority:v440-minus-url-index-logical-view",
+    "authoritative_qwen36_tokens": null,
+    "authoritative_rows": 516,
+    "divergent_authorities_concatenated": false,
+    "legacy_rows_excluded": 784,
+    "legacy_url_index_rows_excluded": 15,
+    "parent_unfiltered_qwen36_tokens": 39818
+  },
+  "replay_authority": {
+    "incompatible_anchor_representations_concatenated": false,
+    "selected_candidate": "replay-candidate:general-qa-proxy-v43h",
+    "selected_candidate_rows": 128,
+    "training_approved": false
+  },
+  "safe_input_receipts": [
+    {
+      "file_sha256": "913ff2cb786ac50ffe86770291b6173a14220afce3682dfea67359c45cf6e9f5",
+      "path": "data/general_prose_anchor_v1.report.json"
+    },
+    {
+      "file_sha256": "b176f4ea0d1d4b466c83b68c243bfb4a9e315df8574d9ba2c606333fbfc4ee8f",
+      "path": "data/general_qa_proxy_anchor_v43h.report.json"
+    },
+    {
+      "file_sha256": "b6186e2cb2a99ab3ef42e4a901c1ca9c9bb4c4caf9679f80ec08505fe58570d1",
+      "path": "data/public_training_shards/ropeconnections_partial_suspension_v1/report.json"
+    },
+    {
+      "file_sha256": "45116583a51546a64d7ac000de6ace1bc512f241fac70282972cff201ae3fa7f",
+      "path": "data/public_training_shards/ropeconnections_rope_dyeing_v1/report.json"
+    },
+    {
+      "file_sha256": "5dd1a3e5390870f92a79657eb44abe83629f8e8d9a3010d8f107f2d3b5c26a3e",
+      "path": "data/public_training_shards/ropeconnections_rope_ends_update_v1/report.json"
+    },
+    {
+      "file_sha256": "c14b6bb7aeecad88153b839b4e55a8d1f07619787c8517b0a672b06d7c9fbce1",
+      "path": "data/public_training_shards/ropeconnections_rope_kit_v1/report.json"
+    },
+    {
+      "file_sha256": "6c76222038017d76eb444203593c9a3d68aab4db9bbe32ced3308b8386b1a728",
+      "path": "data/public_training_shards/ropeconnections_secondary_column_v1/report.json"
+    },
+    {
+      "file_sha256": "6f582d82adf6ca6ef0e1659f41ab9fa1c90c6b3b80efbd48f3b83af51556a1d9",
+      "path": "data/site_corpora/crash_restraint/manifest.json"
+    },
+    {
+      "file_sha256": "46c0026fb18c90f18f570f2adf6c2b60b846a1382e2d366e59189e187b70c741",
+      "path": "data/site_corpora/registry/project_training_authorization_v1.json"
+    },
+    {
+      "file_sha256": "633b191178ee378dcd058b56d2a58b7a76d6e05daad154a4eb93c619fc8ee06f",
+      "path": "data/site_corpora/registry/site_corpus_registry_v1.json"
+    },
+    {
+      "file_sha256": "2897957fa4bb272dac5b6962f7cfe430ff2c36a6a095f2b87fb9d25d34d7b8ac",
+      "path": "data/site_corpora/rope365/manifest.json"
+    },
+    {
+      "file_sha256": "ba5c1854789ae5569825a1f878b077a7e2847bcd6b3f39633ce5896e8835a26d",
+      "path": "data/site_corpora/rope_topia/manifest.json"
+    },
+    {
+      "file_sha256": "f1c51e15d5201ce224b383758a58225d22f370a544eeebea1b91cd69d98a141e",
+      "path": "data/site_corpora/shibari_atlas/manifest.json"
+    },
+    {
+      "file_sha256": "9bbd2973a03df1d6037585239eb35e21e533d1a5198f2cdb6f7b87dc08b3178e",
+      "path": "data/site_corpora/training/site_markdown_cpt_v1/manifest.json"
+    },
+    {
+      "file_sha256": "3ca1cbf68dcc281176b25ca14a894edd6db7a3c705849d97f4efcdc6240b974a",
+      "path": "data/train_qa_curated_v1.report.json"
+    },
+    {
+      "file_sha256": "d6400a50f81867de70a5a79632793bac9ba2abf43307addc5e69abbca5b6bd87",
+      "path": "experiments/sft_controls/v53a_train_refresh_v440_fold3/manifest_v53a.json"
+    },
+    {
+      "file_sha256": "8988b14443dd3ab51be98be24b1aec6bc82ec4233241f3422cb0887c842af078",
+      "path": "experiments/sft_controls/v53a_train_refresh_v440_fold3/train_projection_v440.jsonl"
+    },
+    {
+      "file_sha256": "b1f770f90a44b4732aa3a9e56183cf233fda8e683d9e3c18b2d0cfa7345feae9",
+      "path": "experiments/sft_controls/v53a_v440_equal_lr5p5e5/runtime_report_v53a.json"
+    },
+    {
+      "file_sha256": "e9823359d82aeb61d7fd1f17f24ea22fc46680cc122c55232b1913d765d1d49d",
+      "path": "run_sft_train_only_control_v36a.py"
+    }
+  ],
+  "schema": "specialist-training-data-authority-inventory-v1",
+  "status": "authority_resolved_launch_gated",
+  "token_budget": {
+    "additional_filtered_qa_qwen36_tokens": null,
+    "additional_filtered_qa_token_status": "unknown_until_516_row_authority_is_materialized_and_tokenized",
+    "currently_materialized_authoritative_domain_qwen36_tokens": 105326,
+    "currently_materialized_domain_shortfall_qwen36_tokens": 894674,
+    "explicit_open_license_markdown_qwen36_tokens": 55288,
+    "explicit_open_license_markdown_shortfall_qwen36_tokens": 944712,
+    "legal_interpretation": "project authorization is recorded separately and is not a public license or legal determination",
+    "license_unresolved_override_qwen36_tokens": 1107618,
+    "post_source_split_shortfall_status": "cannot_be_computed_until_page_level_groups_and_80_10_10_split_are_sealed",
+    "post_source_split_train_qwen36_tokens": null,
+    "previous_snapshot_non_legacy_gap_markdown_qwen36_tokens": 105326,
+    "previous_snapshot_non_legacy_gap_markdown_shortfall_qwen36_tokens": 894674,
+    "project_authorized_known_source_pool_qwen36_tokens": 1212944,
+    "project_authorized_known_source_pool_surplus_qwen36_tokens": 212944,
+    "project_authorized_source_pool_is_lower_bound": true,
+    "project_authorized_source_pool_shortfall_qwen36_tokens": 0,
+    "protocol_new_domain_target_qwen36_tokens": 1000000
+  }
+}

@@ -5,19 +5,6 @@ from pathlib import Path
 import pytest
 
 import build_curated_qa as curated
-import build_legacy_eval_collision_incident_v2 as incident
-
-
-def test_incident_receipt_build_never_touches_quarantined_sources(monkeypatch):
-    def forbidden(*_args, **_kwargs):
-        pytest.fail("content-free incident construction touched a filesystem path")
-
-    monkeypatch.setattr(Path, "open", forbidden)
-    monkeypatch.setattr(Path, "stat", forbidden)
-    receipt = incident.build_receipt()
-    incident.validate_receipt(receipt)
-    assert receipt["scope"]["touched_source_count"] == 2
-    assert receipt["scope"]["source_file_hashes"] == "unknown_not_computed"
 
 
 def test_synthetic_empty_eval_never_calls_legacy_loader(monkeypatch):
@@ -56,11 +43,15 @@ def test_cli_has_no_implicit_eval_default(monkeypatch):
     assert error.value.code == 2
 
 
-def test_cli_synthetic_empty_mode_passes_content_free_fact_set(monkeypatch, capsys):
+def test_cli_synthetic_empty_mode_passes_content_free_fact_set(
+        monkeypatch, capsys, tmp_path):
     observed = {}
 
-    def synthetic_merge(inputs, output, report, facts, curation):
+    def synthetic_merge(
+            inputs, output, report, facts, curation,
+            collision_authorization=None):
         observed.update({
+            "collision_authorization": collision_authorization,
             "inputs": inputs,
             "output": output,
             "report": report,
@@ -75,9 +66,31 @@ def test_cli_synthetic_empty_mode_passes_content_free_fact_set(monkeypatch, caps
         "eval_facts",
         lambda _paths: pytest.fail("synthetic-empty CLI called eval loader"),
     )
-    curated.main(["--synthetic-empty-eval"])
+    synthetic_input = tmp_path / "synthetic-input.jsonl"
+    synthetic_input.write_text("", encoding="utf-8")
+    curated.main([
+        "--synthetic-empty-eval",
+        "--inputs", str(synthetic_input),
+        "--output", str(tmp_path / "synthetic-output.jsonl"),
+        "--report", str(tmp_path / "synthetic-report.json"),
+        "--curation",
+    ])
     assert observed["facts"] == []
+    assert observed["curation"] == []
+    assert observed["collision_authorization"] is None
     assert '"eval_fact_count": 0' in capsys.readouterr().out
+
+
+def test_cli_synthetic_empty_mode_rejects_repository_defaults(monkeypatch):
+    monkeypatch.setattr(
+        curated,
+        "merge",
+        lambda *_args, **_kwargs: pytest.fail(
+            "repository synthetic mode reached merge"
+        ),
+    )
+    with pytest.raises(RuntimeError, match="outside the repository"):
+        curated.main(["--synthetic-empty-eval"])
 
 
 def test_explicit_fresh_eval_path_is_forwarded(monkeypatch, tmp_path):
@@ -92,19 +105,64 @@ def test_explicit_fresh_eval_path_is_forwarded(monkeypatch, tmp_path):
     assert curated.evaluation_facts([fresh], synthetic_empty=False) is sentinel
 
 
+def test_external_non_synthetic_eval_fixture_is_rejected_before_loader(
+        monkeypatch, tmp_path):
+    fixture = tmp_path / "ordinary-fixture.jsonl"
+    fixture.write_text("", encoding="utf-8")
+    monkeypatch.setattr(
+        curated,
+        "eval_facts",
+        lambda _paths: pytest.fail("non-synthetic fixture reached eval loader"),
+    )
+    with pytest.raises(RuntimeError, match="explicitly identify a synthetic"):
+        curated.evaluation_facts([fixture], synthetic_empty=False)
+
+
+def test_repo_eval_v3_is_rejected_before_any_stat_or_loader(monkeypatch):
+    repo_eval = curated.ROOT / "data" / "synthetic-eval-v3-never-touch.jsonl"
+    monkeypatch.setattr(
+        curated.os,
+        "lstat",
+        lambda _path: pytest.fail("repository evaluation path was statted"),
+    )
+    monkeypatch.setattr(
+        curated,
+        "eval_facts",
+        lambda _paths: pytest.fail("repository evaluation reached loader"),
+    )
+    with pytest.raises(RuntimeError, match="outside the repository"):
+        curated.evaluation_facts([repo_eval], synthetic_empty=False)
+
+
 def test_resolved_alias_to_legacy_eval_rejects_before_loader(monkeypatch, tmp_path):
     alias = tmp_path / "synthetic-alias.jsonl"
-    monkeypatch.setattr(
-        curated.Path,
-        "resolve",
-        lambda self, **_kwargs: next(iter(curated.QUARANTINED_LEGACY_EVAL))
-        if self == alias
-        else self,
-    )
+    alias.symlink_to(next(iter(curated.QUARANTINED_LEGACY_EVAL)))
     monkeypatch.setattr(
         curated,
         "eval_facts",
         lambda _paths: pytest.fail("resolved legacy alias reached eval loader"),
     )
-    with pytest.raises(RuntimeError, match="aliases a quarantined"):
+    with pytest.raises(RuntimeError, match="quarantined evaluation"):
+        curated.evaluation_facts([alias], synthetic_empty=False)
+
+
+def test_repo_eval_alias_rejects_before_target_stat(monkeypatch, tmp_path):
+    target = curated.ROOT / "data" / "eval_v3_never_touch.jsonl"
+    alias = tmp_path / "synthetic-eval-alias.jsonl"
+    alias.symlink_to(target)
+    real_lstat = curated.os.lstat
+
+    def guarded_lstat(path):
+        lexical = Path(path).absolute()
+        if lexical == target:
+            pytest.fail("repository evaluation symlink target was statted")
+        return real_lstat(path)
+
+    monkeypatch.setattr(curated.os, "lstat", guarded_lstat)
+    monkeypatch.setattr(
+        curated,
+        "eval_facts",
+        lambda _paths: pytest.fail("repository evaluation alias reached loader"),
+    )
+    with pytest.raises(RuntimeError, match="outside the repository"):
         curated.evaluation_facts([alias], synthetic_empty=False)

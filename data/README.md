@@ -133,8 +133,50 @@ self-contained Q&A with source evidence.
   `qa_manual` records.
 
 Run the builders from the repository root. Refreshing the live corpus is
-optional; the remaining builders deterministically regenerate the tracked
-reports and curated dataset from their reviewed inputs:
+optional. The curated-QA builder deliberately has no no-argument production
+mode: a rebuild must be authorized by the exact opaque collision manifest and
+its independently pinned SHA-256 from an approved collision-authority record.
+Do not calculate `OPAQUE_COLLISION_AUTHORIZATION_SHA256` from the manifest in
+the same command that consumes it, because that would not preserve the sealed
+content-addressed boundary.
+
+Once the protected collision runner has published those two pinned values, the
+reproducible production command is:
+
+```bash
+OPAQUE_COLLISION_AUTHORIZATION=data/train_qa_curated_v1.opaque_collision_authorization_v1.json
+OPAQUE_COLLISION_AUTHORIZATION_SHA256=<sha256-pinned-by-collision-authority>
+.venv/bin/python build_curated_qa.py \
+  --collision-authorization "$OPAQUE_COLLISION_AUTHORIZATION" \
+  --collision-authorization-sha256 "$OPAQUE_COLLISION_AUTHORIZATION_SHA256"
+```
+
+The manifest schema permits only fixed schema metadata, ordered input hashes,
+an aggregate candidate identity hash/count, an aggregate evaluation identity
+hash/count, and the aggregate collision count. It contains no protected text,
+questions, answers, URLs, source paths, individual identities, or per-item
+metrics. The builder verifies canonical JSON, the independently supplied
+manifest hash, every ordered training and curation input hash, the completed
+candidate identity, and a zero collision count before writing the output. A
+missing, changed, stale, noncanonical, or collision-positive authorization
+fails closed. Authorization symlinks, parent aliases, and hard links are
+forbidden. Resolved output and report paths must also be disjoint from each
+other, every input, every curation ledger, and the authorization itself.
+Before opening any training or curation input, the builder rejects evaluation,
+protected, holdout, OOD, terminal, incident, and manual-review paths in both
+their lexical and symlink-expanded forms. Input and curation symlink aliases
+are not permitted.
+
+`--synthetic-empty-eval` exists only for unit/regression fixtures. It rejects
+all paths inside this repository, including the canonical defaults, so it
+cannot be used to certify or overwrite a production artifact. Synthetic tests
+provide explicit temporary inputs, output, report, and an empty curation list;
+they never open a real evaluation source. Direct `--eval` loading is not a
+production CLI option. The retained internal evaluation-fact helper accepts
+only explicitly named synthetic fixtures outside the repository and rejects
+symlinks before calling its loader.
+
+The other deterministic builders remain independently runnable as needed:
 
 ```bash
 .venv/bin/python collect_resource_corpus.py --disable-youtube
@@ -142,7 +184,6 @@ reports and curated dataset from their reviewed inputs:
 .venv/bin/python build_manual_qa.py
 .venv/bin/python build_resource_qa.py
 .venv/bin/python build_resource_facts.py
-.venv/bin/python build_curated_qa.py
 ```
 
 The corresponding entry points are
