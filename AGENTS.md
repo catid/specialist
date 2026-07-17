@@ -36,3 +36,11 @@
   `--model fable --effort max`) and never silently substitute another model.
 - Record the Claude session ID, keep polling the same live session through long
   quiet periods, and inspect Claude's edits plus focused tests before committing.
+
+## Forwarded SSH agent
+
+- Treat the forwarded SSH agent socket as ephemeral. The client SSH connection
+  cycles frequently, so a previously exported `SSH_AUTH_SOCK` is usually stale.
+- Before any authenticated Git operation, source `~/.bashrc` again, confirm
+  that `SSH_AUTH_SOCK` names an existing socket, and verify the currently
+  forwarded identity. Never assume a cached socket path still works.
