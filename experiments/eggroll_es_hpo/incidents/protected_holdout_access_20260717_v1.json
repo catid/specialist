@@ -1,0 +1,78 @@
+{
+  "affected_contract": {
+    "content_sha256": "2442c0c2be3ac4c883612f400f8f213ce3bc82ef96e03fad1ef10ec3b7d11fad",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v1.json",
+    "protected_source_file_sha256": "ab9a391e249910e876826dfab9c8e2f8e17a7b8695e6f018a3e515e5aa69603b",
+    "protected_source_path": "/home/catid/specialist/data/eval_qa_v3.jsonl"
+  },
+  "bead": "specialist-0j5.30",
+  "cause": {
+    "command_scope": "broad CPU compatibility pytest invocation for specialist-0j5.27",
+    "intentional_terminal_evaluation": false,
+    "model_training_or_scoring_intended": false,
+    "test_file": "/home/catid/specialist/test_recipe_evaluation_contract_v1.py"
+  },
+  "content_sha256_before_self_field": "df8856617f5facd6fedac21ab7b653681d2a38484f8e7d93f493bccd47932301",
+  "created_at_utc": "2026-07-17T10:03:52+00:00",
+  "event": {
+    "build_contract_invocations": 8,
+    "build_contract_source_reads": 8,
+    "direct_domain_eval_read_invocations": 1,
+    "legacy_heldout_candidate_rows_in_each_source_read": 18,
+    "load_claimed_protected_rows_attempts": 2,
+    "load_claimed_protected_rows_blocked_before_second_source_read": 1,
+    "load_claimed_protected_rows_successful_source_reads": 1,
+    "raw_source_file_parse_count": 10,
+    "rows_materialized_per_raw_source_parse": 59,
+    "rows_materialized_total_in_test_process_including_repeated_parses": 590,
+    "selected_protected_rows_returned_by_successful_claimed_loader": 12,
+    "temporary_one_use_access_state_deleted_with_test_temp_directory": true,
+    "temporary_state_deletion_does_not_reverse_access": true,
+    "v1_protected_access_count_is_nonzero": true
+  },
+  "known_selected_opaque_item_identities": [
+    "13f15d2abb283ec3ca2b9991909f85636d26192948eb075a14cab3aa8d1535fb",
+    "3213c54a049d81ad79596a7a850451fa121cdb03778811618c84fa4eb1222bba",
+    "37dc3e329ec71f759423e9a6e8d8ce80a316fe5e8ac617cb697d10c671a35cea",
+    "3fc885eb9b9907d77dab4217db08ba3b18e289f710d1a451e9e798f01dbacfa4",
+    "456005d00092c003484b9c887891c7aa5fe7ebaab0dc04a12043d3cb5e29ad38",
+    "83fc0b9072571bef97657e27aff8da64ba2a9ca54bc95dbaf8c925604d619c84",
+    "abf33d804b433f2d363349a62a64cad9e6ce784ea7bd8c11f6b5876c5f0d972b",
+    "c3636130528b8bbbb705b4f529d725b858a4f252245f7606bd16d36d089fbb47",
+    "de184e03920c28f106209c68a883ca86fee4474c54b214ffcbbde8d122c548e2",
+    "e3405d67d63c597aa2ebbbcd1c82cb7eb591dd2663a88e2ed0ceafc3aa1298ad",
+    "ec4798df01cb753f342bf6e841ae86fd11a0e54254f023ea1bcfb727341e0f6d",
+    "ff751237040a1664ef15d66a68ea7ddcff8a568e229bda57a435e0b40cdd7b6d"
+  ],
+  "output_escape_audit": {
+    "aggregate_evaluation_metric_computed_or_emitted": false,
+    "decoded_completion_or_model_output_produced": false,
+    "per_item_metric_computed_or_emitted": false,
+    "protected_answer_or_question_compared_inside_test_process": true,
+    "protected_raw_rows_materialized_inside_test_process": true,
+    "protected_row_text_in_agent_or_tool_output": false,
+    "protected_row_text_persisted_by_specialist_0j5_27_artifacts": false,
+    "protected_row_text_used_for_model_input_training_reward_or_selection": false,
+    "raw_answer_question_url_or_excerpt_emitted_to_stdout_or_stderr": false
+  },
+  "quarantine": {
+    "excluded_six_heldout_identities_reconstructed_by_another_source_read": false,
+    "fresh_untouched_v2_contract_required_before_any_hpo_or_terminal_evaluation": true,
+    "quarantine_scope": "entire source file: all 59 rows and all 18 legacy heldout candidates",
+    "reason_for_file_level_scope": "The raw parser materialized the complete source on every read; only the 12 selected identities were already present in sealed metadata. Reopening the file merely to enumerate the six excluded identities is prohibited.",
+    "reset_or_relabel_v1_access_count_to_zero_prohibited": true,
+    "v1_source_may_not_be_used_for_future_terminal_evaluation": true
+  },
+  "remediation": {
+    "dependent_live_hpo_and_selection_blocked": [
+      "specialist-0j5.27",
+      "specialist-0j5.13"
+    ],
+    "make_real_protected_source_reads_fail_closed_in_default_tests": true,
+    "migrate_downstream_contract_hashes_after_v2_seal": true,
+    "ordinary_loader_tests_use_only_synthetic_temporary_rows": true,
+    "seal_fresh_source_disjoint_opaque_subset_without_raw_content_in_contract": true
+  },
+  "schema": "specialist-protected-holdout-access-incident-v1",
+  "status": "confirmed_nonzero_access_entire_v1_source_quarantined"
+}
