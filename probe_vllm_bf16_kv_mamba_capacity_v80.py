@@ -29,10 +29,10 @@ PREREG = ROOT / (
     "qwen36_bf16_kv_mamba_capacity_matched_v80.json"
 )
 PREREG_CONTENT_SHA256 = (
-    "476c2ae6096b824d2637ad0a61b4434bd4e1b8472a85af89ae810d3b4297f04e"
+    "7527ed6fe0154a79ecc0de46b00af4601b0e3deaac184f2af094fba15740149a"
 )
 PREREG_FILE_SHA256 = (
-    "04ea42df05310ae67e6a57378716427d4ee9659bb32c101d70581393c3f6f386"
+    "be7de6c8ac1d59feef0ec0d0e289be85612644efbe72fdb3847fa34d5dd50aad"
 )
 
 SCHEMA_V80 = "v80-qwen36-bf16-kv-mamba-capacity-matched-preflight"

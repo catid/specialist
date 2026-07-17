@@ -11,7 +11,6 @@ def _parent_receipt() -> dict:
         "schema": subject.base.SCHEMA_V73,
         "precision_arm": "fp8_serialized",
         "runtime": {
-            "gpu_memory_utilization": 0.82,
             "resolved_quantization": "fp8",
             "enforce_eager": True,
         },

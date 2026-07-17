@@ -278,8 +278,6 @@ def upgraded_receipt_v79(
         not isinstance(value, dict)
         or value.get("schema") != base.SCHEMA_V73
         or value.get("precision_arm") != "fp8_serialized"
-        or value.get("runtime", {}).get("gpu_memory_utilization")
-        != BASE_GPU_MEMORY_UTILIZATION_V73
         or value.get("runtime", {}).get("resolved_quantization") != "fp8"
         or value.get("runtime", {}).get("enforce_eager") is not True
         or value.get("adapter_update_or_hpo_performed") is not False

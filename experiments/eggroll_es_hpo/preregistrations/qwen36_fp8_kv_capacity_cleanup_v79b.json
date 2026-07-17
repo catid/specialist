@@ -1,0 +1,191 @@
+{
+  "authority": {
+    "data_free_runtime_diagnostic_only": true,
+    "dataset_or_protected_data_opened": false,
+    "model_update_or_training_performed": false,
+    "scored_training_checkpoint_or_promotion_authorized": false
+  },
+  "bead": "specialist-0j5.24",
+  "cleanup_acceptance": {
+    "all_actor_roots_dead": true,
+    "compute_pids_exact": [],
+    "foreign_compute_pid_forbidden_during_measurement": true,
+    "gpu_utilization_percent_exact": 0,
+    "maximum_wait_seconds": 60.0,
+    "memory_and_utilization_source": "external_nvidia_smi_while_pynvml_telemetry_remains_live",
+    "memory_used_mib_max": 4,
+    "minimum_consecutive_batches": 3,
+    "sample_interval_seconds": 0.5
+  },
+  "content_sha256_before_self_field": "7669c2f720f2a0d17e976de42cc5b7c08fba60a3251175a62eddf05de2dc1b5d",
+  "implementation_correction": {
+    "earlier_v79_runs_are_diagnostic_not_v79b_acceptance": true,
+    "model_or_workload_change": false,
+    "monitor_cleanup_fix": "retain already ancestry-attributed engine PIDs after reparenting, then use an external unitless nvidia-smi snapshot for the cleanup memory gate because the in-process pynvml observer reports a 598 MiB self-overhead",
+    "probe_parent_receipt_fix": "stop requiring gpu_memory_utilization in a V73 receipt that does not persist that field; engine kwargs and live resolved certificate remain independently fail-closed"
+  },
+  "launch": {
+    "exact_command": "RUN=/home/catid/specialist/experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup bash /home/catid/specialist/launch_qwen36_fp8_kv_capacity_v79.sh",
+    "fresh_run_directory": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup",
+    "launch_performed_by_builder": false
+  },
+  "parent_v79": {
+    "content_sha256": "6c73ac0f6bf4019cdf297546e4315dc99b68d9549a24c03f4eaa9c8ebb589023",
+    "file_sha256": "0e195c05fd72e36656ee6536d6656d932aac0028fbbc7983f688df9dc7b18753",
+    "live_acceptance_retained_except_stronger_cleanup_observation": {
+      "capacity": {
+        "live_engine_field_and_actor_log_must_agree": true,
+        "minimum_full_2048_token_contexts_per_actor": 79,
+        "minimum_margin_fraction_over_v76": 0.025974025974025983,
+        "minimum_margin_tokens_over_v76": 4096,
+        "minimum_tokens_per_actor": 161792,
+        "projection_does_not_satisfy_this_gate": true
+      },
+      "cardinality_and_identity": {
+        "four_self_hashed_v79_actor_receipts": true,
+        "fresh_run_directory_required": true,
+        "no_foreign_compute_pid_during_measurement": true,
+        "one_unique_actor_pid_per_gpu": true,
+        "physical_gpu_ids_exact": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "cleanup": {
+        "engine_shutdown_completed_per_actor": true,
+        "minimum_consecutive_post_exit_idle_batches": 2,
+        "no_v79_actor_pid_remaining": true,
+        "post_exit_gpu_utilization_percent_exact": 0,
+        "post_exit_memory_used_mib_max": 4,
+        "torch_process_group_destroyed_per_actor": true
+      },
+      "hybrid_cache": {
+        "attention_backend_log_exact": "TRITON_ATTN",
+        "cache_dtype_exact": "fp8_per_token_head",
+        "calculate_kv_scales_exact": false,
+        "mamba_ssm_cache_dtype_exact": "float32",
+        "parameter_residency_must_equal_sealed_v78_r3": true,
+        "routed_moe_backend_exact": "TRITON",
+        "skip_layers_exact": []
+      },
+      "logs": {
+        "forbidden": [
+          "Auto-disabled DeepGemm",
+          "DeepGEMM E8M0 enabled",
+          "Traceback (most recent call last)",
+          "CUDA out of memory"
+        ],
+        "known_default_moe_and_lora_warnings_reported_not_suppressed": true,
+        "required_once_per_actor": [
+          "Using TRITON Fp8 MoE backend",
+          "Using TRITON_ATTN attention backend",
+          "Available KV cache memory:",
+          "GPU KV cache size:",
+          "Maximum concurrency for 2,048 tokens per request:",
+          "Skipping FlashInfer autotune because it is disabled"
+        ]
+      },
+      "output": {
+        "call_plan_exact": [
+          "reference",
+          "candidate",
+          "candidate",
+          "reference",
+          "reference",
+          "candidate",
+          "candidate",
+          "reference"
+        ],
+        "candidate_changes_output": true,
+        "candidate_repeat_exact_at_token_hash_level": true,
+        "known_reference_repeat_nondeterminism_cannot_be_hidden": true,
+        "paired_v78_v79_hash_agreement_and_drift_matrix_required": true,
+        "persist_only_token_counts_and_sha256_not_text_or_token_ids": true
+      },
+      "performance_and_memory": {
+        "all_four_gpus_require_positive_gpu_utilization": true,
+        "all_four_gpus_require_positive_memory_utilization": true,
+        "hbm_bytes_per_second_must_not_be_inferred_from_memory_utilization": true,
+        "median_runtime_ratio_to_v78_r3_max": 1.03,
+        "median_runtime_seconds_max": 50.840854837201476,
+        "minimum_physical_headroom_mib_per_actor": 47031,
+        "pcie_byte_integrals_are_left_rectangle_estimates": true,
+        "pcie_rx_tx_kib_per_second_required_not_null": true,
+        "peak_memory_used_mib_per_actor_max": 50856,
+        "per_actor_generated_tokens_per_second_required": true,
+        "per_actor_median_p95_and_max_call_latency_required": true,
+        "projected_peak_memory_used_mib_not_a_gate": 49387.695,
+        "report_peak_vram_power_gpu_and_memory_utilization": true,
+        "sample_interval_seconds_max": 1.0,
+        "sampled_pcie_rx_tx_byte_integrals_required": true,
+        "ten_timed_generation_calls_exact_two_warmup_eight_measured": true
+      },
+      "promotion": {
+        "all_prior_gates_must_pass": true,
+        "reference_restore_exactness_or_approved_semantic_resolution_required": true,
+        "scored_training_checkpoint_or_layout_promotion_default": false
+      },
+      "protected_ood": {
+        "no_new_safety_failure": true,
+        "no_retuning_after_open": true,
+        "one_shot_after_selection_freeze": true,
+        "paired_95pct_lower_bound_min": -0.005,
+        "worst_stratum_point_delta_min": -0.01
+      },
+      "semantic": {
+        "mean_delta_min": -0.001,
+        "no_new_safety_failure": true,
+        "paired_95pct_lower_bound_min": -0.002,
+        "run_only_after_data_free_live_gates_pass": true,
+        "source_disjoint_paired_evaluation_required": true
+      }
+    },
+    "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_fp8_kv_capacity_matched_v79.json",
+    "selected_runtime_retained_exactly": {
+      "all_other_v78_engine_workload_adapter_and_seed_fields_unchanged": true,
+      "async_scheduling": false,
+      "attention_backend_required_by_log": "TRITON_ATTN",
+      "calculate_kv_scales": false,
+      "enable_flashinfer_autotune": false,
+      "enforce_eager": true,
+      "gpu_memory_utilization": 0.485,
+      "kv_cache_dtype": "fp8_per_token_head",
+      "kv_cache_dtype_skip_layers": [],
+      "mamba_cache_dtype": "auto",
+      "mamba_ssm_cache_dtype": "float32",
+      "max_cpu_loras": 2,
+      "max_loras": 1,
+      "max_model_len": 2048,
+      "max_num_seqs": 68,
+      "prefix_caching": false,
+      "quantization": "fp8",
+      "routed_moe_backend": "TRITON",
+      "scheduling_policy": "fcfs"
+    }
+  },
+  "schema": "v79b-qwen36-fp8-kv-cleanup-preregistration",
+  "sealed_sources": {
+    "bundle_sha256": "14fc85abb7b88eaa4def27d6d190c33b76e956cc453a7b46975a96b9487484f2",
+    "files": [
+      {
+        "bytes": 20292,
+        "path": "probe_vllm_fp8_kv_capacity_v79.py",
+        "sha256": "6b72de1bd7d7878ba4183bae618108f8cd1cf997e33c7447ee2459700e15ff45"
+      },
+      {
+        "bytes": 12382,
+        "path": "monitor_qwen36_fp8_kv_capacity_v79.py",
+        "sha256": "6035eb32f90815ed2a2d8734d9e9072123b8ecc70d74449a2710e94b673ed3df"
+      },
+      {
+        "bytes": 1683,
+        "path": "launch_qwen36_fp8_kv_capacity_v79.sh",
+        "sha256": "4ca93e3a171787bb56613bf3648365ae96a355e28ec95f094b12d1982b6772df"
+      }
+    ],
+    "site_packages_modified": false
+  },
+  "status": "preregistered_before_v79b_live_cleanup_replicate"
+}

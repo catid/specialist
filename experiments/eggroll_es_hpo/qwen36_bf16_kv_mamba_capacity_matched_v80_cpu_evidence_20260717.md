@@ -12,9 +12,9 @@ or 79 complete 2,048-token contexts. A projection cannot satisfy that gate.
 The preregistration is
 `experiments/eggroll_es_hpo/preregistrations/qwen36_bf16_kv_mamba_capacity_matched_v80.json`.
 Its canonical content SHA-256 is
-`476c2ae6096b824d2637ad0a61b4434bd4e1b8472a85af89ae810d3b4297f04e`;
+`7527ed6fe0154a79ecc0de46b00af4601b0e3deaac184f2af094fba15740149a`;
 its file SHA-256 is
-`04ea42df05310ae67e6a57378716427d4ee9659bb32c101d70581393c3f6f386`.
+`be7de6c8ac1d59feef0ec0d0e289be85612644efbe72fdb3847fa34d5dd50aad`.
 
 ## Evidence ancestry
 
@@ -86,12 +86,16 @@ rewrite any historical V76/V78c certificate. The actor independently attests:
 
 The launcher starts one actor on each physical GPU concurrently and starts the
 reviewed NVML monitor at 2 Hz. The monitor SHA-256 is
-`228885d9854828a702d49e6c38a13b6d2189d6b4e026f081e9f4e39c2c0c4df2`.
+`6035eb32f90815ed2a2d8734d9e9072123b8ecc70d74449a2710e94b673ed3df`.
 It binds actor-root ancestry, retains already attributed engine PIDs through
 reparenting, and reports GPU/HBM utilization, VRAM, power, and PCIe RX/TX for
 each physical device. Missing PCIe counters fail closed. Post-run integration
 must label PCIe byte totals as sampled left-rectangle estimates; HBM bytes/s
-must not be inferred from `utilization.memory`.
+must not be inferred from `utilization.memory`. The in-process pynvml observer
+adds a reproducible 598 MiB to its own raw memory view on this host, so the
+cleanup-only 4 MiB/0% gate uses an external unitless `nvidia-smi` snapshot
+while retaining the raw pynvml value in the evidence. This distinction was
+sealed before live V80 execution.
 
 ## Acceptance and promotion gates
 

@@ -52,7 +52,7 @@ SOURCE_SHA256 = {
         "761857944064a0b21ff528971d3f497e4e67865679fa51a30d385cab65835dcb"
     ),
     "monitor_qwen36_fp8_kv_capacity_v79.py": (
-        "228885d9854828a702d49e6c38a13b6d2189d6b4e026f081e9f4e39c2c0c4df2"
+        "6035eb32f90815ed2a2d8734d9e9072123b8ecc70d74449a2710e94b673ed3df"
     ),
     "launch_qwen36_bf16_kv_mamba_capacity_v80.sh": (
         "3a335c0e44a9b8130adec8c0e11f52d2246264aa0a47f5b173cbdb35093fc7ad"

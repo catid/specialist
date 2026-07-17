@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import subprocess
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,6 +22,7 @@ from pathlib import Path
 
 SCHEMA_V79 = "v79-four-gpu-kv-capacity-telemetry"
 GPU_IDS_V79 = (0, 1, 2, 3)
+POST_EXIT_MEMORY_USED_MIB_MAX_V79 = 4
 
 
 def read_actor_pids_v79(path: Path) -> dict[int, int]:
@@ -85,6 +87,40 @@ def process_rows_v79(pynvml, handle) -> dict[int, int]:
     }
 
 
+def parse_nvidia_smi_cleanup_v79(text: str) -> dict[int, dict[str, int]]:
+    result = {}
+    for line in text.splitlines():
+        fields = [item.strip() for item in line.split(",")]
+        if len(fields) != 3:
+            raise RuntimeError("V79 cleanup nvidia-smi row width changed")
+        gpu, memory_used_mib, utilization = (int(item) for item in fields)
+        if gpu in result or gpu not in GPU_IDS_V79:
+            raise RuntimeError("V79 cleanup nvidia-smi GPU identity changed")
+        result[gpu] = {
+            "memory_used_mib": memory_used_mib,
+            "gpu_utilization_percent": utilization,
+        }
+    if set(result) != set(GPU_IDS_V79):
+        raise RuntimeError("V79 cleanup nvidia-smi cardinality changed")
+    return result
+
+
+def nvidia_smi_cleanup_v79() -> dict[int, dict[str, int]]:
+    completed = subprocess.run(
+        [
+            "nvidia-smi",
+            "--query-gpu=index,memory.used,utilization.gpu",
+            "--format=csv,noheader,nounits",
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    if completed.stderr.strip():
+        raise RuntimeError("V79 cleanup nvidia-smi emitted stderr")
+    return parse_nvidia_smi_cleanup_v79(completed.stdout)
+
+
 def sample_batch_v79(
     pynvml,
     handles: dict[int, object],
@@ -92,6 +128,7 @@ def sample_batch_v79(
     batch_index: int,
     *,
     require_pcie: bool,
+    trusted_compute_pids: dict[int, set[int]] | None = None,
 ) -> list[dict]:
     sampled_at = datetime.now(timezone.utc).isoformat()
     monotonic_ns = time.monotonic_ns()
@@ -101,9 +138,21 @@ def sample_batch_v79(
         root_pid = roots[gpu]
         process_memory = process_rows_v79(pynvml, handle)
         pids = sorted(process_memory)
-        attributed = [
+        ancestry_attributed = [
             pid for pid in pids if is_descendant_v79(pid, root_pid)
         ]
+        prior_attributed = sorted(
+            set(pids)
+            & (
+                trusted_compute_pids.get(gpu, set())
+                if trusted_compute_pids is not None
+                else set()
+            )
+            - set(ancestry_attributed)
+        )
+        attributed = sorted(set(ancestry_attributed) | set(prior_attributed))
+        if trusted_compute_pids is not None:
+            trusted_compute_pids[gpu].update(attributed)
         foreign = [pid for pid in pids if pid not in attributed]
         utilization = pynvml.nvmlDeviceGetUtilizationRates(handle)
         memory = pynvml.nvmlDeviceGetMemoryInfo(handle)
@@ -127,6 +176,8 @@ def sample_batch_v79(
                 "compute_pids": pids,
                 "process_memory_mib": process_memory,
                 "attributed_compute_pids": attributed,
+                "ancestry_attributed_compute_pids": ancestry_attributed,
+                "prior_ancestry_attributed_compute_pids": prior_attributed,
                 "foreign_compute_pids": foreign,
                 "gpu_utilization_percent": int(utilization.gpu),
                 "memory_utilization_percent": int(utilization.memory),
@@ -144,12 +195,31 @@ def sample_batch_v79(
     return rows
 
 
+def cleanup_idle_batch_v79(rows: list[dict]) -> bool:
+    return (
+        len(rows) == len(GPU_IDS_V79)
+        and {row.get("gpu") for row in rows} == set(GPU_IDS_V79)
+        and all(
+            row.get("actor_root_alive") is False
+            and row.get("compute_pids") == []
+            and row.get("cleanup_nvidia_smi_gpu_utilization_percent") == 0
+            and isinstance(
+                row.get("cleanup_nvidia_smi_memory_used_mib"), int
+            )
+            and row["cleanup_nvidia_smi_memory_used_mib"]
+            <= POST_EXIT_MEMORY_USED_MIB_MAX_V79
+            for row in rows
+        )
+    )
+
+
 def run_monitor_v79(
     actor_pids: Path,
     output: Path,
     *,
     sample_interval_seconds: float,
     cleanup_batches: int,
+    max_cleanup_wait_seconds: float,
     require_pcie: bool,
 ) -> None:
     if output.exists():
@@ -158,6 +228,8 @@ def run_monitor_v79(
         raise ValueError("V79 telemetry interval must be in (0, 1] seconds")
     if cleanup_batches < 2:
         raise ValueError("V79 requires at least two cleanup batches")
+    if max_cleanup_wait_seconds <= 0:
+        raise ValueError("V79 cleanup wait must be positive")
     roots = read_actor_pids_v79(actor_pids)
 
     import pynvml
@@ -169,7 +241,9 @@ def run_monitor_v79(
             for gpu in GPU_IDS_V79
         }
         batch_index = 0
-        cleanup_remaining: int | None = None
+        cleanup_idle_count = 0
+        cleanup_started: float | None = None
+        trusted_compute_pids = {gpu: set() for gpu in GPU_IDS_V79}
         with output.open("x", encoding="utf-8") as handle:
             while True:
                 rows = sample_batch_v79(
@@ -178,27 +252,56 @@ def run_monitor_v79(
                     roots,
                     batch_index,
                     require_pcie=require_pcie,
+                    trusted_compute_pids=trusted_compute_pids,
                 )
                 if any(row["foreign_compute_pids"] for row in rows):
                     raise RuntimeError("V79 observed a foreign GPU compute PID")
-                for row in rows:
-                    handle.write(json.dumps(row, sort_keys=True) + "\n")
-                handle.flush()
-                batch_index += 1
-
                 roots_alive = any(
                     Path(f"/proc/{pid}").exists() for pid in roots.values()
                 )
+                cleanup_snapshot = (
+                    None if roots_alive else nvidia_smi_cleanup_v79()
+                )
+                for row in rows:
+                    snapshot = (
+                        None
+                        if cleanup_snapshot is None
+                        else cleanup_snapshot[row["gpu"]]
+                    )
+                    row["cleanup_nvidia_smi_memory_used_mib"] = (
+                        None if snapshot is None else snapshot["memory_used_mib"]
+                    )
+                    row["cleanup_nvidia_smi_gpu_utilization_percent"] = (
+                        None
+                        if snapshot is None
+                        else snapshot["gpu_utilization_percent"]
+                    )
+                    row["cleanup_memory_gate_uses_external_nvidia_smi"] = (
+                        snapshot is not None
+                    )
+                    handle.write(json.dumps(row, sort_keys=True) + "\n")
+                handle.flush()
+                batch_index += 1
                 if roots_alive:
-                    cleanup_remaining = None
-                elif cleanup_remaining is None:
-                    cleanup_remaining = cleanup_batches - 1
-                    if cleanup_remaining == 0:
-                        break
+                    cleanup_idle_count = 0
+                    cleanup_started = None
                 else:
-                    cleanup_remaining -= 1
-                    if cleanup_remaining == 0:
+                    if cleanup_started is None:
+                        cleanup_started = time.monotonic()
+                    cleanup_idle_count = (
+                        cleanup_idle_count + 1
+                        if cleanup_idle_batch_v79(rows)
+                        else 0
+                    )
+                    if cleanup_idle_count >= cleanup_batches:
                         break
+                    if (
+                        time.monotonic() - cleanup_started
+                        > max_cleanup_wait_seconds
+                    ):
+                        raise RuntimeError(
+                            "V79 GPUs did not reach the sealed cleanup-idle gate"
+                        )
                 time.sleep(sample_interval_seconds)
     finally:
         pynvml.nvmlShutdown()
@@ -210,6 +313,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--sample-interval-seconds", type=float, default=0.5)
     parser.add_argument("--cleanup-batches", type=int, default=3)
+    parser.add_argument("--max-cleanup-wait-seconds", type=float, default=60.0)
     parser.add_argument("--require-pcie", action="store_true")
     args = parser.parse_args()
     run_monitor_v79(
@@ -217,6 +321,7 @@ def main() -> int:
         args.output.resolve(),
         sample_interval_seconds=args.sample_interval_seconds,
         cleanup_batches=args.cleanup_batches,
+        max_cleanup_wait_seconds=args.max_cleanup_wait_seconds,
         require_pcie=args.require_pcie,
     )
     return 0

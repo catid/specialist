@@ -75,6 +75,79 @@ def test_sample_binds_hbm_pcie_power_and_pid_fields():
     assert all(row["pcie_counters_supported"] is True for row in rows)
 
 
+def test_sample_retains_prior_ancestry_after_engine_reparent(monkeypatch):
+    class OneProcess(_Nvml):
+        @staticmethod
+        def nvmlDeviceGetComputeRunningProcesses(handle):
+            return [SimpleNamespace(pid=200 + handle, usedGpuMemory=1024 * 1024)]
+
+    monkeypatch.setattr(
+        subject,
+        "is_descendant_v79",
+        lambda pid, root: pid == root + 100,
+    )
+    trusted = {gpu: set() for gpu in subject.GPU_IDS_V79}
+    first = subject.sample_batch_v79(
+        OneProcess,
+        {gpu: gpu for gpu in subject.GPU_IDS_V79},
+        {gpu: 100 + gpu for gpu in subject.GPU_IDS_V79},
+        0,
+        require_pcie=True,
+        trusted_compute_pids=trusted,
+    )
+    assert all(not row["foreign_compute_pids"] for row in first)
+    monkeypatch.setattr(subject, "is_descendant_v79", lambda _pid, _root: False)
+    second = subject.sample_batch_v79(
+        OneProcess,
+        {gpu: gpu for gpu in subject.GPU_IDS_V79},
+        {gpu: 100 + gpu for gpu in subject.GPU_IDS_V79},
+        1,
+        require_pcie=True,
+        trusted_compute_pids=trusted,
+    )
+    assert all(not row["foreign_compute_pids"] for row in second)
+    assert all(row["ancestry_attributed_compute_pids"] == [] for row in second)
+    assert [row["prior_ancestry_attributed_compute_pids"] for row in second] == [
+        [200],
+        [201],
+        [202],
+        [203],
+    ]
+
+
+def test_cleanup_gate_requires_consecutive_fully_idle_rows():
+    rows = [
+        {
+            "gpu": gpu,
+            "actor_root_alive": False,
+            "compute_pids": [],
+            "cleanup_nvidia_smi_gpu_utilization_percent": 0,
+            "cleanup_nvidia_smi_memory_used_mib": 4,
+        }
+        for gpu in subject.GPU_IDS_V79
+    ]
+    assert subject.cleanup_idle_batch_v79(rows) is True
+    for field, value in (
+        ("actor_root_alive", True),
+        ("compute_pids", [123]),
+        ("cleanup_nvidia_smi_gpu_utilization_percent", 1),
+        ("cleanup_nvidia_smi_memory_used_mib", 5),
+    ):
+        changed = [dict(row) for row in rows]
+        changed[2][field] = value
+        assert subject.cleanup_idle_batch_v79(changed) is False
+
+
+def test_cleanup_nvidia_smi_parser_is_exact_and_unitless():
+    text = "\n".join(f"{gpu}, 4, 0" for gpu in subject.GPU_IDS_V79)
+    assert subject.parse_nvidia_smi_cleanup_v79(text) == {
+        gpu: {"memory_used_mib": 4, "gpu_utilization_percent": 0}
+        for gpu in subject.GPU_IDS_V79
+    }
+    with pytest.raises(RuntimeError, match="cardinality"):
+        subject.parse_nvidia_smi_cleanup_v79("0, 4, 0")
+
+
 def test_pcie_unsupported_fails_closed():
     class Unsupported(_Nvml):
         nvmlDeviceGetPcieThroughput = None
