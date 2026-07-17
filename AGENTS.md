@@ -4,6 +4,22 @@
 
 - Use the Exa MCP for web searches.
 
+## Protected evaluation data
+
+- Ordinary unit, regression, and compatibility tests must use synthetic
+  fixtures. Never run a broad test selection that can resolve a real protected
+  holdout or terminal source path.
+- Real terminal evaluation is allowed only through its explicit one-use,
+  content-addressed claim runner after the exact command and output boundary
+  are sealed. Do not print or persist protected text, URLs, answers, generated
+  completions, or per-item metrics.
+- Treat every unexpected protected-source read as irreversible. Record and
+  quarantine the touched source; never reset an access counter or relabel the
+  source as untouched.
+- Before running evaluation-related tests, inspect their fixture and loader
+  paths. If a real source can be reached, stop and replace that path with a
+  synthetic fixture before continuing.
+
 ## Claude CLI
 
 - Claude CLI requests can take a long time. Inspect the session more carefully
