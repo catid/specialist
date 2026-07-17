@@ -1,0 +1,57 @@
+{
+  "claims_withheld": [
+    "live_gpu_compatibility",
+    "peak_vram_reduction",
+    "memory_bandwidth_reduction",
+    "wall_time_improvement",
+    "training_or_hpo_promotion",
+    "quality_or_ood_equivalence"
+  ],
+  "fault_injections_required": [
+    "requires_grad_true_tensor_rejected",
+    "non_none_grad_tensor_rejected",
+    "grad_enabled_tensor_operation_rejected",
+    "hidden_torch_optimizer_registry_rejected",
+    "optimizer_state_dict_registry_rejected"
+  ],
+  "hypothesis": "Explicitly removing autograd authority from worker-owned LoRA ES surfaces avoids gradient buffers and graph retention without a full-model clone or content scan.",
+  "live_acceptance_gate": {
+    "all_worker_surface_receipts_required": true,
+    "bead_must_remain_in_progress": true,
+    "controller_aggregate_required": true,
+    "dependency": "specialist-0j5.32",
+    "dependency_satisfied_in_this_milestone": false,
+    "exact_worker_count": 4,
+    "live_receipt_present": false
+  },
+  "model_family": "Qwen3.6-35B-A3B",
+  "preregistration_sha256": "95790351c7c65ae58676d58ff85c892e36f4b8da099621d30e25309c39e9db78",
+  "required_invariants": {
+    "arbitrary_model_graph_traversal": false,
+    "autograd_leaf": true,
+    "full_model_clone_bytes": 0,
+    "grad_fn_none": true,
+    "grad_none": true,
+    "guard_mode": "torch.no_grad+reject_grad_enabled_tensor_ops",
+    "inference_mode_omission_reason": "preserve accepted tensor version-counter invariants",
+    "inference_mode_required": false,
+    "optimizer_state_dict_authority_absent": true,
+    "requires_grad_false": true,
+    "tensor_clone_bytes": 0,
+    "tensor_content_read_bytes": 0,
+    "torch_optimizer_authority_absent": true
+  },
+  "schema": "qwen36-lora-es-autograd-free-preregistration-v83",
+  "sealed_surface_roles": [
+    "canonical_fp32_master",
+    "pending_candidate_and_rollback",
+    "committed_rollback",
+    "runtime_lora_views_and_parents",
+    "runtime_base_tensor_links",
+    "pinned_bf16_publication_bank",
+    "transition_inputs_and_registered_results"
+  ],
+  "source_evidence_sha256": "fe32140efe68e9b078a734c5f32a5afc1914e79d8d304afa7328e42f29990f51",
+  "status": "prospective_source_cpu_only",
+  "worker_class": "eggroll_es_worker_lora_autograd_free_v83.LoRAAdapterStateWorkerExtensionV83"
+}

@@ -1,0 +1,116 @@
+{
+  "accepted_trainers_immutable": true,
+  "additive_source": {
+    "build_qwen36_lora_es_autograd_free_preregistration_v83.py": {
+      "sha256": "273fb096029e72e0703717c380129716dfddcecacf1f990f51930ef2e4c11bae",
+      "tensor_clone_call_count": 0,
+      "torch_enable_grad_call_count": 0,
+      "torch_inference_mode_call_count": 0,
+      "torch_no_grad_call_count": 0
+    },
+    "eggroll_es_autograd_free_contract_v83.py": {
+      "sha256": "39c2954c3effd4dd47f1045387f1a6f172afc6c9f7f747fff834a7c4037bea8a",
+      "tensor_clone_call_count": 0,
+      "torch_enable_grad_call_count": 0,
+      "torch_inference_mode_call_count": 0,
+      "torch_no_grad_call_count": 1
+    },
+    "eggroll_es_worker_lora_autograd_free_v83.py": {
+      "sha256": "9bda28cc0b8514e214d3dc704d25ad3befa95b4e5c7c4280f75d9c49f26adee8",
+      "tensor_clone_call_count": 0,
+      "torch_enable_grad_call_count": 0,
+      "torch_inference_mode_call_count": 0,
+      "torch_no_grad_call_count": 1
+    },
+    "test_eggroll_es_autograd_free_v83.py": {
+      "sha256": "ca38ef5d0ed869ddf0a6317aa21d73fe6761e1d2df6affafad5b03d019469797",
+      "tensor_clone_call_count": 0,
+      "torch_enable_grad_call_count": 2,
+      "torch_inference_mode_call_count": 0,
+      "torch_no_grad_call_count": 0
+    }
+  },
+  "authority": {
+    "hpo_authorized": false,
+    "promotion_authorized": false,
+    "quality_or_ood_claim_authorized": false,
+    "training_launch_authorized": false
+  },
+  "execution_boundary": {
+    "cpu_synthetic_only": true,
+    "gpu_training_launched": false,
+    "torch_cuda_launched": false,
+    "vllm_or_ray_model_launched": false
+  },
+  "report_sha256": "fe32140efe68e9b078a734c5f32a5afc1914e79d8d304afa7328e42f29990f51",
+  "schema": "qwen36-lora-es-autograd-free-source-evidence-v83",
+  "scope": "prospective_additive_worker_only",
+  "source_findings": {
+    "accepted_source_enables_autograd": false,
+    "v71_materialization_has_explicit_no_grad": true,
+    "v72_update_relies_on_additive_outer_guard": true,
+    "v81a_materialization_has_explicit_no_grad": true,
+    "v83_guard_arbitrary_model_graph_traversal": false,
+    "v83_guard_full_model_clone_bytes": 0,
+    "v83_guard_reads_tensor_metadata_only": true,
+    "v83_guard_tensor_clone_bytes": 0,
+    "v83_guard_tensor_content_read_bytes": 0
+  },
+  "status": "source_cpu_contract_sealed",
+  "synthetic_fault_matrix": [
+    "requires_grad_true_tensor_rejected",
+    "non_none_grad_tensor_rejected",
+    "grad_enabled_tensor_operation_rejected",
+    "hidden_torch_optimizer_registry_rejected",
+    "optimizer_state_dict_registry_rejected"
+  ],
+  "trainer_source": {
+    "eggroll_es_worker_lora_pinned_transport_v81a.py": {
+      "sha256": "17b20a974b2e21cf144b376080af0cffc2751cf0c52dbc538e615e5e2ae88879",
+      "tensor_clone_call_count": 0,
+      "torch_enable_grad_call_count": 0,
+      "torch_inference_mode_call_count": 0,
+      "torch_no_grad_call_count": 1
+    },
+    "eggroll_es_worker_lora_v71.py": {
+      "sha256": "6167ecd24332e0384e50f4bfa34893112623c2291f35e89989d8c3a527b9fcaa",
+      "tensor_clone_call_count": 0,
+      "torch_enable_grad_call_count": 0,
+      "torch_inference_mode_call_count": 0,
+      "torch_no_grad_call_count": 1
+    },
+    "eggroll_es_worker_lora_v72.py": {
+      "sha256": "547d525edfd51412abb3a4980ddc4a55730ad0eb09987ec202ce2ce8f701a2c2",
+      "tensor_clone_call_count": 1,
+      "torch_enable_grad_call_count": 0,
+      "torch_inference_mode_call_count": 0,
+      "torch_no_grad_call_count": 0
+    }
+  },
+  "transition_coverage": {
+    "guarded_transition_count": 18,
+    "missing_transitions": [],
+    "required_transition_count": 18,
+    "required_transitions": [
+      "install_adapter_state_v41a",
+      "capture_adapter_reference_v41a",
+      "_materialize_v41a",
+      "materialize_mirrored_adapter_v71",
+      "restore_mirrored_adapter_v71",
+      "_restore_exact_master_v66",
+      "_restore_update_master_v71",
+      "accept_population_rewards_v71",
+      "prepare_sharded_adapter_update_v72",
+      "execute_sharded_adapter_update_v41a",
+      "commit_sharded_adapter_update_v71",
+      "abort_sharded_adapter_update_v71",
+      "finalize_sharded_adapter_update_v71",
+      "abort_mirrored_update_if_present_v66",
+      "begin_actor_gpu_work_v66d",
+      "end_actor_gpu_work_v66d",
+      "save_adapter_snapshot_v41a",
+      "final_transport_receipt_v81a"
+    ],
+    "unguarded_transitions": []
+  }
+}
