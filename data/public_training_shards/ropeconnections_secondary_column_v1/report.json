@@ -1,0 +1,61 @@
+{
+  "schema": "public-training-manual-shard-report-v1",
+  "shard": "ropeconnections-secondary-column-v1",
+  "source": "ropeconnections",
+  "url": "https://www.ropeconnections.com/the-secondary-column-tie/",
+  "document_sha256": "783e5b1fe5f22f5d7dff8a0d77eb7bc46c5958f897e8bbc650f4194a75bb3d2a",
+  "candidate_input": {
+    "path": "data/train_qa_v3_clean_leakfree_v4_candidates.jsonl",
+    "sha256": "d324b46129e4d1a338ec4f6cf6765e8049856347d4b3bc3bfb37a0b9c2eaa2dd",
+    "matching_rows": 37
+  },
+  "source_input": {
+    "path": "data/train_chunks_v2.jsonl",
+    "sha256": "bf785cd22a6508be117ded4755053978355a2531acaa329731d3a05437cf7d1e",
+    "matching_chunks": 2
+  },
+  "review": {
+    "method": "manual_row_by_row",
+    "reviewer": "codex-manual-background",
+    "reviewed_at": "2026-07-17",
+    "candidate_rows_consumed": 37,
+    "candidate_rows_dropped": 12,
+    "candidate_rows_merged_or_edited": 25,
+    "decision_rows": 14,
+    "edit_decisions": 5,
+    "add_decisions": 8,
+    "drop_decisions": 1,
+    "output_qa_rows": 13
+  },
+  "quality": {
+    "malformed_chat_wrappers": 0,
+    "url_memorization_questions": 0,
+    "duplicate_output_questions": 0,
+    "ungrounded_output_answers": 0,
+    "unqualified_medical_claims_in_qa": 0,
+    "raw_source_medical_warning_preserved": true,
+    "raw_source_requires_downstream_safety_review": true,
+    "raw_markdown_kept_separate": true
+  },
+  "boundary": {
+    "evaluation_content_read": false,
+    "protected_content_read": false,
+    "web_crawl_performed": false,
+    "active_training_snapshot_modified": false,
+    "promotion_status": "pending_semantic_leakage_audit"
+  },
+  "artifacts": {
+    "source_markdown": {
+      "path": "data/public_training_shards/ropeconnections_secondary_column_v1/source.md",
+      "sha256": "3d52b538b3fadf0bcbb7f9625f4168bd99a3d63a68fd819caea65fd15cc4e49e"
+    },
+    "candidate_review": {
+      "path": "data/public_training_shards/ropeconnections_secondary_column_v1/candidate_review.jsonl",
+      "sha256": "93ac7f536744bb53a69def6ce1f55006a4e8e1eed98b6d3d0100cb930fb5b7c5"
+    },
+    "qa": {
+      "path": "data/public_training_shards/ropeconnections_secondary_column_v1/qa.jsonl",
+      "sha256": "df9b7e8e79cb6e8f847b3d27e9e119acc2c87e458e7a6ed71a88ae1b22fcf52c"
+    }
+  }
+}
