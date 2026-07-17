@@ -1,0 +1,315 @@
+{
+  "aggregate_paired_speedup": {
+    "flat_over_tensorwise_gpu_materialize": {
+      "count": 100,
+      "geometric_mean": 28.6485327223898,
+      "maximum": 30.582496706939683,
+      "median": 28.457255220704624,
+      "minimum": 27.505979892825078
+    },
+    "pinned_nonblocking_over_pageable_sync_h2d": {
+      "count": 100,
+      "geometric_mean": 1.2698583018077323,
+      "maximum": 1.2878206041523255,
+      "median": 1.2688804313862811,
+      "minimum": 1.2566619438322155
+    }
+  },
+  "authority": {
+    "checkpoint_or_model_update_performed": false,
+    "model_or_dataset_loaded": false,
+    "protected_evaluation_opened": false,
+    "quality_hpo_or_recipe_promotion_authorized": false
+  },
+  "content_sha256_before_self_field": "92008f51257ce1e8095f6b35b1049b10a3d07e8ae673b1cc39522363c49d596a",
+  "interpretation": {
+    "end_to_end_training_speedup_measured": false,
+    "quality_or_recipe_promotion_authorized": false,
+    "supports_exact_phase_profile_followup": true
+  },
+  "runs": [
+    {
+      "content_sha256": "537a0672dc8a441d8657704b17752d1472157e728fc000437139650b52e4cff0",
+      "file_sha256": "c47e26d21649dd47ea7494e3c9b731a927ce7b6bde0ff64bcf4bcac8fae5b7d9",
+      "materialize_iterations": 20000,
+      "operation_cuda_ms_per_iteration": {
+        "flat_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.011606013862609083,
+          "maximum": 0.01171400604248047,
+          "median": 0.011605747985839843,
+          "minimum": 0.011543670654296874
+        },
+        "pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.2102964427456846,
+          "maximum": 1.2197912109375,
+          "median": 1.209133642578125,
+          "minimum": 1.20649091796875
+        },
+        "pinned_nonblocking_h2d": {
+          "count": 20,
+          "geometric_mean": 0.9549892816804234,
+          "maximum": 0.9569029296875,
+          "median": 0.9550894042968749,
+          "minimum": 0.95268837890625
+        },
+        "tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.3476708985760816,
+          "maximum": 0.356934716796875,
+          "median": 0.3456099487304688,
+          "minimum": 0.342316943359375
+        }
+      },
+      "paired_speedup": {
+        "flat_over_tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 29.956098854591886,
+          "maximum": 30.582496706939683,
+          "median": 29.899641761330034,
+          "minimum": 29.4273773955746
+        },
+        "pinned_nonblocking_over_pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.2673403418895093,
+          "maximum": 1.280367471615327,
+          "median": 1.266392929236456,
+          "minimum": 1.260831911544058
+        }
+      },
+      "path": "experiments/eggroll_es_hpo/runs/v73f_qwen36_lora_hbm_transport_exploratory.json",
+      "peak_allocated_bytes_max": 156246016,
+      "peak_reserved_bytes_max": 163577856,
+      "rank_repeat_samples": 20,
+      "transport_iterations": 5000
+    },
+    {
+      "content_sha256": "d12d9f6f275e611f6a7554a1ec08cb37e08968839a417d62d44395b4cb26ba44",
+      "file_sha256": "1a45641fe445bc97c9d500a0df63fca126e976313613fc9cb3a8068d3df2dfd7",
+      "materialize_iterations": 80000,
+      "operation_cuda_ms_per_iteration": {
+        "flat_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.012121980227689145,
+          "maximum": 0.012383796691894532,
+          "median": 0.012200398635864258,
+          "minimum": 0.0117478515625
+        },
+        "pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.2143134838280263,
+          "maximum": 1.22333798828125,
+          "median": 1.2126236328125,
+          "minimum": 1.20868330078125
+        },
+        "pinned_nonblocking_h2d": {
+          "count": 20,
+          "geometric_mean": 0.9551499015470963,
+          "maximum": 0.95761669921875,
+          "median": 0.955081591796875,
+          "minimum": 0.9535755859375
+        },
+        "tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.34475450776081945,
+          "maximum": 0.3549233154296875,
+          "median": 0.34226243896484376,
+          "minimum": 0.341195703125
+        }
+      },
+      "paired_speedup": {
+        "flat_over_tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 28.440444653863395,
+          "maximum": 29.33784032973051,
+          "median": 28.48539069960644,
+          "minimum": 27.707939312311787
+        },
+        "pinned_nonblocking_over_pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.271332889069194,
+          "maximum": 1.2815993021833982,
+          "median": 1.2696991131435638,
+          "minimum": 1.2644641051050745
+        }
+      },
+      "path": "experiments/eggroll_es_hpo/runs/v73f_qwen36_lora_hbm_transport_exploratory_rep2.json",
+      "peak_allocated_bytes_max": 156246016,
+      "peak_reserved_bytes_max": 163577856,
+      "rank_repeat_samples": 20,
+      "transport_iterations": 20000
+    },
+    {
+      "content_sha256": "5a9027290976448b6d227d7b09a7e24ad3a90442280897e284e8bec4fad07306",
+      "file_sha256": "ddff42074ff07c0459955367c35364e89cbcbb92401246695fb60518f202f69e",
+      "materialize_iterations": 160000,
+      "operation_cuda_ms_per_iteration": {
+        "flat_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.012276501225093417,
+          "maximum": 0.012512748718261718,
+          "median": 0.012378341674804689,
+          "minimum": 0.01183385772705078
+        },
+        "pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.2132295100211081,
+          "maximum": 1.22517646484375,
+          "median": 1.21275966796875,
+          "minimum": 1.20754765625
+        },
+        "pinned_nonblocking_h2d": {
+          "count": 20,
+          "geometric_mean": 0.9555186105724436,
+          "maximum": 0.95655556640625,
+          "median": 0.9555268554687499,
+          "minimum": 0.9537578125
+        },
+        "tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.34890209380460957,
+          "maximum": 0.3517890625,
+          "median": 0.348503173828125,
+          "minimum": 0.345917578125
+        }
+      },
+      "paired_speedup": {
+        "flat_over_tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 28.42032004130352,
+          "maximum": 29.515221385977352,
+          "median": 28.213380270122,
+          "minimum": 27.851164841959438
+        },
+        "pinned_nonblocking_over_pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.269707880722775,
+          "maximum": 1.2837624994371926,
+          "median": 1.269626019810588,
+          "minimum": 1.263254872738633
+        }
+      },
+      "path": "experiments/eggroll_es_hpo/runs/v73f_qwen36_lora_hbm_transport_exploratory_rep3.json",
+      "peak_allocated_bytes_max": 156246016,
+      "peak_reserved_bytes_max": 163577856,
+      "rank_repeat_samples": 20,
+      "transport_iterations": 40000
+    },
+    {
+      "content_sha256": "e09ab1b61e31ea05ddb8a08b93f90e262ea042399e9fc71a943fbb07604f33ab",
+      "file_sha256": "cdf8e39d392c431a2216c4a1c26506d2ff38db69b19e206e5b1768bb916498d5",
+      "materialize_iterations": 160000,
+      "operation_cuda_ms_per_iteration": {
+        "flat_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.01228487613414983,
+          "maximum": 0.01252574005126953,
+          "median": 0.012397653198242188,
+          "minimum": 0.011846668243408203
+        },
+        "pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.213573873557895,
+          "maximum": 1.22315986328125,
+          "median": 1.213598583984375,
+          "minimum": 1.2038658203125
+        },
+        "pinned_nonblocking_h2d": {
+          "count": 20,
+          "geometric_mean": 0.9556460960429156,
+          "maximum": 0.9590154296875,
+          "median": 0.955192724609375,
+          "minimum": 0.95385673828125
+        },
+        "tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.3486313226359815,
+          "maximum": 0.3597364013671875,
+          "median": 0.3456358520507813,
+          "minimum": 0.342765380859375
+        }
+      },
+      "paired_speedup": {
+        "flat_over_tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 28.378904176888412,
+          "maximum": 29.562016439690062,
+          "median": 28.151164867752552,
+          "minimum": 27.621589738673087
+        },
+        "pinned_nonblocking_over_pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.2698988449625774,
+          "maximum": 1.2803267989427214,
+          "median": 1.2706442922015024,
+          "minimum": 1.2566619438322155
+        }
+      },
+      "path": "experiments/eggroll_es_hpo/runs/v73f_qwen36_lora_hbm_transport_exploratory_rep4.json",
+      "peak_allocated_bytes_max": 156246016,
+      "peak_reserved_bytes_max": 163577856,
+      "rank_repeat_samples": 20,
+      "transport_iterations": 40000
+    },
+    {
+      "content_sha256": "a044fa35d61a6c525d69995f8b7e66b056ca8beb4660b927e39fb3bc107095e0",
+      "file_sha256": "a88441f70e88e2ca18b432b6b71c7914132f334e5694cbf8f87ed9750bc6366c",
+      "materialize_iterations": 160000,
+      "operation_cuda_ms_per_iteration": {
+        "flat_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.01227846013735167,
+          "maximum": 0.012525955200195312,
+          "median": 0.012383565902709961,
+          "minimum": 0.011812644958496094
+        },
+        "pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.2133386430682291,
+          "maximum": 1.22605791015625,
+          "median": 1.212753857421875,
+          "minimum": 1.2069068359375
+        },
+        "pinned_nonblocking_h2d": {
+          "count": 20,
+          "geometric_mean": 0.9546214790362314,
+          "maximum": 0.95864638671875,
+          "median": 0.954312646484375,
+          "minimum": 0.95092919921875
+        },
+        "tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 0.3448336195490309,
+          "maximum": 0.3518668212890625,
+          "median": 0.344522705078125,
+          "minimum": 0.3391791259765625
+        }
+      },
+      "paired_speedup": {
+        "flat_over_tensorwise_gpu_materialize": {
+          "count": 20,
+          "geometric_mean": 28.084435319379356,
+          "maximum": 28.713224444506164,
+          "median": 28.08754431635628,
+          "minimum": 27.505979892825078
+        },
+        "pinned_nonblocking_over_pageable_sync_h2d": {
+          "count": 20,
+          "geometric_mean": 1.2710154440409134,
+          "maximum": 1.2878206041523255,
+          "median": 1.2696212424760862,
+          "minimum": 1.2605615759768463
+        }
+      },
+      "path": "experiments/eggroll_es_hpo/runs/v73f_qwen36_lora_hbm_transport_exploratory_rep5.json",
+      "peak_allocated_bytes_max": 156246016,
+      "peak_reserved_bytes_max": 163577856,
+      "rank_repeat_samples": 20,
+      "transport_iterations": 40000
+    }
+  ],
+  "schema": "qwen36-v73f-lora-hbm-transport-summary-v1",
+  "staged_adapter_weights_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+  "status": "complete_systems_only_nonpromotable"
+}
