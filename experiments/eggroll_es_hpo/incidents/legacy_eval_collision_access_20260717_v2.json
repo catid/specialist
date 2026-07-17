@@ -1,0 +1,57 @@
+{
+  "classification": {
+    "distinct_from_quarantined_v1_eval_v3": true,
+    "distinct_from_v2_terminal_boundary": true,
+    "family": "legacy_evaluation_collision_sources",
+    "irreversible_nonzero_access": true
+  },
+  "content_sha256_before_self_field": "68b214cfad7326f15ad7f090130a14b60dab2e2ec478efbf32213e239d1097d4",
+  "event": {
+    "access_purpose": "collision_identity_construction_only",
+    "aggregate_eval_fact_count_reported": 505,
+    "invocations": 1,
+    "model_execution_or_training_occurred": false,
+    "per_item_content_or_identifiers_viewed_or_printed": false,
+    "raw_source_content_viewed_or_printed": false
+  },
+  "pre_hardening_callsite": {
+    "builder_commit": "e49cded006506cf788169780d11f689aa024437f",
+    "builder_file_sha256": "b12cb79907a50d05bde9269f3a98e43514da58e05fa1b85cb58bcfc692549384",
+    "builder_git_blob": "031f92c416f7afd50e252ea6e4d3e751b2b599d4",
+    "builder_path": "build_curated_qa.py",
+    "implicit_eval_default_was_present": true
+  },
+  "quarantine": {
+    "entire_sources_quarantined_by_path_identity": true,
+    "future_adaptation_roles_excluded": [
+      "cpt",
+      "dev",
+      "qa",
+      "sft",
+      "train"
+    ],
+    "implicit_or_default_resolution_prohibited": true,
+    "path_identity_only_no_byte_or_semantic_claim": true,
+    "source_reopen_stat_or_hash_prohibited": true
+  },
+  "recorded_at_utc": "2026-07-17T00:00:00+00:00",
+  "required_boundary": {
+    "explicit_eval_choice_required": true,
+    "quarantined_path_resolution_rejected_before_eval_loader": true,
+    "synthetic_empty_eval_mode_is_content_free": true
+  },
+  "schema": "specialist-legacy-evaluation-collision-access-incident-v2",
+  "scope": {
+    "holdout_source_touched": false,
+    "ood_source_touched": false,
+    "probe_source_touched": false,
+    "shadow_source_touched": false,
+    "source_file_hashes": "unknown_not_computed",
+    "touched_source_count": 2,
+    "touched_source_path_identity_sha256": [
+      "07b0ef637696b230de90504ae6cd798422d806e9b9465f3d683478714a527d96",
+      "1f4cf1a6a1890fd7810a547fbdce51553a1ae2f191a6cc8b6edae4989fe5f4b5"
+    ]
+  },
+  "status": "confirmed_nonzero_legacy_evaluation_family_access_paths_quarantined"
+}

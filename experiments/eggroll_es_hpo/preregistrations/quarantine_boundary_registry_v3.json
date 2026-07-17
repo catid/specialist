@@ -1,0 +1,69 @@
+{
+  "ancestor_denial_policy": {
+    "absolute_path_or_parent_traversal_rejected": true,
+    "candidate_path_form": "repository_relative_lexical_normal_form",
+    "denied_api_classes": [
+      "filesystem_open",
+      "filesystem_resolution",
+      "path_metadata"
+    ],
+    "dot_segments_and_repeated_separators_collapsed": true,
+    "exact_identity_equality_denied": true,
+    "exact_path_identity_schema": "repository-relative-path-v1",
+    "lexical_deny_before_resolution_stat_hash_or_open": true,
+    "lexically_allowed_resolution_rechecked_before_metadata_or_open": true,
+    "lexically_denied_candidate_is_never_resolved": true,
+    "path_case_rule": "case_sensitive_no_case_folding",
+    "path_separator": "forward_slash",
+    "prefix_identity_equal_or_descendant_denied": true,
+    "prefix_identity_schema": "repository-relative-path-prefix-v1",
+    "repository_relative_to_bound_root": true,
+    "resolved_target_outside_repository_root_denied": true,
+    "unicode_rule": "exact_codepoints_no_unicode_normalization"
+  },
+  "ancestor_denial_policy_sha256": "3758e272396ebc0cbed5a933469665530275c9eabe99f1c0d6210464e7d1a48c",
+  "content_minimization": {
+    "individual_prefix_file_inventory_persisted": false,
+    "plaintext_boundary_paths_persisted": false,
+    "source_bytes_or_semantics_persisted": false
+  },
+  "content_sha256_before_self_field": "5a8c6dbd3b0c225992bb2cc4ae5c02a5ec7774a175fe1a138c4e78260eed7fc7",
+  "created_at_utc": "2026-07-17T00:00:00+00:00",
+  "exact_path_identity_count": 3,
+  "exact_path_identity_sha256": [
+    "07b0ef637696b230de90504ae6cd798422d806e9b9465f3d683478714a527d96",
+    "1c82c6288eda8e538d45d29f63d84d3983fa7c9b1c00dd1dac3d8d8c1f9f4aa5",
+    "1f4cf1a6a1890fd7810a547fbdce51553a1ae2f191a6cc8b6edae4989fe5f4b5"
+  ],
+  "implementation": {
+    "builder_file_sha256": "e217bf08bd8884ef223ebaa35a7ca7490447ca458af4cba9270725945fa5ccc9",
+    "builder_path_identity_sha256": "29bcaed98e70eedd5a5cc26cc267a51447db0bc19ed61c6a2255a511bcbfadd9"
+  },
+  "incident_bindings": [
+    {
+      "incident_role": "protected_v1_eval_v3",
+      "receipt_content_sha256": "df8856617f5facd6fedac21ab7b653681d2a38484f8e7d93f493bccd47932301",
+      "receipt_file_sha256": "e20d2129a72fc2d314002a5448a8e8332296b0975e345f40140e6895247978ae",
+      "receipt_path_identity_sha256": "d4168a92c9a0ee77dea1b3c3f4f1116cfc36e45e251d8186ea401edc3dcd0b3e"
+    },
+    {
+      "incident_role": "legacy_eval_collision_family",
+      "receipt_content_sha256": "68b214cfad7326f15ad7f090130a14b60dab2e2ec478efbf32213e239d1097d4",
+      "receipt_file_sha256": "351baed6bda7805d5e3d5518ed03622bc13512b90d0df639f657cd57727529e1",
+      "receipt_path_identity_sha256": "b6b4f6b7e397d7de36bd11429fc6e4af3ae0f96f4130001074cd80f93e11945b"
+    },
+    {
+      "incident_role": "recursive_prefix_lookup",
+      "receipt_content_sha256": "1e98c7042d1f9279b1b18aba682a65e674f9890465c80bd0622e45c89c7a2907",
+      "receipt_file_sha256": "68652b270d44bef8c33c95df6a39e88534baab8923613a5e8e936ed309d0b550",
+      "receipt_path_identity_sha256": "0cd300026e639bf917fd746e8b5890f35797b9808a16744850fdb2685a9d1f9f"
+    }
+  ],
+  "prefix_identity_count": 2,
+  "prefix_identity_sha256": [
+    "39a0e5b5693317f52d9f539a6666d8af6f33d3269bf263d0e2393d24beaa0a42",
+    "7af72f106b10b5ab698436550819f1b1906232fd5f075ef011f8cd958d81b128"
+  ],
+  "schema": "specialist-content-free-quarantine-boundary-registry-v3",
+  "status": "active_fail_closed_content_free_quarantine_boundary"
+}

@@ -1,0 +1,62 @@
+{
+  "classification": {
+    "access_scope": "every_rg_readable_file_recursively_reachable_at_event_time_under_each_bound_prefix",
+    "evaluation_shadow_dev_or_holdout_roles_within_scope_quarantined": true,
+    "irreversible_nonzero_tool_access": true,
+    "ordinary_training_role_access_does_not_convert_to_evaluation_evidence": true,
+    "scope_is_not_limited_to_reported_filename_matches": true
+  },
+  "content_sha256_before_self_field": "1e98c7042d1f9279b1b18aba682a65e674f9890465c80bd0622e45c89c7a2907",
+  "event": {
+    "file_open_count": "unknown_nonzero",
+    "model_execution_or_training_occurred": false,
+    "only_matching_filenames_printed": true,
+    "raw_row_content_answers_urls_or_metrics_printed_or_inspected": false,
+    "recursive_scan_passes": 8,
+    "tool_mode": "recursive_fixed_string_filename_only_lookup",
+    "training_fact_identifiers_queried": 8,
+    "worker_stopped_after_detection": true
+  },
+  "future_worker_policy": {
+    "allowlist_may_not_include_dev_shadow_holdout_ood_probe_or_terminal": true,
+    "explicit_file_allowlist_required_before_lookup": true,
+    "filename_only_output_does_not_make_recursive_access_zero": true,
+    "recursive_repository_or_dataset_prefix_scans_prohibited": true
+  },
+  "postincident_response": {
+    "configured_path_metadata_resolution_may_have_occurred": true,
+    "implicated_file_content_opened_or_hashed": false,
+    "resolve_at_module_import_must_be_removed_before_reseal": true
+  },
+  "quarantine": {
+    "affected_v2_revision_may_not_be_promoted_or_reinterpreted": true,
+    "prefix_contents_may_not_supply_dev_shadow_holdout_or_evaluation": true,
+    "prefix_file_inventory_reconstruction_prohibited": true,
+    "source_reopen_stat_or_hash_for_incident_investigation_prohibited": true
+  },
+  "recorded_at_utc": "2026-07-17T00:00:00+00:00",
+  "schema": "specialist-recursive-filename-lookup-access-incident-v3",
+  "scope": {
+    "accessed_prefix_count": 2,
+    "accessed_prefix_identity_sha256": [
+      "39a0e5b5693317f52d9f539a6666d8af6f33d3269bf263d0e2393d24beaa0a42",
+      "7af72f106b10b5ab698436550819f1b1906232fd5f075ef011f8cd958d81b128"
+    ],
+    "individual_file_hashes": "unknown_not_computed",
+    "individual_file_inventory": "not_enumerated_reopen_prohibited",
+    "reported_matching_filename_count_at_least": 2,
+    "reported_matching_path_identity_set_sha256": "24480a1b1e7447145e27668249e8f0f3cf7e8bdd81bf2ffa8070003c67834100"
+  },
+  "status": "confirmed_nonzero_prefix_wide_tool_access_evaluation_roles_quarantined",
+  "v2_impact": {
+    "affected_dev_namespace_was_within_accessed_prefix": true,
+    "affected_revision_content_sha256": "4121c90c79cb2aacc8a927174e9fbbab6b38f983176c525ad0517b548edc0391",
+    "affected_revision_file_sha256": "3e01a95138356224e006c2661fec8dd4675b6fdb13d7ce43c2b1bcfbab656fb3",
+    "affected_revision_original_path": "experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v2.json",
+    "affected_revision_status": "superseded_immutable_nonpromotable",
+    "fresh_dev_outside_accessed_prefixes_required": true,
+    "v2_terminal_selection_remains_reserved": true,
+    "v2_terminal_source_namespace_within_accessed_prefix": false,
+    "v2_terminal_source_opened_by_event": false
+  }
+}

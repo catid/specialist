@@ -6,6 +6,7 @@ import argparse
 import collections
 import hashlib
 import json
+import os
 from pathlib import Path
 
 from build_leakfree_qa import eval_facts
@@ -30,7 +31,10 @@ DEFAULT_CURATIONS = [
     DATA / "train_qa_curated_v1.curation.jsonl",
     DATA / "train_qa_kinbakutoday.curation.jsonl",
 ]
-DEFAULT_EVAL = [DATA / "eval_qa.jsonl", DATA / "eval_qa_v2.jsonl"]
+QUARANTINED_LEGACY_EVAL = frozenset((
+    Path(os.path.abspath(DATA / "eval_qa.jsonl")),
+    Path(os.path.abspath(DATA / "eval_qa_v2.jsonl")),
+))
 CURATION_ACTIONS = {"drop", "edit"}
 EDIT_SUPPORT_TYPES = {"extractive", "manual_paraphrase"}
 
@@ -340,18 +344,42 @@ def merge(input_paths: list[Path], output_path: Path, report_path: Path,
     return report
 
 
-def main() -> None:
+def evaluation_facts(
+        paths: list[Path] | None, *, synthetic_empty: bool) -> list:
+    """Resolve an explicit evaluation choice without legacy implicit access."""
+    if synthetic_empty:
+        if paths is not None:
+            raise RuntimeError("synthetic empty eval cannot be combined with --eval")
+        return []
+    if not paths:
+        raise RuntimeError("an explicit --eval or --synthetic-empty-eval is required")
+    lexical_paths = {
+        Path(os.path.abspath(os.fspath(path))) for path in paths
+    }
+    if lexical_paths & QUARANTINED_LEGACY_EVAL:
+        raise RuntimeError(
+            "legacy evaluation collision sources are quarantined; refusing access"
+        )
+    return eval_facts(paths)
+
+
+def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--inputs", nargs="+", type=Path,
                         default=DEFAULT_INPUTS)
-    parser.add_argument("--eval", nargs="+", type=Path, default=DEFAULT_EVAL)
+    evaluation = parser.add_mutually_exclusive_group(required=True)
+    evaluation.add_argument("--eval", nargs="+", type=Path)
+    evaluation.add_argument("--synthetic-empty-eval", action="store_true")
     parser.add_argument("--curation", nargs="*", type=Path,
                         default=DEFAULT_CURATIONS)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+    facts = evaluation_facts(
+        args.eval, synthetic_empty=args.synthetic_empty_eval
+    )
     report = merge(
-        args.inputs, args.output, args.report, eval_facts(args.eval),
+        args.inputs, args.output, args.report, facts,
         args.curation,
     )
     print(json.dumps(report, indent=2, sort_keys=True))
