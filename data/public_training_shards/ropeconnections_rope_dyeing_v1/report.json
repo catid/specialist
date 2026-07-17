@@ -1,0 +1,64 @@
+{
+  "schema": "public-training-manual-shard-report-v1",
+  "shard": "ropeconnections-rope-dyeing-v1",
+  "source": "ropeconnections",
+  "url": "https://www.ropeconnections.com/how-i-dyed-my-rope/",
+  "document_sha256": "56e0d76a1fedd1de2e1286b2d099e12384e4dd11e984b6655229724748f840b0",
+  "candidate_input": {
+    "path": "data/train_qa_v3_clean_leakfree_v4_candidates.jsonl",
+    "sha256": "d324b46129e4d1a338ec4f6cf6765e8049856347d4b3bc3bfb37a0b9c2eaa2dd",
+    "matching_rows": 40
+  },
+  "source_input": {
+    "path": "data/train_chunks_v2.jsonl",
+    "sha256": "bf785cd22a6508be117ded4755053978355a2531acaa329731d3a05437cf7d1e",
+    "matching_chunks": 3
+  },
+  "review": {
+    "method": "manual_row_by_row",
+    "reviewer": "codex-manual-background",
+    "reviewed_at": "2026-07-17",
+    "candidate_rows_consumed": 40,
+    "candidate_rows_dropped": 12,
+    "candidate_rows_merged_or_edited": 28,
+    "decision_rows": 13,
+    "edit_decisions": 5,
+    "add_decisions": 4,
+    "drop_decisions": 4,
+    "output_qa_rows": 9
+  },
+  "quality": {
+    "malformed_chat_wrappers": 0,
+    "url_memorization_questions": 0,
+    "duplicate_output_questions": 0,
+    "ungrounded_output_answers": 0,
+    "brand_shopping_or_media_trivia": 0,
+    "unqualified_boiling_claims_in_qa": 0,
+    "raw_source_explicit_content_and_profanity_preserved": true,
+    "raw_source_personal_chemical_and_material_process_preserved": true,
+    "raw_source_requires_downstream_material_content_safety_review": true,
+    "qa_requires_downstream_material_safety_review": true,
+    "raw_markdown_kept_separate": true
+  },
+  "boundary": {
+    "evaluation_content_read": false,
+    "protected_content_read": false,
+    "web_crawl_performed": false,
+    "active_training_snapshot_modified": false,
+    "promotion_status": "pending_semantic_leakage_audit"
+  },
+  "artifacts": {
+    "source_markdown": {
+      "path": "data/public_training_shards/ropeconnections_rope_dyeing_v1/source.md",
+      "sha256": "d8b247efeaeb9744b596aef099c61aa4e60e285da27fe510fcd1cc955d0ce4cc"
+    },
+    "candidate_review": {
+      "path": "data/public_training_shards/ropeconnections_rope_dyeing_v1/candidate_review.jsonl",
+      "sha256": "34877767890b5d9ef060c76b723e5cfc188b2d46997c2286b204871ccee2a8c9"
+    },
+    "qa": {
+      "path": "data/public_training_shards/ropeconnections_rope_dyeing_v1/qa.jsonl",
+      "sha256": "d563f8192a5694d4aa4930e313d338a1d6eac1b7b7e79fb33a31769bce1fcccf"
+    }
+  }
+}
