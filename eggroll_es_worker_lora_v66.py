@@ -95,6 +95,52 @@ class LoRAAdapterStateWorkerExtensionV66(LoRAAdapterStateWorkerExtensionV65B):
             "requires_actor_recreation": True,
         }
 
+    def active_lora_slot_certificate_v66(self, expected_lora_int_id=1):
+        """Prove adapter 1 is active before any canonical-state write."""
+        self._require_not_poisoned_v66()
+        if isinstance(expected_lora_int_id, bool) or expected_lora_int_id != 1:
+            raise ValueError("v66 expected active LoRA id must be exactly 1")
+        config = getattr(self, "lora_config", None)
+        runner = getattr(self, "model_runner", None)
+        facade = getattr(runner, "lora_manager", None)
+        manager = state_v41a.topology._manager(self)
+        active = [
+            int(value)
+            for value in getattr(manager, "lora_index_to_id", [])
+            if value is not None
+        ]
+        active_cache = [
+            int(value)
+            for value in getattr(
+                getattr(manager, "_active_adapters", None), "cache", {}
+            )
+        ]
+        loaded = sorted(int(value) for value in facade.list_adapters()) \
+            if facade is not None else []
+        if (
+            config is None
+            or config.max_loras != 1
+            or config.max_cpu_loras != 1
+            or config.max_lora_rank != 32
+            or active != [1]
+            or active_cache != [1]
+            or loaded != [1]
+            or manager.lora_index_to_id.index(1) != 0
+        ):
+            raise RuntimeError("v66 active sole-slot LoRA identity changed")
+        return {
+            "schema": "v66-active-lora-slot-certificate",
+            "expected_lora_int_id": 1,
+            "active_lora_ids": active,
+            "active_manager_cache_lora_ids": active_cache,
+            "loaded_cpu_cache_lora_ids": loaded,
+            "active_slot_index": 0,
+            "max_loras": int(config.max_loras),
+            "max_cpu_loras": int(config.max_cpu_loras),
+            "max_lora_rank": int(config.max_lora_rank),
+            "canonical_state_write_performed": False,
+        }
+
     def _restore_exact_master_v66(self, phase: str) -> dict:
         """Unconditionally reconstruct the live slot; poison on uncertainty."""
         master_identity = state_v41a.adapter_identity_v41a(self._v41_master)

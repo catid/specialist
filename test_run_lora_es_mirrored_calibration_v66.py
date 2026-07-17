@@ -9,6 +9,7 @@ import pytest
 import build_lora_es_mirrored_calibration_preregistration_v66 as builder
 import eggroll_es_mirrored_v66 as mirrored
 import run_lora_es_mirrored_calibration_v66 as runtime
+import train_eggroll_es_specialist as base_trainer
 
 
 def _write_preregistration(path: Path) -> dict:
@@ -122,6 +123,116 @@ def test_preregistered_recipe_constructs_complete_rotating_v66_plan():
     )
 
 
+class _StateModeRemote:
+    def __init__(self, rank, calls):
+        self.rank = rank
+        self.calls = calls
+
+    def remote(self, method, args=()):
+        self.calls.append((self.rank, method, args))
+        return [{
+            "schema": "eggroll-es-canonical-full-weight-install-v1",
+            "installed": True,
+            "communicator": {
+                "rank": self.rank,
+                "world_size": 4,
+                "tp_world_size": 1,
+            },
+            "noise_schedule": "sealed",
+            "manifest_sha256": "a" * 64,
+            "master_generation": 0,
+            "master_identity": {"sha256": "b" * 64},
+            "runtime_identity": {"sha256": "c" * 64},
+        }]
+
+
+def _patch_parent_constructor(monkeypatch, trainer_class, calls):
+    parent = trainer_class.__mro__[1]
+
+    def fake_parent_init(instance, *args, **kwargs):
+        del args, kwargs
+        instance.n_vllm_engines = 4
+        instance.engines = [
+            SimpleNamespace(
+                collective_rpc=_StateModeRemote(rank, calls),
+            )
+            for rank in range(4)
+        ]
+
+    monkeypatch.setattr(parent, "__init__", fake_parent_init)
+    monkeypatch.setattr(
+        base_trainer,
+        "bounded_ray_get",
+        lambda _ray, handles, _context: handles,
+    )
+
+
+def test_explicit_full_weight_mode_invokes_dense_install_once_per_actor(
+    monkeypatch,
+):
+    trainer_class = base_trainer.load_trainer(
+        state_mode=base_trainer.TRAINER_STATE_MODE_FULL_WEIGHT_V1,
+    )
+    calls = []
+    _patch_parent_constructor(monkeypatch, trainer_class, calls)
+    trainer = trainer_class()
+    assert calls == [
+        (rank, "install_full_weight_master_v1", ()) for rank in range(4)
+    ]
+    assert len(trainer._full_weight_install_receipts) == 4
+    assert trainer._specialist_state_mode == (
+        base_trainer.TRAINER_STATE_MODE_FULL_WEIGHT_V1
+    )
+
+
+def test_explicit_lora_mode_skips_dense_install_and_resolves_v66_surface(
+    monkeypatch,
+):
+    endpoints = (
+        "install_adapter_state_v41a",
+        "materialize_mirrored_adapter_v66",
+        "restore_mirrored_adapter_v66",
+    )
+    trainer_class = base_trainer.load_trainer(
+        state_mode=base_trainer.TRAINER_STATE_MODE_EXTERNAL_WORKER,
+        worker_extension_cls=runtime.WORKER_EXTENSION_V66,
+        required_worker_endpoints=endpoints,
+    )
+    calls = []
+    _patch_parent_constructor(monkeypatch, trainer_class, calls)
+    trainer = trainer_class()
+    assert calls == []
+    assert trainer._full_weight_install_receipts is None
+    assert trainer._specialist_state_mode == (
+        base_trainer.TRAINER_STATE_MODE_EXTERNAL_WORKER
+    )
+    assert trainer._specialist_worker_extension_cls == (
+        runtime.WORKER_EXTENSION_V66
+    )
+    assert trainer._specialist_required_worker_endpoints == endpoints
+
+
+def test_worker_state_mode_mismatch_fails_before_trainer_or_gpu_import(
+    monkeypatch,
+):
+    imports = []
+
+    def unexpected_import(name):
+        imports.append(name)
+        raise AssertionError(name)
+
+    monkeypatch.setattr(base_trainer.importlib, "import_module", unexpected_import)
+    with pytest.raises(ValueError, match="unknown trainer state mode"):
+        base_trainer.load_trainer(state_mode="implicit")
+    with pytest.raises(ValueError, match="non-full-weight extension"):
+        base_trainer.load_trainer(
+            state_mode=base_trainer.TRAINER_STATE_MODE_EXTERNAL_WORKER,
+            worker_extension_cls=base_trainer.FULL_WEIGHT_WORKER_V1,
+            required_worker_endpoints=("install_full_weight_master_v1",),
+        )
+    assert imports == []
+
+
 def test_gpu_wave_summary_requires_every_physical_gpu_positive_each_wave(
     tmp_path,
 ):
@@ -222,6 +333,114 @@ def test_nonzero_update_harness_executes_on_four_ranks_then_always_aborts():
     assert methods.count("prepare_sharded_adapter_update_v41a") == 4
     assert methods.count("execute_sharded_adapter_update_v41a") == 4
     assert methods.count("abort_mirrored_update_if_present_v66") == 4
+
+
+def test_activation_order_registers_all_four_slots_before_install_and_certify(
+    tmp_path, monkeypatch,
+):
+    staged = tmp_path / "staged"
+    weights = tmp_path / "adapter.safetensors"
+    config = tmp_path / "adapter.json"
+    request = SimpleNamespace(
+        lora_name="matched_lora_initialization_v41b",
+        lora_int_id=1,
+        lora_path=str(staged),
+    )
+    prior = SimpleNamespace(
+        STAGED=staged,
+        SOURCE_WEIGHTS=weights,
+        SOURCE_CONFIG=config,
+        _lora_request=lambda: request,
+    )
+    v40a = SimpleNamespace(file_sha256=lambda path: f"sha:{Path(path).name}")
+    phase = SimpleNamespace(value="setup")
+    calls = []
+
+    def rpc(_trainer, method, args=()):
+        calls.append((method, args, phase.value))
+        if method == "add_lora":
+            assert args == (request,)
+            return [True] * 4
+        if method == "active_lora_slot_certificate_v66":
+            assert args == (1,)
+            return [{
+                "schema": "v66-active-lora-slot-certificate",
+                "expected_lora_int_id": 1,
+                "active_lora_ids": [1],
+                "active_manager_cache_lora_ids": [1],
+                "loaded_cpu_cache_lora_ids": [1],
+                "active_slot_index": 0,
+                "canonical_state_write_performed": False,
+            } for _rank in range(4)]
+        if method == "install_adapter_state_v41a":
+            assert args == (
+                str(weights),
+                str(config),
+                "sha:adapter.safetensors",
+                "sha:adapter.json",
+            )
+            return [{"rank": rank} for rank in range(4)]
+        if method == "mirrored_adapter_state_certificate_v66":
+            return [{
+                "current_identity": {"sha256": runtime.MASTER_SHA256_V66},
+                "materialization": {
+                    "runtime_values_sha256": (
+                        runtime.MASTER_RUNTIME_SHA256_V66
+                    ),
+                },
+            } for _rank in range(4)]
+        raise AssertionError(method)
+
+    monkeypatch.setattr(runtime, "_rpc_all_v66", rpc)
+    receipt = runtime._activate_install_and_certify_v66(
+        object(), prior, v40a, phase
+    )
+    assert [method for method, _args, _phase in calls] == [
+        "add_lora",
+        "active_lora_slot_certificate_v66",
+        "install_adapter_state_v41a",
+        "mirrored_adapter_state_certificate_v66",
+    ]
+    assert calls[0][2] == "activate_v434_lora_slot_all_actors"
+    assert calls[2][2] == "install_canonical_v434_master_all_actors"
+    assert receipt["activations"] == [True] * 4
+    assert len(receipt["active_slots"]) == 4
+    assert len(receipt["installations"]) == 4
+    assert len(receipt["certificates"]) == 4
+
+
+def test_partial_actor_activation_fails_before_slot_proof_or_state_write(
+    tmp_path, monkeypatch,
+):
+    staged = tmp_path / "staged"
+    request = SimpleNamespace(
+        lora_name="matched_lora_initialization_v41b",
+        lora_int_id=1,
+        lora_path=str(staged),
+    )
+    prior = SimpleNamespace(
+        STAGED=staged,
+        SOURCE_WEIGHTS=tmp_path / "adapter.safetensors",
+        SOURCE_CONFIG=tmp_path / "adapter.json",
+        _lora_request=lambda: request,
+    )
+    calls = []
+
+    def rpc(_trainer, method, args=()):
+        calls.append((method, args))
+        if method == "add_lora":
+            return [True, True, False, True]
+        raise AssertionError("state write reached after partial activation")
+
+    monkeypatch.setattr(runtime, "_rpc_all_v66", rpc)
+    with pytest.raises(RuntimeError, match="four-actor LoRA activation failed"):
+        runtime._activate_install_and_certify_v66(
+            object(),
+            prior,
+            SimpleNamespace(file_sha256=lambda _path: "unused"),
+            SimpleNamespace(value="setup"),
+        )
+    assert calls == [("add_lora", (request,))]
 
 
 def test_nonzero_update_harness_rejects_zero_without_touching_workers():

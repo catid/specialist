@@ -56,6 +56,7 @@ MODEL_SHARDS_CONTENT_SHA256 = (
 WORKER_EXTENSION = (
     "eggroll_es_worker_lora_topology_v40a.LoRATopologyWorkerExtensionV40A"
 )
+REQUIRED_WORKER_ENDPOINTS = ("weight_state_sha256",)
 SYNTHETIC_PROMPT = (
     "<|im_start|>user\nState one general safety principle for learning a "
     "new physical skill.<|im_end|>\n<|im_start|>assistant\n"
@@ -166,7 +167,11 @@ def normalize_gpu_id(value) -> int:
 
 
 def make_trainer(prereg: dict):
-    parent = base.load_trainer()
+    parent = base.load_trainer(
+        state_mode=base.TRAINER_STATE_MODE_EXTERNAL_WORKER,
+        worker_extension_cls=WORKER_EXTENSION,
+        required_worker_endpoints=REQUIRED_WORKER_ENDPOINTS,
+    )
     expected_tuned_content = prereg["runtime"]["tuned_table_content_sha256"]
 
     class TopologyTrainerV40A(parent):

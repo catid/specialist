@@ -3,6 +3,7 @@
 
 import argparse
 import hashlib
+import importlib
 import json
 import math
 import os
@@ -36,6 +37,8 @@ FULL_WEIGHT_WORKER_V1 = (
     "eggroll_es_worker_fullweight_v1."
     "CanonicalFullWeightWorkerExtensionV1"
 )
+TRAINER_STATE_MODE_FULL_WEIGHT_V1 = "canonical_full_weight_v1"
+TRAINER_STATE_MODE_EXTERNAL_WORKER = "external_worker"
 
 
 class OODProseGateFailure(RuntimeError):
@@ -234,6 +237,73 @@ def validate_full_weight_install_receipts(results, engine_count):
                     f"full-weight canonical replica consensus failed: {field}"
                 )
     return receipts
+
+
+def validate_worker_state_mode(
+    state_mode,
+    worker_extension_cls=None,
+    required_worker_endpoints=(),
+):
+    """Resolve one explicit worker state contract before any GPU allocation."""
+    if type(state_mode) is not str or state_mode not in {
+        TRAINER_STATE_MODE_FULL_WEIGHT_V1,
+        TRAINER_STATE_MODE_EXTERNAL_WORKER,
+    }:
+        raise ValueError("unknown trainer state mode")
+    if not isinstance(required_worker_endpoints, (tuple, list)):
+        raise TypeError("required worker endpoints must be an exact sequence")
+    required = tuple(required_worker_endpoints)
+    if (
+        len(set(required)) != len(required)
+        or any(type(endpoint) is not str or not endpoint for endpoint in required)
+    ):
+        raise ValueError("required worker endpoints are invalid")
+
+    if state_mode == TRAINER_STATE_MODE_FULL_WEIGHT_V1:
+        if worker_extension_cls not in (None, FULL_WEIGHT_WORKER_V1):
+            raise ValueError(
+                "full-weight state mode cannot select an external worker"
+            )
+        if required:
+            raise ValueError(
+                "full-weight state mode owns its fixed endpoint contract"
+            )
+        worker_extension_cls = FULL_WEIGHT_WORKER_V1
+        required = ("install_full_weight_master_v1",)
+    else:
+        if (
+            type(worker_extension_cls) is not str
+            or not worker_extension_cls
+            or worker_extension_cls == FULL_WEIGHT_WORKER_V1
+            or not required
+        ):
+            raise ValueError(
+                "external-worker state mode requires a non-full-weight "
+                "extension and explicit endpoint contract"
+            )
+
+    module_name, separator, class_name = worker_extension_cls.rpartition(".")
+    if not separator or not module_name or not class_name:
+        raise ValueError("worker extension must be a dotted class path")
+    module = importlib.import_module(module_name)
+    extension = getattr(module, class_name, None)
+    if not isinstance(extension, type):
+        raise TypeError("worker extension path did not resolve to a class")
+    missing = [
+        endpoint for endpoint in required
+        if not callable(getattr(extension, endpoint, None))
+    ]
+    if missing:
+        raise RuntimeError(
+            "worker extension is missing required endpoints: "
+            + ", ".join(missing)
+        )
+    return {
+        "state_mode": state_mode,
+        "worker_extension_cls": worker_extension_cls,
+        "required_worker_endpoints": required,
+        "resolved_worker_extension": extension,
+    }
 
 
 def _ray_get_with_timeout(
@@ -817,8 +887,18 @@ def score_ood_prose(trainer, dataset, label, max_input_tokens):
     return evaluation
 
 
-def load_trainer():
+def load_trainer(
+    *,
+    state_mode=TRAINER_STATE_MODE_FULL_WEIGHT_V1,
+    worker_extension_cls=None,
+    required_worker_endpoints=(),
+):
     """Load upstream with the minimum Qwen3.6/vLLM compatibility layer."""
+    worker_contract = validate_worker_state_mode(
+        state_mode,
+        worker_extension_cls,
+        required_worker_endpoints,
+    )
     pythonpath = [str(ROOT), str(COMPAT), str(UPSTREAM)]
     if os.environ.get("PYTHONPATH"):
         pythonpath.append(os.environ["PYTHONPATH"])
@@ -841,25 +921,36 @@ def load_trainer():
     )
 
     class Qwen36EvolutionStrategiesTrainer(EvolutionStrategiesTrainer):
+        _specialist_state_mode = worker_contract["state_mode"]
+        _specialist_worker_extension_cls = worker_contract["worker_extension_cls"]
+        _specialist_required_worker_endpoints = worker_contract[
+            "required_worker_endpoints"
+        ]
+
         def __init__(self, *args, **kwargs):
             self._specialist_state_poisoned = False
             try:
                 super().__init__(*args, **kwargs)
-                installed = bounded_ray_get(
-                    ray,
-                    [
-                        engine.collective_rpc.remote(
-                            "install_full_weight_master_v1", args=(),
-                        )
-                        for engine in self.engines
-                    ],
-                    "installing canonical FP32 full-weight masters",
-                )
-                self._full_weight_install_receipts = (
-                    validate_full_weight_install_receipts(
-                        installed, self.n_vllm_engines,
+                self._full_weight_install_receipts = None
+                if (
+                    worker_contract["state_mode"]
+                    == TRAINER_STATE_MODE_FULL_WEIGHT_V1
+                ):
+                    installed = bounded_ray_get(
+                        ray,
+                        [
+                            engine.collective_rpc.remote(
+                                "install_full_weight_master_v1", args=(),
+                            )
+                            for engine in self.engines
+                        ],
+                        "installing canonical FP32 full-weight masters",
                     )
-                )
+                    self._full_weight_install_receipts = (
+                        validate_full_weight_install_receipts(
+                            installed, self.n_vllm_engines,
+                        )
+                    )
             except BaseException:
                 self._specialist_state_poisoned = True
                 raise
@@ -1086,7 +1177,7 @@ def load_trainer():
                 "model": model_name,
                 "tensor_parallel_size": n_gpu_per_vllm_engine,
                 "worker_extension_cls": (
-                    FULL_WEIGHT_WORKER_V1
+                    worker_contract["worker_extension_cls"]
                 ),
                 "dtype": precision,
                 "enable_prefix_caching": False,

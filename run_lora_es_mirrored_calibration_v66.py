@@ -350,6 +350,73 @@ def _rpc_all_v66(trainer, method: str, args=()) -> list[dict]:
     return [value[0] for value in values]
 
 
+def _activate_install_and_certify_v66(trainer, prior, v40a, phase) -> dict:
+    """Register the sole vLLM slot before installing canonical FP32 state."""
+    request = prior._lora_request()
+    request_id = getattr(request, "lora_int_id", None)
+    if (
+        getattr(request, "lora_name", None)
+        != "matched_lora_initialization_v41b"
+        or isinstance(request_id, bool)
+        or request_id != 1
+        or Path(getattr(request, "lora_path", "")).resolve()
+        != Path(prior.STAGED).resolve()
+    ):
+        raise RuntimeError("v66 staged LoRA request identity changed")
+    phase.value = "activate_v434_lora_slot_all_actors"
+    activations = _rpc_all_v66(trainer, "add_lora", (request,))
+    if activations != [True] * 4:
+        raise RuntimeError("v66 four-actor LoRA activation failed")
+    active_slots = _rpc_all_v66(
+        trainer, "active_lora_slot_certificate_v66", (1,)
+    )
+    if (
+        len(active_slots) != 4
+        or any(
+            item.get("schema") != "v66-active-lora-slot-certificate"
+            or item.get("expected_lora_int_id") != 1
+            or item.get("active_lora_ids") != [1]
+            or item.get("active_manager_cache_lora_ids") != [1]
+            or item.get("loaded_cpu_cache_lora_ids") != [1]
+            or item.get("active_slot_index") != 0
+            or item.get("canonical_state_write_performed") is not False
+            for item in active_slots
+        )
+    ):
+        raise RuntimeError("v66 four-actor active LoRA slot proof failed")
+    phase.value = "install_canonical_v434_master_all_actors"
+    installations = _rpc_all_v66(
+        trainer,
+        "install_adapter_state_v41a",
+        (
+            str(prior.SOURCE_WEIGHTS),
+            str(prior.SOURCE_CONFIG),
+            v40a.file_sha256(prior.SOURCE_WEIGHTS),
+            v40a.file_sha256(prior.SOURCE_CONFIG),
+        ),
+    )
+    certificates = _rpc_all_v66(
+        trainer, "mirrored_adapter_state_certificate_v66"
+    )
+    if (
+        {item["current_identity"]["sha256"] for item in certificates}
+        != {MASTER_SHA256_V66}
+        or {
+            item["materialization"]["runtime_values_sha256"]
+            for item in certificates
+        }
+        != {MASTER_RUNTIME_SHA256_V66}
+    ):
+        raise RuntimeError("v66 canonical V434 install consensus changed")
+    return {
+        "request": request,
+        "activations": activations,
+        "active_slots": active_slots,
+        "installations": installations,
+        "certificates": certificates,
+    }
+
+
 def _compact_population_v66(execution: dict) -> dict:
     materializations = [{
         key: receipt[key] for key in (
@@ -615,28 +682,10 @@ def execute_v66(preregistration: dict, args) -> int:
                 recipe["sigma"],
                 prepared_inputs["payload"],
             )
-            phase.value = "install_canonical_v434_master_all_actors"
-            installations = _rpc_all_v66(
-                trainer,
-                "install_adapter_state_v41a",
-                (
-                    str(prior.SOURCE_WEIGHTS),
-                    str(prior.SOURCE_CONFIG),
-                    v40a.file_sha256(prior.SOURCE_WEIGHTS),
-                    v40a.file_sha256(prior.SOURCE_CONFIG),
-                ),
+            activation = _activate_install_and_certify_v66(
+                trainer, prior, v40a, phase
             )
-            certificates = _rpc_all_v66(
-                trainer, "mirrored_adapter_state_certificate_v66"
-            )
-            if (
-                {item["current_identity"]["sha256"] for item in certificates}
-                != {MASTER_SHA256_V66}
-                or {item["materialization"]["runtime_values_sha256"]
-                    for item in certificates}
-                != {MASTER_RUNTIME_SHA256_V66}
-            ):
-                raise RuntimeError("v66 canonical V434 install consensus changed")
+            installations = activation["installations"]
             references = _rpc_all_v66(
                 trainer, "capture_adapter_reference_v41a"
             )

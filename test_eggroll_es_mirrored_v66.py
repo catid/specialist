@@ -85,6 +85,36 @@ def test_exact_antithetic_noise_is_deterministic_elementwise_negation():
     assert not torch.equal(plus, other_key)
 
 
+def test_worker_proves_active_adapter_one_before_canonical_state_install():
+    manager = SimpleNamespace(
+        lora_index_to_id=[1],
+        _active_adapters=SimpleNamespace(cache={1: object()}),
+    )
+    facade = SimpleNamespace(
+        _adapter_manager=manager,
+        list_adapters=lambda: {1},
+    )
+    value = object.__new__(worker_v66.LoRAAdapterStateWorkerExtensionV66)
+    value.model_runner = SimpleNamespace(lora_manager=facade)
+    value.lora_config = SimpleNamespace(
+        max_loras=1, max_cpu_loras=1, max_lora_rank=32,
+    )
+    certificate = value.active_lora_slot_certificate_v66(1)
+    assert certificate == {
+        "schema": "v66-active-lora-slot-certificate",
+        "expected_lora_int_id": 1,
+        "active_lora_ids": [1],
+        "active_manager_cache_lora_ids": [1],
+        "loaded_cpu_cache_lora_ids": [1],
+        "active_slot_index": 0,
+        "max_loras": 1,
+        "max_cpu_loras": 1,
+        "max_lora_rank": 32,
+        "canonical_state_write_performed": False,
+    }
+    assert not hasattr(value, "_v41_installed")
+
+
 def test_plan_pairs_common_random_conditions_and_balances_every_rank():
     plan = mirrored_plan()
     assignments = [item for wave in plan["waves"] for item in wave]
