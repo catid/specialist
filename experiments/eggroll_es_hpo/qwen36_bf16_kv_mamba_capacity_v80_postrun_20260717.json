@@ -1,0 +1,1198 @@
+{
+  "analysis_completed": true,
+  "authority": {
+    "cpu_sealed_file_analysis_only": true,
+    "dataset_prompt_generated_text_or_protected_data_opened": false,
+    "gpu_or_model_launch_performed_by_analyzer": false,
+    "model_adapter_training_or_checkpoint_update_performed": false,
+    "scored_training_checkpoint_or_runtime_promotion_authorized": false
+  },
+  "candidate_parent_contract_passed": false,
+  "capacity": {
+    "parent_minimum_tokens": 161792,
+    "v78c_tokens_per_actor": 218843,
+    "v79b_tokens_per_actor": 162304,
+    "v80_full_2048_token_contexts_floor": 79,
+    "v80_margin_over_parent_minimum_tokens": 877,
+    "v80_margin_over_v76_tokens": 4973,
+    "v80_minus_v79b_tokens": 365,
+    "v80_ratio_to_v78c": 0.7433136997756382,
+    "v80_ratio_to_v79b": 1.0022488663249212,
+    "v80_remainder_tokens_after_full_contexts": 877,
+    "v80_tokens_per_actor": 162669
+  },
+  "content_sha256_before_self_field": "f59870ef504fcab5f80dd424c38f7e3741886add683a1059c270e8eb257d729f",
+  "controls": {
+    "v78c_r1": {
+      "actor_wall_runtime_seconds_median": 49.083410840976285,
+      "actor_wall_runtime_seconds_range": [
+        48.70282841898734,
+        49.97749803599436
+      ],
+      "actors": [
+        {
+          "between_state_differing_rows": 18,
+          "candidate_repeat_changed_rows": 0,
+          "engine_shutdown_completed": true,
+          "generation_performance": null,
+          "gpu": 0,
+          "receipt_content_sha256": "996876fc536c1a6eb3fac0113f2e3d3857f63fd9333b1fbc866277588ddd4dc3",
+          "reference_repeat_changed_rows": 8,
+          "torch_process_group_destroyed_receipt_value": false,
+          "wall_runtime_seconds": 49.07356674800394
+        },
+        {
+          "between_state_differing_rows": 17,
+          "candidate_repeat_changed_rows": 0,
+          "engine_shutdown_completed": true,
+          "generation_performance": null,
+          "gpu": 1,
+          "receipt_content_sha256": "19e0034518b23977174b9fbf0fea098011be342d8feb05e0f2459170c1b87b6e",
+          "reference_repeat_changed_rows": 5,
+          "torch_process_group_destroyed_receipt_value": false,
+          "wall_runtime_seconds": 48.70282841898734
+        },
+        {
+          "between_state_differing_rows": 18,
+          "candidate_repeat_changed_rows": 0,
+          "engine_shutdown_completed": true,
+          "generation_performance": null,
+          "gpu": 2,
+          "receipt_content_sha256": "004233aef6044f6683f547a218bad2164e436a47d22ce19ed4448a04b708c986",
+          "reference_repeat_changed_rows": 5,
+          "torch_process_group_destroyed_receipt_value": false,
+          "wall_runtime_seconds": 49.97749803599436
+        },
+        {
+          "between_state_differing_rows": 16,
+          "candidate_repeat_changed_rows": 0,
+          "engine_shutdown_completed": true,
+          "generation_performance": null,
+          "gpu": 3,
+          "receipt_content_sha256": "e1363a4a480af8a13ff37ad48c569c2d4e56038b12e17ae098a8bbc8b8b972d9",
+          "reference_repeat_changed_rows": 5,
+          "torch_process_group_destroyed_receipt_value": false,
+          "wall_runtime_seconds": 49.09325493394863
+        }
+      ],
+      "artifact_inventory": {
+        "bundle_sha256": "a9d82f71bb6beecc420be135737f2048fb770bee5d97309f9e90da4e31ef833f",
+        "file_count": 9,
+        "files": [
+          {
+            "bytes": 133866,
+            "path": "experiments/eggroll_es_hpo/runs/v78c_bf16_kv_bf16_mamba_ssm_r1/gpu_0.json",
+            "sha256": "6a2d2f2ac49a9d8f0d5aeb072813bbe68baa25bd793c8a48e0cefd4bc7812236"
+          },
+          {
+            "bytes": 24434,
+            "path": "experiments/eggroll_es_hpo/runs/v78c_bf16_kv_bf16_mamba_ssm_r1/gpu_0.log",
+            "sha256": "d30a0dc594aa8e99eb48529f433aed107db95db546723c7c19729b1c86bd230d"
+          },
+          {
+            "bytes": 133866,
+            "path": "experiments/eggroll_es_hpo/runs/v78c_bf16_kv_bf16_mamba_ssm_r1/gpu_1.json",
+            "sha256": "23db8abff3ca65fb7f4ec959f7345e4e78586b879432cf51a00bea0a87e9792a"
+          },
+          {
+            "bytes": 24434,
+            "path": "experiments/eggroll_es_hpo/runs/v78c_bf16_kv_bf16_mamba_ssm_r1/gpu_1.log",
+            "sha256": "d80d5feed79257120167faf8cbbfe54655fd6183cc757d7f4a44634da0fdc82d"
+          },
+          {
+            "bytes": 133866,
+            "path": "experiments/eggroll_es_hpo/runs/v78c_bf16_kv_bf16_mamba_ssm_r1/gpu_2.json",
+            "sha256": "26376161ec9c37d65be63a6238a3b716ff1a986164c93c77a7d899f796958221"
+          },
+          {
+            "bytes": 24434,
+            "path": "experiments/eggroll_es_hpo/runs/v78c_bf16_kv_bf16_mamba_ssm_r1/gpu_2.log",
+            "sha256": "3e0731ce1490217ef3db1ae790674fb18e788d97d04c935bb2fb632afdc99339"
+          },
+          {
+            "bytes": 133866,
+            "path": "experiments/eggroll_es_hpo/runs/v78c_bf16_kv_bf16_mamba_ssm_r1/gpu_3.json",
+            "sha256": "74ad999a0672eedea09656677682b25d5dfcfcadf206f9f4ef54a65ee7e42a64"
+          },
+          {
+            "bytes": 24434,
+            "path": "experiments/eggroll_es_hpo/runs/v78c_bf16_kv_bf16_mamba_ssm_r1/gpu_3.log",
+            "sha256": "a9ea689618ceab66ee4a762254ec86e45ae8f5851776970a611d7a1f0109fff3"
+          },
+          {
+            "bytes": 7432,
+            "path": "experiments/eggroll_es_hpo/runs/v78c_bf16_kv_bf16_mamba_ssm_r1/nvidia_smi_samples.log",
+            "sha256": "8d4c2740081ef8175850322bcfce604a7ad9cf1cae91b105fac80b126f0437dc"
+          }
+        ]
+      },
+      "logs": [
+        {
+          "attention_backend": "FLASH_ATTN",
+          "available_kv_gib": 7.77,
+          "file_sha256": "d30a0dc594aa8e99eb48529f433aed107db95db546723c7c19729b1c86bd230d",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0
+          },
+          "kv_cache_size_tokens": 218843,
+          "maximum_concurrency": 106.86,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='bfloat16' was passed. Using the user-specified value.": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using FLASH_ATTN attention backend": 1,
+            "Using TRITON Fp8 MoE backend": 1
+          }
+        },
+        {
+          "attention_backend": "FLASH_ATTN",
+          "available_kv_gib": 7.77,
+          "file_sha256": "d80d5feed79257120167faf8cbbfe54655fd6183cc757d7f4a44634da0fdc82d",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0
+          },
+          "kv_cache_size_tokens": 218843,
+          "maximum_concurrency": 106.86,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='bfloat16' was passed. Using the user-specified value.": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using FLASH_ATTN attention backend": 1,
+            "Using TRITON Fp8 MoE backend": 1
+          }
+        },
+        {
+          "attention_backend": "FLASH_ATTN",
+          "available_kv_gib": 7.77,
+          "file_sha256": "3e0731ce1490217ef3db1ae790674fb18e788d97d04c935bb2fb632afdc99339",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0
+          },
+          "kv_cache_size_tokens": 218843,
+          "maximum_concurrency": 106.86,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='bfloat16' was passed. Using the user-specified value.": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using FLASH_ATTN attention backend": 1,
+            "Using TRITON Fp8 MoE backend": 1
+          }
+        },
+        {
+          "attention_backend": "FLASH_ATTN",
+          "available_kv_gib": 7.77,
+          "file_sha256": "a9ea689618ceab66ee4a762254ec86e45ae8f5851776970a611d7a1f0109fff3",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0
+          },
+          "kv_cache_size_tokens": 218843,
+          "maximum_concurrency": 106.86,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='bfloat16' was passed. Using the user-specified value.": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using FLASH_ATTN attention backend": 1,
+            "Using TRITON Fp8 MoE backend": 1
+          }
+        }
+      ],
+      "run": "v78c_bf16_kv_bf16_mamba_ssm_r1",
+      "telemetry": {
+        "complete_four_gpu_batches": 84,
+        "file_sha256": "8d4c2740081ef8175850322bcfce604a7ad9cf1cae91b105fac80b126f0437dc",
+        "per_gpu": {
+          "0": {
+            "peak_gpu_utilization_percent": 100,
+            "peak_memory_used_mib": 50808,
+            "peak_power_draw_w": 280.24
+          },
+          "1": {
+            "peak_gpu_utilization_percent": 100,
+            "peak_memory_used_mib": 50808,
+            "peak_power_draw_w": 274.12
+          },
+          "2": {
+            "peak_gpu_utilization_percent": 100,
+            "peak_memory_used_mib": 50808,
+            "peak_power_draw_w": 279.53
+          },
+          "3": {
+            "peak_gpu_utilization_percent": 100,
+            "peak_memory_used_mib": 50808,
+            "peak_power_draw_w": 271.08
+          }
+        }
+      }
+    },
+    "v79b_r5": {
+      "actor_wall_runtime_seconds_median": 49.10028860197053,
+      "actor_wall_runtime_seconds_range": [
+        48.76646776602138,
+        49.34243013797095
+      ],
+      "actors": [
+        {
+          "between_state_differing_rows": 22,
+          "candidate_repeat_changed_rows": 0,
+          "engine_shutdown_completed": true,
+          "generation_performance": {
+            "aggregate_generated_tokens_per_second": 888.7442135012902,
+            "max_call_latency_seconds": 4.990844023996033,
+            "median_call_latency_seconds": 4.886811794014648,
+            "p95_call_latency_seconds_nearest_rank": 4.990844023996033
+          },
+          "gpu": 0,
+          "receipt_content_sha256": "5afb8ed6ea8f693e3a11d0781bea894e766c0c1f8a29b8f261a7a7d88cdefa6b",
+          "reference_repeat_changed_rows": 6,
+          "torch_process_group_destroyed_receipt_value": false,
+          "wall_runtime_seconds": 49.00199016195256
+        },
+        {
+          "between_state_differing_rows": 25,
+          "candidate_repeat_changed_rows": 0,
+          "engine_shutdown_completed": true,
+          "generation_performance": {
+            "aggregate_generated_tokens_per_second": 895.412044684977,
+            "max_call_latency_seconds": 5.0269552760291845,
+            "median_call_latency_seconds": 4.831083103490528,
+            "p95_call_latency_seconds_nearest_rank": 5.0269552760291845
+          },
+          "gpu": 1,
+          "receipt_content_sha256": "cbe5e31a8812123b1d3412cdddf1424b81b44b705b35948cb08f8ab906657b34",
+          "reference_repeat_changed_rows": 8,
+          "torch_process_group_destroyed_receipt_value": false,
+          "wall_runtime_seconds": 48.76646776602138
+        },
+        {
+          "between_state_differing_rows": 22,
+          "candidate_repeat_changed_rows": 0,
+          "engine_shutdown_completed": true,
+          "generation_performance": {
+            "aggregate_generated_tokens_per_second": 884.6336662752337,
+            "max_call_latency_seconds": 5.064715131011326,
+            "median_call_latency_seconds": 4.900213752523996,
+            "p95_call_latency_seconds_nearest_rank": 5.064715131011326
+          },
+          "gpu": 2,
+          "receipt_content_sha256": "45a31dfd931a21eb897269ccc5b874ba1dd56af82e45f03b222b6de11ee42ab1",
+          "reference_repeat_changed_rows": 11,
+          "torch_process_group_destroyed_receipt_value": false,
+          "wall_runtime_seconds": 49.34243013797095
+        },
+        {
+          "between_state_differing_rows": 22,
+          "candidate_repeat_changed_rows": 0,
+          "engine_shutdown_completed": true,
+          "generation_performance": {
+            "aggregate_generated_tokens_per_second": 887.6429664739827,
+            "max_call_latency_seconds": 5.0645758510218,
+            "median_call_latency_seconds": 4.869964829995297,
+            "p95_call_latency_seconds_nearest_rank": 5.0645758510218
+          },
+          "gpu": 3,
+          "receipt_content_sha256": "45e30f624e2feec8a7f1f9f9f0135729ad049e7d7ba354b052103b5150228bcf",
+          "reference_repeat_changed_rows": 8,
+          "torch_process_group_destroyed_receipt_value": false,
+          "wall_runtime_seconds": 49.1985870419885
+        }
+      ],
+      "artifact_inventory": {
+        "bundle_sha256": "17a4f99164cd17f8e55ddcd879460c99e356e34d8e90e017abbbd7597085dde7",
+        "file_count": 11,
+        "files": [
+          {
+            "bytes": 40,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/actor_pids.csv",
+            "sha256": "4d89423f4395c941f5826610a66a9799ade9fb059628bd20117291e12a06efc0"
+          },
+          {
+            "bytes": 137123,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_0.json",
+            "sha256": "91cc8fa6abba45b991156e0aa48fcc0efb7830d28b2826e1da28de782e1855d1"
+          },
+          {
+            "bytes": 23054,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_0.log",
+            "sha256": "1fb9f7ca1c0de7b3e1975866c75d2c977ada28cc970d4d847b1e9ccbe1feb929"
+          },
+          {
+            "bytes": 137124,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_1.json",
+            "sha256": "682500c0f74b30de1b5cb224c9fd10dfe5fbcd80d8057437ce96d5c93016bf06"
+          },
+          {
+            "bytes": 23054,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_1.log",
+            "sha256": "b0ababb143cc5681afb58638a566856502871caea8af3ddeb710714f18e973a9"
+          },
+          {
+            "bytes": 137126,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_2.json",
+            "sha256": "ffb6d97b9753cc9a50ac3a6a2b1e9b07573b7145d89097a75980dc57d6c0cd41"
+          },
+          {
+            "bytes": 23055,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_2.log",
+            "sha256": "ba0100d693b0407966c18de68b54a10ca1196b8c4d5396a1d0c5e02e6f715b0f"
+          },
+          {
+            "bytes": 137114,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_3.json",
+            "sha256": "930975b4daed575f17049fe8cb0f08de5c12ad1d37d303f21cb8747271a943c1"
+          },
+          {
+            "bytes": 23053,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_3.log",
+            "sha256": "f7c55d336f732e380f6cc6ad39fd8985dbf0ae9c2d0dbae86da3ec7a848d238f"
+          },
+          {
+            "bytes": 0,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_telemetry_monitor_v79.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 497035,
+            "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_telemetry_v79.jsonl",
+            "sha256": "52854be1df03c26e359136133840a998ecb1ded9e38d49bc8693c4f3fd11608f"
+          }
+        ]
+      },
+      "logs": [
+        {
+          "attention_backend": "TRITON_ATTN",
+          "available_kv_gib": 6.34,
+          "file_sha256": "1fb9f7ca1c0de7b3e1975866c75d2c977ada28cc970d4d847b1e9ccbe1feb929",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "attention_backend": "TRITON_ATTN",
+          "available_kv_gib": 6.34,
+          "file_sha256": "b0ababb143cc5681afb58638a566856502871caea8af3ddeb710714f18e973a9",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "attention_backend": "TRITON_ATTN",
+          "available_kv_gib": 6.34,
+          "file_sha256": "ba0100d693b0407966c18de68b54a10ca1196b8c4d5396a1d0c5e02e6f715b0f",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "attention_backend": "TRITON_ATTN",
+          "available_kv_gib": 6.34,
+          "file_sha256": "f7c55d336f732e380f6cc6ad39fd8985dbf0ae9c2d0dbae86da3ec7a848d238f",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        }
+      ],
+      "run": "v79b_fp8_kv_capacity_0485_r5_sealed_cleanup",
+      "telemetry": {
+        "all_four_gpus_useful": true,
+        "complete_four_gpu_batches": 132,
+        "external_cleanup_accepted_batches": [
+          129,
+          130,
+          131
+        ],
+        "external_cleanup_gate_passed": true,
+        "file_sha256": "52854be1df03c26e359136133840a998ecb1ded9e38d49bc8693c4f3fd11608f",
+        "foreign_compute_pid_rows": 0,
+        "hbm_bandwidth_bytes_per_second": null,
+        "hbm_bandwidth_reason": "NVML memory-utilization percentages do not identify transferred bytes",
+        "per_gpu": {
+          "0": {
+            "actor_root_pid": 1276274,
+            "attributed_compute_pids": [
+              1277971
+            ],
+            "gpu_uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 73,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 283590,
+            "positive_gpu_utilization_samples": 89,
+            "positive_hbm_utilization_samples": 78,
+            "sample_count": 132
+          },
+          "1": {
+            "actor_root_pid": 1276275,
+            "attributed_compute_pids": [
+              1277950
+            ],
+            "gpu_uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 66,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 277979,
+            "positive_gpu_utilization_samples": 87,
+            "positive_hbm_utilization_samples": 81,
+            "sample_count": 132
+          },
+          "2": {
+            "actor_root_pid": 1276276,
+            "attributed_compute_pids": [
+              1277964
+            ],
+            "gpu_uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 74,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 283662,
+            "positive_gpu_utilization_samples": 89,
+            "positive_hbm_utilization_samples": 76,
+            "sample_count": 132
+          },
+          "3": {
+            "actor_root_pid": 1276277,
+            "attributed_compute_pids": [
+              1277957
+            ],
+            "gpu_uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 76,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 278666,
+            "positive_gpu_utilization_samples": 89,
+            "positive_hbm_utilization_samples": 78,
+            "sample_count": 132
+          }
+        },
+        "row_count": 528,
+        "sample_interval_seconds": {
+          "maximum": 0.729131389,
+          "median": 0.669625139,
+          "minimum": 0.665550735
+        },
+        "sampled_pcie_integrals": {
+          "claim": "left-rectangle estimate across adjacent telemetry batches; not exact bytes and not HBM-bandwidth measurement",
+          "rx_bytes_sum_gpus": 173112780581,
+          "tx_bytes_sum_gpus": 17645958415
+        },
+        "trailing_external_cleanup_batches": [
+          129,
+          130,
+          131
+        ]
+      }
+    }
+  },
+  "evidence_classification": {
+    "v78c_r1": "sealed BF16-hybrid-cache 0.500 parent control",
+    "v79b_r5": "sealed FP8-attention-KV cleanup-accepted control",
+    "v80_r1": "observed_before_v80b; immutable data-free diagnostic; not eligible for threshold tuning or promotion",
+    "v80b_r2_r3": "prospective exact-source exact-runtime confirmation runs; not launched by this analyzer"
+  },
+  "paired_token_hash_drift": {
+    "v78c_r1_vs_v80_r1": {
+      "agreement_fraction": 0.9788602941176471,
+      "call_plan": [
+        "reference",
+        "candidate",
+        "candidate",
+        "reference",
+        "reference",
+        "candidate",
+        "candidate",
+        "reference"
+      ],
+      "claim": "token-hash commitment disagreement, not semantic quality; known reference-repeat nondeterminism remains visible",
+      "compared_rows_total": 2176,
+      "differing_rows_by_call_sum_gpus": [
+        14,
+        0,
+        0,
+        13,
+        8,
+        0,
+        0,
+        11
+      ],
+      "differing_rows_by_gpu_and_call": {
+        "0": [
+          2,
+          0,
+          0,
+          4,
+          3,
+          0,
+          0,
+          2
+        ],
+        "1": [
+          4,
+          0,
+          0,
+          3,
+          1,
+          0,
+          0,
+          5
+        ],
+        "2": [
+          2,
+          0,
+          0,
+          4,
+          0,
+          0,
+          0,
+          1
+        ],
+        "3": [
+          6,
+          0,
+          0,
+          2,
+          4,
+          0,
+          0,
+          3
+        ]
+      },
+      "differing_rows_total": 46,
+      "pair": "v78c_r1_vs_v80_r1"
+    },
+    "v79b_r5_vs_v80_r1": {
+      "agreement_fraction": 0.8028492647058824,
+      "call_plan": [
+        "reference",
+        "candidate",
+        "candidate",
+        "reference",
+        "reference",
+        "candidate",
+        "candidate",
+        "reference"
+      ],
+      "claim": "token-hash commitment disagreement, not semantic quality; known reference-repeat nondeterminism remains visible",
+      "compared_rows_total": 2176,
+      "differing_rows_by_call_sum_gpus": [
+        31,
+        84,
+        84,
+        19,
+        18,
+        84,
+        84,
+        25
+      ],
+      "differing_rows_by_gpu_and_call": {
+        "0": [
+          6,
+          21,
+          21,
+          3,
+          5,
+          21,
+          21,
+          5
+        ],
+        "1": [
+          8,
+          21,
+          21,
+          5,
+          4,
+          21,
+          21,
+          7
+        ],
+        "2": [
+          8,
+          21,
+          21,
+          6,
+          2,
+          21,
+          21,
+          8
+        ],
+        "3": [
+          9,
+          21,
+          21,
+          5,
+          7,
+          21,
+          21,
+          5
+        ]
+      },
+      "differing_rows_total": 429,
+      "pair": "v79b_r5_vs_v80_r1"
+    }
+  },
+  "parent_gate_evaluation": {
+    "all_data_free_gates_except_literal_torch_process_group_clause_passed": true,
+    "candidate_repeat_exact_all_actors": true,
+    "data_free_gate_results": {
+      "candidate_output_and_paired_hash_matrix": true,
+      "capacity_live_field_log_and_minimum": true,
+      "cardinality_identity_hash_only_and_no_data_access": true,
+      "engine_shutdown_completed_per_actor": true,
+      "external_three_batch_post_exit_cleanup": true,
+      "four_gpu_activity_and_pcie_telemetry": true,
+      "hybrid_cache_precision_backend_residency_and_warning": true,
+      "required_and_forbidden_logs": true,
+      "runtime_and_memory": true,
+      "torch_process_group_destroyed_per_actor_literal_true": false
+    },
+    "literal_failure": {
+      "external_process_cleanup_still_passed": true,
+      "parent_clause": "torch_process_group_destroyed_per_actor=true",
+      "postrun_threshold_or_gate_reinterpretation_forbidden": true,
+      "probe_semantics": "the receipt field is true only when torch.distributed was initialized and destroy_process_group() was called; TP1 may have no initialized process group, but that semantic reinterpretation was not preregistered",
+      "receipt_values_by_gpu": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "literal_parent_data_free_contract_passed": false,
+    "promotion_authorized": false,
+    "protected_one_shot_ood_gate_run": false,
+    "reference_repeat_changed_rows_by_gpu": {
+      "0": 6,
+      "1": 5,
+      "2": 2,
+      "3": 6
+    },
+    "reference_restore_exact": false,
+    "source_disjoint_semantic_gate_run": false
+  },
+  "performance": {
+    "single_replicate_timing_not_a_promotion_claim": true,
+    "v78c_r1_actor_median_seconds": 49.083410840976285,
+    "v79b_r5_actor_median_seconds": 49.10028860197053,
+    "v80_preregistered_ratio_to_v78c_max": 1.03,
+    "v80_preregistered_runtime_seconds_max": 50.55591316620558,
+    "v80_r1_actor_median_seconds": 48.40858003747417,
+    "v80_ratio_to_v78c_r1": 0.9862513465967457,
+    "v80_ratio_to_v79b_r5": 0.9859123320006594,
+    "v80_runtime_gate_passed": true
+  },
+  "promotion_authorized": false,
+  "prospective_v80b": {
+    "content_sha256": "8515a4680175a68233f2ff408bd0439daebf1a8a4c94a842c45e08ac9ec6b976",
+    "exact_commands": [
+      "RUN=/home/catid/specialist/experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2 bash /home/catid/specialist/launch_qwen36_bf16_kv_mamba_capacity_v80.sh",
+      "RUN=/home/catid/specialist/experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3 bash /home/catid/specialist/launch_qwen36_bf16_kv_mamba_capacity_v80.sh"
+    ],
+    "exactly_two_runs": [
+      "v80_bf16_kv_mamba_capacity_0479_r2",
+      "v80_bf16_kv_mamba_capacity_0479_r3"
+    ],
+    "parent_runtime_and_thresholds_unchanged": true,
+    "promotion_forbidden": true,
+    "r1_observation_disclosed": true
+  },
+  "schema": "v80-qwen36-bf16-kv-mamba-capacity-postrun-analysis",
+  "static_contract": {
+    "parent_live_acceptance_canonical_sha256": "e57b8ffa33ff622acb27c9a6cb90fe649ae37a5666f3d5409479828dcb0e7528",
+    "parent_selected_runtime_canonical_sha256": "42c82bc4cc60e060be6a53f2464e84dbe2ad1ada26576f31e35a9685565b271c",
+    "preregistrations": {
+      "qwen36_bf16_kv_mamba_capacity_matched_v80.json": {
+        "content_sha256": "7527ed6fe0154a79ecc0de46b00af4601b0e3deaac184f2af094fba15740149a",
+        "file_sha256": "be7de6c8ac1d59feef0ec0d0e289be85612644efbe72fdb3847fa34d5dd50aad",
+        "schema": "v80-qwen36-bf16-kv-mamba-capacity-matched-preregistration"
+      },
+      "qwen36_bf16_kv_mamba_confirmation_v80b.json": {
+        "content_sha256": "8515a4680175a68233f2ff408bd0439daebf1a8a4c94a842c45e08ac9ec6b976",
+        "file_sha256": "9d4c85f594946dc9f200b064ce79ee989cd218a17879c6786da85405d35d6724",
+        "schema": "v80b-qwen36-bf16-kv-mamba-two-run-confirmation-preregistration"
+      },
+      "qwen36_fp8_kv_capacity_cleanup_v79b.json": {
+        "content_sha256": "7669c2f720f2a0d17e976de42cc5b7c08fba60a3251175a62eddf05de2dc1b5d",
+        "file_sha256": "8e1940db5134bb77ef9959d10b4eec5d43fab4e8653d62733b42939b5fd7300f",
+        "schema": "v79b-qwen36-fp8-kv-cleanup-preregistration"
+      }
+    },
+    "sealed_executable_sources": {
+      "bundle_sha256": "2c7927964ea3cfca1880d4cf3919609509e9d7655f2deec1646faef4b7bef0cd",
+      "files": [
+        {
+          "bytes": 9866,
+          "path": "probe_vllm_quantized_adapter_switch_v73.py",
+          "sha256": "43661c32cd8d06deef6d8e2f0d83d889b00f554748b94c3345e2b2052cac66a9"
+        },
+        {
+          "bytes": 15445,
+          "path": "probe_vllm_fp8_attested_v76.py",
+          "sha256": "a23d43ee5b6b334fdc58b93e0ce7e7d3fcf72ea4047549f3a0f4d5b715a3fc70"
+        },
+        {
+          "bytes": 4275,
+          "path": "probe_vllm_bf16_kv_mamba_bf16_v78c.py",
+          "sha256": "761857944064a0b21ff528971d3f497e4e67865679fa51a30d385cab65835dcb"
+        },
+        {
+          "bytes": 20242,
+          "path": "probe_vllm_bf16_kv_mamba_capacity_v80.py",
+          "sha256": "3679bfb1d7f1995701b8b96c100f41ac05fc8f3338977e5760f52aa1ef8009fd"
+        },
+        {
+          "bytes": 12382,
+          "path": "monitor_qwen36_fp8_kv_capacity_v79.py",
+          "sha256": "6035eb32f90815ed2a2d8734d9e9072123b8ecc70d74449a2710e94b673ed3df"
+        },
+        {
+          "bytes": 1733,
+          "path": "launch_qwen36_bf16_kv_mamba_capacity_v80.sh",
+          "sha256": "3a335c0e44a9b8130adec8c0e11f52d2246264aa0a47f5b173cbdb35093fc7ad"
+        }
+      ]
+    }
+  },
+  "status": "analysis_completed_literal_parent_torch_process_group_gate_failed_semantic_ood_pending_no_promotion",
+  "v80_r1": {
+    "actor_wall_runtime_seconds_median": 48.40858003747417,
+    "actor_wall_runtime_seconds_range": [
+      48.0079297790071,
+      48.62586149503477
+    ],
+    "actors": [
+      {
+        "between_state_differing_rows": 18,
+        "candidate_repeat_changed_rows": 0,
+        "engine_shutdown_completed": true,
+        "generation_performance": {
+          "aggregate_generated_tokens_per_second": 907.9020867244845,
+          "max_call_latency_seconds": 4.815591615042649,
+          "median_call_latency_seconds": 4.793915474001551,
+          "p95_call_latency_seconds_nearest_rank": 4.815591615042649
+        },
+        "gpu": 0,
+        "receipt_content_sha256": "33f079cab126f73047f1a7360badd6324c3be8f613301aee231c83890d6f7ed2",
+        "reference_repeat_changed_rows": 6,
+        "torch_process_group_destroyed_receipt_value": false,
+        "wall_runtime_seconds": 48.24438032996841
+      },
+      {
+        "between_state_differing_rows": 16,
+        "candidate_repeat_changed_rows": 0,
+        "engine_shutdown_completed": true,
+        "generation_performance": {
+          "aggregate_generated_tokens_per_second": 914.3970523301609,
+          "max_call_latency_seconds": 4.7676153689972125,
+          "median_call_latency_seconds": 4.759844441025052,
+          "p95_call_latency_seconds_nearest_rank": 4.7676153689972125
+        },
+        "gpu": 1,
+        "receipt_content_sha256": "0d751cf5134a743b3b89b5926f17b800e530e3228b29c10b2a2aa71c0c95a452",
+        "reference_repeat_changed_rows": 5,
+        "torch_process_group_destroyed_receipt_value": false,
+        "wall_runtime_seconds": 48.0079297790071
+      },
+      {
+        "between_state_differing_rows": 18,
+        "candidate_repeat_changed_rows": 0,
+        "engine_shutdown_completed": true,
+        "generation_performance": {
+          "aggregate_generated_tokens_per_second": 902.311360116341,
+          "max_call_latency_seconds": 4.890489620971493,
+          "median_call_latency_seconds": 4.823159123479854,
+          "p95_call_latency_seconds_nearest_rank": 4.890489620971493
+        },
+        "gpu": 2,
+        "receipt_content_sha256": "c9572d0b87c0be696bd7e7f31a0103bef1da1fdf74a8c259737c444cda77e0a9",
+        "reference_repeat_changed_rows": 2,
+        "torch_process_group_destroyed_receipt_value": false,
+        "wall_runtime_seconds": 48.62586149503477
+      },
+      {
+        "between_state_differing_rows": 16,
+        "candidate_repeat_changed_rows": 0,
+        "engine_shutdown_completed": true,
+        "generation_performance": {
+          "aggregate_generated_tokens_per_second": 903.2511428336046,
+          "max_call_latency_seconds": 4.841537563013844,
+          "median_call_latency_seconds": 4.815093442011857,
+          "p95_call_latency_seconds_nearest_rank": 4.841537563013844
+        },
+        "gpu": 3,
+        "receipt_content_sha256": "13f4912dab4577854e8db0217680afca5c37f0d4de5f942492a7564aeaf38e17",
+        "reference_repeat_changed_rows": 6,
+        "torch_process_group_destroyed_receipt_value": false,
+        "wall_runtime_seconds": 48.572779744979925
+      }
+    ],
+    "artifact_inventory": {
+      "bundle_sha256": "73adc7ebe416d6065808cf918415d077989b1a064b47ef5132422b32da118e47",
+      "file_count": 11,
+      "files": [
+        {
+          "bytes": 40,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/actor_pids.csv",
+          "sha256": "369d4466cdff1cfa40f82581f14a959928c235575e4da9b2f9b933724c147813"
+        },
+        {
+          "bytes": 137190,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_0.json",
+          "sha256": "9358e1bb549b1c87d78ae5edabf97678caca3278ad4c058acf2f04d104a51a10"
+        },
+        {
+          "bytes": 22745,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_0.log",
+          "sha256": "b97947014fb1a19853150d77386e05843858dbbc13c625503dbd897f3f012faf"
+        },
+        {
+          "bytes": 137190,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_1.json",
+          "sha256": "5bf3f8656d873727d2ae7e04e6fea61194a62fe72447e674f49d7512a0397735"
+        },
+        {
+          "bytes": 22744,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_1.log",
+          "sha256": "7e90539192202b0b0f68d7d65f1313d4134fa5a497516badf86efd90cd475ff7"
+        },
+        {
+          "bytes": 137191,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_2.json",
+          "sha256": "e199eded9ac61015a432f7f7d1e89332d565283d3b66ddb3dd7739b1875799d3"
+        },
+        {
+          "bytes": 22902,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_2.log",
+          "sha256": "b46749801629485842ee806d51fa463995c5fabd809b44eb4d4458a89e3853c2"
+        },
+        {
+          "bytes": 137192,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_3.json",
+          "sha256": "6b83783c61feecf3e83fbf2fe5f77cbe4fd52f3ca1086d37ed0d56463e967581"
+        },
+        {
+          "bytes": 22746,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_3.log",
+          "sha256": "2ea65f26b42e475716ec95ddb444c87678fb8e1e37d1989af0ef4ddbe62bf279"
+        },
+        {
+          "bytes": 0,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_telemetry_monitor_v80.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 481903,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_telemetry_v80.jsonl",
+          "sha256": "f6b14ccbe43314c78a3c47451de7c1cd1391bdc5d8b5c07e35b7407ce957b7da"
+        }
+      ]
+    },
+    "logs": [
+      {
+        "attention_backend": "FLASH_ATTN",
+        "available_kv_gib": 5.77,
+        "file_sha256": "b97947014fb1a19853150d77386e05843858dbbc13c625503dbd897f3f012faf",
+        "forbidden_fragment_counts": {
+          "Auto-disabled DeepGemm": 0,
+          "CUDA out of memory": 0,
+          "DeepGEMM E8M0 enabled": 0,
+          "Traceback (most recent call last)": 0,
+          "fallback to": 0,
+          "falling back": 0
+        },
+        "kv_cache_size_tokens": 162669,
+        "maximum_concurrency": 79.43,
+        "required_fragment_counts": {
+          "Available KV cache memory:": 1,
+          "GPU KV cache size:": 1,
+          "Maximum concurrency for 2,048 tokens per request:": 1,
+          "Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='bfloat16' was passed. Using the user-specified value.": 1,
+          "Skipping FlashInfer autotune because it is disabled": 1,
+          "Using FLASH_ATTN attention backend": 1,
+          "Using TRITON Fp8 MoE backend": 1
+        }
+      },
+      {
+        "attention_backend": "FLASH_ATTN",
+        "available_kv_gib": 5.77,
+        "file_sha256": "7e90539192202b0b0f68d7d65f1313d4134fa5a497516badf86efd90cd475ff7",
+        "forbidden_fragment_counts": {
+          "Auto-disabled DeepGemm": 0,
+          "CUDA out of memory": 0,
+          "DeepGEMM E8M0 enabled": 0,
+          "Traceback (most recent call last)": 0,
+          "fallback to": 0,
+          "falling back": 0
+        },
+        "kv_cache_size_tokens": 162669,
+        "maximum_concurrency": 79.43,
+        "required_fragment_counts": {
+          "Available KV cache memory:": 1,
+          "GPU KV cache size:": 1,
+          "Maximum concurrency for 2,048 tokens per request:": 1,
+          "Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='bfloat16' was passed. Using the user-specified value.": 1,
+          "Skipping FlashInfer autotune because it is disabled": 1,
+          "Using FLASH_ATTN attention backend": 1,
+          "Using TRITON Fp8 MoE backend": 1
+        }
+      },
+      {
+        "attention_backend": "FLASH_ATTN",
+        "available_kv_gib": 5.77,
+        "file_sha256": "b46749801629485842ee806d51fa463995c5fabd809b44eb4d4458a89e3853c2",
+        "forbidden_fragment_counts": {
+          "Auto-disabled DeepGemm": 0,
+          "CUDA out of memory": 0,
+          "DeepGEMM E8M0 enabled": 0,
+          "Traceback (most recent call last)": 0,
+          "fallback to": 0,
+          "falling back": 0
+        },
+        "kv_cache_size_tokens": 162669,
+        "maximum_concurrency": 79.43,
+        "required_fragment_counts": {
+          "Available KV cache memory:": 1,
+          "GPU KV cache size:": 1,
+          "Maximum concurrency for 2,048 tokens per request:": 1,
+          "Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='bfloat16' was passed. Using the user-specified value.": 1,
+          "Skipping FlashInfer autotune because it is disabled": 1,
+          "Using FLASH_ATTN attention backend": 1,
+          "Using TRITON Fp8 MoE backend": 1
+        }
+      },
+      {
+        "attention_backend": "FLASH_ATTN",
+        "available_kv_gib": 5.77,
+        "file_sha256": "2ea65f26b42e475716ec95ddb444c87678fb8e1e37d1989af0ef4ddbe62bf279",
+        "forbidden_fragment_counts": {
+          "Auto-disabled DeepGemm": 0,
+          "CUDA out of memory": 0,
+          "DeepGEMM E8M0 enabled": 0,
+          "Traceback (most recent call last)": 0,
+          "fallback to": 0,
+          "falling back": 0
+        },
+        "kv_cache_size_tokens": 162669,
+        "maximum_concurrency": 79.43,
+        "required_fragment_counts": {
+          "Available KV cache memory:": 1,
+          "GPU KV cache size:": 1,
+          "Maximum concurrency for 2,048 tokens per request:": 1,
+          "Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='bfloat16' was passed. Using the user-specified value.": 1,
+          "Skipping FlashInfer autotune because it is disabled": 1,
+          "Using FLASH_ATTN attention backend": 1,
+          "Using TRITON Fp8 MoE backend": 1
+        }
+      }
+    ],
+    "run": "v80_bf16_kv_mamba_capacity_0479_r1",
+    "telemetry": {
+      "all_four_gpus_useful": true,
+      "complete_four_gpu_batches": 128,
+      "external_cleanup_accepted_batches": [
+        125,
+        126,
+        127
+      ],
+      "external_cleanup_gate_passed": true,
+      "file_sha256": "f6b14ccbe43314c78a3c47451de7c1cd1391bdc5d8b5c07e35b7407ce957b7da",
+      "foreign_compute_pid_rows": 0,
+      "hbm_bandwidth_bytes_per_second": null,
+      "hbm_bandwidth_reason": "NVML memory-utilization percentages do not identify transferred bytes",
+      "per_gpu": {
+        "0": {
+          "actor_root_pid": 1304129,
+          "attributed_compute_pids": [
+            1305824
+          ],
+          "gpu_uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927",
+          "minimum_physical_headroom_mib": 48521,
+          "peak_attributed_process_memory_mib": 48756,
+          "peak_gpu_utilization_percent": 100,
+          "peak_hbm_utilization_percent": 73,
+          "peak_memory_used_mib": 49366,
+          "peak_power_draw_mw": 279116,
+          "positive_gpu_utilization_samples": 90,
+          "positive_hbm_utilization_samples": 78,
+          "sample_count": 128
+        },
+        "1": {
+          "actor_root_pid": 1304130,
+          "attributed_compute_pids": [
+            1305823
+          ],
+          "gpu_uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded",
+          "minimum_physical_headroom_mib": 48521,
+          "peak_attributed_process_memory_mib": 48756,
+          "peak_gpu_utilization_percent": 100,
+          "peak_hbm_utilization_percent": 67,
+          "peak_memory_used_mib": 49366,
+          "peak_power_draw_mw": 273742,
+          "positive_gpu_utilization_samples": 89,
+          "positive_hbm_utilization_samples": 78,
+          "sample_count": 128
+        },
+        "2": {
+          "actor_root_pid": 1304131,
+          "attributed_compute_pids": [
+            1305831
+          ],
+          "gpu_uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640",
+          "minimum_physical_headroom_mib": 48521,
+          "peak_attributed_process_memory_mib": 48756,
+          "peak_gpu_utilization_percent": 100,
+          "peak_hbm_utilization_percent": 76,
+          "peak_memory_used_mib": 49366,
+          "peak_power_draw_mw": 279402,
+          "positive_gpu_utilization_samples": 88,
+          "positive_hbm_utilization_samples": 75,
+          "sample_count": 128
+        },
+        "3": {
+          "actor_root_pid": 1304132,
+          "attributed_compute_pids": [
+            1305810
+          ],
+          "gpu_uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999",
+          "minimum_physical_headroom_mib": 48521,
+          "peak_attributed_process_memory_mib": 48756,
+          "peak_gpu_utilization_percent": 100,
+          "peak_hbm_utilization_percent": 76,
+          "peak_memory_used_mib": 49366,
+          "peak_power_draw_mw": 280398,
+          "positive_gpu_utilization_samples": 89,
+          "positive_hbm_utilization_samples": 77,
+          "sample_count": 128
+        }
+      },
+      "row_count": 512,
+      "sample_interval_seconds": {
+        "maximum": 0.723296673,
+        "median": 0.668975577,
+        "minimum": 0.665350644
+      },
+      "sampled_pcie_integrals": {
+        "claim": "left-rectangle estimate across adjacent telemetry batches; not exact bytes and not HBM-bandwidth measurement",
+        "rx_bytes_sum_gpus": 177041298305,
+        "tx_bytes_sum_gpus": 17716005185
+      },
+      "trailing_external_cleanup_batches": [
+        125,
+        126,
+        127
+      ]
+    }
+  },
+  "vram_and_bandwidth": {
+    "external_peak_memory_used_mib": {
+      "v78c_r1_old_external_monitor": 50808,
+      "v79b_r5_including_pynvml_observer": 49994,
+      "v80_r1_including_pynvml_observer": 49366
+    },
+    "hbm_bandwidth_bytes_per_second": null,
+    "hbm_bandwidth_not_inferred": true,
+    "observer_caveat": "new telemetry's total includes the in-process pynvml observer; the attributed actor-process peak is diagnostic, while the external total is used for the fail-closed gate",
+    "sampled_pcie_integrals": {
+      "claim": "left-rectangle estimate across adjacent telemetry batches; not exact bytes and not HBM-bandwidth measurement",
+      "rx_bytes_sum_gpus": 177041298305,
+      "tx_bytes_sum_gpus": 17716005185
+    },
+    "v80_external_savings_mib_vs_v78c_r1": 1442,
+    "v80_external_savings_mib_vs_v79b_r5": 628,
+    "v80_peak_attributed_actor_process_mib": 48756,
+    "v80_peak_memory_gate_passed": true
+  }
+}
