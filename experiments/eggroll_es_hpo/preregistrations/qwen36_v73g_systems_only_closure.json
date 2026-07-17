@@ -1,0 +1,95 @@
+{
+  "authority": {
+    "historical_quarantined_lineage_rehabilitated": false,
+    "quality_selection_hpo_or_promotion_authorized": false,
+    "semantic_evaluation_or_quarantined_boundary_resolved": false,
+    "systems_trace_only": true
+  },
+  "content_sha256_before_self_field": "7e91c56dfbbcc28188e0678baa22c73c94823b60a01a45c7176fbb6c187b6ed0",
+  "implementation": {
+    "builder_file_sha256": "6f02c43505e589eec063181ceaaa2b8918f37afb6c101c19474360d4ace198bb"
+  },
+  "import_graph": {
+    "authority_guard_module_count": 3,
+    "authority_guard_source_bindings": [
+      {
+        "file_sha256": "0153d1402e173507934bf6bd392df4315d4ab8ec301ba44afe0c8faece671145",
+        "module_path_identity_sha256": "88a24a7123956ab38b8650c13339ab27a204f46417b1134f7b2de57e28be802e"
+      },
+      {
+        "file_sha256": "917e3bfd8314b66722115fcd3720d6e58292fd46de10e63e0181ff185bcdafbe",
+        "module_path_identity_sha256": "93fe8d5de3b26dbd099ac1aed376cc96973e19f106e0de63e6f592d69514f0ad"
+      },
+      {
+        "file_sha256": "4a2a2ff91b4fb1aed14714639b6a37caaa2f082a675a6d28f3486551a9d73013",
+        "module_path_identity_sha256": "b6285b5ca99ee4fe1872a1ea4b8916b9ee07bf403a749905e9ab06ab1023f166"
+      }
+    ],
+    "authority_rule_set_sha256": "a65468603a179f29049d142ebc7a216bd0f565b973b6f2addac4654a45b616a4",
+    "local_closure_content_sha256": "8bd19fc08fc5f454fae1c10e77ed411b63a4e93216648bf24c2c579898594526",
+    "local_closure_modules": 104,
+    "mutable_prereg_builder_reachable": false,
+    "quarantined_boundary_reference_count": 6,
+    "quarantined_boundary_reference_identity_sha256s": [
+      "1313fa9566a0554578c5081b1fdcb3eaced2e9b288ccef0093af476261e526e2",
+      "2d7f3bdf11a8cbeac27ab09ceeb84caa698ccca39c61671ed470e26f3db31024",
+      "63efa328bdfc04c2a4172360ab514119eec447cfa4f11a22356f38a352148a28",
+      "7ac44ef1c96a478785e220a8bb465377348bf34e428ba3cc0c708755bb05c1e1",
+      "88af7ea46ab22e523c1d6dd6d9b6833aeb6040da97fb5dd58ace5a3a79d62b1c",
+      "a833ddc95b32f3b07135135202f37ef18c27dea27888fc34de9ca17c96a257ec"
+    ],
+    "required_false_authority_rule_count": 4,
+    "root_module_file_sha256": {
+      "run_lora_es_v71_v72_profile_calibration_v73g.py": "917e3bfd8314b66722115fcd3720d6e58292fd46de10e63e0181ff185bcdafbe",
+      "run_qwen36_v73g_exact_phase_profiler.py": "0153d1402e173507934bf6bd392df4315d4ab8ec301ba44afe0c8faece671145"
+    },
+    "root_modules": [
+      "run_qwen36_v73g_exact_phase_profiler.py",
+      "run_lora_es_v71_v72_profile_calibration_v73g.py"
+    ],
+    "semantic_evaluation_path_reference_count": 3,
+    "semantic_evaluation_path_reference_identity_sha256s": [
+      "9d9040ef66f817e549125940ac638a22eab7f7d068e3726d561b74915932a830",
+      "e142cb7b8bd78308a087c46ae2c565bfffa2a158cd6bb12e959272f12712509e",
+      "f243f42c3de3b79372a620609fae3c503c80f3d3015af7c7c1f836290aee9f9f"
+    ],
+    "true_quality_or_promotion_authority_rule_count": 0
+  },
+  "schema": "qwen36-v73e-systems-only-closure-v1",
+  "static_historical_references": {
+    "actual_open_denial_requires_distinct_postrun_receipt": true,
+    "does_not_authorize_path_resolution_or_open": true,
+    "opaque_only": true,
+    "opaque_reference_binding_count": 9,
+    "opaque_reference_binding_set_sha256": "2cf4a2b7673766ec1975f5d73bafa5ac38b93f2eca3415d24642410deb39145f"
+  },
+  "status": "v73e_runtime_closure_systems_only_no_quality_authority",
+  "synthetic_runtime_guard_tests": {
+    "command_sha256": "0d37b1268b91b56672ccd497b641ea14a5eef0e027ced30eee5ece4f7ac56899",
+    "exit_code": 0,
+    "passed": true,
+    "protected_source_fixture_or_loader_selected": false,
+    "schema": "v73e-synthetic-runtime-guard-test-receipt-v1",
+    "selected_test_node_count": 17,
+    "selected_test_node_set_sha256": "8beb1551d01d43d66b90ce2b0ea2f08e69e646f72d6beb281773384f87185a5f",
+    "stdout_or_stderr_persisted": false,
+    "test_source_bindings": [
+      {
+        "file_sha256": "74b418741f4168feb291b69f092c67f91fa131a6f7165acee16e342c56d46404",
+        "path_identity_sha256": "f296520159400706e92eec435811d4cf9d0ddba01ff74c333fdd834e1593dfb0"
+      },
+      {
+        "file_sha256": "9a91f1421b42e4814aa2a4a75bc9b70792a822e46fcb7c19fcb4edf665c3e351",
+        "path_identity_sha256": "10dd6d0873e43f6ede7ccbae846027dd88ce13dab464b57aedb0ce8c8a30392e"
+      }
+    ]
+  },
+  "zero_successful_protected_operation_attestation": {
+    "actual_stage_b_gpu_run_attested": false,
+    "scope": "byte_stable_selected_synthetic_subprocess_receipts",
+    "successful_protected_enumerations": 0,
+    "successful_protected_metadata": 0,
+    "successful_protected_opens": 0,
+    "successful_protected_resolves": 0
+  }
+}
