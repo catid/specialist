@@ -1,0 +1,306 @@
+{
+  "alternative_supported_but_excluded_paths": {
+    "mxfp4_or_nvfp4": {
+      "excluded_reason": "4-bit floating point is not the requested INT4 arm"
+    },
+    "online_fp8_from_bf16": {
+      "excluded_reason": "would conflate online lossy conversion/startup work with the sealed serialized-FP8 checkpoint comparison",
+      "supported_by_installed_source": true,
+      "vllm_cli": {
+        "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+        "quantization": "fp8"
+      }
+    }
+  },
+  "arms": {
+    "bf16": {
+      "checkpoint": {
+        "bf16_router_count": 41,
+        "config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+        "dtype_tensor_counts": {
+          "BF16": 1045
+        },
+        "fp8_expert_weight_count": 0,
+        "fp8_scale_count": 0,
+        "index_key_count": 1045,
+        "index_sha256": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+        "logical_tensor_bytes": 71903645408,
+        "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+        "shard_bytes": 71903776776,
+        "shard_count": 26,
+        "shard_size_manifest_sha256": "b878392051d6a40017ea4d096c786470aee2dab5e0440b33bb1b7b92142c60c9",
+        "tensor_metadata_manifest_sha256": "7e5634b3166be1f66cbba4830a34fcabb8e2d1c0ea87c2423943dd41c8e1d95a"
+      },
+      "engine_kwargs": {
+        "async_scheduling": false,
+        "dtype": "bfloat16",
+        "enable_lora": true,
+        "enable_prefix_caching": false,
+        "enforce_eager": true,
+        "gpu_memory_utilization": 0.82,
+        "kv_cache_dtype": "auto",
+        "limit_mm_per_prompt": {
+          "image": 0,
+          "video": 0
+        },
+        "lora_dtype": "auto_from_bfloat16_base",
+        "max_cpu_loras": 2,
+        "max_lora_rank": 32,
+        "max_loras": 1,
+        "max_model_len": 2048,
+        "max_num_seqs": 68,
+        "mm_processor_cache_gb": 0,
+        "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+        "moe_backend": "triton",
+        "quantization": null,
+        "scheduling_policy": "fcfs",
+        "skip_mm_profiling": true,
+        "tensor_parallel_size": 1
+      },
+      "forbidden_cli": [
+        "--quantization fp8",
+        "--quantization bitsandbytes"
+      ],
+      "gpu_preflight_safe_after_dependency": true,
+      "required_resolved_quantization": null,
+      "required_serialized_quantization": false,
+      "scored_evaluation_safe_before_live_preflight": false
+    },
+    "fp8_serialized": {
+      "bf16_moe_tuning_table_reuse_forbidden": true,
+      "checkpoint": {
+        "bf16_router_count": 41,
+        "config_sha256": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+        "dtype_tensor_counts": {
+          "BF16": 32451,
+          "F8_E4M3": 31745
+        },
+        "fp8_expert_weight_count": 31488,
+        "fp8_scale_count": 31745,
+        "index_key_count": 64196,
+        "index_sha256": "6f176f344e41d35b17af12904e33401da5ebff3b49fccb8bfa0185bc2d50f9d6",
+        "logical_tensor_bytes": 37454789472,
+        "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+        "shard_bytes": 37463662160,
+        "shard_count": 42,
+        "shard_size_manifest_sha256": "3bc687cefc89541a4768655cd110ffecf1d6a1ca94b5072903037dab119dcdaf",
+        "tensor_metadata_manifest_sha256": "d66cb081f921a46d81f5b39e4dd2c5d97d673de2e74f43f1d50cc42eca4cfcc7"
+      },
+      "engine_kwargs": {
+        "async_scheduling": false,
+        "dtype": "bfloat16",
+        "enable_lora": true,
+        "enable_prefix_caching": false,
+        "enforce_eager": true,
+        "gpu_memory_utilization": 0.82,
+        "kv_cache_dtype": "auto",
+        "limit_mm_per_prompt": {
+          "image": 0,
+          "video": 0
+        },
+        "lora_dtype": "auto_from_bfloat16_base",
+        "max_cpu_loras": 2,
+        "max_lora_rank": 32,
+        "max_loras": 1,
+        "max_model_len": 2048,
+        "max_num_seqs": 68,
+        "mm_processor_cache_gb": 0,
+        "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+        "moe_backend": "triton",
+        "quantization": "fp8",
+        "scheduling_policy": "fcfs",
+        "skip_mm_profiling": true,
+        "tensor_parallel_size": 1
+      },
+      "gpu_preflight_safe_after_dependency": true,
+      "online_requantization_of_bf16_checkpoint_for_this_arm_forbidden": true,
+      "rejected_v29_selected_fp8_table_reuse_forbidden": true,
+      "required_block_shape": [
+        128,
+        128
+      ],
+      "required_resolved_quantization": "fp8",
+      "required_serialized_quantization": true,
+      "required_starting_moe_tuning_table": "empty_default",
+      "scored_evaluation_safe_before_live_preflight": false
+    },
+    "int4": {
+      "blocking_reasons": [
+        "no local sealed Qwen3.6 INT4 checkpoint",
+        "bitsandbytes is not installed (vLLM requires >=0.48.1 on CUDA)",
+        "LoRA plus 3D MoE correctness is not proven for an INT4 kernel",
+        "AWQ/GPTQ/CompressedTensors backend selection and fallback are unobserved"
+      ],
+      "gpu_preflight_safe_after_dependency": false,
+      "launch_authorized": false,
+      "local_serialized_checkpoint_candidates": [],
+      "potential_paths_requiring_new_preregistration": {
+        "awq_w4a16": {
+          "fallback_risk": "AutoAWQ MoE Marlin may select Moe WNA16",
+          "vllm_has_routed_expert_methods": true,
+          "vllm_quantization": "auto_awq"
+        },
+        "bitsandbytes_online_nf4_or_fp4": {
+          "bandwidth_risk": "installed method dequantizes routed expert weights before the generic fused_experts call on the hot path",
+          "dependency_installed": false,
+          "vllm_has_routed_expert_method": true,
+          "vllm_quantization": "bitsandbytes"
+        },
+        "compressed_tensors_w4a16": {
+          "dependency_installed": "compressed-tensors==0.17.0",
+          "preferred_first_serialized_int4_path": true,
+          "vllm_has_routed_expert_methods": true,
+          "vllm_quantization": "compressed-tensors"
+        },
+        "gptq_w4a16": {
+          "fallback_risk": "GPTQ MoE Marlin may select Moe WNA16",
+          "vllm_has_routed_expert_methods": true,
+          "vllm_quantization": "auto_gptq"
+        }
+      },
+      "scored_evaluation_safe_before_live_preflight": false
+    }
+  },
+  "authority": {
+    "bf16_gpu_preflight_after_0j5_14": true,
+    "cpu_preparation_complete": true,
+    "fp8_serialized_gpu_preflight_after_0j5_14": true,
+    "int4_gpu_launch": false,
+    "ood_or_holdout_opened_by_builder": false,
+    "scored_validation_before_per_arm_live_preflight": false,
+    "training_or_model_update_performed_by_builder": false
+  },
+  "content_sha256_before_self_field": "cdef17b02c2f77516b17225562edbed2c8faab41cbdb359a6a58ee2fec8b5236",
+  "cuda_import_or_launch_performed_by_builder": false,
+  "data_free": true,
+  "dependency": {
+    "bead": "specialist-0j5.14",
+    "reason": "reuse the sealed phase/VRAM/bandwidth measurement surface",
+    "required_before_gpu_launch": true
+  },
+  "fallback_policy": {
+    "forbidden_case_insensitive_log_fragments": [
+      "falling back",
+      "fallback to",
+      "not supported by",
+      "please install bitsandbytes"
+    ],
+    "runtime_config_autodetection_without_exact_attestation": false,
+    "score_or_validation_on_failed_preflight": false,
+    "unquantized_routed_expert_fallback_in_quantized_arm": false,
+    "warning_only_acceptance_for_unknown_or_different_format": false
+  },
+  "installed_stack": {
+    "package_versions": {
+      "auto-gptq": null,
+      "autoawq": null,
+      "bitsandbytes": null,
+      "compressed-tensors": "0.17.0",
+      "torch": "2.11.0",
+      "transformers": "5.13.1",
+      "vllm": "0.25.0"
+    },
+    "source_sha256": {
+      "config/model.py": "41cdd96fd1c9f141a96938fa2d08032cfcb89a4925d7d10b64ef937884791908",
+      "lora/model_manager.py": "13201a06e17cccffb30c90bf3d268dfbf901567623b03454003afb5a922ae45a",
+      "model_executor/layers/fused_moe/modular_kernel.py": "0722a23b0526c141206d17aa6472a610aca77d24f80fa72194c44d320a133687",
+      "model_executor/layers/quantization/auto_awq.py": "d4a8fc645e0e4a49a79e0869ce58754d7bd6f9c89103336cfb35b72442d7b534",
+      "model_executor/layers/quantization/auto_gptq.py": "2e50123fa82358bc3431f8c5afb01747e5c2b797a4c9120826cb36ce2181ce21",
+      "model_executor/layers/quantization/bitsandbytes.py": "9817c93811bde5967ee9eed1efa551b8fc9e857e59fbd1b033d16c82ca42f112",
+      "model_executor/layers/quantization/compressed_tensors/compressed_tensors.py": "3e7992232412b7d761f599cd14794bdc3a5757128a05fa81e7b2b2ed8578b4f7",
+      "model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe.py": "36d9f20271434f85f5d2adc8339655511db968d10685e8ab5c78c1f049923837",
+      "model_executor/layers/quantization/fp8.py": "26ede801aceeadea1e263b854424ed4fbd0bf5c081bf5beceaf4b877fb1d4fc0",
+      "model_executor/models/qwen3_5.py": "5f47ae4f4a08d0a78dd681d58b290f3298744c73a82f1349f3e2853469ef73e6"
+    }
+  },
+  "memory_expectations": {
+    "bf16_logical_weight_bytes": 71903645408,
+    "fp8_logical_weight_and_scale_bytes": 37454789472,
+    "fp8_should_increase_available_kv_blocks_at_fixed_gpu_fraction": true,
+    "fraction_of_bf16_logical_bytes_saved": 0.4790974885978065,
+    "hybrid_linear_attention_state_and_allocator_padding_must_be_measured": true,
+    "kv_cache_dtype_is_identical_auto_bf16_in_both_arms": true,
+    "logical_bytes_saved_by_fp8": 34448855936,
+    "logical_checkpoint_bytes_are_not_a_claim_about_cuda_allocated_bytes": true,
+    "nominal_full_attention_bf16_kv_bytes_per_token": 20480,
+    "weight_format_does_not_directly_reduce_kv_bytes_per_token": true
+  },
+  "model_contract": {
+    "architecture": "Qwen3_5MoeForConditionalGeneration",
+    "experts_per_token": 8,
+    "full_attention_layers": 10,
+    "hybrid_linear_attention_layers": 30,
+    "layers": 40,
+    "lora_static_support": {
+      "model_inherits_SupportsLoRA": true,
+      "moe_declares_is_3d_moe_weight": true,
+      "static_support_does_not_replace_live_adapter_switch_preflight": true
+    },
+    "requested_family_name": "Qwen3.6-35B-A3B",
+    "routed_experts_per_layer": 256
+  },
+  "paired_gpu_preflight": {
+    "all_four_gpus_must_have_live_actor_and_positive_activity_witness": true,
+    "measure": [
+      "post_load_and_peak_vram_bytes",
+      "available_kv_cache_memory_bytes",
+      "gpu_and_cpu_kv_block_counts",
+      "prefill_and_decode_tokens_per_second",
+      "candidate_switch_and_restore_latency",
+      "dram_read_write_bytes_or_best_available_bandwidth_proxy",
+      "sm_and_memory_controller_utilization"
+    ],
+    "physical_gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_prompts_generation_params_and_adapter_state": true,
+    "separate_format_specific_moe_tuning_tables": true,
+    "wave_1": {
+      "bf16": [
+        0,
+        2
+      ],
+      "fp8_serialized": [
+        1,
+        3
+      ]
+    },
+    "wave_2": {
+      "bf16": [
+        1,
+        3
+      ],
+      "fp8_serialized": [
+        0,
+        2
+      ]
+    }
+  },
+  "prior_fp8_runtime_evidence": {
+    "all_five_latency_endpoints_failed": true,
+    "content_sha256": "24c269796194fe997f8e641ff25e7702b775e45449022917f5a498db354d204c",
+    "file_sha256": "c40f01f23b4a3a47cc53ed282045d3c2d34bbe594ecf43a9717e5e21b4a32a65",
+    "global_geometric_mean_tuned_over_default_speedup": 0.9813847810295329,
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V29I_V29H_FP8_FULL_MODEL_RUNTIME_AB_NEGATIVE_EVIDENCE.json",
+    "required_starting_fp8_moe_tuning_table": "empty_default"
+  },
+  "required_live_receipt": {
+    "adapter_load_switch_candidate_restore_passed": true,
+    "all_four_actor_receipts_reach_consensus": true,
+    "candidate_changes_output": true,
+    "canonical_fp32_master_identity_unchanged": true,
+    "fallback_messages_must_equal": [],
+    "fp8_routed_expert_method_count_must_equal": 40,
+    "frozen_base_identity_unchanged": true,
+    "load_and_generate_passed": true,
+    "resolved_quantization_exactly_matches_arm": true,
+    "restore_reproduces_exact_deterministic_output": true,
+    "serialized_format_exactly_matches_arm": true,
+    "unexpected_unquantized_module_prefixes_must_equal": []
+  },
+  "schema": "qwen36-quantized-base-ablation-preregistration-v67",
+  "status": "cpu_preflight_passed_gpu_launch_waits_for_specialist_0j5_14"
+}
