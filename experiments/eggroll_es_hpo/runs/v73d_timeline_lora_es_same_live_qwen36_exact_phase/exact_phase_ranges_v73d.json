@@ -1,0 +1,47 @@
+{
+  "arm": "timeline",
+  "complete": false,
+  "contains_prompts_questions_answers_or_outputs": false,
+  "content_sha256_before_self_field": "5259c316491c692dbb3f854ee690f40397828fed617731ad13fd615d8893aba1",
+  "expected_phase_order": [
+    "setup",
+    "activate_v434_lora_slot_all_actors",
+    "install_canonical_v434_master_all_actors",
+    "mirrored_wave_0_materialize_all_actors",
+    "mirrored_wave_0_generation_all_actors",
+    "wave_0_finalize_restore_all_actors",
+    "mirrored_wave_1_materialize_all_actors",
+    "mirrored_wave_1_generation_all_actors",
+    "wave_1_finalize_restore_all_actors",
+    "mirrored_wave_2_materialize_all_actors",
+    "mirrored_wave_2_generation_all_actors",
+    "wave_2_finalize_restore_all_actors",
+    "mirrored_wave_3_materialize_all_actors",
+    "mirrored_wave_3_generation_all_actors",
+    "wave_3_finalize_restore_all_actors",
+    "candidate_audit_matrix_all_actors",
+    "population_reward_acceptance_all_actors",
+    "pair_difference_update_accept_prepare_all_actors",
+    "pair_difference_update_execute_all_actors",
+    "pair_difference_update_abort_all_actors",
+    "post_abort_final_audit_all_actors",
+    "cleanup_all_actors"
+  ],
+  "nvtx_domain": "eggroll_es_v73d_phase",
+  "observed_phase_order": [
+    "setup"
+  ],
+  "one_controller_pid": true,
+  "phase_count": 1,
+  "rows": [
+    {
+      "controller_pid": 1449768,
+      "elapsed_ns": 200271729,
+      "ended_monotonic_ns": 325299496602347,
+      "epoch": 0,
+      "phase": "setup",
+      "started_monotonic_ns": 325299296330618
+    }
+  ],
+  "schema": "eggroll-es-exact-phase-range-receipt-v73d"
+}
