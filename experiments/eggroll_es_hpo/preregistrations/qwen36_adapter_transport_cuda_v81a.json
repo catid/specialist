@@ -1,0 +1,290 @@
+{
+  "accepted_lifecycle_contract": {
+    "final_cleanup_idle_required": true,
+    "historical_reward_floats_are_not_cross_run_bitwise_oracles": true,
+    "restore_unknown_or_partial_state": "exact_master_or_terminal_poison",
+    "sole_resident_vllm_adapter_slot_count": 1,
+    "v71_exact_runtime_base_master_audits_retained": true,
+    "v72_host_bank_ownership_one_two_one_retained": true,
+    "v73b_same_live_dual_compiler_and_abort_retained": true,
+    "worker_inheritance": "V81A -> V72 -> V71 -> V66D"
+  },
+  "authority": {
+    "accepted_v71_v72_v73b_source_mutation": false,
+    "checkpoint_model_update_or_recipe_promotion": false,
+    "cpu_source_build_and_oracle_tests": true,
+    "cuda_integration_source_created": true,
+    "dataset_or_protected_content_access": false,
+    "gpu_launch": false,
+    "model_ray_or_training_launch": false,
+    "quality_or_hpo_promotion": false,
+    "vllm_or_site_package_mutation": false
+  },
+  "bead": "specialist-0j5.26",
+  "bindings": {
+    "accepted_lifecycle": {
+      "audit_contract_v71": {
+        "file_sha256": "cc80ac0e1bf3c9db83e3275df16ea1479273d92a40240496163543643bd0eaa8",
+        "path": "eggroll_es_audit_contract_v71.py"
+      },
+      "host_ownership_contract_v72": {
+        "file_sha256": "33bb0312136248cf01afa927c70a1ed22af64f10a26b9668cf3afd9570571e66",
+        "path": "eggroll_es_host_state_contract_v72.py"
+      },
+      "v73_adapter": {
+        "file_sha256": "b579ac417d88aa9bf9eead5635d1454045451b6ba9fbe383569f4b2e2530260b",
+        "path": "run_lora_es_v71_v72_live_calibration_v73.py"
+      },
+      "v73b_actor_receipts": {
+        "file_sha256": "30df82d21b28c7d5c94ede785c69c10896bad9d07db52ccf065e3031181d7013",
+        "path": "experiments/eggroll_es_hpo/runs/v73b_lora_es_same_live_qwen36_calibration/actor_cuda_work_receipts_v73b.jsonl"
+      },
+      "v73b_builder": {
+        "file_sha256": "b72dc4a134853484e556f09bc9e5eed22cccc9c5fb7bdb2aff5ec2e73b57669f",
+        "path": "build_lora_es_v71_v72_same_live_preregistration_v73b.py"
+      },
+      "v73b_exact_audit": {
+        "content_sha256": "04768ffc11cf99ea522730ca5fbf48dbee48e169482466640c3a42a622da999e",
+        "file_sha256": "388fb6f544254c94e0c0ae11956932757834894103784f9e43d6b76e1bb3cb20",
+        "path": "experiments/eggroll_es_hpo/runs/v73b_lora_es_same_live_qwen36_calibration/exact_audit_traffic_v73b.json"
+      },
+      "v73b_postrun": {
+        "content_sha256": "21689f75ecaaf583aedde50ad293ce3a9b5644009d62c2bc4624637280a651e7",
+        "file_sha256": "d65be30ec769e8a18ce75a3ffc0aab5624cec35f909732e8082a4836c63140c4",
+        "path": "experiments/eggroll_es_hpo/qwen36_v73b_lora_calibration_postrun_20260717.json"
+      },
+      "v73b_preregistration": {
+        "content_sha256": "50b51ee2d71dc85d024c4a63cc57183d2b9c2d925c18924a719dacb1fb61dc94",
+        "file_sha256": "9c5ce43c36e08e038ee33e86380ab6c287ae1b4bcba4c80def623daeb00f7ed9",
+        "path": "experiments/eggroll_es_hpo/preregistrations/lora_es_v71_v72_same_live_calibration_v73b.json"
+      },
+      "v73b_report": {
+        "content_sha256": "61051af180657f41459a836fcb09b48019d6adae8d63be2817181c727953f0e8",
+        "file_sha256": "ba1b0a76dd0a9955b5e3f779d1ef440037b12b4689b3b1ab640d1ee1a4cff44a",
+        "path": "experiments/eggroll_es_hpo/runs/v73b_lora_es_same_live_qwen36_calibration/mirrored_calibration_report_v73b.json"
+      },
+      "v73b_runner": {
+        "file_sha256": "8e6b00adcfcdb81c81a9bb78032e993114203660af526026350a298a9a4320db",
+        "path": "run_lora_es_v71_v72_same_live_calibration_v73b.py"
+      },
+      "v81_cpu_builder": {
+        "file_sha256": "34695c55b8ad098ac46ba02554de96b856648b8f7e2babe47c563c3b1c7b2405",
+        "path": "build_adapter_transport_precision_preregistration_v81.py"
+      },
+      "v81_cpu_contract": {
+        "content_sha256": "db01b11ca0fc1565cc81a00cd0a6426f80ae840f907eb0446fda5fb0908eeb80",
+        "file_sha256": "cb8f31d981d4d3471adbfb78d962fb7ae028e56e7364013874dcbc0d181e1c25",
+        "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_adapter_transport_precision_v81.json"
+      },
+      "v81_cpu_implementation": {
+        "file_sha256": "08e8b74cd8a79ab7615a89877e184cbea50e8ddfbd95bdbfefccc50c13f28bfc",
+        "path": "eggroll_es_adapter_transport_precision_v81.py"
+      },
+      "v81_cpu_test": {
+        "file_sha256": "cd40d20d45b1b4029ba034a72112dfa9b987d09c2c68858d5ded743c99da3392",
+        "path": "test_eggroll_es_adapter_transport_precision_v81.py"
+      },
+      "worker_v41a": {
+        "file_sha256": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+        "path": "eggroll_es_worker_lora_v41a.py"
+      },
+      "worker_v66": {
+        "file_sha256": "ee976fbc56a720c5c2a5e52d86c7a02d1e8c7414ed7383952d3da03e72944a03",
+        "path": "eggroll_es_worker_lora_v66.py"
+      },
+      "worker_v66d": {
+        "file_sha256": "807af52dab4b842f0a74b33cf083f8b67a7e2f4bd0329eb1ca08c4ffb3831ed6",
+        "path": "eggroll_es_worker_lora_v66d.py"
+      },
+      "worker_v71": {
+        "file_sha256": "6167ecd24332e0384e50f4bfa34893112623c2291f35e89989d8c3a527b9fcaa",
+        "path": "eggroll_es_worker_lora_v71.py"
+      },
+      "worker_v72": {
+        "file_sha256": "547d525edfd51412abb3a4980ddc4a55730ad0eb09987ec202ce2ce8f701a2c2",
+        "path": "eggroll_es_worker_lora_v72.py"
+      }
+    },
+    "additive_implementation": {
+      "cuda_worker_subclass": {
+        "file_sha256": "17b20a974b2e21cf144b376080af0cffc2751cf0c52dbc538e615e5e2ae88879",
+        "path": "eggroll_es_worker_lora_pinned_transport_v81a.py"
+      },
+      "cuda_worker_tests": {
+        "file_sha256": "c9b84eec7e80618dc87b2f50ef92dbba8d93e449db25d8e8105759b967b346e0",
+        "path": "test_eggroll_es_worker_lora_pinned_transport_v81a.py"
+      },
+      "pair_runner_tests": {
+        "file_sha256": "0176cb62d9485b1e12e9cde0666dfbfeb37e1c6b020dbb9d844c83720d4d6ba2",
+        "path": "test_run_qwen36_adapter_transport_paired_v81a.py"
+      },
+      "preregistration_builder": {
+        "file_sha256": "040b78e09cd5ff2acdbc5db387d35f5a5bf3762a67bed04184b192d636452aa1",
+        "path": "build_qwen36_adapter_transport_cuda_preregistration_v81a.py"
+      },
+      "preregistration_tests": {
+        "file_sha256": "381fb6eab3d8ffbdad8a9132b3d44aa7945c58e055e0c31f9375040c8d27aae7",
+        "path": "test_build_qwen36_adapter_transport_cuda_preregistration_v81a.py"
+      },
+      "prospective_pair_runner": {
+        "file_sha256": "1a5feb969659cd3926d95a90c4c2f003444005e58d76039018d7992c5908f69e",
+        "path": "run_qwen36_adapter_transport_paired_v81a.py"
+      }
+    }
+  },
+  "canonical_authority": {
+    "bytes_per_actor": 18112512,
+    "dtype": "float32",
+    "elements": 4528128,
+    "execution_transport_may_mutate_these_roles": false,
+    "location": "cpu",
+    "roles": [
+      "canonical_master",
+      "noise_and_update_arithmetic",
+      "optimizer_authority",
+      "checkpoint_authority"
+    ],
+    "tensor_count": 70
+  },
+  "content_sha256_before_self_field": "a1a6202845087d0855c0ac027cec1af3058efa9c8f978fb0c132f37e7b32aef2",
+  "cuda_integration": {
+    "actual_tensor_is_pinned_runtime_check_required": true,
+    "bank_reuse_after_legal_retirement_only": true,
+    "completion_events_per_transition": 1,
+    "consumer_stream_wait_event_before_activation": true,
+    "copy_destination": "existing_82_resident_runtime_views",
+    "copy_stream_count_per_actor": 1,
+    "device_to_device_payload_bytes": 0,
+    "double_buffering": false,
+    "event_fence_before_generation": true,
+    "event_synchronize_before_v71_exact_readback": true,
+    "h2d_bytes_per_transition": 9842688,
+    "h2d_calls_per_transition": 82,
+    "lazy_first_materialization_initialization": true,
+    "persistent_runtime_device_bytes_per_actor": 9842688,
+    "pinned_host_bank_bytes_all_four_actors": 39370752,
+    "pinned_host_bank_bytes_per_actor": 9842688,
+    "pinned_host_bank_count_per_actor": 1,
+    "pinned_host_bank_dtype": "torch.bfloat16",
+    "pinned_host_bank_elements": 4921344,
+    "proc_vm_pin_or_lock_receipt_required_but_not_authoritative": true,
+    "runtime_device_elements": 4921344,
+    "runtime_view_count": 82,
+    "subclass": "eggroll_es_worker_lora_pinned_transport_v81a.LoRAAdapterStateWorkerExtensionV81A",
+    "temporary_device_publication_staging_bytes": 0
+  },
+  "evaluation_boundary": {
+    "legacy_evaluation_contract_imported": false,
+    "quality_evaluation_in_this_artifact": false,
+    "quality_or_OOD_promotion_requires": "separate_additive_successor_bound_to_sealed_V2_boundary",
+    "quarantined_v1_resolved": false,
+    "systems_report_can_only_authorize_V2_successor_preregistration": true,
+    "this_runner_is_systems_only": true
+  },
+  "failure_contract": {
+    "copy_exception_or_unknown_device_state": "synchronize_then_exact_master_rewrite_or_terminal_poison",
+    "cross_candidate_reuse": "reject_before_bank_overwrite",
+    "failed_exact_readback": "inherited_v71_exact_restore_or_poison",
+    "final_receipt": "exact_master_quiescent_event_complete_bank_released",
+    "install_failure": "synchronize_best_effort_and_release_v81a_state",
+    "missing_pending_stale_or_foreign_event": "reject_before_audit_or_generation",
+    "pageable_bank": "reject_before_copy",
+    "partial_view_or_byte_coverage": "reject",
+    "temporary_device_or_d2d_path": "not_implemented_and_source_attested"
+  },
+  "launch_gate_pending": {
+    "execution_before_additive_sealed_gate": "reject",
+    "gate_file_present_now": false,
+    "required_bead": "specialist-0j5.32",
+    "required_schema": "qwen36-adapter-transport-systems-live-gate-v81a",
+    "required_v73c_evidence": [
+      "complete_nonoverlapping_exact_phase_ranges",
+      "all_four_actor_PIDs_and_physical_GPUs",
+      "CUDA_kernel_memcpy_NCCL_allocation_phase_attribution",
+      "materialize_restore_update_abort_cleanup_coverage",
+      "final_idle_and_no_protected_access",
+      "profiled_timing_not_used_as_speed_claim"
+    ]
+  },
+  "memlock_preflight": {
+    "each_actor_inherited_limit_capacity_check_passed": true,
+    "four_actor_aggregate_context_bytes": 39370752,
+    "four_bank_sum_below_reported_limit_context": true,
+    "hard_unlimited": false,
+    "limit_is_not_proof_of_successful_pinning": true,
+    "live_each_actor_tensor_is_pinned_required": true,
+    "observed_hard_bytes": 118224613376,
+    "observed_soft_bytes": 118224613376,
+    "required_bytes_per_actor_process": 9842688,
+    "soft_unlimited": false
+  },
+  "prospective_pair_run": {
+    "arm_local_not_cross_run_bitwise": [
+      "live_reward_float_vector",
+      "reward_derived_update_candidate"
+    ],
+    "challenger_worker": "eggroll_es_worker_lora_pinned_transport_v81a.LoRAAdapterStateWorkerExtensionV81A",
+    "control_worker": "eggroll_es_worker_lora_v72.LoRAAdapterStateWorkerExtensionV72",
+    "current_launch_authorized": false,
+    "frozen_pair_count": 4,
+    "minimum_counterbalanced_pairs": 3,
+    "only_arm_difference": "candidate_materialization_H2D_D2D_staging",
+    "pair_order": [
+      [
+        "control_v71_v72_sync_temporary_device",
+        "challenger_v81a_pinned_direct"
+      ],
+      [
+        "challenger_v81a_pinned_direct",
+        "control_v71_v72_sync_temporary_device"
+      ],
+      [
+        "control_v71_v72_sync_temporary_device",
+        "challenger_v81a_pinned_direct"
+      ],
+      [
+        "challenger_v81a_pinned_direct",
+        "control_v71_v72_sync_temporary_device"
+      ]
+    ],
+    "paired_exact_fields": [
+      "population_plan_sha256",
+      "candidate_projection_set_sha256",
+      "final_master_sha256",
+      "final_runtime_sha256"
+    ],
+    "physical_gpu_ids_every_arm": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "required_measurements": [
+      "materialize_restore_update_abort_transition_time",
+      "H2D_bytes_and_call_count",
+      "publication_D2D_bytes_or_exact_memcpy_trace",
+      "peak_allocated_and_reserved_VRAM_per_GPU",
+      "PCIe_RX_TX_per_GPU",
+      "HBM_activity_with_units_and_exactness_label",
+      "all_four_actor_PID_useful_CUDA_attribution",
+      "actual_pinned_bank_and_proc_pin_context",
+      "exact_candidate_audit_reward_update_abort_final_receipts",
+      "final_actor_Ray_GPU_cleanup_idle"
+    ],
+    "same_long_lived_four_tp1_actor_lifecycle_per_arm": true,
+    "systems_only_nonpromotable": true
+  },
+  "purpose": "Add one pinned BF16 direct-runtime publication path beneath the accepted V71 exact-audit and V72 ownership lifecycle, and freeze a systems-only four-pair comparison that cannot launch before V73C.",
+  "schema": "qwen36-adapter-transport-cuda-preregistration-v81a",
+  "scope_exclusions": {
+    "canonical_host_ownership_change": false,
+    "collective_bucket_or_dtype_change_in_v81a": false,
+    "execution_dtype_change": false,
+    "fp32_collective_coalescing": "specialist-0j5.36",
+    "noise_or_update_generation_change": false,
+    "persistent_device_VRAM_reduction_claim": false,
+    "runtime_slot_layout_change": false,
+    "shared_v71_fused_exact_audit_buffer_change": false
+  },
+  "status": "sealed_cpu_cuda_integration_before_live_gate"
+}
