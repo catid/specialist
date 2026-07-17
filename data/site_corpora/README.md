@@ -23,6 +23,30 @@ Source discovery is governed separately by
 Both layers are retained for training. Q&A does not replace the Markdown, and
 the Markdown is not converted wholesale into automatically generated Q&A.
 
+## Materialized Markdown training snapshot
+
+[`training/site_markdown_cpt_v1/train.jsonl`](training/site_markdown_cpt_v1/train.jsonl)
+is the deterministic raw-causal training view. It contains the complete text
+of every registry artifact whose rights promotion gate is ready. Documents are
+chunked only at paragraph boundaries, never packed together, and every chunk
+inherits the source-document split group, artifact identity, attribution,
+rights status, and safety-transfer flags. The ordered chunks for each source
+must reconstruct its registered Markdown exactly.
+
+Build or verify it with:
+
+```bash
+.venv/bin/python build_site_markdown_training_dataset_v1.py
+.venv/bin/python build_site_markdown_training_dataset_v1.py --check
+```
+
+The LoRA trainer consumes this layer directly as causal next-token text—not as
+an assistant answer—using `--data-format markdown_cpt --loss-mode token_mean`.
+The snapshot manifest accounts for every registered artifact and every policy
+exclusion. It deliberately does not authorize a model launch by itself: a
+fresh source-disjoint evaluation-contract extension remains required before a
+new adaptation run can use these bytes.
+
 ## First-class Markdown registry
 
 Every Git-tracked direct-training Markdown artifact is sealed in

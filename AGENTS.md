@@ -20,6 +20,28 @@
   paths. If a real source can be reached, stop and replace that path with a
   synthetic fixture before continuing.
 
+## Website Markdown training data
+
+- Treat `data/site_corpora/registry/site_corpus_registry_v1.json` as the
+  complete inventory for raw-Markdown training. A corpus is not incorporated
+  merely because its Markdown is committed or because Q&A was derived from it.
+- After any eligible corpus or registry change, rebuild
+  `data/site_corpora/training/site_markdown_cpt_v1` with
+  `build_site_markdown_training_dataset_v1.py`, then run the builder with
+  `--check`. Do not declare a dataset refresh complete while an eligible
+  registry artifact lacks a training chunk.
+- Train Markdown only through the raw causal-LM/CPT path. Never disguise a
+  Markdown document as an assistant answer or feed it to the QA-only
+  EGGROLL-ES reward collator.
+- Preserve complete document content, source-document split groups,
+  attribution, rights status, safety-transfer flags, and chunk lineage. Never
+  pack two source documents into one example.
+- Keep rights-review and policy-blocked corpora in the snapshot's explicit
+  exclusion ledger. Do not silently omit them or silently override their gate.
+- A materialized snapshot is not evaluation-disjointness authority. Require a
+  fresh opaque source-disjoint contract extension before launching adaptation
+  on newly added corpus bytes.
+
 ## Claude CLI
 
 - Claude CLI requests can take a long time. Inspect the session more carefully

@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-"""LoRA SFT control for the ES comparison with assistant-only supervision.
+"""LoRA SFT/CPT control for the ES comparison.
 
 The default encoding reproduces EGGROLL-ES's exact prompt+raw-answer token
 sequence, masks every prompt token, and does not append or score EOS.  The
 default loss averages answer-token NLL within each example before averaging
 examples, matching the ES dense-gold reward's reduction.  Run under torchrun
-for multi-GPU DDP.
+for multi-GPU DDP.  ``--data-format markdown_cpt`` instead consumes the
+content-addressed site-corpus chunks as raw causal-LM text with no chat wrapper
+and no prompt masking.
 """
 import hashlib
 import json
@@ -24,6 +26,8 @@ from train_eggroll_es_specialist import specialist_template
 
 BASE = "/home/catid/specialist/models/Qwen3.6-35B-A3B"
 MAXLEN = 1024
+MARKDOWN_ROW_SCHEMA = "site-markdown-cpt-chunk-v1"
+RESERVED_MODEL_TOKENS = ("<|im_start|>", "<|im_end|>", "<|endoftext|>")
 
 
 def file_sha256(path):
@@ -93,6 +97,45 @@ def encode_pair(tokenizer, pair, max_length, prompt_mode="es_exact"):
         "labels": labels,
         "prompt_token_count": len(prompt_ids),
         "answer_token_count": len(answer_ids),
+    }
+
+
+def encode_markdown_record(tokenizer, record, max_length):
+    """Encode one verified raw-Markdown chunk for causal next-token CPT."""
+    if not isinstance(record, dict):
+        raise ValueError("Markdown CPT record must be an object")
+    if (
+        record.get("schema") != MARKDOWN_ROW_SCHEMA
+        or record.get("training_role") != "cpt_raw_markdown"
+        or record.get("training_format") != "causal_next_token_markdown"
+        or record.get("assistant_supervision") is not False
+        or record.get("split") != "train"
+    ):
+        raise ValueError("Markdown CPT record role/schema contract changed")
+    text = record.get("text")
+    if not isinstance(text, str) or not text:
+        raise ValueError("Markdown CPT record has no text")
+    if any(marker in text for marker in RESERVED_MODEL_TOKENS):
+        raise ValueError("Markdown CPT text contains a reserved model token")
+    observed_text_sha = hashlib.sha256(text.encode("utf-8")).hexdigest()
+    if observed_text_sha != record.get("text_sha256"):
+        raise ValueError("Markdown CPT text identity changed")
+    input_ids = token_ids(tokenizer.encode(text, add_special_tokens=False))
+    if len(input_ids) != record.get("token_count"):
+        raise ValueError("Markdown CPT token count changed")
+    if len(input_ids) < 2:
+        raise ValueError("Markdown CPT chunk needs at least two causal tokens")
+    if len(input_ids) > max_length:
+        raise ValueError(
+            f"Markdown CPT chunk has {len(input_ids)} tokens above cap "
+            f"{max_length}"
+        )
+    return {
+        "input_ids": input_ids,
+        "attention_mask": [1] * len(input_ids),
+        "labels": list(input_ids),
+        "prompt_token_count": 0,
+        "answer_token_count": len(input_ids),
     }
 
 
@@ -181,6 +224,14 @@ def main():
         default="es_exact",
     )
     ap.add_argument(
+        "--data-format", choices=("qa_sft", "markdown_cpt"),
+        default="qa_sft",
+        help=(
+            "QA uses assistant-only masked supervision; Markdown CPT uses raw "
+            "causal next-token supervision with no chat wrapper"
+        ),
+    )
+    ap.add_argument(
         "--loss-mode", choices=("example_mean", "token_mean"),
         default="example_mean",
     )
@@ -206,35 +257,59 @@ def main():
             )
     if a.data_sha256 is not None:
         if len(a.data) != 1 or file_sha256(a.data[0]) != a.data_sha256:
-            raise ValueError("content-addressed SFT data binding changed")
+            raise ValueError("content-addressed training data binding changed")
+    if a.data_format == "markdown_cpt":
+        if a.eval_data:
+            raise ValueError("Markdown CPT does not accept an evaluation dataset")
+        if a.loss_mode != "token_mean":
+            raise ValueError("Markdown CPT requires standard token-mean loss")
     tok = AutoTokenizer.from_pretrained(BASE)
 
     def load_records(paths):
         records = []
         for path in paths:
-            for line_number, line in enumerate(open(path), 1):
+            for line_number, line in enumerate(
+                open(path, encoding="utf-8"), 1
+            ):
+                if not line.strip():
+                    continue
                 item = json.loads(line)
-                try:
-                    pair = qa_pair_from_record(item)
-                except ValueError as exc:
-                    raise ValueError(f"{path}:{line_number}: {exc}") from exc
-                if pair is None:
-                    raise ValueError(
-                        f"{path}:{line_number}: unsupported QA serialization")
-                records.append(pair)
+                if a.data_format == "markdown_cpt":
+                    if not isinstance(item, dict):
+                        raise ValueError(
+                            f"{path}:{line_number}: Markdown row is not an object"
+                        )
+                    records.append(item)
+                else:
+                    try:
+                        pair = qa_pair_from_record(item)
+                    except ValueError as exc:
+                        raise ValueError(f"{path}:{line_number}: {exc}") from exc
+                    if pair is None:
+                        raise ValueError(
+                            f"{path}:{line_number}: unsupported QA serialization"
+                        )
+                    records.append(pair)
         return records
 
-    train_pairs = load_records(a.data)
-    if a.data_rows is not None and len(train_pairs) != a.data_rows:
-        raise ValueError("content-addressed SFT data row count changed")
-    train_encoded = [
-        encode_pair(tok, pair, a.max_length, a.prompt_mode)
-        for pair in train_pairs
-    ]
-    eval_encoded = [
-        encode_pair(tok, pair, a.max_length, a.prompt_mode)
-        for pair in load_records(a.eval_data)
-    ]
+    train_records = load_records(a.data)
+    if a.data_rows is not None and len(train_records) != a.data_rows:
+        raise ValueError("content-addressed training data row count changed")
+    if a.data_format == "markdown_cpt":
+        train_encoded = [
+            encode_markdown_record(tok, record, a.max_length)
+            for record in train_records
+        ]
+        eval_encoded = []
+    else:
+        train_encoded = [
+            encode_pair(tok, pair, a.max_length, a.prompt_mode)
+            for pair in train_records
+        ]
+        eval_encoded = [
+            encode_pair(tok, pair, a.max_length, a.prompt_mode)
+            for pair in load_records(a.eval_data)
+        ]
     prompt_tokens = sum(item["prompt_token_count"] for item in train_encoded)
     answer_tokens = sum(item["answer_token_count"] for item in train_encoded)
     for item in (*train_encoded, *eval_encoded):
@@ -244,6 +319,7 @@ def main():
           flush=True)
     print(json.dumps({
         "encoding_audit": {
+            "data_format": a.data_format,
             "prompt_mode": a.prompt_mode,
             "eos_appended": a.prompt_mode != "es_exact",
             "train_prompt_tokens": prompt_tokens,
