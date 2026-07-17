@@ -20,6 +20,19 @@
   paths. If a real source can be reached, stop and replace that path with a
   synthetic fixture before continuing.
 
+## EGGROLL-ES program status
+
+- The user halted the EGGROLL-ES HPO and training program on 2026-07-17 after
+  reviewing its runtime and quality results.
+- Do not launch or resume EGGROLL-ES, V73 profiling, or related GPU backfill
+  benchmarks unless the user explicitly reopens this direction. Earlier
+  instructions to resume work or keep GPUs busy do not override this halt.
+- Preserve existing experiment artifacts, unfinished V73I files, and every
+  protected-data quarantine. Do not delete them or present unfinished work as
+  completed.
+- Leave the GPUs idle after this halt until the user gives a new explicit
+  training or experiment direction.
+
 ## Website Markdown training data
 
 - Treat `data/site_corpora/registry/site_corpus_registry_v1.json` as the
