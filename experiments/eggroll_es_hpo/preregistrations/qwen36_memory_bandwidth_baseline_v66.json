@@ -1,0 +1,55 @@
+{
+  "schema": "qwen36-memory-bandwidth-baseline-preregistration-v66",
+  "status": "sealed_before_any_v66_gpu_or_model_access",
+  "created_at_utc": "2026-07-17",
+  "authorization": {
+    "synthetic_data_free_workload_only": true,
+    "physical_gpu_ids": [0, 1, 2, 3],
+    "actors": 4,
+    "tensor_parallel_size_per_actor": 1,
+    "adapter_update_or_model_mutation": false,
+    "training_validation_ood_shadow_or_terminal_access": false
+  },
+  "implementation": {
+    "path": "/home/catid/specialist/probe_vllm_two_adapter_switch_v63.py",
+    "sha256": "115774a63f54480fa4796f24f5b47a82fda1c2a761db4cf3ae0b6b83e85165d6"
+  },
+  "model": {
+    "path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+    "safetensors_total_bytes": 71903776776
+  },
+  "adapters": {
+    "reference_weights_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+    "candidate_weights_sha256": "c2665b60928b16120a2b98fdf137fafd250644852c86a02d797689f02105c6c8",
+    "shared_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "reference_weights_bytes": 18123272,
+    "candidate_weights_bytes": 18122440
+  },
+  "fixed_runtime": {
+    "model_name": "Qwen3.6-35B-A3B",
+    "dtype": "bfloat16",
+    "vllm_version": "0.25.0",
+    "moe_backend": "triton",
+    "gpu_memory_utilization": 0.82,
+    "max_model_len": 2048,
+    "max_num_seqs": 68,
+    "max_loras": 1,
+    "max_cpu_loras": 2,
+    "enforce_eager": true,
+    "synthetic_rows_per_call": 68,
+    "generated_tokens_per_row": 64,
+    "call_plan": [
+      "reference", "candidate", "candidate", "reference",
+      "reference", "candidate", "candidate", "reference"
+    ]
+  },
+  "measurement": {
+    "sampling_interval_milliseconds": 250,
+    "whole_run_gpu_memory_utilization_and_power_log": "gpu_activity_v66.jsonl",
+    "actor_stdout_stderr_logs": "actor_{0,1,2,3}.log",
+    "actor_receipts": "actor_{0,1,2,3}.json",
+    "future_phase_granular_followup_required": true,
+    "this_baseline_may_not_close_the_full_roofline_bead": true
+  }
+}
