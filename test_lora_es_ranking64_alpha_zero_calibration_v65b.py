@@ -973,6 +973,76 @@ def test_canonical_exact_equality_rejects_python_numeric_aliases():
     assert not runtime._canonical_equal_v65b({"value": 1.0}, {"value": 1})
 
 
+def test_instability_matches_mean_absolute_pairwise_difference():
+    rng = np.random.default_rng(20260717)
+    weights = subject.v65a.population65.design61.STABILITY_WEIGHTS_V61
+    for replicas in (24, 72, 144):
+        value = rng.random((64, replicas, 3))
+        value[..., 1] = rng.integers(0, 2, size=(64, replicas))
+        value[..., 2] = rng.integers(0, 2, size=(64, replicas))
+        observed = subject._instability_v65b(value)
+        f1 = value[..., 0]
+        pairwise_total = np.abs(f1[:, :, None] - f1[:, None, :]).sum(
+            axis=(1, 2),
+        )
+        expected = (
+            weights["mean_pairwise_absolute_f1_delta"]
+            * pairwise_total / (replicas * (replicas - 1))
+            + weights["exact_label_disagreement"]
+            * (value[..., 1].max(1) != value[..., 1].min(1))
+            + weights["nonzero_label_disagreement"]
+            * (value[..., 2].max(1) != value[..., 2].min(1))
+        )
+        np.testing.assert_allclose(observed, expected, rtol=0.0, atol=1e-12)
+    with pytest.raises(ValueError, match="replica count"):
+        subject._instability_v65b(rng.random((64, 5, 3)))
+
+
+def test_end_to_end_analysis_gates_null_and_flags_injected_effect():
+    null_analysis = subject.analyze_scored_periods_v65b(_scored(0.5))
+    null_gate = null_analysis["required_alpha_zero_gate"]
+    assert null_gate["passed"] is True
+    assert null_analysis["primary_cluster_bootstrap"]["intervals"][
+        "generated_f1_delta"
+    ] == {
+        "point": 0.0, "lcb": 0.0, "ucb": 0.0, "halfwidth": 0.0,
+        "contains_zero": True, "null_radius": 0.0,
+    }
+    assert null_analysis["future_v65_null_bound_observation"][
+        "eligible_for_future_separate_preregistration"
+    ] is True
+    assert null_analysis["v65_population_launch_authorized"] is False
+
+    effect = [[[
+        _metric(
+            index,
+            0.75 if subject.label_v65b(actor, period) == "candidate"
+            else 0.25,
+        )
+        for index in range(64)
+    ] for actor in range(4)] for period in range(72)]
+    effect_analysis = subject.analyze_scored_periods_v65b(effect)
+    effect_gate = effect_analysis["required_alpha_zero_gate"]
+    assert effect_gate["passed"] is False
+    assert sorted(
+        key for key, value in effect_gate["checks"].items() if not value
+    ) == [
+        "both_run_half_f1_joint_and_stability_intervals_contain_zero",
+        "both_temporal_pass_f1_intervals_contain_zero",
+        "both_temporal_pass_joint_intervals_contain_zero",
+        "generated_f1_primary_interval_contains_zero",
+        "joint_composite_interval_contains_zero",
+    ]
+    intervals = effect_analysis["primary_cluster_bootstrap"]["intervals"]
+    assert intervals["generated_f1_delta"]["point"] == pytest.approx(0.5)
+    assert intervals["generated_f1_delta"]["contains_zero"] is False
+    assert intervals["stability_improvement"]["contains_zero"] is True
+    assert effect_analysis["future_v65_null_bound_observation"][
+        "eligible_for_future_separate_preregistration"
+    ] is False
+    assert effect_analysis["v65_population_launch_authorized"] is False
+
+
 def test_preflight_injects_fixed_nvidia_smi_subprocess_timeout(monkeypatch):
     import subprocess
 
