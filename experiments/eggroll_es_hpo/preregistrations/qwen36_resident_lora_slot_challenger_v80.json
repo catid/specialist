@@ -1,0 +1,79 @@
+{
+  "authority": {
+    "custom_vllm_patch_authorized": false,
+    "dataset_access_authorized": false,
+    "gpu_launch_authorized": false,
+    "protected_evaluation_authorized": false,
+    "training_authorized": false
+  },
+  "content_sha256_before_self_field": "1723fe1be88cdca1c73decd38bfc2a1614a78332ae7670b834396f70816cc4e7",
+  "failure_policy": "Any missing, non-finite, unbound, post-selected, or cross-schema measurement rejects the challenger; it is never imputed from the V66 complete-workload timer.",
+  "fixed_reference_layout": {
+    "base_model_instances_per_actor": 1,
+    "dtype": "bfloat16",
+    "enable_prefix_caching": false,
+    "gpu_memory_utilization": 0.82,
+    "max_cpu_loras": 2,
+    "max_loras": 1,
+    "max_model_len": 2048,
+    "max_num_seqs": 68,
+    "vllm_version": "0.25.0"
+  },
+  "minimum_replication": {
+    "counterbalanced_arm_order_required": true,
+    "physical_gpus_per_run": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "same_process_matched_arms_preferred": true,
+    "sealed_runs_per_arm": 3
+  },
+  "promotion_gates": {
+    "cleanup_idle_and_all_four_gpu_attribution": true,
+    "eager_gpu_kv_tokens_not_below": 139264,
+    "exact_adapter_tensor_restore": true,
+    "median_full_workload_runtime_no_slower_than_reference": true,
+    "model_load_allocation_gib_not_above": 68.24,
+    "no_duplicate_gpu_base_state": true,
+    "no_stale_kv_prefix_mapping_or_graph_state": true,
+    "semantic_and_ood_noninferiority": true,
+    "zero_missing_switch_or_pcie_measurements": true
+  },
+  "purpose": "Fail-closed requirements for any future custom compact/in-place GPU-resident alternative to the retained one-GPU-slot CPU-LRU layout.",
+  "required_measurements": {
+    "adapter_state": [
+      "exact_direct_tensor_digest_after_every_install_and_restore",
+      "exact_slot_identity_and_zeroing_for_unpopulated_slices",
+      "no_base_weight_pointer_or_digest_change"
+    ],
+    "behavior_and_quality": [
+      "matched_token_hash_repeatability",
+      "source_disjoint_dev_semantic_reward_noninferiority",
+      "all_registered_ood_noninferiority_conditions"
+    ],
+    "cache_isolation": [
+      "prefix_cache_disabled_or_adapter_identity_namespaced",
+      "fresh_request_kv_ownership_proved_across_candidate_switches",
+      "no_stale_mapping_or_graph_specialization_crosses_adapter_identity"
+    ],
+    "memory": [
+      "allocator_delta_for_base_lora_kv_graph_and_workspace",
+      "peak_device_memory_and_minimum_physical_headroom",
+      "kv_tokens_and_supported_full_length_concurrency"
+    ],
+    "timing": [
+      "synchronized_isolated_cpu_to_gpu_activation_latency",
+      "synchronized_restore_latency",
+      "full_generation_workload_runtime_separate_from_switch_timers"
+    ],
+    "traffic": [
+      "phase_aligned_pcie_rx_bytes_and_tx_bytes",
+      "host_source_and_gpu_destination_buffer_bytes",
+      "achieved_hbm_bytes_or_explicitly_unavailable"
+    ]
+  },
+  "schema": "qwen36-resident-lora-slot-challenger-preregistration-v80",
+  "status": "sealed_before_any_future_compact_gpu_slot_challenger"
+}

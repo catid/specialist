@@ -1,0 +1,645 @@
+{
+  "authority": {
+    "custom_vllm_patch_authorized": false,
+    "dataset_access_authorized": false,
+    "gpu_launch_authorized": false,
+    "protected_evaluation_authorized": false,
+    "site_package_mutation_authorized": false,
+    "training_authorized": false,
+    "v66_artifact_mutation_authorized": false
+  },
+  "bead": "specialist-0j5.16",
+  "bead_disposition": {
+    "acceptance_criteria_claimed_complete": false,
+    "close_as_negative_result": true,
+    "closure_reason": "The concrete resident-two-GPU-slot proposal is decisively rejected. The supported one-slot/two-CPU-cache layout already avoids base duplication and repeated disk loads. Unmeasured custom-buffer work is a separately preregistered future challenger."
+  },
+  "bound_implementation_files": [
+    {
+      "path": "probe_vllm_two_adapter_switch_v63.py",
+      "sha256": "115774a63f54480fa4796f24f5b47a82fda1c2a761db4cf3ae0b6b83e85165d6"
+    },
+    {
+      "path": "probe_vllm_resident_adapter_switch_v66.py",
+      "sha256": "64548c62de27cbd967e8d29abdbacd58fd79f4c3fb37ff9a829a86c612c1840f"
+    },
+    {
+      "path": "experiments/eggroll_es_hpo/qwen36_adapter_switch_memory_v66_20260717.md",
+      "sha256": "cd934c7b9e2adb4f95be4f4104aaf01f90f71909c9bdb16fd33efc5524b8330d"
+    }
+  ],
+  "cache_and_restore_disposition": {
+    "absence_of_all_stale_candidate_state_proved": false,
+    "direct_stale_kv_or_mapping_instrumentation_present": false,
+    "exact_token_repeat_restore_achieved_by_every_actor": false,
+    "interpretation": "Prefix-cache reuse was disabled, removing that cache path, but there was no direct KV/mapping instrumentation and nonzero repeat differences mean exact output restore was not established. This strengthens rejection; it does not promote graph execution or a custom buffer.",
+    "prefix_cache_disabled_in_all_56_primary_and_supplemental_actors": true,
+    "prefix_cache_reuse_mechanism_enabled": false
+  },
+  "content_sha256_before_self_field": "4c255e41d930e2338f5c3a9d02a9cf99671be3b0b7bbdfa4690a7d39aea86b6d",
+  "decision": {
+    "base_state_conclusion": "Neither tested layout duplicates the base model per adapter. max_loras=2 expands preallocated linear and fused-MoE LoRA buffers around one base_layer reference.",
+    "custom_compact_gpu_buffer_assessment": "No supported safe implementation was found in the installed vLLM path. It remains a new implementation subject to the forward challenger preregistration, not unfinished work in this bead.",
+    "load_inplace_assessment": "Not an optimization here: load_inplace explicitly re-enters _load_adapter and replaces the registered object.",
+    "rejection_reasons": [
+      "3.54_gib_higher_model_lora_allocation",
+      "51_to_55_percent_kv_capacity_displacement",
+      "73.8_percent_eager_complete_workload_slowdown",
+      "35.7_percent_graph_complete_workload_slowdown",
+      "candidate_repeat_instability_observed_in_one_of_eight_graph_actors",
+      "no_semantic_quality_equivalence_evidence"
+    ],
+    "retained_supported_layout": {
+      "active_gpu_adapter_slot_capacity": 1,
+      "after_first_load_disk_reload_for_two_alternating_adapters": false,
+      "base_model_instances_per_actor": 1,
+      "gpu_slot_activation_copies_registered_adapter_weights": true,
+      "max_cpu_loras": 2,
+      "max_loras": 1,
+      "prefix_caching": false,
+      "registered_cpu_adapter_capacity": 2
+    },
+    "safe_existing_lazy_cpu_resident_alternative": "vLLM max_loras=1,max_cpu_loras=2 keeps both adapter objects in the registered CPU LRU after first load, evicts the prior active GPU slot on a switch, and copies the selected registered weights into that one slot.",
+    "tested_max_loras_2_resident_gpu_slots": "rejected"
+  },
+  "decision_kind": "post_hoc_live_evidence_seal_not_a_new_gpu_experiment",
+  "evidence": {
+    "comparisons": {
+      "eager_max_loras_2_vs_1": {
+        "interpretation": "Complete switched-workload comparison only; it is not an isolated adapter-switch latency estimate.",
+        "median_workload_runtime_increase_percent": 73.78217288506042,
+        "recorded_call_token_rate_decrease_percent": 42.45669832535698
+      },
+      "graph_max_loras_2_vs_1": {
+        "interpretation": "Complete switched-workload comparison only; it is not an isolated adapter-switch latency estimate.",
+        "median_workload_runtime_increase_percent": 35.73229071136972,
+        "recorded_call_token_rate_decrease_percent": 26.325563743231363
+      },
+      "memory_and_capacity": {
+        "eager_available_kv_reduction_percent": 51.67394468704513,
+        "eager_device_resident_mode_mib": {
+          "max_loras_1": 83820.0,
+          "max_loras_2": 83254.0,
+          "max_loras_2_minus_1": -566.0
+        },
+        "eager_kv_token_reduction_percent": 51.76499310661764,
+        "gpu_memory_utilization_in_every_arm": 0.82,
+        "graph_available_kv_reduction_percent": 54.95356037151702,
+        "graph_device_resident_mode_mib": {
+          "max_loras_1": 81944.0,
+          "max_loras_2": 81186.0,
+          "max_loras_2_minus_1": -758.0
+        },
+        "graph_kv_token_reduction_percent": 55.00030517578125,
+        "model_load_allocation_increase_gib": 3.54,
+        "model_load_allocation_increase_mib_approximate": 3624.96,
+        "nvml_plateau_interpretation": "The engine budget is fixed at 0.82, so total NVML plateaus are lower for max_loras=2 because the larger LoRA allocation displaces KV; they are not the incremental slot cost. The device-memory rows above are comparable. Legacy process-memory rows are retained only as corroboration; cross-schema subtraction is forbidden."
+      }
+    },
+    "primary_arms": {
+      "max_loras_1_eager": {
+        "actor_count": 12,
+        "directories": [
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_baseline",
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_eager_r2",
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_eager_r3"
+        ],
+        "directory_inventories": [
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_baseline",
+            "file_count": 9,
+            "inventory_sha256": "7939ce31e6a152a2fc1cafd9dc140d010afe85569f3463923de7747198351ebc"
+          },
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_eager_r2",
+            "file_count": 9,
+            "inventory_sha256": "17136d7163d6588964719b71d4fe7caa62413dbf236c6d6bfc7705805cf1441e"
+          },
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_eager_r3",
+            "file_count": 9,
+            "inventory_sha256": "2317cfa42f5f03b8f3c76468d5b9c324c148dbb47228e993fe20227a60f2ca89"
+          }
+        ],
+        "engine_memory": {
+          "available_kv_gib_values": [
+            6.87
+          ],
+          "gpu_kv_token_values": [
+            139264
+          ],
+          "median_available_kv_gib": 6.87,
+          "median_gpu_kv_tokens": 139264.0,
+          "median_model_load_gib": 68.24,
+          "model_load_gib_values": [
+            68.24
+          ],
+          "nvml": {
+            "cross_schema_comparison_authorized": false,
+            "maximum_resident_peak_mib_by_schema": {
+              "compute_process_memory_used_mib": 83890,
+              "device_memory_used_mib": 84377
+            },
+            "median_resident_mode_mib_by_schema": {
+              "compute_process_memory_used_mib": 83808.0,
+              "device_memory_used_mib": 83820.0
+            },
+            "pcie_rx_tx_fields_present": false,
+            "schemas": [
+              "compute_process_memory_used_mib",
+              "device_memory_used_mib"
+            ]
+          },
+          "prefix_caching_enabled": false
+        },
+        "output_behavior": {
+          "actors_with_any_candidate_repeat_change": 0,
+          "actors_with_any_reference_repeat_change": 11,
+          "candidate_repeat_changed_rows_distribution": {
+            "0": 12
+          },
+          "decoded_text_or_reward_persisted": false,
+          "first_reference_candidate_differing_rows_distribution": {
+            "6": 2,
+            "7": 9,
+            "8": 1
+          },
+          "reference_repeat_changed_rows_distribution": {
+            "0": 1,
+            "1": 8,
+            "2": 3
+          },
+          "semantic_quality_equivalence_measured": false
+        },
+        "physical_gpu_coverage_per_run": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "run_count": 3,
+        "runtime": {
+          "adjacent_adapter_state_transitions_inside_timer": 6,
+          "isolated_switch_latency_measured": false,
+          "maximum_seconds": 47.45788054098375,
+          "median_seconds": 46.089602033549454,
+          "minimum_seconds": 45.48825523298001,
+          "nominal_four_actor_lower_bound_tokens_per_second": 3021.592590420443,
+          "recorded_call_output_tokens_per_actor": 34816,
+          "recorded_call_tokens_per_timed_second_lower_bound": 755.3981476051107,
+          "timer_includes_eight_recorded_generations": true,
+          "timer_includes_first_adapter_loads": true,
+          "timer_includes_two_warmup_generations": true
+        },
+        "safety": {
+          "adapter_update_or_hpo_performed": false,
+          "all_receipts_report_engine_shutdown": true,
+          "protected_holdout_or_ood_opened": false,
+          "source_dataset_rows_opened": 0
+        }
+      },
+      "max_loras_1_graph": {
+        "actor_count": 12,
+        "directories": [
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph",
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r2",
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r3"
+        ],
+        "directory_inventories": [
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph",
+            "file_count": 9,
+            "inventory_sha256": "6fb24dc550f068e6a9f7f795fc68114b5b6d882241830c6bba2363308e4d6b72"
+          },
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r2",
+            "file_count": 9,
+            "inventory_sha256": "235b87aee6637e8501358f5777fd7fd6cb767244f0485a4e416e81d20b024cb3"
+          },
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r3",
+            "file_count": 9,
+            "inventory_sha256": "342adb1021bf4798fe8785eda238e6ae257f617b77d912b97b07f66efcfb37bc"
+          }
+        ],
+        "engine_memory": {
+          "available_kv_gib_values": [
+            5.91,
+            6.46
+          ],
+          "gpu_kv_token_values": [
+            120012,
+            131072
+          ],
+          "median_available_kv_gib": 6.46,
+          "median_gpu_kv_tokens": 131072.0,
+          "median_model_load_gib": 68.24,
+          "model_load_gib_values": [
+            68.24
+          ],
+          "nvml": {
+            "cross_schema_comparison_authorized": false,
+            "maximum_resident_peak_mib_by_schema": {
+              "compute_process_memory_used_mib": 81936,
+              "device_memory_used_mib": 81948
+            },
+            "median_resident_mode_mib_by_schema": {
+              "compute_process_memory_used_mib": 81932.0,
+              "device_memory_used_mib": 81944.0
+            },
+            "pcie_rx_tx_fields_present": false,
+            "schemas": [
+              "compute_process_memory_used_mib",
+              "device_memory_used_mib"
+            ]
+          },
+          "prefix_caching_enabled": false
+        },
+        "output_behavior": {
+          "actors_with_any_candidate_repeat_change": 0,
+          "actors_with_any_reference_repeat_change": 8,
+          "candidate_repeat_changed_rows_distribution": {
+            "0": 12
+          },
+          "decoded_text_or_reward_persisted": false,
+          "first_reference_candidate_differing_rows_distribution": {
+            "3": 4,
+            "4": 8
+          },
+          "reference_repeat_changed_rows_distribution": {
+            "0": 4,
+            "1": 8
+          },
+          "semantic_quality_equivalence_measured": false
+        },
+        "physical_gpu_coverage_per_run": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "run_count": 3,
+        "runtime": {
+          "adjacent_adapter_state_transitions_inside_timer": 6,
+          "isolated_switch_latency_measured": false,
+          "maximum_seconds": 24.710788621974643,
+          "median_seconds": 23.550330316007603,
+          "minimum_seconds": 22.800863090029452,
+          "nominal_four_actor_lower_bound_tokens_per_second": 5913.462704399506,
+          "recorded_call_output_tokens_per_actor": 34816,
+          "recorded_call_tokens_per_timed_second_lower_bound": 1478.3656760998765,
+          "timer_includes_eight_recorded_generations": true,
+          "timer_includes_first_adapter_loads": true,
+          "timer_includes_two_warmup_generations": true
+        },
+        "safety": {
+          "adapter_update_or_hpo_performed": false,
+          "all_receipts_report_engine_shutdown": true,
+          "protected_holdout_or_ood_opened": false,
+          "source_dataset_rows_opened": 0
+        }
+      },
+      "max_loras_2_eager": {
+        "actor_count": 4,
+        "directories": [
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_resident_adapter_switch_eager"
+        ],
+        "directory_inventories": [
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_resident_adapter_switch_eager",
+            "file_count": 10,
+            "inventory_sha256": "f29bf39457b23fadd4d6ccefbef9714180b3bb8ed58f5ad1581b4fef895a864a"
+          }
+        ],
+        "engine_memory": {
+          "available_kv_gib_values": [
+            3.32
+          ],
+          "gpu_kv_token_values": [
+            67174
+          ],
+          "median_available_kv_gib": 3.32,
+          "median_gpu_kv_tokens": 67174.0,
+          "median_model_load_gib": 71.78,
+          "model_load_gib_values": [
+            71.78
+          ],
+          "nvml": {
+            "cross_schema_comparison_authorized": false,
+            "maximum_resident_peak_mib_by_schema": {
+              "device_memory_used_mib": 83254
+            },
+            "median_resident_mode_mib_by_schema": {
+              "device_memory_used_mib": 83254.0
+            },
+            "pcie_rx_tx_fields_present": false,
+            "schemas": [
+              "device_memory_used_mib"
+            ]
+          },
+          "prefix_caching_enabled": false
+        },
+        "output_behavior": {
+          "actors_with_any_candidate_repeat_change": 0,
+          "actors_with_any_reference_repeat_change": 2,
+          "candidate_repeat_changed_rows_distribution": {
+            "0": 4
+          },
+          "decoded_text_or_reward_persisted": false,
+          "first_reference_candidate_differing_rows_distribution": {
+            "8": 2,
+            "9": 2
+          },
+          "reference_repeat_changed_rows_distribution": {
+            "0": 2,
+            "1": 2
+          },
+          "semantic_quality_equivalence_measured": false
+        },
+        "physical_gpu_coverage_per_run": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "run_count": 1,
+        "runtime": {
+          "adjacent_adapter_state_transitions_inside_timer": 6,
+          "isolated_switch_latency_measured": false,
+          "maximum_seconds": 82.7873738030321,
+          "median_seconds": 80.09551188797923,
+          "minimum_seconds": 78.94865139201283,
+          "nominal_four_actor_lower_bound_tokens_per_second": 1738.7241396842962,
+          "recorded_call_output_tokens_per_actor": 34816,
+          "recorded_call_tokens_per_timed_second_lower_bound": 434.68103492107406,
+          "timer_includes_eight_recorded_generations": true,
+          "timer_includes_first_adapter_loads": true,
+          "timer_includes_two_warmup_generations": true
+        },
+        "safety": {
+          "adapter_update_or_hpo_performed": false,
+          "all_receipts_report_engine_shutdown": true,
+          "protected_holdout_or_ood_opened": false,
+          "source_dataset_rows_opened": 0
+        }
+      },
+      "max_loras_2_graph": {
+        "actor_count": 8,
+        "directories": [
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_resident_adapter_switch_graph",
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_resident_adapter_switch_graph_r2"
+        ],
+        "directory_inventories": [
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_resident_adapter_switch_graph",
+            "file_count": 10,
+            "inventory_sha256": "d8c5be27c1b7cce440a46ddb6913aeb0556f9b0f7db8c098ff4eb9d1d04a813e"
+          },
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_resident_adapter_switch_graph_r2",
+            "file_count": 10,
+            "inventory_sha256": "9c950e5264341475aae72cfceb07146a4e0e74bbee93e5e97c9326eafead52e1"
+          }
+        ],
+        "engine_memory": {
+          "available_kv_gib_values": [
+            2.91
+          ],
+          "gpu_kv_token_values": [
+            58982
+          ],
+          "median_available_kv_gib": 2.91,
+          "median_gpu_kv_tokens": 58982.0,
+          "median_model_load_gib": 71.78,
+          "model_load_gib_values": [
+            71.78
+          ],
+          "nvml": {
+            "cross_schema_comparison_authorized": false,
+            "maximum_resident_peak_mib_by_schema": {
+              "device_memory_used_mib": 81743
+            },
+            "median_resident_mode_mib_by_schema": {
+              "device_memory_used_mib": 81186.0
+            },
+            "pcie_rx_tx_fields_present": false,
+            "schemas": [
+              "device_memory_used_mib"
+            ]
+          },
+          "prefix_caching_enabled": false
+        },
+        "output_behavior": {
+          "actors_with_any_candidate_repeat_change": 1,
+          "actors_with_any_reference_repeat_change": 2,
+          "candidate_repeat_changed_rows_distribution": {
+            "0": 7,
+            "3": 1
+          },
+          "decoded_text_or_reward_persisted": false,
+          "first_reference_candidate_differing_rows_distribution": {
+            "4": 1,
+            "7": 7
+          },
+          "reference_repeat_changed_rows_distribution": {
+            "0": 6,
+            "1": 2
+          },
+          "semantic_quality_equivalence_measured": false
+        },
+        "physical_gpu_coverage_per_run": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "run_count": 2,
+        "runtime": {
+          "adjacent_adapter_state_transitions_inside_timer": 6,
+          "isolated_switch_latency_measured": false,
+          "maximum_seconds": 33.28304578497773,
+          "median_seconds": 31.965402808011277,
+          "minimum_seconds": 30.888715548964683,
+          "nominal_four_actor_lower_bound_tokens_per_second": 4356.710310720601,
+          "recorded_call_output_tokens_per_actor": 34816,
+          "recorded_call_tokens_per_timed_second_lower_bound": 1089.1775776801503,
+          "timer_includes_eight_recorded_generations": true,
+          "timer_includes_first_adapter_loads": true,
+          "timer_includes_two_warmup_generations": true
+        },
+        "safety": {
+          "adapter_update_or_hpo_performed": false,
+          "all_receipts_report_engine_shutdown": true,
+          "protected_holdout_or_ood_opened": false,
+          "source_dataset_rows_opened": 0
+        }
+      }
+    },
+    "supplemental_arms": {
+      "max_loras_1_graph_later_replications": {
+        "actor_count": 20,
+        "directories": [
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r4",
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r5",
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r6",
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r7",
+          "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r8"
+        ],
+        "directory_inventories": [
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r4",
+            "file_count": 10,
+            "inventory_sha256": "b7b94f6cc0650adeef11a2e8aeb93e56aac062ab97a5069afa94f8586964d11c"
+          },
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r5",
+            "file_count": 10,
+            "inventory_sha256": "a50b39157e9ae3575abc977300ee16f73f47787a59a9321d810994e448dda32f"
+          },
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r6",
+            "file_count": 10,
+            "inventory_sha256": "85fe81255bda0dfcb205de65bbc882a7eaad6e941d4a80706ee53c5c4a260801"
+          },
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r7",
+            "file_count": 10,
+            "inventory_sha256": "9b95841c7aaaa247f08616f3bc7fafd449ed35e54c948f6dce284555064241a9"
+          },
+          {
+            "directory": "experiments/eggroll_es_hpo/runs/v66_four_gpu_adapter_switch_memory_graph_r8",
+            "file_count": 10,
+            "inventory_sha256": "71cfe7176eba6c10f3710c84d405cee3ef140988e452592b6df835e15f1490ff"
+          }
+        ],
+        "engine_memory": {
+          "available_kv_gib_values": [
+            6.46
+          ],
+          "gpu_kv_token_values": [
+            131072
+          ],
+          "median_available_kv_gib": 6.46,
+          "median_gpu_kv_tokens": 131072.0,
+          "median_model_load_gib": 68.24,
+          "model_load_gib_values": [
+            68.24
+          ],
+          "nvml": {
+            "cross_schema_comparison_authorized": false,
+            "maximum_resident_peak_mib_by_schema": {
+              "device_memory_used_mib": 81944
+            },
+            "median_resident_mode_mib_by_schema": {
+              "device_memory_used_mib": 81944.0
+            },
+            "pcie_rx_tx_fields_present": false,
+            "schemas": [
+              "device_memory_used_mib"
+            ]
+          },
+          "prefix_caching_enabled": false
+        },
+        "output_behavior": {
+          "actors_with_any_candidate_repeat_change": 0,
+          "actors_with_any_reference_repeat_change": 13,
+          "candidate_repeat_changed_rows_distribution": {
+            "0": 20
+          },
+          "decoded_text_or_reward_persisted": false,
+          "first_reference_candidate_differing_rows_distribution": {
+            "3": 6,
+            "4": 14
+          },
+          "reference_repeat_changed_rows_distribution": {
+            "0": 7,
+            "1": 13
+          },
+          "semantic_quality_equivalence_measured": false
+        },
+        "physical_gpu_coverage_per_run": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "run_count": 5,
+        "runtime": {
+          "adjacent_adapter_state_transitions_inside_timer": 6,
+          "isolated_switch_latency_measured": false,
+          "maximum_seconds": 23.459778830991127,
+          "median_seconds": 23.282616868498735,
+          "minimum_seconds": 22.711760050966404,
+          "nominal_four_actor_lower_bound_tokens_per_second": 5981.45821780126,
+          "recorded_call_output_tokens_per_actor": 34816,
+          "recorded_call_tokens_per_timed_second_lower_bound": 1495.364554450315,
+          "timer_includes_eight_recorded_generations": true,
+          "timer_includes_first_adapter_loads": true,
+          "timer_includes_two_warmup_generations": true
+        },
+        "safety": {
+          "adapter_update_or_hpo_performed": false,
+          "all_receipts_report_engine_shutdown": true,
+          "protected_holdout_or_ood_opened": false,
+          "source_dataset_rows_opened": 0
+        }
+      }
+    }
+  },
+  "future_challenger_preregistration": {
+    "content_sha256": "1723fe1be88cdca1c73decd38bfc2a1614a78332ae7670b834396f70816cc4e7",
+    "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_resident_lora_slot_challenger_v80.json",
+    "schema": "qwen36-resident-lora-slot-challenger-preregistration-v80"
+  },
+  "installed_vllm_source_audit": {
+    "causal_limit": "Source proves slot-scaled LoRA buffers, including fused-MoE buffers, but the live evidence has no allocator-level breakdown that assigns every byte of the 3.54 GiB increase.",
+    "claims_supported_by_source": {
+      "active_gpu_slot_capacity_is_max_loras": true,
+      "already_registered_adapter_skips_disk_load_and_is_touched": true,
+      "linear_and_fused_moe_lora_buffers_scale_with_max_loras": true,
+      "lora_wrappers_retain_one_base_layer_reference": true,
+      "max_loras_2_duplicates_the_gpu_base_model": false,
+      "one_active_slot_evicts_oldest_then_copies_registered_weights": true,
+      "registered_adapter_capacity_is_max_cpu_loras": true
+    },
+    "files": [
+      {
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/model_manager.py",
+        "required_fragment_count": 7,
+        "sha256": "13201a06e17cccffb30c90bf3d268dfbf901567623b03454003afb5a922ae45a"
+      },
+      {
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/worker_manager.py",
+        "required_fragment_count": 4,
+        "sha256": "1f7bb394ca92e21a3f0e250943196dd679c145f16fb67cc64e00e011e8e1447a"
+      },
+      {
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/layers/base_linear.py",
+        "required_fragment_count": 4,
+        "sha256": "040d75b4a76cb97f28c507453ab8aea68252c35b8b64d9f83ce40d32e2a3a495"
+      },
+      {
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/layers/fused_moe.py",
+        "required_fragment_count": 4,
+        "sha256": "62dcf28f2af0906b420c75bba171dcf4e5a392e02dc9860c32fad88f46b95b7e"
+      },
+      {
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/config/lora.py",
+        "required_fragment_count": 3,
+        "sha256": "031bade79427ba8d1746be968cfa9c343e7c4dda1e7fdb5059a5775cb34874b5"
+      }
+    ],
+    "vllm_version_from_live_receipts": "0.25.0"
+  },
+  "measurement_limits": {
+    "decoded_text_or_reward_quality_equivalence": null,
+    "direct_gpu_lora_tensor_restore_digest": null,
+    "hbm_bytes_per_switch": null,
+    "isolated_adapter_switch_latency_seconds": null,
+    "pcie_rx_bytes_per_switch": null,
+    "pcie_tx_bytes_per_switch": null,
+    "why_not_inferred": "The only timer spans two warmups, first adapter loads, eight recorded generations, and six state transitions. NVML files lack PCIe fields. Token hashes expose numerical behavior but not semantic quality or direct tensor identity."
+  },
+  "schema": "qwen36-resident-lora-slot-decision-v80",
+  "status": "closed_negative_two_gpu_resident_slots_rejected"
+}
