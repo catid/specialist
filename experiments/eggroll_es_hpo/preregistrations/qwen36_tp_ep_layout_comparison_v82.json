@@ -1,0 +1,633 @@
+{
+  "admitted_arms": [
+    {
+      "admitted": true,
+      "arm_id": "replicated_4xtp1_control",
+      "candidate_concurrency": 4,
+      "candidate_isolation": "one independently materialized sole LoRA slot per TP1 actor",
+      "engine_count": 4,
+      "expected_moe_rank_contract": {
+        "ep_size": 1,
+        "logical_experts_visible": 256,
+        "tp_size": 1,
+        "use_ep": false
+      },
+      "parallel": {
+        "all2all_active": false,
+        "all2all_backend": "allgather_reducescatter",
+        "data_parallel_size": 1,
+        "enable_expert_parallel": false,
+        "tensor_parallel_size": 1
+      },
+      "role": "control",
+      "runtime": {
+        "async_scheduling": false,
+        "calculate_kv_scales": false,
+        "enable_flashinfer_autotune": false,
+        "enforce_eager": true,
+        "gpu_memory_utilization": 0.485,
+        "kv_cache_dtype": "fp8_per_token_head",
+        "kv_cache_dtype_skip_layers": [],
+        "mamba_cache_dtype": "auto",
+        "mamba_ssm_cache_dtype": "float32",
+        "max_cpu_loras": 2,
+        "max_loras": 1,
+        "max_model_len": 2048,
+        "max_num_seqs": 68,
+        "prefix_caching": false,
+        "quantization": "fp8",
+        "routed_moe_backend": "TRITON",
+        "scheduling_policy": "fcfs"
+      },
+      "signed_candidate_waves": 4,
+      "worker_rank_count": 4
+    },
+    {
+      "admitted": true,
+      "arm_id": "single_tp4_tensor_sharded",
+      "candidate_concurrency": 1,
+      "candidate_isolation": "one canonical candidate is sharded identically over all four ranks and evaluated serially",
+      "engine_count": 1,
+      "expected_moe_rank_contract": {
+        "ep_size": 1,
+        "expert_tensors_must_be_tp_sharded": true,
+        "logical_experts_visible": 256,
+        "tp_size": 4,
+        "use_ep": false
+      },
+      "parallel": {
+        "all2all_active": false,
+        "all2all_backend": "allgather_reducescatter",
+        "data_parallel_size": 1,
+        "enable_expert_parallel": false,
+        "tensor_parallel_size": 4
+      },
+      "role": "challenger",
+      "runtime": {
+        "async_scheduling": false,
+        "calculate_kv_scales": false,
+        "enable_flashinfer_autotune": false,
+        "enforce_eager": true,
+        "gpu_memory_utilization": 0.485,
+        "kv_cache_dtype": "fp8_per_token_head",
+        "kv_cache_dtype_skip_layers": [],
+        "mamba_cache_dtype": "auto",
+        "mamba_ssm_cache_dtype": "float32",
+        "max_cpu_loras": 2,
+        "max_loras": 1,
+        "max_model_len": 2048,
+        "max_num_seqs": 68,
+        "prefix_caching": false,
+        "quantization": "fp8",
+        "routed_moe_backend": "TRITON",
+        "scheduling_policy": "fcfs"
+      },
+      "signed_candidate_waves": 16,
+      "worker_rank_count": 4
+    },
+    {
+      "admitted": true,
+      "arm_id": "single_tp4_ep4_tp_collective",
+      "candidate_concurrency": 1,
+      "candidate_isolation": "one canonical candidate is installed on every rank before rank-local expert outputs are combined",
+      "engine_count": 1,
+      "expected_moe_rank_contract": {
+        "ep_size": 4,
+        "expert_ranges": [
+          [
+            0,
+            64
+          ],
+          [
+            64,
+            128
+          ],
+          [
+            128,
+            192
+          ],
+          [
+            192,
+            256
+          ]
+        ],
+        "local_experts_per_rank": 64,
+        "reason_all2all_is_inactive": "vLLM activates fused-MoE all2all only for DP greater than one or sequence-parallel EP; this arm is TP-only EP",
+        "redundant_experts": 0,
+        "tp_size_inside_fused_moe": 1,
+        "use_all2all_kernels": false,
+        "use_ep": true
+      },
+      "parallel": {
+        "all2all_active": false,
+        "all2all_backend": "allgather_reducescatter",
+        "data_parallel_size": 1,
+        "enable_ep_weight_filter": false,
+        "enable_eplb": false,
+        "enable_expert_parallel": true,
+        "expert_placement_strategy": "linear",
+        "tensor_parallel_size": 4
+      },
+      "role": "challenger",
+      "runtime": {
+        "async_scheduling": false,
+        "calculate_kv_scales": false,
+        "enable_flashinfer_autotune": false,
+        "enforce_eager": true,
+        "gpu_memory_utilization": 0.485,
+        "kv_cache_dtype": "fp8_per_token_head",
+        "kv_cache_dtype_skip_layers": [],
+        "mamba_cache_dtype": "auto",
+        "mamba_ssm_cache_dtype": "float32",
+        "max_cpu_loras": 2,
+        "max_loras": 1,
+        "max_model_len": 2048,
+        "max_num_seqs": 68,
+        "prefix_caching": false,
+        "quantization": "fp8",
+        "routed_moe_backend": "TRITON",
+        "scheduling_policy": "fcfs"
+      },
+      "signed_candidate_waves": 16,
+      "worker_rank_count": 4
+    },
+    {
+      "admitted": true,
+      "arm_id": "wide_dp4_tp1_ep4_agrs",
+      "candidate_concurrency": 1,
+      "candidate_isolation": "one globally identical canonical candidate is installed on all DP/EP ranks; the 64-prompt panel is deterministically partitioned across ranks and recombined before scoring",
+      "engine_count": 1,
+      "expected_moe_rank_contract": {
+        "dense_and_kv_state_remain_tp1_replicated": true,
+        "dp_size": 4,
+        "ep_size": 4,
+        "expert_ranges": [
+          [
+            0,
+            64
+          ],
+          [
+            64,
+            128
+          ],
+          [
+            128,
+            192
+          ],
+          [
+            192,
+            256
+          ]
+        ],
+        "local_experts_per_rank": 64,
+        "redundant_experts": 0,
+        "tp_size_inside_fused_moe": 1,
+        "use_ag_rs_all2all_kernels": true,
+        "use_all2all_kernels": true,
+        "use_ep": true
+      },
+      "parallel": {
+        "all2all_active": true,
+        "all2all_backend": "allgather_reducescatter",
+        "data_parallel_size": 4,
+        "data_parallel_size_local": 4,
+        "enable_ep_weight_filter": false,
+        "enable_eplb": false,
+        "enable_expert_parallel": true,
+        "expert_placement_strategy": "linear",
+        "tensor_parallel_size": 1
+      },
+      "role": "challenger",
+      "runtime": {
+        "async_scheduling": false,
+        "calculate_kv_scales": false,
+        "enable_flashinfer_autotune": false,
+        "enforce_eager": true,
+        "gpu_memory_utilization": 0.485,
+        "kv_cache_dtype": "fp8_per_token_head",
+        "kv_cache_dtype_skip_layers": [],
+        "mamba_cache_dtype": "auto",
+        "mamba_ssm_cache_dtype": "float32",
+        "max_cpu_loras": 2,
+        "max_loras": 1,
+        "max_model_len": 2048,
+        "max_num_seqs": 68,
+        "prefix_caching": false,
+        "quantization": "fp8",
+        "routed_moe_backend": "TRITON",
+        "scheduling_policy": "fcfs"
+      },
+      "signed_candidate_waves": 16,
+      "worker_rank_count": 4
+    }
+  ],
+  "authority": {
+    "checkpoint_or_layout_promotion_performed": false,
+    "cpu_file_inspection_only": true,
+    "dataset_or_prompt_rows_opened_by_builder": false,
+    "gpu_api_or_model_launch_performed_by_builder": false,
+    "live_launch_authorized": false,
+    "live_launch_waits_for_beads": [
+      "specialist-0j5.14",
+      "specialist-0j5.15"
+    ],
+    "model_or_adapter_update_performed": false,
+    "site_packages_or_es_at_scale_modified": false
+  },
+  "bead": "specialist-0j5.25",
+  "common_workload": {
+    "candidate_commit_or_promotion": false,
+    "candidate_state": {
+      "candidate_hash_must_be_computed_before_rank_sharding": true,
+      "candidate_order_and_physical_rank_rotation_must_equal_v66d": true,
+      "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "canonical_runtime_bf16_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+      "direction_count": 8,
+      "direction_seeds_exact": [
+        140002291,
+        1028842752,
+        480373990,
+        1037026679,
+        759861149,
+        227761095,
+        428721957,
+        150663570
+      ],
+      "sigma": 0.0006,
+      "signed_population_size": 16,
+      "signs_per_direction": [
+        -1,
+        1
+      ]
+    },
+    "decode": {
+      "detokenize": false,
+      "max_tokens": 1,
+      "n": 1,
+      "prompt_logprobs": 1,
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "generated_tokens_upper_bound": 1024,
+    "prompt_panel": {
+      "conflict_units_per_candidate": 64,
+      "content_sha256": "cdfa9d10669171d5d814b55df1f674a89dfa557c5376b45c8d0073e5d1acaec7",
+      "file_sha256": "dd2c857b75617351d64cfce29f5a8e5d79ce9da212e4db50d22f2de3795c70a1",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v52_v434_train_generation_panel.json",
+      "raw_text_must_not_be_persisted_in_runtime_receipts": true,
+      "rows_per_candidate": 64,
+      "tokenized_prompt_ids_sha256_must_be_sealed_once_and_shared": true
+    },
+    "protected_dev_ood_or_holdout_opened_during_live_system_ablation": false,
+    "request_outputs_total": 1024,
+    "reward": "uniform mean of per-example mean gold-answer token logprob",
+    "teacher_forced_answer_token_count": "seal once from the shared tokenized panel and require exact equality for every arm"
+  },
+  "content_sha256_before_self_field": "828bfb4e9a64b0497b12dbce8c840ce9469d7cb6d3d548ec37dfdc048583261e",
+  "explicitly_rejected_arms": [
+    {
+      "admitted": false,
+      "arm_id": "dp4_tp1_wide_ep_four_distinct_one_slot",
+      "future_reconsideration": "requires a separately preregistered globally identical multi-LoRA slot implementation with per-token adapter identity",
+      "reason": "the sealed recipe concurrently materializes four distinct candidates in one LoRA slot per actor; wide EP routes tokens to ranks holding different candidate values, so candidate identity is not preserved",
+      "rejection_stage": "cpu_recipe_compatibility"
+    },
+    {
+      "admitted": false,
+      "arm_id": "wide_dp4_tp1_ep4_deepep",
+      "reason": "DeepEP module is absent; no fallback is permitted",
+      "rejection_stage": "installed_dependency"
+    },
+    {
+      "admitted": false,
+      "arm_id": "wide_dp4_tp1_ep4_nixl",
+      "reason": "NIXL module is absent; no fallback is permitted",
+      "rejection_stage": "installed_dependency"
+    },
+    {
+      "admitted": false,
+      "arm_id": "wide_dp4_tp1_ep4_pplx_or_naive",
+      "reason": "vLLM 0.25 removes these choices and rewrites them to allgather_reducescatter; silent rewrite is forbidden",
+      "rejection_stage": "removed_backend"
+    },
+    {
+      "admitted": false,
+      "arm_id": "wide_dp4_tp1_ep4_flashinfer_nvlink",
+      "reason": "package presence does not prove topology, FP8-Qwen, LoRA, or runtime-kernel support",
+      "rejection_stage": "runtime_topology_and_kernel_support_unproven"
+    },
+    {
+      "admitted": false,
+      "arm_id": "ep_weight_filter_as_memory_arm",
+      "reason": "Qwen3.5-MoE declares 3D fused MoE weights and vLLM documents the pre-read EP filter as ineffective for 3D fused-expert checkpoints; no VRAM or I/O saving may be assumed",
+      "rejection_stage": "checkpoint_format"
+    }
+  ],
+  "implementation_order": [
+    "close accepted phase-profile and frozen-base precision dependencies",
+    "implement rank-aware LoRA candidate materialize/restore certificates",
+    "run CPU contract tests and dry-run argument validation",
+    "run three clean system replicates for each admitted arm",
+    "run separate Nsight Systems communication/profile replicate",
+    "reject unsupported, incorrect, idle-rank, fallback, or slower arms",
+    "run NCU memory-bandwidth diagnostic only for surviving finalists",
+    "freeze the system winner and run source-disjoint semantic gate",
+    "run protected OOD once with no subsequent tuning"
+  ],
+  "installed_support_evidence": {
+    "model": {
+      "architecture": "Qwen3_5MoeForConditionalGeneration",
+      "attention_heads": 16,
+      "attention_kv_elements_per_token_ratio_tp4_rank_to_tp1_rank": 0.5,
+      "attention_kv_heads_per_tp1_rank": 2,
+      "attention_kv_heads_per_tp4_rank": 1,
+      "checkpoint_declares_3d_moe_weights": true,
+      "ep4_local_experts_per_rank": 64,
+      "ep_weight_filter_memory_or_io_savings_assumed": false,
+      "experts": 256,
+      "experts_per_token": 8,
+      "hidden_size": 2048,
+      "important_kv_caveat": "TP4 halves, rather than quarters, full-attention KV elements per rank because two KV heads are replicated across four TP ranks",
+      "kv_heads": 2,
+      "layers": 40,
+      "linear_key_heads": 16,
+      "linear_value_heads": 32,
+      "mamba_ssm_dtype": "float32",
+      "mamba_state_shape_requires_live_rank_attestation": true,
+      "model_type": "qwen3_5_moe_text",
+      "path": "models/Qwen3.6-35B-A3B-FP8/config.json",
+      "sha256": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+      "tp4_static_divisibility_passed": true
+    },
+    "optional_backends": {
+      "allgather_reducescatter": {
+        "admitted_for_live_attestation": true,
+        "cpu_support_evidence": "built_in_vllm_default",
+        "runtime_resolution_still_required": true
+      },
+      "deepep": {
+        "admitted_for_live_attestation": false,
+        "module_present": false,
+        "reason": "DeepEP module is absent; no fallback is permitted"
+      },
+      "flashinfer_nvlink": {
+        "admitted_for_live_attestation": false,
+        "module_present": true,
+        "reason": "package presence does not prove topology, FP8-Qwen, LoRA, or runtime-kernel support"
+      },
+      "nixl_ep": {
+        "admitted_for_live_attestation": false,
+        "module_present": false,
+        "reason": "NIXL module is absent; no fallback is permitted"
+      },
+      "pplx_or_naive": {
+        "admitted_for_live_attestation": false,
+        "reason": "vLLM 0.25 removes these choices and rewrites them to allgather_reducescatter; silent rewrite is forbidden"
+      }
+    },
+    "source_bundle_sha256": "7e0477d66a2ea846e534cbd858749d9565b04707b7e69e7d9d071e8169450c1f",
+    "source_files": [
+      {
+        "bytes": 11245,
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm-0.25.0.dist-info/METADATA",
+        "sha256": "8a317380a72e2a4e58f80188aacf0dca83c5ac2e1995063964b7eac27b7bab24"
+      },
+      {
+        "bytes": 43025,
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/config/parallel.py",
+        "sha256": "2bb0c2d54a0c3211c5ea1ddeed731d0e2a5d95fb58972f92845268959f0c818e"
+      },
+      {
+        "bytes": 59378,
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/models/registry.py",
+        "sha256": "97d48b835001ff7d8e25a5ffb6641f68c021a010bbcfca1cead4ddab53ace7a6"
+      },
+      {
+        "bytes": 23122,
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_5.py",
+        "sha256": "5f47ae4f4a08d0a78dd681d58b290f3298744c73a82f1349f3e2853469ef73e6"
+      },
+      {
+        "bytes": 30087,
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/models/qwen3_next.py",
+        "sha256": "b0e0b96d08329e7ad91756eb67e8c4a9ad19ac0a38cbebbc3fbf13716ec424cd"
+      },
+      {
+        "bytes": 49389,
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/config.py",
+        "sha256": "4090ec9e367fee4344c9d06f12e083ff37df427784e6736847e092222c9e1415"
+      },
+      {
+        "bytes": 13957,
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/distributed/device_communicators/base_device_communicator.py",
+        "sha256": "19945f4d567280654e54099c23e61918a046c37515c4edc95ada720804aa5202"
+      },
+      {
+        "bytes": 18724,
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/model_executor/model_loader/default_loader.py",
+        "sha256": "5d120c07b8eb4d08ce1d4e9759b832a07086dcc78d0df4cefe9beb5c29b7de4e"
+      }
+    ],
+    "source_inspection_is_not_live_runtime_attestation": true,
+    "vllm_version": "0.25.0"
+  },
+  "measurement": {
+    "bandwidth_and_communication": {
+      "memory_utilization_is_activity_proxy_not_hbm_bytes_per_second": true,
+      "ncu_finalists_only_fixed_candidate": "direction_0_sign_positive",
+      "ncu_metrics": [
+        "dram__bytes_read.sum",
+        "dram__bytes_write.sum",
+        "dram__throughput.avg.pct_of_peak_sustained_elapsed",
+        "gpu__time_duration.sum"
+      ],
+      "ncu_profile_not_used_for_timing": true,
+      "nsys_gpu_metrics_dram_activity_proxy_required": true,
+      "nsys_nccl_message_bytes_and_duration_per_rank_required": true,
+      "nvml_gpu_memory_utilization_power_and_pcie_rx_tx_at_4hz": true,
+      "pcie_rx_tx_integrals_are_left_rectangle_estimates": true
+    },
+    "correctness": {
+      "all_candidate_and_restore_hashes_exact": true,
+      "all_rewards_finite": true,
+      "candidate_update_vector_cosine_min": 0.999,
+      "max_absolute_candidate_mean_logprob_delta_vs_control": 0.001,
+      "no_new_safety_failure": true,
+      "pair_difference_vector_pearson_min": 0.99,
+      "request_output_and_answer_token_counts_exact": true
+    },
+    "replication": {
+      "arm_order": [
+        [
+          "replicated_4xtp1_control",
+          "single_tp4_tensor_sharded",
+          "single_tp4_ep4_tp_collective",
+          "wide_dp4_tp1_ep4_agrs"
+        ],
+        [
+          "wide_dp4_tp1_ep4_agrs",
+          "replicated_4xtp1_control",
+          "single_tp4_tensor_sharded",
+          "single_tp4_ep4_tp_collective"
+        ],
+        [
+          "single_tp4_ep4_tp_collective",
+          "single_tp4_tensor_sharded",
+          "wide_dp4_tp1_ep4_agrs",
+          "replicated_4xtp1_control"
+        ]
+      ],
+      "fresh_process_replicates_per_admitted_arm": 3,
+      "same_candidate_order_inside_every_arm": true,
+      "timing_excludes_model_load_but_reports_load_separately": true,
+      "warmup_candidate_not_in_timing_or_quality_statistics": true
+    },
+    "throughput": {
+      "active_gpu_seconds_sum": true,
+      "aggregate_and_per_rank_generated_tokens_per_second": true,
+      "end_to_end_population_wall_seconds": true,
+      "materialize_restore_and_collective_time_seconds": true,
+      "per_candidate_p50_p95_max_latency_seconds": true,
+      "rollouts_per_gpu_second": true,
+      "signed_candidates_or_rollouts_per_second": true,
+      "teacher_forced_answer_tokens_per_second": true
+    },
+    "vram_and_cache": {
+      "adapter_and_runtime_scratch_bytes_per_rank": true,
+      "aggregate_peak_memory_used_mib": true,
+      "attention_kv_and_mamba_state_bytes_per_rank": true,
+      "kv_capacity_tokens_contexts_and_available_gib_per_rank": true,
+      "named_parameter_logical_and_storage_bytes_per_rank": true,
+      "per_rank_peak_and_phase_peak_memory_used_mib": true,
+      "physical_headroom_mib_per_rank": true
+    }
+  },
+  "purpose": "Compare four concurrent TP1 LoRA-ES actors with TP4 tensor sharding, TP-only EP4, and DP4/TP1 wide EP4 execution, preserving the exact candidate population and measuring whether VRAM savings offset collective traffic and lost candidate parallelism.",
+  "runtime_attestation": {
+    "collective_trace": {
+      "control_requires_zero_model_parallel_nccl_collective_bytes": true,
+      "nccl_trace_exact": "api,ce-coll,group,gpu",
+      "nsight_systems_available_path": "/usr/local/cuda/bin/nsys",
+      "profile_trace_exact": "cuda,nvtx,nccl,osrt",
+      "profiler_replicate_is_separate_from_timing_replicates": true,
+      "rank_collective_operation_count_size_bytes_and_duration_required": true,
+      "tp4_ep_requires_observed_tp_expert_output_collectives": true,
+      "tp4_ep_requires_zero_agrs_dispatch_and_combine_collectives": true,
+      "tp4_non_ep_requires_observed_tp_collectives": true,
+      "wide_dp4_ep_requires_observed_agrs_dispatch_and_combine_collectives": true
+    },
+    "fail_closed_before_first_generation": {
+      "attention_backend_exact": "TRITON_ATTN",
+      "forbid_any_fallback_warning_or_backend_substitution": true,
+      "model_config_sha256_exact": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+      "parallel_config_fields_equal_selected_arm": true,
+      "physical_gpu_ids_exact": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "quantization_exact": "fp8",
+      "resolved_all2all_backend_exact_no_rewrite": true,
+      "routed_moe_backend_exact": "TRITON",
+      "unique_worker_pid_and_cuda_device_per_rank": true,
+      "vllm_version_exact": "0.25.0",
+      "world_tp_dp_ep_rank_maps_complete_and_unique": true
+    },
+    "lora_identity_and_restore": {
+      "adapter_slot_ids_and_target_module_names_per_rank": true,
+      "all_rank_local_restore_certificates_required_before_next_candidate": true,
+      "candidate_runtime_must_differ_from_master": true,
+      "canonical_candidate_sha256_equal_across_all_rank_shards": true,
+      "canonical_fp32_master_restore_sha256_exact": true,
+      "gathered_runtime_bf16_values_restore_sha256_exact": true,
+      "poison_and_abort_on_partial_collective_or_hash_mismatch": true,
+      "rank_shard_offset_shape_dtype_numel_sha256_inventory": true,
+      "restore_after_every_signed_candidate": true
+    },
+    "model_and_rank_ownership": {
+      "attention_kv_heads_and_cache_block_shapes_per_rank": true,
+      "available_kv_gib_per_rank": true,
+      "ep_weight_filter_savings_must_not_be_claimed": true,
+      "expert_map_and_local_expert_range_per_layer_and_rank": true,
+      "fused_moe_parallel_config_per_layer_and_rank": true,
+      "global_parameter_names_and_logical_bytes_reconstructed_once": true,
+      "kv_cache_capacity_tokens_and_full_2048_contexts_per_rank": true,
+      "mamba_conv_and_ssm_state_dtype_shape_bytes_per_rank": true,
+      "named_parameter_name_dtype_shape_numel_bytes_per_rank": true,
+      "routed_layer_count_exact": 40,
+      "routed_layer_owner_records_per_rank_exact": 40,
+      "visual_or_mtp_parameter_count_exact": 0,
+      "w13_w2_dtype_shape_numel_storage_pointer_alias_audit": true
+    },
+    "useful_gpu_work": {
+      "actor_cuda_event_elapsed_positive_per_candidate_per_rank": true,
+      "all_four_physical_gpus_resident_and_foreign_pid_free": true,
+      "nvml_positive_gpu_or_memory_utilization_per_rank_per_wave": true,
+      "output_and_answer_token_cardinality_positive_per_candidate": true,
+      "phase_barrier_after_four_rank_receipts": true,
+      "resident_but_idle_rank_fails": true
+    }
+  },
+  "schema": "v82-qwen36-tp-ep-layout-comparison-preregistration",
+  "sealed_ancestry": {
+    "v66d_candidate_workload": {
+      "content_sha256": "2f8e23b643507b594b05719966da1b9bcc64a2b7f412021066df4c6418144531",
+      "file_sha256": "3269f7138d74266538cc3b0f31e1a904808f8f3751dde5a7a9456e93b13314b0",
+      "path": "experiments/eggroll_es_hpo/preregistrations/lora_es_mirrored_calibration_v66d.json"
+    },
+    "v79_fp8_runtime_and_v76_live_evidence": {
+      "content_sha256": "6c73ac0f6bf4019cdf297546e4315dc99b68d9549a24c03f4eaa9c8ebb589023",
+      "file_sha256": "0e195c05fd72e36656ee6536d6656d932aac0028fbbc7983f688df9dc7b18753",
+      "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_fp8_kv_capacity_matched_v79.json",
+      "v76_four_tp1_median_seconds": 48.512458409997635,
+      "v76_logical_parameter_bytes_per_actor": 35712084096,
+      "v76_peak_memory_used_mib_per_gpu": {
+        "0": 50858,
+        "1": 50858,
+        "2": 50858,
+        "3": 50858
+      },
+      "v79_is_preregistered_not_promoted": true
+    }
+  },
+  "selection_and_quality": {
+    "early_reject": {
+      "candidate_or_restore_identity_mismatch": "poison_run_and_reject_arm",
+      "correctness_threshold_failure": "reject_arm",
+      "idle_or_foreign_gpu_rank": "reject_replicate",
+      "oom_or_fallback": "reject_arm_without_retrying_a_different_backend",
+      "unsupported_or_resolved_backend_mismatch": "reject_before_generation"
+    },
+    "promotion": {
+      "default": false,
+      "no_retuning_after_protected_ood_open": true,
+      "production_layout_decision_remains_provisional": true,
+      "requires_system_semantic_and_ood_gates": true
+    },
+    "protected_ood_one_shot_after_layout_freeze": {
+      "no_new_safety_failure": true,
+      "no_retuning_after_open": true,
+      "one_shot_after_selection_freeze": true,
+      "paired_95pct_lower_bound_min": -0.005,
+      "worst_stratum_point_delta_min": -0.01
+    },
+    "source_disjoint_semantic": {
+      "mean_delta_min": -0.001,
+      "no_new_safety_failure": true,
+      "paired_95pct_lower_bound_min": -0.002,
+      "run_only_after_data_free_live_gates_pass": true,
+      "source_disjoint_paired_evaluation_required": true
+    },
+    "system_selection": {
+      "any_arm_with_point_throughput_below_control_is_slower_and_rejected": true,
+      "collective_bytes_and_hbm_metrics_reported_even_if_arm_rejected": true,
+      "compare_point_estimates_and_paired_95pct_bootstrap_intervals": true,
+      "per_gpu_peak_vram_reduction_fraction_min_for_memory_claim": 0.1,
+      "rollouts_per_gpu_second_paired_95pct_lower_ratio_min": 0.98,
+      "rollouts_per_gpu_second_point_ratio_vs_control_min": 1.0,
+      "winner_must_pass_every_identity_and_useful_gpu_gate": true
+    }
+  },
+  "status": "cpu_preregistered_live_launch_not_authorized"
+}
