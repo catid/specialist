@@ -1,0 +1,183 @@
+{
+  "applicability_gate": {
+    "close_not_applicable_if_final_training_uses_one_token_teacher_forced_scoring": true,
+    "production_hpo_cli_default_max_tokens": 32,
+    "v73b_v73d_cannot_measure_multistep_acceptance": true,
+    "v73b_v73d_max_tokens": 1,
+    "v73b_v73d_requests_per_candidate": 64
+  },
+  "authority": {
+    "cpu_source_and_metadata_inspection_only": true,
+    "dataset_prompt_protected_or_ood_rows_opened": false,
+    "gpu_or_model_launch_performed": false,
+    "hpo_quality_or_promotion_authorized": false,
+    "live_launch_authorized": false,
+    "model_adapter_checkpoint_or_site_package_modified": false,
+    "torch_vllm_or_ray_imported_by_builder": false
+  },
+  "bead": "specialist-0j5.38",
+  "candidate_isolation": {
+    "draft_and_target_kv_or_mamba_state_never_cross_candidate_identity": true,
+    "exact_lora_candidate_identity_before_every_request": true,
+    "exact_master_restore_and_terminal_poison_semantics_unchanged": true,
+    "new_request_ids_after_every_candidate_transition": true,
+    "prefix_cache_disabled_or_reset_after_every_in_place_adapter_change": true,
+    "silent_non_speculative_fallback_fails_closed": true,
+    "stale_adapter_or_cache_detection_fails_closed": true
+  },
+  "checkpoint_mtp_inventory": {
+    "baseline_live_mtp_named_parameter_count_per_actor": 0,
+    "bf16_mtp": {
+      "logical_bytes": 1689281536,
+      "manifest_sha256": "5fef680476646e7e5741671f9374cea9c873a8a5e9d4d13ece980e91c6b19f1c",
+      "tensor_count": 19
+    },
+    "checkpoint_native_mtp_layer_count": 1,
+    "incremental_live_vram_must_be_measured_not_assumed_from_checkpoint_bytes": true,
+    "serialized_fp8_mtp": {
+      "logical_bytes": 853668480,
+      "manifest_sha256": "d78589ff9b8b10d35d6289e2254e5890239dfeeba17f375289cdc596cae46118",
+      "physical_file_bytes": 853860608,
+      "tensor_count_including_quantization_metadata": 1560
+    },
+    "target_architecture": "Qwen3_5MoeForConditionalGeneration",
+    "target_layer_count": 40
+  },
+  "common_systems_workload": {
+    "detokenize": false,
+    "max_tokens": 32,
+    "min_tokens": 32,
+    "n": 1,
+    "no_prompt_answer_or_semantic_output_persisted": true,
+    "persist_only_token_hashes_and_aggregate_systems_metrics": true,
+    "prompt_count": 64,
+    "same_prompt_tokens_and_candidate_state_for_every_arm": true,
+    "source": "deterministic_content_free_token_id_panel",
+    "temperature": 0.0,
+    "top_p": 1.0
+  },
+  "content_sha256_before_self_field": "04225231b9be3b868f1c06a2a64cb7c7a8b7bd1468b11f179f9155415db545da",
+  "dependencies": {
+    "live_launch_waits_for": [
+      "specialist-0j5.15",
+      "specialist-0j5.17",
+      "specialist-0j5.32"
+    ],
+    "own_32_token_systems_contract_required_before_gpu_launch": true,
+    "v73d_only_validates_profiler_and_isolation_mechanics": true
+  },
+  "explicitly_rejected_in_first_screen": [
+    {
+      "arm": "external_neural_draft_model",
+      "reason": "adds unbounded model residency before native and model-free arms are measured"
+    },
+    {
+      "arm": "ngram_gpu",
+      "reason": "CPU ngram establishes acceptance before adding a GPU proposer and new residency"
+    },
+    {
+      "arm": "semantic_or_protected_data_during_systems_screen",
+      "reason": "systems acceptance uses a deterministic synthetic token-ID panel only"
+    }
+  ],
+  "hypothesis": "For multi-token ES generation, accepted draft tokens can reduce target forward passes and frozen-weight reads enough to improve rollout throughput.",
+  "installed_support_evidence": {
+    "file_sha256": {
+      "models/Qwen3.6-35B-A3B-FP8/config.json": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+      "models/Qwen3.6-35B-A3B-FP8/model.safetensors.index.json": "6f176f344e41d35b17af12904e33401da5ebff3b49fccb8bfa0185bc2d50f9d6",
+      "models/Qwen3.6-35B-A3B/config.json": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "models/Qwen3.6-35B-A3B/model.safetensors.index.json": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+      "qwen36_text_only_checkpoint_v78.json": "6666f6e485d4ae12796d1731af34131a717e1d76497cc49a028281628204ec4e",
+      "vllm-0.25.0.dist-info/METADATA": "8a317380a72e2a4e58f80188aacf0dca83c5ac2e1995063964b7eac27b7bab24",
+      "vllm/config/speculative.py": "3f1abd1ca3042fba239e7bf98b08f645f3e950c16ab510fbc99a49c5c507721f",
+      "vllm/lora/punica_wrapper/punica_gpu.py": "d0c8ce69191d733d479e50399bfc86d6b89a55915dda4dd0cf32b8921e32bf9d",
+      "vllm/model_executor/models/qwen3_5_mtp.py": "9b36e5bfcee4faf8d04319e069032c3c4a01c4aaf49f86108eca788038c0c7fd",
+      "vllm/v1/spec_decode/ngram_proposer.py": "5051e1bca645fe4befec0a6340f0dfc169fbcbe070ac1da508b72f8ee9c91736",
+      "vllm/v1/worker/gpu_model_runner.py": "6c92ded8468f44d6df863a617ce588f132fa6df7031feecc0cc421702a41610e"
+    },
+    "model_free_cpu_ngram_proposer_present": true,
+    "punica_lora_allocates_for_speculative_sample_rows": true,
+    "qwen3_5_moe_mtp_class_present": true,
+    "source_presence_is_not_live_compatibility_or_speed_evidence": true,
+    "target_checkpoint_mtp_autodetection_present": true,
+    "vllm_version": "0.25.0"
+  },
+  "later_quality_gate": {
+    "exact_same_decode_limits_and_stop_policy": true,
+    "one_shot_protected_ood_only_after_recipe_freeze": true,
+    "promotion_default": false,
+    "source_disjoint_multi_item_qa_dev_required": true,
+    "validation_and_ood_noninferiority_required": true
+  },
+  "measurement": {
+    "accepted_draft_tokens_and_acceptance_fraction": true,
+    "all_physical_gpu_ids_exact": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "cleanup_idle_and_no_foreign_pid_required": true,
+    "counterbalanced_pairs_per_arm_min": 3,
+    "exact_hbm_bytes_require_privileged_counter_or_equivalent_primary_measurement": true,
+    "incremental_named_parameter_and_allocator_vram_bytes": true,
+    "kv_and_mamba_cache_capacity_displacement_bytes": true,
+    "nsys_kernel_and_target_phase_timeline": true,
+    "profiler_run_cannot_establish_throughput": true,
+    "rollouts_per_gpu_second": true,
+    "steady_and_end_to_end_tokens_per_second": true,
+    "target_forward_pass_count": true,
+    "target_forwards_per_accepted_output_token": true,
+    "unprofiled_timing_control_required": true,
+    "utilization_percent_is_not_hbm_bytes": true
+  },
+  "model_family": "Qwen3.6-35B-A3B",
+  "prospective_systems_arms": [
+    {
+      "arm_id": "target_only_control",
+      "incremental_draft_checkpoint_bytes": 0,
+      "num_speculative_tokens": 0,
+      "speculative_config": null
+    },
+    {
+      "arm_id": "cpu_ngram_k4_n2to5",
+      "incremental_draft_checkpoint_bytes": 0,
+      "neural_draft_model_loaded": false,
+      "speculative_config": {
+        "method": "ngram",
+        "num_speculative_tokens": 4,
+        "prompt_lookup_max": 5,
+        "prompt_lookup_min": 2
+      }
+    },
+    {
+      "arm_id": "checkpoint_mtp_k1",
+      "checkpoint_native_mtp_layer_replays_per_step": 1,
+      "mamba_cache_mode": "align",
+      "speculative_config": {
+        "method": "mtp",
+        "num_speculative_tokens": 1
+      }
+    },
+    {
+      "arm_id": "checkpoint_mtp_k3",
+      "checkpoint_native_mtp_layer_replays_per_step": 3,
+      "mamba_cache_mode": "align",
+      "source_warns_acceptance_may_fall": true,
+      "speculative_config": {
+        "method": "mtp",
+        "num_speculative_tokens": 3
+      }
+    }
+  ],
+  "schema": "qwen36-exact-speculative-decode-preregistration-v84",
+  "status": "source_cpu_preregistered_live_launch_not_authorized",
+  "systems_selection": {
+    "accepted_draft_tokens_must_be_nonzero": true,
+    "no_pareto_gain_closes_task_not_applicable": true,
+    "output_token_hashes_must_match_target_only_under_greedy_contract": true,
+    "point_end_to_end_rollouts_per_gpu_second_must_exceed_control": true,
+    "systems_winner_is_not_quality_or_training_promotion": true,
+    "target_forward_passes_per_output_token_must_fall": true
+  }
+}
