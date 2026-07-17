@@ -1,0 +1,591 @@
+{
+  "candidate_count": 16,
+  "content_sha256_before_self_field": "14c7afe2fd370798a26641f6950e92592be67e5b2e2e5fabfc442b76462c2f99",
+  "gpu_launch_performed": false,
+  "protected_dev_ood_or_holdout_opened": false,
+  "rules": {
+    "cheap_every_transition": true,
+    "cheap_fields": [
+      "object",
+      "storage",
+      "pointer",
+      "metadata",
+      "version"
+    ],
+    "checkpoint_exact_boundary": true,
+    "commit_and_final_exact_boundaries": true,
+    "owned_master_identity_cached_without_validation_clone": true,
+    "reward_acceptance_after_exact_population_boundary": true,
+    "single_lora_d2h_for_equality_and_sha": true,
+    "unknown_or_partial_rpc_requires_exact_restore_or_poison": true,
+    "update_acceptance_after_exact_boundary": true
+  },
+  "schedule": [
+    {
+      "candidate": 0,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 0,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 0,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 0,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 0,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 1,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 1,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 1,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 1,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 1,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 2,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 2,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 2,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 2,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 2,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 3,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 3,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 3,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 3,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 3,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 4,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 4,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 4,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 4,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 4,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 5,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 5,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 5,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 5,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 5,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 6,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 6,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 6,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 6,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 6,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 7,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 7,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 7,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 7,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 7,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 8,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 8,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 8,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 8,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 8,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 9,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 9,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 9,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 9,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 9,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 10,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 10,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 10,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 10,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 10,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 11,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 11,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 11,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 11,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 11,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 12,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 12,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 12,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 12,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 12,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 13,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 13,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 13,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 13,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 13,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 14,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 14,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 14,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 14,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 14,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 15,
+      "edge": "materialize",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 15,
+      "edge": "pre_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 15,
+      "edge": "post_generation",
+      "event": "cheap_transition"
+    },
+    {
+      "candidate": 15,
+      "edge": "post_generation",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "candidate": 15,
+      "edge": "restore",
+      "event": "cheap_transition"
+    },
+    {
+      "boundary": "population_reward_acceptance",
+      "event": "exact_base"
+    },
+    {
+      "boundary": "population_reward_acceptance",
+      "event": "exact_master"
+    },
+    {
+      "candidate_count": 16,
+      "event": "reward_acceptance"
+    },
+    {
+      "boundary": "update_acceptance",
+      "event": "exact_base"
+    },
+    {
+      "boundary": "update_acceptance",
+      "event": "exact_master"
+    },
+    {
+      "event": "update_acceptance"
+    },
+    {
+      "acceptance": "provisional",
+      "event": "commit_state_write"
+    },
+    {
+      "boundary": "commit",
+      "event": "exact_base"
+    },
+    {
+      "boundary": "commit",
+      "event": "exact_master"
+    },
+    {
+      "boundary": "commit",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "event": "commit_acceptance"
+    },
+    {
+      "acceptance": "provisional",
+      "event": "final_state_write"
+    },
+    {
+      "boundary": "final",
+      "event": "exact_base"
+    },
+    {
+      "boundary": "final",
+      "event": "exact_master"
+    },
+    {
+      "boundary": "final",
+      "event": "exact_lora",
+      "single_d2h_readback": true
+    },
+    {
+      "event": "final_acceptance"
+    }
+  ],
+  "schedule_certificate": {
+    "candidate_count": 16,
+    "cheap_transition_checks": 64,
+    "commit_and_final_exact": true,
+    "exact_base_boundaries": [
+      "population_reward_acceptance",
+      "update_acceptance",
+      "commit",
+      "final"
+    ],
+    "passed": true,
+    "per_candidate_exact_lora_checks": 16,
+    "rewards_provisional_until_population_boundary": true,
+    "schedule_sha256": "cb812e19a7027c5c2c4b3b91a9abae004c62cf0b1cdea5ef9d3293f15b198862",
+    "schema": "eggroll-es-audit-schedule-certificate-v71",
+    "update_provisional_until_update_boundary": true
+  },
+  "schema": "eggroll-es-exact-audit-traffic-contract-v71",
+  "status": "cpu_contract_no_gpu_or_protected_access",
+  "traffic": {
+    "baseline": {
+      "base_d2h_bytes": 21735931904,
+      "base_exact_audits": 76,
+      "expected_value_concat_host_copy_bytes": 0,
+      "gpu_staging_read_write_bytes": 0,
+      "h2d_bytes": 433078272,
+      "lora_d2h_bytes": 1338605568,
+      "lora_d2h_calls": 136,
+      "master_validation_host_copy_bytes": 2028601344,
+      "peak_fused_staging_vram_bytes": 0,
+      "total_device_transfer_bytes": 23507615744,
+      "total_host_copy_or_device_transfer_bytes": 25536217088
+    },
+    "candidate_count": 16,
+    "candidates_per_actor": 4,
+    "constants": {
+      "base_bytes": 285999104,
+      "master_bytes": 18112512,
+      "runtime_lora_bytes": 9842688
+    },
+    "content_sha256_before_self_field": "a071a90624c2ca0e69d9d9ae451f43e5b0905ef5885e6d7fc448ccbcd0e02893",
+    "measured_v66d_current_path": {
+      "actor_count": 4,
+      "base_d2h_bytes": 17159946240,
+      "base_exact_audits": 60,
+      "base_plus_lora_d2h_bytes": 18341068800,
+      "candidate_count": 16,
+      "interpretation": "measured/code-ledger lower bound for the immutable V66d run; the safety-equivalent tables above include the new explicit reward/update/commit/final audit schedule",
+      "lora_equality_plus_sha_d2h_bytes": 1181122560,
+      "lora_equality_plus_sha_d2h_calls": 120,
+      "materialization_calls": 60,
+      "source": "experiments/eggroll_es_hpo/qwen36_v66d_phase_memory_analysis_v71_20260717.md"
+    },
+    "operation_counts": {
+      "baseline_candidate_master_validations": 112,
+      "exact_base_boundaries": 16,
+      "exact_base_boundaries_per_actor": 4,
+      "logical_lora_verifications": 68,
+      "materializations": 44
+    },
+    "proposed": {
+      "base_d2h_bytes": 4575985664,
+      "base_exact_audits": 16,
+      "expected_value_concat_host_copy_bytes": 0,
+      "gpu_staging_read_write_bytes": 1338605568,
+      "h2d_bytes": 433078272,
+      "lora_d2h_bytes": 669302784,
+      "lora_d2h_calls": 68,
+      "master_validation_host_copy_bytes": 0,
+      "peak_fused_staging_vram_bytes": 9842688,
+      "total_device_transfer_bytes": 5678366720,
+      "total_host_copy_or_device_transfer_bytes": 5678366720
+    },
+    "savings": {
+      "base_d2h_bytes": 17159946240,
+      "device_transfer_bytes": 17829249024,
+      "device_transfer_fraction": 0.7584456551511684,
+      "host_copy_or_device_transfer_bytes": 19857850368,
+      "host_copy_or_device_transfer_fraction": 0.7776347725885999,
+      "lora_d2h_bytes": 669302784,
+      "master_validation_host_copy_bytes": 2028601344
+    },
+    "schema": "eggroll-es-audit-byte-account-v71",
+    "scope": "aggregate across all actors for one mirrored population plus one update/commit/final lifecycle; audit/materialization traffic only; excludes generation, noise construction, collectives, and state-ownership copies",
+    "world_size": 4
+  },
+  "world_size": 4
+}
