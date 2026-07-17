@@ -32,6 +32,10 @@ OOD_PROSE_BOOTSTRAP_SEED = 20260714
 OOD_PROSE_DEFAULT_MAX_DEGRADATION = 0.02
 REWARD_POOL_SHUTDOWN_TIMEOUT_SECONDS = 10.0
 ACTOR_RPC_TIMEOUT_SECONDS = 300.0
+FULL_WEIGHT_WORKER_V1 = (
+    "eggroll_es_worker_fullweight_v1."
+    "CanonicalFullWeightWorkerExtensionV1"
+)
 
 
 class OODProseGateFailure(RuntimeError):
@@ -177,6 +181,59 @@ def assert_trainer_healthy(trainer, operation):
         raise RuntimeError(
             f"cannot {operation}: ES trainer state is poisoned"
         )
+
+
+def validate_full_weight_install_receipts(results, engine_count):
+    """Require TP=1 and identical canonical state on every outer engine."""
+    if (
+        isinstance(engine_count, bool)
+        or not isinstance(engine_count, int)
+        or engine_count <= 0
+        or not isinstance(results, list)
+        or len(results) != engine_count
+    ):
+        raise RuntimeError("full-weight installation result cardinality changed")
+    receipts = []
+    for engine_index, outer in enumerate(results):
+        if isinstance(outer, list):
+            if len(outer) != 1:
+                raise RuntimeError(
+                    "canonical full-weight v1 requires exactly one TP worker"
+                )
+            receipt = outer[0]
+        else:
+            receipt = outer
+        if (
+            not isinstance(receipt, dict)
+            or receipt.get("schema")
+            != "eggroll-es-canonical-full-weight-install-v1"
+            or receipt.get("installed") is not True
+        ):
+            raise RuntimeError("full-weight worker installation receipt is invalid")
+        communicator = receipt.get("communicator")
+        if (
+            not isinstance(communicator, dict)
+            or communicator.get("rank") != engine_index
+            or communicator.get("world_size") != engine_count
+            or communicator.get("tp_world_size") != 1
+        ):
+            raise RuntimeError("full-weight worker communicator identity changed")
+        receipts.append(receipt)
+    consensus_fields = (
+        "noise_schedule",
+        "manifest_sha256",
+        "master_generation",
+        "master_identity",
+        "runtime_identity",
+    )
+    reference = receipts[0]
+    for receipt in receipts[1:]:
+        for field in consensus_fields:
+            if receipt.get(field) != reference.get(field):
+                raise RuntimeError(
+                    f"full-weight canonical replica consensus failed: {field}"
+                )
+    return receipts
 
 
 def _ray_get_with_timeout(
@@ -762,7 +819,7 @@ def score_ood_prose(trainer, dataset, label, max_input_tokens):
 
 def load_trainer():
     """Load upstream with the minimum Qwen3.6/vLLM compatibility layer."""
-    pythonpath = [str(COMPAT), str(UPSTREAM)]
+    pythonpath = [str(ROOT), str(COMPAT), str(UPSTREAM)]
     if os.environ.get("PYTHONPATH"):
         pythonpath.append(os.environ["PYTHONPATH"])
     os.environ["PYTHONPATH"] = os.pathsep.join(pythonpath)
@@ -784,6 +841,29 @@ def load_trainer():
     )
 
     class Qwen36EvolutionStrategiesTrainer(EvolutionStrategiesTrainer):
+        def __init__(self, *args, **kwargs):
+            self._specialist_state_poisoned = False
+            try:
+                super().__init__(*args, **kwargs)
+                installed = bounded_ray_get(
+                    ray,
+                    [
+                        engine.collective_rpc.remote(
+                            "install_full_weight_master_v1", args=(),
+                        )
+                        for engine in self.engines
+                    ],
+                    "installing canonical FP32 full-weight masters",
+                )
+                self._full_weight_install_receipts = (
+                    validate_full_weight_install_receipts(
+                        installed, self.n_vllm_engines,
+                    )
+                )
+            except BaseException:
+                self._specialist_state_poisoned = True
+                raise
+
         def _postprocess_outputs(self, generated_text, target_text, eval=False):
             return safe_postprocess_outputs(
                 self, generated_text, target_text, eval=eval,
@@ -978,6 +1058,10 @@ def load_trainer():
         def launch_engines(self, num_engines=4, n_gpu_per_vllm_engine=1,
                            model_name="Qwen/Qwen2.5-Math-1.5B",
                            precision="bfloat16"):
+            if n_gpu_per_vllm_engine != 1:
+                raise ValueError(
+                    "canonical full-weight v1 requires TP=1 per engine"
+                )
             # Attach each resource before the next allocation can fail so the
             # partial-construction cleanup path can always target it.
             self.pgs = []
@@ -1002,7 +1086,7 @@ def load_trainer():
                 "model": model_name,
                 "tensor_parallel_size": n_gpu_per_vllm_engine,
                 "worker_extension_cls": (
-                    "es_at_scale.utils.worker_extension.WorkerExtension"
+                    FULL_WEIGHT_WORKER_V1
                 ),
                 "dtype": precision,
                 "enable_prefix_caching": False,
