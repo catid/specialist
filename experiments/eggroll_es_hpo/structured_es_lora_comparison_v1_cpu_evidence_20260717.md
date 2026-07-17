@@ -1,7 +1,7 @@
 # Structured EGGROLL-ES perturbation oracle and LoRA comparison: CPU evidence
 
-Date: 2026-07-17 UTC  
-Bead: `specialist-0j5.9`  
+Date: 2026-07-17 UTC
+Bead: `specialist-0j5.9`
 Status: CPU correctness complete; runtime dependencies pending; no launch authorized
 
 ## Outcome

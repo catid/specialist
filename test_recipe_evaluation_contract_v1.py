@@ -272,4 +272,3 @@ def test_terminal_receipt_rejects_raw_or_per_item_content():
 def test_persisted_preregistration_matches_rebuild_when_present():
     if subject.CONTRACT.exists():
         assert json.loads(subject.CONTRACT.read_text()) == subject.build_contract()
-
