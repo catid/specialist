@@ -1,0 +1,669 @@
+{
+  "authority": {
+    "checkpoint_or_model_update_performed": false,
+    "model_or_dataset_loaded": false,
+    "protected_evaluation_opened": false,
+    "quality_hpo_or_recipe_promotion_authorized": false
+  },
+  "content_sha256_before_self_field": "d12d9f6f275e611f6a7554a1ec08cb37e08968839a417d62d44395b4cb26ba44",
+  "materialize_iterations": 80000,
+  "physical_gpu_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "ranks": [
+    {
+      "aggregate_output_checksum": 43.90633773803711,
+      "bf16_bytes_per_transition": 9056256,
+      "element_count": 4528128,
+      "flat_and_tensorwise_output_exact": true,
+      "fp32_bytes_per_transition": 18112512,
+      "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+      "peak_allocated_bytes": 156246016,
+      "peak_reserved_bytes": 163577856,
+      "physical_gpu_id": 0,
+      "rank": 0,
+      "repeats": [
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 965.1658325195312,
+            "iterations": 80000,
+            "wall_elapsed_ms": 965.190882
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24227.068359375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24227.177087
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19113.359375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19113.43291
+          },
+          "repeat": 0,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27517.240234375,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27517.365226
+          }
+        },
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 972.5698852539062,
+            "iterations": 80000,
+            "wall_elapsed_ms": 972.589076
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24250.322265625,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24250.403978
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19105.8828125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19105.971545
+          },
+          "repeat": 1,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27305.173828125,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27305.257107
+          }
+        },
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 984.4727783203125,
+            "iterations": 80000,
+            "wall_elapsed_ms": 984.48887
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24198.810546875,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24198.867957
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19126.443359375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19126.48777
+          },
+          "repeat": 2,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27458.203125,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27458.268481
+          }
+        },
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 983.5343627929688,
+            "iterations": 80000,
+            "wall_elapsed_ms": 983.547491
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24173.73828125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24173.778179
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19117.7734375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19117.821154
+          },
+          "repeat": 3,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27495.373046875,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27495.402749
+          }
+        },
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 988.8574829101562,
+            "iterations": 80000,
+            "wall_elapsed_ms": 988.873406
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24211.302734375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24211.322138
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19122.84375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19122.863295
+          },
+          "repeat": 4,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27399.203125,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27399.237958
+          }
+        }
+      ],
+      "staged_adapter_weights_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+      "tensor_count": 70
+    },
+    {
+      "aggregate_output_checksum": 43.619911193847656,
+      "bf16_bytes_per_transition": 9056256,
+      "element_count": 4528128,
+      "flat_and_tensorwise_output_exact": true,
+      "fp32_bytes_per_transition": 18112512,
+      "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+      "peak_allocated_bytes": 156246016,
+      "peak_reserved_bytes": 163577856,
+      "physical_gpu_id": 1,
+      "rank": 1,
+      "repeats": [
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 939.828125,
+            "iterations": 80000,
+            "wall_elapsed_ms": 939.850454
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24392.876953125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24392.945016
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19152.333984375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19152.396167
+          },
+          "repeat": 0,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27304.740234375,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27304.842671
+          }
+        },
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 943.2528686523438,
+            "iterations": 80000,
+            "wall_elapsed_ms": 943.274693
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24254.65234375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24254.732385
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19100.138671875,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19100.20398
+          },
+          "repeat": 1,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27359.064453125,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27359.173993
+          }
+        },
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 943.9269409179688,
+            "iterations": 80000,
+            "wall_elapsed_ms": 943.945289
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24466.751953125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24466.867056
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19090.796875,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19090.890365
+          },
+          "repeat": 2,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27295.65625,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27295.788842
+          }
+        },
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 946.3797607421875,
+            "iterations": 80000,
+            "wall_elapsed_ms": 946.396607
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24288.84765625,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24288.941028
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19099.82421875,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19099.906161
+          },
+          "repeat": 3,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27374.58984375,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27374.710259
+          }
+        },
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 946.251953125,
+            "iterations": 80000,
+            "wall_elapsed_ms": 946.269456
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24401.82421875,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24401.942619
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19098.810546875,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19098.915944
+          },
+          "repeat": 4,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27326.65625,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27326.792674
+          }
+        }
+      ],
+      "staged_adapter_weights_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+      "tensor_count": 70
+    },
+    {
+      "aggregate_output_checksum": 43.228271484375,
+      "bf16_bytes_per_transition": 9056256,
+      "element_count": 4528128,
+      "flat_and_tensorwise_output_exact": true,
+      "fp32_bytes_per_transition": 18112512,
+      "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+      "peak_allocated_bytes": 156246016,
+      "peak_reserved_bytes": 163577856,
+      "physical_gpu_id": 2,
+      "rank": 2,
+      "repeats": [
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 967.823974609375,
+            "iterations": 80000,
+            "wall_elapsed_ms": 967.843435
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24221.39453125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24221.498937
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19079.01953125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19079.09204
+          },
+          "repeat": 0,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 28393.865234375,
+            "iterations": 80000,
+            "wall_elapsed_ms": 28394.00086
+          }
+        },
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 975.870849609375,
+            "iterations": 80000,
+            "wall_elapsed_ms": 975.891871
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24248.927734375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24249.049944
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19071.51171875,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19071.621318
+          },
+          "repeat": 1,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 28069.21875,
+            "iterations": 80000,
+            "wall_elapsed_ms": 28069.356311
+          }
+        },
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 985.6536254882812,
+            "iterations": 80000,
+            "wall_elapsed_ms": 985.669892
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24198.759765625,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24198.860967
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19084.2265625,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19084.309112
+          },
+          "repeat": 2,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 28125.712890625,
+            "iterations": 80000,
+            "wall_elapsed_ms": 28125.844733
+          }
+        },
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 986.0406494140625,
+            "iterations": 80000,
+            "wall_elapsed_ms": 986.05733
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24173.666015625,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24173.769677
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19079.626953125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19079.730536
+          },
+          "repeat": 3,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 28063.1171875,
+            "iterations": 80000,
+            "wall_elapsed_ms": 28063.220946
+          }
+        },
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 990.7037353515625,
+            "iterations": 80000,
+            "wall_elapsed_ms": 990.719944
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24211.236328125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24211.315508
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19077.0703125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19077.1394
+          },
+          "repeat": 4,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 28341.90234375,
+            "iterations": 80000,
+            "wall_elapsed_ms": 28342.012593
+          }
+        }
+      ],
+      "staged_adapter_weights_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+      "tensor_count": 70
+    },
+    {
+      "aggregate_output_checksum": 43.80490493774414,
+      "bf16_bytes_per_transition": 9056256,
+      "element_count": 4528128,
+      "flat_and_tensorwise_output_exact": true,
+      "fp32_bytes_per_transition": 18112512,
+      "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+      "peak_allocated_bytes": 156246016,
+      "peak_reserved_bytes": 163577856,
+      "physical_gpu_id": 3,
+      "rank": 3,
+      "repeats": [
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 960.5648193359375,
+            "iterations": 80000,
+            "wall_elapsed_ms": 960.58632
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24396.83984375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24396.951733
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19093.068359375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19093.172174
+          },
+          "repeat": 0,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27332.01171875,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27332.156417
+          }
+        },
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 976.1929321289062,
+            "iterations": 80000,
+            "wall_elapsed_ms": 976.21202
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24254.623046875,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24254.72917
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19126.607421875,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19126.693682
+          },
+          "repeat": 1,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27387.400390625,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27387.539768
+          }
+        },
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 977.3565063476562,
+            "iterations": 80000,
+            "wall_elapsed_ms": 977.375441
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24466.759765625,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24466.872905
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19105.8984375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19106.000554
+          },
+          "repeat": 2,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27370.3515625,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27370.47406
+          }
+        },
+        {
+          "arm_order": [
+            "pageable_sync_h2d",
+            "pinned_nonblocking_h2d",
+            "tensorwise_gpu_materialize",
+            "flat_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 982.0950927734375,
+            "iterations": 80000,
+            "wall_elapsed_ms": 982.112682
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24288.853515625,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24288.937542
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19111.802734375,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19111.877702
+          },
+          "repeat": 3,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27365.78125,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27365.896885
+          }
+        },
+        {
+          "arm_order": [
+            "pinned_nonblocking_h2d",
+            "pageable_sync_h2d",
+            "flat_gpu_materialize",
+            "tensorwise_gpu_materialize"
+          ],
+          "flat_gpu_materialize": {
+            "cuda_elapsed_ms": 981.5529174804688,
+            "iterations": 80000,
+            "wall_elapsed_ms": 981.571098
+          },
+          "pageable_sync_h2d": {
+            "cuda_elapsed_ms": 24401.83203125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 24401.93703
+          },
+          "pinned_nonblocking_h2d": {
+            "cuda_elapsed_ms": 19103.125,
+            "iterations": 20000,
+            "wall_elapsed_ms": 19103.21303
+          },
+          "repeat": 4,
+          "tensorwise_gpu_materialize": {
+            "cuda_elapsed_ms": 27370.23046875,
+            "iterations": 80000,
+            "wall_elapsed_ms": 27370.345723
+          }
+        }
+      ],
+      "staged_adapter_weights_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+      "tensor_count": 70
+    }
+  ],
+  "repeats": 5,
+  "schema": "qwen36-v73f-lora-hbm-transport-exploratory-v1",
+  "sigma": 0.0006,
+  "status": "complete_systems_only_nonpromotable",
+  "transport_iterations": 20000,
+  "warmup": 20,
+  "world_size": 4
+}
