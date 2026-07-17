@@ -1,0 +1,820 @@
+{
+  "accepted_unprofiled_control": {
+    "actor_work_log": {
+      "file_sha256": "30df82d21b28c7d5c94ede785c69c10896bad9d07db52ccf065e3031181d7013",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73b_lora_es_same_live_qwen36_calibration/actor_cuda_work_receipts_v73b.jsonl"
+    },
+    "audit_traffic": {
+      "file_sha256": "388fb6f544254c94e0c0ae11956932757834894103784f9e43d6b76e1bb3cb20",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73b_lora_es_same_live_qwen36_calibration/exact_audit_traffic_v73b.json"
+    },
+    "charged_gpu_seconds": 374.311489152,
+    "postrun": {
+      "content_sha256": "21689f75ecaaf583aedde50ad293ce3a9b5644009d62c2bc4624637280a651e7",
+      "file_sha256": "d65be30ec769e8a18ce75a3ffc0aab5624cec35f909732e8082a4836c63140c4",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/qwen36_v73b_lora_calibration_postrun_20260717.json"
+    },
+    "preregistration": {
+      "file_sha256": "9c5ce43c36e08e038ee33e86380ab6c287ae1b4bcba4c80def623daeb00f7ed9",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/lora_es_v71_v72_same_live_calibration_v73b.json"
+    },
+    "run_report": {
+      "file_sha256": "ba1b0a76dd0a9955b5e3f779d1ef440037b12b4689b3b1ab640d1ee1a4cff44a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73b_lora_es_same_live_qwen36_calibration/mirrored_calibration_report_v73b.json"
+    },
+    "unprofiled_timing_control_only": true,
+    "wall_runtime_seconds": 127.27351227600593
+  },
+  "arms": {
+    "hbm_metrics": {
+      "artifacts": {
+        "actor_cuda_work_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/actor_cuda_work_receipts_v73d.jsonl",
+        "application_attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase.attempt.json",
+        "audit_traffic": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/exact_audit_traffic_v73d.json",
+        "equivalence": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/same_live_equivalence_v73d.json",
+        "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/failure_v73d.json",
+        "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/gpu_activity_v73d.jsonl",
+        "host_process_samples": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/host_process_samples_v73d.jsonl",
+        "host_process_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/host_process_summary_v73d.json",
+        "nccl_debug_pattern": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/nccl_debug.*.log",
+        "nsys_report": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase.nsys-rep",
+        "path_guard_receipt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/systems_only_path_guard_v73d.json",
+        "phase_receipt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/exact_phase_ranges_v73d.json",
+        "population": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/mirrored_population_v73d.json",
+        "profile_analysis": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/profile_analysis_v73d.json",
+        "profile_attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/.v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase.attempt.json",
+        "profile_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase",
+        "profile_failure": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/profile_failure_v73d.json",
+        "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/mirrored_calibration_report_v73d.json",
+        "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase",
+        "sqlite_export": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase.sqlite",
+        "update": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/pair_difference_update_v73d.json"
+      },
+      "command_template_after_future_reseal": [
+        "/usr/bin/bash",
+        "--noprofile",
+        "--norc",
+        "-i",
+        "-c",
+        "source \"$HOME/.bashrc\" >/dev/null 2>&1 && exec \"$@\"",
+        "v73d-nsys-launch",
+        "/usr/local/cuda/bin/nsys",
+        "profile",
+        "--trace=cuda,nvtx,nccl",
+        "--nccl-trace=none",
+        "--cuda-trace-scope=process-tree",
+        "--cuda-memory-usage=true",
+        "--cuda-event-trace=false",
+        "--cuda-graph-trace=graph",
+        "--sample=none",
+        "--cpuctxsw=none",
+        "--backtrace=none",
+        "--python-sampling=false",
+        "--python-backtrace=none",
+        "--pytorch=none",
+        "--discard-environment=true",
+        "--force-overwrite=false",
+        "--export=sqlite",
+        "--stats=false",
+        "--show-output=false",
+        "--wait=all",
+        "--gpu-metrics-devices=all",
+        "--gpu-metrics-set=gb20x-top",
+        "--gpu-metrics-frequency=10000",
+        "--output=/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase",
+        "/usr/bin/env",
+        "PYTHONPATH=/home/catid/specialist/v73d_sitecustomize:/home/catid/specialist",
+        "SPECIALIST_V73D_SYSTEMS_ONLY_GUARD=1",
+        "NCCL_DEBUG=INFO",
+        "NCCL_DEBUG_SUBSYS=INIT,GRAPH,COLL",
+        "NCCL_DEBUG_FILE=/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_hbm_metrics_lora_es_same_live_qwen36_exact_phase/nccl_debug.%h.%p.log",
+        "/home/catid/specialist/es-at-scale/.venv/bin/python",
+        "/home/catid/specialist/run_lora_es_v71_v72_profile_calibration_v73d.py",
+        "--preregistration",
+        "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/qwen36_v73d_exact_phase_profiler.json",
+        "--preregistration-sha256",
+        "<PREREGISTRATION_FILE_SHA256>",
+        "--preregistration-content-sha256",
+        "<PREREGISTRATION_CONTENT_SHA256>",
+        "--arm",
+        "hbm_metrics",
+        "--execute"
+      ],
+      "command_template_sha256": "cd8ff5567235e2f8c29b2b671ba990946cc16a1352103ccbc3ee7998f2b2a9b2",
+      "current_launcher_behavior": "reject_before_directory_creation_subprocess_model_ray_or_gpu_work",
+      "launch_authorized_by_this_file_after_identity_checks": false,
+      "observed_driver_parameter": {
+        "field": "RmProfilingAdminOnly",
+        "path": "/proc/driver/nvidia/params",
+        "value": 1
+      },
+      "observed_tool_failure_class": "ERR_NVGPUCTRPERM",
+      "requires_admin_or_privilege_change": true,
+      "status": "blocked_before_launch_by_driver_profiling_permission",
+      "unblock_protocol": [
+        "administrator_changes_profiling_permission_outside_this_agent",
+        "rerun_read_only_metric_availability_probe",
+        "create_new_additive_preregistration_with_exact_metric_set",
+        "retain_separate_unprofiled_V73B_timing_control",
+        "launch_only_after_new_preregistration_is_committed"
+      ],
+      "utilization_percent_must_not_be_converted_to_hbm_bytes": true
+    },
+    "timeline": {
+      "artifacts": {
+        "actor_cuda_work_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/actor_cuda_work_receipts_v73d.jsonl",
+        "application_attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v73d_timeline_lora_es_same_live_qwen36_exact_phase.attempt.json",
+        "audit_traffic": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/exact_audit_traffic_v73d.json",
+        "equivalence": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/same_live_equivalence_v73d.json",
+        "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/failure_v73d.json",
+        "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/gpu_activity_v73d.jsonl",
+        "host_process_samples": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/host_process_samples_v73d.jsonl",
+        "host_process_summary": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/host_process_summary_v73d.json",
+        "nccl_debug_pattern": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/nccl_debug.*.log",
+        "nsys_report": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/v73d_timeline_lora_es_same_live_qwen36_exact_phase.nsys-rep",
+        "path_guard_receipt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/systems_only_path_guard_v73d.json",
+        "phase_receipt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/exact_phase_ranges_v73d.json",
+        "population": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/mirrored_population_v73d.json",
+        "profile_analysis": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/profile_analysis_v73d.json",
+        "profile_attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/.v73d_timeline_lora_es_same_live_qwen36_exact_phase.attempt.json",
+        "profile_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase",
+        "profile_failure": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/profile_failure_v73d.json",
+        "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/mirrored_calibration_report_v73d.json",
+        "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase",
+        "sqlite_export": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/v73d_timeline_lora_es_same_live_qwen36_exact_phase.sqlite",
+        "update": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/pair_difference_update_v73d.json"
+      },
+      "command_template": [
+        "/usr/bin/bash",
+        "--noprofile",
+        "--norc",
+        "-i",
+        "-c",
+        "source \"$HOME/.bashrc\" >/dev/null 2>&1 && exec \"$@\"",
+        "v73d-nsys-launch",
+        "/usr/local/cuda/bin/nsys",
+        "profile",
+        "--trace=cuda,nvtx,nccl",
+        "--nccl-trace=none",
+        "--cuda-trace-scope=process-tree",
+        "--cuda-memory-usage=true",
+        "--cuda-event-trace=false",
+        "--cuda-graph-trace=graph",
+        "--sample=none",
+        "--cpuctxsw=none",
+        "--backtrace=none",
+        "--python-sampling=false",
+        "--python-backtrace=none",
+        "--pytorch=none",
+        "--discard-environment=true",
+        "--force-overwrite=false",
+        "--export=sqlite",
+        "--stats=false",
+        "--show-output=false",
+        "--wait=all",
+        "--output=/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/v73d_timeline_lora_es_same_live_qwen36_exact_phase",
+        "/usr/bin/env",
+        "PYTHONPATH=/home/catid/specialist/v73d_sitecustomize:/home/catid/specialist",
+        "SPECIALIST_V73D_SYSTEMS_ONLY_GUARD=1",
+        "NCCL_DEBUG=INFO",
+        "NCCL_DEBUG_SUBSYS=INIT,GRAPH,COLL",
+        "NCCL_DEBUG_FILE=/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/nccl_debug.%h.%p.log",
+        "/home/catid/specialist/es-at-scale/.venv/bin/python",
+        "/home/catid/specialist/run_lora_es_v71_v72_profile_calibration_v73d.py",
+        "--preregistration",
+        "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/qwen36_v73d_exact_phase_profiler.json",
+        "--preregistration-sha256",
+        "<PREREGISTRATION_FILE_SHA256>",
+        "--preregistration-content-sha256",
+        "<PREREGISTRATION_CONTENT_SHA256>",
+        "--arm",
+        "timeline",
+        "--execute"
+      ],
+      "command_template_sha256": "1ca7f2bf9c5d187ba1b42c90d8d43e1ebb310d9ee21cf7e6dba18c5378d18bb7",
+      "launch_authorized_by_this_file_after_identity_checks": true,
+      "measurements": {
+        "actual_link_path_or_link_only_time_measured": false,
+        "cuda_allocation_events_and_peak_by_exact_phase_and_gpu": true,
+        "cuda_kernel_count_and_duration_by_exact_phase_and_gpu": true,
+        "cuda_memcpy_bytes_count_and_duration_by_exact_phase_and_gpu": true,
+        "explicit_nccl_named_kernel_duration_reported_if_available": true,
+        "hbm_or_dram_bandwidth": "not_collected_in_this_arm",
+        "logical_collective_payload_bytes_from_exact_v72_receipt": true,
+        "missing_symbol_or_range_classification": "unavailable_not_inferred",
+        "nccl_api_duration_by_exact_phase": true,
+        "nccl_api_ranges_grouped_by_exact_pid_text_and_phase": true,
+        "nccl_gpu_duration_separately_projected": false,
+        "nccl_gpu_work_is_inclusive_in_cuda_kernel_timeline": true,
+        "nccl_trace_mode": "legacy_NVTX_API_ranges",
+        "pack_flatten_or_materialize_named_kernel_duration_reported_if_available": true,
+        "physical_nccl_link_bytes_inferred_from_algorithm": false,
+        "seventy_tensor_call_count_is_reported_not_assumed": true
+      },
+      "requires_admin_or_privilege_change": false,
+      "status": "prospectively_sealed_runnable_after_preregistration_commit"
+    }
+  },
+  "bead": "specialist-nen.33",
+  "content_sha256_before_self_field": "512287c5a438cd1a22b099f61fe55e777de86a71b52555b49a47959425deb740",
+  "exact_lora_collective_geometry": {
+    "canonical_fp32_element_count": 4528128,
+    "canonical_fp32_tensor_count": 70,
+    "legacy_full_weight_23_tensor_geometry_used": false,
+    "logical_payload_bytes_all_four_ranks": 72450048,
+    "logical_payload_bytes_per_rank": 18112512,
+    "nominal_ring_schedule_bytes_per_rank": 27168768,
+    "nominal_ring_schedule_is_not_measured_physical_link_bytes": true,
+    "v71_sampled_pcie_rx_attributed_to_this_collective": false
+  },
+  "immutable_v73c_attempt_1_predecessor": {
+    "artifacts_must_not_be_deleted_modified_or_reused": true,
+    "controller_sitecustomize_succeeded": true,
+    "failure_actor_pid": 1416807,
+    "failure_cause": "actor_guard_not_installed_before_v72_import",
+    "final_all_four_gpus_idle": true,
+    "legacy_reserved_wall_gpu_seconds": 174.47963698,
+    "legacy_reserved_wall_not_accepted_as_model_resident_or_useful": true,
+    "nsys_report": {
+      "file_sha256": "dbdce8049120ed3ffc61834497dd5f52546d07a6d53bc54c9b0c123acfeaf53e",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73c_timeline_lora_es_same_live_qwen36_exact_phase/v73c_timeline_lora_es_same_live_qwen36_exact_phase.nsys-rep"
+    },
+    "partial_actor_cuda_receipt_count": 0,
+    "partial_phase_receipt": {
+      "content_sha256": "25155879eca87b08180651c456b7c7ab74e1c0dd2a3f61ad80f5bb422449a38d",
+      "file_sha256": "ad6f0c23b478b5688d92b0dde4f7acc0a17eace68f277cdf1dec90ecf3469b91",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73c_timeline_lora_es_same_live_qwen36_exact_phase/exact_phase_ranges_v73c.json"
+    },
+    "preregistration": {
+      "content_sha256": "6ea79bd1e948f728af0f93087d0e28ad576cef62bfc04be79180f30a0a93785a",
+      "file_sha256": "b134a263b1548905d8f9c2373d9f8a8dd79ec2ba74808a5ca23c84f31dc71983",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/qwen36_v73c_exact_phase_profiler.json"
+    },
+    "profile_attempt": {
+      "content_sha256": "a3c0a4fdf829848580aed8fc9e7e2af05b2904eda250e30c234220dd3a63f24b",
+      "file_sha256": "724b60b6ce33c85e129e5000e1753d8ebd25615f7ede97a17888533397785baf",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/.v73c_timeline_lora_es_same_live_qwen36_exact_phase.attempt.json"
+    },
+    "profile_failure": {
+      "content_sha256": "fceaf41c3d8e9a09b20e86d554b3cb8b59d97488f7cd8c083e8ec7048013422a",
+      "file_sha256": "ae76cdcf38a71ac7e27035a38d48867a91ed68248c91ef4535ce25b0d79a0c17",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73c_timeline_lora_es_same_live_qwen36_exact_phase/profile_failure_v73c.json"
+    },
+    "promotion_charged_gpu_seconds": 0,
+    "protected_or_semantic_data_opened": false,
+    "ray_actor_sitecustomize_assumption_invalid": true,
+    "run_attempt": {
+      "content_sha256": "28dce8692c500ae902993773247d5e7be3153e1aa216fc8a9d00191d9fe4c145",
+      "file_sha256": "f73fd75b1a9780b2b8a46e7efebf3f514e7b9fb7723df8be2c4ca78c2db9e6b5",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v73c_timeline_lora_es_same_live_qwen36_exact_phase.attempt.json"
+    },
+    "run_failure": {
+      "content_sha256": "a5eb95f7d987112dec0a71683d668d0369a56d7a7838e66c986bf6132cafed4d",
+      "file_sha256": "5708f456e7736944b7304c5a17486b82c15c5a451a51679734ff00e86cdefef7",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73c_timeline_lora_es_same_live_qwen36_exact_phase/failure_v73c.json"
+    },
+    "sqlite_export": {
+      "file_sha256": "73afe6d1f68f0c906224947781a236681ce4799d60a32da9cc7075dd66d4dc7d",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73c_timeline_lora_es_same_live_qwen36_exact_phase/v73c_timeline_lora_es_same_live_qwen36_exact_phase.sqlite"
+    },
+    "status": "immutable_failed_closed_actor_sitecustomize_assumption",
+    "v73c_sealed_source_commit": "35d2837d1632a2b642ad9df15a7eb610d47cdc34"
+  },
+  "implementation_bindings": {
+    "builder": {
+      "file_sha256": "10971a34e75ff45e57e6884357cbe9055e45c17e405913139dba7d9cb7d37562",
+      "path": "/home/catid/specialist/build_qwen36_v73d_exact_phase_profiler_preregistration.py"
+    },
+    "profile_launcher_and_analyzer": {
+      "file_sha256": "909413fde3dd1c109ec6a8ee491ae0353a871b5f35342d7f0333b4c6bd84eca4",
+      "path": "/home/catid/specialist/run_qwen36_v73d_exact_phase_profiler.py"
+    },
+    "quarantine_boundary_registry_builder": {
+      "file_sha256": "e217bf08bd8884ef223ebaa35a7ca7490447ca458af4cba9270725945fa5ccc9",
+      "path": "/home/catid/specialist/build_quarantine_boundary_registry_v3.py"
+    },
+    "runtime_contract": {
+      "file_sha256": "1c972cc1f1e24903847f8d80eef6090c97d6b08a69dd26ba9fcb564485f10cf0",
+      "path": "/home/catid/specialist/qwen36_v73d_exact_phase_profiler_contract.py"
+    },
+    "systems_only_path_guard": {
+      "file_sha256": "750a445693425cb859bd4a632f14cad98799df7f969d833458282efa9e9c481c",
+      "path": "/home/catid/specialist/v73d_sitecustomize/v73d_path_open_guard.py"
+    },
+    "systems_only_sitecustomize": {
+      "file_sha256": "9efa5ff11293f64dc911268f72fd6d47a53ed31cf47515f1b87b810c61220bfe",
+      "path": "/home/catid/specialist/v73d_sitecustomize/sitecustomize.py"
+    },
+    "systems_only_worker": {
+      "file_sha256": "90acfa98c43c5ce7ed1b92d239cf24e2fba9870214fafb2b6befa8e2dfaece89",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v73d.py"
+    },
+    "target_runner": {
+      "file_sha256": "189fa0649a2c5e36cd8a3b539927d114aed38b92c831d1a88f2e066dd188a45c",
+      "path": "/home/catid/specialist/run_lora_es_v71_v72_profile_calibration_v73d.py"
+    },
+    "v41a_canonical_lora_geometry": {
+      "file_sha256": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v41a.py"
+    },
+    "v71_worker": {
+      "file_sha256": "6167ecd24332e0384e50f4bfa34893112623c2291f35e89989d8c3a527b9fcaa",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v71.py"
+    },
+    "v72_host_state_geometry": {
+      "file_sha256": "33bb0312136248cf01afa927c70a1ed22af64f10a26b9668cf3afd9570571e66",
+      "path": "/home/catid/specialist/eggroll_es_host_state_contract_v72.py"
+    },
+    "v72_worker": {
+      "file_sha256": "547d525edfd51412abb3a4980ddc4a55730ad0eb09987ec202ce2ce8f701a2c2",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v72.py"
+    },
+    "v73_adapter": {
+      "file_sha256": "b579ac417d88aa9bf9eead5635d1454045451b6ba9fbe383569f4b2e2530260b",
+      "path": "/home/catid/specialist/run_lora_es_v71_v72_live_calibration_v73.py"
+    },
+    "v73b_builder": {
+      "file_sha256": "b72dc4a134853484e556f09bc9e5eed22cccc9c5fb7bdb2aff5ec2e73b57669f",
+      "path": "/home/catid/specialist/build_lora_es_v71_v72_same_live_preregistration_v73b.py"
+    },
+    "v73b_runner": {
+      "file_sha256": "8e6b00adcfcdb81c81a9bb78032e993114203660af526026350a298a9a4320db",
+      "path": "/home/catid/specialist/run_lora_es_v71_v72_same_live_calibration_v73b.py"
+    }
+  },
+  "launch_policy": {
+    "expanded_argv_sha256_attested_to_target": true,
+    "fixed_bash_exec_wrapper": true,
+    "force_overwrite": false,
+    "fresh_output_paths": true,
+    "hbm_arm_can_run_under_current_contract": false,
+    "host_privilege_modification_authorized": false,
+    "prelaunch_four_gpu_identity_idle_and_no_compute_process_gate": true,
+    "prelaunch_gate_recorded_before_nsys_process_creation": true,
+    "source_bashrc_before_nsys_exec": true,
+    "subprocess_shell_flag": false,
+    "timeline_arm_can_run_only_after_this_artifact_is_sealed": true
+  },
+  "no_semantic_evaluation_contract": {
+    "checkpoint_snapshot_commit_or_promotion_authorized": false,
+    "cpu_and_python_sampling_disabled": true,
+    "discard_environment_from_nsys_report": true,
+    "historical_reward_values": "diagnostic_only_no_tolerance",
+    "os_runtime_file_trace_disabled": true,
+    "process_stream_table_must_be_empty": true,
+    "protected_dev_ood_or_holdout_opened": false,
+    "raw_prompts_questions_answers_or_outputs_persisted": false,
+    "same_live_dual_compiler_and_four_actor_consensus_required": true,
+    "semantic_quality_selection_or_hpo": false,
+    "target_stdout_and_stderr_redirected_to_devnull_before_workload": true,
+    "trace_payload": "phase_labels_kernel_symbols_cuda_api_memcpy_sizes_allocation_events_and_nccl_metadata_only",
+    "train_only_panel_and_reward_path_identical_to_v73b": true
+  },
+  "overhead_policy": {
+    "no_counterfactual_subtraction": true,
+    "profiled_vs_unprofiled_timing_speedup_claim_authorized": false,
+    "profiled_wall_or_phase_time": "diagnostic_only",
+    "profiler_overhead_reported_separately": true,
+    "unprofiled_control": "immutable_accepted_V73B"
+  },
+  "phase_contract": {
+    "cleanup_has_its_own_range": true,
+    "cuda_event_must_be_wholly_contained_in_one_phase": true,
+    "event_crossing_or_outside_phase_ranges": "fail_closed",
+    "exact_order": [
+      "setup",
+      "activate_v434_lora_slot_all_actors",
+      "install_canonical_v434_master_all_actors",
+      "mirrored_wave_0_materialize_all_actors",
+      "mirrored_wave_0_generation_all_actors",
+      "wave_0_finalize_restore_all_actors",
+      "mirrored_wave_1_materialize_all_actors",
+      "mirrored_wave_1_generation_all_actors",
+      "wave_1_finalize_restore_all_actors",
+      "mirrored_wave_2_materialize_all_actors",
+      "mirrored_wave_2_generation_all_actors",
+      "wave_2_finalize_restore_all_actors",
+      "mirrored_wave_3_materialize_all_actors",
+      "mirrored_wave_3_generation_all_actors",
+      "wave_3_finalize_restore_all_actors",
+      "candidate_audit_matrix_all_actors",
+      "population_reward_acceptance_all_actors",
+      "pair_difference_update_accept_prepare_all_actors",
+      "pair_difference_update_execute_all_actors",
+      "pair_difference_update_abort_all_actors",
+      "post_abort_final_audit_all_actors",
+      "cleanup_all_actors"
+    ],
+    "final_abort_ends_before_post_abort_audit": true,
+    "nvtx_domain": "eggroll_es_v73d_phase",
+    "one_complete_nonoverlapping_range_per_phase": true,
+    "phase_timestamps_are_not_interchanged_with_worker_rpc_times": true,
+    "same_controller_pid_and_thread_required": true
+  },
+  "physical_gpu_identity": [
+    {
+      "pci_bus_id": "00000000:01:00.0",
+      "physical_gpu_id": 0,
+      "uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927"
+    },
+    {
+      "pci_bus_id": "00000000:21:00.0",
+      "physical_gpu_id": 1,
+      "uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded"
+    },
+    {
+      "pci_bus_id": "00000000:C1:00.0",
+      "physical_gpu_id": 2,
+      "uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640"
+    },
+    {
+      "pci_bus_id": "00000000:F1:00.0",
+      "physical_gpu_id": 3,
+      "uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999"
+    }
+  ],
+  "physical_gpu_topology": {
+    "actual_nccl_transport_or_path_inferred_from_node": false,
+    "all_cross_gpu_nvlink_status_not_supported": true,
+    "all_cross_gpu_peer_read_status_ok": true,
+    "all_cross_gpu_peer_write_status_ok": true,
+    "all_numa_affinity_zero": true,
+    "all_off_diagonal_gpu_pairs_report_node": true,
+    "capability_matrix_used_as_actual_path_evidence": false,
+    "command": [
+      "/usr/bin/nvidia-smi",
+      "topo",
+      "-m"
+    ],
+    "normalized_stdout": "GPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\nGPU0\t X \tNODE\tNODE\tNODE\t0-127\t0\t\tN/A\nGPU1\tNODE\t X \tNODE\tNODE\t0-127\t0\t\tN/A\nGPU2\tNODE\tNODE\t X \tNODE\t0-127\t0\t\tN/A\nGPU3\tNODE\tNODE\tNODE\t X \t0-127\t0\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks",
+    "normalized_stdout_sha256": "57127e112509330246aafbc4c2be974cfd9643248f88878fb356dbf1f0f0992a",
+    "nvlink_pair_label_present": false,
+    "p2p_capability_matrices": {
+      "n": {
+        "all_cross_gpu_pairs": "NS",
+        "command": [
+          "/usr/bin/nvidia-smi",
+          "topo",
+          "-p2p",
+          "n"
+        ],
+        "normalized_stdout": "GPU0\tGPU1\tGPU2\tGPU3\t\n GPU0\tX\tNS\tNS\tNS\t\n GPU1\tNS\tX\tNS\tNS\t\n GPU2\tNS\tNS\tX\tNS\t\n GPU3\tNS\tNS\tNS\tX\t\n\nLegend:\n\n  X    = Self\n  OK   = Status Ok\n  CNS  = Chipset not supported\n  GNS  = GPU not supported\n  TNS  = Topology not supported\n  NS   = Not supported\n  DR   = Disabled by regkey\n  U    = Unknown",
+        "normalized_stdout_sha256": "748275e32744128c31949ad5c0f7544c2dea8b1b6709d9c7aa7032042da0a3db",
+        "rows": [
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "X",
+              "NS",
+              "NS",
+              "NS"
+            ],
+            "physical_gpu_id": 0
+          },
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "NS",
+              "X",
+              "NS",
+              "NS"
+            ],
+            "physical_gpu_id": 1
+          },
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "NS",
+              "NS",
+              "X",
+              "NS"
+            ],
+            "physical_gpu_id": 2
+          },
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "NS",
+              "NS",
+              "NS",
+              "X"
+            ],
+            "physical_gpu_id": 3
+          }
+        ]
+      },
+      "r": {
+        "all_cross_gpu_pairs": "OK",
+        "command": [
+          "/usr/bin/nvidia-smi",
+          "topo",
+          "-p2p",
+          "r"
+        ],
+        "normalized_stdout": "GPU0\tGPU1\tGPU2\tGPU3\t\n GPU0\tX\tOK\tOK\tOK\t\n GPU1\tOK\tX\tOK\tOK\t\n GPU2\tOK\tOK\tX\tOK\t\n GPU3\tOK\tOK\tOK\tX\t\n\nLegend:\n\n  X    = Self\n  OK   = Status Ok\n  CNS  = Chipset not supported\n  GNS  = GPU not supported\n  TNS  = Topology not supported\n  NS   = Not supported\n  DR   = Disabled by regkey\n  U    = Unknown",
+        "normalized_stdout_sha256": "bd6bf3c36e26bce5dd279f1ef317125f2a4dbfa1963cd7bebe2e69d44ad570f7",
+        "rows": [
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "X",
+              "OK",
+              "OK",
+              "OK"
+            ],
+            "physical_gpu_id": 0
+          },
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "OK",
+              "X",
+              "OK",
+              "OK"
+            ],
+            "physical_gpu_id": 1
+          },
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "OK",
+              "OK",
+              "X",
+              "OK"
+            ],
+            "physical_gpu_id": 2
+          },
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "OK",
+              "OK",
+              "OK",
+              "X"
+            ],
+            "physical_gpu_id": 3
+          }
+        ]
+      },
+      "w": {
+        "all_cross_gpu_pairs": "OK",
+        "command": [
+          "/usr/bin/nvidia-smi",
+          "topo",
+          "-p2p",
+          "w"
+        ],
+        "normalized_stdout": "GPU0\tGPU1\tGPU2\tGPU3\t\n GPU0\tX\tOK\tOK\tOK\t\n GPU1\tOK\tX\tOK\tOK\t\n GPU2\tOK\tOK\tX\tOK\t\n GPU3\tOK\tOK\tOK\tX\t\n\nLegend:\n\n  X    = Self\n  OK   = Status Ok\n  CNS  = Chipset not supported\n  GNS  = GPU not supported\n  TNS  = Topology not supported\n  NS   = Not supported\n  DR   = Disabled by regkey\n  U    = Unknown",
+        "normalized_stdout_sha256": "bd6bf3c36e26bce5dd279f1ef317125f2a4dbfa1963cd7bebe2e69d44ad570f7",
+        "rows": [
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "X",
+              "OK",
+              "OK",
+              "OK"
+            ],
+            "physical_gpu_id": 0
+          },
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "OK",
+              "X",
+              "OK",
+              "OK"
+            ],
+            "physical_gpu_id": 1
+          },
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "OK",
+              "OK",
+              "X",
+              "OK"
+            ],
+            "physical_gpu_id": 2
+          },
+          {
+            "pair_status_gpu0_to_gpu3": [
+              "OK",
+              "OK",
+              "OK",
+              "X"
+            ],
+            "physical_gpu_id": 3
+          }
+        ]
+      }
+    },
+    "rows": [
+      {
+        "cpu_affinity": "0-127",
+        "gpu_numa_id": "N/A",
+        "numa_affinity": "0",
+        "pair_labels_gpu0_to_gpu3": [
+          "X",
+          "NODE",
+          "NODE",
+          "NODE"
+        ],
+        "physical_gpu_id": 0
+      },
+      {
+        "cpu_affinity": "0-127",
+        "gpu_numa_id": "N/A",
+        "numa_affinity": "0",
+        "pair_labels_gpu0_to_gpu3": [
+          "NODE",
+          "X",
+          "NODE",
+          "NODE"
+        ],
+        "physical_gpu_id": 1
+      },
+      {
+        "cpu_affinity": "0-127",
+        "gpu_numa_id": "N/A",
+        "numa_affinity": "0",
+        "pair_labels_gpu0_to_gpu3": [
+          "NODE",
+          "NODE",
+          "X",
+          "NODE"
+        ],
+        "physical_gpu_id": 2
+      },
+      {
+        "cpu_affinity": "0-127",
+        "gpu_numa_id": "N/A",
+        "numa_affinity": "0",
+        "pair_labels_gpu0_to_gpu3": [
+          "NODE",
+          "NODE",
+          "NODE",
+          "X"
+        ],
+        "physical_gpu_id": 3
+      }
+    ]
+  },
+  "postrun_acceptance": {
+    "all_16_work_receipts_and_four_waves_exact": true,
+    "all_four_physical_gpus_and_exact_actor_pids_in_trace": true,
+    "all_preregistered_output_paths_fresh_regular_and_non_symlink": true,
+    "exact_abort_no_commit_no_protected_access_and_final_idle": true,
+    "four_actor_candidate_and_runtime_identity_consensus": true,
+    "missing_required_table_column_phase_or_gpu": "fail_closed",
+    "profile_overhead_never_used_for_throughput_promotion": true,
+    "same_live_dual_compiler_whole_mapping_exact": true,
+    "timeline_sqlite_export_and_nsys_report_both_required": true,
+    "top_three_residual_bottlenecks": "rank_only_from_measured_phase_duration_bytes_and_supported_metrics"
+  },
+  "purpose": "Supersede the immutable V73C actor-bootstrap failure at fresh paths, install the V3 quarantine guard inside every prestarted Ray actor before V72, replicate the V73B no-commit workload, and measure post-V71/V72 CUDA kernels, memcpy, NCCL, and allocation events without using profiled timing as throughput evidence. Keep GB20x DRAM counters as a separately blocked arm rather than inferring HBM traffic.",
+  "ray_actor_guard_bootstrap": {
+    "actor_bootstrap_env_name": "SPECIALIST_V73D_ACTOR_BOOTSTRAP",
+    "actor_guard_file_sha256": "750a445693425cb859bd4a632f14cad98799df7f969d833458282efa9e9c481c",
+    "actor_guard_sha_env_name": "SPECIALIST_V73D_ACTOR_GUARD_SHA256",
+    "actor_mechanism": "ray_actor_worker_extension_pre_parent_import",
+    "actor_parent_import_before_guard": "fail_closed",
+    "boundary_registry": {
+      "ancestor_denial_policy_sha256": "3758e272396ebc0cbed5a933469665530275c9eabe99f1c0d6210464e7d1a48c",
+      "builder": {
+        "file_sha256": "e217bf08bd8884ef223ebaa35a7ca7490447ca458af4cba9270725945fa5ccc9",
+        "path": "/home/catid/specialist/build_quarantine_boundary_registry_v3.py"
+      },
+      "content_sha256": "5a8c6dbd3b0c225992bb2cc4ae5c02a5ec7774a175fe1a138c4e78260eed7fc7",
+      "exact_path_identity_count": 3,
+      "exact_path_identity_set_sha256": "64600d88a3adfbd179f2fa9a59222a5108f79d11cc91d1fd7792964c655e7b05",
+      "file_sha256": "3d8ef097a1419e03f4b735e6f8d30e5a876b0a8e86c4b0f1ac100114cb7daf5d",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/quarantine_boundary_registry_v3.json",
+      "plaintext_boundary_paths_persisted": false,
+      "prefix_identity_count": 2,
+      "prefix_identity_set_sha256": "159c9b95f9a0cc3ef6f00a0bc3e7629ae47cc1e104d1da73fc6a049b45f39d5d"
+    },
+    "controller_mechanism": "controller_sitecustomize",
+    "controller_pid_marker_prevents_actor_sitecustomize_reuse": true,
+    "guarded_historical_reference_module_identity_count": 3,
+    "guarded_historical_reference_module_identity_set_sha256": "4d5779609c025911357f7b7576d357d409fb8460fc0b6d5151ff8d729b30444c",
+    "mechanisms_must_be_distinct": true,
+    "ray_job_env_injected_before_ray_init": true,
+    "ray_job_env_merges_with_existing_actor_specific_runtime_env": true,
+    "successful_protected_open_resolve_metadata_or_enumeration": 0
+  },
+  "related_beads": [
+    "specialist-0j5.32",
+    "specialist-0j5.36",
+    "specialist-nen.34"
+  ],
+  "schema": "qwen36-v73d-exact-phase-profiler-preregistration-v1",
+  "status": "sealed_cpu_only_before_v73d_model_ray_gpu_or_protected_access",
+  "systems_only_quarantine_boundary": {
+    "external_runtime_ast_closure_receipt": {
+      "auditor": {
+        "file_sha256": "b2d66365cdd067fc2d0b4ef93edb16abf000d097c71cfd88d8236e887c2050d0",
+        "path": "/home/catid/specialist/audit_v73d_systems_only_import_graph_v2.py"
+      },
+      "content_sha256": "2c6f08b578ca7dfc0ff1aaa6fdcca3acc7618ceaded90d6eda3c975fc633aab2",
+      "file_sha256": "119e0387883d1a32826587fe614c5eecff08055c8b651c5b8fb13cfef0784cef",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/qwen36_v73d_systems_only_closure.json"
+    },
+    "lineage_rehabilitation_authorized": false,
+    "quality_hpo_or_promotion_authorized": false,
+    "stage_a_exact_path_guard_bound": true,
+    "stage_a_local_closure_content_sha256": "3595881a621a2fe51ae119b8aee18f8e576d204888fee5df8b61fad3e8ab8827",
+    "stage_a_local_closure_module_count": 101,
+    "stage_a_opaque_historical_reference_count": 9,
+    "stage_a_opaque_historical_reference_count_is_nonzero": true,
+    "stage_a_synthetic_denial_tests_passed": true,
+    "stage_a_synthetic_selected_test_node_count": 15,
+    "stage_b_required_postrun_quality_hpo_or_promotion": false,
+    "stage_b_required_postrun_successful_protected_enumerations": 0,
+    "stage_b_required_postrun_successful_protected_metadata": 0,
+    "stage_b_required_postrun_successful_protected_opens": 0,
+    "stage_b_required_postrun_successful_protected_resolves": 0,
+    "status": "historical_v1_descendant_systems_only_nonpromotable",
+    "systems_trace_only": true,
+    "v66_quality_authority_rehabilitated": false
+  },
+  "toolchain": {
+    "environment_exec": {
+      "file_sha256": "0aefff8f912fb75716c5d4de3b6acde93edbe8fa280fc8ee895c1226d3e373ef",
+      "path": "/usr/bin/env"
+    },
+    "gb20x_top_metric_set": {
+      "file_sha256": "696e579e9fabf4889c55bea652242eee08c5556846914016027b43e2bc90cde0",
+      "path": "/opt/nvidia/nsight-systems/2026.1.3/target-linux-x64/GpuMetrics/gb20x-top.config",
+      "required_tool_defined_metrics": [
+        "VRAM Total Bandwidth",
+        "VRAM Read Bandwidth",
+        "VRAM Write Bandwidth"
+      ],
+      "values_are_tool_defined_samples_not_exact_integrated_bytes": true
+    },
+    "launch_shell": {
+      "bash": {
+        "file_sha256": "bc5945feb8bd26203ebfafea5ce1878bb2e32cb8fb50ab7ae395cfb1e1aaaef1",
+        "path": "/usr/bin/bash"
+      },
+      "bashrc": {
+        "file_sha256": "6f5325b94b6ca1b53a3831838b39990281f38fbecc05aac0adbff216ee537d57",
+        "path": "/home/catid/.bashrc"
+      },
+      "environment_values_persisted": false,
+      "fixed_exec_script": "source \"$HOME/.bashrc\" >/dev/null 2>&1 && exec \"$@\"",
+      "interactive_flag_required_for_bashrc_noninteractive_guard": true,
+      "subprocess_shell_flag": false
+    },
+    "nccl": {
+      "advanced_trace_requested": false,
+      "library": {
+        "file_sha256": "1c8618b866734cbdd5401715d6178be763ece283b7f808ecf86dedab211162c1",
+        "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/nccl/lib/libnccl.so.2"
+      },
+      "package_metadata": {
+        "file_sha256": "87ee999c55a3181761f4b7758a385539776b0cba3cda4fd0f8bff4da26c6e355",
+        "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia_nccl_cu12-2.27.3.dist-info/METADATA"
+      },
+      "reason": "installed_2.27.3_is_below_advanced_trace_2.28_floor_and_2.27.4_limited_support_floor",
+      "selected_trace": "legacy_NCCL_NVTX_domain",
+      "version": "2.27.3"
+    },
+    "nsight_compute": {
+      "file_sha256": "0fd66c71dc3e920df817acb753745cd9db633e7e2381f2eddc90fa6d7309db55",
+      "native": {
+        "file_sha256": "a44ff2c735c4dcf66c78f3f430155805d6a0b1f74f26331f98ecec03bfbf3f1a",
+        "path": "/opt/nvidia/nsight-compute/2026.2.1/ncu"
+      },
+      "path": "/usr/local/cuda-13.3/bin/ncu",
+      "version_line": "Version 2026.2.1.0 (build 38283040) (public-release)",
+      "version_stdout_sha256": "30ae4d565ab8070cc3ef6c6c8be1fe6bd76507c953b5411e322768f34dbd3861"
+    },
+    "nsight_systems": {
+      "file_sha256": "39d8692c9c9c22ce429749e63a05a5f6d73b888d5e7e39bfdf6721b2d7958f7f",
+      "native": {
+        "file_sha256": "56fff02a719034c0fbdcf121a61b079cf36b890eb6a9bcdbf69d03c5dbdee7e7",
+        "path": "/opt/nvidia/nsight-systems/2026.1.3/target-linux-x64/nsys"
+      },
+      "path": "/usr/local/cuda-13.3/bin/nsys",
+      "version_stdout": "NVIDIA Nsight Systems version 2026.1.3.425-261338342291v0"
+    },
+    "nvidia_smi": {
+      "file_sha256": "20f889e4468cd4d6fc6e79be1113b98ce4152d0da08fa709156cf870c1a9290d",
+      "path": "/usr/bin/nvidia-smi"
+    },
+    "python_nvtx": {
+      "does_not_initialize_cuda_in_controller": true,
+      "native_extension": {
+        "file_sha256": "d394e8605ebf4934a7ad3c9b445aa73775c480401f677af474d1e4bc407e32e4",
+        "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvtx/_lib/lib.cpython-312-x86_64-linux-gnu.so"
+      },
+      "nvtools_library": {
+        "file_sha256": "c498fcbab0202886c27a0adeac44abf233ade03d30680ffa2d2abe93ab88d913",
+        "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/nvtx/lib/libnvToolsExt.so.1"
+      },
+      "package_init": {
+        "file_sha256": "add3d4f8b826543e73b01595d99f9299d9e323f48a8122fa1acb0f3d090b2f26",
+        "path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvtx/__init__.py"
+      },
+      "version": "0.2.15"
+    },
+    "target_python": {
+      "invocation_path": "/home/catid/specialist/es-at-scale/.venv/bin/python",
+      "resolved_file": {
+        "file_sha256": "1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118",
+        "path": "/usr/bin/python3.12"
+      }
+    }
+  }
+}
