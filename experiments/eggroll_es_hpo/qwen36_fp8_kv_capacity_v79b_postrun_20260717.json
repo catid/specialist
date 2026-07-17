@@ -1,0 +1,2971 @@
+{
+  "authority": {
+    "dataset_or_protected_data_opened": false,
+    "model_update_training_checkpoint_or_promotion_performed": false,
+    "scored_training_checkpoint_or_layout_promotion_authorized": false
+  },
+  "baseline_runs": {
+    "v76": [
+      {
+        "actor_wall_runtime_seconds_median": 48.57390426049824,
+        "actor_wall_runtime_seconds_range": [
+          48.37733866198687,
+          48.7731651099748
+        ],
+        "actors": [
+          {
+            "between_state_differing_rows": 14,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 0,
+            "receipt_content_sha256": "01437397d71c26fffa8d6a04506444436509537506bd8debbb5af8ce2d17500e",
+            "reference_repeat_changed_rows": 2,
+            "wall_runtime_seconds": 48.7731651099748
+          },
+          {
+            "between_state_differing_rows": 13,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 1,
+            "receipt_content_sha256": "bbdf47031198603c84dd43ca7a1a1e245ee29c5b094ef0e879690e308fe8f256",
+            "reference_repeat_changed_rows": 2,
+            "wall_runtime_seconds": 48.37733866198687
+          },
+          {
+            "between_state_differing_rows": 12,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 2,
+            "receipt_content_sha256": "e8fe2a95e5001b76de49aea933c3a39f93bf9a068768b03ea9818eb129facd7d",
+            "reference_repeat_changed_rows": 1,
+            "wall_runtime_seconds": 48.60171029897174
+          },
+          {
+            "between_state_differing_rows": 13,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 3,
+            "receipt_content_sha256": "2b300c8e7b9fc5c08aa43beefdf9ccd22808c70618e4f42f9ebf6a0ac345ae96",
+            "reference_repeat_changed_rows": 4,
+            "wall_runtime_seconds": 48.54609822202474
+          }
+        ],
+        "artifact_inventory": {
+          "bundle_sha256": "5124652dc91af81de6e55c66d5eaa6b8a6b355a85f50369052d960eb5c028d87",
+          "file_count": 9,
+          "files": [
+            {
+              "bytes": 132785,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r5/gpu_0.json",
+              "sha256": "2c74cc628bbce9b29640e50abb0a6c120628a78f7728f4087bcde3cacd4a7bef"
+            },
+            {
+              "bytes": 23349,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r5/gpu_0.log",
+              "sha256": "fd0c1a0aa093972bdb3b5c808a93a2ab1076cea793448035de3a67e575dadd6b"
+            },
+            {
+              "bytes": 132786,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r5/gpu_1.json",
+              "sha256": "aa7c42681219b0d17efddd0d1bfa66ca295aa497fd5738c656c7974d4d785a8f"
+            },
+            {
+              "bytes": 23353,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r5/gpu_1.log",
+              "sha256": "c724aeec2f3f2cc2eaaba218d8bddb4a2ca8786f7847c9b3cff132e2fd26265e"
+            },
+            {
+              "bytes": 132786,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r5/gpu_2.json",
+              "sha256": "70588789388c535c1170e1c0d9d0e4b7176f30bd96b78e0d7f30506ca178b16b"
+            },
+            {
+              "bytes": 23353,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r5/gpu_2.log",
+              "sha256": "84033f142e352ce92fe2f66b4d67f779cb2e140b2556ed063cc4857852d15821"
+            },
+            {
+              "bytes": 132786,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r5/gpu_3.json",
+              "sha256": "56ad80bf0dda37e459319789b19160dc3f4f0246995f47ca3dc75184ce1d18c2"
+            },
+            {
+              "bytes": 23353,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r5/gpu_3.log",
+              "sha256": "026179c61594ffbbea5204ab81c796edaefa83a375be59ae4dc5b3836c20090c"
+            },
+            {
+              "bytes": 7149,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r5/nvidia_smi_samples.log",
+              "sha256": "b267ca7c547a2c8f215e7812479af1d60baa6fa4f47df74ea15047cf1712aca0"
+            }
+          ]
+        },
+        "logs": [
+          {
+            "file_sha256": "fd0c1a0aa093972bdb3b5c808a93a2ab1076cea793448035de3a67e575dadd6b",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          },
+          {
+            "file_sha256": "c724aeec2f3f2cc2eaaba218d8bddb4a2ca8786f7847c9b3cff132e2fd26265e",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          },
+          {
+            "file_sha256": "84033f142e352ce92fe2f66b4d67f779cb2e140b2556ed063cc4857852d15821",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          },
+          {
+            "file_sha256": "026179c61594ffbbea5204ab81c796edaefa83a375be59ae4dc5b3836c20090c",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          }
+        ],
+        "run": "v76_fp8_attested_050_r5",
+        "telemetry": {
+          "complete_four_gpu_batches": 81,
+          "file_sha256": "b267ca7c547a2c8f215e7812479af1d60baa6fa4f47df74ea15047cf1712aca0",
+          "per_gpu": {
+            "0": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 267.52
+            },
+            "1": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 263.95
+            },
+            "2": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 282.17
+            },
+            "3": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 269.88
+            }
+          }
+        }
+      },
+      {
+        "actor_wall_runtime_seconds_median": 48.78339031746145,
+        "actor_wall_runtime_seconds_range": [
+          48.41201812803047,
+          49.15785783302272
+        ],
+        "actors": [
+          {
+            "between_state_differing_rows": 13,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 0,
+            "receipt_content_sha256": "de6e1eff7e17a3d0bd439dea2d11c53b06edd85b810365b5d6a274cbe9222916",
+            "reference_repeat_changed_rows": 2,
+            "wall_runtime_seconds": 48.64472336095059
+          },
+          {
+            "between_state_differing_rows": 12,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 1,
+            "receipt_content_sha256": "fd0cfd494c4d0c5896ab1c7a8752d9b2fce4187bfc01d2b1723dc7139924bd11",
+            "reference_repeat_changed_rows": 4,
+            "wall_runtime_seconds": 49.15785783302272
+          },
+          {
+            "between_state_differing_rows": 14,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 2,
+            "receipt_content_sha256": "fc0b71f80ad3117e7e57d357c54af184e0333e21146a5c416a88cf65ebbd5ba7",
+            "reference_repeat_changed_rows": 6,
+            "wall_runtime_seconds": 48.922057273972314
+          },
+          {
+            "between_state_differing_rows": 12,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 3,
+            "receipt_content_sha256": "520e84237f776927fac33097e4f12d5a08a531f0dce65e5f8de4d4d4a4bd0954",
+            "reference_repeat_changed_rows": 5,
+            "wall_runtime_seconds": 48.41201812803047
+          }
+        ],
+        "artifact_inventory": {
+          "bundle_sha256": "142fea7a45b62ec87d1d60c35f8819e017b79ac3a4004aa1fdb3e4882d775795",
+          "file_count": 9,
+          "files": [
+            {
+              "bytes": 133467,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r6_residency/gpu_0.json",
+              "sha256": "ba8bd07f232ad5f0f2d4c5a88216c9b195f9209e8ca369365e42d0ffe2e94105"
+            },
+            {
+              "bytes": 23403,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r6_residency/gpu_0.log",
+              "sha256": "403ecc2b4a9cd44cdb66dc59d239bce9e0fa8a078af80d1c113f41f3880568a8"
+            },
+            {
+              "bytes": 133467,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r6_residency/gpu_1.json",
+              "sha256": "2768c0a6609e5e5fabbb14e79b21c9411dd27eea5b0a9ffb8e3ee692d4f803fb"
+            },
+            {
+              "bytes": 23403,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r6_residency/gpu_1.log",
+              "sha256": "0c63d1cedd1e257397fffd096122252b8274b3b37e31fdf9f122146fc899f336"
+            },
+            {
+              "bytes": 133468,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r6_residency/gpu_2.json",
+              "sha256": "c9c2563754c64983283ec736f068be76fe971a29c20bc32a9dbaaa9c806fc9bc"
+            },
+            {
+              "bytes": 23407,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r6_residency/gpu_2.log",
+              "sha256": "627fbb74513b040c62a757b0af7cbc76c491923b938e01b99d0398a213b70e25"
+            },
+            {
+              "bytes": 133467,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r6_residency/gpu_3.json",
+              "sha256": "fe7225608f66fb10e116a74d5a88274ed7415332fdd746ce24798708116223b9"
+            },
+            {
+              "bytes": 23403,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r6_residency/gpu_3.log",
+              "sha256": "121e405b68fdf5c7fd9802dc13103aea4b461cdda77ad675deab3598b752fe25"
+            },
+            {
+              "bytes": 7422,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r6_residency/nvidia_smi_samples.log",
+              "sha256": "3496d3b46e0f0727108df6ac9e9a23b9f3bc7bed8a67f0c5a801078bb74744e0"
+            }
+          ]
+        },
+        "logs": [
+          {
+            "file_sha256": "403ecc2b4a9cd44cdb66dc59d239bce9e0fa8a078af80d1c113f41f3880568a8",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          },
+          {
+            "file_sha256": "0c63d1cedd1e257397fffd096122252b8274b3b37e31fdf9f122146fc899f336",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          },
+          {
+            "file_sha256": "627fbb74513b040c62a757b0af7cbc76c491923b938e01b99d0398a213b70e25",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          },
+          {
+            "file_sha256": "121e405b68fdf5c7fd9802dc13103aea4b461cdda77ad675deab3598b752fe25",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          }
+        ],
+        "run": "v76_fp8_attested_050_r6_residency",
+        "telemetry": {
+          "complete_four_gpu_batches": 84,
+          "file_sha256": "3496d3b46e0f0727108df6ac9e9a23b9f3bc7bed8a67f0c5a801078bb74744e0",
+          "per_gpu": {
+            "0": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 284.28
+            },
+            "1": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 275.05
+            },
+            "2": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 282.18
+            },
+            "3": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 283.85
+            }
+          }
+        }
+      },
+      {
+        "actor_wall_runtime_seconds_median": 48.512458409997635,
+        "actor_wall_runtime_seconds_range": [
+          48.255868688982446,
+          48.65945751097752
+        ],
+        "actors": [
+          {
+            "between_state_differing_rows": 12,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 0,
+            "receipt_content_sha256": "0974ba11053e1375da2a8181e2c9cc19bc68ccd92acd9a21262d30749c39d706",
+            "reference_repeat_changed_rows": 3,
+            "wall_runtime_seconds": 48.45798425300745
+          },
+          {
+            "between_state_differing_rows": 13,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 1,
+            "receipt_content_sha256": "7dbba460ff9825e7d0a42b88f2b5b5f46b5b316385c4229ff981c2eb749af3df",
+            "reference_repeat_changed_rows": 3,
+            "wall_runtime_seconds": 48.255868688982446
+          },
+          {
+            "between_state_differing_rows": 13,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 2,
+            "receipt_content_sha256": "f98e09925eccb9f0172dbebd970595eb21442b1fea1fa9236d9533bf0bf4ac2b",
+            "reference_repeat_changed_rows": 4,
+            "wall_runtime_seconds": 48.65945751097752
+          },
+          {
+            "between_state_differing_rows": 12,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 3,
+            "receipt_content_sha256": "16f2002b77ffddd9a763a3db8c6a9aec7e663faf3a611a1e711a057b8004810d",
+            "reference_repeat_changed_rows": 2,
+            "wall_runtime_seconds": 48.566932566987816
+          }
+        ],
+        "artifact_inventory": {
+          "bundle_sha256": "46cf5ab3e6d3688de25cfdcf101710a129fdba309a5f11a9404d17344848e5e6",
+          "file_count": 9,
+          "files": [
+            {
+              "bytes": 133467,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r7_residency/gpu_0.json",
+              "sha256": "ffe1df261cf527ca46d11bfd03b8b575f7745590fa60f5c0ace147035a278eea"
+            },
+            {
+              "bytes": 23403,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r7_residency/gpu_0.log",
+              "sha256": "77b7e3cbc8fa0e74a4ff8cdc975a0b093795129af427441708a40e40afcbc4b0"
+            },
+            {
+              "bytes": 133468,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r7_residency/gpu_1.json",
+              "sha256": "afae9781cbb9b0a8620e7556fc3ea3807d8f20541d145f6069d1774312f8fa9f"
+            },
+            {
+              "bytes": 23407,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r7_residency/gpu_1.log",
+              "sha256": "71dbb135bf5152c9792f634020472ae3c1e407bc78157f79dcc8e647b5645cf7"
+            },
+            {
+              "bytes": 133467,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r7_residency/gpu_2.json",
+              "sha256": "28297ef5f57eae7ae96a125bb0bdde2a45126194d5a938e1dae635cecc9c67fb"
+            },
+            {
+              "bytes": 23403,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r7_residency/gpu_2.log",
+              "sha256": "aceab08424442a45aee3d73ac90ed4cff26cf518045ef3a2b1299094707807b0"
+            },
+            {
+              "bytes": 133468,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r7_residency/gpu_3.json",
+              "sha256": "365ee7c654a95be367f160002a9839d144fef604c269e9dbf6e2f13d77f5426e"
+            },
+            {
+              "bytes": 23407,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r7_residency/gpu_3.log",
+              "sha256": "c889e1a02427e82516decb84bf32eee61e370cb1d1c05e69ad6dc65947d21f12"
+            },
+            {
+              "bytes": 6909,
+              "path": "experiments/eggroll_es_hpo/runs/v76_fp8_attested_050_r7_residency/nvidia_smi_samples.log",
+              "sha256": "fe0add4d1e59cff5eb84baf0c21f98f44d92c45c06a72b03ed55746f69c5da0f"
+            }
+          ]
+        },
+        "logs": [
+          {
+            "file_sha256": "77b7e3cbc8fa0e74a4ff8cdc975a0b093795129af427441708a40e40afcbc4b0",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          },
+          {
+            "file_sha256": "71dbb135bf5152c9792f634020472ae3c1e407bc78157f79dcc8e647b5645cf7",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          },
+          {
+            "file_sha256": "aceab08424442a45aee3d73ac90ed4cff26cf518045ef3a2b1299094707807b0",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          },
+          {
+            "file_sha256": "c889e1a02427e82516decb84bf32eee61e370cb1d1c05e69ad6dc65947d21f12",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 157696,
+            "maximum_concurrency": 77.0,
+            "required_fragment_counts": {}
+          }
+        ],
+        "run": "v76_fp8_attested_050_r7_residency",
+        "telemetry": {
+          "complete_four_gpu_batches": 78,
+          "file_sha256": "fe0add4d1e59cff5eb84baf0c21f98f44d92c45c06a72b03ed55746f69c5da0f",
+          "per_gpu": {
+            "0": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 284.65
+            },
+            "1": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 275.98
+            },
+            "2": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 275.96
+            },
+            "3": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50858,
+              "peak_power_draw_w": 281.85
+            }
+          }
+        }
+      }
+    ],
+    "v78": [
+      {
+        "actor_wall_runtime_seconds_median": 49.38608100148849,
+        "actor_wall_runtime_seconds_range": [
+          48.66222178697353,
+          51.4921482350328
+        ],
+        "actors": [
+          {
+            "between_state_differing_rows": 23,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 0,
+            "receipt_content_sha256": "c072cbb7577b7792b0f15387d449f0f474d5aa977a7004066ee4ad97b341e927",
+            "reference_repeat_changed_rows": 7,
+            "wall_runtime_seconds": 51.4921482350328
+          },
+          {
+            "between_state_differing_rows": 23,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 1,
+            "receipt_content_sha256": "0169cc042d834425d409340d0d6fc8778cc71876421b468359ef6bd7671dc18e",
+            "reference_repeat_changed_rows": 9,
+            "wall_runtime_seconds": 48.71448630397208
+          },
+          {
+            "between_state_differing_rows": 26,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 2,
+            "receipt_content_sha256": "6f0881c57d900916f90693480f8673214a6ebb7283a624b23c2bae494ea2d097",
+            "reference_repeat_changed_rows": 7,
+            "wall_runtime_seconds": 50.0576756990049
+          },
+          {
+            "between_state_differing_rows": 24,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 3,
+            "receipt_content_sha256": "1ae9f88efe21b73db0fe24a06505bab6a38fe4966971f2ebc166896ed5e0084c",
+            "reference_repeat_changed_rows": 5,
+            "wall_runtime_seconds": 48.66222178697353
+          }
+        ],
+        "artifact_inventory": {
+          "bundle_sha256": "0897b1c80b8161171736b994e1e5e4a88728a19d39200f280ff7799552838c71",
+          "file_count": 9,
+          "files": [
+            {
+              "bytes": 133328,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r1/gpu_0.json",
+              "sha256": "15215261b243cb144f5fa74040e40aa0ccbfc2ff85810d42861bee9a0be44807"
+            },
+            {
+              "bytes": 24759,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r1/gpu_0.log",
+              "sha256": "bb8a2770b8102eaa72d279f2159493d70785764dfd8bb6bf04e7b1a11da42bc6"
+            },
+            {
+              "bytes": 133329,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r1/gpu_1.json",
+              "sha256": "f56b532f05f070359265abab06da87190d9d5e1e1cff411504875728da4819bd"
+            },
+            {
+              "bytes": 24764,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r1/gpu_1.log",
+              "sha256": "93fabc1c8e8a53ac0e75c70d2694d3ba3eb83f8eef4710a3cf77fb7fd8c04026"
+            },
+            {
+              "bytes": 133328,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r1/gpu_2.json",
+              "sha256": "20ec9decce28fd7c4666c9fdb152b62716ceb8d396081bec071a423bc061bb04"
+            },
+            {
+              "bytes": 24759,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r1/gpu_2.log",
+              "sha256": "c292a2fc39930651729e8c37f395bbf8d3be3def9e17360aefdaaafe1a3b4468"
+            },
+            {
+              "bytes": 133329,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r1/gpu_3.json",
+              "sha256": "eb604dcc985d44cd7ff6e6457b5bab639c9d5ae6316b04588afe6f9a6fdfa6cc"
+            },
+            {
+              "bytes": 24764,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r1/gpu_3.log",
+              "sha256": "55c4ebdebfff15b916c5ecac2abfe8b6acac5240aecf8c48199bc8e25ced6a69"
+            },
+            {
+              "bytes": 7164,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r1/nvidia_smi_samples.log",
+              "sha256": "4e3213512f23b955d03e4d75579f1c68acc3a50272f4a8ba0c66ca03c5494ca3"
+            }
+          ]
+        },
+        "logs": [
+          {
+            "file_sha256": "bb8a2770b8102eaa72d279f2159493d70785764dfd8bb6bf04e7b1a11da42bc6",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          },
+          {
+            "file_sha256": "93fabc1c8e8a53ac0e75c70d2694d3ba3eb83f8eef4710a3cf77fb7fd8c04026",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          },
+          {
+            "file_sha256": "c292a2fc39930651729e8c37f395bbf8d3be3def9e17360aefdaaafe1a3b4468",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          },
+          {
+            "file_sha256": "55c4ebdebfff15b916c5ecac2abfe8b6acac5240aecf8c48199bc8e25ced6a69",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          }
+        ],
+        "run": "v78_fp8_per_token_head_kv_r1",
+        "telemetry": {
+          "complete_four_gpu_batches": 81,
+          "file_sha256": "4e3213512f23b955d03e4d75579f1c68acc3a50272f4a8ba0c66ca03c5494ca3",
+          "per_gpu": {
+            "0": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 281.3
+            },
+            "1": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 254.7
+            },
+            "2": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 279.18
+            },
+            "3": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 254.81
+            }
+          }
+        }
+      },
+      {
+        "actor_wall_runtime_seconds_median": 48.88430291149416,
+        "actor_wall_runtime_seconds_range": [
+          48.49649476300692,
+          49.01620292000007
+        ],
+        "actors": [
+          {
+            "between_state_differing_rows": 22,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 0,
+            "receipt_content_sha256": "0295e531ace0246182d4350ce7dddfabe904260b02c780adbfc93c4e2eedf654",
+            "reference_repeat_changed_rows": 6,
+            "wall_runtime_seconds": 48.49649476300692
+          },
+          {
+            "between_state_differing_rows": 23,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 1,
+            "receipt_content_sha256": "42979d97583c3f5ca8bbe73bf6078ebde53acb220c20d3f96644e4ad6aac84d4",
+            "reference_repeat_changed_rows": 7,
+            "wall_runtime_seconds": 49.01620292000007
+          },
+          {
+            "between_state_differing_rows": 21,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 2,
+            "receipt_content_sha256": "40404f312b401d432b7f01e28db17b5f9f140e5a249788ad6dc621f53704f3e2",
+            "reference_repeat_changed_rows": 10,
+            "wall_runtime_seconds": 48.97839190601371
+          },
+          {
+            "between_state_differing_rows": 23,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 3,
+            "receipt_content_sha256": "b8064de1e72fde7084939c2923827624d3510a31df438df24b8db6ebd824b6de",
+            "reference_repeat_changed_rows": 7,
+            "wall_runtime_seconds": 48.79021391697461
+          }
+        ],
+        "artifact_inventory": {
+          "bundle_sha256": "0bcfe80ff428348b06e9295bf3ed67df7acb674a7dd3a6a74b08cd79c7b9bb9c",
+          "file_count": 9,
+          "files": [
+            {
+              "bytes": 133329,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r2/gpu_0.json",
+              "sha256": "ef9ebd2d5086a5c2d69588db106d0d720d79d2b09da0c20e6255edc9847eb593"
+            },
+            {
+              "bytes": 24764,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r2/gpu_0.log",
+              "sha256": "d8cf9e39a2ae770d4d8edb2978d1679db49497c0c05562d66245d72fb4035324"
+            },
+            {
+              "bytes": 133329,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r2/gpu_1.json",
+              "sha256": "e88ed079b140378174c232562c858e7c54a86e2e55c0f33111577f8d7e142ca0"
+            },
+            {
+              "bytes": 24764,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r2/gpu_1.log",
+              "sha256": "744b99b6dbcc8ca85e4a7d7142a817a8004be01ea23c7ac3fadb329ccf770a75"
+            },
+            {
+              "bytes": 133330,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r2/gpu_2.json",
+              "sha256": "89439f549ae423683311b04b00da24e95bb3c0761b3ebb2fd958ddd3fdd626c8"
+            },
+            {
+              "bytes": 24765,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r2/gpu_2.log",
+              "sha256": "bb41b71b885b96ee83741e0b1170d60cdfe9718ea9057bef19cd02e6c20457c9"
+            },
+            {
+              "bytes": 133329,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r2/gpu_3.json",
+              "sha256": "141aea27224871916200d4248080d2382878bf012330435b48dbd17bcf30696b"
+            },
+            {
+              "bytes": 24764,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r2/gpu_3.log",
+              "sha256": "f6046e66a0c095d1396eaa9ed2f70a8a21f14305fc4b6189f3bac075e2dbe06b"
+            },
+            {
+              "bytes": 6893,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r2/nvidia_smi_samples.log",
+              "sha256": "e78a46d752589ccc0b0de30cb86982c7dbb997a879e46f4cd9366cf8d27c42d0"
+            }
+          ]
+        },
+        "logs": [
+          {
+            "file_sha256": "d8cf9e39a2ae770d4d8edb2978d1679db49497c0c05562d66245d72fb4035324",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          },
+          {
+            "file_sha256": "744b99b6dbcc8ca85e4a7d7142a817a8004be01ea23c7ac3fadb329ccf770a75",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          },
+          {
+            "file_sha256": "bb41b71b885b96ee83741e0b1170d60cdfe9718ea9057bef19cd02e6c20457c9",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          },
+          {
+            "file_sha256": "f6046e66a0c095d1396eaa9ed2f70a8a21f14305fc4b6189f3bac075e2dbe06b",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          }
+        ],
+        "run": "v78_fp8_per_token_head_kv_r2",
+        "telemetry": {
+          "complete_four_gpu_batches": 78,
+          "file_sha256": "e78a46d752589ccc0b0de30cb86982c7dbb997a879e46f4cd9366cf8d27c42d0",
+          "per_gpu": {
+            "0": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 283.99
+            },
+            "1": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 273.79
+            },
+            "2": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 283.93
+            },
+            "3": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 286.1
+            }
+          }
+        }
+      },
+      {
+        "actor_wall_runtime_seconds_median": 49.360053240001434,
+        "actor_wall_runtime_seconds_range": [
+          49.18727433599997,
+          49.512784259044565
+        ],
+        "actors": [
+          {
+            "between_state_differing_rows": 22,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 0,
+            "receipt_content_sha256": "68df2668e1954e967066e9e636e82e6e4c58daff48ee1f059956bceb82868f82",
+            "reference_repeat_changed_rows": 6,
+            "wall_runtime_seconds": 49.41907380201155
+          },
+          {
+            "between_state_differing_rows": 24,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 1,
+            "receipt_content_sha256": "ca125bee7b37e5def37f0286eb49d2ff64863c8df43c0bb7ee3d37d90c048b43",
+            "reference_repeat_changed_rows": 7,
+            "wall_runtime_seconds": 49.512784259044565
+          },
+          {
+            "between_state_differing_rows": 21,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 2,
+            "receipt_content_sha256": "510c45aa0cf28a75da44b837badb9c1efd1d72a54fef6db857d038fb0a25d355",
+            "reference_repeat_changed_rows": 8,
+            "wall_runtime_seconds": 49.301032677991316
+          },
+          {
+            "between_state_differing_rows": 23,
+            "candidate_repeat_changed_rows": 0,
+            "gpu": 3,
+            "receipt_content_sha256": "709c7bd00df832eece9f2a4944c7f75da3f54efc2c3d8e1d19aa64428b84c8aa",
+            "reference_repeat_changed_rows": 6,
+            "wall_runtime_seconds": 49.18727433599997
+          }
+        ],
+        "artifact_inventory": {
+          "bundle_sha256": "e6df12c976910948c1026249b05fc065932169897aa5a09ff984b6d765385463",
+          "file_count": 9,
+          "files": [
+            {
+              "bytes": 134010,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r3/gpu_0.json",
+              "sha256": "e3721921162010a18fd334dd611af444f90270265cf2c4a0e214c94a29744f0d"
+            },
+            {
+              "bytes": 24764,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r3/gpu_0.log",
+              "sha256": "5d4849d099bfb27c747d4321393602b08ce6298fa0f2f4761e8f1e88057fe116"
+            },
+            {
+              "bytes": 134011,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r3/gpu_1.json",
+              "sha256": "ab299b3589d333c0a0fe336b3d77ba4296d9e9eee69a064db1672cd229e98ef7"
+            },
+            {
+              "bytes": 24769,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r3/gpu_1.log",
+              "sha256": "1d5bea067d926400aa548333d930d20ff11639a3aac567cd85034af219acae06"
+            },
+            {
+              "bytes": 134011,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r3/gpu_2.json",
+              "sha256": "07564d63b9dfb3e6515fd3cd6a88e7804565622795bbaa026e51a4b970e59d0d"
+            },
+            {
+              "bytes": 24769,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r3/gpu_2.log",
+              "sha256": "e7d64958effea84decebc8e49c3be4d115cb3001d7142c985f8571bd0caebb40"
+            },
+            {
+              "bytes": 134010,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r3/gpu_3.json",
+              "sha256": "30e8a0d44e3b90d3526baca488b2ff6cde47c5190dcd13addc4b55fc7b6a054c"
+            },
+            {
+              "bytes": 24764,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r3/gpu_3.log",
+              "sha256": "53c13f2332ff231b815a65264a5cb970907edfd0bb485c17643115180a58f128"
+            },
+            {
+              "bytes": 6996,
+              "path": "experiments/eggroll_es_hpo/runs/v78_fp8_per_token_head_kv_r3/nvidia_smi_samples.log",
+              "sha256": "adda870fcf1a9f4e77fcd08ac129a29c2d0926380b806d3dbaea69ee7711dc05"
+            }
+          ]
+        },
+        "logs": [
+          {
+            "file_sha256": "5d4849d099bfb27c747d4321393602b08ce6298fa0f2f4761e8f1e88057fe116",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          },
+          {
+            "file_sha256": "1d5bea067d926400aa548333d930d20ff11639a3aac567cd85034af219acae06",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          },
+          {
+            "file_sha256": "e7d64958effea84decebc8e49c3be4d115cb3001d7142c985f8571bd0caebb40",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          },
+          {
+            "file_sha256": "53c13f2332ff231b815a65264a5cb970907edfd0bb485c17643115180a58f128",
+            "forbidden_fragment_counts": {
+              "Auto-disabled DeepGemm": 0,
+              "CUDA out of memory": 0,
+              "DeepGEMM E8M0 enabled": 0,
+              "Traceback (most recent call last)": 0,
+              "fallback to": 0,
+              "falling back": 0,
+              "not supported by": 0,
+              "please install bitsandbytes": 0
+            },
+            "known_visible_warning_counts": {
+              "No LoRA kernel configs found": 6,
+              "Using default LoRA kernel configs": 1,
+              "Using default MoE config": 1
+            },
+            "kv_cache_size_tokens": 198656,
+            "maximum_concurrency": 97.0,
+            "required_fragment_counts": {
+              "Available KV cache memory:": 1,
+              "GPU KV cache size:": 1,
+              "Maximum concurrency for 2,048 tokens per request:": 1,
+              "Skipping FlashInfer autotune because it is disabled": 1,
+              "Using TRITON Fp8 MoE backend": 1,
+              "Using TRITON_ATTN attention backend": 1
+            }
+          }
+        ],
+        "run": "v78_fp8_per_token_head_kv_r3",
+        "telemetry": {
+          "complete_four_gpu_batches": 79,
+          "file_sha256": "adda870fcf1a9f4e77fcd08ac129a29c2d0926380b806d3dbaea69ee7711dc05",
+          "per_gpu": {
+            "0": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 274.66
+            },
+            "1": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 265.48
+            },
+            "2": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 282.37
+            },
+            "3": {
+              "peak_gpu_utilization_percent": 100,
+              "peak_memory_used_mib": 50856,
+              "peak_power_draw_w": 287.94
+            }
+          }
+        }
+      }
+    ]
+  },
+  "capacity": {
+    "v76_bf16_attention_kv_tokens": 157696,
+    "v78_fp8_attention_kv_tokens": 198656,
+    "v79b_capacity_matched_fp8_attention_kv_tokens": 162304,
+    "v79b_full_2048_token_contexts_floor": 79,
+    "v79b_margin_over_minimum_gate_tokens": 512,
+    "v79b_margin_over_v76_tokens": 4608,
+    "v79b_minimum_gate_tokens": 161792,
+    "v79b_ratio_to_v76": 1.0292207792207793,
+    "v79b_ratio_to_v78": 0.8170103092783505
+  },
+  "content_sha256_before_self_field": "dc2c3f47f28bd74bec0ddb385652c6263d38328f637f31c6769b1e48277ed46a",
+  "evidence_classification": {
+    "excluded_runs": {
+      "v79_fp8_kv_capacity_0485_r1": "incomplete failed first attempt",
+      "v79_fp8_kv_capacity_0485_r4_cleanup": "cleanup implementation preceded immutable V79B preregistration"
+    },
+    "only_fully_preregistered_cleanup_accepted_run": "v79b_fp8_kv_capacity_0485_r5_sealed_cleanup",
+    "same_model_performance_diagnostics": [
+      "v79_fp8_kv_capacity_0485_r1_fix",
+      "v79_fp8_kv_capacity_0485_r2",
+      "v79_fp8_kv_capacity_0485_r3"
+    ]
+  },
+  "output_and_promotion_gates": {
+    "candidate_repeat_exact_all_v79_actors": true,
+    "promotion_authorized": false,
+    "protected_one_shot_ood_gate_run": false,
+    "reference_restore_exact": false,
+    "source_disjoint_semantic_gate_run": false,
+    "v79b_candidate_changes_output_by_gpu": {
+      "0": 22,
+      "1": 25,
+      "2": 22,
+      "3": 22
+    },
+    "v79b_reference_repeat_changed_rows_by_gpu": {
+      "0": 6,
+      "1": 8,
+      "2": 11,
+      "3": 8
+    }
+  },
+  "paired_token_hash_drift": {
+    "v76_r7_vs_v78_r3": {
+      "agreement_fraction": 0.8060661764705882,
+      "call_plan": [
+        "reference",
+        "candidate",
+        "candidate",
+        "reference",
+        "reference",
+        "candidate",
+        "candidate",
+        "reference"
+      ],
+      "claim": "hash-commitment disagreement, not a semantic quality metric; known reference-repeat nondeterminism remains visible",
+      "compared_rows_total": 2176,
+      "differing_rows_by_call_sum_gpus": [
+        23,
+        84,
+        84,
+        20,
+        23,
+        84,
+        84,
+        20
+      ],
+      "differing_rows_by_gpu_and_call": {
+        "0": [
+          7,
+          21,
+          21,
+          6,
+          4,
+          21,
+          21,
+          5
+        ],
+        "1": [
+          4,
+          21,
+          21,
+          3,
+          6,
+          21,
+          21,
+          7
+        ],
+        "2": [
+          7,
+          21,
+          21,
+          7,
+          8,
+          21,
+          21,
+          3
+        ],
+        "3": [
+          5,
+          21,
+          21,
+          4,
+          5,
+          21,
+          21,
+          5
+        ]
+      },
+      "differing_rows_total": 422,
+      "pair": "v76_r7_vs_v78_r3"
+    },
+    "v76_r7_vs_v79b_r5": {
+      "agreement_fraction": 0.8023897058823529,
+      "call_plan": [
+        "reference",
+        "candidate",
+        "candidate",
+        "reference",
+        "reference",
+        "candidate",
+        "candidate",
+        "reference"
+      ],
+      "claim": "hash-commitment disagreement, not a semantic quality metric; known reference-repeat nondeterminism remains visible",
+      "compared_rows_total": 2176,
+      "differing_rows_by_call_sum_gpus": [
+        29,
+        84,
+        84,
+        18,
+        20,
+        84,
+        84,
+        27
+      ],
+      "differing_rows_by_gpu_and_call": {
+        "0": [
+          6,
+          21,
+          21,
+          3,
+          5,
+          21,
+          21,
+          6
+        ],
+        "1": [
+          7,
+          21,
+          21,
+          3,
+          5,
+          21,
+          21,
+          7
+        ],
+        "2": [
+          9,
+          21,
+          21,
+          7,
+          4,
+          21,
+          21,
+          9
+        ],
+        "3": [
+          7,
+          21,
+          21,
+          5,
+          6,
+          21,
+          21,
+          5
+        ]
+      },
+      "differing_rows_total": 430,
+      "pair": "v76_r7_vs_v79b_r5"
+    },
+    "v78_r3_vs_v79b_r5": {
+      "agreement_fraction": 0.9669117647058824,
+      "call_plan": [
+        "reference",
+        "candidate",
+        "candidate",
+        "reference",
+        "reference",
+        "candidate",
+        "candidate",
+        "reference"
+      ],
+      "claim": "hash-commitment disagreement, not a semantic quality metric; known reference-repeat nondeterminism remains visible",
+      "compared_rows_total": 2176,
+      "differing_rows_by_call_sum_gpus": [
+        22,
+        0,
+        0,
+        16,
+        15,
+        0,
+        0,
+        19
+      ],
+      "differing_rows_by_gpu_and_call": {
+        "0": [
+          3,
+          0,
+          0,
+          3,
+          4,
+          0,
+          0,
+          1
+        ],
+        "1": [
+          5,
+          0,
+          0,
+          4,
+          2,
+          0,
+          0,
+          6
+        ],
+        "2": [
+          7,
+          0,
+          0,
+          4,
+          4,
+          0,
+          0,
+          8
+        ],
+        "3": [
+          7,
+          0,
+          0,
+          5,
+          5,
+          0,
+          0,
+          4
+        ]
+      },
+      "differing_rows_total": 72,
+      "pair": "v78_r3_vs_v79b_r5"
+    }
+  },
+  "passed": true,
+  "performance": {
+    "preregistered_v79b_runtime_gate_passed": true,
+    "v76_three_replicates": {
+      "actor_count": 12,
+      "combined_actor_median_seconds": 48.58432143297978,
+      "combined_actor_range_seconds": [
+        48.255868688982446,
+        49.15785783302272
+      ],
+      "run_medians_seconds": {
+        "v76_fp8_attested_050_r5": 48.57390426049824,
+        "v76_fp8_attested_050_r6_residency": 48.78339031746145,
+        "v76_fp8_attested_050_r7_residency": 48.512458409997635
+      }
+    },
+    "v78_three_replicates": {
+      "actor_count": 12,
+      "combined_actor_median_seconds": 49.10173862800002,
+      "combined_actor_range_seconds": [
+        48.49649476300692,
+        51.4921482350328
+      ],
+      "run_medians_seconds": {
+        "v78_fp8_per_token_head_kv_r1": 49.38608100148849,
+        "v78_fp8_per_token_head_kv_r2": 48.88430291149416,
+        "v78_fp8_per_token_head_kv_r3": 49.360053240001434
+      }
+    },
+    "v79_all_ratio_to_v76_three_replicates": 1.0082277539582338,
+    "v79_all_ratio_to_v78_three_replicates": 0.9976033974492539,
+    "v79_all_same_model_four_replicates": {
+      "actor_count": 16,
+      "combined_actor_median_seconds": 48.984061275958084,
+      "combined_actor_range_seconds": [
+        48.498058393015526,
+        50.2735393330222
+      ],
+      "run_medians_seconds": {
+        "v79_fp8_kv_capacity_0485_r1_fix": 48.891406518465374,
+        "v79_fp8_kv_capacity_0485_r2": 48.89289802251733,
+        "v79_fp8_kv_capacity_0485_r3": 49.3502528865356,
+        "v79b_fp8_kv_capacity_0485_r5_sealed_cleanup": 49.10028860197053
+      }
+    },
+    "v79_old_monitor_three_replicates": {
+      "actor_count": 12,
+      "combined_actor_median_seconds": 48.891406518465374,
+      "combined_actor_range_seconds": [
+        48.498058393015526,
+        50.2735393330222
+      ],
+      "run_medians_seconds": {
+        "v79_fp8_kv_capacity_0485_r1_fix": 48.891406518465374,
+        "v79_fp8_kv_capacity_0485_r2": 48.89289802251733,
+        "v79_fp8_kv_capacity_0485_r3": 49.3502528865356
+      }
+    },
+    "v79b_cleanup_accepted_ratio_to_v76_r7": 1.0121170975712037,
+    "v79b_cleanup_accepted_ratio_to_v78_r3": 0.9947373509350191,
+    "v79b_cleanup_accepted_run_median_seconds": 49.10028860197053
+  },
+  "schema": "qwen36-fp8-kv-capacity-postrun-analysis-v79b",
+  "static_contract": {
+    "preregistrations": {
+      "experiments/eggroll_es_hpo/preregistrations/qwen36_fp8_kv_capacity_cleanup_v79b.json": {
+        "content_sha256": "7669c2f720f2a0d17e976de42cc5b7c08fba60a3251175a62eddf05de2dc1b5d",
+        "file_sha256": "8e1940db5134bb77ef9959d10b4eec5d43fab4e8653d62733b42939b5fd7300f",
+        "schema": "v79b-qwen36-fp8-kv-cleanup-preregistration"
+      },
+      "experiments/eggroll_es_hpo/preregistrations/qwen36_fp8_kv_capacity_matched_v79.json": {
+        "content_sha256": "6c73ac0f6bf4019cdf297546e4315dc99b68d9549a24c03f4eaa9c8ebb589023",
+        "file_sha256": "0e195c05fd72e36656ee6536d6656d932aac0028fbbc7983f688df9dc7b18753",
+        "schema": "v79-qwen36-fp8-kv-capacity-matched-preregistration"
+      }
+    },
+    "sealed_sources": {
+      "bundle_sha256": "14fc85abb7b88eaa4def27d6d190c33b76e956cc453a7b46975a96b9487484f2",
+      "files": [
+        {
+          "bytes": 20292,
+          "path": "probe_vllm_fp8_kv_capacity_v79.py",
+          "sha256": "6b72de1bd7d7878ba4183bae618108f8cd1cf997e33c7447ee2459700e15ff45"
+        },
+        {
+          "bytes": 12382,
+          "path": "monitor_qwen36_fp8_kv_capacity_v79.py",
+          "sha256": "6035eb32f90815ed2a2d8734d9e9072123b8ecc70d74449a2710e94b673ed3df"
+        },
+        {
+          "bytes": 1683,
+          "path": "launch_qwen36_fp8_kv_capacity_v79.sh",
+          "sha256": "4ca93e3a171787bb56613bf3648365ae96a355e28ec95f094b12d1982b6772df"
+        }
+      ]
+    }
+  },
+  "status": "data_free_runtime_gates_passed_semantic_ood_and_exact_restore_pending",
+  "v79_diagnostic_runs": [
+    {
+      "actor_generated_tokens_per_second_median": 893.8461544017526,
+      "actor_pid_map": {
+        "0": 1251842,
+        "1": 1251843,
+        "2": 1251844,
+        "3": 1251845
+      },
+      "actor_wall_runtime_seconds_median": 48.891406518465374,
+      "actor_wall_runtime_seconds_range": [
+        48.65212084702216,
+        49.171612236998044
+      ],
+      "actors": [
+        {
+          "between_state_differing_rows": 23,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 897.7075859637288,
+          "gpu": 0,
+          "receipt_content_sha256": "cc50c8f53bef2a722fd6159a34542ab922d5b4f5ed4cba66dc43a6243e1e188a",
+          "reference_repeat_changed_rows": 7,
+          "wall_runtime_seconds": 48.65212084702216
+        },
+        {
+          "between_state_differing_rows": 24,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 892.6969687578215,
+          "gpu": 1,
+          "receipt_content_sha256": "77da59f325dfd65723d6d977a32b36c99f79c5e01081ee733239a47785665ff0",
+          "reference_repeat_changed_rows": 9,
+          "wall_runtime_seconds": 48.966132389963605
+        },
+        {
+          "between_state_differing_rows": 23,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 889.100736909962,
+          "gpu": 2,
+          "receipt_content_sha256": "0bc4fd20cd862ce12677c5dcb8629b7389006a69810935f66bef3ad01d847ac4",
+          "reference_repeat_changed_rows": 4,
+          "wall_runtime_seconds": 49.171612236998044
+        },
+        {
+          "between_state_differing_rows": 24,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 894.9953400456837,
+          "gpu": 3,
+          "receipt_content_sha256": "2679e059c8e68f6ec78e7a95ce8633ad02b98786b80e306bbb880e7ee92bdaa8",
+          "reference_repeat_changed_rows": 7,
+          "wall_runtime_seconds": 48.81668064696714
+        }
+      ],
+      "artifact_inventory": {
+        "bundle_sha256": "0b8e57a86fe1d3ad1a7e34de6072a54e27cd197ffa9b4a551079ab8563f0e587",
+        "file_count": 11,
+        "files": [
+          {
+            "bytes": 40,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/actor_pids.csv",
+            "sha256": "9bb8820a4715477aa903811866ed5268d54701fd4c6f09f4dbda12407401a52b"
+          },
+          {
+            "bytes": 137122,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_0.json",
+            "sha256": "b991380e654237312a7e4bfb94406095d4e3729cfe7501c288b413b8cb9fc5f6"
+          },
+          {
+            "bytes": 23018,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_0.log",
+            "sha256": "53f36fe3a7bf1548952d56355510989fbfa728bc0d9ad87774f26b1c4be95c39"
+          },
+          {
+            "bytes": 137125,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_1.json",
+            "sha256": "e700e05c65b4466f437f69d95812fd5cc6bb754a35fdb81c2b2629d0de09ee14"
+          },
+          {
+            "bytes": 23019,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_1.log",
+            "sha256": "30643a3e6111d797830a6d4b7a40f834da46b1c5fd93347e49d5aa78e16e433c"
+          },
+          {
+            "bytes": 137124,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_2.json",
+            "sha256": "e1a1f1062dd64bed0e62c12cbac615d7272650f391dc0d973ab0a8212290ff72"
+          },
+          {
+            "bytes": 23019,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_2.log",
+            "sha256": "51eb1f370ba7b44adfb203e9e2c5c06707cfaef988cd889791d7ea90a58b0aff"
+          },
+          {
+            "bytes": 137125,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_3.json",
+            "sha256": "e37db30f0dab92f710b9065dedb655f0e1ded16f2aab5612ac65e5379ecd85ae"
+          },
+          {
+            "bytes": 23018,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_3.log",
+            "sha256": "7dbe9628ca90e96342dfbfd7a98812d85fb1dbee270a2c5d4e5baf9bb120eea2"
+          },
+          {
+            "bytes": 0,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_telemetry_monitor_v79.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 423781,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r1_fix/gpu_telemetry_v79.jsonl",
+            "sha256": "b29d274ddfbf3db343c791e96e5d4db3af7acae6bf0972fbb013df56d4fe8297"
+          }
+        ]
+      },
+      "eligible_for_v79b_full_runtime_acceptance": false,
+      "evidence_class": "same_model_performance_diagnostic_old_cleanup_monitor",
+      "logs": [
+        {
+          "file_sha256": "53f36fe3a7bf1548952d56355510989fbfa728bc0d9ad87774f26b1c4be95c39",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "file_sha256": "30643a3e6111d797830a6d4b7a40f834da46b1c5fd93347e49d5aa78e16e433c",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "file_sha256": "51eb1f370ba7b44adfb203e9e2c5c06707cfaef988cd889791d7ea90a58b0aff",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "file_sha256": "7dbe9628ca90e96342dfbfd7a98812d85fb1dbee270a2c5d4e5baf9bb120eea2",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        }
+      ],
+      "run": "v79_fp8_kv_capacity_0485_r1_fix",
+      "telemetry": {
+        "complete_four_gpu_batches": 134,
+        "external_cleanup_accepted_batches": [],
+        "external_cleanup_gate_passed": false,
+        "file_sha256": "b29d274ddfbf3db343c791e96e5d4db3af7acae6bf0972fbb013df56d4fe8297",
+        "foreign_compute_pid_rows": 0,
+        "hbm_bandwidth_bytes_per_second": null,
+        "hbm_bandwidth_reason": "NVML memory-utilization percentages do not identify transferred bytes",
+        "per_gpu": {
+          "0": {
+            "actor_root_pid": 1251842,
+            "attributed_compute_pids": [
+              1253489
+            ],
+            "gpu_uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 73,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 284379,
+            "positive_gpu_utilization_samples": 86,
+            "positive_hbm_utilization_samples": 78,
+            "sample_count": 134
+          },
+          "1": {
+            "actor_root_pid": 1251843,
+            "attributed_compute_pids": [
+              1253475
+            ],
+            "gpu_uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 67,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 278634,
+            "positive_gpu_utilization_samples": 88,
+            "positive_hbm_utilization_samples": 87,
+            "sample_count": 134
+          },
+          "2": {
+            "actor_root_pid": 1251844,
+            "attributed_compute_pids": [
+              1253496
+            ],
+            "gpu_uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 73,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 285951,
+            "positive_gpu_utilization_samples": 86,
+            "positive_hbm_utilization_samples": 85,
+            "sample_count": 134
+          },
+          "3": {
+            "actor_root_pid": 1251845,
+            "attributed_compute_pids": [
+              1253482
+            ],
+            "gpu_uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 76,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 283839,
+            "positive_gpu_utilization_samples": 88,
+            "positive_hbm_utilization_samples": 88,
+            "sample_count": 134
+          }
+        },
+        "row_count": 536,
+        "sample_interval_seconds": {
+          "maximum": 0.759983759,
+          "median": 0.669368508,
+          "minimum": 0.666548186
+        },
+        "sampled_pcie_integrals": {
+          "claim": "left-rectangle estimate across adjacent telemetry batches; not an exact byte count or HBM-bandwidth measurement",
+          "rx_bytes_sum_gpus": 181196686394,
+          "tx_bytes_sum_gpus": 18484280933
+        },
+        "trailing_external_cleanup_batches": []
+      }
+    },
+    {
+      "actor_generated_tokens_per_second_median": 893.2608279053541,
+      "actor_pid_map": {
+        "0": 1258289,
+        "1": 1258290,
+        "2": 1258291,
+        "3": 1258292
+      },
+      "actor_wall_runtime_seconds_median": 48.89289802251733,
+      "actor_wall_runtime_seconds_range": [
+        48.498058393015526,
+        49.243740971025545
+      ],
+      "actors": [
+        {
+          "between_state_differing_rows": 22,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 899.7193521271763,
+          "gpu": 0,
+          "receipt_content_sha256": "4113a754a2955fb413d7736c3c04c1e906ef9499f95697202a5d964f0525a733",
+          "reference_repeat_changed_rows": 13,
+          "wall_runtime_seconds": 48.498058393015526
+        },
+        {
+          "between_state_differing_rows": 20,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 897.098403371722,
+          "gpu": 1,
+          "receipt_content_sha256": "f7116eac80c76c5127ed0464f04c2f3daddd89a55ecd5afa6f140702021dee01",
+          "reference_repeat_changed_rows": 8,
+          "wall_runtime_seconds": 48.65382059599506
+        },
+        {
+          "between_state_differing_rows": 21,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 889.423252438986,
+          "gpu": 2,
+          "receipt_content_sha256": "3eb59f0129e7d9a6657d5c2e06bea7a2448894959ba6d6085dbc683a05da4966",
+          "reference_repeat_changed_rows": 9,
+          "wall_runtime_seconds": 49.1319754490396
+        },
+        {
+          "between_state_differing_rows": 23,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 887.2425136126964,
+          "gpu": 3,
+          "receipt_content_sha256": "1307fdc1cade48f1eff7e8ead04d8734e6307e3e37b295984f6be368cbda977c",
+          "reference_repeat_changed_rows": 8,
+          "wall_runtime_seconds": 49.243740971025545
+        }
+      ],
+      "artifact_inventory": {
+        "bundle_sha256": "27934a9f678018c20a91e13ab7095633f366fe1827c0f68540d73436772451a5",
+        "file_count": 11,
+        "files": [
+          {
+            "bytes": 40,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/actor_pids.csv",
+            "sha256": "ef0189fdf04070851a10ec792935c275b4ae89134e1bbecf5a9e758b283a9ab0"
+          },
+          {
+            "bytes": 137126,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_0.json",
+            "sha256": "2d815d6d1ed73a87fcc83c0eb1dda6b6f8bd1bf809734ac3608256210ff18f25"
+          },
+          {
+            "bytes": 23008,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_0.log",
+            "sha256": "95b9c02c252313f3a85fd25907e918714aaa063a59522b7d9767e74e27ab35dc"
+          },
+          {
+            "bytes": 137124,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_1.json",
+            "sha256": "49be7046f161d740efbbb421d474d52e40b865729265d03fe2a9700f98f1fe1b"
+          },
+          {
+            "bytes": 23006,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_1.log",
+            "sha256": "2736c557849949762f918c02a73889cafa6955f6f1b0d6b1559560ba5b11c9ed"
+          },
+          {
+            "bytes": 137121,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_2.json",
+            "sha256": "863b0aac719a89514a59c2a591240cec491fbe31f9582a9c01b12c5858a83535"
+          },
+          {
+            "bytes": 23005,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_2.log",
+            "sha256": "202a967661932446bff464198892d3c75a8b5fe1873eb21735f7100cd60d0a39"
+          },
+          {
+            "bytes": 137125,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_3.json",
+            "sha256": "499fe900379d768ef5222e04e3aa083614bb86bdf970dc2e4b0728261734bc64"
+          },
+          {
+            "bytes": 23007,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_3.log",
+            "sha256": "68b04d3ab997396f26523ce1e9a70be07680206917a000faf515902bad3cfa2d"
+          },
+          {
+            "bytes": 0,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_telemetry_monitor_v79.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 404837,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r2/gpu_telemetry_v79.jsonl",
+            "sha256": "d9d4376e3707b75724ab0d8a725cc7d2d33e54e6aef140a12eb6aa454d488e1a"
+          }
+        ]
+      },
+      "eligible_for_v79b_full_runtime_acceptance": false,
+      "evidence_class": "same_model_performance_diagnostic_old_cleanup_monitor",
+      "logs": [
+        {
+          "file_sha256": "95b9c02c252313f3a85fd25907e918714aaa063a59522b7d9767e74e27ab35dc",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "file_sha256": "2736c557849949762f918c02a73889cafa6955f6f1b0d6b1559560ba5b11c9ed",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "file_sha256": "202a967661932446bff464198892d3c75a8b5fe1873eb21735f7100cd60d0a39",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "file_sha256": "68b04d3ab997396f26523ce1e9a70be07680206917a000faf515902bad3cfa2d",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        }
+      ],
+      "run": "v79_fp8_kv_capacity_0485_r2",
+      "telemetry": {
+        "complete_four_gpu_batches": 128,
+        "external_cleanup_accepted_batches": [],
+        "external_cleanup_gate_passed": false,
+        "file_sha256": "d9d4376e3707b75724ab0d8a725cc7d2d33e54e6aef140a12eb6aa454d488e1a",
+        "foreign_compute_pid_rows": 0,
+        "hbm_bandwidth_bytes_per_second": null,
+        "hbm_bandwidth_reason": "NVML memory-utilization percentages do not identify transferred bytes",
+        "per_gpu": {
+          "0": {
+            "actor_root_pid": 1258289,
+            "attributed_compute_pids": [
+              1259920
+            ],
+            "gpu_uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 73,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 285025,
+            "positive_gpu_utilization_samples": 90,
+            "positive_hbm_utilization_samples": 76,
+            "sample_count": 128
+          },
+          "1": {
+            "actor_root_pid": 1258290,
+            "attributed_compute_pids": [
+              1259927
+            ],
+            "gpu_uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 65,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 278561,
+            "positive_gpu_utilization_samples": 91,
+            "positive_hbm_utilization_samples": 76,
+            "sample_count": 128
+          },
+          "2": {
+            "actor_root_pid": 1258291,
+            "attributed_compute_pids": [
+              1259934
+            ],
+            "gpu_uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 74,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 286037,
+            "positive_gpu_utilization_samples": 88,
+            "positive_hbm_utilization_samples": 79,
+            "sample_count": 128
+          },
+          "3": {
+            "actor_root_pid": 1258292,
+            "attributed_compute_pids": [
+              1259913
+            ],
+            "gpu_uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 75,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 284988,
+            "positive_gpu_utilization_samples": 92,
+            "positive_hbm_utilization_samples": 82,
+            "sample_count": 128
+          }
+        },
+        "row_count": 512,
+        "sample_interval_seconds": {
+          "maximum": 0.730823373,
+          "median": 0.668692131,
+          "minimum": 0.664988478
+        },
+        "sampled_pcie_integrals": {
+          "claim": "left-rectangle estimate across adjacent telemetry batches; not an exact byte count or HBM-bandwidth measurement",
+          "rx_bytes_sum_gpus": 182154248885,
+          "tx_bytes_sum_gpus": 17955105774
+        },
+        "trailing_external_cleanup_batches": []
+      }
+    },
+    {
+      "actor_generated_tokens_per_second_median": 892.1694796367626,
+      "actor_pid_map": {
+        "0": 1263944,
+        "1": 1263945,
+        "2": 1263946,
+        "3": 1263947
+      },
+      "actor_wall_runtime_seconds_median": 49.3502528865356,
+      "actor_wall_runtime_seconds_range": [
+        48.709387526032515,
+        50.2735393330222
+      ],
+      "actors": [
+        {
+          "between_state_differing_rows": 23,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 894.386926116154,
+          "gpu": 0,
+          "receipt_content_sha256": "cc0ef9579ec488c66d6d14e7383c6eaadbfd3b29f8654f9a60cfdca7d232fb1e",
+          "reference_repeat_changed_rows": 6,
+          "wall_runtime_seconds": 48.709387526032515
+        },
+        {
+          "between_state_differing_rows": 23,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 895.050020045319,
+          "gpu": 1,
+          "receipt_content_sha256": "7c36a12ad9dff14bcd1fb582a1de300afb0673128e89a9338ad47e8cbaa2999f",
+          "reference_repeat_changed_rows": 6,
+          "wall_runtime_seconds": 48.7407402950339
+        },
+        {
+          "between_state_differing_rows": 24,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 889.9520331573713,
+          "gpu": 2,
+          "receipt_content_sha256": "00e2014a13e38d4ff5d410d359cfa688a441fa6374c23faf930b6d3fa84e6530",
+          "reference_repeat_changed_rows": 5,
+          "wall_runtime_seconds": 50.2735393330222
+        },
+        {
+          "between_state_differing_rows": 20,
+          "candidate_repeat_changed_rows": 0,
+          "generated_tokens_per_second": 889.840840226751,
+          "gpu": 3,
+          "receipt_content_sha256": "88f33c406ae7d71c49e6c16b8b5676fa39b9d6dd1a8e60a0b9cddd9efa92aa55",
+          "reference_repeat_changed_rows": 7,
+          "wall_runtime_seconds": 49.9597654780373
+        }
+      ],
+      "artifact_inventory": {
+        "bundle_sha256": "4cd37911ace8fe496ae50c0788772e61c9127654d27988493b550204de8b62af",
+        "file_count": 11,
+        "files": [
+          {
+            "bytes": 40,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/actor_pids.csv",
+            "sha256": "ee1559c329c56e42c607f7e1920cd761021caf4332b4339fb959e68beb6d7d05"
+          },
+          {
+            "bytes": 137124,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_0.json",
+            "sha256": "6a4f8146c1cfea1d0a46adc7b3cb6188a70dd48a598496708c197e33d0f9e466"
+          },
+          {
+            "bytes": 23008,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_0.log",
+            "sha256": "d9fe9cc3fec07ba122070831f1537d0309cac3d932e4712d084c22a01a3610bb"
+          },
+          {
+            "bytes": 137125,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_1.json",
+            "sha256": "e8937ac07f1660ab3b5d91fa12eeb5eb79e3b735f4c37019c1e009c68ef43f8a"
+          },
+          {
+            "bytes": 23006,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_1.log",
+            "sha256": "31c469181ebc2b44f433999682206ffaee6347eeb0506ff0c118ea8bfd6757b0"
+          },
+          {
+            "bytes": 137120,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_2.json",
+            "sha256": "1dc93a2b5d8492828bb9a1ea2dc282f2cc84e34c3016bbe176fbf9c7e01217c3"
+          },
+          {
+            "bytes": 23229,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_2.log",
+            "sha256": "1eb23206130335b797fd928f728cf7d1fb7a10ef4638907483127c64c852dd17"
+          },
+          {
+            "bytes": 137121,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_3.json",
+            "sha256": "4f2b91f058ad109851cb2a844a43401e3bbe6e0b30ef79c787090a81e0d9e036"
+          },
+          {
+            "bytes": 23005,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_3.log",
+            "sha256": "617092f2039100850b62686ca5d9153810cf65b31b9ae435a6bc26d4b5ea2aaa"
+          },
+          {
+            "bytes": 0,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_telemetry_monitor_v79.log",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "bytes": 426995,
+            "path": "experiments/eggroll_es_hpo/runs/v79_fp8_kv_capacity_0485_r3/gpu_telemetry_v79.jsonl",
+            "sha256": "7276cd33a228679592f7a1eb7ab3c8a8286d33efc08c1d467a7220dace96cf85"
+          }
+        ]
+      },
+      "eligible_for_v79b_full_runtime_acceptance": false,
+      "evidence_class": "same_model_performance_diagnostic_old_cleanup_monitor",
+      "logs": [
+        {
+          "file_sha256": "d9fe9cc3fec07ba122070831f1537d0309cac3d932e4712d084c22a01a3610bb",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "file_sha256": "31c469181ebc2b44f433999682206ffaee6347eeb0506ff0c118ea8bfd6757b0",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "file_sha256": "1eb23206130335b797fd928f728cf7d1fb7a10ef4638907483127c64c852dd17",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        },
+        {
+          "file_sha256": "617092f2039100850b62686ca5d9153810cf65b31b9ae435a6bc26d4b5ea2aaa",
+          "forbidden_fragment_counts": {
+            "Auto-disabled DeepGemm": 0,
+            "CUDA out of memory": 0,
+            "DeepGEMM E8M0 enabled": 0,
+            "Traceback (most recent call last)": 0,
+            "fallback to": 0,
+            "falling back": 0,
+            "not supported by": 0,
+            "please install bitsandbytes": 0
+          },
+          "known_visible_warning_counts": {
+            "No LoRA kernel configs found": 6,
+            "Using default LoRA kernel configs": 1,
+            "Using default MoE config": 1
+          },
+          "kv_cache_size_tokens": 162304,
+          "maximum_concurrency": 79.25,
+          "required_fragment_counts": {
+            "Available KV cache memory:": 1,
+            "GPU KV cache size:": 1,
+            "Maximum concurrency for 2,048 tokens per request:": 1,
+            "Skipping FlashInfer autotune because it is disabled": 1,
+            "Using TRITON Fp8 MoE backend": 1,
+            "Using TRITON_ATTN attention backend": 1
+          }
+        }
+      ],
+      "run": "v79_fp8_kv_capacity_0485_r3",
+      "telemetry": {
+        "complete_four_gpu_batches": 135,
+        "external_cleanup_accepted_batches": [],
+        "external_cleanup_gate_passed": false,
+        "file_sha256": "7276cd33a228679592f7a1eb7ab3c8a8286d33efc08c1d467a7220dace96cf85",
+        "foreign_compute_pid_rows": 0,
+        "hbm_bandwidth_bytes_per_second": null,
+        "hbm_bandwidth_reason": "NVML memory-utilization percentages do not identify transferred bytes",
+        "per_gpu": {
+          "0": {
+            "actor_root_pid": 1263944,
+            "attributed_compute_pids": [
+              1265578
+            ],
+            "gpu_uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 73,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 287693,
+            "positive_gpu_utilization_samples": 86,
+            "positive_hbm_utilization_samples": 85,
+            "sample_count": 135
+          },
+          "1": {
+            "actor_root_pid": 1263945,
+            "attributed_compute_pids": [
+              1265585
+            ],
+            "gpu_uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 67,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 278629,
+            "positive_gpu_utilization_samples": 88,
+            "positive_hbm_utilization_samples": 85,
+            "sample_count": 135
+          },
+          "2": {
+            "actor_root_pid": 1263946,
+            "attributed_compute_pids": [
+              1265555
+            ],
+            "gpu_uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 73,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 287679,
+            "positive_gpu_utilization_samples": 89,
+            "positive_hbm_utilization_samples": 87,
+            "sample_count": 135
+          },
+          "3": {
+            "actor_root_pid": 1263947,
+            "attributed_compute_pids": [
+              1265548
+            ],
+            "gpu_uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999",
+            "minimum_physical_headroom_mib": 47893,
+            "peak_attributed_process_memory_mib": 49384,
+            "peak_gpu_utilization_percent": 100,
+            "peak_hbm_utilization_percent": 76,
+            "peak_memory_used_mib": 49994,
+            "peak_power_draw_mw": 285473,
+            "positive_gpu_utilization_samples": 86,
+            "positive_hbm_utilization_samples": 81,
+            "sample_count": 135
+          }
+        },
+        "row_count": 540,
+        "sample_interval_seconds": {
+          "maximum": 0.785454785,
+          "median": 0.6693163085,
+          "minimum": 0.665836816
+        },
+        "sampled_pcie_integrals": {
+          "claim": "left-rectangle estimate across adjacent telemetry batches; not an exact byte count or HBM-bandwidth measurement",
+          "rx_bytes_sum_gpus": 183670430351,
+          "tx_bytes_sum_gpus": 17791984739
+        },
+        "trailing_external_cleanup_batches": []
+      }
+    }
+  ],
+  "v79b_accepted_run": {
+    "actor_generated_tokens_per_second_median": 888.1935899876364,
+    "actor_pid_map": {
+      "0": 1276274,
+      "1": 1276275,
+      "2": 1276276,
+      "3": 1276277
+    },
+    "actor_wall_runtime_seconds_median": 49.10028860197053,
+    "actor_wall_runtime_seconds_range": [
+      48.76646776602138,
+      49.34243013797095
+    ],
+    "actors": [
+      {
+        "between_state_differing_rows": 22,
+        "candidate_repeat_changed_rows": 0,
+        "generated_tokens_per_second": 888.7442135012902,
+        "gpu": 0,
+        "receipt_content_sha256": "5afb8ed6ea8f693e3a11d0781bea894e766c0c1f8a29b8f261a7a7d88cdefa6b",
+        "reference_repeat_changed_rows": 6,
+        "wall_runtime_seconds": 49.00199016195256
+      },
+      {
+        "between_state_differing_rows": 25,
+        "candidate_repeat_changed_rows": 0,
+        "generated_tokens_per_second": 895.412044684977,
+        "gpu": 1,
+        "receipt_content_sha256": "cbe5e31a8812123b1d3412cdddf1424b81b44b705b35948cb08f8ab906657b34",
+        "reference_repeat_changed_rows": 8,
+        "wall_runtime_seconds": 48.76646776602138
+      },
+      {
+        "between_state_differing_rows": 22,
+        "candidate_repeat_changed_rows": 0,
+        "generated_tokens_per_second": 884.6336662752337,
+        "gpu": 2,
+        "receipt_content_sha256": "45a31dfd931a21eb897269ccc5b874ba1dd56af82e45f03b222b6de11ee42ab1",
+        "reference_repeat_changed_rows": 11,
+        "wall_runtime_seconds": 49.34243013797095
+      },
+      {
+        "between_state_differing_rows": 22,
+        "candidate_repeat_changed_rows": 0,
+        "generated_tokens_per_second": 887.6429664739827,
+        "gpu": 3,
+        "receipt_content_sha256": "45e30f624e2feec8a7f1f9f9f0135729ad049e7d7ba354b052103b5150228bcf",
+        "reference_repeat_changed_rows": 8,
+        "wall_runtime_seconds": 49.1985870419885
+      }
+    ],
+    "artifact_inventory": {
+      "bundle_sha256": "17a4f99164cd17f8e55ddcd879460c99e356e34d8e90e017abbbd7597085dde7",
+      "file_count": 11,
+      "files": [
+        {
+          "bytes": 40,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/actor_pids.csv",
+          "sha256": "4d89423f4395c941f5826610a66a9799ade9fb059628bd20117291e12a06efc0"
+        },
+        {
+          "bytes": 137123,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_0.json",
+          "sha256": "91cc8fa6abba45b991156e0aa48fcc0efb7830d28b2826e1da28de782e1855d1"
+        },
+        {
+          "bytes": 23054,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_0.log",
+          "sha256": "1fb9f7ca1c0de7b3e1975866c75d2c977ada28cc970d4d847b1e9ccbe1feb929"
+        },
+        {
+          "bytes": 137124,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_1.json",
+          "sha256": "682500c0f74b30de1b5cb224c9fd10dfe5fbcd80d8057437ce96d5c93016bf06"
+        },
+        {
+          "bytes": 23054,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_1.log",
+          "sha256": "b0ababb143cc5681afb58638a566856502871caea8af3ddeb710714f18e973a9"
+        },
+        {
+          "bytes": 137126,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_2.json",
+          "sha256": "ffb6d97b9753cc9a50ac3a6a2b1e9b07573b7145d89097a75980dc57d6c0cd41"
+        },
+        {
+          "bytes": 23055,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_2.log",
+          "sha256": "ba0100d693b0407966c18de68b54a10ca1196b8c4d5396a1d0c5e02e6f715b0f"
+        },
+        {
+          "bytes": 137114,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_3.json",
+          "sha256": "930975b4daed575f17049fe8cb0f08de5c12ad1d37d303f21cb8747271a943c1"
+        },
+        {
+          "bytes": 23053,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_3.log",
+          "sha256": "f7c55d336f732e380f6cc6ad39fd8985dbf0ae9c2d0dbae86da3ec7a848d238f"
+        },
+        {
+          "bytes": 0,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_telemetry_monitor_v79.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 497035,
+          "path": "experiments/eggroll_es_hpo/runs/v79b_fp8_kv_capacity_0485_r5_sealed_cleanup/gpu_telemetry_v79.jsonl",
+          "sha256": "52854be1df03c26e359136133840a998ecb1ded9e38d49bc8693c4f3fd11608f"
+        }
+      ]
+    },
+    "eligible_for_v79b_full_runtime_acceptance": true,
+    "evidence_class": "fully_preregistered_cleanup_accepted_v79b",
+    "logs": [
+      {
+        "file_sha256": "1fb9f7ca1c0de7b3e1975866c75d2c977ada28cc970d4d847b1e9ccbe1feb929",
+        "forbidden_fragment_counts": {
+          "Auto-disabled DeepGemm": 0,
+          "CUDA out of memory": 0,
+          "DeepGEMM E8M0 enabled": 0,
+          "Traceback (most recent call last)": 0,
+          "fallback to": 0,
+          "falling back": 0,
+          "not supported by": 0,
+          "please install bitsandbytes": 0
+        },
+        "known_visible_warning_counts": {
+          "No LoRA kernel configs found": 6,
+          "Using default LoRA kernel configs": 1,
+          "Using default MoE config": 1
+        },
+        "kv_cache_size_tokens": 162304,
+        "maximum_concurrency": 79.25,
+        "required_fragment_counts": {
+          "Available KV cache memory:": 1,
+          "GPU KV cache size:": 1,
+          "Maximum concurrency for 2,048 tokens per request:": 1,
+          "Skipping FlashInfer autotune because it is disabled": 1,
+          "Using TRITON Fp8 MoE backend": 1,
+          "Using TRITON_ATTN attention backend": 1
+        }
+      },
+      {
+        "file_sha256": "b0ababb143cc5681afb58638a566856502871caea8af3ddeb710714f18e973a9",
+        "forbidden_fragment_counts": {
+          "Auto-disabled DeepGemm": 0,
+          "CUDA out of memory": 0,
+          "DeepGEMM E8M0 enabled": 0,
+          "Traceback (most recent call last)": 0,
+          "fallback to": 0,
+          "falling back": 0,
+          "not supported by": 0,
+          "please install bitsandbytes": 0
+        },
+        "known_visible_warning_counts": {
+          "No LoRA kernel configs found": 6,
+          "Using default LoRA kernel configs": 1,
+          "Using default MoE config": 1
+        },
+        "kv_cache_size_tokens": 162304,
+        "maximum_concurrency": 79.25,
+        "required_fragment_counts": {
+          "Available KV cache memory:": 1,
+          "GPU KV cache size:": 1,
+          "Maximum concurrency for 2,048 tokens per request:": 1,
+          "Skipping FlashInfer autotune because it is disabled": 1,
+          "Using TRITON Fp8 MoE backend": 1,
+          "Using TRITON_ATTN attention backend": 1
+        }
+      },
+      {
+        "file_sha256": "ba0100d693b0407966c18de68b54a10ca1196b8c4d5396a1d0c5e02e6f715b0f",
+        "forbidden_fragment_counts": {
+          "Auto-disabled DeepGemm": 0,
+          "CUDA out of memory": 0,
+          "DeepGEMM E8M0 enabled": 0,
+          "Traceback (most recent call last)": 0,
+          "fallback to": 0,
+          "falling back": 0,
+          "not supported by": 0,
+          "please install bitsandbytes": 0
+        },
+        "known_visible_warning_counts": {
+          "No LoRA kernel configs found": 6,
+          "Using default LoRA kernel configs": 1,
+          "Using default MoE config": 1
+        },
+        "kv_cache_size_tokens": 162304,
+        "maximum_concurrency": 79.25,
+        "required_fragment_counts": {
+          "Available KV cache memory:": 1,
+          "GPU KV cache size:": 1,
+          "Maximum concurrency for 2,048 tokens per request:": 1,
+          "Skipping FlashInfer autotune because it is disabled": 1,
+          "Using TRITON Fp8 MoE backend": 1,
+          "Using TRITON_ATTN attention backend": 1
+        }
+      },
+      {
+        "file_sha256": "f7c55d336f732e380f6cc6ad39fd8985dbf0ae9c2d0dbae86da3ec7a848d238f",
+        "forbidden_fragment_counts": {
+          "Auto-disabled DeepGemm": 0,
+          "CUDA out of memory": 0,
+          "DeepGEMM E8M0 enabled": 0,
+          "Traceback (most recent call last)": 0,
+          "fallback to": 0,
+          "falling back": 0,
+          "not supported by": 0,
+          "please install bitsandbytes": 0
+        },
+        "known_visible_warning_counts": {
+          "No LoRA kernel configs found": 6,
+          "Using default LoRA kernel configs": 1,
+          "Using default MoE config": 1
+        },
+        "kv_cache_size_tokens": 162304,
+        "maximum_concurrency": 79.25,
+        "required_fragment_counts": {
+          "Available KV cache memory:": 1,
+          "GPU KV cache size:": 1,
+          "Maximum concurrency for 2,048 tokens per request:": 1,
+          "Skipping FlashInfer autotune because it is disabled": 1,
+          "Using TRITON Fp8 MoE backend": 1,
+          "Using TRITON_ATTN attention backend": 1
+        }
+      }
+    ],
+    "run": "v79b_fp8_kv_capacity_0485_r5_sealed_cleanup",
+    "telemetry": {
+      "complete_four_gpu_batches": 132,
+      "external_cleanup_accepted_batches": [
+        129,
+        130,
+        131
+      ],
+      "external_cleanup_gate_passed": true,
+      "file_sha256": "52854be1df03c26e359136133840a998ecb1ded9e38d49bc8693c4f3fd11608f",
+      "foreign_compute_pid_rows": 0,
+      "hbm_bandwidth_bytes_per_second": null,
+      "hbm_bandwidth_reason": "NVML memory-utilization percentages do not identify transferred bytes",
+      "per_gpu": {
+        "0": {
+          "actor_root_pid": 1276274,
+          "attributed_compute_pids": [
+            1277971
+          ],
+          "gpu_uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927",
+          "minimum_physical_headroom_mib": 47893,
+          "peak_attributed_process_memory_mib": 49384,
+          "peak_gpu_utilization_percent": 100,
+          "peak_hbm_utilization_percent": 73,
+          "peak_memory_used_mib": 49994,
+          "peak_power_draw_mw": 283590,
+          "positive_gpu_utilization_samples": 89,
+          "positive_hbm_utilization_samples": 78,
+          "sample_count": 132
+        },
+        "1": {
+          "actor_root_pid": 1276275,
+          "attributed_compute_pids": [
+            1277950
+          ],
+          "gpu_uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded",
+          "minimum_physical_headroom_mib": 47893,
+          "peak_attributed_process_memory_mib": 49384,
+          "peak_gpu_utilization_percent": 100,
+          "peak_hbm_utilization_percent": 66,
+          "peak_memory_used_mib": 49994,
+          "peak_power_draw_mw": 277979,
+          "positive_gpu_utilization_samples": 87,
+          "positive_hbm_utilization_samples": 81,
+          "sample_count": 132
+        },
+        "2": {
+          "actor_root_pid": 1276276,
+          "attributed_compute_pids": [
+            1277964
+          ],
+          "gpu_uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640",
+          "minimum_physical_headroom_mib": 47893,
+          "peak_attributed_process_memory_mib": 49384,
+          "peak_gpu_utilization_percent": 100,
+          "peak_hbm_utilization_percent": 74,
+          "peak_memory_used_mib": 49994,
+          "peak_power_draw_mw": 283662,
+          "positive_gpu_utilization_samples": 89,
+          "positive_hbm_utilization_samples": 76,
+          "sample_count": 132
+        },
+        "3": {
+          "actor_root_pid": 1276277,
+          "attributed_compute_pids": [
+            1277957
+          ],
+          "gpu_uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999",
+          "minimum_physical_headroom_mib": 47893,
+          "peak_attributed_process_memory_mib": 49384,
+          "peak_gpu_utilization_percent": 100,
+          "peak_hbm_utilization_percent": 76,
+          "peak_memory_used_mib": 49994,
+          "peak_power_draw_mw": 278666,
+          "positive_gpu_utilization_samples": 89,
+          "positive_hbm_utilization_samples": 78,
+          "sample_count": 132
+        }
+      },
+      "row_count": 528,
+      "sample_interval_seconds": {
+        "maximum": 0.729131389,
+        "median": 0.669625139,
+        "minimum": 0.665550735
+      },
+      "sampled_pcie_integrals": {
+        "claim": "left-rectangle estimate across adjacent telemetry batches; not an exact byte count or HBM-bandwidth measurement",
+        "rx_bytes_sum_gpus": 173112780581,
+        "tx_bytes_sum_gpus": 17645958415
+      },
+      "trailing_external_cleanup_batches": [
+        129,
+        130,
+        131
+      ]
+    }
+  },
+  "vram": {
+    "external_peak_memory_used_mib": {
+      "v76_r7": 50858,
+      "v78_r3": 50856,
+      "v79b_r5_including_pynvml_observer": 49994
+    },
+    "v79b_attributed_actor_savings_mib_vs_v78_r3_external_peak": 1472,
+    "v79b_external_peak_gate_passed": true,
+    "v79b_external_peak_ratio_to_v76_r7": 0.9830115222777144,
+    "v79b_external_peak_ratio_to_v78_r3": 0.9830501809029416,
+    "v79b_external_peak_savings_mib_vs_v76_r7": 864,
+    "v79b_external_peak_savings_mib_vs_v78_r3": 862,
+    "v79b_minimum_physical_headroom_gate_passed": true,
+    "v79b_monitor_overhead_caveat": "V79B in-process NVML observation holds about 598 MiB after actor exit; compare the external total for the fail-closed gate and the attributed process peak only as a diagnostic estimate",
+    "v79b_peak_attributed_actor_process_mib": 49384
+  }
+}
