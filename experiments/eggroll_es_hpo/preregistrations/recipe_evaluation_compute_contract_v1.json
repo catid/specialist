@@ -1,0 +1,333 @@
+{
+  "compute_accounting": {
+    "also_required": [
+      "prompt count",
+      "generated tokens",
+      "teacher-forced tokens",
+      "SFT non-padding train tokens",
+      "checkpoint count"
+    ],
+    "budget_modes": {
+      "compute_matched_quality": {
+        "confirmation_target_gpu_seconds_per_seed": 14400,
+        "equality": "charged GPU seconds within tolerance and exact final evaluation requests; family-native work is reported",
+        "relative_match_tolerance": 0.02,
+        "screen_target_gpu_seconds_per_arm": 14400,
+        "terminal_target_gpu_seconds_per_seed": 28800
+      },
+      "estimator_control": {
+        "confirmation_gpu_second_ceiling_per_seed": 14400,
+        "confirmation_target_generated_rollouts_per_seed": 2048,
+        "equality": "exact optimization/evaluation rollout counts and CRN identities; GPU seconds are reported and capped",
+        "screen_gpu_second_ceiling_per_arm": 14400,
+        "screen_target_generated_rollouts_per_arm": 2048
+      },
+      "systems_throughput": {
+        "equality": "exact model state, prompts, candidates, token limits, and outputs; GPU seconds and bandwidth are outcomes",
+        "quality_promotion_authorized": false
+      }
+    },
+    "charged_gpu_second": "sum over physical GPUs of all model-resident monotonic-time intervals, including load, candidate materialization, forward, backward/update, evaluation, checkpoint, and failed attempts after any model output is observed",
+    "excluded_time": [
+      "scheduler queue",
+      "CPU-only preregistration",
+      "CPU-only dataset build before model allocation"
+    ],
+    "four_gpu_requirement": {
+      "all_model_resident_intervals_attributed": true,
+      "idle_capacity_does_not_count_as_useful_activity": true,
+      "physical_gpu_ids": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "useful_positive_activity_each_gpu_per_training_phase": true
+    },
+    "generated_rollout": "one generated completion; count candidates, both mirrored signs, repeats, dev/OOD checks, and observed failed attempts"
+  },
+  "content_minimization": {
+    "adaptation_artifacts_may_not_bind_domain_eval_source": true,
+    "protected_answer_persisted": false,
+    "protected_excerpt_persisted": false,
+    "protected_per_item_metric_persisted": false,
+    "protected_question_persisted": false,
+    "protected_selection_uses_opaque_hashes_only": true,
+    "protected_url_persisted": false
+  },
+  "content_sha256_before_self_field": "2442c0c2be3ac4c883612f400f8f213ce3bc82ef96e03fad1ef10ec3b7d11fad",
+  "created_at_utc": "2026-07-17T00:00:00+00:00",
+  "disjointness": {
+    "audit": {
+      "pairs": {
+        "dev__ood_prose": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        },
+        "dev__ood_qa": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        },
+        "dev__protected_holdout": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        },
+        "ood_qa__ood_prose": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        },
+        "protected_holdout__ood_prose": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        },
+        "protected_holdout__ood_qa": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        },
+        "train__dev": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        },
+        "train__ood_prose": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        },
+        "train__ood_qa": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        },
+        "train__protected_holdout": {
+          "by_identity_domain": {
+            "document_sha256": 0,
+            "near_duplicate": 0,
+            "normalized_url": 0,
+            "raw_lineage": 0
+          },
+          "colliding_row_pairs": 0
+        }
+      },
+      "passed": true
+    },
+    "future_train_refresh_rule": "A refresh must rebuild this four-domain audit against the same opaque protected selection before any model update.",
+    "identity_domains": [
+      "document SHA-256",
+      "normalized provenance URL",
+      "raw-lineage identity",
+      "lexical near-duplicate"
+    ],
+    "near_duplicate_rule": {
+      "copy_detection": {
+        "containment_minimum_tokens": 12,
+        "containment_threshold": 0.9,
+        "jaccard_threshold": 0.8,
+        "token_ngram_width": 3,
+        "unicode": "NFKC plus casefold"
+      },
+      "qa_semantic": {
+        "answer_jaccard_joint": 0.86,
+        "implementation": "frozen V13 lexical-semantic rule",
+        "question_jaccard_direct": 0.82,
+        "question_jaccard_joint": 0.66
+      }
+    },
+    "passed": true,
+    "source_normalization": "Eval V3 normalize_source_url: scheme/default-port/path/tracking normalization with YouTube alias folding"
+  },
+  "implementation_bindings": {
+    "builder": "/home/catid/specialist/recipe_evaluation_contract_v1.py",
+    "builder_file_sha256": "e3f57e9290298e2510118e8c9f10c835618fa12206197462e7ae5a0b7ab68c25",
+    "eval_normalizer_file_sha256": "bbea54a6d9255f6edaa1d5d20a013e7e0aa1a280baebbc145f897392c574d7d5",
+    "semantic_rule_file_sha256": "81ca63c230995d44dfdb739a78b4a1a0f85d09724ba5915860ae36f78ccc3da9"
+  },
+  "purpose": "One immutable data boundary, score rule, compute ledger, seed schedule, stopping rule, and terminal-access firewall for all specialist-0j5 recipe ablations.",
+  "roles": {
+    "dev": {
+      "conflict_units": 51,
+      "file_sha256": "6d5b72f7506a752fd5275425739ec785e25f0ff486f5c03b68e91c8e99d7ebeb",
+      "manifest_content_sha256": "3fcc2820e8dffe6a21198d0520365aace049735ac84bda179ea44bc8ad0881eb",
+      "manifest_file_sha256": "7d2a8f2b86f9007aa2bfe8ae043be15647451cc4bbea53a18d5915085879ee9d",
+      "manifest_path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/manifest_v37a.json",
+      "path": "/home/catid/specialist/experiments/sft_controls/v37a_shadow_folds_v412/fold_3_shadow_dev.jsonl",
+      "rows": 83,
+      "train_derived_not_external_test": true,
+      "use": "HPO, early stopping only at fixed rung boundaries"
+    },
+    "ood": {
+      "prose": {
+        "file_sha256": "3299457c7a23dfb0eb10408b2226b6231e291b519a52325feed607d901605e57",
+        "path": "/home/catid/specialist/data/ood_prose_v3.jsonl",
+        "rows": 16
+      },
+      "qa": {
+        "file_sha256": "25a48b9494134731e51043047afadb340291a9ae3e9cfec9d9cfd8c73ddb255d",
+        "path": "/home/catid/specialist/data/ood_qa_v3.jsonl",
+        "rows": 24
+      },
+      "use": "noninferiority/trust-region gate; never optimize its point score directly"
+    },
+    "protected_holdout": {
+      "access_authorized_by_this_contract": false,
+      "accesses_per_frozen_recipe_program": 1,
+      "documents": 8,
+      "excluded_for_current_train_or_dev_collision": {
+        "candidate_rows": 18,
+        "excluded_row_reason_counts": {
+          "document_sha256": 4,
+          "near_duplicate": 0,
+          "normalized_url": 6,
+          "raw_lineage": 0
+        },
+        "excluded_rows": 6,
+        "selected_rows": 12
+      },
+      "legacy_heldout_candidate_rows": 18,
+      "rows": 12,
+      "selected_identity_set_sha256": "9dcaa9d00d474f0d041b2474016f8c00d6e5e2a27537483b9728b6f617f937c4",
+      "selected_opaque_item_identities": [
+        "13f15d2abb283ec3ca2b9991909f85636d26192948eb075a14cab3aa8d1535fb",
+        "3213c54a049d81ad79596a7a850451fa121cdb03778811618c84fa4eb1222bba",
+        "37dc3e329ec71f759423e9a6e8d8ce80a316fe5e8ac617cb697d10c671a35cea",
+        "3fc885eb9b9907d77dab4217db08ba3b18e289f710d1a451e9e798f01dbacfa4",
+        "456005d00092c003484b9c887891c7aa5fe7ebaab0dc04a12043d3cb5e29ad38",
+        "83fc0b9072571bef97657e27aff8da64ba2a9ca54bc95dbaf8c925604d619c84",
+        "abf33d804b433f2d363349a62a64cad9e6ce784ea7bd8c11f6b5876c5f0d972b",
+        "c3636130528b8bbbb705b4f529d725b858a4f252245f7606bd16d36d089fbb47",
+        "de184e03920c28f106209c68a883ca86fee4474c54b214ffcbbde8d122c548e2",
+        "e3405d67d63c597aa2ebbbcd1c82cb7eb591dd2663a88e2ed0ceafc3aa1298ad",
+        "ec4798df01cb753f342bf6e841ae86fd11a0e54254f023ea1bcfb727341e0f6d",
+        "ff751237040a1664ef15d66a68ea7ddcff8a568e229bda57a435e0b40cdd7b6d"
+      ],
+      "selection_or_tuning_use": "prohibited",
+      "source_file_sha256": "ab9a391e249910e876826dfab9c8e2f8e17a7b8695e6f018a3e515e5aa69603b",
+      "source_path": "/home/catid/specialist/data/eval_qa_v3.jsonl",
+      "source_rows": 59,
+      "use": "one terminal aggregate report after recipe freeze only"
+    },
+    "train": {
+      "file_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+      "identity_registry_content_sha256": "aea5b80183b2d98cf0dff37fd5f68cd6a8573901cf71c13a4558417c851cae8a",
+      "identity_registry_file_sha256": "907886ccf689618cd58e68eff05e8212a29826a6c7655c7698632164f9ec5bc8",
+      "identity_registry_path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v56_v434_train_disjoint_identity_registry.json",
+      "path": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/train_v434_fold3_v49d.jsonl",
+      "rows": 448,
+      "semantic_clusters": 448,
+      "source_documents": 234,
+      "use": "model updates and train-only sampling statistics"
+    }
+  },
+  "schema": "specialist-recipe-evaluation-compute-contract-v1",
+  "score_aggregation": {
+    "dev_primary": "mean reward within each of 51 immutable conflict units, then uniform mean over units",
+    "dev_secondary_order": [
+      "generated exact count",
+      "generated nonzero count",
+      "teacher-forced mean answer-token logprob"
+    ],
+    "ood_noninferiority": {
+      "all_conditions_required": true,
+      "bootstrap_seed": 2026071701,
+      "paired_bootstrap_samples": 20000,
+      "prose_mean_token_logprob_delta_95_lcb_minimum": -0.02,
+      "qa_exact_count_delta_minimum": -1,
+      "qa_mean_reward_delta_95_lcb_minimum": -0.02
+    },
+    "protected_result_can_change_recipe": false,
+    "protected_terminal": "uniform mean within source document then uniform document mean; report reward, exact, nonzero, and paired intervals"
+  },
+  "seeds": {
+    "bootstrap_seed": 2026071701,
+    "confirmation_training_seeds": [
+      1701,
+      1702,
+      1703
+    ],
+    "crn_derivation": "SHA-256(contract content, phase, training seed, conflict-unit identity, direction identity, repeat); identical across arms",
+    "screen_training_seeds": [
+      1701
+    ],
+    "split_seed": "specialist-eval-v3-s5-20260714",
+    "unregistered_seed_retry": "prohibited"
+  },
+  "status": "sealed_before_recipe_hpo_protected_holdout_unopened_by_hpo",
+  "stopping_and_promotion": {
+    "promotion_to_confirmation": {
+      "compute_contract_must_pass": true,
+      "dev_tuple_must_strictly_exceed_frozen_baseline": true,
+      "every_ood_noninferiority_condition_must_pass": true,
+      "protocol_or_leak_counter_may_not_increase": true
+    },
+    "recipe_freeze": {
+      "all_seed_ood_gates_required": true,
+      "pooled_dev_primary_paired_95_lcb_minimum": 0.0,
+      "positive_dev_primary_seeds_minimum": 2,
+      "selection_receipt_required_before_terminal_access": true,
+      "three_registered_seeds_required": true,
+      "tie_breaker": "dev secondary tuple, then lower charged GPU seconds, then lexicographic preregistered recipe id"
+    },
+    "screening": {
+      "checks_only_at_preregistered_rung_boundaries": true,
+      "early_hard_failures": [
+        "nonfinite state or score",
+        "integrity/replica mismatch",
+        "compute ceiling exceeded",
+        "OOD hard gate failure",
+        "missing four-GPU attribution"
+      ],
+      "failed_arm_budget_reallocated": false,
+      "protected_holdout_visible": false
+    },
+    "terminal": {
+      "aggregate_only": true,
+      "claim_persisted_before_protected_file_read": true,
+      "crash_after_claim_consumes_access": true,
+      "one_shot_after_recipe_selection": true,
+      "post_result_hpo_or_recipe_change": "prohibited",
+      "retry_or_reopen": "prohibited"
+    }
+  }
+}

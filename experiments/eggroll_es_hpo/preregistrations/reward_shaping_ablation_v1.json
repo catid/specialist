@@ -1,0 +1,337 @@
+{
+  "access_receipt": {
+    "dev_semantics_opened": false,
+    "gpu_launched": false,
+    "live_run_directory_touched": false,
+    "model_or_adapter_loaded": false,
+    "ood_semantics_opened": false,
+    "protected_holdout_semantics_opened": false,
+    "train_semantics_opened": false
+  },
+  "audited_current_recipe": {
+    "legacy_zscore": {
+      "formula": "(reward-mean)/(std+1e-8)",
+      "nonfinite_rejected_in_helper": false,
+      "prompt_locality_enforced_in_helper": false,
+      "scope": "caller-supplied population mean and standard deviation"
+    },
+    "raw_mirrored_equivalence": "sum(sign*raw_reward*epsilon) and sum((reward_plus-reward_minus)*epsilon) are algebraically identical for a complete exact-antithetic population",
+    "v43g_centered_rank": {
+      "exact_ties": "average midrank",
+      "nonfinite": "rejected",
+      "range": [
+        -0.5,
+        0.5
+      ],
+      "scope": "complete signed population"
+    },
+    "v66_pair_difference": {
+      "coefficient": "reward_plus-reward_minus",
+      "estimator": "learning_rate/(2*N*sigma)*sum(pair_difference*epsilon)",
+      "same_prompt_decode_judge_for_both_signs": true
+    }
+  },
+  "authorization": {
+    "candidate_promotion_by_this_artifact": false,
+    "dev_access_at_fixed_rung_only": true,
+    "future_four_gpu_comparison_after_v66_calibration": true,
+    "ood_access_for_noninferiority_gate_only": true,
+    "protected_holdout_access": false,
+    "this_builder_launches_gpu": false,
+    "train_reward_tensor_access_by_future_runner": true
+  },
+  "compute_match": {
+    "all_four_physical_gpus_must_have_useful_activity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "confirmation_gpu_second_ceiling_per_seed": 14400,
+    "directions": 8,
+    "duplicate_raw_vs_pair_gpu_training_run": "prohibited pseudo-replication",
+    "failed_arm_budget_reallocated": false,
+    "frozen_population_repeats_before_arm_specific_update": 2,
+    "mode": "estimator_control",
+    "optimization_rollouts_per_method_per_seed": 2048,
+    "prompt_groups_per_repeat": 64,
+    "rollout_identity_formula": "64 prompts * 16 signs/directions * 2 repeats",
+    "same_reward_tensor_reused_for_all_four_statistical_views": true,
+    "screen_gpu_second_ceiling_per_arm": 14400,
+    "signed_population": 16,
+    "three_unique_parameter_updates_not_four": true
+  },
+  "content_sha256_before_self_field": "00024ec2deacb463fddedd0883849f86808b8a3acdee3e2b86809c0719f87ccf",
+  "cpu_synthetic_diagnostic": {
+    "direction_coefficients": {
+      "antithetic_pair_difference": [
+        -0.08499999999999996,
+        -0.05100000000000009,
+        -0.017000000000000053,
+        0.017000000000000053,
+        0.051000000000000156,
+        0.08499999999999996,
+        0.11899999999999993,
+        0.15300000000000002
+      ],
+      "raw_rewards": [
+        -0.08499999999999996,
+        -0.05100000000000009,
+        -0.017000000000000053,
+        0.017000000000000053,
+        0.051000000000000156,
+        0.08499999999999996,
+        0.11899999999999993,
+        0.15300000000000002
+      ],
+      "within_prompt_centered_rank": [
+        -0.06666666666666665,
+        -0.06666666666666671,
+        -0.06666666666666665,
+        0.06666666666666665,
+        0.06666666666666665,
+        0.06666666666666665,
+        0.1333333333333333,
+        0.1333333333333333
+      ],
+      "within_prompt_centered_zscore": [
+        -0.33255112767159645,
+        -0.19953067660295826,
+        -0.06651022553431951,
+        0.06651022553431951,
+        0.19953067660295856,
+        0.33255112767159656,
+        0.465571578740235,
+        0.5985920298088739
+      ]
+    },
+    "every_noncontaminated_prompt_group_bitwise_unchanged": true,
+    "method_selected_from_synthetic_evidence": false,
+    "model_reward_improvement_claimed": false,
+    "pairwise_direction_cosines": {
+      "raw_rewards__vs__antithetic_pair_difference": 1.0,
+      "raw_rewards__vs__within_prompt_centered_rank": 0.9449111825230683,
+      "raw_rewards__vs__within_prompt_centered_zscore": 1.0,
+      "within_prompt_centered_rank__vs__antithetic_pair_difference": 0.9449111825230683,
+      "within_prompt_centered_zscore__vs__antithetic_pair_difference": 1.0,
+      "within_prompt_centered_zscore__vs__within_prompt_centered_rank": 0.9449111825230682
+    },
+    "purpose": "mechanics and adversarial sensitivity only; not model evidence",
+    "raw_and_direct_pair_coefficients_exactly_equal": true,
+    "schema": "reward-shaping-synthetic-cpu-diagnostic-v1",
+    "single_extreme_outlier": {
+      "antithetic_pair_difference": {
+        "clean_to_contaminated_cosine": -0.3535533905926425,
+        "coefficient_l2_delta": 333333333333.1142,
+        "only_contaminated_prompt_group_changed": true,
+        "total_prompt_group_count": 3,
+        "unchanged_prompt_group_count": 2
+      },
+      "raw_rewards": {
+        "clean_to_contaminated_cosine": -0.3535533905926425,
+        "coefficient_l2_delta": 333333333333.1142,
+        "only_contaminated_prompt_group_changed": true,
+        "total_prompt_group_count": 3,
+        "unchanged_prompt_group_count": 2
+      },
+      "within_prompt_centered_rank": {
+        "clean_to_contaminated_cosine": 0.41089070180665904,
+        "coefficient_l2_delta": 0.3555555555555555,
+        "only_contaminated_prompt_group_changed": true,
+        "total_prompt_group_count": 3,
+        "unchanged_prompt_group_count": 2
+      },
+      "within_prompt_centered_zscore": {
+        "clean_to_contaminated_cosine": 0.10820152672402955,
+        "coefficient_l2_delta": 1.5165401892015424,
+        "only_contaminated_prompt_group_changed": true,
+        "total_prompt_group_count": 3,
+        "unchanged_prompt_group_count": 2
+      }
+    },
+    "synthetic_prompt_groups": 3,
+    "synthetic_signed_candidates": 48
+  },
+  "implementation_bindings": {
+    "builder": {
+      "file_sha256": "84a457fed517ead6ba867125345dc71947e077abf466d7b37b655b52003ac94f",
+      "path": "/home/catid/specialist/build_reward_shaping_ablation_preregistration_v1.py"
+    },
+    "centered_midrank_reference_v43g": {
+      "file_sha256": "f989042ed6699557ecebe7697eb22d5e211f9755d5e42ff5d29d4f18d20abec1",
+      "path": "/home/catid/specialist/lora_es_robust_consensus_v43g.py"
+    },
+    "legacy_zscore_reference": {
+      "file_sha256": "54bf3c32a33b73e9ed10153507d3aa99fcae73e49c964b95de8b60c98bc370cb",
+      "path": "/home/catid/specialist/es-at-scale/es_at_scale/utils/reward_shaping.py"
+    },
+    "mirrored_pair_difference_v66": {
+      "file_sha256": "06b8cfd775051e1a20d30f969442cdcdc1b2b56ad10c1291d287f031a47594ad",
+      "path": "/home/catid/specialist/eggroll_es_mirrored_v66.py"
+    },
+    "reward_shaping": {
+      "file_sha256": "648953cff9501d5af43adb25d4f4218713cfde5cd3cbb17278c7be46ad9f4a83",
+      "path": "/home/catid/specialist/reward_shaping_ablation_v1.py"
+    }
+  },
+  "methods": [
+    {
+      "candidate_utility": "finite raw reward",
+      "direction_coefficient": "mean_prompt(Rplus-Rminus)",
+      "id": "raw_rewards",
+      "production_reduction": "antithetic_pair_difference",
+      "unique_gradient_arm": true
+    },
+    {
+      "candidate_utility": "(reward-prompt_population_mean)/(prompt_population_std+1e-8)",
+      "id": "within_prompt_centered_zscore",
+      "unique_gradient_arm": true,
+      "variance_denominator": "population",
+      "zero_spread": "all utilities exactly zero"
+    },
+    {
+      "candidate_utility": "exact-tie midrank/(2N-1)-0.5",
+      "id": "within_prompt_centered_rank",
+      "ties": "identical rewards receive identical average rank",
+      "unique_gradient_arm": true,
+      "zero_spread": "all utilities exactly zero"
+    },
+    {
+      "candidate_utility": "not materialized",
+      "direction_coefficient": "mean_prompt(Rplus-Rminus)",
+      "id": "antithetic_pair_difference",
+      "reason": "exactly the raw mirrored gradient; retained as an algebra/control and systems implementation",
+      "unique_gradient_arm": false
+    }
+  ],
+  "parents": {
+    "evaluation_contract": {
+      "content_sha256": "2442c0c2be3ac4c883612f400f8f213ce3bc82ef96e03fad1ef10ec3b7d11fad",
+      "disjointness_passed": true,
+      "file_sha256": "04af81499067e2feb0186c0a61e4c1af10f838a8eb7deec6dd41cd192748cacf",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v1.json",
+      "protected_access_authorized": false
+    },
+    "sampling_contract": {
+      "content_sha256": "18cab815193d05de6e7416b17c1ffeae334a6a613f3899faa459cc719144e97f",
+      "file_sha256": "8fe9005c532dbdb286edfd359cbbaf689c46f529b3debb3edc74f48e5787b301",
+      "panels": {
+        "category_stratified": {
+          "ordered_unit_identity_sha256": "d51782e6fbba595adf9fbece8d6b7350b43a97def4363bebc226375388e14b91",
+          "rows": 64
+        },
+        "prioritized_capped": {
+          "ordered_unit_identity_sha256": "1071c96c324e0cf4fb75b8c2312889627d08db6f60496780024c83292c0c0c7c",
+          "rows": 64
+        },
+        "uniform_capped": {
+          "ordered_unit_identity_sha256": "9d6c3054c305197f0d0f0733c80381b76a41ab9cd3eb0192225d827b71a88a53",
+          "rows": 64
+        }
+      },
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/recipe_sampling_ablation_v1.json"
+    }
+  },
+  "purpose": "Compare prompt-local z-scores and exact-tie centered ranks with raw mirrored rewards/direct pair reduction using identical reward tensors and rollout budgets, then select without protected-holdout adaptation.",
+  "registered_training_seeds": {
+    "confirmation": [
+      1701,
+      1702,
+      1703
+    ],
+    "screen": [
+      1701
+    ],
+    "unregistered_retry": "prohibited"
+  },
+  "required_report": {
+    "compute_and_systems": [
+      "optimization and evaluation rollouts",
+      "charged GPU seconds per physical GPU",
+      "generated and teacher-forced tokens",
+      "peak VRAM and useful-activity evidence on GPUs 0-3",
+      "reward-reduction CPU time and bytes communicated"
+    ],
+    "gradient_direction_stability": [
+      "within-seed prompt split-half coefficient cosine on shared epsilon basis",
+      "exact FP32 LoRA update cosine across methods within seed",
+      "exact FP32 LoRA update cosine across all three registered seeds",
+      "minimum, median, and every pairwise value; zero vectors explicit"
+    ],
+    "ood_deltas": [
+      "prose mean-token-logprob paired 95% LCB",
+      "QA mean-reward paired 95% LCB",
+      "QA exact-count delta"
+    ],
+    "outlier_sensitivity": [
+      "leave-one-prompt-group-out maximum update-angle change",
+      "single-reward deterministic extreme contamination update-angle change",
+      "maximum coefficient influence and affected prompt-group count"
+    ],
+    "reward_improvement": [
+      "dev equal-conflict-unit primary delta versus frozen baseline",
+      "paired 95% interval and per-seed sign",
+      "dev secondary tuple in global contract order"
+    ]
+  },
+  "reward_tensor_contract": {
+    "both_signs_share_prompt_repeat_and_evaluation_seed": true,
+    "complete_candidates_per_group": 16,
+    "cross_role_seed_generation_or_population_mixture": "reject whole call",
+    "dataset_role": "train",
+    "direction_seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570
+    ],
+    "duplicate_missing_nonfinite_or_wrong_identity": "reject whole population",
+    "input_order_affects_result": false,
+    "one_transform_call_contains_exactly_one": [
+      "training_seed",
+      "generation_index",
+      "population_id",
+      "evaluation_contract_sha256"
+    ],
+    "prompt_local_group_fields": [
+      "prompt_group_id",
+      "repeat_index",
+      "evaluation_seed"
+    ],
+    "records_with_extra_semantic_or_holdout_fields": "reject"
+  },
+  "schema": "specialist-reward-shaping-ablation-preregistration-v1",
+  "selection_rule": {
+    "all_global_ood_noninferiority_conditions_required": true,
+    "all_three_confirmation_seeds_required": true,
+    "no_method_passes": "retain frozen baseline; do not access protected holdout",
+    "pooled_dev_primary_paired_95_lcb_minimum": 0.0,
+    "positive_dev_primary_seeds_minimum": 2,
+    "primary": "largest pooled dev equal-unit primary delta",
+    "protected_holdout_visible": false,
+    "protected_result_can_change_method_or_recipe": false,
+    "raw_winner_is_named": "raw_rewards_with_direct_pair_reduction",
+    "selection_receipt_persisted_before_terminal_access": true,
+    "tie_breakers": [
+      "global dev secondary tuple",
+      "larger minimum split-half gradient cosine",
+      "smaller maximum outlier-induced update angle",
+      "lower charged GPU seconds",
+      "lexicographic method id"
+    ]
+  },
+  "status": "sealed_cpu_only_before_reward_population_or_model_access",
+  "step_scale_control": {
+    "extra_model_forward_or_reward_rollout": false,
+    "procedure": "materialize each method's deterministic FP32 LoRA delta from the shared rewards/noise, then apply one positive scalar so its exact parameter-space L2 equals the z-score reference",
+    "purpose": "isolate shaping direction from arbitrary coefficient units",
+    "reference": "current within-prompt z-score update FP32 LoRA delta L2",
+    "trust_region_and_existing_safety_caps_still_apply": true,
+    "unscaled_and_scaled_coefficient_hashes_both_required": true,
+    "zero_or_nonfinite_reference": "fail seed before update"
+  }
+}

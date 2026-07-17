@@ -1,0 +1,129 @@
+{
+  "adversarial_cases": [
+    "greedy reward tie blocks arbitrary lexicographic selection",
+    "greedy output or judge nondeterminism blocks promotion",
+    "candidate-specific or unsealed seed is rejected",
+    "early stop or unequal realized token budget blocks promotion",
+    "one stochastic reward outlier cannot override the modal ranking",
+    "aggregate reward cannot mask one seed, rank, item, or OOD hard failure"
+  ],
+  "content_sha256_before_self_field": "4bed00d8b0afaf982f1be4cb11a3bf3ea875b75a103f184a7e8594324148c541",
+  "created_at_utc": "2026-07-17T00:00:00+00:00",
+  "decode_modes": {
+    "greedy": {
+      "detokenize": false,
+      "frequency_penalty": 0.0,
+      "ignore_eos": true,
+      "include_stop_str_in_output": false,
+      "logprobs": null,
+      "max_tokens": 64,
+      "min_p": 0.0,
+      "min_tokens": 64,
+      "n": 1,
+      "presence_penalty": 0.0,
+      "prompt_logprobs": null,
+      "repetition_penalty": 1.0,
+      "seed": "derived by the frozen candidate-independent rule",
+      "skip_special_tokens": false,
+      "spaces_between_special_tokens": true,
+      "stop": [],
+      "stop_token_ids": [],
+      "temperature": 0.0,
+      "top_k": -1,
+      "top_p": 1.0,
+      "truncate_prompt_tokens": null
+    },
+    "seeded_stochastic": {
+      "detokenize": false,
+      "frequency_penalty": 0.0,
+      "ignore_eos": true,
+      "include_stop_str_in_output": false,
+      "logprobs": null,
+      "max_tokens": 64,
+      "min_p": 0.0,
+      "min_tokens": 64,
+      "n": 1,
+      "presence_penalty": 0.0,
+      "prompt_logprobs": null,
+      "repetition_penalty": 1.0,
+      "seed": "derived by the frozen candidate-independent rule",
+      "skip_special_tokens": false,
+      "spaces_between_special_tokens": true,
+      "stop": [],
+      "stop_token_ids": [],
+      "temperature": 0.7,
+      "top_k": 40,
+      "top_p": 0.95,
+      "truncate_prompt_tokens": null
+    }
+  },
+  "evaluation_contract": {
+    "confirmation_training_seeds": [
+      1701,
+      1702,
+      1703
+    ],
+    "content_sha256": "2442c0c2be3ac4c883612f400f8f213ce3bc82ef96e03fad1ef10ec3b7d11fad",
+    "unregistered_seed_retry": "prohibited"
+  },
+  "generated_token_budget": {
+    "candidate_and_mode_totals_must_be_exactly_equal": true,
+    "early_stop_count_required": 0,
+    "finish_reason_length_count_must_equal_completions": true,
+    "ignore_eos": true,
+    "min_tokens_equals_max_tokens": true,
+    "realized_tokens_must_equal_scheduled_tokens": true,
+    "tokens_per_completion": 64
+  },
+  "implementation": {
+    "module": "/home/catid/specialist/eggroll_es_decode_robustness_v68.py",
+    "module_file_sha256": "e46d78144b52c17d56b1f3498fe325a6548bc62eb6095fc7cc71c68f3dc12ace"
+  },
+  "multiobjective_trust_contract": {
+    "content_sha256": "feb96e50782f99d736d15e92cddb3ed32a0defad4af07281b5044f5c33e79e11",
+    "file_sha256": "5001148bc27fb7550dc6b40336ed2d32d9296f2b17f6372a075a02beeee6bf7d",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/multiobjective_reward_ood_trust_region_v67.json",
+    "policy_semantics_sha256": "948bd19684fe1edb4779c3da6cd64bb9cf5bd00b5f86fe2fcc574d474dc23fd7"
+  },
+  "pairing": {
+    "candidate_identity_in_seed_or_payload": false,
+    "prompt_role_order": [
+      "train",
+      "dev",
+      "ood_qa"
+    ],
+    "repeats_per_mode": 4,
+    "same_prompt_block_decode_seed_and_judge_each_candidate_cell": true,
+    "seed_derivation": "SHA-256(evaluation contract, training seed, decode mode, repeat, role, prompt-block hash), truncated to nonnegative 63-bit",
+    "training_seeds": [
+      1701,
+      1702,
+      1703
+    ]
+  },
+  "promotion": {
+    "protected_terminal_access_before_selection": "prohibited",
+    "selected_candidate_train_dev_ood_trust_must_pass_each_seed": true,
+    "throughput_is_reported_but_never_a_quality_override": true,
+    "weighted_aggregate_cannot_mask_any_protocol_rank_or_trust_gate": true
+  },
+  "purpose": "Determine whether a greedy-trained or seeded-stochastic-trained candidate remains selected under replicated paired decoding.",
+  "rank_and_selection_stability": {
+    "greedy_repeats_must_have_identical_outputs_judges_and_ranking": true,
+    "minimum_adjacent_rank_margin": 0.0001,
+    "ranking_role": "dev",
+    "same_winner_required_every_seed_and_mode": true,
+    "selection_statistic": "modal replicated ranking; never largest mean outlier",
+    "stochastic_median_pairwise_spearman_minimum": 0.0,
+    "stochastic_modal_full_ranking_repeats_minimum": 3
+  },
+  "receipt_firewall": {
+    "accepted_candidate_evidence": "hashes, counts, timings, numeric unit-balanced rewards, and V67 aggregate trust receipts only",
+    "protected_access_count_required": 0,
+    "raw_output_access_count_required": 0,
+    "raw_prompt_generated_text_token_ids_or_per_item_metrics": "prohibited",
+    "unsealed_seed_or_payload": "hard error"
+  },
+  "schema": "specialist-greedy-seeded-stochastic-preregistration-v68",
+  "status": "sealed_before_any_greedy_or_stochastic_candidate_output"
+}
