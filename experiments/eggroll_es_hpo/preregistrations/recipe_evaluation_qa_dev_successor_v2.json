@@ -1,0 +1,231 @@
+{
+  "authority": {
+    "checkpoint_selection_authorized": false,
+    "final_benchmark_authorized": false,
+    "general_quality_dev_scoring_authorized": true,
+    "gradient_or_optimizer_update_authorized": false,
+    "model_adaptation_or_training_authorized": false,
+    "ood_evaluation_authorized": false,
+    "qa_dev_scoring_authorized": true,
+    "qa_hpo_or_recipe_promotion_authorized": false,
+    "qa_rows_may_enter_training_sampler": false,
+    "terminal_evaluation_authorized": false
+  },
+  "bound_inputs": {
+    "allowlist": {
+      "file_sha256": "9012e251106895b1b0de6a8947099bbcec24ba3a6ed7ce171020e3d6a8638d05",
+      "path": "experiments/eggroll_es_hpo/preregistrations/manual_qa_dev_curation_allowlist_v1.json",
+      "record_count": 1
+    },
+    "curation": {
+      "file_sha256": "626eba5e7851a7097107530c55140e51a0faa5e92e7ef4e4210066cb47e1b7e2",
+      "path": "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.curation.jsonl",
+      "record_count": 20
+    },
+    "qa_dev": {
+      "file_sha256": "df5567961a8fc6c475f633fdd89637825dbc00713c7a6ed1fca88020ce77dd6a",
+      "path": "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.jsonl",
+      "record_count": 20
+    },
+    "report": {
+      "file_sha256": "0541f2e3db19fe846b71cc194287ab60e3202331af745cdd2131945b73d26265",
+      "path": "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.report.json",
+      "record_count": 1
+    }
+  },
+  "content_sha256_before_self_field": "e32a24f147cb24fa40bdf6b763316db599387d31ba62d570153a862e76f6230c",
+  "created_at_utc": "2026-07-17T00:00:00+00:00",
+  "downstream_blockers": {
+    "final_benchmark": "requires successful DEV/OOD gates and a separate terminal claim",
+    "hpo_or_recipe_promotion": "requires an additive downstream execution contract binding the scorer, candidate set, budgets, stopping rule, and OOD guard",
+    "terminal_evaluation": "requires a frozen recipe plus the explicit one-use aggregate runner"
+  },
+  "implementation": {
+    "builder_file_sha256": "626978bbea4332e6b7249a5a4b8cb1626e05181dd71be74ef8e3378b6b8d2102",
+    "builder_path": "build_recipe_evaluation_qa_dev_successor_v2.py",
+    "path_policy": "exact lexical allowlist then O_NOFOLLOW regular-file read",
+    "protected_or_unlisted_path_resolution_stat_hash_open": false
+  },
+  "predecessor": {
+    "content_sha256_before_self_field": "ffe0bd6fdb51f8bf96f4736091156a2c146bde3a66e8ed44ab5e3b21b1016e51",
+    "file_sha256": "fdb018a73f81ff491246fdf6162910ed5ba27f49159a64dc2a1102bbe4cf3047",
+    "history_rewritten": false,
+    "path": "experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v2.json",
+    "schema": "specialist-recipe-evaluation-compute-contract-v2",
+    "status": "provisional_prose_only_resealed_after_prefix_scan_terminal_unopened"
+  },
+  "purpose": "Add source-disjoint, manually grounded multi-item QA DEV scoring authority to the sealed V2 systems/prose boundary without model adaptation, promotion, OOD, or terminal authority.",
+  "qa_dev": {
+    "quality_audit": {
+      "all_decisions_include": true,
+      "all_rows_dev_only_never_model_adaptation": true,
+      "all_rows_directly_grounded": true,
+      "all_rows_manually_reviewed": true,
+      "all_source_or_url_trivia_checks_false": true,
+      "all_unsupported_advice_checks_false": true,
+      "all_usefulness_clarity_safety_checks_passed": true,
+      "all_weird_list_recall_checks_false": true,
+      "chat_control_leakage_rows": 0,
+      "curation_row_count": 20,
+      "normalized_question_set_sha256": "66b4951791b43a23ff364487552ef95a9d3fa2adb68e892759e2b9a15328c9fc",
+      "per_source_counts": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "qa_and_curation_id_sets_match": true,
+      "qa_id_set_sha256": "94eec4c580358d8a4742111a586ffaced1b74bdab6f889af7524b081de82c510",
+      "qa_row_count": 20,
+      "question_type_counts": {
+        "application": 2,
+        "comparative_application": 1,
+        "conceptual": 2,
+        "conceptual_application": 1,
+        "explanatory": 1,
+        "mechanistic": 7,
+        "mechanistic_application": 3,
+        "safety_boundary": 2,
+        "synthesis": 1
+      },
+      "source_count": 4,
+      "unique_normalized_answer_count": 20,
+      "unique_normalized_question_count": 20,
+      "unique_qa_id_count": 20,
+      "url_or_source_trivia_rows": 0
+    },
+    "raw_semantic_rows_persisted_in_successor": false,
+    "role": "dev_only_never_model_adaptation",
+    "scoring_input_loader": "load_authorized_qa_dev_rows",
+    "source_bindings": [
+      {
+        "corpus_file_sha256": "04949a4d3685ad91b052ba81224a770b39328c2715ebc5fc8284bebf34d33453",
+        "opaque_item_identity": "47ec28655e0be3f432f8b721e90baf8772625f9740cffd8d65bbb1a305c623f2",
+        "qa_item_count": 5,
+        "repository_relative_path": "data/site_corpora/nps_textile_fiber_aging_appendix_k_2002/CORPUS.md",
+        "source_path_identity_sha256": "503b658f0290b4f040fe9b4202fb77096ee87ca2c603ea19fc23447198ca853a"
+      },
+      {
+        "corpus_file_sha256": "4ba06a9c38b1270ce09de54f9e9d58eff016996ac14fe79d94a4519e1b28210a",
+        "opaque_item_identity": "5b4344a0bc2ef38896ee460e447249fe0ef731370235a1c730db0e4758526454",
+        "qa_item_count": 5,
+        "repository_relative_path": "data/site_corpora/usfs_rigging_for_trail_work/CORPUS.md",
+        "source_path_identity_sha256": "a436664ba7a3460e89d058e06dda1ada9d91b9dc9b0fb6d2690984b10528f1ed"
+      },
+      {
+        "corpus_file_sha256": "17c8eca67538c64c8f624972ec1965aa7f764180412a3598108a1d00d34eae9e",
+        "opaque_item_identity": "690060d665705f9d68e796a46a8034e787582ba3c3fa2445bd615ba8cf17d2d7",
+        "qa_item_count": 5,
+        "repository_relative_path": "data/site_corpora/usfs_region5_hazard_tree_2022/CORPUS.md",
+        "source_path_identity_sha256": "8b844cc70ae2c5d486dde1e940d350da7e71b740f3b1a539967157a6f848f09e"
+      },
+      {
+        "corpus_file_sha256": "8b709d07150e9f4d5e9c6bf0bb8f8e8af08c81f316581023f3f468371d5ae27e",
+        "opaque_item_identity": "98394761ee7672fc871336b1da008483c269a7f7dc222cfa66a1acc852412e65",
+        "qa_item_count": 5,
+        "repository_relative_path": "data/site_corpora/phm_synthetic_fiber_rope_condition_monitoring_review_2017/CORPUS.md",
+        "source_path_identity_sha256": "965278a4a53b4d90703a5955fa238c1f0aea077040f7e3b67d55f187c2e86859"
+      }
+    ],
+    "source_identity_set_sha256": "3b40b564411ee883bef776d0ad9f0936bb159b95867e05d323604e67dfca05e0"
+  },
+  "schema": "specialist-recipe-evaluation-qa-dev-successor-v2",
+  "source_disjointness": {
+    "comparison": "four exact V2 DEV identities vs nine opaque terminal identities",
+    "future_adaptation_reservation_inherited": true,
+    "intersection_counts": {
+      "corpus_file_sha256": 0,
+      "opaque_item_identity": 0,
+      "source_path_identity_sha256": 0
+    },
+    "missing_or_unverifiable_provenance": "reject_fail_closed",
+    "passed": true,
+    "v2_full_role_audit_passed": true
+  },
+  "status": "qa_dev_scoring_authorized_terminal_unclaimed_no_promotion",
+  "terminal_boundary": {
+    "one_shot_status": "inherited_unclaimed_from_bound_v2_and_untouched_by_successor",
+    "selected_identity_set_sha256": "2ecc4d7bf7684b463f0957f5e1ccf5ce759a2e2a789bc9a25d369d2d88b07810",
+    "selected_sources_opaque_only": [
+      {
+        "added_commit": "3541847614210ef85c4b731fe16e2eb6a1f37039",
+        "corpus_file_sha256": "8124b2268b48a40efab7ba0b8be83c3dc20d5751ee9410d6f4c4770167d33f18",
+        "metadata_bundle_sha256": "4d6027fdf99d48e0a7b9b8ada64c6b397f02e96ce68939cbeaf267c47cf487a0",
+        "opaque_item_identity": "08eec78e797253eef50f79bc9a0ea7d4c52ca3793f440704884d76c4de00dc5b",
+        "source_path_identity_sha256": "2a9e0645a1bcbe974fd729985edfe43c74d7412a259cc2a32ffe446361809a6f",
+        "url_identity_set_sha256": "59e98d60bf15beef570762afbc0b883ec494989c83d0c521d5f3ba453272bacf"
+      },
+      {
+        "added_commit": "5a19a02cace02b222fd7ad4ff26c6bd52ff5b84a",
+        "corpus_file_sha256": "f47bac571ece0c708af7e0d6401467f67dd3be5c7a028d859e6b791f34c9f4fa",
+        "metadata_bundle_sha256": "2e7b685aa4b9cca9e28cfa8289ea0f30cdf1d8484b3d377d7679ecfa60051118",
+        "opaque_item_identity": "0aaee7cdcb5946cee51a9889d8b26a0d875668b49fb1a3f2a78b3f1905fa1a3a",
+        "source_path_identity_sha256": "a9850694d619af2454b1c3059e178a075b578925d89891213c7b52d6ea8463fc",
+        "url_identity_set_sha256": "dec74e4341246432e0a39e73b23267c307d88af97d0bf6bf2caa085c913ea0c7"
+      },
+      {
+        "added_commit": "3847b47b46d0d550d4285acbe0cd05ec585b835a",
+        "corpus_file_sha256": "17a916f5b7c50f1577b6d93797797577c34f974023019a4882891875e3ed15d5",
+        "metadata_bundle_sha256": "8542dbc9998347cd0fc05875a79b8e43a5a24bfeae1ede0afe54f8ca173ccd42",
+        "opaque_item_identity": "4bcfc6ac99e7fff7a7c7062f8371b6c821a3840513af1f4643f9fc2df5f6245a",
+        "source_path_identity_sha256": "e0bd3f43ccd843b8a2df297506831306ca1bab8106e846b590421d895afd6ec4",
+        "url_identity_set_sha256": "d3d847bf0202b8bb9ce4a33c4ec138d7530508519d7d4dc0e7c6abe32db5233d"
+      },
+      {
+        "added_commit": "e0006163a58347abc7e2d49a1ebe23755b968100",
+        "corpus_file_sha256": "9751de41e2775ea367c1cbaca1b7b05dbb471cb427f3d5d008b3830162226c09",
+        "metadata_bundle_sha256": "2ddb9ab5bd49df5c46854f576974ae65de0e8b775db39789b7e87f08140fdd2c",
+        "opaque_item_identity": "6770fed04ceeced4931d3565e23d36d33b5ac76c7e5e1bfdec19d49d0f8cfee1",
+        "source_path_identity_sha256": "77a3c1633a05bd262704f76fd81a78dc140d45d792c1dc0ba64e6ecff586090e",
+        "url_identity_set_sha256": "bd42b2ee9bea61c715c13a547784e1a5281788ff171d3e9be948668a8d3e1933"
+      },
+      {
+        "added_commit": "46cd6c1b9caf744c424065d2aee0eaa8b17f074a",
+        "corpus_file_sha256": "9d9909ddd3c40a65dd4ee99c1a88df8b938eaf65482f87842bb842ebe187b2d8",
+        "metadata_bundle_sha256": "7f7b1708c86e583e02653323f1216468aa9dbcddfad492724fd42b38f8e7bf0b",
+        "opaque_item_identity": "711d00a90a52ec8a5bcd3c6fb1280b159f4a98089d578e677d03b9832bee52df",
+        "source_path_identity_sha256": "91096e8e90c046da3df9d797633511a1f412f67bf9b493f53d15b27d696d5ece",
+        "url_identity_set_sha256": "be0ecfbe2f977a3e04d7ff0d7806af2a9e5d0ef8626b676c620d1c9b8a2d32e6"
+      },
+      {
+        "added_commit": "33d8c8cd5ddc041a5256229af21671c6bc93d8e5",
+        "corpus_file_sha256": "4f362ab6e1c87073d917dccf06b6423b3ba3823e728ca6787708e137022a482b",
+        "metadata_bundle_sha256": "8dc8dd93d3448e20f3ac567e95f5a39c98596b3ff8562634c41ee496b1e616aa",
+        "opaque_item_identity": "72db7ed10c2b1e5f009114add39ea21c3469b1574cd41fe4ffd54fc1198731f9",
+        "source_path_identity_sha256": "d4f348d23f3415292052ebe1ff4ff80537d020f5f922f38f514969df94d44363",
+        "url_identity_set_sha256": "3e3373208c6b83e6fc3658752e16f964d83bd34f67e3bba24e15af0c76adf157"
+      },
+      {
+        "added_commit": "58fcc705abd2cb9fb5097c8766abd8deb273b28e",
+        "corpus_file_sha256": "580e3af2534aad5b0040f58c833bf7c443c1359d4d739e8527a0fa2d03e9834a",
+        "metadata_bundle_sha256": "3f55484bdaf9864c0e6018bc47afceb5418e3c29e47cc5f710586c38b6746244",
+        "opaque_item_identity": "a7199b3c086361aacddbdc348448182c1373a4b49e6323b4de2a939d659e4d67",
+        "source_path_identity_sha256": "82bbf7b1c1f807f98d37568c5614254da5bfe05693743fb9143ebe51a882f5e6",
+        "url_identity_set_sha256": "303c30e75cd94623a4107f9b0e3456397965ecb06e010dbd20c00596a8d8e5a2"
+      },
+      {
+        "added_commit": "914225fa64def02fc465cf128a901f073bf33b64",
+        "corpus_file_sha256": "f54652c875800b70adb64183a3288630507983d6df59be9d7f9a1be706b3c8bf",
+        "metadata_bundle_sha256": "aacfe2eeaa754e3a512d53556e2e074bda92d5f56e507bfa47a4f1063dd0d055",
+        "opaque_item_identity": "a91e7cbed9a533de6e960d234c0b685102ca391e62e22e35ea047a2ef741190f",
+        "source_path_identity_sha256": "b41421f7a9b51555f47b8d976558770295133526ca1366f2699b665c35895d58",
+        "url_identity_set_sha256": "da1ae5638fe363a62012368370ed9d6427aa02511467d7003001fa6517176abd"
+      },
+      {
+        "added_commit": "6539cf2db167bdd93afb933fe6fbe7c5e3e58a5f",
+        "corpus_file_sha256": "3cc2a6007de29f2e8d8f6eda186fa75f4ce7a1064fb0a86c8e84b55ba89f7948",
+        "metadata_bundle_sha256": "aac467eb4dbb7e57b2196b6a6db611c072806e966ec659f4e43c93fb0298f0c8",
+        "opaque_item_identity": "d2d4b409203194a79ba9e4fcd165f1cf18378f74258f6d2634ae278293e1e983",
+        "source_path_identity_sha256": "643c9ad004d89f1a666768786b0314e54c54b14a1164d6dcb75bc50e53fe0272",
+        "url_identity_set_sha256": "d31512e512c23160555d1edea9c6808e0940204a9289c5fe4c41596395723400"
+      }
+    ],
+    "semantic_source_fields_persisted": false,
+    "source_count": 9,
+    "terminal_access_authorized": false,
+    "terminal_claim_created_by_successor": false,
+    "terminal_claim_state_probed_by_builder": false,
+    "terminal_source_opened_or_resolved_by_builder": false,
+    "v2_terminal_role_content_sha256": "420018da18894326a195896c62b8a419be5de21db82ad0b313477886b367db55"
+  }
+}
