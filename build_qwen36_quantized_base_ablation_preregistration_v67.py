@@ -29,6 +29,7 @@ OUTPUT = ROOT / (
 VLLM_ROOT = (
     ROOT / "es-at-scale/.venv/lib/python3.12/site-packages/vllm"
 )
+PINNED_SITE_PACKAGES = VLLM_ROOT.parent
 BF16_MODEL = ROOT / "models/Qwen3.6-35B-A3B"
 FP8_MODEL = ROOT / "models/Qwen3.6-35B-A3B-FP8"
 FP8_FULL_MODEL_NEGATIVE_EVIDENCE = ROOT / (
@@ -345,6 +346,24 @@ def inspect_checkpoint_v67(label: str, expected: dict | None = None) -> dict:
 
 
 def inspect_installed_stack_v67() -> dict:
+    _require(
+        PINNED_SITE_PACKAGES.is_dir(),
+        "pinned quantized-base site-packages directory is absent",
+    )
+    available_versions = {}
+    for distribution in importlib.metadata.distributions(
+        path=[str(PINNED_SITE_PACKAGES)]
+    ):
+        name = distribution.metadata.get("Name")
+        if not isinstance(name, str) or not name:
+            continue
+        normalized = name.lower().replace("_", "-").replace(".", "-")
+        previous = available_versions.get(normalized)
+        _require(
+            previous in (None, distribution.version),
+            f"duplicate pinned distribution changed: {normalized}",
+        )
+        available_versions[normalized] = distribution.version
     versions = {}
     for package in (
         "vllm",
@@ -355,10 +374,8 @@ def inspect_installed_stack_v67() -> dict:
         "autoawq",
         "auto-gptq",
     ):
-        try:
-            versions[package] = importlib.metadata.version(package)
-        except importlib.metadata.PackageNotFoundError:
-            versions[package] = None
+        normalized = package.lower().replace("_", "-").replace(".", "-")
+        versions[package] = available_versions.get(normalized)
     _require(
         versions == {
             "auto-gptq": None,

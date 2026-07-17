@@ -81,6 +81,24 @@ print(json.dumps({"torch": "torch" in sys.modules, "vllm": "vllm" in sys.modules
     assert json.loads(completed.stdout) == {"torch": False, "vllm": False}
 
 
+def test_v67_package_versions_are_read_from_the_bound_environment(monkeypatch):
+    observed = []
+    original = prereg.importlib.metadata.distributions
+
+    def wrapped(*args, **kwargs):
+        observed.append((args, kwargs))
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(prereg.importlib.metadata, "distributions", wrapped)
+    prereg.inspect_installed_stack_v67()
+    assert observed
+    assert all(not args for args, _kwargs in observed)
+    assert all(
+        kwargs == {"path": [str(prereg.PINNED_SITE_PACKAGES)]}
+        for _args, kwargs in observed
+    )
+
+
 def test_v67_only_bf16_and_serialized_fp8_are_safe_after_roofline():
     value = _frozen()
     assert value["dependency"]["bead"] == "specialist-0j5.14"
