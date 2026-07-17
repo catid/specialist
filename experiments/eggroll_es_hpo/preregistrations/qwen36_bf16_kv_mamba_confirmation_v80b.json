@@ -1,0 +1,331 @@
+{
+  "authority": {
+    "checkpoint_config_or_runtime_promotion_performed": false,
+    "cpu_file_inspection_only": true,
+    "dataset_prompt_generated_text_or_protected_data_opened": false,
+    "gpu_or_model_launch_performed_by_builder": false,
+    "model_adapter_or_training_update_performed": false,
+    "scored_training_checkpoint_or_layout_promotion_authorized": false
+  },
+  "bead": "specialist-0j5.24",
+  "confirmation_analysis": {
+    "evaluate_each_run_independently_against_unchanged_parent_gates": true,
+    "exactly_r2_and_r3_no_additional_runs_under_v80b": true,
+    "literal_torch_process_group_destroyed_true_gate_retained": true,
+    "parent_thresholds_must_not_be_reestimated_from_r1_r2_r3": true,
+    "promotion_default": false,
+    "report_all_failures_without_exclusion_or_replacement": true,
+    "report_three_run_runtime_and_capacity_descriptively": true,
+    "semantic_and_protected_ood_gates_remain_pending": true
+  },
+  "confirmatory_runs": [
+    {
+      "exact_command": "RUN=/home/catid/specialist/experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2 bash /home/catid/specialist/launch_qwen36_bf16_kv_mamba_capacity_v80.sh",
+      "fresh_run_directory_required": true,
+      "independent_parent_gate_evaluation_required": true,
+      "ordinal": 2,
+      "run": "v80_bf16_kv_mamba_capacity_0479_r2",
+      "source_runtime_and_parent_gates_unchanged": true
+    },
+    {
+      "exact_command": "RUN=/home/catid/specialist/experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3 bash /home/catid/specialist/launch_qwen36_bf16_kv_mamba_capacity_v80.sh",
+      "fresh_run_directory_required": true,
+      "independent_parent_gate_evaluation_required": true,
+      "ordinal": 3,
+      "run": "v80_bf16_kv_mamba_capacity_0479_r3",
+      "source_runtime_and_parent_gates_unchanged": true
+    }
+  ],
+  "content_sha256_before_self_field": "8515a4680175a68233f2ff408bd0439daebf1a8a4c94a842c45e08ac9ec6b976",
+  "parent_v80": {
+    "content_sha256": "7527ed6fe0154a79ecc0de46b00af4601b0e3deaac184f2af094fba15740149a",
+    "file_sha256": "be7de6c8ac1d59feef0ec0d0e289be85612644efbe72fdb3847fa34d5dd50aad",
+    "live_acceptance_canonical_sha256": "e57b8ffa33ff622acb27c9a6cb90fe649ae37a5666f3d5409479828dcb0e7528",
+    "live_acceptance_retained_exactly": {
+      "capacity": {
+        "live_engine_field_and_actor_log_must_agree": true,
+        "minimum_full_2048_token_contexts_per_actor": 79,
+        "minimum_margin_tokens_over_v76": 4096,
+        "minimum_tokens_per_actor": 161792,
+        "projection_does_not_satisfy_this_gate": true
+      },
+      "cardinality_and_identity": {
+        "compute_pids_must_be_actor_descendants": true,
+        "foreign_compute_pids_exact": [],
+        "four_self_hashed_v80_actor_receipts": true,
+        "fresh_run_directory_required": true,
+        "one_unique_actor_root_pid_per_gpu": true,
+        "physical_gpu_ids_exact": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "cleanup": {
+        "engine_shutdown_completed_per_actor": true,
+        "minimum_consecutive_post_exit_idle_batches": 3,
+        "no_v80_actor_or_descendant_compute_pid_remaining": true,
+        "post_exit_gpu_utilization_percent_exact": 0,
+        "post_exit_memory_used_mib_max": 4,
+        "torch_process_group_destroyed_per_actor": true
+      },
+      "hybrid_cache": {
+        "attention_backend_log_exact": "FLASH_ATTN",
+        "cache_dtype_exact": "auto",
+        "effective_attention_kv_dtype": "bfloat16",
+        "mamba_cache_dtype_exact": "auto",
+        "mamba_ssm_cache_dtype_exact": "bfloat16",
+        "model_config_fp32_ssm_override_warning_required": true,
+        "parameter_residency_must_equal_sealed_v78c_r1": true,
+        "routed_moe_backend_exact": "TRITON"
+      },
+      "logs": {
+        "forbidden": [
+          "Auto-disabled DeepGemm",
+          "DeepGEMM E8M0 enabled",
+          "Traceback (most recent call last)",
+          "CUDA out of memory"
+        ],
+        "known_default_moe_and_lora_warnings_reported_not_suppressed": true,
+        "required_once_per_actor": [
+          "Using TRITON Fp8 MoE backend",
+          "Using FLASH_ATTN attention backend",
+          "Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='bfloat16' was passed. Using the user-specified value.",
+          "Available KV cache memory:",
+          "GPU KV cache size:",
+          "Maximum concurrency for 2,048 tokens per request:",
+          "Skipping FlashInfer autotune because it is disabled"
+        ]
+      },
+      "output": {
+        "call_plan_exact": [
+          "reference",
+          "candidate",
+          "candidate",
+          "reference",
+          "reference",
+          "candidate",
+          "candidate",
+          "reference"
+        ],
+        "candidate_changes_output": true,
+        "candidate_repeat_exact_at_token_hash_level": true,
+        "known_reference_repeat_nondeterminism_cannot_be_hidden": true,
+        "paired_v78c_v80_hash_agreement_and_drift_matrix_required": true,
+        "persist_only_token_counts_and_sha256_not_text_or_token_ids": true
+      },
+      "performance_and_memory": {
+        "all_four_gpus_require_positive_gpu_utilization": true,
+        "all_four_gpus_require_positive_memory_utilization": true,
+        "hbm_bytes_per_second_must_not_be_inferred_from_memory_utilization": true,
+        "median_runtime_ratio_to_v78c_r1_max": 1.03,
+        "median_runtime_seconds_max": 50.55591316620558,
+        "minimum_physical_headroom_mib_per_actor": 47079,
+        "pcie_byte_integrals_are_left_rectangle_estimates": true,
+        "pcie_rx_tx_kib_per_second_required_not_null": true,
+        "peak_memory_used_mib_per_actor_max": 50808,
+        "per_actor_generated_tokens_per_second_required": true,
+        "per_actor_median_p95_and_max_call_latency_required": true,
+        "projected_peak_memory_used_mib_not_a_gate": 48752.373,
+        "report_peak_vram_power_gpu_and_memory_utilization": true,
+        "sample_interval_seconds_max": 1.0,
+        "sampled_pcie_rx_tx_byte_integrals_required": true,
+        "ten_timed_generation_calls_exact_two_warmup_eight_measured": true
+      },
+      "promotion": {
+        "all_prior_gates_must_pass": true,
+        "model_config_fp32_ssm_override_requires_explicit_acceptance": true,
+        "reference_restore_exactness_or_approved_semantic_resolution_required": true,
+        "scored_training_checkpoint_or_layout_promotion_default": false
+      },
+      "protected_ood": {
+        "no_new_safety_failure": true,
+        "no_retuning_after_open": true,
+        "one_shot_after_selection_freeze": true,
+        "paired_95pct_lower_bound_min": -0.005,
+        "worst_stratum_point_delta_min": -0.01
+      },
+      "semantic": {
+        "explicit_mamba_ssm_override_requires_strict_review": true,
+        "mean_delta_min": -0.001,
+        "no_new_safety_failure": true,
+        "paired_95pct_lower_bound_min": -0.002,
+        "run_only_after_data_free_live_gates_pass": true,
+        "source_disjoint_paired_evaluation_required": true
+      }
+    },
+    "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_bf16_kv_mamba_capacity_matched_v80.json",
+    "selected_runtime_canonical_sha256": "42c82bc4cc60e060be6a53f2464e84dbe2ad1ada26576f31e35a9685565b271c",
+    "selected_runtime_retained_exactly": {
+      "all_other_v78c_engine_workload_adapter_and_seed_fields_unchanged": true,
+      "async_scheduling": false,
+      "attention_backend_required_by_log": "FLASH_ATTN",
+      "attention_kv_effective_dtype": "bfloat16",
+      "enable_flashinfer_autotune": false,
+      "enforce_eager": true,
+      "gpu_memory_utilization": 0.479,
+      "kv_cache_dtype": "auto",
+      "mamba_cache_dtype": "auto",
+      "mamba_ssm_cache_dtype": "bfloat16",
+      "max_cpu_loras": 2,
+      "max_loras": 1,
+      "max_model_len": 2048,
+      "max_num_seqs": 68,
+      "model_config_recommends_mamba_ssm_float32": true,
+      "prefix_caching": false,
+      "quantization": "fp8",
+      "routed_moe_backend": "TRITON",
+      "scheduling_policy": "fcfs",
+      "user_override_warning_expected": true
+    }
+  },
+  "post_observation_disclosure": {
+    "artifact_inventory": {
+      "bundle_sha256": "73adc7ebe416d6065808cf918415d077989b1a064b47ef5132422b32da118e47",
+      "file_count": 11,
+      "files": [
+        {
+          "bytes": 40,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/actor_pids.csv",
+          "sha256": "369d4466cdff1cfa40f82581f14a959928c235575e4da9b2f9b933724c147813"
+        },
+        {
+          "bytes": 137190,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_0.json",
+          "sha256": "9358e1bb549b1c87d78ae5edabf97678caca3278ad4c058acf2f04d104a51a10"
+        },
+        {
+          "bytes": 22745,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_0.log",
+          "sha256": "b97947014fb1a19853150d77386e05843858dbbc13c625503dbd897f3f012faf"
+        },
+        {
+          "bytes": 137190,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_1.json",
+          "sha256": "5bf3f8656d873727d2ae7e04e6fea61194a62fe72447e674f49d7512a0397735"
+        },
+        {
+          "bytes": 22744,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_1.log",
+          "sha256": "7e90539192202b0b0f68d7d65f1313d4134fa5a497516badf86efd90cd475ff7"
+        },
+        {
+          "bytes": 137191,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_2.json",
+          "sha256": "e199eded9ac61015a432f7f7d1e89332d565283d3b66ddb3dd7739b1875799d3"
+        },
+        {
+          "bytes": 22902,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_2.log",
+          "sha256": "b46749801629485842ee806d51fa463995c5fabd809b44eb4d4458a89e3853c2"
+        },
+        {
+          "bytes": 137192,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_3.json",
+          "sha256": "6b83783c61feecf3e83fbf2fe5f77cbe4fd52f3ca1086d37ed0d56463e967581"
+        },
+        {
+          "bytes": 22746,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_3.log",
+          "sha256": "2ea65f26b42e475716ec95ddb444c87678fb8e1e37d1989af0ef4ddbe62bf279"
+        },
+        {
+          "bytes": 0,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_telemetry_monitor_v80.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 481903,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_telemetry_v80.jsonl",
+          "sha256": "f6b14ccbe43314c78a3c47451de7c1cd1391bdc5d8b5c07e35b7407ce957b7da"
+        }
+      ]
+    },
+    "engine_shutdown_completed_per_actor": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "literal_parent_torch_process_group_gate_requires_true": true,
+    "observed_actor_runtime_seconds": [
+      48.24438032996841,
+      48.0079297790071,
+      48.62586149503477,
+      48.572779744979925
+    ],
+    "observed_actor_runtime_seconds_median": 48.40858003747417,
+    "observed_before_v80b_preregistration": true,
+    "observed_capacity_tokens_per_actor": [
+      162669,
+      162669,
+      162669,
+      162669
+    ],
+    "r1_may_justify_replication_only": true,
+    "r1_may_not_change_runtime_thresholds_or_promotion": true,
+    "run": "v80_bf16_kv_mamba_capacity_0479_r1",
+    "torch_process_group_destroyed_receipt_value_per_actor": [
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "prospective_integrity": {
+    "exactly_two_future_runs": true,
+    "future_directory_absence_required_when_generated": true,
+    "future_run_directories_absent_at_preregistration_build": true,
+    "future_run_names_exact": [
+      "v80_bf16_kv_mamba_capacity_0479_r2",
+      "v80_bf16_kv_mamba_capacity_0479_r3"
+    ],
+    "parent_live_acceptance_copied_without_edits": true,
+    "parent_runtime_copied_without_edits": true,
+    "promotion_from_r1_r2_or_r3_forbidden": true,
+    "r1_not_used_to_authorize_semantic_ood_scoring_or_promotion": true,
+    "r1_not_used_to_change_any_parent_gate_or_threshold": true,
+    "r1_not_used_to_change_any_parent_runtime_field": true,
+    "r1_used_only_to_request_independent_confirmation": true,
+    "r1_was_observed_before_this_preregistration": true,
+    "threshold_tuning_after_r1_forbidden": true
+  },
+  "schema": "v80b-qwen36-bf16-kv-mamba-two-run-confirmation-preregistration",
+  "sealed_executable_sources": {
+    "bundle_sha256": "2c7927964ea3cfca1880d4cf3919609509e9d7655f2deec1646faef4b7bef0cd",
+    "files": [
+      {
+        "bytes": 9866,
+        "path": "probe_vllm_quantized_adapter_switch_v73.py",
+        "sha256": "43661c32cd8d06deef6d8e2f0d83d889b00f554748b94c3345e2b2052cac66a9"
+      },
+      {
+        "bytes": 15445,
+        "path": "probe_vllm_fp8_attested_v76.py",
+        "sha256": "a23d43ee5b6b334fdc58b93e0ce7e7d3fcf72ea4047549f3a0f4d5b715a3fc70"
+      },
+      {
+        "bytes": 4275,
+        "path": "probe_vllm_bf16_kv_mamba_bf16_v78c.py",
+        "sha256": "761857944064a0b21ff528971d3f497e4e67865679fa51a30d385cab65835dcb"
+      },
+      {
+        "bytes": 20242,
+        "path": "probe_vllm_bf16_kv_mamba_capacity_v80.py",
+        "sha256": "3679bfb1d7f1995701b8b96c100f41ac05fc8f3338977e5760f52aa1ef8009fd"
+      },
+      {
+        "bytes": 12382,
+        "path": "monitor_qwen36_fp8_kv_capacity_v79.py",
+        "sha256": "6035eb32f90815ed2a2d8734d9e9072123b8ecc70d74449a2710e94b673ed3df"
+      },
+      {
+        "bytes": 1733,
+        "path": "launch_qwen36_bf16_kv_mamba_capacity_v80.sh",
+        "sha256": "3a335c0e44a9b8130adec8c0e11f52d2246264aa0a47f5b173cbdb35093fc7ad"
+      }
+    ]
+  },
+  "status": "prospective_exact_two_confirmations_preregistered_not_launched_by_builder"
+}
