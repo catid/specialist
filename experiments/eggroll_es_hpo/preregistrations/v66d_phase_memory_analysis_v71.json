@@ -1,0 +1,50 @@
+{
+  "adapter_metadata": {
+    "base_layer_elements": 142999552,
+    "canonical_elements": 4528128,
+    "canonical_tensors": 70,
+    "config_file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "runtime_elements": 4921344,
+    "runtime_topology_report_content_sha256": "9394ed06a80fffb1c4cc1532ac59741ab4c4a1c5a481136f29415b463eaf747d",
+    "runtime_topology_report_file_sha256": "7672f835239b91e66a03a512ad9fbe3cbbaff31783a7b1a26bdd136d98b55050",
+    "runtime_views": 82,
+    "stage_manifest_content_sha256": "ea328ada018e1c0d182d329d2a9cb81f8f0375aef93738f3b9c0a00f63c82da3",
+    "stage_manifest_file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+    "weights_file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a"
+  },
+  "analysis_contract": {
+    "actor_pid_gpu_binding_and_residency_every_sample": true,
+    "code_and_tensor_metadata_transfer_bytes_are_lower_bounds_not_measurements": true,
+    "cuda_event_must_fit_worker_and_phase_wall_evidence": true,
+    "exact_contiguous_four_gpu_batches": true,
+    "exact_phase_epoch_sequence": true,
+    "gpu_or_dataset_access_by_analyzer": false,
+    "per_phase_per_gpu_memory_utilization_power_and_pcie": true,
+    "protected_dev_ood_or_holdout_opened": false,
+    "sampled_pcie_integrals_are_estimates_not_lower_bounds": true,
+    "self_hashed_cuda_receipt_every_signed_candidate": true
+  },
+  "bead": "specialist-0j5.14",
+  "claim_limits": [
+    "NVML does not split model, KV cache, adapter, scratch, or allocator pools",
+    "no checkpoint phase exists in the sealed no-commit calibration",
+    "no host RSS, NUMA, CPU allocator, CUDA allocator, or NCCL byte receipt exists",
+    "phase duration is bracketed by sampling handshakes, not exact controller events"
+  ],
+  "content_sha256_before_self_field": "e8c2ecc2fafc2ded90ff7cde57f028f83720725a38692865bf1d01f8f26427de",
+  "input_run_schema": "v66d-mirrored-crn-qwen36-calibration-report",
+  "input_run_status": "complete_nonzero_train_only_no_commit_actor_attributed",
+  "schema": "eggroll-es-v66d-phase-memory-analysis-preregistration-v71",
+  "static_file_sha256": {
+    "eggroll_es_gpu_telemetry_v66.py": "6c086f55ea2e5f66c1c01056b3a6acee7b13074ac9af00c693bea7848cd08224",
+    "eggroll_es_mirrored_v66.py": "06b8cfd775051e1a20d30f969442cdcdc1b2b56ad10c1291d287f031a47594ad",
+    "eggroll_es_worker_lora_topology_v40a.py": "d487ff4657a2a6fbd7d2d0f9200a63547dd79b258cc488b93382fdf26b52cf05",
+    "eggroll_es_worker_lora_v41a.py": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+    "eggroll_es_worker_lora_v66.py": "ee976fbc56a720c5c2a5e52d86c7a02d1e8c7414ed7383952d3da03e72944a03",
+    "eggroll_es_worker_lora_v66d.py": "807af52dab4b842f0a74b33cf083f8b67a7e2f4bd0329eb1ca08c4ffb3831ed6",
+    "experiments/eggroll_es_hpo/preregistrations/lora_es_mirrored_calibration_v66d.json": "3269f7138d74266538cc3b0f31e1a904808f8f3751dde5a7a9456e93b13314b0",
+    "run_lora_es_mirrored_calibration_v66.py": "b0dd2cbbbcb7eeaf040fe4c569aaaa6d565157417ac707896d8176503c6f1bc9",
+    "run_lora_es_mirrored_calibration_v66d.py": "3c3c10ea6e33190c47f7bbebbbbb49eeecf84ee2486501f258f2c97302adf015"
+  },
+  "status": "sealed_postrun_analysis_contract_before_v71_evidence_publication"
+}
