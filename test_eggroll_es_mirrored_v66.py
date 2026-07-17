@@ -351,6 +351,43 @@ def test_pair_difference_receipt_feeds_current_four_rank_lora_update(monkeypatch
     assert rollback["rolled_back"] is True
 
 
+def test_uncertain_update_abort_is_idempotent_before_and_after_prepare(monkeypatch):
+    value, _manager, installed = make_v66_worker(monkeypatch)
+    master_sha = installed["canonical_identity"]["sha256"]
+    no_op = value.abort_mirrored_update_if_present_v66(
+        master_sha, "uncertain_prepare_before_receipt"
+    )
+    assert no_op["aborted"] is False
+    seeds = [1001, 1002, 1003, 1004]
+    coefficients = [1.0, -1.0, 0.5, -0.5]
+    prepared = value.prepare_sharded_adapter_update_v41a(
+        seeds,
+        coefficients,
+        coefficient_sha256_v3(seeds, coefficients),
+        4,
+        4,
+        0.01,
+        "uncertain-v66-update",
+        master_sha,
+        value._v41_reference_generation,
+    )
+    aborted = value.abort_mirrored_update_if_present_v66(
+        master_sha,
+        "uncertain_prepare_after_write",
+        prepared["manifest_sha256"],
+    )
+    assert aborted["aborted"] is True
+    assert aborted["active_manifest_sha256"] == prepared["manifest_sha256"]
+    assert aborted["restored_identity"]["sha256"] == master_sha
+    retry = value.abort_mirrored_update_if_present_v66(
+        master_sha,
+        "uncertain_abort_receipt",
+        prepared["manifest_sha256"],
+    )
+    assert retry["aborted"] is False
+    assert retry["restored_identity"]["sha256"] == master_sha
+
+
 def test_partial_candidate_write_is_repaired_before_original_error_escapes(
     monkeypatch,
 ):

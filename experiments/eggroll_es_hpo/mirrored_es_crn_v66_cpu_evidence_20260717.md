@@ -4,8 +4,9 @@ Date: 2026-07-17
 
 Bead: `specialist-0j5.2`
 
-Status: CPU implementation and deterministic regression evidence complete;
-four-GPU Qwen3.6 calibration still required before the Bead can close.
+Status: CPU implementation, launch harness, preregistration, and deterministic
+regression evidence complete; four-GPU Qwen3.6 execution still required before
+the Bead can close.
 
 ## Implemented contract
 
@@ -44,6 +45,9 @@ es-at-scale/.venv/bin/python -m pytest -q \
 
 Result: `164 passed in 16.88s`.
 
+After adding the launch harness and idempotent uncertain-update abort, the
+expanded adjacent suite passed `172 tests in 29.73s`.
+
 The focused V66 coverage proves:
 
 - deterministic keyed FP32 noise and exact elementwise sign negation;
@@ -79,3 +83,50 @@ Do not mark `specialist-0j5.2` complete until a four-GPU Qwen3.6 run records:
 
 No GPU process was launched for this CPU evidence because the four GPUs were
 owned by another active experiment.
+
+## Sealed four-GPU calibration handoff
+
+Preregistration:
+
+- Path: `experiments/eggroll_es_hpo/preregistrations/lora_es_mirrored_calibration_v66.json`
+- File SHA-256: `968d96af4c4f511eda317f0fbeda21c0cf4fedcc70caa07d2e2d02e3db17d411`
+- Content SHA-256: `f706b63befbd9da93cdda6ad9e612bf8fccfeda395e573ae59ff3515f24e8eef`
+
+The CPU-only dry run passed with:
+
+```text
+es-at-scale/.venv/bin/python run_lora_es_mirrored_calibration_v66.py \
+  --preregistration /home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/lora_es_mirrored_calibration_v66.json \
+  --preregistration-sha256 968d96af4c4f511eda317f0fbeda21c0cf4fedcc70caa07d2e2d02e3db17d411 \
+  --preregistration-content-sha256 f706b63befbd9da93cdda6ad9e612bf8fccfeda395e573ae59ff3515f24e8eef \
+  --dry-run
+```
+
+After the current four-GPU owner has fully cleaned up and `nvidia-smi` shows no
+compute processes, the exact live command is:
+
+```text
+source ~/.bashrc
+es-at-scale/.venv/bin/python run_lora_es_mirrored_calibration_v66.py \
+  --preregistration /home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/lora_es_mirrored_calibration_v66.json \
+  --preregistration-sha256 968d96af4c4f511eda317f0fbeda21c0cf4fedcc70caa07d2e2d02e3db17d411 \
+  --preregistration-content-sha256 f706b63befbd9da93cdda6ad9e612bf8fccfeda395e573ae59ff3515f24e8eef \
+  --execute
+```
+
+Fresh output paths are reserved under
+`experiments/eggroll_es_hpo/runs/v66_lora_es_mirrored_crn_qwen36_calibration`.
+The sibling attempt path is
+`experiments/eggroll_es_hpo/runs/.v66_lora_es_mirrored_crn_qwen36_calibration.attempt.json`.
+
+The live harness fails unless all of these are true:
+
+- the exact Qwen3.6 model seal and every model file pass pre-run hashing;
+- physical GPUs 0-3 are exclusive and each hosts one TP1 actor;
+- every mirrored wave records positive resident activity on every GPU;
+- at least one train-only pair difference and the coefficient L2 are nonzero;
+- the distributed FP32 candidate and its BF16 runtime differ from the master;
+- all four candidate replicas have identical FP32 and BF16 identities;
+- the candidate remains uncommitted and every actor exactly aborts to master;
+- the final model bytes still match the pre-run seal; and
+- strict actor cleanup returns all four GPUs to idle.

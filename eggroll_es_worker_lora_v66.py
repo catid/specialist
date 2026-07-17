@@ -282,6 +282,80 @@ class LoRAAdapterStateWorkerExtensionV66(LoRAAdapterStateWorkerExtensionV65B):
             },
         }
 
+    def abort_mirrored_update_if_present_v66(
+        self,
+        expected_master_sha256,
+        reason,
+        expected_manifest_sha256=None,
+    ):
+        """Idempotently abort a possibly partial prepare/execute RPC wave."""
+        started_ns = time.monotonic_ns()
+        self._require_not_poisoned_v66()
+        self._require_installed_v41a()
+        expected_master_sha = _sha256_string_v66(
+            expected_master_sha256, "expected update-abort master identity"
+        )
+        reason = str(reason)
+        if not reason:
+            raise ValueError("v66 update-abort reason must not be empty")
+        expected_manifest = None
+        if expected_manifest_sha256 is not None:
+            expected_manifest = _sha256_string_v66(
+                expected_manifest_sha256, "expected update-abort manifest"
+            )
+        pending = getattr(self, "_v41_pending_update", None)
+        committed = getattr(self, "_v41_committed_rollback", None)
+        active_manifest = None
+        if isinstance(pending, dict):
+            active_manifest = pending.get("manifest_sha256")
+        elif isinstance(committed, dict):
+            active_manifest = committed.get("manifest_sha256")
+        if (
+            expected_manifest is not None
+            and active_manifest is not None
+            and active_manifest != expected_manifest
+        ):
+            error = RuntimeError("v66 update-abort found another manifest")
+            self._poison_v66("update_abort_manifest", error)
+            raise error
+
+        rollback = None
+        try:
+            if active_manifest is not None:
+                rollback = self.abort_sharded_adapter_update_v41a(
+                    active_manifest
+                )
+            restored = self._restore_exact_master_v66("update_abort")
+        except BaseException as error:
+            if getattr(self, "_v66_terminal_poison", None) is None:
+                self._poison_v66("update_abort", error)
+            raise RuntimeError(
+                "v66 could not prove exact update abort; actor poisoned"
+            ) from error
+        if restored["master_identity"]["sha256"] != expected_master_sha:
+            error = RuntimeError("v66 update abort restored another master")
+            self._poison_v66("update_abort_identity", error)
+            raise error
+        ended_ns = time.monotonic_ns()
+        return {
+            "schema": "mirrored-es-idempotent-update-abort-v66",
+            "aborted": active_manifest is not None,
+            "active_manifest_sha256": active_manifest,
+            "expected_manifest_sha256": expected_manifest,
+            "reason": reason,
+            "rollback": rollback,
+            "restored_identity": restored["master_identity"],
+            "materialization": restored["materialization"],
+            "terminal_poisoned": False,
+            "idempotent_when_prepare_or_execute_completion_unknown": True,
+            "timing": {
+                "clock": "worker_monotonic_ns",
+                "started_ns": started_ns,
+                "ended_ns": ended_ns,
+                "elapsed_ns": ended_ns - started_ns,
+            },
+        }
+
     def mirrored_adapter_state_certificate_v66(self):
         self._require_not_poisoned_v66()
         if getattr(self, "_v66_candidate_transaction", None) is not None:
