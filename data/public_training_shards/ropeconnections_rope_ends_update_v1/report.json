@@ -1,0 +1,62 @@
+{
+  "schema": "public-training-manual-shard-report-v1",
+  "shard": "ropeconnections-rope-ends-update-v1",
+  "source": "ropeconnections",
+  "url": "https://www.ropeconnections.com/knotted-vs-whipped-ends-the-update/",
+  "document_sha256": "cff238d1fa17cef3e4f776aeb241cc0e3e662ab4d64e2c9721ee98549ad6375f",
+  "candidate_input": {
+    "path": "data/train_qa_v3_clean_leakfree_v4_candidates.jsonl",
+    "sha256": "d324b46129e4d1a338ec4f6cf6765e8049856347d4b3bc3bfb37a0b9c2eaa2dd",
+    "matching_rows": 39
+  },
+  "source_input": {
+    "path": "data/train_chunks_v2.jsonl",
+    "sha256": "bf785cd22a6508be117ded4755053978355a2531acaa329731d3a05437cf7d1e",
+    "matching_chunks": 2
+  },
+  "review": {
+    "method": "manual_row_by_row",
+    "reviewer": "codex-manual-background",
+    "reviewed_at": "2026-07-17",
+    "candidate_rows_consumed": 39,
+    "candidate_rows_dropped": 3,
+    "candidate_rows_merged_or_edited": 36,
+    "decision_rows": 12,
+    "edit_decisions": 6,
+    "add_decisions": 5,
+    "drop_decisions": 1,
+    "output_qa_rows": 11
+  },
+  "quality": {
+    "malformed_chat_wrappers": 0,
+    "url_memorization_questions": 0,
+    "duplicate_output_questions": 0,
+    "ungrounded_output_answers": 0,
+    "platform_learning_trivia": 0,
+    "raw_source_explicit_scene_narrative_preserved": true,
+    "raw_source_anecdotal_durability_claims_preserved": true,
+    "raw_source_requires_downstream_content_and_safety_review": true,
+    "raw_markdown_kept_separate": true
+  },
+  "boundary": {
+    "evaluation_content_read": false,
+    "protected_content_read": false,
+    "web_crawl_performed": false,
+    "active_training_snapshot_modified": false,
+    "promotion_status": "pending_semantic_leakage_audit"
+  },
+  "artifacts": {
+    "source_markdown": {
+      "path": "data/public_training_shards/ropeconnections_rope_ends_update_v1/source.md",
+      "sha256": "e99532b48fe563859050216bc43a5b4639870c0f31f98b248ff6f0ec620b8f66"
+    },
+    "candidate_review": {
+      "path": "data/public_training_shards/ropeconnections_rope_ends_update_v1/candidate_review.jsonl",
+      "sha256": "ac46240763f1e87925ddfdf4710345f5303c4aec236f5b162ca92cd69392d58e"
+    },
+    "qa": {
+      "path": "data/public_training_shards/ropeconnections_rope_ends_update_v1/qa.jsonl",
+      "sha256": "e6ecdff921b9122be67b4a521bf0d4dee7e8cfff1164df748ed4eab834fe6292"
+    }
+  }
+}
