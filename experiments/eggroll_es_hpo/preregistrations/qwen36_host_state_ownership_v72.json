@@ -1,0 +1,120 @@
+{
+  "content_sha256_before_self_field": "95f29e599bfdee505035cf2a4a1182f6f8322d70a52f603a55b79a18c2896ad8",
+  "dataset_or_protected_access_performed": false,
+  "dense_full_weight_decision": {
+    "four_actor_private_copy_bytes": 575229163264,
+    "fp32_master_bytes_per_actor": 143807290816,
+    "implemented": false,
+    "reason": "cross-process mmap/shared-memory ownership, NUMA locality, page-fault behavior, and partial-generation recovery require a capacity-qualified live design; they are not inferred from the safe canonical-LoRA ownership proof"
+  },
+  "gpu_launch_performed": false,
+  "pinning_decision": {
+    "future_live_arm": "one NUMA-local reusable BF16 staging buffer per actor, with event-proved completion and a measured locked-memory cap",
+    "reason": "the runtime consumes converted/split BF16 views rather than the FP32 master directly; CPU-only evidence cannot prove a locked-memory or asynchronous-copy benefit",
+    "selected": false
+  },
+  "residency": {
+    "content_sha256_before_self_field": "31097c19e319d3711400cf9a4d13038bbad8ed53e5f0f89e355f0f69329b6fce",
+    "full_state_tensor_copy_passes_one_commit_lifecycle": {
+      "baseline": 26,
+      "by_phase": {
+        "checkpoint": {
+          "baseline": 4,
+          "proposed": 0
+        },
+        "commit": {
+          "baseline": 7,
+          "proposed": 0
+        },
+        "execute": {
+          "baseline": 2,
+          "proposed": 0
+        },
+        "final": {
+          "baseline": 0,
+          "proposed": 0
+        },
+        "install": {
+          "baseline": 8,
+          "proposed": 1
+        },
+        "prepare": {
+          "baseline": 2,
+          "proposed": 0
+        },
+        "reference_capture": {
+          "baseline": 3,
+          "proposed": 0
+        }
+      },
+      "proposed": 1,
+      "saved": 25,
+      "saved_copy_bytes_all_actors": 1811251200,
+      "saved_copy_bytes_per_actor": 452812800
+    },
+    "logical_tensor_residency_bytes_per_actor": {
+      "baseline": {
+        "checkpoint_tensor_residency_peak": 72450048,
+        "commit_clone_peak": 126787584,
+        "committed_rollback_retained": 54337536,
+        "execute_validation_peak": 90562560,
+        "executed_persistent": 72450048,
+        "final_quiescent": 36225024,
+        "prepared_persistent": 54337536,
+        "quiescent_after_install": 36225024
+      },
+      "proposed": {
+        "checkpoint_tensor_residency_peak": 19161088,
+        "commit_clone_peak": 36225024,
+        "committed_rollback_retained": 36225024,
+        "execute_validation_peak": 36225024,
+        "executed_persistent": 36225024,
+        "final_quiescent": 18112512,
+        "prepared_persistent": 18112512,
+        "quiescent_after_install": 18112512
+      }
+    },
+    "master": {
+      "bytes": 18112512,
+      "elements": 4528128,
+      "max_tensor_bytes": 1048576,
+      "tensor_count": 70
+    },
+    "not_counted": [
+      "hash serialization bytes",
+      "safetensors page-cache residency",
+      "per-tensor reduced-update staging",
+      "GPU model, KV cache, and runtime LoRA buffers"
+    ],
+    "peak": {
+      "aggregate_actor_rss_sum_saved_bytes": 362250240,
+      "baseline_bytes_per_actor": 126787584,
+      "proposed_bytes_per_actor": 36225024,
+      "saved_bytes_per_actor": 90562560,
+      "saved_fraction": 0.7142857142857143
+    },
+    "schema": "eggroll-es-host-state-byte-rss-account-v72",
+    "steady_quiescent": {
+      "aggregate_actor_rss_sum_saved_bytes": 72450048,
+      "baseline_bytes_per_actor": 36225024,
+      "proposed_bytes_per_actor": 18112512,
+      "saved_bytes_per_actor": 18112512
+    },
+    "world_size": 4
+  },
+  "rules": {
+    "commit_moves_candidate_ownership_without_clone": true,
+    "executed_candidate_is_second_owned_generation": true,
+    "old_master_retained_until_exact_final": true,
+    "partial_generation_cannot_be_published_or_adopted": true,
+    "prepared_rollback_aliases_immutable_master": true,
+    "reference_is_identity_only": true,
+    "snapshot_directory_publication_is_atomic": true,
+    "snapshot_streams_one_tensor_for_readback": true,
+    "snapshot_writes_immutable_master_without_clone": true,
+    "unknown_state_requires_exact_restore_or_poison": true
+  },
+  "schema": "eggroll-es-versioned-host-state-contract-v72",
+  "status": "cpu_contract_no_gpu_or_dataset_or_protected_access",
+  "world_size": 4
+}

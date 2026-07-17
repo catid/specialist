@@ -1,0 +1,59 @@
+{
+  "arms": {
+    "baseline_copy": {
+      "bytes_per_pass": 18112512,
+      "checksum": 117731302.0,
+      "copied_bytes": 470925312,
+      "copy_passes": 26,
+      "effective_gib_per_second": 23.039008422712463,
+      "elapsed_ns": 19036556,
+      "mode": "baseline_copy"
+    },
+    "baseline_peak": {
+      "bank_count": 7,
+      "bytes_per_bank": 18112512,
+      "checksum": 28.0,
+      "elements_per_bank": 4528128,
+      "exact_tensor_bytes": 126787584,
+      "mode": "baseline_peak",
+      "rss_after_bytes": 639229952,
+      "rss_before_bytes": 510951424,
+      "rss_delta_bytes": 128278528
+    },
+    "proposed_copy": {
+      "bytes_per_pass": 18112512,
+      "checksum": 4528127.0,
+      "copied_bytes": 18112512,
+      "copy_passes": 1,
+      "effective_gib_per_second": 3.8654711292778665,
+      "elapsed_ns": 4363916,
+      "mode": "proposed_copy"
+    },
+    "proposed_peak": {
+      "bank_count": 2,
+      "bytes_per_bank": 18112512,
+      "checksum": 3.0,
+      "elements_per_bank": 4528128,
+      "exact_tensor_bytes": 36225024,
+      "mode": "proposed_peak",
+      "rss_after_bytes": 548466688,
+      "rss_before_bytes": 510771200,
+      "rss_delta_bytes": 37695488
+    }
+  },
+  "content_sha256_before_self_field": "ed5247676797c8a209e768e4dd04c0250b3acf49e29565f013fee74af01a39ed",
+  "dataset_or_protected_access_performed": false,
+  "gpu_launch_performed": false,
+  "gpu_visible_to_children": false,
+  "interpretation": "exact tensor/copy bytes are normative; VmRSS and elapsed time are isolated-process allocator diagnostics, not Qwen live acceptance",
+  "schema": "eggroll-es-host-state-cpu-benchmark-v72",
+  "status": "cpu_synthetic_allocator_diagnostic",
+  "validation": {
+    "exact_copy_bytes_saved": 452812800,
+    "exact_peak_tensor_bytes_saved": 90562560,
+    "observed_rss_delta_saved_bytes": 90583040,
+    "passed": true,
+    "schema": "eggroll-es-host-state-cpu-benchmark-certificate-v72",
+    "timing_is_diagnostic_not_a_live_acceptance_result": true
+  }
+}
