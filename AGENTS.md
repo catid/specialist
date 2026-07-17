@@ -44,3 +44,6 @@
 - Before any authenticated Git operation, source `~/.bashrc` again, confirm
   that `SSH_AUTH_SOCK` names an existing socket, and verify the currently
   forwarded identity. Never assume a cached socket path still works.
+- If the re-sourced path is stale, locate the newest live user-owned
+  `/tmp/ssh-*/agent.*` socket, verify its identity with `ssh-add -l`, and scope
+  that socket to the authenticated command. Do not keep retrying the stale path.
