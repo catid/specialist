@@ -1,0 +1,506 @@
+{
+  "authority": {
+    "cpu_planning_and_confirmation_runs_allowed": true,
+    "dataset_or_protected_content_opened_by_builder": false,
+    "final_recipe_benchmark_consumption_allowed": false,
+    "precision_promotion_allowed_by_this_document": false,
+    "protected_terminal_access_allowed": false
+  },
+  "bead": "specialist-0j5.20",
+  "blocking_beads_before_finalization": [
+    "specialist-0j5.15",
+    "specialist-0j5.18",
+    "specialist-0j5.19",
+    "specialist-0j5.21",
+    "specialist-0j5.22"
+  ],
+  "capacity_reservation": {
+    "candidate_update_delta_mib": 926,
+    "device_total_mib": 97887,
+    "flat_shadow_buffer_reserved_mib": 0.0,
+    "fp8_nominal_engine_budget_mib_at_0p50": 48943.5,
+    "fp8_rightsized_gpu_memory_utilization": 0.5,
+    "fp8_rightsized_observed_headroom_mib": 45149,
+    "fp8_rightsized_observed_peak_mib": 52738,
+    "full_es_observed_peak_mib": 84138,
+    "host_memory_reservation_status": "blocked_pending_specialist-0j5.19",
+    "maximum_full_es_peak_mib": 84138,
+    "maximum_pre_es_generation_peak_mib": 83212,
+    "minimum_kv_cache_tokens": 139264,
+    "minimum_pre_es_generation_headroom_mib": 14675,
+    "minimum_reserved_full_es_headroom_mib": 13749
+  },
+  "conditional_fp8_challenger": {
+    "all_promotion_gates_required": {
+      "actual_full_es_peak_mib_maximum": 84138,
+      "actual_generation_peak_mib_maximum": 83212,
+      "all_four_gpu_activity_and_cleanup_idle": true,
+      "exact_adapter_candidate_restore_update_receipts": true,
+      "kv_cache_tokens_minimum": 139264,
+      "median_runtime_ratio_to_bf16_maximum": 1.1,
+      "ood_all_registered_noninferiority_conditions": {
+        "all_conditions_required": true,
+        "bootstrap_seed": 2026071701,
+        "paired_bootstrap_samples": 20000,
+        "prose_mean_token_logprob_delta_95_lcb_minimum": -0.02,
+        "qa_exact_count_delta_minimum": -1,
+        "qa_mean_reward_delta_95_lcb_minimum": -0.02
+      },
+      "paired_replicates_minimum": 3,
+      "protected_terminal_opened": false,
+      "reference_restore_exact_at_token_hash_level": true,
+      "resolved_serialized_fp8_block_128x128": true,
+      "routed_expert_method_count_attested": true,
+      "source_disjoint_dev_semantic_reward_noninferiority": true,
+      "v74_load_generate_switch_cleanup_all_four": true,
+      "zero_unresolved_kernel_or_tactic_fallbacks": true
+    },
+    "capacity_probe_v74": {
+      "current_receipts_consumed": 4,
+      "immutable_run_inventory_sha256": "13dc3991ec440e273359455fdf970f0025f3048deeb74d73219d29dd845ee04c",
+      "observed_headroom_mib": 45149,
+      "observed_kv_cache_tokens": 157286,
+      "observed_peak_mib": 52738,
+      "physical_gpus_required": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "receipt_count_required": 4,
+      "schema": "v74-qwen36-fp8-rightsized-vram-preflight",
+      "single_variable_change": {
+        "gpu_memory_utilization": [
+          0.82,
+          0.5
+        ]
+      },
+      "status": "passed_capacity_only_not_precision_promotion"
+    },
+    "layout": {
+      "canonical_adapter_dtype": "float32",
+      "collective_layout": {
+        "backend": "nccl",
+        "flat_shadow_buffer": false,
+        "micro_bucket_elements": null,
+        "parameter_boundaries": "native_23_tensor"
+      },
+      "dtype": "bfloat16",
+      "execution": {
+        "async_scheduling": false,
+        "compilation_promoted": false,
+        "cuda_graphs_enabled": false,
+        "enforce_eager": true,
+        "scheduling_policy": "fcfs"
+      },
+      "layout_id": "qwen36-fp8-serialized-eager-one-slot-cap68-native-rightsized-v75",
+      "memory": {
+        "enable_prefix_caching": false,
+        "gpu_memory_utilization": 0.5,
+        "kv_cache_dtype": "auto",
+        "max_cpu_loras": 2,
+        "max_lora_rank": 32,
+        "max_loras": 1,
+        "max_model_len": 2048,
+        "max_num_seqs": 68
+      },
+      "model_config_sha256": "570ef7ea45a7e1d3de2b1d3c70c4ac3562d0e768acdc195778cb4f4d95025845",
+      "model_index_sha256": "6f176f344e41d35b17af12904e33401da5ebff3b49fccb8bfa0185bc2d50f9d6",
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B-FP8",
+      "parallelism": {
+        "engines": 4,
+        "one_candidate_per_actor_per_mirrored_wave": true,
+        "physical_gpus": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "tensor_parallel_size": 1
+      },
+      "precision_arm": "fp8_serialized",
+      "precision_requirements": {
+        "bf16_or_rejected_v29_moe_table_reuse_forbidden": true,
+        "online_requantization_forbidden": true,
+        "starting_moe_tuning_table": "empty_default",
+        "weight_block_size": [
+          128,
+          128
+        ]
+      },
+      "resolved_quantization": "fp8",
+      "runtime_adapter_dtype": "bfloat16",
+      "serialized_quantization": true,
+      "state": {
+        "audit_policy": "current_full_exact_until_v71_audit_ablation_passes",
+        "candidate_and_restore_semantics": "v66d_exact_master_or_poison",
+        "dense_full_weight_master_on_lora_path": false,
+        "mode": "external_lora_canonical_fp32",
+        "single_gpu_lora_slot": true
+      },
+      "vllm_version": "0.25.0"
+    },
+    "status": "blocked_not_promoted",
+    "v73_observation": {
+      "kv_cache_increase_gib_at_fixed_0p82": 31.27,
+      "median_runtime_ratio_to_bf16": 1.0928605200172001,
+      "model_load_reduction_gib": 31.31,
+      "nvml_peak_saving_mib_at_fixed_0p82": -58,
+      "semantic_equivalence_known": false
+    },
+    "v74_observation": {
+      "capacity_gate_passed": true,
+      "kv_cache_tokens": 157286,
+      "median_runtime_seconds": 48.95789764399524,
+      "peak_memory_mib": 52738,
+      "physical_headroom_mib": 45149,
+      "promotion_blockers_observed": [
+        "reference_repeat_not_exact_4_to_5_of_68_rows",
+        "single_capacity_replicate_not_three_paired_replicates",
+        "full_es_peak_and_exact_update_receipts_not_measured",
+        "deepgemm_cutlass_path_attestation_contradictory",
+        "default_moe_and_flashinfer_tactic_fallbacks",
+        "inherited_bf16_moe_tuning_path",
+        "routed_expert_method_count_pending",
+        "source_disjoint_semantic_and_ood_gates_not_run"
+      ],
+      "promotion_gate_passed": false,
+      "runtime_ratio_to_v73_bf16_median": 1.08324204844024
+    }
+  },
+  "consumer_contract": {
+    "conditional_fp8_requires_promotion_evidence_schema": "qwen36-fp8-layout-promotion-evidence-v75",
+    "final_benchmark_rejected_while_status_is_provisional": true,
+    "must_equal_selected_layout_exactly": true,
+    "must_include_decision_content_sha256": true,
+    "request_schema": "qwen36-production-layout-consumer-request-v75"
+  },
+  "content_sha256_before_self_field": "5dd23d1effbecec2068d8e21d7f8bf9e5afab85a9e8a58d38a913e835c0e0ed5",
+  "decision_class": "production_layout_framework",
+  "deferred_not_rejected": [
+    {
+      "beads": [
+        "specialist-0j5.17",
+        "specialist-0j5.22"
+      ],
+      "id": "compiled_cuda_graph_execution",
+      "reason": "throughput positive but token behavior changed; semantic/OOD and kernel gates pending"
+    },
+    {
+      "beads": [
+        "specialist-0j5.18",
+        "specialist-0j5.21"
+      ],
+      "id": "fused_candidate_noise_update_and_audit",
+      "reason": "V71 identifies bandwidth target but live exactness/speed evidence pending"
+    },
+    {
+      "beads": [
+        "specialist-0j5.19"
+      ],
+      "id": "shared_or_streamed_host_master",
+      "reason": "host allocation/fault evidence pending"
+    }
+  ],
+  "evidence": {
+    "native_flat_collectives": {
+      "artifacts": [
+        {
+          "file_sha256": "eeef875c72dc0bd1a6135e8cd4425e9a7833f5c34a77d8a2714f0077c05af5ff",
+          "path": "experiments/eggroll_es_hpo/runs/v68_collective_inprocess_paired_12x64/benchmark.json"
+        },
+        {
+          "file_sha256": "e4259651d63a676f00ca17427c135ab6d7c209ab93793855df50322b18fbfa64",
+          "path": "experiments/eggroll_es_hpo/runs/v68_collective_inprocess_paired_12x64_r2/benchmark.json"
+        }
+      ],
+      "decision": "retain_native_parameter_boundaries_no_flat_shadow",
+      "flat_shadow_extra_bytes_per_rank": 571998208,
+      "flat_shadow_extra_mib_per_rank": 545.5,
+      "paired_run_native_over_flat_median_speeds": [
+        1.003526527791839,
+        0.9977076489242296
+      ],
+      "schema": "v68-native-versus-flat-collective-summary-v75"
+    },
+    "one_dual_slot_and_sequence_caps": {
+      "cap32_graph_median_seconds": 31.97206194201135,
+      "cap32_regression_fraction": 0.3576056689225857,
+      "cap48_graph_median_seconds": 28.988969927013386,
+      "cap48_regression_fraction": 0.2309368717138136,
+      "cap68_graph_median_seconds": 23.550330316007603,
+      "dual_slot_eager_median_seconds": 80.09551188797923,
+      "dual_slot_eager_regression_fraction": 0.7378217288506042,
+      "dual_slot_graph_median_seconds": 31.965402808011277,
+      "dual_slot_graph_regression_fraction": 0.3573229071136972,
+      "dual_slot_inventory_sha256": "aec63377f7fbf35ad18759ea70064cb02020bb6ba5547489184e8ae12ee8a14d",
+      "one_slot_eager_median_seconds": 46.089602033549454,
+      "one_slot_graph_median_seconds": 23.550330316007603,
+      "one_slot_inventory_sha256": "dc7aecfc5fd5a84a673cc1d9593c0e733b1e30a4b3fd0f71dd0d55aa1c171b93",
+      "sequence_cap_inventory_sha256": "42f3e5ca3342d70288c175e3d9ea3ad991b75ae1e9fd5787d8230de0086c920e"
+    },
+    "paired_precision_v73": {
+      "actors_per_arm": 4,
+      "all_four_gpus_useful_and_cleanup_idle_each_wave": true,
+      "bf16": {
+        "between_adapter_changed_rows_range": [
+          6,
+          7
+        ],
+        "candidate_repeat_changed_rows": 0,
+        "kv_cache_gib": 6.87,
+        "kv_cache_tokens": 139264,
+        "median_runtime_seconds": 45.19571384298615,
+        "model_load_gib": 68.24,
+        "peak_memory_mib": 83820,
+        "reference_repeat_changed_rows_range": [
+          1,
+          2
+        ],
+        "runtime_range_seconds": [
+          44.82381971500581,
+          45.59185731399339
+        ]
+      },
+      "every_arm_observed_on_every_physical_gpu": true,
+      "fixed_0p82_budget_converts_weight_savings_to_kv_not_nvml_peak_savings": true,
+      "fixed_gpu_memory_utilization": 0.82,
+      "fp8_serialized": {
+        "between_adapter_changed_rows_range": [
+          13,
+          15
+        ],
+        "candidate_repeat_changed_rows": 0,
+        "kv_cache_gib": 38.14,
+        "kv_cache_increase_gib": 31.27,
+        "kv_cache_tokens": 775372,
+        "median_runtime_seconds": 49.39261133299442,
+        "model_load_gib": 36.93,
+        "model_load_reduction_gib": 31.31,
+        "peak_memory_mib": 83878,
+        "reference_repeat_changed_rows_range": [
+          4,
+          6
+        ],
+        "runtime_range_seconds": [
+          48.41999553795904,
+          50.49425966700073
+        ],
+        "runtime_ratio_to_bf16": 1.0928605200172001,
+        "runtime_regression_fraction": 0.09286052001720013
+      },
+      "implementation_file_sha256": "43661c32cd8d06deef6d8e2f0d83d889b00f554748b94c3345e2b2052cac66a9",
+      "inventory_sha256": "ab948ff5be8a9fede83107bbf01b4cde51b5367980b3489141595af3592f1762",
+      "protected_data_opened": false,
+      "schema": "v73-paired-precision-evidence-summary-v75",
+      "scored_evaluation_or_training_authorized": false,
+      "waves": 2
+    },
+    "phase_memory_profile_v71": {
+      "all_four_gpus_useful": true,
+      "analysis_content_sha256": "a4503e18cb6185ee872ad571d24a51fd8a7ac5154e1fd69793fba629842166e6",
+      "charged_gpu_seconds": 492.405638704,
+      "cleanup_idle": true,
+      "v66d_report_file_sha256": "12a5e854856d28bd8439cf3ed004664317086f8d117ae08e78b59f857f6102bb"
+    },
+    "precision_preregistration_v67": {
+      "content_sha256": "cdef17b02c2f77516b17225562edbed2c8faab41cbdb359a6a58ee2fec8b5236",
+      "file_sha256": "e1bd808ce102882c0a3c13d4eab337ebce5ed70011ec8eefdbe8a727bbdc2724"
+    },
+    "recipe_evaluation_contract": {
+      "content_sha256": "2442c0c2be3ac4c883612f400f8f213ce3bc82ef96e03fad1ef10ec3b7d11fad",
+      "file_sha256": "04af81499067e2feb0186c0a61e4c1af10f838a8eb7deec6dd41cd192748cacf"
+    },
+    "right_sized_fp8_capacity_v74": {
+      "all_four_gpus_useful_and_cleanup_idle": true,
+      "capacity_gate_passed": true,
+      "gpu_memory_utilization": 0.5,
+      "immutable_run_inventory_sha256": "13dc3991ec440e273359455fdf970f0025f3048deeb74d73219d29dd845ee04c",
+      "implementation_file_sha256": "c4434b1c720c9c209b3638abc6202ec864e18d7f5233963f7360a88fedbd5a63",
+      "kv_cache_gib": 7.73,
+      "kv_cache_tokens": 157286,
+      "maximum_2048_token_concurrency": 76.8,
+      "median_runtime_seconds": 48.95789764399524,
+      "model_load_gib": 36.93,
+      "peak_saving_vs_v73_fp8_0p82_mib": 31140,
+      "physical_gpus": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "physical_headroom_mib": 45149,
+      "promotion_blockers_observed": [
+        "reference_repeat_not_exact_4_to_5_of_68_rows",
+        "single_capacity_replicate_not_three_paired_replicates",
+        "full_es_peak_and_exact_update_receipts_not_measured",
+        "deepgemm_cutlass_path_attestation_contradictory",
+        "default_moe_and_flashinfer_tactic_fallbacks",
+        "inherited_bf16_moe_tuning_path",
+        "routed_expert_method_count_pending",
+        "source_disjoint_semantic_and_ood_gates_not_run"
+      ],
+      "promotion_gate_passed": false,
+      "protected_data_opened": false,
+      "receipts": 4,
+      "runtime_range_seconds": [
+        48.794066662027035,
+        49.29162618302507
+      ],
+      "runtime_ratio_to_v73_bf16_median": 1.08324204844024,
+      "runtime_ratio_to_v73_fp8_median": 0.9911988113754822,
+      "schema": "v74-fp8-rightsized-capacity-summary-v75",
+      "scored_evaluation_or_training_authorized": false,
+      "steady_and_peak_memory_mib": 52738
+    }
+  },
+  "finalization": {
+    "all_blocking_beads_must_close": true,
+    "all_seed_ood_gates_required": true,
+    "final_benchmark_must_bind_decision_content_sha256_unchanged": true,
+    "four_gpu_activity_and_cleanup_required": true,
+    "headroom_reservation_must_hold": true,
+    "pooled_dev_primary_paired_95_lcb_minimum": 0.0,
+    "protected_terminal_not_used_for_layout_selection": true,
+    "selected_layout_must_be_rebuilt_with_final_artifact_hashes": true,
+    "three_seed_confirmation_required": true
+  },
+  "open_dependencies_with_provisional_current_choice": [
+    "specialist-0j5.16",
+    "specialist-0j5.17"
+  ],
+  "rejected_alternatives": [
+    {
+      "id": "dual_gpu_lora_slots_v66",
+      "reopen_rule": "new compact implementation with bounded allocation and paired win",
+      "status": "rejected_current_vllm_hardware"
+    },
+    {
+      "id": "global_static_max_num_seqs_48_or_32",
+      "reopen_rule": "real-length bucketing without a lower global cap",
+      "status": "rejected_as_production_default"
+    },
+    {
+      "id": "flat_collective_shadow_buffer",
+      "reopen_rule": "same-process paired material benefit exceeding memory cost",
+      "status": "rejected_no_material_speed_win_and_545p5_mib_per_rank"
+    },
+    {
+      "id": "fp8_with_gpu_memory_utilization_0p82",
+      "reopen_rule": "none; use the right-sized 0p50 challenger",
+      "status": "rejected_as_production_capacity_layout"
+    },
+    {
+      "id": "int4",
+      "reopen_rule": "new serialized checkpoint and new preregistration",
+      "status": "blocked_unsupported_not_silently_fallback"
+    }
+  ],
+  "retained_choices": [
+    {
+      "alternative": 2,
+      "choice": 1,
+      "dimension": "lora_gpu_slots",
+      "evidence": {
+        "dual_eager_regression_fraction": 0.7378217288506042,
+        "dual_graph_regression_fraction": 0.3573229071136972
+      }
+    },
+    {
+      "alternatives": [
+        48,
+        32
+      ],
+      "choice": 68,
+      "dimension": "max_num_seqs",
+      "evidence": {
+        "cap32_regression_fraction": 0.3576056689225857,
+        "cap48_regression_fraction": 0.2309368717138136
+      }
+    },
+    {
+      "alternative": "flat_shadow",
+      "choice": "native_23_tensor",
+      "dimension": "collective_parameter_layout",
+      "evidence": {
+        "flat_shadow_extra_mib_per_rank": 545.5,
+        "paired_run_speed_ratios": [
+          1.003526527791839,
+          0.9977076489242296
+        ]
+      }
+    },
+    {
+      "alternative": true,
+      "choice": false,
+      "dimension": "full_weight_master_on_lora_path",
+      "reason": "external LoRA state mode forbids dense full-weight master"
+    }
+  ],
+  "safe_default": {
+    "layout": {
+      "canonical_adapter_dtype": "float32",
+      "collective_layout": {
+        "backend": "nccl",
+        "flat_shadow_buffer": false,
+        "micro_bucket_elements": null,
+        "parameter_boundaries": "native_23_tensor"
+      },
+      "dtype": "bfloat16",
+      "execution": {
+        "async_scheduling": false,
+        "compilation_promoted": false,
+        "cuda_graphs_enabled": false,
+        "enforce_eager": true,
+        "scheduling_policy": "fcfs"
+      },
+      "layout_id": "qwen36-bf16-eager-one-slot-cap68-native-v75",
+      "memory": {
+        "enable_prefix_caching": false,
+        "gpu_memory_utilization": 0.82,
+        "kv_cache_dtype": "auto",
+        "max_cpu_loras": 2,
+        "max_lora_rank": 32,
+        "max_loras": 1,
+        "max_model_len": 2048,
+        "max_num_seqs": 68
+      },
+      "model_config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "model_index_sha256": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+      "model_path": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+      "parallelism": {
+        "engines": 4,
+        "one_candidate_per_actor_per_mirrored_wave": true,
+        "physical_gpus": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "tensor_parallel_size": 1
+      },
+      "precision_arm": "bf16",
+      "resolved_quantization": null,
+      "runtime_adapter_dtype": "bfloat16",
+      "serialized_quantization": false,
+      "state": {
+        "audit_policy": "current_full_exact_until_v71_audit_ablation_passes",
+        "candidate_and_restore_semantics": "v66d_exact_master_or_poison",
+        "dense_full_weight_master_on_lora_path": false,
+        "mode": "external_lora_canonical_fp32",
+        "single_gpu_lora_slot": true
+      },
+      "vllm_version": "0.25.0"
+    },
+    "reason_codes": [
+      "v66d_full_es_exact_restore_and_four_gpu_activity_passed",
+      "v71_minimum_13749_mib_headroom_observed",
+      "v73_bf16_is_9p286_percent_faster_at_matched_0p82_budget",
+      "v74_fp8_0p50_capacity_passed_but_precision_promotion_failed",
+      "precision_semantics_remain_unscored"
+    ],
+    "status": "selected_for_confirmation_not_final_benchmark"
+  },
+  "schema": "qwen36-memory-efficient-production-layout-decision-v75",
+  "status": "provisional_not_final_benchmark_authority"
+}
