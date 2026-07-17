@@ -19,6 +19,13 @@
 - Before running evaluation-related tests, inspect their fixture and loader
   paths. If a real source can be reached, stop and replace that path with a
   synthetic fixture before continuing.
+- Apply protected, holdout, OOD, terminal, incident, and manual-review path
+  exclusions in the file-selection command itself. A downstream `rg` filter
+  only hides output; it does not prevent the upstream process from reading
+  excluded files.
+- Prefer explicitly named safe manifests over repository-wide content searches
+  for dataset inventories. Do not use broad `rg` globs across the repository
+  when the same facts are available from a registry or build report.
 
 ## EGGROLL-ES program status
 
@@ -30,8 +37,23 @@
 - Preserve existing experiment artifacts, unfinished V73I files, and every
   protected-data quarantine. Do not delete them or present unfinished work as
   completed.
-- Leave the GPUs idle after this halt until the user gives a new explicit
-  training or experiment direction.
+- The replacement training direction is the supervised low-regression protocol
+  in `plan.md`. EGGROLL-ES remains abandoned even while that new work proceeds.
+
+## Active low-regression training policy
+
+- Treat `plan.md` as the canonical training protocol for Qwen3.6-35B-A3B.
+- Use BF16, MLP-only expert-aware LoRA, frozen routing and attention, supervised
+  knowledge transfer, general-behavior replay, and verifier-filtered refinement.
+- Do not use RL to inject the domain corpus. GRPO is optional and gated on an
+  objective verifier after SFT and offline refinement have passed regression
+  gates.
+- Complete the data inventory, source-disjoint split, replay construction,
+  baseline evaluation, exact adapter-scope assertions, and memory smoke test
+  before launching the four-GPU pilot sweep.
+- A request to plan, audit, or create Beads tasks does not by itself authorize a
+  live training run. Keep GPUs idle until an execution task is explicitly
+  started.
 
 ## Website Markdown training data
 
