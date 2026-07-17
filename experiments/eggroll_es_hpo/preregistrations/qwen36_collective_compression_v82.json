@@ -1,0 +1,323 @@
+{
+  "arms": {
+    "bf16_error_feedback": {
+      "collective": "ordinary_sum_all_reduce_over_native_tensor",
+      "communication_dtype": "bfloat16",
+      "input_and_residual_dtype": "float32",
+      "local_equation": "compensated=fp32(update+residual); q=bf16(compensated); next_residual=fp32(compensated-fp32(q))",
+      "naive_full_fp32_decode_staging_forbidden": true,
+      "post_collective": "copy BF16 result to CPU, convert and scale in FP32, then apply to the canonical FP32 master",
+      "residual_checkpointed_atomically_with_master": true,
+      "rounding": "IEEE_BF16_round_to_nearest_even",
+      "two_fp32_residual_banks_during_transaction": true,
+      "unknown_or_partial_collective": "exact_restore_or_terminal_poison"
+    },
+    "fp32_control": {
+      "bit_exact_fallback_required": true,
+      "communication_dtype": "float32",
+      "conversion_or_rescaling_before_collective": false,
+      "implementation": "existing_in_place_PyNccl_all_reduce",
+      "residual_state": "absent_and_must_be_all_positive_zero"
+    },
+    "fp8_ordinary_all_reduce": {
+      "launch_authorized": false,
+      "reason": "Installed ProcessGroupNCCL contains an explicit Float8 reduction rejection; NCCL datatype enums alone are not end-to-end support.",
+      "registered": false
+    }
+  },
+  "authority": {
+    "dataset_or_model_opened": false,
+    "gpu_launch_authorized_at_build": false,
+    "ordinary_fp8_all_reduce_authorized": false,
+    "protected_dev_ood_or_holdout_opened": false,
+    "training_or_checkpoint_promotion_authorized": false
+  },
+  "bead": "specialist-0j5.28",
+  "byte_accounting": {
+    "bf16_error_feedback": {
+      "collective_payload_bytes_per_rank": 285999104,
+      "fused_prepare_hbm_bytes_per_rank_per_update_lower_bound": 2001993728,
+      "incremental_transaction_peak_bytes_per_rank": 1194328064,
+      "maximum_native_tensor_bf16_staging_bytes_per_rank": 50331648,
+      "naive_full_fp32_decode_staging_forbidden": true,
+      "nominal_collective_payload_fraction_of_fp32": 0.5,
+      "nominal_ring_bus_bytes_per_rank": 428998656,
+      "post_collective_bf16_is_converted_and_scaled_on_cpu_fp32": true,
+      "steady_residual_bytes_per_rank": 571998208,
+      "transaction_peak_residual_bytes_per_rank": 1143996416
+    },
+    "flat_shadow_bytes_per_rank": 571998208,
+    "flat_shadow_forbidden": true,
+    "fp32_control": {
+      "collective_payload_bytes_per_rank": 571998208,
+      "incremental_staging_bytes_per_rank": 0,
+      "nominal_ring_bus_bytes_per_rank": 857997312,
+      "residual_bytes_per_rank": 0
+    },
+    "link_bytes_are_projection_not_measurement": true,
+    "maximum_tensor_elements": 25165824,
+    "native_tensor_count": 23,
+    "nominal_ring_bus_bytes_saved_all_ranks": 1715994624,
+    "nominal_ring_bus_bytes_saved_per_rank": 428998656,
+    "schema": "qwen36-collective-compression-byte-accounting-v82",
+    "total_elements_per_rank": 142999552,
+    "world_size": 4
+  },
+  "content_sha256_before_self_field": "42f96cdaf7ada94f1e696aecc7d8254f25ee3e3b4fbce8400ba8218f4abf0cc3",
+  "created_at_utc": "2026-07-17T00:00:00+00:00",
+  "dependency_gate": {
+    "historical_v66d_signal_is_insufficient": true,
+    "launch_condition": "update_collective_rank_in_top_three",
+    "must_measure_after": [
+      "specialist-0j5.18",
+      "specialist-0j5.19"
+    ],
+    "non_launch_condition": "If update_collective ranks below third, close specialist-0j5.28 as not applicable without consuming a GPU ablation.",
+    "required_closed_acceptance_beads": [
+      "specialist-0j5.14",
+      "specialist-0j5.18",
+      "specialist-0j5.19",
+      "specialist-0j5.32"
+    ],
+    "required_measurements": [
+      "unoverlapped phase wall time",
+      "collective link bytes",
+      "collective time",
+      "HBM bytes",
+      "four-GPU attribution"
+    ],
+    "schema": "qwen36-collective-residual-bottleneck-gate-v82"
+  },
+  "execution_contract_after_gate": {
+    "stage_1_data_free_preflight": {
+      "advance_only_if_end_to_end_update_throughput_improves": true,
+      "counterbalanced_same_process_pairs": true,
+      "payload_size_alone_cannot_pass": true,
+      "report": [
+        "measured link bytes",
+        "collective time",
+        "HBM bytes",
+        "peak residual/staging VRAM",
+        "updates per second",
+        "all-four-GPU useful attribution",
+        "cleanup idle"
+      ],
+      "same_fp32_local_accumulators": true,
+      "same_native_23_tensor_order": true,
+      "three_registered_seeds": [
+        1701,
+        1702,
+        1703
+      ]
+    },
+    "stage_2_three_seed_recipe_confirmation": {
+      "all_ood_conditions_required": true,
+      "common_random_numbers": true,
+      "compute_mode": "estimator_control_then_compute_matched_confirmation",
+      "dev_pooled_paired_95_lcb_minimum": 0.0,
+      "ood_prose_logprob_95_lcb_minimum": -0.02,
+      "ood_qa_exact_count_delta_minimum": -1,
+      "ood_qa_reward_95_lcb_minimum": -0.02,
+      "positive_dev_seeds_minimum": 2,
+      "protected_holdout_opened": false,
+      "source_disjoint_dev_required": true,
+      "training_seeds": [
+        1701,
+        1702,
+        1703
+      ]
+    }
+  },
+  "fixed_update_surface": {
+    "antithetic_estimator": "learning_rate/(2*N*sigma)*sum((Rplus-Rminus)*epsilon)",
+    "candidate_inference_precision_unchanged_between_arms": true,
+    "canonical_master_dtype": "float32",
+    "elements_per_rank": 142999552,
+    "flat_shadow_forbidden": true,
+    "native_tensor_count": 23,
+    "native_tensor_elements": [
+      131072,
+      25165824,
+      8388608,
+      524288,
+      1048576,
+      2097152,
+      131072,
+      25165824,
+      8388608,
+      524288,
+      1048576,
+      2097152,
+      131072,
+      25165824,
+      8388608,
+      524288,
+      1048576,
+      2097152,
+      18874368,
+      8388608,
+      524288,
+      1048576,
+      2097152
+    ],
+    "native_tensor_elements_sha256": "7871fe2d020537cebb72053b8c3866b7b1d4296fee284833ac0b18c8c6a5c240",
+    "native_tensor_order_unchanged": true,
+    "optimizer_dtype": "float32",
+    "physical_gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "strided_seed_sharding_unchanged": true,
+    "world_size": 4
+  },
+  "implementation_bindings": {
+    "cpu_oracle": {
+      "file_sha256": "1b205a846dde09da73f5f36477f68e643f0d2f3ae89b16eb7918db46db03022d",
+      "imports_torch_or_cuda": false,
+      "path": "eggroll_es_collective_compression_v82.py"
+    },
+    "prospective_data_free_preflight": {
+      "command_authorized_at_build": false,
+      "exact_future_command": "CUDA_VISIBLE_DEVICES=0,1,2,3 NCCL_DEBUG=INFO .venv/bin/torchrun --standalone --nnodes=1 --nproc-per-node=4 benchmark_eggroll_es_collective_compression_v82.py --gate experiments/eggroll_es_hpo/gates/qwen36_collective_residual_bottleneck_gate_v82.json --output experiments/eggroll_es_hpo/runs/v82_collective_compression_data_free_preflight/preflight.json",
+      "file_sha256": "24a2b8d94d79845e54c7608869feca72fe2e5c0dbdf00a46110a1a45f18b3888",
+      "gate_receipt_path": "experiments/eggroll_es_hpo/gates/qwen36_collective_residual_bottleneck_gate_v82.json",
+      "imports_torch_only_after_authorized_gate": true,
+      "output_path": "experiments/eggroll_es_hpo/runs/v82_collective_compression_data_free_preflight/preflight.json",
+      "path": "benchmark_eggroll_es_collective_compression_v82.py",
+      "why_blocked": "The gate receipt does not exist; .14/.18/.19 have not closed and .32 has not produced a post-optimization top-three collective rank."
+    }
+  },
+  "local_capabilities": {
+    "bf16": {
+      "live_four_gpu_preflight_still_required": true,
+      "nccl_abi_declares_bfloat16": true,
+      "ordinary_all_reduce_arm_registered": true,
+      "pytorch_maps_bfloat16_to_nccl_bfloat16": true
+    },
+    "bound_files": {
+      "libtorch_cuda_so": {
+        "file_sha256": "fd13a41b54fe3d8af91075962d9fe155a16616ca09c7b79b7251869ff6230d32",
+        "path": "/home/catid/specialist/.venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so"
+      },
+      "nccl_header": {
+        "file_sha256": "06b934792a70f08cafabd96b8f94015b143a182fbb3bc56ac71c4c6de7deb971",
+        "path": "/home/catid/specialist/.venv/lib/python3.12/site-packages/nvidia/nccl/include/nccl.h"
+      },
+      "nccl_library": {
+        "file_sha256": "1c8618b866734cbdd5401715d6178be763ece283b7f808ecf86dedab211162c1",
+        "path": "/home/catid/specialist/.venv/lib/python3.12/site-packages/nvidia/nccl/lib/libnccl.so.2"
+      },
+      "torch_cuda_nccl_h": {
+        "file_sha256": "a12040a73d2fed50d0b9242fa93766b16b53dd679ef9c09e8165fbdee388de4a",
+        "path": "/home/catid/specialist/.venv/lib/python3.12/site-packages/torch/include/torch/csrc/cuda/nccl.h"
+      },
+      "torch_nccl_utils_hpp": {
+        "file_sha256": "d4639a2a83e45347d4f21331e03245b3d9a67a43ce317081f3770a22c067e546",
+        "path": "/home/catid/specialist/.venv/lib/python3.12/site-packages/torch/include/torch/csrc/distributed/c10d/NCCLUtils.hpp"
+      },
+      "torch_version_py": {
+        "file_sha256": "323d35171ef1184f1d7db3bbd1f3d3e227e0e826be8fd52200778346e17c873f",
+        "path": "/home/catid/specialist/.venv/lib/python3.12/site-packages/torch/version.py"
+      }
+    },
+    "cuda_build_version_from_bound_source": "13.0",
+    "fp8": {
+      "installed_pytorch_binary_rejects_float8_reduction": true,
+      "launch_forbidden": true,
+      "nccl_abi_declares_e4m3_and_e5m2": true,
+      "ordinary_all_reduce_arm_registered": false,
+      "pytorch_mapping_is_compile_time_conditional": true,
+      "reason": "An NCCL enum is not end-to-end PyTorch collective support; the installed ProcessGroupNCCL binary explicitly rejects Float8 reduction.",
+      "rejection_message": "Unsupported Float8 type for NCCL reduction"
+    },
+    "gpu_access_performed": false,
+    "nccl_distribution_version": "2.28.9",
+    "schema": "local-pytorch-nccl-collective-capability-evidence-v82",
+    "torch_distribution_version": "2.11.0",
+    "torch_git_version_from_bound_source": "70d99e998b4955e0049d13a98d77ae1b14db1f45",
+    "torch_or_cuda_imported": false,
+    "torch_runtime_version_from_bound_source": "2.11.0+cu130"
+  },
+  "prior_evidence": {
+    "layout": {
+      "artifacts": [
+        {
+          "file_sha256": "eeef875c72dc0bd1a6135e8cd4425e9a7833f5c34a77d8a2714f0077c05af5ff",
+          "path": "experiments/eggroll_es_hpo/runs/v68_collective_inprocess_paired_12x64/benchmark.json"
+        },
+        {
+          "file_sha256": "e4259651d63a676f00ca17427c135ab6d7c209ab93793855df50322b18fbfa64",
+          "path": "experiments/eggroll_es_hpo/runs/v68_collective_inprocess_paired_12x64_r2/benchmark.json"
+        }
+      ],
+      "decision": "retain_native_23_tensor_boundaries",
+      "flat_shadow_bytes_per_rank": 571998208,
+      "flat_shadow_forbidden_for_v82": true,
+      "flat_shadow_mib_per_rank": 545.5,
+      "paired_run_native_over_flat_median_speeds": [
+        1.003526527791839,
+        0.9977076489242296
+      ],
+      "schema": "v68-native-boundary-decision-v82"
+    },
+    "phase_profile": {
+      "artifacts": {
+        "recipe_contract": {
+          "content_sha256": "2442c0c2be3ac4c883612f400f8f213ce3bc82ef96e03fad1ef10ec3b7d11fad",
+          "file_sha256": "04af81499067e2feb0186c0a61e4c1af10f838a8eb7deec6dd41cd192748cacf",
+          "path": "experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v1.json"
+        },
+        "v71_preregistration": {
+          "content_sha256": "e8c2ecc2fafc2ded90ff7cde57f028f83720725a38692865bf1d01f8f26427de",
+          "file_sha256": "7aa416ae736585f3b3710066faed2ac93ea178dc3b8fa93f5430cc83d7a3f1d4",
+          "path": "experiments/eggroll_es_hpo/preregistrations/v66d_phase_memory_analysis_v71.json"
+        },
+        "v71_report": {
+          "file_sha256": "eb7b07ceccef4f6c61eedd2e2e0d92b1487b3c17cfdd31cfdde4518c710c5076",
+          "path": "experiments/eggroll_es_hpo/qwen36_v66d_phase_memory_analysis_v71_20260717.md"
+        }
+      },
+      "does_not_authorize_v82_launch": true,
+      "historical_signal_only": true,
+      "immutable_v66d_observation": {
+        "all_phase_sampled_pcie_rx_bytes": 9421838461,
+        "all_phase_sampled_pcie_tx_bytes": 15099460768,
+        "interpretation": "The burst is consistent with collective traffic but is a phase-aligned NVML sampling estimate, not link-level NCCL bytes.",
+        "logical_reduced_fp32_return_bytes_all_actors": 72450048,
+        "update_execute_observed_span_seconds": 4.202,
+        "update_execute_sampled_pcie_rx_mib": 8075.28,
+        "update_execute_sampled_pcie_tx_mib": 1496.05,
+        "update_execute_upper_window_seconds": 4.622
+      },
+      "required_next_evidence": "Post-V72 fusion and host-copy reduction profile with exact collective time, link bytes, HBM bytes, and residual rank.",
+      "schema": "v66d-phase-collective-evidence-v82"
+    }
+  },
+  "promotion_rule": {
+    "capacity": "Measured peak plus reserved headroom must fit on every GPU; the 1.11-GiB two-bank residual transaction cannot be hidden.",
+    "correctness": "Finite bounded error, exact local conservation, atomic resume/rollback, exact FP32 control, and exact restore-or-poison.",
+    "otherwise": "retain_fp32_control",
+    "quality": "All three-seed dev and OOD gates must pass.",
+    "systems": "Measured end-to-end update throughput must improve after including fused quantization, residual HBM traffic, staging, collective, D2H, and CPU FP32 conversion."
+  },
+  "purpose": "Conditionally compare the untouched FP32 ES update collective with native-boundary BF16 communication plus deterministic FP32 local residual error feedback.",
+  "schema": "qwen36-collective-compression-preregistration-v82",
+  "status": "sealed_cpu_contract_live_launch_dependency_blocked",
+  "transaction_and_integrity": {
+    "NCCL_reduction_order_not_claimed_bit_deterministic": true,
+    "candidate_master_and_candidate_residual_commit_atomically": true,
+    "cross_rank_reduced_result_receipts_required": true,
+    "local_q_plus_next_residual_reconstructs_compensated_fp32_bits": true,
+    "one_element_residual_or_order_corruption_fails_closed": true,
+    "oracle_schema": "eggroll-es-collective-compression-oracle-v82",
+    "prepare_does_not_publish_residual": true,
+    "rank_local_residual_receipts_required": true,
+    "rank_local_residuals_not_required_to_be_identical": true,
+    "residual_state_schema": "eggroll-es-fp32-collective-residual-state-v82",
+    "resume_replays_identical_transmitted_and_residual_bits": true,
+    "rollback_accepts_only_before_or_candidate_generation": true,
+    "transaction_schema": "eggroll-es-collective-residual-transaction-v82"
+  }
+}
