@@ -7,6 +7,8 @@ import json
 
 import pytest
 
+pytest.skip("historical V1-bound V68 suite is nonpromotable", allow_module_level=True)
+
 import eggroll_es_decode_robustness_v68 as subject
 import eggroll_es_multiobjective_trust_region_v67 as trust_v67
 

@@ -985,6 +985,9 @@ def analyze_targeting(arm_evidence: list[dict]) -> dict:
 
 
 def require_selection(result: dict) -> str:
+    raise RuntimeError(
+        "V69 selection is bound to quarantined evaluation V1 and is disabled"
+    )
     compact = {
         key: value for key, value in result.items()
         if key != "content_sha256_before_self_field"
@@ -1012,6 +1015,9 @@ def require_selection(result: dict) -> str:
 
 
 def build_preregistration() -> dict:
+    raise RuntimeError(
+        "V69 preregistration is historical/nonpromotable; create a V2 successor"
+    )
     geometry = build_geometry_manifest()
     specs = build_arm_specs(geometry)
     value = {
@@ -1132,6 +1138,9 @@ def build_preregistration() -> dict:
 
 
 def validate_preregistration(value: dict) -> None:
+    raise RuntimeError(
+        "V69 historical preregistration is nonpromotable after V1 quarantine"
+    )
     if value != build_preregistration():
         raise RuntimeError("MoE targeting preregistration changed")
 

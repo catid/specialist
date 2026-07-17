@@ -670,6 +670,10 @@ def _seal_panel(
 def build_manifest(
     *, generation: int = 0, weakness_ledger: dict | None = None
 ) -> dict:
+    raise RuntimeError(
+        "recipe sampling V1 is historical and nonpromotable after the "
+        "evaluation V1 quarantine; build a V2 successor"
+    )
     contract, rows, census, _evidence = _validate_inputs()
     frame = build_frame(rows)
     ledger = weakness_ledger or build_initial_weakness_ledger(census, frame)
@@ -815,6 +819,9 @@ def build_manifest(
 
 
 def validate_manifest(manifest: dict) -> None:
+    raise RuntimeError(
+        "recipe sampling V1 validation is quarantined; use a V2 successor"
+    )
     compact = {
         key: value for key, value in manifest.items()
         if key != "content_sha256_before_self_field"
@@ -836,7 +843,10 @@ def validate_manifest(manifest: dict) -> None:
 
 
 def materialize_variant_rows(manifest: dict, variant: str) -> list[dict]:
-    """Resolve a sealed panel from the exact registered train bytes."""
+    """Permanent fail-closed tombstone for historical V1 panels."""
+    raise RuntimeError(
+        "recipe sampling V1 materialization is quarantined; use a V2 successor"
+    )
     validate_manifest(manifest)
     if file_sha256(TRAIN) != EXPECTED["train"]:
         raise RuntimeError("sampling train bytes changed before materialization")

@@ -360,6 +360,14 @@ def evaluation_facts(
         raise RuntimeError(
             "legacy evaluation collision sources are quarantined; refusing access"
         )
+    try:
+        resolved_paths = {path.resolve(strict=True) for path in paths}
+    except OSError as exc:
+        raise RuntimeError("explicit evaluation input cannot be safely resolved") from exc
+    if resolved_paths & QUARANTINED_LEGACY_EVAL:
+        raise RuntimeError(
+            "resolved evaluation input aliases a quarantined legacy source"
+        )
     return eval_facts(paths)
 
 

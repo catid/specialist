@@ -9,6 +9,8 @@ import sys
 
 import pytest
 
+pytest.skip("historical V1-bound V82 suite is nonpromotable", allow_module_level=True)
+
 import benchmark_eggroll_es_collective_compression_v82 as benchmark
 import build_qwen36_collective_compression_preregistration_v82 as builder
 import eggroll_es_collective_compression_v82 as subject

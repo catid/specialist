@@ -391,7 +391,11 @@ def _validate_role_evidence(role: str, evidence: dict) -> tuple[dict, dict, dict
 
 
 def evaluate_trust_region(evidence: dict, contract: dict | None = None) -> dict:
-    """Evaluate numeric train/dev/OOD evidence; never read protected content."""
+    """Permanent tombstone for historical V1-bound trust evidence."""
+    raise RuntimeError(
+        "V67 trust evidence is bound to quarantined evaluation V1 and is "
+        "historical/nonpromotable; create a V2 successor"
+    )
     if contract is None:
         contract = load_evaluation_contract()
     else:
@@ -508,6 +512,9 @@ def evaluate_trust_region(evidence: dict, contract: dict | None = None) -> dict:
 
 
 def require_promotion(receipt: dict) -> None:
+    raise RuntimeError(
+        "V67 promotion is permanently disabled after evaluation V1 quarantine"
+    )
     compact = {
         key: value for key, value in receipt.items()
         if key != "content_sha256_before_self_field"
@@ -533,6 +540,10 @@ def require_promotion(receipt: dict) -> None:
 
 
 def build_preregistration(contract: dict | None = None) -> dict:
+    raise RuntimeError(
+        "V67 preregistration is historical and cannot be rebound in place; "
+        "create a V2 successor"
+    )
     if contract is None:
         contract = load_evaluation_contract()
     else:
@@ -609,6 +620,9 @@ def build_preregistration(contract: dict | None = None) -> dict:
 
 
 def validate_preregistration(value: dict) -> None:
+    raise RuntimeError(
+        "V67 historical preregistration is nonpromotable after V1 quarantine"
+    )
     if value != build_preregistration():
         raise RuntimeError("multiobjective trust-region preregistration changed")
 

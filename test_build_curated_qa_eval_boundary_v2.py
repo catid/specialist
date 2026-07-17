@@ -82,6 +82,7 @@ def test_cli_synthetic_empty_mode_passes_content_free_fact_set(monkeypatch, caps
 
 def test_explicit_fresh_eval_path_is_forwarded(monkeypatch, tmp_path):
     fresh = tmp_path / "synthetic-fresh-eval.jsonl"
+    fresh.write_text("", encoding="utf-8")
     sentinel = [object()]
     monkeypatch.setattr(
         curated,
@@ -89,3 +90,21 @@ def test_explicit_fresh_eval_path_is_forwarded(monkeypatch, tmp_path):
         lambda paths: sentinel if paths == [fresh] else pytest.fail("wrong paths"),
     )
     assert curated.evaluation_facts([fresh], synthetic_empty=False) is sentinel
+
+
+def test_resolved_alias_to_legacy_eval_rejects_before_loader(monkeypatch, tmp_path):
+    alias = tmp_path / "synthetic-alias.jsonl"
+    monkeypatch.setattr(
+        curated.Path,
+        "resolve",
+        lambda self, **_kwargs: next(iter(curated.QUARANTINED_LEGACY_EVAL))
+        if self == alias
+        else self,
+    )
+    monkeypatch.setattr(
+        curated,
+        "eval_facts",
+        lambda _paths: pytest.fail("resolved legacy alias reached eval loader"),
+    )
+    with pytest.raises(RuntimeError, match="aliases a quarantined"):
+        curated.evaluation_facts([alias], synthetic_empty=False)

@@ -4,6 +4,13 @@ import ast
 import json
 from pathlib import Path
 
+import pytest
+
+pytest.skip(
+    "historical V1-bound reward preregistration suite is nonpromotable",
+    allow_module_level=True,
+)
+
 import build_reward_shaping_ablation_preregistration_v1 as builder
 import reward_shaping_ablation_v1 as shaping
 

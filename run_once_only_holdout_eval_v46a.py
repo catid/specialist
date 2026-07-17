@@ -539,6 +539,10 @@ def summarize_gpu_v46a(path: Path, expected_pids: dict[int, int]) -> dict:
 
 
 def main(argv: list[str] | None = None) -> int:
+    raise RuntimeError(
+        "V46A protected-QA runner is permanently quarantined; V2 permits only "
+        "the aggregate prose terminal API"
+    )
     args = parser().parse_args(argv)
     prereg = load_preregistration_v46a(args)
     if args.dry_run:

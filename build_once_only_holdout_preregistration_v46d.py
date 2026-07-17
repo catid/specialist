@@ -15,6 +15,9 @@ OUTPUT = runtime.PREREG
 
 
 def build() -> dict:
+    raise RuntimeError(
+        "V46D protected-QA preregistration is permanently quarantined with V1"
+    )
     prior = runtime.prior_preregistration_v46d()
     value = {
         key: item for key, item in prior.items()

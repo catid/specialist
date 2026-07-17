@@ -1,0 +1,430 @@
+{
+  "content_free_quarantine_boundary": {
+    "content_sha256": "5a8c6dbd3b0c225992bb2cc4ae5c02a5ec7774a175fe1a138c4e78260eed7fc7",
+    "deny_before_resolution_stat_hash_or_open": true,
+    "exact_path_identity_count": 3,
+    "file_sha256": "3d8ef097a1419e03f4b735e6f8d30e5a876b0a8e86c4b0f1ac100114cb7daf5d",
+    "path": "experiments/eggroll_es_hpo/preregistrations/quarantine_boundary_registry_v3.json",
+    "plaintext_boundary_paths_persisted": false,
+    "prefix_identity_count": 2
+  },
+  "content_sha256_before_self_field": "c97c56fc94fe57830f53dec56aa889baf334793c8098c22933761703e711e8f2",
+  "created_at_utc": "2026-07-17T00:00:00+00:00",
+  "explicit_blockers": [
+    {
+      "code": "fresh_source_disjoint_multi_item_qa_dev_absent",
+      "resolution": "QA HPO or general quality promotion requires a separate untouched multi-item QA dev and explicit authority; current four-document dev authorizes prose-logprob tuning only"
+    },
+    {
+      "code": "legacy_v1_row_level_comparison_prohibited",
+      "resolution": "do not reopen V1 to compare unknown rows; V2 makes no row-level semantic-disjointness claim against that source"
+    },
+    {
+      "code": "fresh_curriculum_successor_absent",
+      "resolution": "a curriculum successor requires fresh source-disjoint domain material, V2 reservation exclusion, and a new sampling contract"
+    },
+    {
+      "code": "terminal_execution_not_authorized",
+      "resolution": "execution requires a frozen recipe/checkpoint selection receipt and explicit authority; no terminal claim may be pre-created"
+    },
+    {
+      "code": "historical_outcomes_nonpromotable",
+      "resolution": "completed V1-bound outcomes remain historical and cannot be converted into V2 evidence"
+    },
+    {
+      "code": "v66_descendant_launcher_migration_incomplete",
+      "resolution": "V66 descendant launchers and systems-only descendants need coordinated V2 successors or launcher-level quarantine checks before any quality promotion"
+    },
+    {
+      "code": "v73c_stage_b_boundary_denial_receipt_pending",
+      "resolution": "V73C postrun evidence is rejected unless a distinct content-free receipt proves zero actual semantic-boundary opens or resolves and no quality authority"
+    }
+  ],
+  "fail_closed_v1_consumers": [
+    {
+      "entrypoint": "all public V1 contract APIs",
+      "file_sha256": "6b39ca56d95fdd5733d50998969c7d0a463759713aba60630fd54793a31374c0",
+      "path": "recipe_evaluation_contract_v1.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "exact quarantined V1 output targets",
+      "file_sha256": "322c69ac040e1a2a22271e97042cf9fa67863256c3a41e29d28099e8e1986625",
+      "path": "build_eval_v3.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "explicit eval choice; exact legacy paths and implicit defaults denied",
+      "file_sha256": "2eb9dc65d17c11a07dee69a3764081db202d493e48ca8576ad367f771e5a7506",
+      "path": "build_curated_qa.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build_preregistration_v1",
+      "file_sha256": "646fc94d321e95a1ac666209c1bcc2b89149ff68823279bee1a3810e6cb24e17",
+      "path": "build_curriculum_ablation_preregistration_v1.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build",
+      "file_sha256": "3d84030725b9d656f5f38305c0fe66dff12ccf3e164872e7931cf3d919db6120",
+      "path": "build_once_only_holdout_preregistration_v46a.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build",
+      "file_sha256": "5ee7049d80f9621cf375002970348879f3e002951fa070b87cd8f5d4ccba159a",
+      "path": "build_once_only_holdout_preregistration_v46d.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build",
+      "file_sha256": "936e86838ed8428ece726f5d80de9ee6d9f633641ad1a46e4dea6bbaebd8c830",
+      "path": "build_v46d_terminal_holdout_receipt.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "main",
+      "file_sha256": "540a1fc1fa3ad95f004e377d7148cbb55afc2698d77fa0c2842b1f30c6633bdc",
+      "path": "run_once_only_holdout_eval_v46a.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "main",
+      "file_sha256": "d697d254ac3758bf9d2716a11db5c976c2f278c02127d9e4f2186f3e53527c2b",
+      "path": "run_once_only_holdout_eval_v46d.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build/validate/materialize",
+      "file_sha256": "78fd8e65660dd8da4b892bd2531ae04d053327cc09e3a201392281be99645a5a",
+      "path": "train_sampling_ablation_v1.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build/validate/evaluate/promote",
+      "file_sha256": "c560837d601f75279eaf7e41796d4aa36fbc97000710a1a7428d546f3481da14",
+      "path": "eggroll_es_multiobjective_trust_region_v67.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build/validate/select",
+      "file_sha256": "bdd80bfa21763a4cc216031002ae428262eb6c9ae91f77c91d2dca22c8c1ab81",
+      "path": "eggroll_es_decode_robustness_v68.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build/validate/select",
+      "file_sha256": "05652488956ff6f6ba0c01cca26e6eb32aac7415d2d31c0713604f75c0507a01",
+      "path": "eggroll_es_moe_targeting_v69.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build/validate/select",
+      "file_sha256": "4193f6f80421ac4df6407c14b7898ee19faa76db1c316aa8debb6a79571eaab7",
+      "path": "eggroll_es_front_tail_topology_v70.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build_preregistration_v1",
+      "file_sha256": "2d857e2696d39a97284a38e59156a41d3fb63b7a90f711c1417a9f9083e5725f",
+      "path": "build_fp32_es_optimizer_sigma_preregistration_v1.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build_preregistration_v1",
+      "file_sha256": "208dea79a1861ea5c5120a20f8042ad70d6da2c61d701f741f10ad925a89387d",
+      "path": "build_reward_shaping_ablation_preregistration_v1.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build/validate preregistration",
+      "file_sha256": "72de61ef9eccfc5101f2bfb1164f9a420842c1432c372048ff7e6589990e483e",
+      "path": "build_qwen36_collective_compression_preregistration_v82.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "upstream/build/validate preregistration",
+      "file_sha256": "4ae28cbb4d00912093d766e3084e48281cb220f23726a15d0effa382de189894",
+      "path": "build_qwen36_lora_rank_surface_preregistration_v1.py",
+      "status": "fail_closed_quarantine_tombstone"
+    },
+    {
+      "entrypoint": "build/validate/promote decision",
+      "file_sha256": "02a2e9701fc1bd60efb35f45493b6fa9e49d425fbd4acbbb9c7717c8cd4c64f1",
+      "path": "build_qwen36_production_layout_decision_v75.py",
+      "status": "fail_closed_quarantine_tombstone"
+    }
+  ],
+  "historical_artifacts": {
+    "artifacts": [
+      {
+        "file_sha256": "04af81499067e2feb0186c0a61e4c1af10f838a8eb7deec6dd41cd192748cacf",
+        "path": "experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v1.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "d4f36022cc41d381e337b19cbfb3a4136b9c62eb31c359f64594e73628a091fb",
+        "path": "experiments/eggroll_es_hpo/preregistrations/cpt_sft_es_curriculum_ablation_v1.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "c4344446cd0f8394677f55064a0a244d32eaa2bbff450214394e90f103dec64e",
+        "path": "experiments/eggroll_es_hpo/preregistrations/prepared_once_only_sft_v42i_sealed_holdout_eval_v46a.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "80f2c165e8f60b129e776b47da73bd9f7dba15adb949214879bb11e00f608084",
+        "path": "experiments/eggroll_es_hpo/preregistrations/once_only_sft_v42i_sealed_holdout_eval_v46d.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "c530c880ab13f8f3c6628a10967491f676d1600b9e72c020d77ca15d3849f054",
+        "path": "experiments/eval_reports/v46d_once_only_sft_v42i_terminal_receipt.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "8fe9005c532dbdb286edfd359cbbaf689c46f529b3debb3edc74f48e5787b301",
+        "path": "experiments/eggroll_es_hpo/datasets/recipe_sampling_ablation_v1.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "968d96af4c4f511eda317f0fbeda21c0cf4fedcc70caa07d2e2d02e3db17d411",
+        "path": "experiments/eggroll_es_hpo/preregistrations/lora_es_mirrored_calibration_v66.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "bef8918e254f1c58cb30b0f38f37cab47d96b50a3e0064d898ee2cc7929d62e7",
+        "path": "experiments/eggroll_es_hpo/preregistrations/lora_es_mirrored_calibration_v66b.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "c5dbe872839f1f9de4af1d4337bd92694f9536aa882a50114d05b30de5acfd5e",
+        "path": "experiments/eggroll_es_hpo/preregistrations/lora_es_mirrored_calibration_v66c.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "3269f7138d74266538cc3b0f31e1a904808f8f3751dde5a7a9456e93b13314b0",
+        "path": "experiments/eggroll_es_hpo/preregistrations/lora_es_mirrored_calibration_v66d.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "320b038f07b615622cab0a2a5a9aec86aa06d7649e794201794f382d8ab3783e",
+        "path": "experiments/eggroll_es_hpo/preregistrations/lora_es_v71_v72_live_calibration_v73.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "9c5ce43c36e08e038ee33e86380ab6c287ae1b4bcba4c80def623daeb00f7ed9",
+        "path": "experiments/eggroll_es_hpo/preregistrations/lora_es_v71_v72_same_live_calibration_v73b.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "5001148bc27fb7550dc6b40336ed2d32d9296f2b17f6372a075a02beeee6bf7d",
+        "path": "experiments/eggroll_es_hpo/preregistrations/multiobjective_reward_ood_trust_region_v67.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "f78e888a30d76b2cabc6f033e8d56fdfdb808ac2c421b4552e980f168ec16ed4",
+        "path": "experiments/eggroll_es_hpo/preregistrations/greedy_seeded_stochastic_robustness_v68.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "ce9e7ba9ce2da2f0c74bd452763b944d80b2b0687575d60ca88757bb9c679541",
+        "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_moe_lora_targeting_v69.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "4da6b721a3d62653ab227522822b4f18c84e0a025530faf3193d186167b91dbb",
+        "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_front_tail_lora_topology_v70.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "428d1de245a5cd5ad3cb976aa5312f6eda0874efb895d298bb5731a05f326924",
+        "path": "experiments/eggroll_es_hpo/preregistrations/fp32_es_optimizer_module_sigma_ablation_v1.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "c81603161d4dbfbb89ebc3ce7d5e8d132602776cc90c7e282ae2a14ff5b6ad94",
+        "path": "experiments/eggroll_es_hpo/fp32_es_optimizer_module_sigma_v1_cpu_evidence_20260717.md",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "06a24c50c44f684534d1e189dd145c8705c5f3867053982590f7f262d86a2615",
+        "path": "experiments/eggroll_es_hpo/preregistrations/reward_shaping_ablation_v1.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "42797a36bc0bbd07fafdeaa045de045926993f06d31078f7d7e8039340d1d36a",
+        "path": "experiments/eggroll_es_hpo/reward_shaping_ablation_v1_cpu_evidence_20260717.md",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "ca727884ceda45652a2d3d67677107e3e8582173bd8c96ee556b96bf6521e1f6",
+        "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_collective_compression_v82.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "68e63cb74451530e31f48815a39695f3a2013853637fcae5c59d4820aa82ae4a",
+        "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_lora_rank_surface_pareto_v1.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "d93aa6fbdf5cd1c291a716bb8c63dc956594446b81d3975771acb51ae64b84c7",
+        "path": "experiments/eggroll_es_hpo/qwen36_lora_rank_surface_pareto_v1_cpu_evidence_20260717.md",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "f960df73f7082b2e5583692c1649b2057f06e012268530eb4529f2bc616a1ebb",
+        "path": "experiments/eggroll_es_hpo/decisions/qwen36_production_layout_provisional_v75.json",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "463ef183fcabbef834f06b00f5317a6e6f65035fddac2d1073196a270a293a67",
+        "path": "experiments/eggroll_es_hpo/qwen36_production_layout_decision_v75_20260717.md",
+        "status": "immutable_historical_nonpromotable"
+      },
+      {
+        "file_sha256": "3e01a95138356224e006c2661fec8dd4675b6fdb13d7ce43c2b1bcfbab656fb3",
+        "path": "experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v2_superseded_prefix_scan_20260717.json",
+        "status": "immutable_historical_nonpromotable"
+      }
+    ],
+    "promotion_or_reinterpretation_prohibited": true,
+    "rewrite_prohibited": true
+  },
+  "immutable_incident_receipts": [
+    {
+      "content_sha256": "df8856617f5facd6fedac21ab7b653681d2a38484f8e7d93f493bccd47932301",
+      "file_sha256": "e20d2129a72fc2d314002a5448a8e8332296b0975e345f40140e6895247978ae",
+      "incident_role": "protected_v1_eval_v3",
+      "path": "experiments/eggroll_es_hpo/incidents/protected_holdout_access_20260717_v1.json",
+      "status": "immutable_content_free_quarantine_receipt"
+    },
+    {
+      "content_sha256": "68b214cfad7326f15ad7f090130a14b60dab2e2ec478efbf32213e239d1097d4",
+      "file_sha256": "351baed6bda7805d5e3d5518ed03622bc13512b90d0df639f657cd57727529e1",
+      "incident_role": "legacy_eval_collision_family",
+      "path": "experiments/eggroll_es_hpo/incidents/legacy_eval_collision_access_20260717_v2.json",
+      "status": "immutable_content_free_quarantine_receipt"
+    },
+    {
+      "content_sha256": "1e98c7042d1f9279b1b18aba682a65e674f9890465c80bd0622e45c89c7a2907",
+      "file_sha256": "68652b270d44bef8c33c95df6a39e88534baab8923613a5e8e936ed309d0b550",
+      "incident_role": "recursive_prefix_lookup",
+      "path": "experiments/eggroll_es_hpo/incidents/recursive_lookup_access_20260717_v3.json",
+      "status": "immutable_content_free_quarantine_receipt"
+    }
+  ],
+  "implementation": {
+    "builder_file_sha256": "5229bfefc2c2cb3b3baf4686907c8135aae61fb1ba1232a62210424623dfe41d",
+    "builder_path": "build_recipe_evaluation_v2_migration_registry.py"
+  },
+  "schema": "specialist-recipe-evaluation-contract-v2-migration-v1",
+  "status": "v2_provisional_prose_only_all_incidents_quarantined_history_preserved",
+  "successor_policy": {
+    "historical_v67_v69_v70_v75_v82_rank_reward_fp32_sampling": "new versioned successors required; historical bytes remain fixed",
+    "new_successor_must_bind_v2_contract_and_reservation": true,
+    "post_outcome_rewrite_prohibited": true,
+    "silent_manifest_rebinding_prohibited": true
+  },
+  "superseded_v2_revision": {
+    "content_sha256": "4121c90c79cb2aacc8a927174e9fbbab6b38f983176c525ad0517b548edc0391",
+    "file_sha256": "3e01a95138356224e006c2661fec8dd4675b6fdb13d7ce43c2b1bcfbab656fb3",
+    "historical_terminal_sources_remain_reserved": 12,
+    "path": "experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v2_superseded_prefix_scan_20260717.json",
+    "status": "immutable_superseded_nonpromotable"
+  },
+  "v1_implementation_tombstone": {
+    "current_tombstone_file_sha256": "6b39ca56d95fdd5733d50998969c7d0a463759713aba60630fd54793a31374c0",
+    "historical_reconstruction_authorizes_promotion": false,
+    "historical_reconstruction_authorizes_source_open": false,
+    "historical_reconstruction_is_explicit_only": true,
+    "path": "recipe_evaluation_contract_v1.py",
+    "pre_tombstone_commit": "f445ab33f0a06c0659caee1755267cbbb1f48a6c",
+    "pre_tombstone_definition_commit": "888d8da2262671db2282527daa0fc174e6e2a80d",
+    "pre_tombstone_file_sha256": "e3f57e9290298e2510118e8c9f10c835618fa12206197462e7ae5a0b7ab68c25",
+    "pre_tombstone_git_blob": "89926227ceb5655c65a8eefb6f7773ec2b32136b",
+    "status": "permanent_fail_closed_tombstone"
+  },
+  "v1_transitive_v66_lineage": {
+    "in_place_rebinding_prohibited": true,
+    "migration": "coordinate launcher tombstones and additive V2-bound successors after the V73C systems trace is sealed",
+    "nodes": [
+      {
+        "id": "v66",
+        "status": "historical_v1_bound_nonpromotable"
+      },
+      {
+        "id": "v66b",
+        "status": "historical_v1_descendant_nonpromotable"
+      },
+      {
+        "id": "v66c",
+        "status": "historical_v1_descendant_nonpromotable"
+      },
+      {
+        "id": "v66d",
+        "status": "historical_v1_descendant_nonpromotable"
+      },
+      {
+        "id": "v71_v72",
+        "status": "systems_implementation_only_no_quality_authority"
+      },
+      {
+        "id": "v73",
+        "status": "historical_v1_descendant_nonpromotable"
+      },
+      {
+        "id": "v73b",
+        "status": "historical_v1_descendant_nonpromotable"
+      },
+      {
+        "id": "v73c",
+        "requirements": {
+          "lineage_rehabilitation": false,
+          "postrun_boundary_denial_receipt_required": true,
+          "quality_hpo_or_promotion_authorized": false,
+          "semantic_evaluation_or_quarantined_boundary_resolved": false,
+          "systems_trace_only": true
+        },
+        "status": "sealed_stage_a_systems_only_trace_exception"
+      }
+    ],
+    "quality_hpo_or_promotion_authorized": false,
+    "status": "immutable_historical_nonpromotable"
+  },
+  "v2_contract": {
+    "content_sha256": "ffe0bd6fdb51f8bf96f4736091156a2c146bde3a66e8ed44ab5e3b21b1016e51",
+    "file_sha256": "fdb018a73f81ff491246fdf6162910ed5ba27f49159a64dc2a1102bbe4cf3047",
+    "path": "experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v2.json",
+    "qa_hpo_or_general_quality_promotion_authorized": false,
+    "status": "provisional_prose_only_resealed_after_prefix_scan_terminal_unopened"
+  },
+  "v2_resealed_source_reservation": {
+    "dev_source_count": 4,
+    "enforcement_api": "assert_future_dataset_excludes_reserved",
+    "historical_selected_source_count": 12,
+    "historical_selected_sources_remain_reserved": true,
+    "required_before_any_future_dataset_write": true,
+    "reservation_content_sha256": "3d88491d44bba5405d99b2538a28a864c48c97fd42fa648ee86de7be661ff717",
+    "reserved_source_count": 13,
+    "roles": [
+      "cpt",
+      "dev",
+      "qa",
+      "sft",
+      "train"
+    ],
+    "terminal_eligible_unselected_sources": 0,
+    "terminal_source_count": 9
+  },
+  "v73c_stage_a_systems_only_closure": {
+    "content_sha256": "23325b31209df8f3e67b44152226119c714000872e1b926003c3a7c4f5137d67",
+    "distinct_postrun_boundary_denial_receipt_required": true,
+    "file_sha256": "cd6a4abce8c1905041e025c5203da34c44b68bb5083f6f511aa8888f50425e7e",
+    "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_v73c_systems_only_closure.json",
+    "quality_hpo_or_promotion_authorized": false,
+    "schema": "qwen36-v73c-systems-only-closure-v1",
+    "systems_trace_only": true
+  }
+}

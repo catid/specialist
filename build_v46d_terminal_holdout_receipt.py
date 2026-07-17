@@ -68,6 +68,9 @@ def _load_self_hashed(path: Path, file_sha: str, content_sha: str,
 
 
 def build() -> dict:
+    raise RuntimeError(
+        "V46D protected-QA terminal receipts are permanently quarantined with V1"
+    )
     prereg = _load_self_hashed(
         PREREG, EXPECTED["prereg_file"], EXPECTED["prereg_content"], "prereg"
     )

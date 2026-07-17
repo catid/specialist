@@ -3,6 +3,8 @@ import json
 
 import pytest
 
+pytest.skip("historical V1-bound V75 suite is nonpromotable", allow_module_level=True)
+
 import build_qwen36_production_layout_decision_v75 as decision_v75
 
 

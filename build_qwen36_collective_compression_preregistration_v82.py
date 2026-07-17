@@ -353,6 +353,10 @@ def inspect_v66d_phase_evidence_v82() -> dict[str, Any]:
 
 
 def build_preregistration_v82() -> dict[str, Any]:
+    raise RuntimeError(
+        "V82 preregistration is historical and bound to quarantined evaluation "
+        "V1; create a V2 successor"
+    )
     _require_v82(
         file_sha256_v82(ORACLE_PATH_V82) == ORACLE_FILE_SHA256_V82
         and file_sha256_v82(PREFLIGHT_PATH_V82) == PREFLIGHT_FILE_SHA256_V82,
@@ -557,6 +561,9 @@ def build_preregistration_v82() -> dict[str, Any]:
 
 
 def validate_preregistration_v82(value: dict[str, Any]) -> dict[str, Any]:
+    raise RuntimeError(
+        "V82 historical preregistration is nonpromotable after V1 quarantine"
+    )
     expected = build_preregistration_v82()
     _require_v82(value == expected, "V82 preregistration contract changed")
     return value

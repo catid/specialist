@@ -242,6 +242,9 @@ def _without_self(value: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def validate_upstream_contracts() -> dict[str, Any]:
+    raise RuntimeError(
+        "rank-surface V1 upstream contracts are quarantined; create a V2 successor"
+    )
     files = []
     for relative, expected in UPSTREAM_FILES.items():
         path = ROOT / relative
@@ -632,6 +635,10 @@ def build_arms(geometry: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def build_preregistration() -> dict[str, Any]:
+    raise RuntimeError(
+        "rank-surface V1 preregistration is historical/nonpromotable; create a "
+        "V2 successor"
+    )
     upstream = validate_upstream_contracts()
     geometry = topology_v70.build_architecture_manifest()
     topology_v70.validate_architecture_manifest(geometry)
@@ -876,6 +883,9 @@ def build_preregistration() -> dict[str, Any]:
 
 
 def validate_preregistration(value: Mapping[str, Any]) -> None:
+    raise RuntimeError(
+        "rank-surface V1 artifact is nonpromotable after evaluation V1 quarantine"
+    )
     expected = build_preregistration()
     _require(dict(value) == expected, "rank/surface preregistration is stale")
 

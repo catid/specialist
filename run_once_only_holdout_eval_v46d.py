@@ -282,6 +282,10 @@ def patched_prior_v46d():
 
 
 def main(argv: list[str] | None = None) -> int:
+    raise RuntimeError(
+        "V46D protected-QA runner is permanently quarantined; V2 permits only "
+        "the aggregate prose terminal API"
+    )
     args = prior.parser().parse_args(argv)
     prereg = load_preregistration_v46d(args)
     if args.dry_run:

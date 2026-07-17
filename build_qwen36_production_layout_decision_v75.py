@@ -846,6 +846,10 @@ def _fp8_challenger_layout_v75(v67: Mapping[str, Any]) -> dict:
 
 
 def build_decision_v75() -> dict:
+    raise RuntimeError(
+        "V75 decision is historical and transitively bound to quarantined "
+        "evaluation V1; create a V2 successor"
+    )
     recipe = _load_contract(
         RECIPE_CONTRACT,
         EXPECTED_RECIPE_CONTRACT_FILE_SHA256,
@@ -1137,6 +1141,9 @@ def build_decision_v75() -> dict:
 
 
 def validate_decision_v75(value: Mapping[str, Any] | None = None) -> dict:
+    raise RuntimeError(
+        "V75 historical decision is nonpromotable after V1 quarantine"
+    )
     expected = build_decision_v75()
     observed = _load_json(OUTPUT) if value is None else dict(value)
     if observed != expected:
@@ -1165,6 +1172,9 @@ def consumer_request_v75(decision: Mapping[str, Any], arm: str = "bf16") -> dict
 def validate_fp8_promotion_v75(
     promotion: Mapping[str, Any], decision: Mapping[str, Any],
 ) -> dict:
+    raise RuntimeError(
+        "V75 promotion is permanently disabled after evaluation V1 quarantine"
+    )
     required = {
         "schema": FP8_PROMOTION_SCHEMA_V75,
         "decision_content_sha256": decision["content_sha256_before_self_field"],

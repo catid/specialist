@@ -7,6 +7,11 @@ import json
 
 import pytest
 
+pytest.skip(
+    "historical V1-bound rank-surface suite is nonpromotable",
+    allow_module_level=True,
+)
+
 import build_qwen36_lora_rank_surface_preregistration_v1 as subject
 
 

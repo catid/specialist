@@ -220,6 +220,10 @@ def _implementation_bindings_v1() -> dict:
 
 
 def build_preregistration_v1() -> dict:
+    raise RuntimeError(
+        "FP32 optimizer/sigma V1 preregistration is historical and bound to "
+        "quarantined evaluation V1; create a V2 successor"
+    )
     for path, expected in EXPECTED_FILES.items():
         observed = file_sha256_v1(path)
         if observed != expected:

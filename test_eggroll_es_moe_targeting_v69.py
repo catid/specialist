@@ -7,6 +7,8 @@ import json
 
 import pytest
 
+pytest.skip("historical V1-bound V69 suite is nonpromotable", allow_module_level=True)
+
 import eggroll_es_moe_targeting_v69 as subject
 
 

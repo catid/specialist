@@ -7,6 +7,8 @@ import json
 
 import pytest
 
+pytest.skip("historical V1-bound V70 suite is nonpromotable", allow_module_level=True)
+
 import eggroll_es_front_tail_topology_v70 as subject
 
 

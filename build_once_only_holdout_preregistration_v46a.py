@@ -17,6 +17,9 @@ OUTPUT = runtime.PREREG
 
 
 def build() -> dict:
+    raise RuntimeError(
+        "V46A protected-QA preregistration is permanently quarantined with V1"
+    )
     holdout = runtime.holdout_report_commitment_v46a()
     boundary = runtime.boundary_evidence_v46a()
     stage = runtime.staged_candidate_binding_v46a()

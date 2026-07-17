@@ -1406,6 +1406,9 @@ def analyze_topology(run_evidence: list[dict]) -> dict:
 
 
 def require_hpo_selection(result: dict) -> str:
+    raise RuntimeError(
+        "V70 selection is bound to quarantined evaluation V1 and is disabled"
+    )
     compact = _without_self(result)
     checks = result.get("integrity_checks")
     integrity = (
@@ -1435,6 +1438,9 @@ def require_hpo_selection(result: dict) -> str:
 
 
 def build_preregistration() -> dict:
+    raise RuntimeError(
+        "V70 preregistration is historical/nonpromotable; create a V2 successor"
+    )
     geometry = build_architecture_manifest()
     specs = build_arm_specs(geometry)
     insertion = build_insertion_continuation_registry()
@@ -1651,6 +1657,9 @@ def build_preregistration() -> dict:
 
 
 def validate_preregistration(value: dict) -> None:
+    raise RuntimeError(
+        "V70 historical preregistration is nonpromotable after V1 quarantine"
+    )
     if value != build_preregistration():
         raise RuntimeError("front/tail topology preregistration changed")
 

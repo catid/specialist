@@ -460,6 +460,11 @@ def _implementation_bindings_v1() -> dict:
 
 
 def build_preregistration_v1() -> dict:
+    raise RuntimeError(
+        "curriculum preregistration is quarantined: its candidate corpus can "
+        "overlap the V2 protected prose pool; fresh source-disjoint extension "
+        "authority is required before any rebuild or launch"
+    )
     for path, expected in (
         (TOKENIZER, EXPECTED["tokenizer"]),
         (TOKENIZER_CONFIG, EXPECTED["tokenizer_config"]),

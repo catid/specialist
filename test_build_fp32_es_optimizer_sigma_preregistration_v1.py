@@ -1,6 +1,11 @@
 import json
 
 import pytest
+
+pytest.skip(
+    "historical V1-bound FP32 preregistration suite is nonpromotable",
+    allow_module_level=True,
+)
 import torch
 
 import build_fp32_es_optimizer_sigma_preregistration_v1 as builder

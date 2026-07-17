@@ -202,6 +202,10 @@ def _implementation_bindings_v1() -> dict:
 
 
 def build_preregistration_v1() -> dict:
+    raise RuntimeError(
+        "reward-shaping V1 preregistration is historical and bound to "
+        "quarantined evaluation V1; create a V2 successor"
+    )
     evaluation, sampling = _contracts_v1()
     seeds = evaluation["seeds"]
     compute = evaluation["compute_accounting"]["budget_modes"][

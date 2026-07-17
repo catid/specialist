@@ -729,6 +729,22 @@ def main():
     )
     args = parser.parse_args()
 
+    quarantined_v1_outputs = {
+        (DATA / "eval_qa_v3.jsonl").resolve(),
+        (DATA / "ood_qa_v3.jsonl").resolve(),
+        (DATA / "ood_prose_v3.jsonl").resolve(),
+        (DATA / "eval_v3.report.json").resolve(),
+    }
+    requested_outputs = {
+        args.eval_output.resolve(), args.ood_qa_output.resolve(),
+        args.ood_prose_output.resolve(), args.report_output.resolve(),
+    }
+    if requested_outputs & quarantined_v1_outputs:
+        parser.error(
+            "Eval V3 outputs are permanently quarantined; use only synthetic "
+            "temporary output paths for regression tests"
+        )
+
     inputs = {
         args.train.resolve(), args.legacy_eval.resolve(),
         args.heldout_docs.resolve(), args.ood_qa.resolve(),

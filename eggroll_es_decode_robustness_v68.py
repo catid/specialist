@@ -750,6 +750,10 @@ def analyze_ablation(
 
 
 def require_selection(result: dict) -> str:
+    raise RuntimeError(
+        "V68 selection is transitively bound to quarantined evaluation V1 and "
+        "is disabled"
+    )
     compact = {
         key: value for key, value in result.items()
         if key != "content_sha256_before_self_field"
@@ -781,6 +785,9 @@ def require_selection(result: dict) -> str:
 
 
 def build_preregistration() -> dict:
+    raise RuntimeError(
+        "V68 preregistration is historical/nonpromotable; create a V2 successor"
+    )
     trust_prereg = _load_trust_preregistration()
     contract = trust_v67.load_evaluation_contract()
     value = {
@@ -877,6 +884,9 @@ def build_preregistration() -> dict:
 
 
 def validate_preregistration(value: dict) -> None:
+    raise RuntimeError(
+        "V68 historical preregistration is nonpromotable after V1 quarantine"
+    )
     if value != build_preregistration():
         raise RuntimeError("decode-robustness preregistration changed")
 
