@@ -1,0 +1,165 @@
+{
+  "checkpoint_snapshot_or_promotion_performed": false,
+  "cleanup": null,
+  "cleanup_failure": null,
+  "compute_ledger": {
+    "charged_gpu_seconds": 0.734948268,
+    "includes_failed_observed_work": true,
+    "model_allocation_or_residency_seconds_per_gpu": 0.183737067
+  },
+  "content_free_self_consistency_required": true,
+  "content_sha256_before_self_field": "10c216780078ad8f82c9455608920a9dd94a6c0b79f9c8d6571a186977753b37",
+  "cross_rerun_floating_reward_or_derived_update_identity_gate": false,
+  "exact_phase_receipt": {
+    "content_sha256": "db0a04f64c8d95e227d8d2027f8e1b587a59ca240e8183a8a8a31ec8b711fc5c",
+    "file_sha256": "73bbdba0f98c80474e697bab0eb1cdfb22f5df154624f7876a5dc5673ece0586",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73e_timeline_lora_es_content_free_qwen36_exact_phase/exact_phase_ranges_v73e.json"
+  },
+  "expanded_profiler_command_sha256": "afe842cc43b663c20d647b304bf2851bad3c0170737c1001e1a2408b613155d7",
+  "failed_at_utc": "2026-07-17T18:40:51.127761+00:00",
+  "final_gpu_idle": {
+    "all_four_compute_process_lists_empty": true
+  },
+  "gpu_time_accounting": {
+    "legacy_estimated_model_allocation_or_residency_seconds_per_gpu": 0.183737067,
+    "legacy_residency_estimate_classification": "diagnostic_not_directly_measured_not_accepted",
+    "model_resident_gpu_seconds_measured": null,
+    "profiled_event_time_is_not_reclassified_as_unprofiled_useful_time": true,
+    "promotion_charged_gpu_seconds": 0,
+    "reserved_wall_gpu_seconds": 0.734948268,
+    "reserved_wall_is_not_model_residency_or_useful_work": true,
+    "reserved_wall_source": "legacy_compute_ledger_charged_gpu_seconds",
+    "schema": "qwen36-v73e-gpu-time-accounting-split-v1",
+    "useful_gpu_seconds_measured": null
+  },
+  "historical_semantic_reward_population_update_or_equivalence_authority": false,
+  "immutable_v73d_attempt_1_predecessor": {
+    "artifacts_must_not_be_deleted_modified_or_reused": true,
+    "failure_cause": "quarantined_legacy_adapter_contract_opened_during_setup",
+    "final_all_four_gpus_idle": true,
+    "gpu_work_reached": false,
+    "model_load_reached": false,
+    "nsys_report": {
+      "file_sha256": "94fd7fc159fd263142557042d8821fb8ef1df18265826298bb19bd0837cd5cf4",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/v73d_timeline_lora_es_same_live_qwen36_exact_phase.nsys-rep"
+    },
+    "partial_actor_cuda_receipt_count": 0,
+    "partial_phase_receipt": {
+      "content_sha256": "5259c316491c692dbb3f854ee690f40397828fed617731ad13fd615d8893aba1",
+      "file_sha256": "12b510a7ef84e91c8d84bf6f27709eef10f802d36bfc6ed65c8a377fd315b618",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/exact_phase_ranges_v73d.json"
+    },
+    "preregistration": {
+      "content_sha256": "512287c5a438cd1a22b099f61fe55e777de86a71b52555b49a47959425deb740",
+      "file_sha256": "d1810d51ecc49615d4067c4b8b151fa9154cb708a6658c02a497210238768c0a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/qwen36_v73d_exact_phase_profiler.json"
+    },
+    "profile_attempt": {
+      "content_sha256": "02b0f154ff9e6c8df1b710e57adad14e935f9a2ddd8706d11d5622c60cd65cf7",
+      "file_sha256": "82937bea1a3701e0125e8f21286c1a6ee8b70d379fa13d5c69d6ce7d75ae2c67",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/.v73d_timeline_lora_es_same_live_qwen36_exact_phase.attempt.json"
+    },
+    "profile_failure": {
+      "content_sha256": "0335438e9ac89680f9e78800fcfdcd0a1cb31a661f9255e935bd79add8f18d07",
+      "file_sha256": "025a38adce724d931a644dd090f6eb5b347f0d1ebd7bcc500a149af67f22bd50",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/profile_failure_v73d.json"
+    },
+    "promotion_charged_gpu_seconds": 0,
+    "protected_or_semantic_data_opened": false,
+    "quality_or_semantic_authority": false,
+    "ray_actor_guard_bootstrap_reached": false,
+    "run_attempt": {
+      "content_sha256": "4d46115a40c544a07a68fe3b027b3c99ef8ee0f172df31dfec4d920c83898e21",
+      "file_sha256": "4eb3993f06db7fb1f8bd4f4eddf4b84b0930b06780110caab845971027a51413",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v73d_timeline_lora_es_same_live_qwen36_exact_phase.attempt.json"
+    },
+    "run_failure": {
+      "content_sha256": "d57e87c1a589bbd344d334aeb37b242357261dc18a602cb2cefd1be1af9de30f",
+      "file_sha256": "08c0a3e2ca3832486e6b94bfd4ad0529c8420d3537574c7f2dda6ad4a8ed3886",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/failure_v73d.json"
+    },
+    "sqlite_export": {
+      "file_sha256": "3d3dc120216a81fc1ec1ed59286df116f5535deda3d6be1d4f05e466d28f2ed7",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73d_timeline_lora_es_same_live_qwen36_exact_phase/v73d_timeline_lora_es_same_live_qwen36_exact_phase.sqlite"
+    },
+    "status": "immutable_failed_closed_legacy_adapter_quarantine_incompatibility",
+    "v73d_sealed_source_commits": [
+      "85d72354133f9ffeb76414a7c69b489bb5dfde12",
+      "91296fbc6c5d15695bfb9c7aad3d45dda8d52bb8",
+      "25769debd285793d4bce95f070f3512f9ac39ff5",
+      "23d8ee104ca27527cf270b915eea74b2680adcaf"
+    ]
+  },
+  "message": "V73E controller worker validation guard state changed",
+  "partial_actor_cuda_work_log": {
+    "exists": false,
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73e_timeline_lora_es_content_free_qwen36_exact_phase/actor_cuda_work_receipts_v73e.jsonl",
+    "rows": 0
+  },
+  "partial_controller_operations": [],
+  "partial_host_process_log": {
+    "exists": false,
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73e_timeline_lora_es_content_free_qwen36_exact_phase/host_process_samples_v73e.jsonl",
+    "rows": 0
+  },
+  "partial_phase_transitions": [],
+  "profile_arm": "timeline",
+  "protected_dev_ood_or_holdout_opened": false,
+  "ray_actor_guard_bootstrap": null,
+  "schema": "v73e-exact-phase-qwen36-calibration-failure",
+  "staged_only_adapter_bootstrap": {
+    "canonical_master_identity": {
+      "bytes": 18112512,
+      "elements": 4528128,
+      "ordered_key_sha256": "ddee26a3a4a10683a51f089e8b7028e4a8d9607e0827dab7a314e04e3ece2280",
+      "sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "tensor_count": 70
+    },
+    "canonical_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+    "historical_protected_source_opened_resolved_statted_or_hashed": false,
+    "historical_protected_source_path_persisted": false,
+    "historical_source_seal_weights_sha256_from_manifest_only": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+    "inverse_transform_proof": {
+      "canonical_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+      "canonical_runtime_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+      "canonical_tensor_namespace": "base_model.model.model.layers.",
+      "element_count": 4528128,
+      "historical_protected_source_opened_resolved_statted_or_hashed": false,
+      "inverse_key_mapping_sha256": "94fc09b82d8486e96ab0cce2310f20fbf3aa21444d372b5c2ac21367d4dbd872",
+      "operation": "exact_prefix_inverse_only",
+      "schema": "qwen36-v73e-staged-inverse-transform-proof-v1",
+      "source_tensor_namespace": "base_model.model.model.language_model.layers.",
+      "staged_transform_identity_sha256": "f210bf05e7fe38481d0a7d9c641a7f902e575521b50e98bdc021bf11b49cb1c8",
+      "tensor_arithmetic_performed": false,
+      "tensor_bytes_preserved_exactly": true,
+      "tensor_cast_performed": false,
+      "tensor_count": 70
+    },
+    "protected_semantics_opened": false,
+    "quality_hpo_or_promotion_authorized": false,
+    "receipt_sha256": "59786212d73538e70b78e42fa9b9631cdef428a0ec196c768c888057c910b0ed",
+    "schema": "qwen36-v73e-staged-only-adapter-contract-v1",
+    "staged_files": {
+      "config": {
+        "file_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+        "path": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d/adapter_config.json"
+      },
+      "manifest": {
+        "content_sha256": "ea328ada018e1c0d182d329d2a9cb81f8f0375aef93738f3b9c0a00f63c82da3",
+        "file_sha256": "e30ba44563b5db56f4a487b26f4e2310fd3755b15f8db69d9400facd8baa3813",
+        "path": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d/stage_manifest_v44a.json"
+      },
+      "transform_implementation": {
+        "file_sha256": "8559cb3a2c2870bed7e5ef99ee9ed177929e4c2d8680b61cccc73aad26a2f691",
+        "path": "/home/catid/specialist/stage_candidate_adapters_vllm_v44a.py"
+      },
+      "weights": {
+        "file_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a",
+        "path": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d/adapter_model.safetensors"
+      }
+    },
+    "status": "sealed_staged_only_exact_inverse_verified"
+  },
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_lora_es_mirrored_calibration_v66.py\", line 663, in execute_v66\n    trainer, saved = prior._make_trainer(preregistration)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_es_multi_anchor_v43i.py\", line 241, in _make_trainer\n    trainer = v40c.make_trainer_v40c(prereg)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_topology_probe_v40c.py\", line 72, in make_trainer_v40c\n    trainer = _ORIGINAL_MAKE_TRAINER(prereg)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/run_lora_topology_probe_v40a.py\", line 170, in make_trainer\n    parent = base.load_trainer(\n             ^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/train_eggroll_es_specialist.py\", line 897, in load_trainer\n    worker_contract = validate_worker_state_mode(\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/train_eggroll_es_specialist.py\", line 288, in validate_worker_state_mode\n    module = importlib.import_module(module_name)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/importlib/__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"/home/catid/specialist/eggroll_es_worker_lora_v73e.py\", line 91, in <module>\n    _require(\n  File \"/home/catid/specialist/eggroll_es_worker_lora_v73e.py\", line 49, in _require\n    raise RuntimeError(message)\nRuntimeError: V73E controller worker validation guard state changed\n",
+  "type": "RuntimeError"
+}
