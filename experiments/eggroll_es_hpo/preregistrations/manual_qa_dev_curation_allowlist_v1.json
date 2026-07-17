@@ -1,0 +1,88 @@
+{
+  "allowed_dev_source_count": 4,
+  "allowed_dev_sources": [
+    {
+      "file_sha256": "04949a4d3685ad91b052ba81224a770b39328c2715ebc5fc8284bebf34d33453",
+      "opaque_item_identity": "47ec28655e0be3f432f8b721e90baf8772625f9740cffd8d65bbb1a305c623f2",
+      "permission": "read_for_manual_multi_item_qa_dev_curation_only",
+      "repository_relative_path": "data/site_corpora/nps_textile_fiber_aging_appendix_k_2002/CORPUS.md",
+      "source_path_identity_sha256": "503b658f0290b4f040fe9b4202fb77096ee87ca2c603ea19fc23447198ca853a"
+    },
+    {
+      "file_sha256": "4ba06a9c38b1270ce09de54f9e9d58eff016996ac14fe79d94a4519e1b28210a",
+      "opaque_item_identity": "5b4344a0bc2ef38896ee460e447249fe0ef731370235a1c730db0e4758526454",
+      "permission": "read_for_manual_multi_item_qa_dev_curation_only",
+      "repository_relative_path": "data/site_corpora/usfs_rigging_for_trail_work/CORPUS.md",
+      "source_path_identity_sha256": "a436664ba7a3460e89d058e06dda1ada9d91b9dc9b0fb6d2690984b10528f1ed"
+    },
+    {
+      "file_sha256": "17c8eca67538c64c8f624972ec1965aa7f764180412a3598108a1d00d34eae9e",
+      "opaque_item_identity": "690060d665705f9d68e796a46a8034e787582ba3c3fa2445bd615ba8cf17d2d7",
+      "permission": "read_for_manual_multi_item_qa_dev_curation_only",
+      "repository_relative_path": "data/site_corpora/usfs_region5_hazard_tree_2022/CORPUS.md",
+      "source_path_identity_sha256": "8b844cc70ae2c5d486dde1e940d350da7e71b740f3b1a539967157a6f848f09e"
+    },
+    {
+      "file_sha256": "8b709d07150e9f4d5e9c6bf0bb8f8e8af08c81f316581023f3f468371d5ae27e",
+      "opaque_item_identity": "98394761ee7672fc871336b1da008483c269a7f7dc222cfa66a1acc852412e65",
+      "permission": "read_for_manual_multi_item_qa_dev_curation_only",
+      "repository_relative_path": "data/site_corpora/phm_synthetic_fiber_rope_condition_monitoring_review_2017/CORPUS.md",
+      "source_path_identity_sha256": "965278a4a53b4d90703a5955fa238c1f0aea077040f7e3b67d55f187c2e86859"
+    }
+  ],
+  "allowed_output_path_count": 3,
+  "allowed_output_paths": [
+    "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.jsonl",
+    "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.report.json",
+    "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.curation.jsonl"
+  ],
+  "authority": {
+    "manual_multi_item_qa_dev_curation_authorized": true,
+    "manual_read_of_exact_dev_sources_authorized": true,
+    "model_inference_training_or_embedding_authorized": false,
+    "qa_hpo_or_quality_promotion_authorized": false,
+    "recursive_search_glob_or_directory_scan_authorized": false
+  },
+  "content_sha256_before_self_field": "c31b1c21fb22e74ac35691f5f20cce796b7037688784e052045f68f788bb18b3",
+  "created_at_utc": "2026-07-17T00:00:00+00:00",
+  "denied_boundary": {
+    "denied_exact_path_identity_sha256": [
+      "07b0ef637696b230de90504ae6cd798422d806e9b9465f3d683478714a527d96",
+      "1c82c6288eda8e538d45d29f63d84d3983fa7c9b1c00dd1dac3d8d8c1f9f4aa5",
+      "1f4cf1a6a1890fd7810a547fbdce51553a1ae2f191a6cc8b6edae4989fe5f4b5"
+    ],
+    "denied_prefix_identity_sha256": [
+      "39a0e5b5693317f52d9f539a6666d8af6f33d3269bf263d0e2393d24beaa0a42",
+      "7af72f106b10b5ab698436550819f1b1906232fd5f075ef011f8cd958d81b128"
+    ],
+    "deny_before_resolution_stat_hash_or_open": true,
+    "quarantine_registry_content_sha256": "5a8c6dbd3b0c225992bb2cc4ae5c02a5ec7774a175fe1a138c4e78260eed7fc7"
+  },
+  "implementation": {
+    "builder_file_sha256": "680eddbd501b51afd74af6ffa03dbcb881b14ddcbfd9d718f845a28c648c6bd4",
+    "builder_path": "build_manual_qa_dev_curation_allowlist_v1.py"
+  },
+  "output_policy": {
+    "manual_evidence_and_reviewer_fields_required": true,
+    "minimum_qa_items_per_source": 4,
+    "minimum_total_qa_items": 16,
+    "new_successor_contract_validation_required_before_use": true,
+    "role": "dev_only_never_model_adaptation",
+    "source_document_identity_required_per_item": true
+  },
+  "schema": "specialist-manual-qa-dev-curation-allowlist-v1",
+  "status": "exact_dev_read_and_exact_safe_output_write_allowlist",
+  "terminal_boundary": {
+    "terminal_file_hashes_persisted": false,
+    "terminal_opaque_identity_set_sha256": "2ecc4d7bf7684b463f0957f5e1ccf5ce759a2e2a789bc9a25d369d2d88b07810",
+    "terminal_paths_persisted": false,
+    "terminal_read_or_resolution_authorized": false,
+    "terminal_source_count": 9
+  },
+  "v2_binding": {
+    "contract_content_sha256": "ffe0bd6fdb51f8bf96f4736091156a2c146bde3a66e8ed44ab5e3b21b1016e51",
+    "contract_file_sha256": "fdb018a73f81ff491246fdf6162910ed5ba27f49159a64dc2a1102bbe4cf3047",
+    "dev_source_identity_set_sha256": "3b40b564411ee883bef776d0ad9f0936bb159b95867e05d323604e67dfca05e0",
+    "qa_hpo_or_general_quality_promotion_authorized": false
+  }
+}
