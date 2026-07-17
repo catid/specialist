@@ -1,0 +1,59 @@
+{
+  "schema": "public-training-manual-shard-report-v1",
+  "shard": "ropeconnections-partial-suspension-v1",
+  "source": "ropeconnections",
+  "url": "https://www.ropeconnections.com/suspension-vs-partial-suspension/",
+  "document_sha256": "b7ea5848c2106f523bce0e681cb3148b0fbeaaba16e32e7a496d75cef13d27be",
+  "candidate_input": {
+    "path": "data/train_qa_v3_clean_leakfree_v4_candidates.jsonl",
+    "sha256": "d324b46129e4d1a338ec4f6cf6765e8049856347d4b3bc3bfb37a0b9c2eaa2dd",
+    "matching_rows": 33
+  },
+  "source_input": {
+    "path": "data/train_chunks_v2.jsonl",
+    "sha256": "bf785cd22a6508be117ded4755053978355a2531acaa329731d3a05437cf7d1e",
+    "matching_chunks": 2
+  },
+  "review": {
+    "method": "manual_row_by_row",
+    "reviewer": "codex-manual-background",
+    "reviewed_at": "2026-07-17",
+    "candidate_rows_consumed": 33,
+    "candidate_rows_dropped": 23,
+    "candidate_rows_merged_or_edited": 10,
+    "decision_rows": 13,
+    "edit_decisions": 3,
+    "add_decisions": 3,
+    "drop_decisions": 7,
+    "output_qa_rows": 6
+  },
+  "quality": {
+    "malformed_chat_wrappers": 0,
+    "url_memorization_questions": 0,
+    "duplicate_output_questions": 0,
+    "ungrounded_output_answers": 0,
+    "unqualified_general_safety_claims": 0,
+    "raw_markdown_kept_separate": true
+  },
+  "boundary": {
+    "evaluation_content_read": false,
+    "protected_content_read": false,
+    "web_crawl_performed": false,
+    "active_training_snapshot_modified": false,
+    "promotion_status": "pending_semantic_leakage_audit"
+  },
+  "artifacts": {
+    "source_markdown": {
+      "path": "data/public_training_shards/ropeconnections_partial_suspension_v1/source.md",
+      "sha256": "5497e9de1fe0024efd4921304a462a0c7231df37da35bdf112f0fe30e65d98ef"
+    },
+    "candidate_review": {
+      "path": "data/public_training_shards/ropeconnections_partial_suspension_v1/candidate_review.jsonl",
+      "sha256": "1a1652b22bbc8c836382d63a0c13517f79007165d66bd1b3b394044603f2d400"
+    },
+    "qa": {
+      "path": "data/public_training_shards/ropeconnections_partial_suspension_v1/qa.jsonl",
+      "sha256": "45258b4f043ba874ae341c5d0b9e7d9c1c0882719ac01d27cc58d97d99df0114"
+    }
+  }
+}
