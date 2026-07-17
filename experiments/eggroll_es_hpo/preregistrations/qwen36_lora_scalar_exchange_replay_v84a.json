@@ -1,0 +1,268 @@
+{
+  "accounting": {
+    "antithetic_algebra": {
+      "coefficient": "r_plus-r_minus",
+      "collapsed_form": "(r_plus-r_minus)*epsilon",
+      "exchanged_direction_pairs": 8,
+      "signed_candidates_not_exchanged": 16,
+      "signed_form": "r_plus*epsilon + r_minus*(-epsilon)",
+      "update": "step_size/(2*directions*sigma)*sum(coefficient_i*epsilon_i)"
+    },
+    "authority": {
+      "dataset_or_evaluation_opened": false,
+      "gpu_or_model_opened": false,
+      "live_scalar_arm_authorized": false,
+      "promotion_authorized": false,
+      "quality_or_speed_claim": false,
+      "synthetic_cpu_only": true
+    },
+    "content_sha256": "b612ce2bcdd93fbc892eeae0b6b9fab5fcfd14f034d0dcab5ba39a0fcf935116",
+    "directions": 8,
+    "explicit_hbm_projection_excluding_rng_and_collective_internals": {
+      "exact_order_reason": "globally_sorted_FP32_accumulation_can_exceed_the_registered_2_ULP_gate;_retain_origin_rank_then_seed_arithmetic_order",
+      "exact_order_replay_source_equivalent_formula": "16*E*(directions+world_size+1)",
+      "fused_exact_order_accumulator_formula": "8*E*(directions+2*world_size+2)",
+      "fused_no_dense_noise_accumulator_bytes_per_actor": 652050432,
+      "ideal_fused_final_update_write_plus_d2h_read_floor_bytes_per_actor": 36225024,
+      "native_source_equivalent_bytes_per_actor": 217350144,
+      "native_source_equivalent_formula": "16*E*(1+directions/world_size)",
+      "not_a_live_hbm_measurement": true,
+      "replay_incremental_bytes_per_actor": 724500480,
+      "replay_source_equivalent_bytes_per_actor": 941850624,
+      "replay_source_equivalent_multiplier": 4.333333333333333
+    },
+    "module_count": 35,
+    "network_projection": {
+      "digest_allgather_bus_bytes_per_actor": 96,
+      "digest_wire_bytes_global": 128,
+      "native_collective": "70_tensor_fp32_all_reduce",
+      "native_collective_calls_per_actor": 70,
+      "native_nominal_ring_bus_bytes_all_actors": 108675072,
+      "native_nominal_ring_bus_bytes_per_actor": 27168768,
+      "native_to_scalar_nominal_bus_ratio": 141504.0,
+      "nominal_bus_bytes_saved_per_actor": 27168576,
+      "pair_allgather_bus_bytes_per_actor": 96,
+      "pair_wire_bytes_global": 128,
+      "ring_and_allgather_are_projections_not_measured_pynccl_behavior": true,
+      "scalar_collective_calls_per_actor": 2,
+      "scalar_digest_collective": "four_digest_allgather_consensus",
+      "scalar_pair_collective": "fixed_size_allgather",
+      "scalar_total_bus_bytes_all_actors": 768,
+      "scalar_total_bus_bytes_per_actor": 192
+    },
+    "rng_and_canonical_work": {
+      "iid_absolute_index:rank=None": {
+        "maximum_factor_cache_bytes": 0,
+        "maximum_streamed_update_scratch_bytes": 262144,
+        "method": "iid_absolute_index",
+        "native_balanced_rng_normals_per_actor": 9056256,
+        "native_rng_normals_all_actors": 36225024,
+        "replay_rng_multiplier_per_actor_and_all_actors": 4.0,
+        "replay_rng_normals_all_actors": 144900096,
+        "replay_rng_normals_per_actor": 36225024,
+        "structured_noise_accumulating_adds_per_direction": 0,
+        "structured_noise_final_scales_per_direction": 0,
+        "structured_noise_multiplies_per_direction": 0,
+        "structured_rank": null,
+        "unique_rng_normals_per_direction": 4528128
+      },
+      "structured_outer_product:rank=1": {
+        "maximum_factor_cache_bytes": 32896,
+        "maximum_streamed_update_scratch_bytes": 295040,
+        "method": "structured_outer_product",
+        "native_balanced_rng_normals_per_actor": 287488,
+        "native_rng_normals_all_actors": 1149952,
+        "replay_rng_multiplier_per_actor_and_all_actors": 4.0,
+        "replay_rng_normals_all_actors": 4599808,
+        "replay_rng_normals_per_actor": 1149952,
+        "structured_noise_accumulating_adds_per_direction": 4528128,
+        "structured_noise_final_scales_per_direction": 4528128,
+        "structured_noise_multiplies_per_direction": 4528128,
+        "structured_rank": 1,
+        "unique_rng_normals_per_direction": 143744
+      },
+      "structured_outer_product:rank=16": {
+        "maximum_factor_cache_bytes": 526336,
+        "maximum_streamed_update_scratch_bytes": 788480,
+        "method": "structured_outer_product",
+        "native_balanced_rng_normals_per_actor": 4599808,
+        "native_rng_normals_all_actors": 18399232,
+        "replay_rng_multiplier_per_actor_and_all_actors": 4.0,
+        "replay_rng_normals_all_actors": 73596928,
+        "replay_rng_normals_per_actor": 18399232,
+        "structured_noise_accumulating_adds_per_direction": 72450048,
+        "structured_noise_final_scales_per_direction": 4528128,
+        "structured_noise_multiplies_per_direction": 72450048,
+        "structured_rank": 16,
+        "unique_rng_normals_per_direction": 2299904
+      },
+      "structured_outer_product:rank=4": {
+        "maximum_factor_cache_bytes": 131584,
+        "maximum_streamed_update_scratch_bytes": 393728,
+        "method": "structured_outer_product",
+        "native_balanced_rng_normals_per_actor": 1149952,
+        "native_rng_normals_all_actors": 4599808,
+        "replay_rng_multiplier_per_actor_and_all_actors": 4.0,
+        "replay_rng_normals_all_actors": 18399232,
+        "replay_rng_normals_per_actor": 4599808,
+        "structured_noise_accumulating_adds_per_direction": 18112512,
+        "structured_noise_final_scales_per_direction": 4528128,
+        "structured_noise_multiplies_per_direction": 18112512,
+        "structured_rank": 4,
+        "unique_rng_normals_per_direction": 574976
+      },
+      "structured_outer_product:rank=8": {
+        "maximum_factor_cache_bytes": 263168,
+        "maximum_streamed_update_scratch_bytes": 525312,
+        "method": "structured_outer_product",
+        "native_balanced_rng_normals_per_actor": 2299904,
+        "native_rng_normals_all_actors": 9199616,
+        "replay_rng_multiplier_per_actor_and_all_actors": 4.0,
+        "replay_rng_normals_all_actors": 36798464,
+        "replay_rng_normals_per_actor": 9199616,
+        "structured_noise_accumulating_adds_per_direction": 36225024,
+        "structured_noise_final_scales_per_direction": 4528128,
+        "structured_noise_multiplies_per_direction": 36225024,
+        "structured_rank": 8,
+        "unique_rng_normals_per_direction": 1149952
+      }
+    },
+    "schema": "qwen36-lora-scalar-replay-accounting-v84a",
+    "scratch_and_residency": {
+      "conservative_simultaneously_retained_consensus_bytes": 256,
+      "digest_gather_buffer_bytes_per_actor": 128,
+      "pair_gather_buffer_bytes_per_actor": 128,
+      "pending_master_transaction_output_bytes": 18112512,
+      "persistent_replay_gpu_state_bytes": 0,
+      "rollback_master_aliases_original": true,
+      "streamed_chunk_elements": 16384,
+      "whole_surface_noise_elements_allocated": 0,
+      "whole_surface_update_elements_allocated": 0
+    },
+    "signed_candidates": 16,
+    "source_manifest_sha256": "e12f7199343477db3927bda67bf5f364030a47216be8aa2b30fc3b71c261da2b",
+    "tensor_count": 70,
+    "total_elements": 4528128,
+    "total_fp32_bytes": 18112512,
+    "world_size": 4
+  },
+  "authority": {
+    "adapter_update_committed": false,
+    "dataset_training_eval_ood_holdout_or_probe_opened": false,
+    "gpu_or_model_opened": false,
+    "live_arm_executed": false,
+    "promotion_authorized": false,
+    "ray_or_live_communicator_opened": false,
+    "source_and_synthetic_cpu_only": true
+  },
+  "bead": "specialist-0j5.35",
+  "bound_sources": {
+    "eggroll_es_fp32_collective_coalescing_v83a.py": {
+      "file_sha256": "0c1ed3a7e451da20e76d3b0ea971771b4e7acbc17d6e5f34b5d54efe4a7bc0d6"
+    },
+    "eggroll_es_fused_structured_runtime_v72.py": {
+      "file_sha256": "357607f3c16b071f67d2bc3adb0317bbbd29f31f7e1db0cf1aa3030ac997df6e"
+    },
+    "eggroll_es_worker_lora_v72.py": {
+      "file_sha256": "547d525edfd51412abb3a4980ddc4a55730ad0eb09987ec202ce2ce8f701a2c2"
+    },
+    "experiments/eggroll_es_hpo/preregistrations/qwen36_lora_collective_compression_v82b.json": {
+      "file_sha256": "c4417708c035198959647a1b3db21dfecf7709b051658d918500793264378e50"
+    },
+    "experiments/eggroll_es_hpo/qwen36_collective_scope_incident_v82b_20260717.md": {
+      "file_sha256": "949f0a4be2c493a913711af23a52d3379dc8af2d511d6b66c8e2b46ebed7feec"
+    },
+    "experiments/eggroll_es_hpo/qwen36_lora_collective_compression_v82b_cpu_evidence_20260717.md": {
+      "file_sha256": "ec15fa1d6e3a2fabd7725e1158fa0c5cb013540e01007ca6685fc39c5b3a9e5e"
+    },
+    "structured_es_oracle_v1.py": {
+      "file_sha256": "8fca35f89744f292ef0d9327f547196dd26f93268336f3fad4812a065f35f740"
+    }
+  },
+  "canonical_lora_scope": {
+    "elements": 4528128,
+    "fp32_bytes": 18112512,
+    "module_count": 35,
+    "ordered_shape_manifest_sha256": "e12f7199343477db3927bda67bf5f364030a47216be8aa2b30fc3b71c261da2b",
+    "tensor_count": 70,
+    "v82b_content_sha256": "3efcc3a59652a6dbef73a5e0a963e4a86628992ef371556314c73d61245983f4",
+    "world_size": 4
+  },
+  "content_sha256_before_self_field": "56686192dc5e9e96dd9c7f9b711151e6e3a57aefd693d5bb83197e153006fbe6",
+  "created_at_utc": "2026-07-17T00:00:00Z",
+  "decision": {
+    "current_path": "retain_native_exact_fp32_v72",
+    "memory_saving_claim": false,
+    "promotion_authorized": false,
+    "quality_claim": false,
+    "scalar_replay_is_prospectively_registered": true,
+    "scalar_replay_live_arm": false,
+    "speed_claim": false
+  },
+  "numerical_contract": {
+    "fake_four_rank_methods": [
+      "iid_absolute_index",
+      "structured_outer_product_rank_1",
+      "structured_outer_product_rank_4",
+      "structured_outer_product_rank_8",
+      "structured_outer_product_rank_16"
+    ],
+    "global_seed_order_alone_is_not_sufficient": true,
+    "live_collective_reduction_order_still_unproven": true,
+    "maximum_allowed_final_update_ulp": 2,
+    "reason": "FP32 addition is nonassociative; synthetic global-seed accumulation exceeded the accepted 2-ULP gate, while origin-rank-then-seed replay reproduced the registered fake dense reduction within the gate"
+  },
+  "prospective_close_not_applicable_criteria": [
+    "close if accepted V73D does not rank the canonical dense FP32 collective top-three in at least two of three replicates",
+    "after that prerequisite only, close if measured extra deterministic replay time is not smaller than removed dense collective time after both scalar consensus collectives",
+    "close if an implementation cannot retain origin-rank/seed arithmetic order within the registered 2-ULP gate",
+    "close if cleanup, rollback, poison, retry identity, or all-rank consensus semantics differ from this contract",
+    "close if measured HBM/RNG overhead negates the memory-bandwidth benefit; source-equivalent exact-order replay projects 4x RNG and 724500480 extra explicit HBM bytes per actor"
+  ],
+  "prospective_v73d_gate": {
+    "accepted_v73d_profile_present": false,
+    "dense_collective_ranked_top_three": false,
+    "live_scalar_arm_authorized": false,
+    "minimum_replicates_with_dense_collective_top_three": 2,
+    "paired_live_implementation_or_benchmark_authorized": false,
+    "required_replicates": 3,
+    "rule": "no live implementation, model load, GPU run, or paired benchmark unless an accepted V73D profile first ranks the canonical dense FP32 collective in the top three in at least two registered replicates"
+  },
+  "purpose": "prospective comparison of native dense FP32 LoRA all-reduce against finite seed/coefficient allgather, all-rank digest consensus, and deterministic full update replay",
+  "schema": "qwen36-lora-scalar-exchange-replay-preregistration-v84a",
+  "status": "prospective_cpu_contract_live_arm_unauthorized",
+  "transaction_contract": {
+    "dense_full_noise_allocation_forbidden": true,
+    "dense_full_update_scratch_allocation_forbidden": true,
+    "final_identity_mismatch_terminally_poisons": true,
+    "original_master_exact_preflight_and_postflight": true,
+    "partial_failure_discards_pending_and_terminally_poisons": true,
+    "pending_candidate_not_committed_during_replay": true,
+    "provisional_commit_retains_rollback": true,
+    "rejection_restores_exact_original": true,
+    "stale_retry_and_stale_restore_rejected": true
+  },
+  "wire_and_consensus_contract": {
+    "all_rank_digest_consensus_required": true,
+    "antithetic_collapse": "r_plus*epsilon+r_minus*(-epsilon)=(r_plus-r_minus)*epsilon",
+    "directions": 8,
+    "duplicate_missing_unexpected_nonfinite_rejected": true,
+    "global_digest_wire_bytes": 128,
+    "global_pair_wire_bytes": 128,
+    "negative_zero_coefficient_canonicalized_to_positive_zero": true,
+    "pair_bytes": 16,
+    "pair_wire": "big_endian_uint64_seed_plus_ieee754_binary64_coefficient",
+    "required_arithmetic_order": "ascending_origin_rank_then_ascending_seed",
+    "required_pair_order": "ascending_uint64_seed",
+    "resume_retry_identity_binds": [
+      "consensus_sha256",
+      "original_master_sha256",
+      "rank",
+      "chunk_elements",
+      "rng_algorithm",
+      "plan_id",
+      "update_sequence"
+    ],
+    "signed_candidates": 16
+  }
+}
