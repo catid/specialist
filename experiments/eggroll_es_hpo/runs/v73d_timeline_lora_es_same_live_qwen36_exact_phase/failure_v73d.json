@@ -1,0 +1,103 @@
+{
+  "checkpoint_snapshot_or_promotion_performed": false,
+  "cleanup": null,
+  "cleanup_failure": null,
+  "compute_ledger": null,
+  "content_sha256_before_self_field": "d57e87c1a589bbd344d334aeb37b242357261dc18a602cb2cefd1be1af9de30f",
+  "exact_phase_receipt": {
+    "content_sha256": "5259c316491c692dbb3f854ee690f40397828fed617731ad13fd615d8893aba1",
+    "file_sha256": "12b510a7ef84e91c8d84bf6f27709eef10f802d36bfc6ed65c8a377fd315b618",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/exact_phase_ranges_v73d.json"
+  },
+  "expanded_profiler_command_sha256": "e84facc94d7f079827ca7efab36192a15aa57a4eca76a56110b2b28d35017aea",
+  "failed_at_utc": "2026-07-17T12:48:34.081013+00:00",
+  "final_gpu_idle": {
+    "all_four_compute_process_lists_empty": true
+  },
+  "gpu_time_accounting": {
+    "legacy_estimated_model_allocation_or_residency_seconds_per_gpu": null,
+    "legacy_residency_estimate_classification": "diagnostic_not_directly_measured_not_accepted",
+    "model_resident_gpu_seconds_measured": null,
+    "profiled_event_time_is_not_reclassified_as_unprofiled_useful_time": true,
+    "promotion_charged_gpu_seconds": 0,
+    "reserved_wall_gpu_seconds": null,
+    "reserved_wall_is_not_model_residency_or_useful_work": true,
+    "reserved_wall_source": "legacy_compute_ledger_charged_gpu_seconds",
+    "schema": "qwen36-v73d-gpu-time-accounting-split-v1",
+    "useful_gpu_seconds_measured": null
+  },
+  "historical_reward_floats_used_as_acceptance_gate": false,
+  "immutable_v73c_attempt_1_predecessor": {
+    "artifacts_must_not_be_deleted_modified_or_reused": true,
+    "controller_sitecustomize_succeeded": true,
+    "failure_actor_pid": 1416807,
+    "failure_cause": "actor_guard_not_installed_before_v72_import",
+    "final_all_four_gpus_idle": true,
+    "legacy_reserved_wall_gpu_seconds": 174.47963698,
+    "legacy_reserved_wall_not_accepted_as_model_resident_or_useful": true,
+    "nsys_report": {
+      "file_sha256": "dbdce8049120ed3ffc61834497dd5f52546d07a6d53bc54c9b0c123acfeaf53e",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73c_timeline_lora_es_same_live_qwen36_exact_phase/v73c_timeline_lora_es_same_live_qwen36_exact_phase.nsys-rep"
+    },
+    "partial_actor_cuda_receipt_count": 0,
+    "partial_phase_receipt": {
+      "content_sha256": "25155879eca87b08180651c456b7c7ab74e1c0dd2a3f61ad80f5bb422449a38d",
+      "file_sha256": "ad6f0c23b478b5688d92b0dde4f7acc0a17eace68f277cdf1dec90ecf3469b91",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73c_timeline_lora_es_same_live_qwen36_exact_phase/exact_phase_ranges_v73c.json"
+    },
+    "preregistration": {
+      "content_sha256": "6ea79bd1e948f728af0f93087d0e28ad576cef62bfc04be79180f30a0a93785a",
+      "file_sha256": "b134a263b1548905d8f9c2373d9f8a8dd79ec2ba74808a5ca23c84f31dc71983",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/qwen36_v73c_exact_phase_profiler.json"
+    },
+    "profile_attempt": {
+      "content_sha256": "a3c0a4fdf829848580aed8fc9e7e2af05b2904eda250e30c234220dd3a63f24b",
+      "file_sha256": "724b60b6ce33c85e129e5000e1753d8ebd25615f7ede97a17888533397785baf",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/.v73c_timeline_lora_es_same_live_qwen36_exact_phase.attempt.json"
+    },
+    "profile_failure": {
+      "content_sha256": "fceaf41c3d8e9a09b20e86d554b3cb8b59d97488f7cd8c083e8ec7048013422a",
+      "file_sha256": "ae76cdcf38a71ac7e27035a38d48867a91ed68248c91ef4535ce25b0d79a0c17",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73c_timeline_lora_es_same_live_qwen36_exact_phase/profile_failure_v73c.json"
+    },
+    "promotion_charged_gpu_seconds": 0,
+    "protected_or_semantic_data_opened": false,
+    "ray_actor_sitecustomize_assumption_invalid": true,
+    "run_attempt": {
+      "content_sha256": "28dce8692c500ae902993773247d5e7be3153e1aa216fc8a9d00191d9fe4c145",
+      "file_sha256": "f73fd75b1a9780b2b8a46e7efebf3f514e7b9fb7723df8be2c4ca78c2db9e6b5",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v73c_timeline_lora_es_same_live_qwen36_exact_phase.attempt.json"
+    },
+    "run_failure": {
+      "content_sha256": "a5eb95f7d987112dec0a71683d668d0369a56d7a7838e66c986bf6132cafed4d",
+      "file_sha256": "5708f456e7736944b7304c5a17486b82c15c5a451a51679734ff00e86cdefef7",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73c_timeline_lora_es_same_live_qwen36_exact_phase/failure_v73c.json"
+    },
+    "sqlite_export": {
+      "file_sha256": "73afe6d1f68f0c906224947781a236681ce4799d60a32da9cc7075dd66d4dc7d",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/profiles/v73c_timeline_lora_es_same_live_qwen36_exact_phase/v73c_timeline_lora_es_same_live_qwen36_exact_phase.sqlite"
+    },
+    "status": "immutable_failed_closed_actor_sitecustomize_assumption",
+    "v73c_sealed_source_commit": "35d2837d1632a2b642ad9df15a7eb610d47cdc34"
+  },
+  "message": "V73D systems-only protected open denied",
+  "partial_actor_cuda_work_log": {
+    "exists": false,
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/actor_cuda_work_receipts_v73d.jsonl",
+    "rows": 0
+  },
+  "partial_controller_operations": [],
+  "partial_host_process_log": {
+    "exists": false,
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v73d_timeline_lora_es_same_live_qwen36_exact_phase/host_process_samples_v73d.jsonl",
+    "rows": 0
+  },
+  "partial_phase_transitions": [],
+  "profile_arm": "timeline",
+  "protected_dev_ood_or_holdout_opened": false,
+  "ray_actor_guard_bootstrap": null,
+  "same_live_equivalence_required": true,
+  "schema": "v73d-exact-phase-qwen36-calibration-failure",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/catid/specialist/run_lora_es_mirrored_calibration_v66.py\", line 660, in execute_v66\n    runtime52.verify_adapter_contract_v52()\n  File \"/home/catid/specialist/run_lora_es_nested_population_v52.py\", line 280, in verify_adapter_contract_v52\n    \"source_weights\": design.file_sha256_v52(design.SOURCE_WEIGHTS_V52),\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/lora_es_nested_population_v52.py\", line 369, in file_sha256_v52\n    with Path(path).open(\"rb\") as handle:\n         ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/catid/specialist/v73d_sitecustomize/v73d_path_open_guard.py\", line 185, in guarded_io_open\n    _deny(\"open\")\n  File \"/home/catid/specialist/v73d_sitecustomize/v73d_path_open_guard.py\", line 144, in _deny\n    raise PermissionError(f\"V73D systems-only protected {label} denied\")\nPermissionError: V73D systems-only protected open denied\n",
+  "type": "PermissionError"
+}
