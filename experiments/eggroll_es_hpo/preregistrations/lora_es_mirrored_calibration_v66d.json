@@ -1,0 +1,363 @@
+{
+  "acceptance": {
+    "all_four_active_slot_certificates_are_adapter_one": true,
+    "all_four_add_lora_return_true_before_state_write": true,
+    "all_four_physical_gpus_positive_in_every_wave": true,
+    "all_four_replicas_candidate_consensus": true,
+    "all_wave_restores_exact": true,
+    "candidate_bf16_runtime_must_differ": true,
+    "candidate_master_must_differ": true,
+    "canonical_lora_install_reached_after_activation": true,
+    "each_generation_phase_acknowledged_after_all_four_gpu_rows": true,
+    "every_receipt_bound_to_exact_rank_pid_and_physical_gpu": true,
+    "every_receipt_has_positive_output_and_token_cardinality": true,
+    "every_signed_candidate_has_actor_cuda_event_receipt": true,
+    "final_gpu_idle": true,
+    "final_master_and_runtime_equal_initial": true,
+    "nonzero_coefficient_l2_required": true,
+    "nonzero_pair_difference_count_minimum": 1,
+    "resident_but_idle_actor_must_fail": true,
+    "short_phase_may_pass_without_positive_nvml_tick": true,
+    "trainer_constructs_without_dense_master_rpc": true,
+    "update_exactly_aborted_without_commit": true
+  },
+  "adapter": {
+    "canonical_fp32_master_sha256": "eea2d60e19530ba99e9ac4bc50f2806b20aa13ed30e159bad63a0144d0cb81b6",
+    "runtime_bf16_values_sha256": "a1353c47bc11f02a9b67d7859d6670b07d6754c285ac4f357255878c09384f5b",
+    "source": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/v434_equal_r32_seed17_init20260715041/final",
+    "source_config_sha256": "b2bf4816802328893825be9ed7634b109ed400e17774f6bb98defe2e26ad06b5",
+    "source_weights_sha256": "0d6efd4d5be626f41cdd711843f799b9b3c09e9ecf6a7a8e6e9aeeff09f6dc5b",
+    "staged": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d",
+    "staged_weights_sha256": "7a41d921c6988dc62dca092230ed5ccfd5d6568a600503c87ff086cb2763485a"
+  },
+  "artifacts": {
+    "actor_cuda_work_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66d_lora_es_mirrored_crn_qwen36_calibration/actor_cuda_work_receipts_v66d.jsonl",
+    "attempt": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v66d_lora_es_mirrored_crn_qwen36_calibration.attempt.json",
+    "failure": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66d_lora_es_mirrored_crn_qwen36_calibration/failure_v66d.json",
+    "gpu_log": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66d_lora_es_mirrored_crn_qwen36_calibration/gpu_activity_v66d.jsonl",
+    "population": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66d_lora_es_mirrored_crn_qwen36_calibration/mirrored_population_v66d.json",
+    "report": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66d_lora_es_mirrored_crn_qwen36_calibration/mirrored_calibration_report_v66d.json",
+    "run_directory": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66d_lora_es_mirrored_crn_qwen36_calibration",
+    "update": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66d_lora_es_mirrored_crn_qwen36_calibration/pair_difference_update_v66d.json"
+  },
+  "authorization": {
+    "candidate_commit": false,
+    "checkpoint_snapshot": false,
+    "dev_access": false,
+    "gpu_launch": true,
+    "nonzero_update_execute_then_exact_abort": true,
+    "ood_access": false,
+    "promotion": false,
+    "protected_holdout_access": false,
+    "train_panel_semantic_access": true
+  },
+  "beads": [
+    "specialist-0j5.2",
+    "specialist-0j5.12",
+    "specialist-nen.25"
+  ],
+  "common_random_number_contract": {
+    "both_signs_share_decode_parameters_and_seed": true,
+    "both_signs_share_exact_tokenized_prompt_block": true,
+    "both_signs_share_judge_and_aggregation": true,
+    "pairs_are_concurrent_within_complete_four_actor_waves": true,
+    "signs_rotate_between_physical_ranks": true
+  },
+  "content_sha256_before_self_field": "2f8e23b643507b594b05719966da1b9bcc64a2b7f412021066df4c6418144531",
+  "fixed_recipe": {
+    "candidate_action": "execute_uncommitted_then_exact_abort",
+    "decode": {
+      "detokenize": false,
+      "max_tokens": 1,
+      "n": 1,
+      "prompt_logprobs": 1,
+      "temperature": 0.0,
+      "top_p": 1.0
+    },
+    "direction_count": 8,
+    "direction_seeds": [
+      140002291,
+      1028842752,
+      480373990,
+      1037026679,
+      759861149,
+      227761095,
+      428721957,
+      150663570
+    ],
+    "engines": 4,
+    "evaluation_seed": 2026071702,
+    "gpu_work_attribution_v66d": {
+      "acknowledgement_gpu_set": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "actor_receipt_binding": [
+        "engine_rank",
+        "worker_pid",
+        "physical_gpu_id",
+        "work_id"
+      ],
+      "actor_receipt_per_signed_candidate": true,
+      "cuda_event_elapsed_must_be_positive": true,
+      "generated_tokens_per_candidate": 64,
+      "nvml_positive_tick_required_when_actor_receipt_valid": false,
+      "nvml_residency_and_no_foreign_process_required": true,
+      "phase_transition_barrier": "monitor must flush one row for each physical GPU before work",
+      "request_outputs_per_candidate": 64,
+      "sample_interval_seconds": 0.25,
+      "samples_per_candidate": 64
+    },
+    "learning_rate": 0.00015,
+    "lora_activation": {
+      "active_slot_certificate_required_before_state_write": true,
+      "active_slot_index": 0,
+      "four_actor_add_lora_required": true,
+      "request_id": 1,
+      "request_name": "matched_lora_initialization_v41b",
+      "request_path": "/home/catid/specialist/experiments/eggroll_es_hpo/staged_adapters/v434_equal_sft_qwen35_vllm_namespace_v49d"
+    },
+    "model": "/home/catid/specialist/models/Qwen3.6-35B-A3B",
+    "model_label": "Qwen3.6-35B-A3B",
+    "precision": "bfloat16",
+    "reward": "uniform mean of per-example mean gold-answer token logprob",
+    "sigma": 0.0006,
+    "signed_population_size": 16,
+    "tensor_parallel_size": 1,
+    "train_conflict_units_per_candidate": 64,
+    "train_rows_per_candidate": 64,
+    "worker_extension": "eggroll_es_worker_lora_v66.LoRAAdapterStateWorkerExtensionV66"
+  },
+  "global_evaluation_compute_contract": {
+    "content_sha256": "2442c0c2be3ac4c883612f400f8f213ce3bc82ef96e03fad1ef10ec3b7d11fad",
+    "disjointness_passed": true,
+    "file_sha256": "04af81499067e2feb0186c0a61e4c1af10f838a8eb7deec6dd41cd192748cacf",
+    "path": "/home/catid/specialist/experiments/eggroll_es_hpo/preregistrations/recipe_evaluation_compute_contract_v1.json",
+    "protected_holdout_access_authorized": false
+  },
+  "implementation_bindings": {
+    "base_trainer": {
+      "file_sha256": "6404684a582ba4378fba38c2d17d5b3b7fda0650293662d9e7fdb2c12bc3085a",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist.py"
+    },
+    "builder": {
+      "file_sha256": "c868f292afeaa5bd9927a491df78bc3e653a16d1c721cdca6bafdb66522d3274",
+      "path": "/home/catid/specialist/build_lora_es_mirrored_calibration_preregistration_v66d.py"
+    },
+    "canonical_lora_worker": {
+      "file_sha256": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v41a.py"
+    },
+    "dense_reward": {
+      "file_sha256": "9b771f5f5578cc233bea9b92ee48dbad8bbf7f363fae44d4dadde5e926f6cd65",
+      "path": "/home/catid/specialist/train_eggroll_es_specialist_anchor_v4.py"
+    },
+    "distributed_update_worker": {
+      "file_sha256": "636698c7ea8e8155ea08298e428b5c40c01141ff10db59290d74831db360e5b1",
+      "path": "/home/catid/specialist/eggroll_es_worker_v3.py"
+    },
+    "failed_v66_attempt": {
+      "file_sha256": "b01e8be7ce15fb8b931d1c58ae4139db0b4ac2e6a1825023108817cad580c955",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v66_lora_es_mirrored_crn_qwen36_calibration.attempt.json"
+    },
+    "failed_v66_receipt": {
+      "file_sha256": "5de0eeff1ab4b49c0b1d304385db3a679cee7bb7fd8836e3e88e2864a36bd475",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66_lora_es_mirrored_crn_qwen36_calibration/failure_v66.json"
+    },
+    "failed_v66b_attempt": {
+      "file_sha256": "750a604c53de34becb37394b61773bb90cccdf91d8b7f8b74abafee66821d805",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v66b_lora_es_mirrored_crn_qwen36_calibration.attempt.json"
+    },
+    "failed_v66b_receipt": {
+      "file_sha256": "03f5aa98dbd3ad75d7a561fedabea6f585f460c95186bfe1e9946cedf42ec57b",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66b_lora_es_mirrored_crn_qwen36_calibration/failure_v66b.json"
+    },
+    "failed_v66c_attempt": {
+      "file_sha256": "29c34e10caf32576bdc81fc6f5676b2e1e3bd5cda0ddd142491743843c4c00d9",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v66c_lora_es_mirrored_crn_qwen36_calibration.attempt.json"
+    },
+    "failed_v66c_gpu_log": {
+      "file_sha256": "37abe8c11a3f8936e22fce611009f0f1b10b4d54687c3604219bca8355c34064",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66c_lora_es_mirrored_crn_qwen36_calibration/gpu_activity_v66c.jsonl"
+    },
+    "failed_v66c_population": {
+      "file_sha256": "5543d2887f932f90201cb2aa4c92c996eed0b02d1353b0cd370004e3acfb4ebb",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66c_lora_es_mirrored_crn_qwen36_calibration/mirrored_population_v66c.json"
+    },
+    "failed_v66c_receipt": {
+      "file_sha256": "6468175dea71f5793207ffb0f2ad1f891c19035f73e260de6648009dd89b8624",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66c_lora_es_mirrored_crn_qwen36_calibration/failure_v66c.json"
+    },
+    "failed_v66c_update": {
+      "file_sha256": "d1677705419f21e00c6e9ece74145afc4a03d28e7f4cdcbf85116b47b671293a",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66c_lora_es_mirrored_crn_qwen36_calibration/pair_difference_update_v66c.json"
+    },
+    "gpu_telemetry": {
+      "file_sha256": "6c086f55ea2e5f66c1c01056b3a6acee7b13074ac9af00c693bea7848cd08224",
+      "path": "/home/catid/specialist/eggroll_es_gpu_telemetry_v66.py"
+    },
+    "mirrored_protocol": {
+      "file_sha256": "06b8cfd775051e1a20d30f969442cdcdc1b2b56ad10c1291d287f031a47594ad",
+      "path": "/home/catid/specialist/eggroll_es_mirrored_v66.py"
+    },
+    "mirrored_worker": {
+      "file_sha256": "ee976fbc56a720c5c2a5e52d86c7a02d1e8c7414ed7383952d3da03e72944a03",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v66.py"
+    },
+    "runner": {
+      "file_sha256": "3c3c10ea6e33190c47f7bbebbbbb49eeecf84ee2486501f258f2c97302adf015",
+      "path": "/home/catid/specialist/run_lora_es_mirrored_calibration_v66d.py"
+    },
+    "runtime_v40a": {
+      "file_sha256": "46350cc5e67b1876b42611814b03617ad01945b7a0b3f1d9a768122e9ab0fff2",
+      "path": "/home/catid/specialist/run_lora_topology_probe_v40a.py"
+    },
+    "runtime_v48b": {
+      "file_sha256": "fa02c9568c7f027d4f9083ec270d4d2b132867fcfb733be8a23151f64c9e6401",
+      "path": "/home/catid/specialist/run_lora_es_generation_boundary_v48b.py"
+    },
+    "runtime_v52": {
+      "file_sha256": "1f433e4b484846c02135fb25f3c3d05655de365e438c2a945829063d2e1a4f27",
+      "path": "/home/catid/specialist/run_lora_es_nested_population_v52.py"
+    },
+    "runtime_v64_model_seal": {
+      "file_sha256": "e713f60eb78376bc3c58f890d6aaae1d04454be3c70ed1382ed378aab9a57426",
+      "path": "/home/catid/specialist/run_lora_es_v59_vs_v434_robust_confirmation_v64.py"
+    },
+    "v66_builder": {
+      "file_sha256": "d6c5e38a0b89fdd9de9fee5f1b6ab87802e9cc72ea29b8033b11425a04785901",
+      "path": "/home/catid/specialist/build_lora_es_mirrored_calibration_preregistration_v66.py"
+    },
+    "v66_engine": {
+      "file_sha256": "b0dd2cbbbcb7eeaf040fe4c569aaaa6d565157417ac707896d8176503c6f1bc9",
+      "path": "/home/catid/specialist/run_lora_es_mirrored_calibration_v66.py"
+    },
+    "v66c_builder": {
+      "file_sha256": "000ae6efc5b2920244e46b9a8f626da309b58739c6fc406610c69a6c522b2470",
+      "path": "/home/catid/specialist/build_lora_es_mirrored_calibration_preregistration_v66c.py"
+    },
+    "v66c_runner": {
+      "file_sha256": "e4b5e5fc950673b8d35d547cc417ae944f4f78a1d51045c1450a471cee7ba8b5",
+      "path": "/home/catid/specialist/run_lora_es_mirrored_calibration_v66c.py"
+    },
+    "worker": {
+      "file_sha256": "807af52dab4b842f0a74b33cf083f8b67a7e2f4bd0329eb1ca08c4ffb3831ed6",
+      "path": "/home/catid/specialist/eggroll_es_worker_lora_v66d.py"
+    }
+  },
+  "purpose": "Fresh V66c-equivalent mirrored calibration with a phase transition barrier acknowledged only after all four NVML rows and an actor-side CUDA-event/output-cardinality receipt for every signed candidate.",
+  "runtime": {
+    "base_model_seal": {
+      "all_model_files_verified_before_and_after": true,
+      "content_sha256": "d4cf795408967aefbc77f841c47e6fe2fbe3cefc14a4a0fdb4bf73b2701326f9",
+      "file_sha256": "96eeb236ea94678f57a530a27a471467d4b3d413d2e7be397e293b695cd4c440",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/S6_V23A_INSERTION_MODEL_SEAL.json"
+    },
+    "dense_full_weight_master_install_authorized": false,
+    "enforce_eager": true,
+    "exclusive_physical_gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "four_tp1_engines": true,
+    "gpu_memory_utilization": 0.82,
+    "max_model_len": 2048,
+    "required_python": "/home/catid/specialist/es-at-scale/.venv/bin/python",
+    "required_worker_endpoints": [
+      "install_adapter_state_v41a",
+      "active_lora_slot_certificate_v66",
+      "materialize_mirrored_adapter_v66",
+      "begin_actor_gpu_work_v66d",
+      "end_actor_gpu_work_v66d",
+      "restore_mirrored_adapter_v66"
+    ],
+    "trainer_state_mode": "external_worker",
+    "tuned_table": "/home/catid/specialist/experiments/vllm_moe_tuning/v025_rtx_pro_6000_bf16_tp1_exhaustive_v27c/E=256,N=512,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Max-Q_Workstation_Edition.json",
+    "tuned_table_content_sha256": "4c4a0d4bbb400ea1d881bea3aae144d6865c34199fbb67889eda9e92d3a2543d",
+    "tuned_table_file_sha256": "128806798a5bf8a961a5bd0bc8765c82e8b73a116e6c7411e7aeba5522667562",
+    "worker_extension": "eggroll_es_worker_lora_v66d.LoRAAdapterStateWorkerExtensionV66D"
+  },
+  "schema": "lora-es-mirrored-crn-qwen36-calibration-preregistration-v66d",
+  "status": "sealed_after_v66c_short_phase_telemetry_race_before_v66d_gpu_access",
+  "supersedes_failed_attempts": {
+    "v66": {
+      "adapter_install_reached": false,
+      "attempt_content_sha256": "25645974f4d3e2f7666c59e79a2b731ad687abf8ef2f442a5712c3d3309ace10",
+      "attempt_file_sha256": "b01e8be7ce15fb8b931d1c58ae4139db0b4ac2e6a1825023108817cad580c955",
+      "attempt_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v66_lora_es_mirrored_crn_qwen36_calibration.attempt.json",
+      "candidate_evaluation_reached": false,
+      "candidate_update_reached": false,
+      "charged_gpu_seconds": 245.997554524,
+      "failure_content_sha256": "82deabfc5f52a8038034808d9c22d166425fb3828e17f3f742865064f90e05f6",
+      "failure_file_sha256": "5de0eeff1ab4b49c0b1d304385db3a679cee7bb7fd8836e3e88e2864a36bd475",
+      "failure_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66_lora_es_mirrored_crn_qwen36_calibration/failure_v66.json",
+      "failure_type": "RayTaskError(NotImplementedError)",
+      "final_gpu_idle": true
+    },
+    "v66b": {
+      "adapter_activation_reached": false,
+      "adapter_install_reached": true,
+      "attempt_content_sha256": "e1d020f08d7e605ff6728f3523686c179dfaccbee0bb8d0a6a3eda31e3561142",
+      "attempt_file_sha256": "750a604c53de34becb37394b61773bb90cccdf91d8b7f8b74abafee66821d805",
+      "attempt_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v66b_lora_es_mirrored_crn_qwen36_calibration.attempt.json",
+      "candidate_evaluation_reached": false,
+      "candidate_update_reached": false,
+      "charged_gpu_seconds": 201.59608662,
+      "failure_content_sha256": "6d1bb225e7e5d2d6e9e99fd8230bbe4d4727cb1b065646cb77e5bede1baab563",
+      "failure_file_sha256": "03f5aa98dbd3ad75d7a561fedabea6f585f460c95186bfe1e9946cedf42ec57b",
+      "failure_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66b_lora_es_mirrored_crn_qwen36_calibration/failure_v66b.json",
+      "failure_reason": "canonical install preceded explicit add_lora",
+      "failure_type": "RayTaskError(RuntimeError)",
+      "final_gpu_idle": true,
+      "trainer_constructed_in_external_lora_mode": true
+    },
+    "v66c": {
+      "all_four_exact_abort_receipts": true,
+      "attempt_content_sha256": "a43f08fce8a8e07cfa8e39c75db0ee2860d3780d23039d676f06715cc40b6ac1",
+      "attempt_file_sha256": "29c34e10caf32576bdc81fc6f5676b2e1e3bd5cda0ddd142491743843c4c00d9",
+      "attempt_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/.v66c_lora_es_mirrored_crn_qwen36_calibration.attempt.json",
+      "charged_gpu_seconds": 460.702633452,
+      "coefficient_l2": 0.0042338077269223435,
+      "failure_content_sha256": "fd15274cc07e25dd58e37ae79569215b51b74fc18f97a3034a4936d7b014f4bb",
+      "failure_file_sha256": "6468175dea71f5793207ffb0f2ad1f891c19035f73e260de6648009dd89b8624",
+      "failure_path": "/home/catid/specialist/experiments/eggroll_es_hpo/runs/v66c_lora_es_mirrored_crn_qwen36_calibration/failure_v66c.json",
+      "failure_scope": "short-phase NVML label sampling only",
+      "final_gpu_idle": true,
+      "gpu_log_file_sha256": "37abe8c11a3f8936e22fce611009f0f1b10b4d54687c3604219bca8355c34064",
+      "master_committed": false,
+      "mirrored_waves_completed": 4,
+      "nonzero_fp32_and_bf16_candidate_executed": true,
+      "nonzero_pair_differences": 8,
+      "population_content_sha256": "31e0044615851a692847bcba9c1b92d1c3625f81d36c8789816ea646ca43506d",
+      "population_file_sha256": "5543d2887f932f90201cb2aa4c92c996eed0b02d1353b0cd370004e3acfb4ebb",
+      "signed_candidates_completed": 16,
+      "state_or_es_protocol_failure": false,
+      "update_content_sha256": "abff89fa3e456ebcfffe60577cab1e6dac950f51679b89ac589ec800b3fe347e",
+      "update_file_sha256": "d1677705419f21e00c6e9ece74145afc4a03d28e7f4cdcbf85116b47b671293a"
+    }
+  },
+  "train_only_input": {
+    "dataset": {
+      "file_sha256": "ae949c37de6abcd57fd8e2b9da8148b80ee072cfc16a7cf023c4ca89021b840a",
+      "path": "/home/catid/specialist/experiments/sft_controls/v49d_v434_sampling_midpoint_lr5p5e5/train_v434_fold3_v49d.jsonl",
+      "rows": 448
+    },
+    "membership": {
+      "content_sha256": "a8870fdce8fbf631b3d3472fd03690f6987590ee6e8758dc8fdcb4556dcc9096",
+      "file_sha256": "e9b073369966e21912a0bda86da501ab0975646df2a7d80bf5675c3dfec8c121",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v52_v434_train_row_conflict_unit_membership.json"
+    },
+    "panel": {
+      "content_sha256": "cdfa9d10669171d5d814b55df1f674a89dfa557c5376b45c8d0073e5d1acaec7",
+      "file_sha256": "dd2c857b75617351d64cfce29f5a8e5d79ce9da212e4db50d22f2de3795c70a1",
+      "path": "/home/catid/specialist/experiments/eggroll_es_hpo/datasets/v52_v434_train_generation_panel.json",
+      "selected_conflict_units": 64,
+      "selected_rows": 64
+    },
+    "protected_dev_ood_or_holdout_paths": []
+  }
+}
