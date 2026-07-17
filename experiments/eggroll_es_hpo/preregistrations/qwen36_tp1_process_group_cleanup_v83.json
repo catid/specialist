@@ -1,0 +1,517 @@
+{
+  "additive_v83_verdict": {
+    "actor_and_descendant_process_exit_independently_proven": true,
+    "all_other_v80_gates_reused_not_rewritten": true,
+    "cleanup_semantics_passed": true,
+    "destroy_was_not_required": true,
+    "semantic_ood_and_promotion_gates_still_pending": true,
+    "three_consecutive_external_idle_batches_all_runs": true,
+    "tp1_process_group_was_never_initialized_all_actors_all_runs": true
+  },
+  "authority": {
+    "checkpoint_or_layout_promotion_authorized": false,
+    "cpu_artifact_analysis_only": true,
+    "dataset_or_protected_content_opened": false,
+    "model_or_gpu_launched": false
+  },
+  "bead": "specialist-nen.30",
+  "content_sha256_before_self_field": "45957ac5f53004456862596baacc09d95f0179995436e745eea7dd970e1a91de",
+  "future_receipt_contract": {
+    "external_dead_pid_and_idle_cleanup_remains_required": true,
+    "initialized_acceptance": {
+      "destroy_process_group_attempted": true,
+      "process_group_initialized_after_shutdown": false,
+      "process_group_initialized_before_shutdown": true
+    },
+    "missing_or_ambiguous_fields_fail_closed": true,
+    "never_initialized_acceptance": {
+      "destroy_process_group_attempted": false,
+      "process_group_initialized_after_shutdown": false,
+      "process_group_initialized_before_shutdown": false
+    },
+    "required_boolean_fields": [
+      "process_group_initialized_before_shutdown",
+      "destroy_process_group_attempted",
+      "process_group_initialized_after_shutdown"
+    ]
+  },
+  "immutable_parent_result": {
+    "literal_torch_process_group_destroyed_clause_passed": false,
+    "reason": "the legacy field name does not match its source semantics",
+    "result_rewritten": false
+  },
+  "legacy_source_binding": {
+    "actual_value_semantics": "dist_is_initialized_before_shutdown",
+    "all_v80_values": false,
+    "destroy_call_guard": "called_if_and_only_if_legacy_value_is_true",
+    "field_name": "torch_process_group_destroyed",
+    "file_sha256": "115774a63f54480fa4796f24f5b47a82fda1c2a761db4cf3ae0b6b83e85165d6",
+    "path": "probe_vllm_two_adapter_switch_v63.py"
+  },
+  "runs": {
+    "v80_bf16_kv_mamba_capacity_0479_r1": {
+      "actor_receipts": [
+        {
+          "gpu": 0,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "33f079cab126f73047f1a7360badd6324c3be8f613301aee231c83890d6f7ed2",
+          "receipt_file_sha256": "9358e1bb549b1c87d78ae5edabf97678caca3278ad4c058acf2f04d104a51a10",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        },
+        {
+          "gpu": 1,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "0d751cf5134a743b3b89b5926f17b800e530e3228b29c10b2a2aa71c0c95a452",
+          "receipt_file_sha256": "5bf3f8656d873727d2ae7e04e6fea61194a62fe72447e674f49d7512a0397735",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        },
+        {
+          "gpu": 2,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "c9572d0b87c0be696bd7e7f31a0103bef1da1fdf74a8c259737c444cda77e0a9",
+          "receipt_file_sha256": "e199eded9ac61015a432f7f7d1e89332d565283d3b66ddb3dd7739b1875799d3",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        },
+        {
+          "gpu": 3,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "13f4912dab4577854e8db0217680afca5c37f0d4de5f942492a7564aeaf38e17",
+          "receipt_file_sha256": "6b83783c61feecf3e83fbf2fe5f77cbe4fd52f3ca1086d37ed0d56463e967581",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        }
+      ],
+      "artifact_inventory": [
+        {
+          "bytes": 40,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/actor_pids.csv",
+          "sha256": "369d4466cdff1cfa40f82581f14a959928c235575e4da9b2f9b933724c147813"
+        },
+        {
+          "bytes": 137190,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_0.json",
+          "sha256": "9358e1bb549b1c87d78ae5edabf97678caca3278ad4c058acf2f04d104a51a10"
+        },
+        {
+          "bytes": 22745,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_0.log",
+          "sha256": "b97947014fb1a19853150d77386e05843858dbbc13c625503dbd897f3f012faf"
+        },
+        {
+          "bytes": 137190,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_1.json",
+          "sha256": "5bf3f8656d873727d2ae7e04e6fea61194a62fe72447e674f49d7512a0397735"
+        },
+        {
+          "bytes": 22744,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_1.log",
+          "sha256": "7e90539192202b0b0f68d7d65f1313d4134fa5a497516badf86efd90cd475ff7"
+        },
+        {
+          "bytes": 137191,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_2.json",
+          "sha256": "e199eded9ac61015a432f7f7d1e89332d565283d3b66ddb3dd7739b1875799d3"
+        },
+        {
+          "bytes": 22902,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_2.log",
+          "sha256": "b46749801629485842ee806d51fa463995c5fabd809b44eb4d4458a89e3853c2"
+        },
+        {
+          "bytes": 137192,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_3.json",
+          "sha256": "6b83783c61feecf3e83fbf2fe5f77cbe4fd52f3ca1086d37ed0d56463e967581"
+        },
+        {
+          "bytes": 22746,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_3.log",
+          "sha256": "2ea65f26b42e475716ec95ddb444c87678fb8e1e37d1989af0ef4ddbe62bf279"
+        },
+        {
+          "bytes": 0,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_telemetry_monitor_v80.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 481903,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r1/gpu_telemetry_v80.jsonl",
+          "sha256": "f6b14ccbe43314c78a3c47451de7c1cd1391bdc5d8b5c07e35b7407ce957b7da"
+        }
+      ],
+      "bundle_sha256": "73adc7ebe416d6065808cf918415d077989b1a064b47ef5132422b32da118e47",
+      "external_cleanup": {
+        "accepted_final_batches": [
+          {
+            "actor_roots_dead": true,
+            "batch_index": 125,
+            "compute_pids": [],
+            "external_gpu_utilization_percent_max": 0,
+            "external_memory_used_mib_max": 4,
+            "foreign_compute_pids": [],
+            "gpus": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "actor_roots_dead": true,
+            "batch_index": 126,
+            "compute_pids": [],
+            "external_gpu_utilization_percent_max": 0,
+            "external_memory_used_mib_max": 4,
+            "foreign_compute_pids": [],
+            "gpus": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "actor_roots_dead": true,
+            "batch_index": 127,
+            "compute_pids": [],
+            "external_gpu_utilization_percent_max": 0,
+            "external_memory_used_mib_max": 4,
+            "foreign_compute_pids": [],
+            "gpus": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "minimum_consecutive_idle_batches": 3,
+        "telemetry_file_sha256": "f6b14ccbe43314c78a3c47451de7c1cd1391bdc5d8b5c07e35b7407ce957b7da"
+      }
+    },
+    "v80_bf16_kv_mamba_capacity_0479_r2": {
+      "actor_receipts": [
+        {
+          "gpu": 0,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "b66747123e021169d2c9a60b00951d721807253f47d1b7091a4f016667d48d6b",
+          "receipt_file_sha256": "cbe1d371d6908fcf0a582526a56906a2fcadfd409bb8f2b4270b24fb7916fccd",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        },
+        {
+          "gpu": 1,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "b7807c2df01d84857bc051283f23b97185d2a8ec2ee9fa7f7c9be8e3b680e8fa",
+          "receipt_file_sha256": "bc204c488df42739d88e557f9e62c549a3a17f0f55d57e18a3c625ad50f71202",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        },
+        {
+          "gpu": 2,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "f985aca61825eedff02b2305111ecdfbfec3a123e2e639396e95fc52820ba303",
+          "receipt_file_sha256": "bd4a3a1ba4fed28720f01bf789edb170d3325aa5d67074b324312f774a0a9ecd",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        },
+        {
+          "gpu": 3,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "3aa6a5358998abbf2ad4e8cd765e9c226c725da5c1e7e64c8eba0bf60d5de8e1",
+          "receipt_file_sha256": "fddd1667408ff918da6522012b6d4b78b6c0b7e418f8157614489a3ef1851cfd",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        }
+      ],
+      "artifact_inventory": [
+        {
+          "bytes": 40,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/actor_pids.csv",
+          "sha256": "a36bd69764f73e6d127dbcc456660c48de526d013bb6a4912fb4b9a47e46ab1e"
+        },
+        {
+          "bytes": 137190,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_0.json",
+          "sha256": "cbe1d371d6908fcf0a582526a56906a2fcadfd409bb8f2b4270b24fb7916fccd"
+        },
+        {
+          "bytes": 22745,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_0.log",
+          "sha256": "8757dc2271aa63b01f6d8b11ab78882038548b73d2398416a64348bf3d523949"
+        },
+        {
+          "bytes": 137187,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_1.json",
+          "sha256": "bc204c488df42739d88e557f9e62c549a3a17f0f55d57e18a3c625ad50f71202"
+        },
+        {
+          "bytes": 22744,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_1.log",
+          "sha256": "a59813e35b2e26bff028e9869acab32ac995d47f74aebf9786681dd43b6ae2d7"
+        },
+        {
+          "bytes": 137190,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_2.json",
+          "sha256": "bd4a3a1ba4fed28720f01bf789edb170d3325aa5d67074b324312f774a0a9ecd"
+        },
+        {
+          "bytes": 22745,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_2.log",
+          "sha256": "06c80121166ecf0a62cb6164631776d1b2a9066ae8b908fd98354d8aeea3a596"
+        },
+        {
+          "bytes": 137194,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_3.json",
+          "sha256": "fddd1667408ff918da6522012b6d4b78b6c0b7e418f8157614489a3ef1851cfd"
+        },
+        {
+          "bytes": 22746,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_3.log",
+          "sha256": "d1c9b1b368fdd2712a4cbf8a86e2f706879813061d877a11276a57853f75ddbb"
+        },
+        {
+          "bytes": 0,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_telemetry_monitor_v80.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 500786,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r2/gpu_telemetry_v80.jsonl",
+          "sha256": "adcd3383ced2cd775237a97f18fd4eee982a771f1f888f1f29a59fad1f51d8fe"
+        }
+      ],
+      "bundle_sha256": "3ac1156ac629d8c27d70756c08fa98652c74351549e5fea09711473900b584bc",
+      "external_cleanup": {
+        "accepted_final_batches": [
+          {
+            "actor_roots_dead": true,
+            "batch_index": 130,
+            "compute_pids": [],
+            "external_gpu_utilization_percent_max": 0,
+            "external_memory_used_mib_max": 4,
+            "foreign_compute_pids": [],
+            "gpus": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "actor_roots_dead": true,
+            "batch_index": 131,
+            "compute_pids": [],
+            "external_gpu_utilization_percent_max": 0,
+            "external_memory_used_mib_max": 4,
+            "foreign_compute_pids": [],
+            "gpus": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "actor_roots_dead": true,
+            "batch_index": 132,
+            "compute_pids": [],
+            "external_gpu_utilization_percent_max": 0,
+            "external_memory_used_mib_max": 4,
+            "foreign_compute_pids": [],
+            "gpus": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "minimum_consecutive_idle_batches": 3,
+        "telemetry_file_sha256": "adcd3383ced2cd775237a97f18fd4eee982a771f1f888f1f29a59fad1f51d8fe"
+      }
+    },
+    "v80_bf16_kv_mamba_capacity_0479_r3": {
+      "actor_receipts": [
+        {
+          "gpu": 0,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "79dcc6716d73f24ca1682e57d9c2ec4f17a85e81b53168798c6c64d1b5a51ca5",
+          "receipt_file_sha256": "c67e3f76a5bc495994633cd2fbc2616ebba281e8e52111cf66b15fc9a157f7ed",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        },
+        {
+          "gpu": 1,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "766f27ed6cc83bcfa463644621fdddad8008a16da6ef375ce5c372056667ba60",
+          "receipt_file_sha256": "f0c373e3beb2d9fd0aafc528fc35928a596b6981e24d9a86b280fe4e13286e43",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        },
+        {
+          "gpu": 2,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "abe2088773c240e046fe945d4720cbd03ec626812bbb32d791780dd1dffdd87b",
+          "receipt_file_sha256": "8369e7867d256f72d6d86f4170494b9860baf5c54e5e4976c6280df78e5bed8a",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        },
+        {
+          "gpu": 3,
+          "legacy_field_value": false,
+          "receipt_content_sha256": "f0db13a0dd6df9ac5a0220536176e4af4ffc2a79a0f86505310d2742257511ae",
+          "receipt_file_sha256": "567352683b4065231fe927e37c3da7df6f86841031d1a73ec6113a80511a19d9",
+          "source_bound_interpretation": {
+            "destroy_process_group_attempted": false,
+            "destroy_was_required": false,
+            "process_group_initialized_before_shutdown": false
+          }
+        }
+      ],
+      "artifact_inventory": [
+        {
+          "bytes": 40,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/actor_pids.csv",
+          "sha256": "a5d56d627ce4b9960853de1a31dc2ac4eddaa8b17bb49b703da4c189a84d0c03"
+        },
+        {
+          "bytes": 137191,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_0.json",
+          "sha256": "c67e3f76a5bc495994633cd2fbc2616ebba281e8e52111cf66b15fc9a157f7ed"
+        },
+        {
+          "bytes": 22746,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_0.log",
+          "sha256": "fe6287b2f2c4ad952a96c45b89c0b30a137ec7e4b7d4a1a186a7b3eaa74547f6"
+        },
+        {
+          "bytes": 137189,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_1.json",
+          "sha256": "f0c373e3beb2d9fd0aafc528fc35928a596b6981e24d9a86b280fe4e13286e43"
+        },
+        {
+          "bytes": 22745,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_1.log",
+          "sha256": "df2c837854354fd76825290e24075851aa8752a5ca22219441493928c986b33a"
+        },
+        {
+          "bytes": 137193,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_2.json",
+          "sha256": "8369e7867d256f72d6d86f4170494b9860baf5c54e5e4976c6280df78e5bed8a"
+        },
+        {
+          "bytes": 22746,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_2.log",
+          "sha256": "8722adc9a327f20e23cedaf59e27490fc7ce8f353f00c9e6c03bc1d8ec734f76"
+        },
+        {
+          "bytes": 137191,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_3.json",
+          "sha256": "567352683b4065231fe927e37c3da7df6f86841031d1a73ec6113a80511a19d9"
+        },
+        {
+          "bytes": 22747,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_3.log",
+          "sha256": "2748da318b1efbc7b75bbd257f5eaae994cada3ecb59cb75586fa3d33051610b"
+        },
+        {
+          "bytes": 0,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_telemetry_monitor_v80.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 527164,
+          "path": "experiments/eggroll_es_hpo/runs/v80_bf16_kv_mamba_capacity_0479_r3/gpu_telemetry_v80.jsonl",
+          "sha256": "642ba26fefa5d1bab5b18dc5a96883da8f849c2088276526a666bef206ebf00e"
+        }
+      ],
+      "bundle_sha256": "cd5107654df8367284a5fc720c50c3007ce16513ae77b55e7c5ccc52af3c3d5f",
+      "external_cleanup": {
+        "accepted_final_batches": [
+          {
+            "actor_roots_dead": true,
+            "batch_index": 137,
+            "compute_pids": [],
+            "external_gpu_utilization_percent_max": 0,
+            "external_memory_used_mib_max": 4,
+            "foreign_compute_pids": [],
+            "gpus": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "actor_roots_dead": true,
+            "batch_index": 138,
+            "compute_pids": [],
+            "external_gpu_utilization_percent_max": 0,
+            "external_memory_used_mib_max": 4,
+            "foreign_compute_pids": [],
+            "gpus": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "actor_roots_dead": true,
+            "batch_index": 139,
+            "compute_pids": [],
+            "external_gpu_utilization_percent_max": 0,
+            "external_memory_used_mib_max": 4,
+            "foreign_compute_pids": [],
+            "gpus": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "minimum_consecutive_idle_batches": 3,
+        "telemetry_file_sha256": "642ba26fefa5d1bab5b18dc5a96883da8f849c2088276526a666bef206ebf00e"
+      }
+    }
+  },
+  "schema": "v83-qwen36-tp1-process-group-cleanup-amendment",
+  "status": "additive_interpretation_of_immutable_completed_runs"
+}
