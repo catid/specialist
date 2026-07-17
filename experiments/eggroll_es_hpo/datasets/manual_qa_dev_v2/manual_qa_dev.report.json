@@ -1,0 +1,117 @@
+{
+  "schema": "specialist-manual-qa-dev-report-v2",
+  "status": "curation_complete_validation_passed",
+  "created_at_utc": "2026-07-17T00:00:00+00:00",
+  "contract": {
+    "allowlist_path": "experiments/eggroll_es_hpo/preregistrations/manual_qa_dev_curation_allowlist_v1.json",
+    "allowlist_schema": "specialist-manual-qa-dev-curation-allowlist-v1",
+    "allowlist_content_sha256_before_self_field": "c31b1c21fb22e74ac35691f5f20cce796b7037688784e052045f68f788bb18b3",
+    "v2_contract_content_sha256": "ffe0bd6fdb51f8bf96f4736091156a2c146bde3a66e8ed44ab5e3b21b1016e51",
+    "v2_contract_file_sha256": "fdb018a73f81ff491246fdf6162910ed5ba27f49159a64dc2a1102bbe4cf3047",
+    "dev_source_identity_set_sha256": "3b40b564411ee883bef776d0ad9f0936bb159b95867e05d323604e67dfca05e0"
+  },
+  "scope": {
+    "role": "dev_only_never_model_adaptation",
+    "authorized_for_model_adaptation": false,
+    "authorized_for_qa_hpo_or_general_quality_promotion": false,
+    "successor_contract_validation_required_before_use": true,
+    "terminal_or_holdout_data_accessed": false,
+    "model_inference_training_or_embedding_performed": false,
+    "gpu_work_performed": false
+  },
+  "curation": {
+    "method": "manual_exact_source_read",
+    "reviewer_id": "codex_manual_curator_v2",
+    "reviewer_type": "manual_agent",
+    "selection_policy": "useful factual, mechanistic, or bounded-application questions grounded directly in each permitted DEV corpus",
+    "excluded_question_styles": [
+      "URL memorization",
+      "source or page trivia",
+      "weird list recall",
+      "unsafe or unsupported advice"
+    ]
+  },
+  "sources": [
+    {
+      "repository_relative_path": "data/site_corpora/nps_textile_fiber_aging_appendix_k_2002/CORPUS.md",
+      "opaque_item_identity": "47ec28655e0be3f432f8b721e90baf8772625f9740cffd8d65bbb1a305c623f2",
+      "source_path_identity_sha256": "503b658f0290b4f040fe9b4202fb77096ee87ca2c603ea19fc23447198ca853a",
+      "file_sha256": "04949a4d3685ad91b052ba81224a770b39328c2715ebc5fc8284bebf34d33453",
+      "qa_item_count": 5
+    },
+    {
+      "repository_relative_path": "data/site_corpora/usfs_rigging_for_trail_work/CORPUS.md",
+      "opaque_item_identity": "5b4344a0bc2ef38896ee460e447249fe0ef731370235a1c730db0e4758526454",
+      "source_path_identity_sha256": "a436664ba7a3460e89d058e06dda1ada9d91b9dc9b0fb6d2690984b10528f1ed",
+      "file_sha256": "4ba06a9c38b1270ce09de54f9e9d58eff016996ac14fe79d94a4519e1b28210a",
+      "qa_item_count": 5
+    },
+    {
+      "repository_relative_path": "data/site_corpora/usfs_region5_hazard_tree_2022/CORPUS.md",
+      "opaque_item_identity": "690060d665705f9d68e796a46a8034e787582ba3c3fa2445bd615ba8cf17d2d7",
+      "source_path_identity_sha256": "8b844cc70ae2c5d486dde1e940d350da7e71b740f3b1a539967157a6f848f09e",
+      "file_sha256": "17c8eca67538c64c8f624972ec1965aa7f764180412a3598108a1d00d34eae9e",
+      "qa_item_count": 5
+    },
+    {
+      "repository_relative_path": "data/site_corpora/phm_synthetic_fiber_rope_condition_monitoring_review_2017/CORPUS.md",
+      "opaque_item_identity": "98394761ee7672fc871336b1da008483c269a7f7dc222cfa66a1acc852412e65",
+      "source_path_identity_sha256": "965278a4a53b4d90703a5955fa238c1f0aea077040f7e3b67d55f187c2e86859",
+      "file_sha256": "8b709d07150e9f4d5e9c6bf0bb8f8e8af08c81f316581023f3f468371d5ae27e",
+      "qa_item_count": 5
+    }
+  ],
+  "outputs": [
+    {
+      "path": "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.jsonl",
+      "format": "jsonl",
+      "record_count": 20
+    },
+    {
+      "path": "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.report.json",
+      "format": "json",
+      "record_count": 1
+    },
+    {
+      "path": "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.curation.jsonl",
+      "format": "jsonl",
+      "record_count": 20
+    }
+  ],
+  "validation": {
+    "qa_json_parse_errors": 0,
+    "curation_json_parse_errors": 0,
+    "report_json_parse_errors": 0,
+    "qa_record_count": 20,
+    "curation_record_count": 20,
+    "unique_qa_id_count": 20,
+    "unique_curation_qa_id_count": 20,
+    "qa_and_curation_id_sets_match": true,
+    "source_count": 4,
+    "per_source_counts": [5, 5, 5, 5],
+    "minimum_total_required": 16,
+    "minimum_total_met": true,
+    "minimum_per_source_required": 4,
+    "minimum_per_source_met": true,
+    "qa_required_fields_valid": true,
+    "curation_required_fields_valid": true,
+    "all_grounding_marked_direct": true,
+    "all_curation_decisions_include": true,
+    "questions_containing_urls": 0
+  },
+  "paths_read": [
+    "experiments/eggroll_es_hpo/preregistrations/manual_qa_dev_curation_allowlist_v1.json",
+    "data/site_corpora/nps_textile_fiber_aging_appendix_k_2002/CORPUS.md",
+    "data/site_corpora/usfs_rigging_for_trail_work/CORPUS.md",
+    "data/site_corpora/usfs_region5_hazard_tree_2022/CORPUS.md",
+    "data/site_corpora/phm_synthetic_fiber_rope_condition_monitoring_review_2017/CORPUS.md",
+    "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.jsonl",
+    "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.report.json",
+    "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.curation.jsonl"
+  ],
+  "paths_written": [
+    "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.jsonl",
+    "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.report.json",
+    "experiments/eggroll_es_hpo/datasets/manual_qa_dev_v2/manual_qa_dev.curation.jsonl"
+  ]
+}
