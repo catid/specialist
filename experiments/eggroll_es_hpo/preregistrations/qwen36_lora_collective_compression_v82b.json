@@ -1,0 +1,1103 @@
+{
+  "authority": {
+    "adapter_update_or_checkpoint_written": false,
+    "cpu_file_inspection_only": true,
+    "dataset_training_example_dev_ood_or_holdout_opened": false,
+    "gpu_or_model_launched": false,
+    "live_compression_arm_registered": false,
+    "training_checkpoint_layout_or_runtime_promotion_authorized": false
+  },
+  "beads": {
+    "incident": "specialist-nen.31",
+    "superseded_compression_experiment": "specialist-0j5.28"
+  },
+  "canonical_lora_update_scope": {
+    "canonical_master": {
+      "bytes": 18112512,
+      "dtype": "float32",
+      "elements": 4528128,
+      "module_count": 35,
+      "ordered_shape_manifest": [
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.20.linear_attn.in_proj_a.lora_A.weight",
+          "module": "model.layers.20.linear_attn.in_proj_a",
+          "ordinal": 0,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 1024,
+          "key": "base_model.model.model.layers.20.linear_attn.in_proj_a.lora_B.weight",
+          "module": "model.layers.20.linear_attn.in_proj_a",
+          "ordinal": 1,
+          "role": "B",
+          "shape": [
+            32,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.20.linear_attn.in_proj_b.lora_A.weight",
+          "module": "model.layers.20.linear_attn.in_proj_b",
+          "ordinal": 2,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 1024,
+          "key": "base_model.model.model.layers.20.linear_attn.in_proj_b.lora_B.weight",
+          "module": "model.layers.20.linear_attn.in_proj_b",
+          "ordinal": 3,
+          "role": "B",
+          "shape": [
+            32,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.20.linear_attn.in_proj_qkv.lora_A.weight",
+          "module": "model.layers.20.linear_attn.in_proj_qkv",
+          "ordinal": 4,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 262144,
+          "key": "base_model.model.model.layers.20.linear_attn.in_proj_qkv.lora_B.weight",
+          "module": "model.layers.20.linear_attn.in_proj_qkv",
+          "ordinal": 5,
+          "role": "B",
+          "shape": [
+            8192,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.20.linear_attn.in_proj_z.lora_A.weight",
+          "module": "model.layers.20.linear_attn.in_proj_z",
+          "ordinal": 6,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 131072,
+          "key": "base_model.model.model.layers.20.linear_attn.in_proj_z.lora_B.weight",
+          "module": "model.layers.20.linear_attn.in_proj_z",
+          "ordinal": 7,
+          "role": "B",
+          "shape": [
+            4096,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 131072,
+          "key": "base_model.model.model.layers.20.linear_attn.out_proj.lora_A.weight",
+          "module": "model.layers.20.linear_attn.out_proj",
+          "ordinal": 8,
+          "role": "A",
+          "shape": [
+            32,
+            4096
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.20.linear_attn.out_proj.lora_B.weight",
+          "module": "model.layers.20.linear_attn.out_proj",
+          "ordinal": 9,
+          "role": "B",
+          "shape": [
+            2048,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.20.mlp.gate.lora_A.weight",
+          "module": "model.layers.20.mlp.gate",
+          "ordinal": 10,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 8192,
+          "key": "base_model.model.model.layers.20.mlp.gate.lora_B.weight",
+          "module": "model.layers.20.mlp.gate",
+          "ordinal": 11,
+          "role": "B",
+          "shape": [
+            256,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.20.mlp.shared_expert.down_proj.lora_A.weight",
+          "module": "model.layers.20.mlp.shared_expert.down_proj",
+          "ordinal": 12,
+          "role": "A",
+          "shape": [
+            32,
+            512
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.20.mlp.shared_expert.down_proj.lora_B.weight",
+          "module": "model.layers.20.mlp.shared_expert.down_proj",
+          "ordinal": 13,
+          "role": "B",
+          "shape": [
+            2048,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.20.mlp.shared_expert.gate_proj.lora_A.weight",
+          "module": "model.layers.20.mlp.shared_expert.gate_proj",
+          "ordinal": 14,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.20.mlp.shared_expert.gate_proj.lora_B.weight",
+          "module": "model.layers.20.mlp.shared_expert.gate_proj",
+          "ordinal": 15,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.20.mlp.shared_expert.up_proj.lora_A.weight",
+          "module": "model.layers.20.mlp.shared_expert.up_proj",
+          "ordinal": 16,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.20.mlp.shared_expert.up_proj.lora_B.weight",
+          "module": "model.layers.20.mlp.shared_expert.up_proj",
+          "ordinal": 17,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.21.linear_attn.in_proj_a.lora_A.weight",
+          "module": "model.layers.21.linear_attn.in_proj_a",
+          "ordinal": 18,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 1024,
+          "key": "base_model.model.model.layers.21.linear_attn.in_proj_a.lora_B.weight",
+          "module": "model.layers.21.linear_attn.in_proj_a",
+          "ordinal": 19,
+          "role": "B",
+          "shape": [
+            32,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.21.linear_attn.in_proj_b.lora_A.weight",
+          "module": "model.layers.21.linear_attn.in_proj_b",
+          "ordinal": 20,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 1024,
+          "key": "base_model.model.model.layers.21.linear_attn.in_proj_b.lora_B.weight",
+          "module": "model.layers.21.linear_attn.in_proj_b",
+          "ordinal": 21,
+          "role": "B",
+          "shape": [
+            32,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.21.linear_attn.in_proj_qkv.lora_A.weight",
+          "module": "model.layers.21.linear_attn.in_proj_qkv",
+          "ordinal": 22,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 262144,
+          "key": "base_model.model.model.layers.21.linear_attn.in_proj_qkv.lora_B.weight",
+          "module": "model.layers.21.linear_attn.in_proj_qkv",
+          "ordinal": 23,
+          "role": "B",
+          "shape": [
+            8192,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.21.linear_attn.in_proj_z.lora_A.weight",
+          "module": "model.layers.21.linear_attn.in_proj_z",
+          "ordinal": 24,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 131072,
+          "key": "base_model.model.model.layers.21.linear_attn.in_proj_z.lora_B.weight",
+          "module": "model.layers.21.linear_attn.in_proj_z",
+          "ordinal": 25,
+          "role": "B",
+          "shape": [
+            4096,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 131072,
+          "key": "base_model.model.model.layers.21.linear_attn.out_proj.lora_A.weight",
+          "module": "model.layers.21.linear_attn.out_proj",
+          "ordinal": 26,
+          "role": "A",
+          "shape": [
+            32,
+            4096
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.21.linear_attn.out_proj.lora_B.weight",
+          "module": "model.layers.21.linear_attn.out_proj",
+          "ordinal": 27,
+          "role": "B",
+          "shape": [
+            2048,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.21.mlp.gate.lora_A.weight",
+          "module": "model.layers.21.mlp.gate",
+          "ordinal": 28,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 8192,
+          "key": "base_model.model.model.layers.21.mlp.gate.lora_B.weight",
+          "module": "model.layers.21.mlp.gate",
+          "ordinal": 29,
+          "role": "B",
+          "shape": [
+            256,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.21.mlp.shared_expert.down_proj.lora_A.weight",
+          "module": "model.layers.21.mlp.shared_expert.down_proj",
+          "ordinal": 30,
+          "role": "A",
+          "shape": [
+            32,
+            512
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.21.mlp.shared_expert.down_proj.lora_B.weight",
+          "module": "model.layers.21.mlp.shared_expert.down_proj",
+          "ordinal": 31,
+          "role": "B",
+          "shape": [
+            2048,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.21.mlp.shared_expert.gate_proj.lora_A.weight",
+          "module": "model.layers.21.mlp.shared_expert.gate_proj",
+          "ordinal": 32,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.21.mlp.shared_expert.gate_proj.lora_B.weight",
+          "module": "model.layers.21.mlp.shared_expert.gate_proj",
+          "ordinal": 33,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.21.mlp.shared_expert.up_proj.lora_A.weight",
+          "module": "model.layers.21.mlp.shared_expert.up_proj",
+          "ordinal": 34,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.21.mlp.shared_expert.up_proj.lora_B.weight",
+          "module": "model.layers.21.mlp.shared_expert.up_proj",
+          "ordinal": 35,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.22.linear_attn.in_proj_a.lora_A.weight",
+          "module": "model.layers.22.linear_attn.in_proj_a",
+          "ordinal": 36,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 1024,
+          "key": "base_model.model.model.layers.22.linear_attn.in_proj_a.lora_B.weight",
+          "module": "model.layers.22.linear_attn.in_proj_a",
+          "ordinal": 37,
+          "role": "B",
+          "shape": [
+            32,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.22.linear_attn.in_proj_b.lora_A.weight",
+          "module": "model.layers.22.linear_attn.in_proj_b",
+          "ordinal": 38,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 1024,
+          "key": "base_model.model.model.layers.22.linear_attn.in_proj_b.lora_B.weight",
+          "module": "model.layers.22.linear_attn.in_proj_b",
+          "ordinal": 39,
+          "role": "B",
+          "shape": [
+            32,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.22.linear_attn.in_proj_qkv.lora_A.weight",
+          "module": "model.layers.22.linear_attn.in_proj_qkv",
+          "ordinal": 40,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 262144,
+          "key": "base_model.model.model.layers.22.linear_attn.in_proj_qkv.lora_B.weight",
+          "module": "model.layers.22.linear_attn.in_proj_qkv",
+          "ordinal": 41,
+          "role": "B",
+          "shape": [
+            8192,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.22.linear_attn.in_proj_z.lora_A.weight",
+          "module": "model.layers.22.linear_attn.in_proj_z",
+          "ordinal": 42,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 131072,
+          "key": "base_model.model.model.layers.22.linear_attn.in_proj_z.lora_B.weight",
+          "module": "model.layers.22.linear_attn.in_proj_z",
+          "ordinal": 43,
+          "role": "B",
+          "shape": [
+            4096,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 131072,
+          "key": "base_model.model.model.layers.22.linear_attn.out_proj.lora_A.weight",
+          "module": "model.layers.22.linear_attn.out_proj",
+          "ordinal": 44,
+          "role": "A",
+          "shape": [
+            32,
+            4096
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.22.linear_attn.out_proj.lora_B.weight",
+          "module": "model.layers.22.linear_attn.out_proj",
+          "ordinal": 45,
+          "role": "B",
+          "shape": [
+            2048,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.22.mlp.gate.lora_A.weight",
+          "module": "model.layers.22.mlp.gate",
+          "ordinal": 46,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 8192,
+          "key": "base_model.model.model.layers.22.mlp.gate.lora_B.weight",
+          "module": "model.layers.22.mlp.gate",
+          "ordinal": 47,
+          "role": "B",
+          "shape": [
+            256,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.22.mlp.shared_expert.down_proj.lora_A.weight",
+          "module": "model.layers.22.mlp.shared_expert.down_proj",
+          "ordinal": 48,
+          "role": "A",
+          "shape": [
+            32,
+            512
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.22.mlp.shared_expert.down_proj.lora_B.weight",
+          "module": "model.layers.22.mlp.shared_expert.down_proj",
+          "ordinal": 49,
+          "role": "B",
+          "shape": [
+            2048,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.22.mlp.shared_expert.gate_proj.lora_A.weight",
+          "module": "model.layers.22.mlp.shared_expert.gate_proj",
+          "ordinal": 50,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.22.mlp.shared_expert.gate_proj.lora_B.weight",
+          "module": "model.layers.22.mlp.shared_expert.gate_proj",
+          "ordinal": 51,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.22.mlp.shared_expert.up_proj.lora_A.weight",
+          "module": "model.layers.22.mlp.shared_expert.up_proj",
+          "ordinal": 52,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.22.mlp.shared_expert.up_proj.lora_B.weight",
+          "module": "model.layers.22.mlp.shared_expert.up_proj",
+          "ordinal": 53,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.23.mlp.gate.lora_A.weight",
+          "module": "model.layers.23.mlp.gate",
+          "ordinal": 54,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 8192,
+          "key": "base_model.model.model.layers.23.mlp.gate.lora_B.weight",
+          "module": "model.layers.23.mlp.gate",
+          "ordinal": 55,
+          "role": "B",
+          "shape": [
+            256,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.23.mlp.shared_expert.down_proj.lora_A.weight",
+          "module": "model.layers.23.mlp.shared_expert.down_proj",
+          "ordinal": 56,
+          "role": "A",
+          "shape": [
+            32,
+            512
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.23.mlp.shared_expert.down_proj.lora_B.weight",
+          "module": "model.layers.23.mlp.shared_expert.down_proj",
+          "ordinal": 57,
+          "role": "B",
+          "shape": [
+            2048,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.23.mlp.shared_expert.gate_proj.lora_A.weight",
+          "module": "model.layers.23.mlp.shared_expert.gate_proj",
+          "ordinal": 58,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.23.mlp.shared_expert.gate_proj.lora_B.weight",
+          "module": "model.layers.23.mlp.shared_expert.gate_proj",
+          "ordinal": 59,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.23.mlp.shared_expert.up_proj.lora_A.weight",
+          "module": "model.layers.23.mlp.shared_expert.up_proj",
+          "ordinal": 60,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.23.mlp.shared_expert.up_proj.lora_B.weight",
+          "module": "model.layers.23.mlp.shared_expert.up_proj",
+          "ordinal": 61,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.23.self_attn.k_proj.lora_A.weight",
+          "module": "model.layers.23.self_attn.k_proj",
+          "ordinal": 62,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.23.self_attn.k_proj.lora_B.weight",
+          "module": "model.layers.23.self_attn.k_proj",
+          "ordinal": 63,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 131072,
+          "key": "base_model.model.model.layers.23.self_attn.o_proj.lora_A.weight",
+          "module": "model.layers.23.self_attn.o_proj",
+          "ordinal": 64,
+          "role": "A",
+          "shape": [
+            32,
+            4096
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.23.self_attn.o_proj.lora_B.weight",
+          "module": "model.layers.23.self_attn.o_proj",
+          "ordinal": 65,
+          "role": "B",
+          "shape": [
+            2048,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.23.self_attn.q_proj.lora_A.weight",
+          "module": "model.layers.23.self_attn.q_proj",
+          "ordinal": 66,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 262144,
+          "key": "base_model.model.model.layers.23.self_attn.q_proj.lora_B.weight",
+          "module": "model.layers.23.self_attn.q_proj",
+          "ordinal": 67,
+          "role": "B",
+          "shape": [
+            8192,
+            32
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 65536,
+          "key": "base_model.model.model.layers.23.self_attn.v_proj.lora_A.weight",
+          "module": "model.layers.23.self_attn.v_proj",
+          "ordinal": 68,
+          "role": "A",
+          "shape": [
+            32,
+            2048
+          ]
+        },
+        {
+          "dtype": "float32",
+          "elements": 16384,
+          "key": "base_model.model.model.layers.23.self_attn.v_proj.lora_B.weight",
+          "module": "model.layers.23.self_attn.v_proj",
+          "ordinal": 69,
+          "role": "B",
+          "shape": [
+            512,
+            32
+          ]
+        }
+      ],
+      "ordered_shape_manifest_sha256": "e12f7199343477db3927bda67bf5f364030a47216be8aa2b30fc3b71c261da2b",
+      "tensor_count": 70
+    },
+    "schema": "qwen36-canonical-lora-update-scope-v82b",
+    "source_bindings": {
+      "canonical_state_worker": {
+        "file_sha256": "cc40337eba30fe0748996c22dcbf3914b8c12249f6e2e47d6128aadee575494c",
+        "path": "eggroll_es_worker_lora_v41a.py"
+      },
+      "initialization_builder": {
+        "file_sha256": "2d1bb1b36d1aec160e6a50972c02c2d667e055e09ec5fd8015c1dff1b523a512",
+        "path": "build_matched_lora_initialization_v41a.py"
+      },
+      "initialization_manifest": {
+        "content_sha256": "5f885b415302c4e748e19f4d535f1e57ff87f785370f653b345cbdfafda3224b",
+        "file_sha256": "a2fa79e6ac06f75743d3fee8f5c0b1aabe6bb83b52b05910ed6460438e2640a2",
+        "ordered_key_sha256": "ddee26a3a4a10683a51f089e8b7028e4a8d9607e0827dab7a314e04e3ece2280",
+        "path": "experiments/eggroll_es_hpo/initial_adapters/matched_lora_initialization_v41a_seed20260715041/initialization_manifest_v41a.json",
+        "surface_sha256": "6c4c219f92fba3d7d01e08f439b7b1f21a1d07bc9893cdd18f860994668e0fb8"
+      },
+      "production_update_worker": {
+        "communicator": "self.inter_pg.all_reduce",
+        "file_sha256": "547d525edfd51412abb3a4980ddc4a55730ad0eb09987ec202ce2ce8f701a2c2",
+        "method": "execute_sharded_adapter_update_v41a",
+        "path": "eggroll_es_worker_lora_v72.py"
+      }
+    },
+    "update_execution": {
+      "accumulator_reduced_in_place": true,
+      "collective_calls_per_actor_per_update": 70,
+      "flat_selected_base_weight_surface_used": false,
+      "native_boundaries": "canonical_70_peft_tensors_in_sorted_key_order",
+      "one_fresh_fp32_accumulator_per_tensor": true,
+      "reduced_tensor_copied_to_cpu_fp32_before_master_add": true
+    }
+  },
+  "content_sha256_before_self_field": "3efcc3a59652a6dbef73a5e0a963e4a86628992ef371556314c73d61245983f4",
+  "corrected_byte_accounting": {
+    "bf16_error_feedback_hypothetical": {
+      "d2h_source_hbm_read_bytes_lower_bound": 9056256,
+      "fused_prepare_hbm_bytes_per_actor_per_update_lower_bound": 63393792,
+      "incremental_local_hbm_bytes_per_actor_per_update_lower_bound_versus_fp32_excluding_nccl": 54337536,
+      "incremental_transaction_peak_gpu_bytes_per_actor": 36749312,
+      "local_hbm_bytes_per_actor_per_update_lower_bound_excluding_nccl": 72450048,
+      "maximum_bf16_gpu_staging_bytes": 524288,
+      "maximum_cpu_host_bf16_staging_bytes": 524288,
+      "nominal_ring_bus_bytes_all_actors_per_update": 54337536,
+      "nominal_ring_bus_bytes_per_actor_per_update": 13584384,
+      "payload_bytes_per_actor_per_update": 9056256,
+      "steady_residual_bank_bytes_per_actor": 18112512,
+      "transaction_two_residual_banks_bytes_per_actor": 36225024
+    },
+    "content_sha256": "c39bdf1ec7a5ac6de3da76beb459f216bc19c8f86657b656330366a99a17b54a",
+    "fp32_control": {
+      "d2h_source_hbm_read_bytes_lower_bound": 18112512,
+      "maximum_cpu_host_delta_staging_bytes": 1048576,
+      "maximum_gpu_accumulator_bytes": 1048576,
+      "nominal_ring_bus_bytes_all_actors_per_update": 108675072,
+      "nominal_ring_bus_bytes_per_actor_per_update": 27168768,
+      "payload_bytes_per_actor_per_update": 18112512,
+      "persistent_residual_bytes": 0
+    },
+    "nominal_projection": {
+      "algorithm_is_projection_not_measured_pynccl_behavior": true,
+      "nccl_internal_hbm_bytes_excluded": true,
+      "payload_fraction_of_fp32": 0.5,
+      "ring_bus_bytes_saved_all_actors_per_update": 54337536,
+      "ring_bus_bytes_saved_per_actor_per_update": 13584384,
+      "ring_factor_denominator": 4,
+      "ring_factor_numerator": 6
+    },
+    "schema": "qwen36-lora-collective-byte-accounting-v82b",
+    "scope": {
+      "collective_calls_per_actor_per_update": 70,
+      "element_count_distribution": {
+        "1024": 6,
+        "131072": 7,
+        "16384": 14,
+        "262144": 4,
+        "65536": 35,
+        "8192": 4
+      },
+      "maximum_tensor_elements": 262144,
+      "median_tensor_elements": 65536,
+      "minimum_tensor_elements": 1024,
+      "module_count": 35,
+      "tensor_count": 70,
+      "total_elements_per_actor": 4528128,
+      "world_size": 4
+    }
+  },
+  "correctness_and_safety": {
+    "BF16_support_through_canonical_PyNccl_communicator_proven": false,
+    "V82_bit_or_transaction_oracle_authorizes_live_use": false,
+    "fp32_control_remains_exact_production_path": true,
+    "promotion_authorized": false,
+    "protected_ood_gate_run": false,
+    "source_disjoint_semantic_gate_run": false
+  },
+  "created_at_utc": "2026-07-17T00:00:00+00:00",
+  "future_reconsideration_gate": {
+    "all_thresholds_required_before_implementing_live_compression": true,
+    "compression_arm_must_not_execute_during_profile": true,
+    "minimum_median_collective_fraction_of_update": 0.05,
+    "minimum_median_perfect_half_payload_speedup_upper_bound_fraction": 0.01,
+    "profile_or_compression_gpu_launch_authorized_by_v82b": false,
+    "profile_schema": "qwen36-lora-collective-materiality-profile-v82b",
+    "profile_seeds": [
+      1821,
+      1822,
+      1823
+    ],
+    "quality_or_promotion_authorized": false,
+    "registered_action": "profile_the_unchanged_fp32_v72_update_only_if_existing_post_optimization_profiling_dependencies_authorize_it",
+    "required_measurements": [
+      "unoverlapped canonical PyNccl collective seconds",
+      "update execute seconds",
+      "collective bottleneck rank",
+      "link bytes",
+      "HBM bytes",
+      "all-four-GPU attribution and cleanup"
+    ],
+    "top_three_replicates_minimum": 2
+  },
+  "immutable_incident_lineage": {
+    "schema": "qwen36-collective-scope-incident-lineage-v82b",
+    "v75": {
+      "artifact": {
+        "builder_file_sha256": "922c5d15f64591d0ab56eda141a10a02dd4cff78bf82abd6501cc112ab97276f",
+        "content_sha256": "5dd23d1effbecec2068d8e21d7f8bf9e5afab85a9e8a58d38a913e835c0e0ed5",
+        "file_sha256": "f960df73f7082b2e5583692c1649b2057f06e012268530eb4529f2bc616a1ebb",
+        "path": "experiments/eggroll_es_hpo/decisions/qwen36_production_layout_provisional_v75.json"
+      },
+      "collective_layout_claim_superseded": true,
+      "collective_layout_promotable_before_rebuilt_decision": false,
+      "consumer_authority_for_collective_layout": false,
+      "contaminated_fields": [
+        "safe_default.layout.collective_layout.parameter_boundaries",
+        "conditional_fp8_challenger.layout.collective_layout.parameter_boundaries",
+        "retained_choices[collective_parameter_layout]"
+      ],
+      "immutable_artifact_mutated": false,
+      "noncollective_dimensions_re_evaluated_by_v82b": false,
+      "superseding_boundary_identity": "canonical_70_peft_tensor"
+    },
+    "v82": {
+      "additional_backend_mismatch": {
+        "production": "self.inter_pg.all_reduce_PyNccl_style_communicator",
+        "prospective_v82_benchmark": "torch.distributed.all_reduce_ProcessGroupNCCL",
+        "torch_dtype_capability_evidence_proves_canonical_communicator": false
+      },
+      "artifact": {
+        "content_sha256": "42f96cdaf7ada94f1e696aecc7d8254f25ee3e3b4fbce8400ba8218f4abf0cc3",
+        "file_sha256": "ca727884ceda45652a2d3d67677107e3e8582173bd8c96ee556b96bf6521e1f6",
+        "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_collective_compression_v82.json"
+      },
+      "commit": "7bfb666c5afa63d199b83de2e8f670f7e7857999",
+      "historical_result_rewritten": false,
+      "immutable_wrong_scope_evidence": true,
+      "live_arm_or_promotion_authority": false,
+      "source_bindings": [
+        {
+          "file_sha256": "1b205a846dde09da73f5f36477f68e643f0d2f3ae89b16eb7918db46db03022d",
+          "path": "eggroll_es_collective_compression_v82.py"
+        },
+        {
+          "file_sha256": "24a2b8d94d79845e54c7608869feca72fe2e5c0dbdf00a46110a1a45f18b3888",
+          "path": "benchmark_eggroll_es_collective_compression_v82.py"
+        },
+        {
+          "file_sha256": "bbef59904bf958f119b4d127abd4bb737004c183a142bf336cd56959c19d48de",
+          "path": "build_qwen36_collective_compression_preregistration_v82.py"
+        },
+        {
+          "file_sha256": "ddf87716f2c0a00ffd7dd7a120f82d87662fec0223009e9a79738fc9c2de2c93",
+          "path": "test_eggroll_es_collective_compression_v82.py"
+        },
+        {
+          "file_sha256": "fb3a0c911eb34f5c7cfff53256e26d7dffcacd2e81a8ae441c41e18671eedfdc",
+          "path": "experiments/eggroll_es_hpo/qwen36_collective_compression_v82_cpu_evidence_20260717.md"
+        }
+      ],
+      "wrong_surface": {
+        "actual_identity": "selected_full_weight_middle_late_surface",
+        "elements": 142999552,
+        "maximum_tensor_elements": 25165824,
+        "not_identity": "canonical_PEFT_LoRA_master",
+        "tensor_count": 23
+      }
+    }
+  },
+  "legacy_to_corrected_comparison": {
+    "all_legacy_v82_live_and_promotion_conclusions_superseded": true,
+    "corrected_elements": 4528128,
+    "corrected_fp32_payload_bytes_per_actor": 18112512,
+    "corrected_incremental_transaction_peak_bytes_per_actor": 36749312,
+    "corrected_maximum_bf16_staging_bytes_per_actor": 524288,
+    "corrected_nominal_ring_savings_bytes_per_actor": 13584384,
+    "corrected_tensor_count": 70,
+    "legacy_elements": 142999552,
+    "legacy_fp32_payload_bytes_per_actor": 571998208,
+    "legacy_incremental_transaction_peak_bytes_per_actor": 1194328064,
+    "legacy_maximum_bf16_staging_bytes_per_actor": 50331648,
+    "legacy_nominal_ring_savings_bytes_per_actor": 428998656,
+    "legacy_over_corrected_element_ratio": 31.58028041610131,
+    "legacy_tensor_count": 23
+  },
+  "materiality_reassessment": {
+    "canonical_pynccl_hbm_bytes_measured": false,
+    "canonical_pynccl_link_bytes_measured": false,
+    "collective_call_latency_reduced_by_dtype_compression": false,
+    "current_decision": "retain_exact_fp32_control_no_live_compression_arm",
+    "incremental_local_hbm_mib_per_actor_per_update_lower_bound": 51.8203125,
+    "incremental_peak_gpu_mib_per_actor": 35.046875,
+    "isolated_unoverlapped_pynccl_collective_time_measured": false,
+    "local_hbm_increment_to_nominal_ring_savings_ratio": 4.0,
+    "materiality_established": false,
+    "nominal_ring_savings_mib_all_actors_per_update": 51.8203125,
+    "nominal_ring_savings_mib_per_actor_per_update": 12.955078125,
+    "reason": "The corrected payload is 31.58x smaller than V82 assumed; 70 small native calls retain launch latency, and the minimum incremental local HBM traffic is 4x the nominal ring saving. No isolated canonical PyNccl time/link/HBM measurement exists.",
+    "v66d_logical_fp32_payload_all_actors_bytes": 72450048,
+    "v66d_observed_update_execute_span_seconds": 4.202,
+    "v66d_payload_matches_corrected_lora_surface_exactly": true
+  },
+  "oracle": {
+    "file_sha256": "4fef02306ef6519a328ba024e4c4d5eec568695d7a08a80ef0bec8796ffdeb35",
+    "imports_torch_or_cuda": false,
+    "path": "eggroll_es_collective_compression_v82b.py",
+    "schema": "eggroll-es-lora-collective-scope-oracle-v82b"
+  },
+  "purpose": "Correct V82/V75 collective scope to the exact production LoRA master and decide whether compression merits any live arm.",
+  "schema": "qwen36-lora-collective-compression-correction-v82b",
+  "status": "additive_wrong_scope_correction_live_compression_not_materially_justified_no_gpu_launch",
+  "v75_additive_correction": {
+    "collective_layout_field_superseded": true,
+    "correct_native_layout": "canonical_70_peft_tensor",
+    "immutable_v75_result_rewritten": false,
+    "native_23_tensor_not_the_lora_update_layout": true,
+    "v75_collective_layout_not_promotable_until_rebuilt": true,
+    "v75_noncollective_fields_not_rejudged_here": true
+  }
+}
