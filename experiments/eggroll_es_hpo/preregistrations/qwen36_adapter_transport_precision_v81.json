@@ -1,0 +1,246 @@
+{
+  "authority": {
+    "candidate_update_or_layout_promotion": false,
+    "cpu_source_audit_and_state_machine_tests": true,
+    "dataset_or_protected_content_access": false,
+    "gpu_launch": false,
+    "runtime_worker_or_site_package_mutation": false,
+    "training_or_scored_evaluation": false
+  },
+  "bead": "specialist-0j5.26",
+  "bindings": {
+    "builder": {
+      "file_sha256": "34695c55b8ad098ac46ba02554de96b856648b8f7e2babe47c563c3b1c7b2405",
+      "path": "build_adapter_transport_precision_preregistration_v81.py"
+    },
+    "implementation": {
+      "file_sha256": "08e8b74cd8a79ab7615a89877e184cbea50e8ddfbd95bdbfefccc50c13f28bfc",
+      "path": "eggroll_es_adapter_transport_precision_v81.py"
+    },
+    "installed_vllm": {
+      "base_linear": {
+        "file_sha256": "040d75b4a76cb97f28c507453ab8aea68252c35b8b64d9f83ce40d32e2a3a495",
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/layers/base_linear.py"
+      },
+      "fused_moe": {
+        "file_sha256": "62dcf28f2af0906b420c75bba171dcf4e5a392e02dc9860c32fad88f46b95b7e",
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/layers/fused_moe.py"
+      },
+      "lora_config": {
+        "file_sha256": "031bade79427ba8d1746be968cfa9c343e7c4dda1e7fdb5059a5775cb34874b5",
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/config/lora.py"
+      },
+      "model_manager": {
+        "file_sha256": "13201a06e17cccffb30c90bf3d268dfbf901567623b03454003afb5a922ae45a",
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/lora/model_manager.py"
+      },
+      "source_modified": false,
+      "version": "0.25.0",
+      "version_source": {
+        "file_sha256": "3f838c1dd6b9133d59f7895b2934e3ad321403bbeaf88a470c4fc7740c5cd98d",
+        "path": "es-at-scale/.venv/lib/python3.12/site-packages/vllm/_version.py"
+      }
+    },
+    "test": {
+      "file_sha256": "cd40d20d45b1b4029ba034a72112dfa9b987d09c2c68858d5ded743c99da3392",
+      "path": "test_eggroll_es_adapter_transport_precision_v81.py"
+    },
+    "v71_audit_preregistration": {
+      "content_sha256": "14c7afe2fd370798a26641f6950e92592be67e5b2e2e5fabfc442b76462c2f99",
+      "file_sha256": "8747e9ca3c022b593bdfcf445881106d5410c3496f0135bcd2a663f07ca55240",
+      "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_exact_audit_traffic_v71.json"
+    },
+    "v71_control_worker": {
+      "file_sha256": "6167ecd24332e0384e50f4bfa34893112623c2291f35e89989d8c3a527b9fcaa",
+      "path": "eggroll_es_worker_lora_v71.py"
+    },
+    "v72_fused_preregistration": {
+      "content_sha256": "d3144d7f22570951974b8eb366d10e5e4ab9a3d3cc149d44afcb4b2be5c2ee58",
+      "file_sha256": "ed7d78f2570032d8cd31229f847ce572628ea2347a2bd6b4af4fe28071c1e5df",
+      "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_fused_structured_runtime_v72.json"
+    },
+    "v72_fused_runtime": {
+      "file_sha256": "357607f3c16b071f67d2bc3adb0317bbbd29f31f7e1db0cf1aa3030ac997df6e",
+      "path": "eggroll_es_fused_structured_runtime_v72.py"
+    },
+    "v72_host_preregistration": {
+      "content_sha256": "95f29e599bfdee505035cf2a4a1182f6f8322d70a52f603a55b79a18c2896ad8",
+      "file_sha256": "b748d9eb4b7404b753f29f3cc1ff6827e152e70d44b430aac9f17d026679a398",
+      "path": "experiments/eggroll_es_hpo/preregistrations/qwen36_host_state_ownership_v72.json"
+    },
+    "v72_host_worker": {
+      "file_sha256": "547d525edfd51412abb3a4980ddc4a55730ad0eb09987ec202ce2ce8f701a2c2",
+      "path": "eggroll_es_worker_lora_v72.py"
+    }
+  },
+  "content_sha256_before_self_field": "db01b11ca0fc1565cc81a00cd0a6426f80ae840f907eb0446fda5fb0908eeb80",
+  "decision": {
+    "async_copy_destination": "existing_82_runtime_slot_views",
+    "canonical_location": "cpu",
+    "canonical_noise_update_optimizer_checkpoint_dtype": "float32",
+    "device_staging": "rejected",
+    "double_buffering": "rejected_for_serial_single_slot_protocol",
+    "event_boundary": "before_exact_v71_readback_and_before_generation",
+    "float16_execution_view": "reject_as_memory_ablation_byte_neutral; separate quality/performance preregistration required",
+    "fp8_execution_view": "reject_unsupported_before_gpu_launch",
+    "pinned_bank_count": 1,
+    "selected_execution_dtype": "bfloat16"
+  },
+  "dependencies": {
+    "must_preserve": [
+      "specialist-0j5.14",
+      "specialist-0j5.16",
+      "specialist-0j5.18",
+      "specialist-0j5.19",
+      "specialist-0j5.21"
+    ],
+    "production_layout_blocker": false,
+    "reason_not_blocking_specialist_0j5_20": "The accepted synchronous BF16 single-slot layout remains a safe default. This challenger changes optional transfer latency/HBM traffic but not persistent layout or H2D bytes."
+  },
+  "failure_contract": {
+    "bank_reuse_before_retirement": "reject",
+    "failed_or_wrong_master_restore": "terminal_poison",
+    "final_receipt": "requires_exact_idle_and_unpoisoned",
+    "missing_or_stale_event": "reject_before_exact_audit",
+    "pageable_nonblocking_source": "reject",
+    "partial_copy_count_or_bytes": "reject",
+    "runtime_identity_mismatch": "reject_reward_and_update",
+    "unknown_or_partial_copy": "exact_master_restore_or_terminal_poison"
+  },
+  "future_live_ablation": {
+    "authorization_in_this_artifact": false,
+    "challenger_only_change": "one stable pinned BF16 host storage, direct nonblocking copies to existing runtime views, one completion event",
+    "control": "unchanged V71/V72 BF16 per-view host conversion, temporary device tensor, synchronous runtime copy",
+    "minimum_counterbalanced_pairs": 3,
+    "physical_gpus_per_arm": 4,
+    "promotion_gate": {
+      "all_three_pairs_and_all_four_gpus_required": true,
+      "device_staging_bytes": 0,
+      "exact_receipt_drift_allowed": false,
+      "h2d_bytes_must_not_increase": true,
+      "material_transition_time_improvement_required": true,
+      "semantic_and_source_disjoint_ood_noninferiority_required": true
+    },
+    "required_exact_equalities": [
+      "candidate projected runtime identity",
+      "post-generation exact V71 audit",
+      "reward inputs and outputs",
+      "update acceptance and FP32 master identity",
+      "exact abort/final master and runtime identity"
+    ],
+    "required_measurements": [
+      "materialize_restore_update_abort wall time",
+      "H2D bytes and copy count",
+      "device-to-device bytes or kernel/memcpy trace",
+      "peak allocated and reserved VRAM",
+      "PCIe RX/TX and HBM activity",
+      "all-four-GPU PID/useful-work attribution",
+      "host pinned bytes VmLck/VmPin and NUMA placement",
+      "cleanup idle and no foreign process"
+    ],
+    "same_long_lived_actor_pair_order": [
+      "AB",
+      "BA",
+      "AB"
+    ]
+  },
+  "installed_capability": {
+    "auto_resolves_to_model_dtype": true,
+    "base_linear_source_sha256": "040d75b4a76cb97f28c507453ab8aea68252c35b8b64d9f83ce40d32e2a3a495",
+    "byte_lower_than_bfloat16_supported": false,
+    "config_source_sha256": "031bade79427ba8d1746be968cfa9c343e7c4dda1e7fdb5059a5775cb34874b5",
+    "dense_direct_nonblocking_copy_sites_at_least": 2,
+    "dense_slot_allocations_use_lora_dtype": 2,
+    "float16_supported_but_byte_neutral": true,
+    "fp8_lora_execution_supported": false,
+    "fused_moe_direct_nonblocking_copy_sites_at_least": 10,
+    "fused_moe_slot_allocations_use_lora_dtype": 6,
+    "fused_moe_source_sha256": "62dcf28f2af0906b420c75bba171dcf4e5a392e02dc9860c32fad88f46b95b7e",
+    "model_manager_source_sha256": "13201a06e17cccffb30c90bf3d268dfbf901567623b03454003afb5a922ae45a",
+    "packed_cpu_lora_pinning_present": true,
+    "schema": "installed-vllm-lora-transport-capability-v81",
+    "supported_lora_dtypes": [
+      "auto",
+      "float16",
+      "bfloat16"
+    ]
+  },
+  "purpose": "Keep all canonical EGGROLL/LoRA arithmetic and persistence FP32, attest the lowest supported vLLM execution dtype, and test one reused pinned BF16 bank that copies directly into the resident slot.",
+  "schema": "qwen36-adapter-transport-precision-preregistration-v81",
+  "status": "sealed_cpu_contract_cuda_integration_and_live_pairs_pending",
+  "transport_plan": {
+    "canonical_authority": {
+      "bytes": 18112512,
+      "dtype": "float32",
+      "elements": 4528128,
+      "location": "cpu",
+      "roles": [
+        "canonical_master",
+        "perturbation_and_update_arithmetic",
+        "optimizer_state",
+        "checkpoint_authority"
+      ],
+      "tensor_count": 70
+    },
+    "challenger_pinned_direct": {
+      "device_staging_bytes": 0,
+      "device_to_device_copy_payload_bytes": 0,
+      "direct_copy_into_existing_runtime_views": true,
+      "double_buffering_authorized": false,
+      "h2d_bytes": 9842688,
+      "h2d_copy_count": 82,
+      "host_bank_storage_count": 1,
+      "host_pinned_bank_bytes": 9842688,
+      "materialization_hbm_read_write_lower_bound_bytes": 9842688,
+      "maximum_ephemeral_device_tensor_bytes": 0,
+      "non_blocking_requires_pinned_host_source": true,
+      "one_completion_event_before_exact_audit_and_publication": true,
+      "reused_host_pinned_bank_count": 1
+    },
+    "content_sha256_before_self_field": "469d56a33c30501df55f7d599c4b8f4d65d2cf807ca76ca2f467d56e778c5d4c",
+    "control_v71": {
+      "device_to_device_copy_payload_bytes": 9842688,
+      "ephemeral_device_staging_write_bytes": 9842688,
+      "h2d_bytes": 9842688,
+      "h2d_copy_count": 82,
+      "materialization_hbm_read_write_lower_bound_bytes": 29528064,
+      "maximum_ephemeral_device_tensor_bytes": 524288,
+      "pageable_bf16_fragment_bytes": 9842688,
+      "synchronous_copy_requested": true
+    },
+    "exact_delta": {
+      "device_to_device_payload_bytes_saved_per_transition": 9842688,
+      "h2d_bytes_saved_per_transition": 0,
+      "h2d_copy_calls_saved_per_transition": 0,
+      "hbm_materialization_lower_bound_fraction_saved": 0.6666666666666666,
+      "hbm_read_write_lower_bound_bytes_saved_per_transition": 19685376,
+      "host_staging_bytes_saved_at_peak": 0,
+      "logical_transient_device_bytes_saved_at_peak": 524288,
+      "per_16_candidate_hbm_bytes_saved": 314966016
+    },
+    "execution_view": {
+      "elements": 4921344,
+      "model_compute_dtype": "bfloat16",
+      "persistent_device_bytes": 9842688,
+      "projection_sha256": "7ad7c2ec6f55d38915744a6287e1d0bd56b4393f319053c62f3f4c9e36c9dcf5",
+      "requested_dtype": "auto",
+      "resolved_dtype": "bfloat16",
+      "runtime_keys_sha256": "4005c52d86203277b288aac80b992777dfd581432ddb898a1144a0e5afa76f30",
+      "view_count": 82
+    },
+    "non_overlap": {
+      "exact_runtime_and_base_audits": "specialist-0j5.21/V71",
+      "fp32_host_ownership": "specialist-0j5.19/V72",
+      "phase_telemetry": "specialist-0j5.14",
+      "sole_resident_slot": "specialist-0j5.16",
+      "structured_noise_and_update_generation": "specialist-0j5.18/V72"
+    },
+    "rejected_precision_alternatives": {
+      "float16": "supported but byte-neutral and semantically different",
+      "float8": "not accepted by installed vLLM LoRADType",
+      "fp32_runtime": "doubles runtime-view and H2D bytes",
+      "int8_or_int4": "not accepted by installed vLLM LoRADType"
+    },
+    "schema": "qwen36-lora-transport-plan-v81"
+  }
+}
