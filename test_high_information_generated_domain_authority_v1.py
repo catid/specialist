@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import json
 
 import pytest
 
@@ -19,6 +20,33 @@ def targets(*, source_a: int = 5, source_b: int = 5) -> dict:
     }
 
 
+def token_length_gate(rows: list[dict]) -> dict:
+    exclusions = [
+        row["token_length_gate_receipt"]
+        for row in rows
+        if row["token_length_gate_receipt"]["status"] != "passed"
+    ]
+    value = {
+        "schema": authority.TOKEN_LENGTH_GATE_SCHEMA,
+        "status": "sealed_passed_with_lineage_exclusions",
+        "maximum_rendered_chat_tokens": authority.MAX_RENDERED_CHAT_TOKENS,
+        "candidates": len(rows),
+        "passed": len(rows) - len(exclusions),
+        "excluded_overlength": len(exclusions),
+        "factual_text_rewritten": False,
+        "all_candidates_length_gated_before_selection": True,
+        "exclusions": exclusions,
+        "exclusion_commitment_sha256": authority.corpus.canonical_sha256(exclusions),
+        "tokenizer": {
+            "tokenizer_json_sha256": authority.corpus.TOKENIZER_JSON_SHA256,
+            "tokenizer_config_sha256": authority.corpus.TOKENIZER_CONFIG_SHA256,
+            "assistant_mask_method": authority.corpus.ASSISTANT_MASK_METHOD,
+        },
+    }
+    value["content_sha256_before_self_field"] = authority._self_address(value)
+    return value
+
+
 def candidate(
     identity: str,
     *,
@@ -34,8 +62,9 @@ def candidate(
     digest = authority.corpus.canonical_sha256(identity)
     exact = exact or digest
     cluster = cluster or f"near-cluster-v1:{digest}"
-    return {
+    row = {
         "selection_candidate_id": identity,
+        "lane": "primary",
         "candidate_example_id": f"candidate-{identity}",
         "request_id": request_id or f"request-{identity}",
         "source_context_id": f"context-{identity}",
@@ -88,12 +117,83 @@ def candidate(
             if consensus and not manual_required else {"status": "unresolved"}
         ),
     }
+    rendered_tokens = min(authority.MAX_RENDERED_CHAT_TOKENS, tokens + 16)
+    row["rendered_chat_token_count"] = rendered_tokens
+    row["token_length_gate_receipt"] = authority._token_length_candidate_receipt(
+        row,
+        total_tokens=rendered_tokens,
+        status="passed",
+    )
+    return row
 
 
 def test_exact_key_uses_nfkc_casefold_and_whitespace():
     left = authority.exact_key("  FULLWIDTH Ａ test ", "Answer\nwith   spacing")
     right = authority.exact_key("fullwidth a TEST", "answer with spacing")
     assert left == right
+
+
+def test_rendered_chat_length_gate_excludes_overlength_without_copying_text():
+    tokenizer = authority.corpus.load_tokenizer()
+    short = candidate(
+        "selection-short-chat",
+        tokens=1,
+        source="source-a",
+        category="category-a",
+    )
+    long = candidate(
+        "selection-long-chat",
+        tokens=1,
+        source="source-b",
+        category="category-b",
+    )
+    marker = "SYNTHETIC_PRIVATE_FACT"
+    for row, context_text in (
+        (short, "Short bounded synthetic context."),
+        (long, " ".join([marker] * 2_200)),
+    ):
+        row["request"] = {"task_family": "grounded_synthesis"}
+        row["context"] = {"text": context_text}
+        messages = authority.structural.candidate_training_messages(
+            request=row["request"],
+            context=row["context"],
+            question=row["question"],
+            answer=row["answer"],
+        )
+        row["assistant_qwen36_token_count"] = (
+            authority.corpus.official_assistant_token_count(tokenizer, messages)
+        )
+
+    gated, receipt = authority.apply_rendered_chat_length_gate(
+        [short, long], tokenizer
+    )
+    by_id = {row["selection_candidate_id"]: row for row in gated}
+    assert by_id["selection-short-chat"]["token_length_gate_receipt"]["status"] == "passed"
+    excluded = by_id["selection-long-chat"]["token_length_gate_receipt"]
+    assert excluded["status"] == "excluded_rendered_chat_exceeds_token_limit"
+    assert excluded["rendered_chat_token_count"] > authority.MAX_RENDERED_CHAT_TOKENS
+    assert excluded["factual_text_rewritten"] is False
+    assert receipt["excluded_overlength"] == 1
+    assert marker not in json.dumps(receipt, sort_keys=True)
+    assert long["question"] not in json.dumps(receipt, sort_keys=True)
+    evaluated = authority.apply_semantic_eligibility(gated, {})
+    evaluated_by_id = {row["selection_candidate_id"]: row for row in evaluated}
+    assert evaluated_by_id["selection-long-chat"]["selection_eligible"] is False
+    assert evaluated_by_id["selection-long-chat"]["selection_eligibility_status"] == (
+        "rejected_rendered_chat_exceeds_token_limit"
+    )
+
+
+def test_atomic_selector_fails_closed_without_token_length_receipt():
+    row = candidate(
+        "selection-unmeasured",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+    )
+    row.pop("token_length_gate_receipt")
+    with pytest.raises(RuntimeError, match="lacks token-length gate receipt"):
+        authority.solve_atomic_selection([row], targets(source_a=5, source_b=0))
 
 
 def test_near_duplicate_clusters_are_source_aware_and_allow_only_distinct_views():
@@ -287,6 +387,8 @@ def test_training_row_matches_fixed_mixed_snapshot_interface():
         "selection",
     }
     assert all(value["status"] == "passed" for value in row["verification_receipts"].values())
+    assert row["verification_receipts"]["selection"]["maximum_tokens"] == 2_048
+    assert row["verification_receipts"]["selection"]["rendered_chat_token_count"] <= 2_048
     assert row["rights_authorization"]["source_rights_status_preserved"] is True
     assert row["lineage"]["source_document_identity_sha256"] == "8" * 64
 
@@ -310,6 +412,8 @@ def test_blocked_scaffold_reads_no_semantic_rows_and_authorizes_nothing(monkeypa
     assert scaffold["training_launch_authorized"] is False
     assert scaffold["selection"]["padding_allowed"] is False
     assert scaffold["selection"]["cross_source_borrowing_allowed"] is False
+    assert scaffold["selection"]["maximum_total_rendered_chat_tokens"] == 2_048
+    assert scaffold["selection"]["overlength_candidates_may_enter_selector"] is False
     assert scaffold["final_interface"]["row_schema"] == authority.ROW_SCHEMA
     assert scaffold["content_sha256_before_self_field"] == authority._self_address(scaffold)
 
@@ -325,6 +429,7 @@ def test_deficit_report_never_claims_or_emits_training_rows():
         pool=pool,
         queue=[],
         input_receipt={"content_sha256": "6" * 64},
+        token_length_receipt=token_length_gate(pool),
     )
     assert report["status"] == "exact_atomic_selection_unsolved_no_training_rows_emitted"
     assert report["selection"]["deficits"]["assistant_tokens"] == 2

@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import copy
 import json
+import math
 from pathlib import Path
 
+import pytest
 import torch
 
 import build_fast_linear_attention_contract_v1 as contract
@@ -14,6 +17,22 @@ def _checked_contract() -> dict:
     declared = unsigned.pop("content_sha256_before_self_field")
     assert contract.canonical_sha256(unsigned) == declared
     return value
+
+
+def _reseal(value: dict) -> dict:
+    value.pop("content_sha256_before_self_field", None)
+    value["content_sha256_before_self_field"] = contract.canonical_sha256(value)
+    return value
+
+
+def _decision(value: dict) -> dict:
+    execution = value["gpu_execution"]
+    return contract._selection_decision(
+        value["environment_integrity"],
+        value["transformers_qwen35_moe_fast_path"],
+        execution["per_gpu_results"],
+        gpu_baseline_checks=execution["gpu_baseline_checks"],
+    )
 
 
 def test_contract_is_synthetic_only_and_does_not_authorize_training():
@@ -173,8 +192,155 @@ def test_hybrid_training_decision_is_explicit_and_reproducible():
         value["environment_integrity"],
         value["transformers_qwen35_moe_fast_path"],
         value["gpu_execution"]["per_gpu_results"],
+        gpu_baseline_checks=value["gpu_execution"]["gpu_baseline_checks"],
     )
     assert decision == expected
+
+
+def test_selection_and_check_reject_gpu_architecture_baseline_drift():
+    value = copy.deepcopy(_checked_contract())
+    baseline = value["gpu_execution"]["gpu_baseline_checks"]
+    baseline["all_match_architecture_contract"] = False
+    baseline["per_gpu"][0]["all_match"] = False
+    decision = _decision(value)
+    assert decision["selected"] == "torch_fallback"
+    assert "gpu_architecture_baseline_mismatch" in decision[
+        "hybrid_path_validation_failures"
+    ]
+    _reseal(value)
+    with pytest.raises(RuntimeError, match="invalid fast linear-attention GPU evidence"):
+        contract._validate_checked_contract(value, check_current=False)
+
+
+@pytest.mark.parametrize(
+    "mutation, expected_reason",
+    [
+        ("duplicate_index", "outer_gpu_physical_indices_missing_or_duplicate"),
+        ("missing_uuid", "outer_gpu_identity_missing_or_invalid"),
+        ("duplicate_uuid", "outer_gpu_uuids_missing_or_duplicate"),
+    ],
+)
+def test_selection_and_check_reject_duplicate_or_missing_outer_gpu_identity(
+    mutation: str,
+    expected_reason: str,
+):
+    value = copy.deepcopy(_checked_contract())
+    results = value["gpu_execution"]["per_gpu_results"]
+    if mutation == "duplicate_index":
+        results[3]["gpu"]["index"] = 2
+    elif mutation == "missing_uuid":
+        results[3]["gpu"].pop("uuid")
+    else:
+        results[3]["gpu"]["uuid"] = results[0]["gpu"]["uuid"]
+    decision = _decision(value)
+    assert decision["selected"] == "torch_fallback"
+    assert expected_reason in decision["hybrid_path_validation_failures"]
+    _reseal(value)
+    with pytest.raises(RuntimeError, match="invalid fast linear-attention GPU evidence"):
+        contract._validate_checked_contract(value, check_current=False)
+
+
+@pytest.mark.parametrize(
+    "field, value",
+    [
+        ("physical_index", 0),
+        ("worker_visible_index", 1),
+        ("name", "synthetic-wrong-gpu"),
+        ("compute_capability", "0.0"),
+        ("total_memory_bytes", 0),
+    ],
+)
+def test_selection_and_check_reject_successful_worker_gpu_misbinding(
+    field: str,
+    value: object,
+):
+    contract_value = copy.deepcopy(_checked_contract())
+    worker_gpu = contract_value["gpu_execution"]["per_gpu_results"][3]["probes"][
+        "gated_delta"
+    ]["gpu"]
+    worker_gpu[field] = value
+    decision = _decision(contract_value)
+    assert decision["selected"] == "torch_fallback"
+    assert "gpu_3_gated_delta_worker_gpu_identity_mismatch" in decision[
+        "hybrid_path_validation_failures"
+    ]
+    _reseal(contract_value)
+    with pytest.raises(RuntimeError, match="invalid fast linear-attention GPU evidence"):
+        contract._validate_checked_contract(contract_value, check_current=False)
+
+
+@pytest.mark.parametrize(
+    "scope, field, value",
+    [
+        ("derived", "hybrid_throughput_speedup", -1.0),
+        ("derived", "hybrid_peak_allocated_bytes_ratio", 0.0),
+        ("derived", "hybrid_throughput_speedup", float("inf")),
+        ("derived", "hybrid_peak_allocated_bytes_ratio", float("nan")),
+        ("measured", "tokens_per_second", 0.0),
+        ("measured", "milliseconds_per_iteration", -1.0),
+        ("measured", "total_elapsed_ms", float("inf")),
+        ("measured", "peak_allocated_bytes", -1),
+        ("measured", "baseline_reserved_bytes", -1),
+    ],
+)
+def test_selection_and_check_reject_invalid_benchmark_values_and_ratios(
+    scope: str,
+    field: str,
+    value: object,
+):
+    contract_value = copy.deepcopy(_checked_contract())
+    benchmark = contract_value["gpu_execution"]["per_gpu_results"][0]["probes"][
+        "qwen35_moe_hybrid_module"
+    ]["benchmarks"]["2048"]
+    target = benchmark if scope == "derived" else benchmark["hybrid_training"]
+    target[field] = value
+    decision = _decision(contract_value)
+    assert decision["selected"] == "torch_fallback"
+    assert any(
+        "gpu_0_hybrid_seq_2048_benchmark_invalid" in reason
+        for reason in decision["hybrid_path_validation_failures"]
+    )
+    if isinstance(value, float) and not math.isfinite(value):
+        with pytest.raises(RuntimeError, match="not canonical JSON"):
+            contract._validate_checked_contract(contract_value, check_current=False)
+    else:
+        _reseal(contract_value)
+        with pytest.raises(
+            RuntimeError, match="invalid fast linear-attention benchmark evidence"
+        ):
+            contract._validate_checked_contract(contract_value, check_current=False)
+
+
+def test_selection_and_check_reject_forged_positive_derived_ratio():
+    value = copy.deepcopy(_checked_contract())
+    benchmark = value["gpu_execution"]["per_gpu_results"][1]["probes"][
+        "qwen35_moe_hybrid_module"
+    ]["benchmarks"]["2048"]
+    benchmark["hybrid_throughput_speedup"] *= 2.0
+    decision = _decision(value)
+    assert decision["selected"] == "torch_fallback"
+    assert any(
+        "throughput_speedup_inconsistent" in reason
+        for reason in decision["hybrid_path_validation_failures"]
+    )
+    _reseal(value)
+    with pytest.raises(
+        RuntimeError, match="invalid fast linear-attention benchmark evidence"
+    ):
+        contract._validate_checked_contract(value, check_current=False)
+
+
+def test_selection_fails_closed_when_gpu_baseline_receipt_is_not_supplied():
+    value = _checked_contract()
+    decision = contract._selection_decision(
+        value["environment_integrity"],
+        value["transformers_qwen35_moe_fast_path"],
+        value["gpu_execution"]["per_gpu_results"],
+    )
+    assert decision["selected"] == "torch_fallback"
+    assert "gpu_architecture_baseline_receipt_invalid" in decision[
+        "hybrid_path_validation_failures"
+    ]
 
 
 def test_hybrid_policy_exactly_declares_every_training_binding():

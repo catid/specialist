@@ -30,6 +30,7 @@ import run_high_information_nli_prefilter_v1 as primary_nli
 import run_high_information_semantic_judge_shard_v1 as primary_judge
 import verify_high_information_candidates_v1 as structural
 import verify_high_information_generation_pass_v1 as generation_pass
+from qwen_chat_masking_v1 import encode_chat_assistant_only
 
 
 AUTHORITY_DIRECTORY = corpus.OUTPUT_DIR / "generated_domain_authority_v1"
@@ -96,6 +97,11 @@ NEAR_JACCARD_THRESHOLD = 0.82
 MAX_COMMON_SHINGLE_POSTING = 128
 OTHER_ACCEPT_REVIEW_MODULUS = 100
 OTHER_ACCEPT_REVIEW_BUCKET = 0
+MAX_RENDERED_CHAT_TOKENS = 2_048
+TOKEN_LENGTH_GATE_SCHEMA = "high-information-rendered-chat-length-gate-v1"
+TOKEN_LENGTH_RECEIPT_SCHEMA = (
+    "high-information-rendered-chat-length-candidate-receipt-v1"
+)
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 TOKEN_RE = re.compile(r"[\w]+", re.UNICODE)
 
@@ -333,6 +339,10 @@ def build_scaffold() -> dict:
             "solver": "scipy.optimize.milp_highs_binary_two_stage_v1",
             "stage_1": "maximize_atomic_assistant_tokens_under_every_axis_cap",
             "stage_2": "hold_stage_1_total_and_maximize_deterministic_quality_priority",
+            "maximum_total_rendered_chat_tokens": MAX_RENDERED_CHAT_TOKENS,
+            "rendered_chat_length_gate_receipt_schema": TOKEN_LENGTH_GATE_SCHEMA,
+            "overlength_candidates_may_enter_selector": False,
+            "overlength_factual_text_may_be_rewritten_to_pass": False,
             "padding_allowed": False,
             "truncation_allowed": False,
             "cross_source_borrowing_allowed": False,
@@ -484,6 +494,117 @@ def attach_deduplication(candidates: Sequence[dict]) -> list[dict]:
     return rows
 
 
+def _token_length_candidate_receipt(
+    candidate: Mapping[str, Any], *, total_tokens: int, status: str
+) -> dict[str, Any]:
+    receipt = {
+        "schema": TOKEN_LENGTH_RECEIPT_SCHEMA,
+        "status": status,
+        "selection_candidate_id": candidate.get("selection_candidate_id"),
+        "candidate_example_id": candidate.get("candidate_example_id"),
+        "request_id": candidate.get("request_id"),
+        "source_context_id": candidate.get("source_context_id"),
+        "source_group_id": candidate.get("source_group_id"),
+        "lane": candidate.get("lane"),
+        "structural_review_sha256": candidate.get("structural_review_sha256"),
+        "semantic_record_sha256": candidate.get("semantic_record_sha256"),
+        "rendered_chat_token_count": total_tokens,
+        "maximum_tokens": MAX_RENDERED_CHAT_TOKENS,
+        "factual_text_rewritten": False,
+        "eligible_for_length_gated_selection": status == "passed",
+    }
+    receipt["content_sha256_before_self_field"] = _self_address(receipt)
+    return receipt
+
+
+def apply_rendered_chat_length_gate(
+    candidates: Sequence[dict], tokenizer: Any | None = None
+) -> tuple[list[dict], dict[str, Any]]:
+    """Render every candidate exactly and exclude >2,048-token atomic chats."""
+
+    tokenizer = corpus.load_tokenizer() if tokenizer is None else tokenizer
+    result: list[dict] = []
+    exclusions: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for source in candidates:
+        candidate = dict(source)
+        candidate_id = candidate.get("selection_candidate_id")
+        if (
+            not isinstance(candidate_id, str)
+            or not candidate_id
+            or candidate_id in seen
+        ):
+            raise RuntimeError("length-gated selection candidate identity changed")
+        seen.add(candidate_id)
+        request = candidate.get("request")
+        context = candidate.get("context")
+        if not isinstance(request, dict) or not isinstance(context, dict):
+            raise RuntimeError("length-gated candidate lacks request/context lineage")
+        messages = structural.candidate_training_messages(
+            request=request,
+            context=context,
+            question=candidate["question"],
+            answer=candidate["answer"],
+        )
+        encoded = encode_chat_assistant_only(
+            tokenizer,
+            messages,
+            enable_thinking=False,
+        )
+        total_tokens = encoded.get("total_token_count")
+        assistant_tokens = encoded.get("assistant_token_count")
+        if (
+            encoded.get("mask_method") != corpus.ASSISTANT_MASK_METHOD
+            or not isinstance(total_tokens, int)
+            or total_tokens <= 0
+            or not isinstance(assistant_tokens, int)
+            or assistant_tokens <= 0
+            or assistant_tokens != candidate.get("assistant_qwen36_token_count")
+        ):
+            raise RuntimeError("selection candidate official chat rendering changed")
+        status = (
+            "passed"
+            if total_tokens <= MAX_RENDERED_CHAT_TOKENS
+            else "excluded_rendered_chat_exceeds_token_limit"
+        )
+        receipt = _token_length_candidate_receipt(
+            candidate,
+            total_tokens=total_tokens,
+            status=status,
+        )
+        candidate["rendered_chat_token_count"] = total_tokens
+        candidate["token_length_gate_receipt"] = receipt
+        result.append(candidate)
+        if status != "passed":
+            exclusions.append(receipt)
+    exclusions.sort(
+        key=lambda value: (
+            str(value["lane"]),
+            str(value["request_id"]),
+            str(value["candidate_example_id"]),
+        )
+    )
+    aggregate = {
+        "schema": TOKEN_LENGTH_GATE_SCHEMA,
+        "status": "sealed_passed_with_lineage_exclusions",
+        "maximum_rendered_chat_tokens": MAX_RENDERED_CHAT_TOKENS,
+        "candidates": len(result),
+        "passed": len(result) - len(exclusions),
+        "excluded_overlength": len(exclusions),
+        "factual_text_rewritten": False,
+        "all_candidates_length_gated_before_selection": True,
+        "exclusions": exclusions,
+        "exclusion_commitment_sha256": corpus.canonical_sha256(exclusions),
+        "tokenizer": {
+            "tokenizer_json_sha256": corpus.TOKENIZER_JSON_SHA256,
+            "tokenizer_config_sha256": corpus.TOKENIZER_CONFIG_SHA256,
+            "assistant_mask_method": corpus.ASSISTANT_MASK_METHOD,
+        },
+    }
+    aggregate["content_sha256_before_self_field"] = _self_address(aggregate)
+    return result, aggregate
+
+
 def manual_review_required(candidate: dict) -> tuple[bool, list[str]]:
     result = candidate["semantic_result"]
     reasons = []
@@ -507,6 +628,13 @@ def manual_review_required(candidate: dict) -> tuple[bool, list[str]]:
 def make_manual_queue(candidates: Sequence[dict]) -> list[dict]:
     queue = []
     for candidate in sorted(candidates, key=lambda value: value["selection_candidate_id"]):
+        length_receipt = candidate.get("token_length_gate_receipt")
+        if not isinstance(length_receipt, dict):
+            raise RuntimeError("manual queue candidate lacks token-length gate receipt")
+        if length_receipt.get("status") == "excluded_rendered_chat_exceeds_token_limit":
+            continue
+        if length_receipt.get("status") != "passed":
+            raise RuntimeError("manual queue candidate has invalid token-length status")
         required, reasons = manual_review_required(candidate)
         if not required:
             continue
@@ -592,6 +720,15 @@ def apply_semantic_eligibility(
     result = []
     for source in candidates:
         candidate = dict(source)
+        length_receipt = candidate.get("token_length_gate_receipt")
+        if not isinstance(length_receipt, dict):
+            raise RuntimeError("semantic candidate lacks token-length gate receipt")
+        length_status = length_receipt.get("status")
+        if length_status not in {
+            "passed",
+            "excluded_rendered_chat_exceeds_token_limit",
+        }:
+            raise RuntimeError("semantic candidate token-length status changed")
         semantic = candidate["semantic_result"]
         nli_verdict = candidate["nli_result"]["verdict"]
         expected_nli = (
@@ -602,7 +739,11 @@ def apply_semantic_eligibility(
         required, reasons = manual_review_required(candidate)
         resolution = resolutions.get(candidate["selection_candidate_id"])
         nli_passed = nli_verdict == expected_nli
-        if not nli_passed:
+        if length_status == "excluded_rendered_chat_exceeds_token_limit":
+            status = "rejected_rendered_chat_exceeds_token_limit"
+            eligible = False
+            manual_receipt = {"status": "not_applicable_token_length_rejected"}
+        elif not nli_passed:
             status = "rejected_independent_nli"
             eligible = False
             manual_receipt = {"status": "not_applicable_nli_rejected"}
@@ -732,6 +873,31 @@ def solve_atomic_selection(
     """Two-stage deterministic binary MILP; exactness is proved after solving."""
 
     validate_targets(targets)
+    for candidate in candidates:
+        receipt = candidate.get("token_length_gate_receipt")
+        if not isinstance(receipt, dict):
+            raise RuntimeError("selection candidate lacks token-length gate receipt")
+        _require_self_address(receipt, "selection candidate token-length gate receipt")
+        status = receipt.get("status")
+        total = receipt.get("rendered_chat_token_count")
+        if (
+            not isinstance(total, int)
+            or total <= 0
+            or receipt.get("maximum_tokens") != MAX_RENDERED_CHAT_TOKENS
+            or receipt.get("factual_text_rewritten") is not False
+            or status
+            not in {"passed", "excluded_rendered_chat_exceeds_token_limit"}
+            or (status == "passed" and total > MAX_RENDERED_CHAT_TOKENS)
+            or (
+                status == "excluded_rendered_chat_exceeds_token_limit"
+                and total <= MAX_RENDERED_CHAT_TOKENS
+            )
+            or (
+                status == "excluded_rendered_chat_exceeds_token_limit"
+                and candidate.get("selection_eligible") is True
+            )
+        ):
+            raise RuntimeError("selection candidate token-length gate changed")
     eligible = [candidate for candidate in candidates if candidate.get("selection_eligible") is True]
     eligible.sort(key=lambda value: value["selection_candidate_id"])
     allowed_axes = {
@@ -1146,7 +1312,8 @@ def prepare_global_pool(
     *,
     category_map: Mapping[str, str],
     manual_resolution_rows: Sequence[dict],
-) -> tuple[list[dict], list[dict], dict]:
+    tokenizer: Any | None = None,
+) -> tuple[list[dict], list[dict], dict, dict]:
     categorized = []
     for source in candidates:
         candidate = dict(source)
@@ -1155,18 +1322,30 @@ def prepare_global_pool(
             raise RuntimeError("semantic candidate resource lacks a category target")
         candidate["category"] = category_map[resource]
         categorized.append(candidate)
-    deduplicated = attach_deduplication(categorized)
+    length_gated, length_receipt = apply_rendered_chat_length_gate(
+        categorized, tokenizer
+    )
+    deduplicated = attach_deduplication(length_gated)
     queue = make_manual_queue(deduplicated)
     resolutions, manual_receipt = validate_manual_resolutions(
         manual_resolution_rows, queue
     )
     eligible = apply_semantic_eligibility(deduplicated, resolutions)
-    return eligible, queue, manual_receipt
+    return eligible, queue, manual_receipt, length_receipt
 
 
 def make_training_row(candidate: dict, selection_receipt_sha256: str) -> dict:
     if candidate.get("selection_eligible") is not True:
         raise RuntimeError("ineligible semantic candidate cannot become a training row")
+    length_receipt = candidate.get("token_length_gate_receipt")
+    if (
+        not isinstance(length_receipt, dict)
+        or length_receipt.get("status") != "passed"
+        or length_receipt.get("rendered_chat_token_count", MAX_RENDERED_CHAT_TOKENS + 1)
+        > MAX_RENDERED_CHAT_TOKENS
+    ):
+        raise RuntimeError("overlength or unmeasured candidate cannot become a training row")
+    _require_self_address(length_receipt, "candidate token-length gate receipt")
     context = candidate["context"]
     request = candidate["request"]
     messages = structural.candidate_training_messages(
@@ -1205,6 +1384,13 @@ def make_training_row(candidate: dict, selection_receipt_sha256: str) -> dict:
         "selection": {
             "status": "passed",
             "selector_receipt_sha256": selection_receipt_sha256,
+            "rendered_chat_token_count": length_receipt[
+                "rendered_chat_token_count"
+            ],
+            "maximum_tokens": MAX_RENDERED_CHAT_TOKENS,
+            "token_length_gate_receipt_sha256": length_receipt[
+                "content_sha256_before_self_field"
+            ],
         },
     }
     identity = {
@@ -1273,7 +1459,12 @@ def make_training_row(candidate: dict, selection_receipt_sha256: str) -> dict:
 
 
 def build_deficit_report(
-    *, selection: dict, pool: Sequence[dict], queue: Sequence[dict], input_receipt: dict
+    *,
+    selection: dict,
+    pool: Sequence[dict],
+    queue: Sequence[dict],
+    input_receipt: dict,
+    token_length_receipt: dict,
 ) -> dict:
     report = {
         "schema": DEFICIT_SCHEMA,
@@ -1289,9 +1480,15 @@ def build_deficit_report(
                 == "manual_review_unresolved"
                 for candidate in pool
             ),
+            "rendered_chat_overlength_excluded": sum(
+                candidate.get("selection_eligibility_status")
+                == "rejected_rendered_chat_exceeds_token_limit"
+                for candidate in pool
+            ),
             "manual_review_queue_rows": len(queue),
         },
         "semantic_input_receipt": input_receipt,
+        "rendered_chat_length_gate": token_length_receipt,
         "padding_used": False,
         "truncation_used": False,
         "cross_source_borrowing_used": False,
@@ -1310,6 +1507,7 @@ def build_final_authority(
     selection: dict,
     input_receipt: dict,
     manual_receipt: dict,
+    token_length_receipt: dict,
     selection_contract: dict,
 ) -> tuple[bytes, dict, dict]:
     if selection.get("exact_solution") is not True:
@@ -1321,6 +1519,9 @@ def build_final_authority(
         "selection_result_sha256": corpus.canonical_sha256(selection),
         "selected_candidate_commitment_sha256": selection[
             "selected_candidate_commitment_sha256"
+        ],
+        "rendered_chat_length_gate_sha256": token_length_receipt[
+            "content_sha256_before_self_field"
         ],
         "builder_file_sha256": corpus.file_sha256(Path(__file__).resolve()),
     }
@@ -1356,6 +1557,10 @@ def build_final_authority(
             "tokenizer_json_sha256": corpus.TOKENIZER_JSON_SHA256,
             "tokenizer_config_sha256": corpus.TOKENIZER_CONFIG_SHA256,
             "assistant_mask_method": corpus.ASSISTANT_MASK_METHOD,
+            "maximum_rendered_chat_tokens": MAX_RENDERED_CHAT_TOKENS,
+            "length_gate_receipt_sha256": token_length_receipt[
+                "content_sha256_before_self_field"
+            ],
         }),
     }
     if set(receipts) != GENERATED_RECEIPT_KEYS:
@@ -1366,6 +1571,7 @@ def build_final_authority(
         "rows": len(rows),
         "accounting": accounting,
         "selection": selection,
+        "rendered_chat_length_gate": token_length_receipt,
         "all_rows_eligible_for_training": True,
         "exact_atomic_selection_solved": True,
         "deficit_tokens": 0,
@@ -1399,6 +1605,18 @@ def build_final_authority(
             "content_sha256": report["content_sha256_before_self_field"],
         },
         "accounting": accounting,
+        "rendered_chat_length_gate": {
+            "content_sha256": token_length_receipt[
+                "content_sha256_before_self_field"
+            ],
+            "maximum_rendered_chat_tokens": MAX_RENDERED_CHAT_TOKENS,
+            "candidates": token_length_receipt["candidates"],
+            "passed": token_length_receipt["passed"],
+            "excluded_overlength": token_length_receipt["excluded_overlength"],
+            "exclusion_commitment_sha256": token_length_receipt[
+                "exclusion_commitment_sha256"
+            ],
+        },
         "receipts": receipts,
         "implementation_receipts": _implementation_receipts(),
     }
@@ -1435,7 +1653,7 @@ def build_global_authority(*, write: bool) -> dict:
     targets = selection_targets(contract)
     category_map = source_categories(contract)
     candidates, input_receipt = load_all_semantic_candidates()
-    pool, queue, manual_receipt = prepare_global_pool(
+    pool, queue, manual_receipt, token_length_receipt = prepare_global_pool(
         candidates,
         category_map=category_map,
         manual_resolution_rows=load_manual_resolution_rows(),
@@ -1447,6 +1665,7 @@ def build_global_authority(*, write: bool) -> dict:
             pool=pool,
             queue=queue,
             input_receipt=input_receipt,
+            token_length_receipt=token_length_receipt,
         )
         if write:
             corpus.atomic_write(SELECTION_SCAFFOLD, _json_payload(scaffold))
@@ -1458,6 +1677,7 @@ def build_global_authority(*, write: bool) -> dict:
         selection=selection,
         input_receipt=input_receipt,
         manual_receipt=manual_receipt,
+        token_length_receipt=token_length_receipt,
         selection_contract=contract,
     )
     if write:

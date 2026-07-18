@@ -29,6 +29,7 @@ from typing import Any
 
 import qwen36_expert_lora_v1 as expert_lora
 import qwen36_mixed_training_runtime_v1 as mixed
+import qwen36_section19_artifact_contract_v1 as section19
 
 
 ROOT = Path(__file__).resolve().parent
@@ -641,6 +642,7 @@ def _run_config(arguments: argparse.Namespace, authority: mixed.MixedTrainingAut
                     Path(__file__).resolve(),
                     Path(expert_lora.__file__).resolve(),
                     Path(mixed.__file__).resolve(),
+                    Path(section19.__file__).resolve(),
                     (ROOT / expert_lora.DEFAULT_ARCHITECTURE_CONTRACT).resolve(),
                     FAST_CONTRACT.resolve(),
                 )
@@ -666,17 +668,25 @@ def _write_static_artifacts(
         if adapter.get(key) is not None:
             adapter[key] = sorted(adapter[key])
     _atomic_json(output / "adapter_config.json", adapter)
-    _atomic_json(output / "dataset_manifest.json", {
-        "top": authority.top_manifest,
-        "variant": authority.variant_manifest,
-    })
-    _atomic_json(output / "dataset_hashes.json", {
-        "top_manifest_file_sha256": file_sha256(authority.top_manifest_path),
-        "top_manifest_content_sha256": authority.top_manifest["content_sha256_before_self_field"],
-        "variant_manifest_content_sha256": authority.variant_manifest["content_sha256_before_self_field"],
-        "sequence_set_identity_sha256": authority.sequence_set_identity_sha256,
-        "final_cursor_commitment_sha256": authority.final_cursor_commitment_sha256,
-    })
+    builders = _section19_builder_receipts(authority)
+    dataset_manifest = section19.build_dataset_manifest(
+        authority,
+        repository_root=ROOT,
+        builders=builders,
+    )
+    _atomic_json(output / "dataset_manifest.json", dataset_manifest)
+    section19.validate_dataset_manifest(
+        dataset_manifest,
+        authority,
+        repository_root=ROOT,
+        builders=builders,
+    )
+    dataset_hashes = section19.build_dataset_hashes(
+        authority,
+        dataset_manifest_path=output / "dataset_manifest.json",
+        dataset_manifest=dataset_manifest,
+    )
+    _atomic_json(output / "dataset_hashes.json", dataset_hashes)
     trainable_lines = [
         json.dumps(row, sort_keys=True)
         for row in scope["trainable_parameters"]
@@ -723,6 +733,39 @@ def _write_static_artifacts(
     (output / "checkpoints").mkdir(exist_ok=True)
     (output / "plots").mkdir(exist_ok=True)
     (output / "samples").mkdir(exist_ok=True)
+    _atomic_bytes(output / "training_metrics.jsonl", b"")
+    _atomic_json(output / "routing_metrics.json", section19.pending_routing_metrics())
+    _atomic_json(output / "memory_profile.json", section19.pending_memory_profile())
+    artifact_contract = section19.seal_run_artifacts(
+        output,
+        repository_root=ROOT,
+        authority=authority,
+        builders=builders,
+        phase="launch_ready",
+    )
+    _atomic_json(output / "run_artifact_receipts.json", artifact_contract)
+    section19.validate_run_artifact_contract(
+        output,
+        artifact_contract,
+        repository_root=ROOT,
+        authority=authority,
+        builders=builders,
+        expected_phase="launch_ready",
+    )
+
+
+def _section19_builder_receipts(
+    authority: mixed.MixedTrainingAuthority,
+) -> dict[str, dict[str, Any]]:
+    return section19.builder_receipts(
+        authority,
+        repository_root=ROOT,
+        additional={
+            "mixed_snapshot_runtime": Path(mixed.__file__).resolve(),
+            "section19_contract": Path(section19.__file__).resolve(),
+            "sft_trainer": Path(__file__).resolve(),
+        },
+    )
 
 
 def _memory(torch: Any) -> dict[str, float]:
@@ -1062,11 +1105,22 @@ def train(arguments: argparse.Namespace) -> dict[str, Any]:
         output.mkdir(parents=True)
     run_config = _run_config(arguments, authority, end_cursor)
     run_config_sha = run_config["content_sha256_before_self_field"]
+    section19_builders = _section19_builder_receipts(authority)
     if arguments.resume is None:
         _write_static_artifacts(output, run_config, authority, model, lora_config, scope, gpu)
     else:
         existing = _load_self_addressed(output / "run_config.json")
         _require(existing == run_config, "resume run_config.json changed")
+        prior_artifact_contract = _load_self_addressed(
+            output / "run_artifact_receipts.json"
+        )
+        section19.validate_immutable_run_artifacts(
+            output,
+            prior_artifact_contract,
+            repository_root=ROOT,
+            authority=authority,
+            builders=section19_builders,
+        )
 
     trainable = [parameter for parameter in model.parameters() if parameter.requires_grad]
     optimizer = torch.optim.AdamW(
@@ -1133,6 +1187,24 @@ def train(arguments: argparse.Namespace) -> dict[str, Any]:
             output / "routing_metrics.jsonl",
             maximum_optimizer_step=state["optimizer_step"],
             schema=ROUTING_SCHEMA,
+        )
+        resume_artifact_contract = section19.seal_run_artifacts(
+            output,
+            repository_root=ROOT,
+            authority=authority,
+            builders=section19_builders,
+            phase="resume_ready",
+        )
+        _atomic_json(
+            output / "run_artifact_receipts.json", resume_artifact_contract
+        )
+        section19.validate_run_artifact_contract(
+            output,
+            resume_artifact_contract,
+            repository_root=ROOT,
+            authority=authority,
+            builders=section19_builders,
+            expected_phase="resume_ready",
         )
 
     _require(state["next_cursor"] <= end_cursor, "resume cursor exceeds selected run")
@@ -1309,6 +1381,7 @@ def train(arguments: argparse.Namespace) -> dict[str, Any]:
     torch.cuda.synchronize()
     memory = _self_addressed({
         "schema": "qwen36-low-regression-sft-memory-profile-v1",
+        "status": "complete",
         "gpu": gpu,
         "peak": _memory(torch),
         "elapsed_seconds": time.perf_counter() - started,
@@ -1327,6 +1400,22 @@ def train(arguments: argparse.Namespace) -> dict[str, Any]:
         "operational_headroom_gib": gpu["total_memory_gib"] - _memory(torch)["peak_reserved_gib"],
     })
     _atomic_json(output / "memory_profile.json", memory)
+    artifact_contract = section19.seal_run_artifacts(
+        output,
+        repository_root=ROOT,
+        authority=authority,
+        builders=section19_builders,
+        phase="training_complete",
+    )
+    _atomic_json(output / "run_artifact_receipts.json", artifact_contract)
+    section19.validate_run_artifact_contract(
+        output,
+        artifact_contract,
+        repository_root=ROOT,
+        authority=authority,
+        builders=section19_builders,
+        expected_phase="training_complete",
+    )
     result = _self_addressed({
         "schema": "qwen36-low-regression-sft-run-result-v1",
         "run_id": arguments.run_id,
@@ -1353,6 +1442,19 @@ def train(arguments: argparse.Namespace) -> dict[str, Any]:
             "path": "memory_profile.json",
             "file_sha256": file_sha256(output / "memory_profile.json"),
             "content_sha256": memory["content_sha256_before_self_field"],
+        },
+        "section19_artifact_contract": {
+            "path": "run_artifact_receipts.json",
+            "file_sha256": file_sha256(
+                output / "run_artifact_receipts.json"
+            ),
+            "content_sha256": artifact_contract[
+                "content_sha256_before_self_field"
+            ],
+            "status": artifact_contract["status"],
+            "selection_or_deployment_authorized": artifact_contract["gates"][
+                "selection_or_deployment_authorized"
+            ],
         },
     })
     _atomic_json(output / "run_result.json", result)

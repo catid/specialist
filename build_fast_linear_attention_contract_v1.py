@@ -17,6 +17,7 @@ import hashlib
 import importlib
 import importlib.metadata
 import json
+import math
 import os
 import re
 import signal
@@ -44,6 +45,34 @@ FAST_DISTRIBUTIONS = {
 }
 RUNTIME_DISTRIBUTIONS = (*CORE_DISTRIBUTIONS, *FAST_DISTRIBUTIONS, "tilelang")
 GPU_INDICES = (0, 1, 2, 3)
+GPU_INVENTORY_FIELDS = {
+    "index",
+    "name",
+    "uuid",
+    "memory_total_mib",
+    "compute_capability",
+    "driver_version",
+}
+WORKER_GPU_FIELDS = {
+    "physical_index",
+    "worker_visible_index",
+    "name",
+    "compute_capability",
+    "total_memory_bytes",
+}
+BENCHMARK_FIELDS = {
+    "mode",
+    "warmup_iterations",
+    "measured_iterations",
+    "tokens_per_iteration",
+    "total_elapsed_ms",
+    "milliseconds_per_iteration",
+    "tokens_per_second",
+    "baseline_allocated_bytes",
+    "baseline_reserved_bytes",
+    "peak_allocated_bytes",
+    "peak_reserved_bytes",
+}
 WORKER_MARKER = "FAST_LINEAR_ATTENTION_RESULT="
 WARMUP_ITERATIONS = 2
 BENCHMARK_ITERATIONS = 12
@@ -1469,30 +1498,356 @@ def _run_worker_process(probe: str, physical_index: int) -> dict:
     return value
 
 
+def _is_finite_number(value: Any) -> bool:
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return False
+    try:
+        return math.isfinite(float(value))
+    except (OverflowError, TypeError, ValueError):
+        return False
+
+
+def _benchmark_validation_error(benchmark: Any) -> str | None:
+    if not isinstance(benchmark, dict):
+        return "missing_or_not_an_object"
+    if set(benchmark) != BENCHMARK_FIELDS:
+        return "schema_mismatch"
+    if benchmark.get("mode") != "forward_plus_backward":
+        return "mode_mismatch"
+    for field in (
+        "warmup_iterations",
+        "measured_iterations",
+        "tokens_per_iteration",
+    ):
+        value = benchmark.get(field)
+        if not isinstance(value, int) or isinstance(value, bool) or value <= 0:
+            return f"invalid_{field}"
+    for field in (
+        "total_elapsed_ms",
+        "milliseconds_per_iteration",
+        "tokens_per_second",
+    ):
+        value = benchmark.get(field)
+        if not _is_finite_number(value) or value <= 0:
+            return f"invalid_{field}"
+    for field in (
+        "baseline_allocated_bytes",
+        "baseline_reserved_bytes",
+        "peak_allocated_bytes",
+        "peak_reserved_bytes",
+    ):
+        value = benchmark.get(field)
+        if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+            return f"invalid_{field}"
+    if benchmark["peak_allocated_bytes"] < benchmark["baseline_allocated_bytes"]:
+        return "peak_allocated_below_baseline"
+    if benchmark["peak_reserved_bytes"] < benchmark["baseline_reserved_bytes"]:
+        return "peak_reserved_below_baseline"
+    try:
+        expected_milliseconds = (
+            benchmark["total_elapsed_ms"] / benchmark["measured_iterations"]
+        )
+        expected_throughput = (
+            benchmark["tokens_per_iteration"]
+            * benchmark["measured_iterations"]
+            * 1000.0
+            / benchmark["total_elapsed_ms"]
+        )
+    except (ArithmeticError, OverflowError, TypeError, ValueError):
+        return "derived_timing_overflow"
+    if not math.isclose(
+        float(benchmark["milliseconds_per_iteration"]),
+        expected_milliseconds,
+        rel_tol=1e-12,
+        abs_tol=1e-12,
+    ):
+        return "milliseconds_per_iteration_inconsistent"
+    if not math.isclose(
+        float(benchmark["tokens_per_second"]),
+        expected_throughput,
+        rel_tol=1e-12,
+        abs_tol=1e-12,
+    ):
+        return "tokens_per_second_inconsistent"
+    return None
+
+
+def _hybrid_benchmark_validation_error(benchmark: Any) -> str | None:
+    if not isinstance(benchmark, dict):
+        return "missing_or_not_an_object"
+    if set(benchmark) != {
+        "hybrid_training",
+        "torch_reference",
+        "hybrid_throughput_speedup",
+        "hybrid_peak_allocated_bytes_ratio",
+    }:
+        return "schema_mismatch"
+    modes = {}
+    for mode in ("hybrid_training", "torch_reference"):
+        measured = benchmark.get(mode)
+        error = _benchmark_validation_error(measured)
+        if error is not None:
+            return f"{mode}_{error}"
+        modes[mode] = measured
+    speedup = benchmark.get("hybrid_throughput_speedup")
+    memory_ratio = benchmark.get("hybrid_peak_allocated_bytes_ratio")
+    if not _is_finite_number(speedup) or speedup <= 0:
+        return "invalid_throughput_speedup"
+    if not _is_finite_number(memory_ratio) or memory_ratio <= 0:
+        return "invalid_peak_allocated_bytes_ratio"
+    reference_peak = modes["torch_reference"]["peak_allocated_bytes"]
+    hybrid_peak = modes["hybrid_training"]["peak_allocated_bytes"]
+    if reference_peak <= 0 or hybrid_peak <= 0:
+        return "nonpositive_peak_allocated_bytes_for_ratio"
+    expected_speedup = (
+        modes["hybrid_training"]["tokens_per_second"]
+        / modes["torch_reference"]["tokens_per_second"]
+    )
+    expected_memory_ratio = hybrid_peak / reference_peak
+    if not math.isclose(
+        float(speedup), expected_speedup, rel_tol=1e-12, abs_tol=1e-12
+    ):
+        return "throughput_speedup_inconsistent"
+    if not math.isclose(
+        float(memory_ratio),
+        expected_memory_ratio,
+        rel_tol=1e-12,
+        abs_tol=1e-12,
+    ):
+        return "peak_allocated_bytes_ratio_inconsistent"
+    return None
+
+
+def _gpu_evidence_integrity_failures(
+    gpu_baseline_checks: Any,
+    gpu_results: Any,
+) -> list[str]:
+    failures = []
+    expected_baseline_fields = {
+        "index",
+        "name_matches",
+        "memory_matches",
+        "compute_capability_matches",
+        "driver_matches",
+        "all_match",
+    }
+    if not isinstance(gpu_baseline_checks, dict) or set(gpu_baseline_checks) != {
+        "per_gpu",
+        "all_match_architecture_contract",
+    }:
+        failures.append("gpu_architecture_baseline_receipt_invalid")
+    else:
+        baseline_rows = gpu_baseline_checks.get("per_gpu")
+        baseline_valid = (
+            gpu_baseline_checks.get("all_match_architecture_contract") is True
+            and isinstance(baseline_rows, list)
+            and len(baseline_rows) == len(GPU_INDICES)
+        )
+        if baseline_valid:
+            for expected_index, row in zip(
+                GPU_INDICES, baseline_rows, strict=True
+            ):
+                if (
+                    not isinstance(row, dict)
+                    or set(row) != expected_baseline_fields
+                    or type(row.get("index")) is not int
+                    or row.get("index") != expected_index
+                    or any(
+                        row.get(field) is not True
+                        for field in expected_baseline_fields - {"index"}
+                    )
+                ):
+                    baseline_valid = False
+                    break
+        if not baseline_valid:
+            failures.append("gpu_architecture_baseline_mismatch")
+
+    if not isinstance(gpu_results, list) or len(gpu_results) != len(GPU_INDICES):
+        return sorted(set(failures + ["outer_gpu_identity_missing_or_duplicate"]))
+
+    indices = []
+    uuids = []
+    outer_rows = []
+    for item in gpu_results:
+        gpu = item.get("gpu") if isinstance(item, dict) else None
+        if not isinstance(gpu, dict) or set(gpu) != GPU_INVENTORY_FIELDS:
+            failures.append("outer_gpu_identity_missing_or_invalid")
+            outer_rows.append(None)
+            continue
+        index = gpu.get("index")
+        uuid = gpu.get("uuid")
+        valid = (
+            type(index) is int
+            and isinstance(gpu.get("name"), str)
+            and bool(gpu["name"])
+            and isinstance(uuid, str)
+            and bool(uuid)
+            and type(gpu.get("memory_total_mib")) is int
+            and gpu["memory_total_mib"] > 0
+            and isinstance(gpu.get("compute_capability"), str)
+            and bool(gpu["compute_capability"])
+            and isinstance(gpu.get("driver_version"), str)
+            and bool(gpu["driver_version"])
+        )
+        if not valid:
+            failures.append("outer_gpu_identity_missing_or_invalid")
+            outer_rows.append(None)
+            continue
+        indices.append(index)
+        uuids.append(uuid)
+        outer_rows.append(gpu)
+    if indices != list(GPU_INDICES):
+        failures.append("outer_gpu_physical_indices_missing_or_duplicate")
+    if len(uuids) != len(GPU_INDICES) or len(set(uuids)) != len(GPU_INDICES):
+        failures.append("outer_gpu_uuids_missing_or_duplicate")
+
+    for item, outer_gpu in zip(gpu_results, outer_rows, strict=True):
+        if outer_gpu is None or not isinstance(item, dict):
+            continue
+        index = outer_gpu["index"]
+        probes = item.get("probes")
+        if not isinstance(probes, dict) or set(probes) != set(WORKER_FUNCTIONS):
+            failures.append(f"gpu_{index}_probe_set_missing_or_invalid")
+            continue
+        successful_total_memory = set()
+        for probe_name, probe in probes.items():
+            if not isinstance(probe, dict):
+                failures.append(f"gpu_{index}_{probe_name}_receipt_invalid")
+                continue
+            if probe.get("probe") != probe_name:
+                failures.append(f"gpu_{index}_{probe_name}_probe_identity_mismatch")
+            if probe.get("status") != "ok":
+                continue
+            worker_gpu = probe.get("gpu")
+            worker_identity_valid = (
+                isinstance(worker_gpu, dict)
+                and set(worker_gpu) == WORKER_GPU_FIELDS
+                and type(worker_gpu.get("physical_index")) is int
+                and worker_gpu.get("physical_index") == index
+                and type(worker_gpu.get("worker_visible_index")) is int
+                and worker_gpu.get("worker_visible_index") == 0
+                and worker_gpu.get("name") == outer_gpu["name"]
+                and worker_gpu.get("compute_capability")
+                == outer_gpu["compute_capability"]
+                and type(worker_gpu.get("total_memory_bytes")) is int
+                and 0 < worker_gpu.get("total_memory_bytes", 0)
+                <= outer_gpu["memory_total_mib"] * (1 << 20)
+            )
+            if not worker_identity_valid:
+                failures.append(
+                    f"gpu_{index}_{probe_name}_worker_gpu_identity_mismatch"
+                )
+                continue
+            successful_total_memory.add(worker_gpu["total_memory_bytes"])
+        if len(successful_total_memory) > 1:
+            failures.append(f"gpu_{index}_successful_worker_gpu_identity_mismatch")
+    return sorted(set(failures))
+
+
+def _benchmark_integrity_failures(gpu_results: Any) -> list[str]:
+    if not isinstance(gpu_results, list):
+        return ["per_gpu_benchmark_receipts_missing_or_invalid"]
+    failures = []
+    for position, item in enumerate(gpu_results):
+        gpu = item.get("gpu") if isinstance(item, dict) else None
+        index = gpu.get("index") if isinstance(gpu, dict) else position
+        probes = item.get("probes") if isinstance(item, dict) else None
+        if not isinstance(probes, dict):
+            continue
+        for probe_name in ("causal_fast", "causal_fallback"):
+            probe = probes.get(probe_name)
+            if not isinstance(probe, dict) or probe.get("status") != "ok":
+                continue
+            error = _benchmark_validation_error(probe.get("benchmark"))
+            if error is not None:
+                failures.append(
+                    f"gpu_{index}_{probe_name}_benchmark_invalid_{error}"
+                )
+        gated = probes.get("gated_delta")
+        if isinstance(gated, dict) and gated.get("status") == "ok":
+            benchmarks = gated.get("benchmarks")
+            if not isinstance(benchmarks, dict) or set(benchmarks) != {
+                "fast",
+                "torch_fallback",
+            }:
+                failures.append(f"gpu_{index}_gated_delta_benchmarks_schema_invalid")
+            else:
+                for mode in ("fast", "torch_fallback"):
+                    error = _benchmark_validation_error(benchmarks.get(mode))
+                    if error is not None:
+                        failures.append(
+                            f"gpu_{index}_gated_delta_{mode}_benchmark_invalid_{error}"
+                        )
+        hybrid = probes.get("qwen35_moe_hybrid_module")
+        if isinstance(hybrid, dict) and hybrid.get("status") == "ok":
+            benchmarks = hybrid.get("benchmarks")
+            if not isinstance(benchmarks, dict) or set(benchmarks) != {"128", "2048"}:
+                failures.append(f"gpu_{index}_hybrid_benchmarks_schema_invalid")
+            else:
+                for sequence_length in (128, 2048):
+                    error = _hybrid_benchmark_validation_error(
+                        benchmarks.get(str(sequence_length))
+                    )
+                    if error is not None:
+                        failures.append(
+                            f"gpu_{index}_hybrid_seq_{sequence_length}_"
+                            f"benchmark_invalid_{error}"
+                        )
+    return sorted(set(failures))
+
+
 def _selection_decision(
     environment: dict,
     availability: dict,
     gpu_results: list[dict],
+    *,
+    gpu_baseline_checks: dict | None = None,
 ) -> dict:
-    hybrid_failures = []
+    hybrid_failures = _gpu_evidence_integrity_failures(
+        gpu_baseline_checks, gpu_results
+    )
+    hybrid_failures.extend(_benchmark_integrity_failures(gpu_results))
     all_fast_rejection_reasons = []
-    if not environment["all_core_distributions_preserved"]:
+    if not isinstance(environment, dict) or environment.get(
+        "all_core_distributions_preserved"
+    ) is not True:
         hybrid_failures.append("core_distribution_or_source_drift")
-    if not environment["all_fast_distribution_versions_exact"]:
+    if not isinstance(environment, dict) or environment.get(
+        "all_fast_distribution_versions_exact"
+    ) is not True:
         hybrid_failures.append("fast_distribution_version_drift")
-    if not availability["all_required_bindings_imported"] or not availability[
+    if not isinstance(availability, dict) or availability.get(
+        "all_required_bindings_imported"
+    ) is not True or availability.get(
         "qwen35_moe_module_is_fast_path_available"
-    ]:
+    ) is not True:
         hybrid_failures.append("transformers_qwen35_moe_fast_bindings_unavailable")
-    for item in gpu_results:
-        index = item["gpu"]["index"]
-        causal_fast = item["probes"]["causal_fast"]
-        causal_fallback = item["probes"]["causal_fallback"]
-        gated = item["probes"]["gated_delta"]
-        hybrid = item["probes"].get("qwen35_moe_hybrid_module", {})
-        if causal_fast.get("status") != "ok" or not causal_fast.get(
-            "parity", {}
-        ).get("all_passed", False):
+    iterable_results = gpu_results if isinstance(gpu_results, list) else []
+    for position, item in enumerate(iterable_results):
+        gpu = item.get("gpu") if isinstance(item, dict) else None
+        index = gpu.get("index") if isinstance(gpu, dict) else position
+        probes = item.get("probes") if isinstance(item, dict) else None
+        if not isinstance(probes, dict):
+            hybrid_failures.append(f"gpu_{index}_probe_set_missing_or_invalid")
+            continue
+        causal_fast = probes.get("causal_fast", {})
+        causal_fallback = probes.get("causal_fallback", {})
+        gated = probes.get("gated_delta", {})
+        hybrid = probes.get("qwen35_moe_hybrid_module", {})
+        if not isinstance(causal_fast, dict):
+            causal_fast = {}
+        if not isinstance(causal_fallback, dict):
+            causal_fallback = {}
+        if not isinstance(gated, dict):
+            gated = {}
+        if not isinstance(hybrid, dict):
+            hybrid = {}
+        causal_parity = causal_fast.get("parity")
+        if not isinstance(causal_parity, dict):
+            causal_parity = {}
+        if causal_fast.get("status") != "ok" or not causal_parity.get(
+            "all_passed", False
+        ):
             all_fast_rejection_reasons.append(
                 f"gpu_{index}_causal_conv1d_fast_runtime_or_parity_failed"
             )
@@ -1500,22 +1855,33 @@ def _selection_decision(
             hybrid_failures.append(
                 f"gpu_{index}_causal_conv1d_fallback_benchmark_failed"
             )
-        if gated.get("status") != "ok" or not gated.get(
-            "chunk_training_kernel_parity", {}
-        ).get("all_passed", False):
+        chunk_parity = gated.get("chunk_training_kernel_parity")
+        if not isinstance(chunk_parity, dict):
+            chunk_parity = {}
+        if gated.get("status") != "ok" or not chunk_parity.get(
+            "all_passed", False
+        ):
             hybrid_failures.append(
                 f"gpu_{index}_gated_delta_chunk_parity_failed"
             )
-        recurrent = gated.get("fused_recurrent_kernel_parity", {})
+        recurrent = gated.get("fused_recurrent_kernel_parity")
+        if not isinstance(recurrent, dict):
+            recurrent = {}
         if not recurrent.get("forward_all_passed", False):
             all_fast_rejection_reasons.append(
                 f"gpu_{index}_gated_delta_recurrent_forward_failed"
             )
-        if not recurrent.get("backward", {}).get("all_passed", False):
+        recurrent_backward = recurrent.get("backward")
+        if not isinstance(recurrent_backward, dict):
+            recurrent_backward = {}
+        if not recurrent_backward.get("all_passed", False):
             all_fast_rejection_reasons.append(
                 f"gpu_{index}_gated_delta_recurrent_backward_unavailable_or_failed"
             )
-        if not gated.get("benchmarks", {}).get("fast"):
+        gated_benchmarks = gated.get("benchmarks")
+        if not isinstance(gated_benchmarks, dict):
+            gated_benchmarks = {}
+        if not gated_benchmarks.get("fast"):
             hybrid_failures.append(
                 f"gpu_{index}_gated_delta_fast_benchmark_failed"
             )
@@ -1528,30 +1894,31 @@ def _selection_decision(
             hybrid_failures.append(
                 f"gpu_{index}_hybrid_full_module_parity_failed"
             )
-        module_contract = hybrid.get("module_contract", {})
-        if module_contract.get("hybrid", {}).get("bindings") != (
+        module_contract = hybrid.get("module_contract")
+        if not isinstance(module_contract, dict):
+            module_contract = {}
+        module_hybrid = module_contract.get("hybrid")
+        if not isinstance(module_hybrid, dict):
+            module_hybrid = {}
+        if module_hybrid.get("bindings") != (
             HYBRID_TRAINING_BINDINGS
-        ) or not module_contract.get("hybrid", {}).get(
-            "all_matched_modules_configured", False
-        ):
+        ) or not module_hybrid.get("all_matched_modules_configured", False):
             hybrid_failures.append(
                 f"gpu_{index}_hybrid_binding_contract_failed"
             )
+        hybrid_benchmarks = hybrid.get("benchmarks")
+        if not isinstance(hybrid_benchmarks, dict):
+            hybrid_benchmarks = {}
         for sequence_length in (128, 2048):
-            benchmark = hybrid.get("benchmarks", {}).get(str(sequence_length), {})
-            if not benchmark.get("hybrid_training") or not benchmark.get(
-                "torch_reference"
-            ):
+            benchmark = hybrid_benchmarks.get(str(sequence_length), {})
+            if _hybrid_benchmark_validation_error(benchmark) is not None:
                 hybrid_failures.append(
                     f"gpu_{index}_hybrid_seq_{sequence_length}_benchmark_failed"
                 )
-        sequence_2048 = hybrid.get("benchmarks", {}).get("2048", {})
-        if (
-            sequence_2048.get("hybrid_throughput_speedup", 0.0) < 1.10
-            and sequence_2048.get(
-                "hybrid_peak_allocated_bytes_ratio", float("inf")
-            )
-            > 0.95
+        sequence_2048 = hybrid_benchmarks.get("2048", {})
+        if _hybrid_benchmark_validation_error(sequence_2048) is None and (
+            sequence_2048["hybrid_throughput_speedup"] < 1.10
+            and sequence_2048["hybrid_peak_allocated_bytes_ratio"] > 0.95
         ):
             hybrid_failures.append(
                 f"gpu_{index}_hybrid_seq_2048_not_materially_better"
@@ -1569,9 +1936,11 @@ def _selection_decision(
         "selected_bindings": (
             HYBRID_TRAINING_BINDINGS if selected == "hybrid_training" else None
         ),
-        "fast_path_import_available": availability[
-            "qwen35_moe_module_is_fast_path_available"
-        ],
+        "fast_path_import_available": (
+            availability.get("qwen35_moe_module_is_fast_path_available", False)
+            if isinstance(availability, dict)
+            else False
+        ),
         "fast_path_runtime_validated_on_all_four_gpus": False,
         "hybrid_training_path_runtime_validated_on_all_four_gpus": selected
         == "hybrid_training",
@@ -1641,7 +2010,12 @@ def construct() -> dict:
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
         gpu_results = list(executor.map(probe_gpu, gpu_inventory))
-    decision = _selection_decision(environment, availability, gpu_results)
+    decision = _selection_decision(
+        environment,
+        availability,
+        gpu_results,
+        gpu_baseline_checks=baseline_gpu_checks,
+    )
     value = {
         "schema": SCHEMA,
         "status": (
@@ -1714,12 +2088,22 @@ def construct() -> dict:
 
 
 def _validate_checked_contract(value: dict, *, check_current: bool) -> None:
-    if value.get("schema") != SCHEMA:
+    if not isinstance(value, dict) or value.get("schema") != SCHEMA:
         raise RuntimeError("unsupported fast linear-attention contract schema")
     declared = value.get("content_sha256_before_self_field")
     unsigned = dict(value)
     unsigned.pop("content_sha256_before_self_field", None)
-    if canonical_sha256(unsigned) != declared:
+    try:
+        observed_content_sha256 = canonical_sha256(unsigned)
+    except (TypeError, ValueError) as error:
+        raise RuntimeError(
+            "fast linear-attention contract is not canonical JSON"
+        ) from error
+    if (
+        not isinstance(declared, str)
+        or not re.fullmatch(r"[0-9a-f]{64}", declared)
+        or observed_content_sha256 != declared
+    ):
         raise RuntimeError("fast linear-attention contract content address mismatch")
     authority = value.get("authority", {})
     if authority != {
@@ -1732,33 +2116,61 @@ def _validate_checked_contract(value: dict, *, check_current: bool) -> None:
         "gpu_mutation_beyond_ephemeral_synthetic_allocations": False,
     }:
         raise RuntimeError("synthetic-only authority boundary changed")
-    results = value["gpu_execution"]["per_gpu_results"]
-    if [item["gpu"]["index"] for item in results] != list(GPU_INDICES):
-        raise RuntimeError("contract does not contain all four physical GPUs")
-    expected_decision = _selection_decision(
-        value["environment_integrity"],
-        value["transformers_qwen35_moe_fast_path"],
-        results,
+    architecture = _load_self_addressed(ARCHITECTURE_CONTRACT)
+    expected_architecture_receipt = {
+        "path": ARCHITECTURE_CONTRACT.relative_to(ROOT).as_posix(),
+        "file_sha256": file_sha256(ARCHITECTURE_CONTRACT),
+        "content_sha256": architecture["content_sha256_before_self_field"],
+        "schema": architecture["schema"],
+    }
+    if value.get("baseline_architecture_contract") != expected_architecture_receipt:
+        raise RuntimeError("architecture contract receipt changed")
+    execution = value.get("gpu_execution")
+    if not isinstance(execution, dict):
+        raise RuntimeError("GPU execution receipt is missing")
+    baseline_gpu_checks = execution.get("gpu_baseline_checks")
+    results = execution.get("per_gpu_results")
+    gpu_integrity_failures = _gpu_evidence_integrity_failures(
+        baseline_gpu_checks, results
     )
-    if value["selected_fast_or_fallback"] != expected_decision:
+    if gpu_integrity_failures:
+        raise RuntimeError(
+            "invalid fast linear-attention GPU evidence: "
+            + ", ".join(gpu_integrity_failures)
+        )
+    inventory = [item["gpu"] for item in results]
+    expected_baseline_gpu_checks = _validate_gpu_baseline(inventory, architecture)
+    if (
+        expected_baseline_gpu_checks != baseline_gpu_checks
+        or expected_baseline_gpu_checks["all_match_architecture_contract"] is not True
+    ):
+        raise RuntimeError("GPU architecture baseline receipt is not reproducible")
+    benchmark_integrity_failures = _benchmark_integrity_failures(results)
+    if benchmark_integrity_failures:
+        raise RuntimeError(
+            "invalid fast linear-attention benchmark evidence: "
+            + ", ".join(benchmark_integrity_failures)
+        )
+    expected_decision = _selection_decision(
+        value.get("environment_integrity", {}),
+        value.get("transformers_qwen35_moe_fast_path", {}),
+        results,
+        gpu_baseline_checks=baseline_gpu_checks,
+    )
+    if value.get("selected_fast_or_fallback") != expected_decision:
         raise RuntimeError("fast-or-fallback decision is not reproducible")
     if check_current:
-        architecture = _load_self_addressed(ARCHITECTURE_CONTRACT)
-        if value["baseline_architecture_contract"] != {
-            "path": ARCHITECTURE_CONTRACT.relative_to(ROOT).as_posix(),
-            "file_sha256": file_sha256(ARCHITECTURE_CONTRACT),
-            "content_sha256": architecture["content_sha256_before_self_field"],
-            "schema": architecture["schema"],
-        }:
-            raise RuntimeError("architecture contract receipt changed")
         environment, current_sources = _audit_environment(architecture)
-        if environment["distributions"] != value["environment_integrity"][
+        recorded_environment = value.get("environment_integrity")
+        if not isinstance(recorded_environment, dict):
+            raise RuntimeError("environment integrity receipt is missing")
+        if environment["distributions"] != recorded_environment.get(
             "distributions"
-        ]:
+        ):
             raise RuntimeError("installed distribution receipts changed")
-        if current_sources != value["environment_integrity"]["source_receipts"]:
+        if current_sources != recorded_environment.get("source_receipts"):
             raise RuntimeError("installed implementation source receipts changed")
-        if _gpu_inventory() != [item["gpu"] for item in results]:
+        if _gpu_inventory() != inventory:
             raise RuntimeError("physical GPU inventory changed")
 
 
@@ -1770,6 +2182,7 @@ def build(*, check: bool = False) -> dict:
         _validate_checked_contract(value, check_current=True)
         return value
     value = construct()
+    _validate_checked_contract(value, check_current=False)
     payload = (
         json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     ).encode("utf-8")

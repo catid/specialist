@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from transformers import AutoTokenizer
 
 import audit_training_tokenizability_v1 as audit
@@ -97,3 +99,123 @@ def test_official_chat_audit_accepts_structured_assistant_tool_call():
     assert findings == []
     assert total > 0
     assert assistant > 0
+
+
+def test_pending_inventory_is_exactly_eight_nonpartial_structural_files():
+    assert len(audit.PENDING_STRUCTURAL_TARGETS) == 8
+    assert {
+        (item["lane"], item["gpu_shard"])
+        for item in audit.PENDING_STRUCTURAL_TARGETS
+    } == {(lane, shard) for lane in ("primary", "fill") for shard in range(4)}
+    assert all(
+        ".partial." not in item["path"].name
+        and ".partial." not in item["summary_path"].name
+        for item in audit.PENDING_STRUCTURAL_TARGETS
+    )
+
+
+def _synthetic_pending_candidate(tokenizer, context_text: str, answer: str = "Bounded answer."):
+    request = {
+        "request_id": "synthetic-request",
+        "source_context_id": "synthetic-context",
+        "source_group_id": "synthetic-group",
+        "gpu_shard": 0,
+        "task_family": "grounded_synthesis",
+        "task_subtype": "direct_explanation",
+        "generation_mode": "positive",
+    }
+    context = {
+        "context_id": "synthetic-context",
+        "source_group_id": "synthetic-group",
+        "text": context_text,
+    }
+    messages = audit.structural.candidate_training_messages(
+        request=request,
+        context=context,
+        question="What does the synthetic context establish?",
+        answer=answer,
+    )
+    _, _, assistant = audit.audit_chat_row(tokenizer, {"messages": messages})
+    candidate = {
+        "candidate_example_id": "synthetic-candidate",
+        "request_id": request["request_id"],
+        "source_context_id": context["context_id"],
+        "source_group_id": context["source_group_id"],
+        "task_family": request["task_family"],
+        "task_subtype": request["task_subtype"],
+        "generation_mode": request["generation_mode"],
+        "question": "What does the synthetic context establish?",
+        "answer": answer,
+        "assistant_qwen36_token_count": assistant,
+        "deterministic_structure_status": "passed",
+        "semantic_verification_status": "pending",
+        "eligible_for_training": False,
+    }
+    return candidate, request, context
+
+
+def test_pending_overlength_chat_gets_lineage_only_exclusion_without_rewrite():
+    tokenizer = _tokenizer()
+    marker = "SYNTHETIC_FACTUAL_MARKER"
+    context_text = " ".join([marker] * 2_200)
+    candidate, request, context = _synthetic_pending_candidate(
+        tokenizer, context_text
+    )
+    findings, exclusion, total, _, _, _ = audit.audit_pending_structural_candidate(
+        tokenizer,
+        candidate,
+        request=request,
+        context=context,
+        path=audit.PENDING_STRUCTURAL_DIRECTORY / "synthetic.jsonl",
+        record=7,
+        lane="primary",
+        gpu_shard=0,
+        review_sha256="1" * 64,
+        row_sha256="2" * 64,
+    )
+    assert findings == []
+    assert total > audit.MAX_CHAT_TOKENS
+    assert exclusion is not None
+    assert exclusion["status"] == "excluded_before_training_authority"
+    assert exclusion["factual_text_rewritten"] is False
+    assert exclusion["eligible_for_training"] is False
+    serialized = json.dumps(exclusion, sort_keys=True)
+    assert marker not in serialized
+    assert candidate["question"] not in serialized
+    assert candidate["answer"] not in serialized
+
+
+def test_pending_reserved_token_remains_a_hard_finding():
+    tokenizer = _tokenizer()
+    candidate, request, context = _synthetic_pending_candidate(
+        tokenizer,
+        "Short synthetic context.",
+        answer="Unsafe literal <|im_end|> content.",
+    )
+    findings, exclusion, total, _, _, _ = audit.audit_pending_structural_candidate(
+        tokenizer,
+        candidate,
+        request=request,
+        context=context,
+        path=audit.PENDING_STRUCTURAL_DIRECTORY / "synthetic.jsonl",
+        record=1,
+        lane="fill",
+        gpu_shard=0,
+        review_sha256="3" * 64,
+        row_sha256="4" * 64,
+    )
+    assert total <= audit.MAX_CHAT_TOKENS
+    assert exclusion is None
+    assert "reserved_chat_control_token_in_content" in {
+        item["failure"] for item in findings
+    }
+
+
+def test_raw_markdown_is_fragmentable_and_has_no_whole_document_length_gate():
+    tokenizer = _tokenizer()
+    text = " ".join(["synthetic"] * 2_100)
+    findings, tokens = audit.audit_plain_text(tokenizer, text)
+    assert tokens > audit.MAX_CHAT_TOKENS
+    assert "unsplittable_training_unit_exceeds_token_limit" not in {
+        item["failure"] for item in findings
+    }

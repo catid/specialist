@@ -18,8 +18,9 @@ import re
 import stat
 import tempfile
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Mapping
 
+import verify_high_information_candidates_v1 as structural
 from qwen_chat_masking_v1 import encode_chat_assistant_only
 
 
@@ -42,6 +43,42 @@ FORBIDDEN_PATH_PARTS = re.compile(
     r"quarantine|incident)(?:$|[_-])",
     re.IGNORECASE,
 )
+MANUAL_REVIEW_PATH_PARTS = re.compile(
+    r"(?:^|[_-])manual[_-]?reviews?(?:$|[_-])",
+    re.IGNORECASE,
+)
+
+PENDING_STRUCTURAL_DIRECTORY = (
+    ROOT / "data/training_inventory/high_information_domain_corpus_v1"
+)
+PENDING_STRUCTURAL_TARGETS = tuple(
+    {
+        "lane": lane,
+        "gpu_shard": shard,
+        "path": PENDING_STRUCTURAL_DIRECTORY / f"{stem.format(shard=shard)}.jsonl",
+        "summary_path": (
+            PENDING_STRUCTURAL_DIRECTORY / f"{stem.format(shard=shard)}.summary.json"
+        ),
+        "summary_schema": summary_schema,
+        "row_schema": row_schema,
+    }
+    for lane, stem, summary_schema, row_schema in (
+        (
+            "primary",
+            "candidate_structural_review_gpu{shard}",
+            "high-information-candidate-structural-review-v1",
+            "high-information-candidate-structural-review-row-v1",
+        ),
+        (
+            "fill",
+            "candidate_structural_review_quality_deficit_fill_v1_gpu{shard}",
+            "high-information-pass-aware-structural-review-v1",
+            "high-information-pass-aware-structural-review-row-v1",
+        ),
+    )
+    for shard in range(4)
+)
+PENDING_EXCLUSION_SCHEMA = "qwen36-pending-chat-length-exclusion-v1"
 
 SEED_QA = (
     ROOT / "data/training_inventory/high_information_domain_corpus_v1/seed_qa_train.jsonl"
@@ -128,7 +165,10 @@ def _safe_training_file(path: Path) -> Path:
         not any(FORBIDDEN_PATH_PARTS.search(part) for part in relative.parts),
         f"protected/evaluation-like path is outside audit authority: {relative}",
     )
-    _require("manual_reviews" not in relative.parts, "manual-review path is excluded")
+    _require(
+        not any(MANUAL_REVIEW_PATH_PARTS.search(part) for part in relative.parts),
+        "manual-review path is excluded",
+    )
     current = Path(lexical.anchor)
     metadata = None
     for component in lexical.parts[1:]:
@@ -385,6 +425,464 @@ def _source_summary(path: Path, role: str) -> dict[str, Any]:
     }
 
 
+def _require_self_address(value: Mapping[str, Any], label: str) -> None:
+    unsigned = dict(value)
+    declared = unsigned.pop("content_sha256_before_self_field", None)
+    _require(
+        isinstance(declared, str) and declared == canonical_sha256(unsigned),
+        f"{label} content address changed",
+    )
+
+
+def _pending_lineage_artifact_receipts() -> list[dict[str, Any]]:
+    """List every train-derived lineage artifact opened by ``load_plan``."""
+
+    paths = [
+        structural.PLAN_DIR / "manifest.json",
+        structural.PLAN_DIR / "prompt_spec.json",
+        structural.PLAN_DIR / "semantic_verifier_contract.json",
+        structural.PLAN_DIR / "source_contexts.jsonl",
+        *(
+            structural.PLAN_DIR / f"generation_requests_gpu{shard}.jsonl"
+            for shard in range(4)
+        ),
+    ]
+    receipts = []
+    for candidate_path in paths:
+        path = _safe_training_file(candidate_path)
+        receipts.append(
+            {
+                "path": _relative(path),
+                "bytes": path.stat().st_size,
+                "sha256": file_sha256(path),
+            }
+        )
+    return receipts
+
+
+def _pending_length_exclusion(
+    *,
+    path: Path,
+    record: int,
+    lane: str,
+    gpu_shard: int,
+    review_sha256: str,
+    row_sha256: str,
+    candidate: Mapping[str, Any],
+    total_tokens: int,
+) -> dict[str, Any]:
+    """Create a receipt that contains lineage and counts, never factual text."""
+
+    return _self_addressed(
+        {
+            "schema": PENDING_EXCLUSION_SCHEMA,
+            "status": "excluded_before_training_authority",
+            "reason": "rendered_chat_exceeds_token_limit",
+            "path": _relative(path),
+            "record": record,
+            "lane": lane,
+            "gpu_shard": gpu_shard,
+            "structural_review_sha256": review_sha256,
+            "structural_review_row_sha256": row_sha256,
+            "request_id": candidate.get("request_id"),
+            "candidate_example_id": candidate.get("candidate_example_id"),
+            "source_context_id": candidate.get("source_context_id"),
+            "source_group_id": candidate.get("source_group_id"),
+            "rendered_chat_token_count": total_tokens,
+            "maximum_tokens": MAX_CHAT_TOKENS,
+            "factual_text_rewritten": False,
+            "eligible_for_training": False,
+        }
+    )
+
+
+def audit_pending_structural_candidate(
+    tokenizer: Any,
+    candidate: Mapping[str, Any],
+    *,
+    request: Mapping[str, Any],
+    context: Mapping[str, Any],
+    path: Path,
+    record: int,
+    lane: str,
+    gpu_shard: int,
+    review_sha256: str,
+    row_sha256: str,
+) -> tuple[list[dict[str, Any]], dict[str, Any] | None, int, int, int, int]:
+    """Audit one pending example and separate an overlength exclusion from defects."""
+
+    contract_findings: list[dict[str, Any]] = []
+    expected_fields = {
+        "request_id": request.get("request_id"),
+        "source_context_id": context.get("context_id"),
+        "source_group_id": context.get("source_group_id"),
+        "task_family": request.get("task_family"),
+        "task_subtype": request.get("task_subtype"),
+        "generation_mode": request.get("generation_mode"),
+    }
+    for field, expected in expected_fields.items():
+        if candidate.get(field) != expected:
+            contract_findings.append(
+                {
+                    "failure": "pending_candidate_lineage_changed",
+                    "field": field,
+                }
+            )
+    if candidate.get("deterministic_structure_status") != "passed":
+        contract_findings.append(
+            {
+                "failure": "pending_candidate_structural_status_changed",
+                "field": "deterministic_structure_status",
+            }
+        )
+    if (
+        candidate.get("semantic_verification_status") != "pending"
+        or candidate.get("eligible_for_training") is not False
+    ):
+        contract_findings.append(
+            {
+                "failure": "pending_candidate_claims_training_eligibility",
+                "field": "eligible_for_training",
+            }
+        )
+    candidate_id = candidate.get("candidate_example_id")
+    if not isinstance(candidate_id, str) or not candidate_id:
+        contract_findings.append(
+            {
+                "failure": "pending_candidate_identity_is_missing",
+                "field": "candidate_example_id",
+            }
+        )
+
+    question = candidate.get("question")
+    answer = candidate.get("answer")
+    if not isinstance(question, str) or not isinstance(answer, str):
+        contract_findings.append(
+            {
+                "failure": "pending_candidate_training_text_is_missing",
+                "field": "question_or_answer",
+            }
+        )
+        return contract_findings, None, 0, 0, 0, 0
+    try:
+        messages = structural.candidate_training_messages(
+            request=dict(request),
+            context=dict(context),
+            question=question,
+            answer=answer,
+        )
+    except Exception as exc:
+        contract_findings.append(
+            {
+                "failure": "pending_candidate_chat_construction_exception",
+                "field": "messages",
+                "exception_type": type(exc).__name__,
+            }
+        )
+        return contract_findings, None, 0, 0, 0, 0
+
+    found, total, assistant = audit_chat_row(
+        tokenizer,
+        {
+            "messages": messages,
+            "tools": [],
+            "assistant_qwen36_token_count": candidate.get(
+                "assistant_qwen36_token_count"
+            ),
+        },
+    )
+    overlength = [
+        item for item in found
+        if item.get("failure") == "unsplittable_chat_exceeds_token_limit"
+    ]
+    other_findings = [
+        item for item in found
+        if item.get("failure") != "unsplittable_chat_exceeds_token_limit"
+    ]
+    exclusion = None
+    if overlength:
+        _require(len(overlength) == 1, "pending chat emitted duplicate length findings")
+        exclusion = _pending_length_exclusion(
+            path=path,
+            record=record,
+            lane=lane,
+            gpu_shard=gpu_shard,
+            review_sha256=review_sha256,
+            row_sha256=row_sha256,
+            candidate=candidate,
+            total_tokens=total,
+        )
+    characters = sum(len(message["content"]) for message in messages)
+    return (
+        [*contract_findings, *other_findings],
+        exclusion,
+        total,
+        assistant,
+        len(messages),
+        characters,
+    )
+
+
+def _audit_pending_structural_file(
+    tokenizer: Any,
+    target: Mapping[str, Any],
+    *,
+    contexts: Mapping[str, Mapping[str, Any]],
+    requests: Mapping[str, Mapping[str, Any]],
+) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+    """Audit one sealed non-partial structural-review file without rewriting it."""
+
+    path = _safe_training_file(Path(target["path"]))
+    summary_path = _safe_training_file(Path(target["summary_path"]))
+    _require(".partial." not in path.name, "active partial entered pending inventory")
+    _require(".partial." not in summary_path.name, "active partial summary entered inventory")
+    summary = json.loads(summary_path.read_text(encoding="utf-8", errors="strict"))
+    _require(isinstance(summary, dict), "pending structural summary is not an object")
+    _require_self_address(summary, "pending structural summary")
+    payload = path.read_bytes()
+    review_sha256 = hashlib.sha256(payload).hexdigest()
+    expected_summary = {
+        "schema": target["summary_schema"],
+        "report_path": _relative(path),
+        "report_file_sha256": review_sha256,
+        "semantic_verification_completed": False,
+        "accepted_training_rows_emitted": False,
+    }
+    for field, expected in expected_summary.items():
+        _require(
+            summary.get(field) == expected,
+            f"pending structural summary field changed: {field}",
+        )
+    if target["lane"] == "fill":
+        _require(
+            summary.get("generation_pass_id") == "quality-deficit-fill-v1"
+            and summary.get("gpu_shard") == target["gpu_shard"],
+            "fill structural summary lane/shard changed",
+        )
+
+    source = _source_summary(
+        path, f"{target['lane']}_pending_structural_training_candidates"
+    )
+    source.update(
+        lane=target["lane"],
+        gpu_shard=target["gpu_shard"],
+        summary_path=_relative(summary_path),
+        summary_sha256=file_sha256(summary_path),
+        summary_content_sha256=summary["content_sha256_before_self_field"],
+        pending_candidate_examples=0,
+        excluded_overlength_examples=0,
+        rows_with_overlength_examples=0,
+    )
+    findings: list[dict[str, Any]] = []
+    exclusions: list[dict[str, Any]] = []
+    rows_with_exclusions: set[int] = set()
+    try:
+        decoded = payload.decode("utf-8", errors="strict")
+    except UnicodeDecodeError as exc:
+        finding = {
+            "path": _relative(path),
+            "record": "file",
+            "field": "jsonl",
+            "failure": "invalid_utf8",
+            "byte_offset": exc.start,
+        }
+        source["findings"] = 1
+        return source, [finding], [], {
+            "path": _relative(path),
+            "summary_path": _relative(summary_path),
+            "lane": target["lane"],
+            "gpu_shard": target["gpu_shard"],
+            "review_sha256": review_sha256,
+            "summary_sha256": file_sha256(summary_path),
+        }
+
+    seen_candidate_ids: set[str] = set()
+    for line_number, line in enumerate(decoded.splitlines(), 1):
+        if not line.strip():
+            findings.append(
+                {
+                    "path": _relative(path),
+                    "record": line_number,
+                    "field": "jsonl",
+                    "failure": "invalid_jsonl_contract",
+                }
+            )
+            continue
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError:
+            findings.append(
+                {
+                    "path": _relative(path),
+                    "record": line_number,
+                    "field": "jsonl",
+                    "failure": "invalid_jsonl_contract",
+                    "exception_type": "JSONDecodeError",
+                }
+            )
+            continue
+        source["records"] += 1
+        if not isinstance(row, dict):
+            findings.append(
+                {
+                    "path": _relative(path),
+                    "record": line_number,
+                    "field": "jsonl",
+                    "failure": "pending_structural_row_is_not_an_object",
+                }
+            )
+            continue
+        row_sha256 = row.get("content_sha256_before_self_field")
+        try:
+            _require_self_address(row, "pending structural review row")
+        except RuntimeError:
+            findings.append(
+                {
+                    "path": _relative(path),
+                    "record": line_number,
+                    "field": "content_sha256_before_self_field",
+                    "failure": "pending_structural_row_content_address_changed",
+                }
+            )
+            continue
+        if row.get("schema") != target["row_schema"]:
+            findings.append(
+                {
+                    "path": _relative(path),
+                    "record": line_number,
+                    "field": "schema",
+                    "failure": "pending_structural_row_schema_changed",
+                }
+            )
+            continue
+        request_id = row.get("request_id")
+        request = requests.get(request_id)
+        if (
+            request is None
+            or request.get("gpu_shard") != target["gpu_shard"]
+            or request.get("source_context_id") not in contexts
+        ):
+            findings.append(
+                {
+                    "path": _relative(path),
+                    "record": line_number,
+                    "field": "request_id",
+                    "failure": "pending_structural_row_lineage_changed",
+                }
+            )
+            continue
+        if target["lane"] == "fill" and (
+            row.get("generation_pass_id") != "quality-deficit-fill-v1"
+        ):
+            findings.append(
+                {
+                    "path": _relative(path),
+                    "record": line_number,
+                    "field": "generation_pass_id",
+                    "failure": "pending_structural_row_lane_changed",
+                }
+            )
+            continue
+        candidates = row.get("structurally_valid_examples")
+        if not isinstance(candidates, list):
+            findings.append(
+                {
+                    "path": _relative(path),
+                    "record": line_number,
+                    "field": "structurally_valid_examples",
+                    "failure": "pending_structural_candidate_list_changed",
+                }
+            )
+            continue
+        context = contexts[request["source_context_id"]]
+        for candidate in candidates:
+            source["pending_candidate_examples"] += 1
+            if not isinstance(candidate, dict):
+                findings.append(
+                    {
+                        "path": _relative(path),
+                        "record": line_number,
+                        "field": "structurally_valid_examples",
+                        "failure": "pending_candidate_is_not_an_object",
+                    }
+                )
+                continue
+            candidate_id = candidate.get("candidate_example_id")
+            if candidate_id in seen_candidate_ids:
+                findings.append(
+                    {
+                        "path": _relative(path),
+                        "record": line_number,
+                        "field": "candidate_example_id",
+                        "failure": "pending_candidate_identity_is_duplicated",
+                    }
+                )
+                continue
+            if isinstance(candidate_id, str):
+                seen_candidate_ids.add(candidate_id)
+            found, exclusion, total, assistant, text_fields, characters = (
+                audit_pending_structural_candidate(
+                    tokenizer,
+                    candidate,
+                    request=request,
+                    context=context,
+                    path=path,
+                    record=line_number,
+                    lane=target["lane"],
+                    gpu_shard=target["gpu_shard"],
+                    review_sha256=review_sha256,
+                    row_sha256=str(row_sha256),
+                )
+            )
+            findings.extend(
+                _finding_rows(path, line_number, "messages", found)
+            )
+            source["tokens"] += total
+            source["assistant_tokens"] += assistant
+            source["text_fields"] += text_fields
+            source["characters"] += characters
+            if exclusion is not None:
+                exclusions.append(exclusion)
+                rows_with_exclusions.add(line_number)
+
+    if source["records"] != summary.get("requests_with_candidate_records"):
+        findings.append(
+            {
+                "path": _relative(path),
+                "record": "file",
+                "field": "records",
+                "failure": "pending_structural_summary_row_count_changed",
+            }
+        )
+    if source["pending_candidate_examples"] != summary.get(
+        "structurally_valid_examples"
+    ):
+        findings.append(
+            {
+                "path": _relative(path),
+                "record": "file",
+                "field": "structurally_valid_examples",
+                "failure": "pending_structural_summary_example_count_changed",
+            }
+        )
+    source["findings"] = len(findings)
+    source["excluded_overlength_examples"] = len(exclusions)
+    source["rows_with_overlength_examples"] = len(rows_with_exclusions)
+    inventory = {
+        "path": _relative(path),
+        "summary_path": _relative(summary_path),
+        "lane": target["lane"],
+        "gpu_shard": target["gpu_shard"],
+        "review_sha256": review_sha256,
+        "summary_sha256": file_sha256(summary_path),
+        "summary_content_sha256": summary["content_sha256_before_self_field"],
+        "records": source["records"],
+        "pending_candidate_examples": source["pending_candidate_examples"],
+        "excluded_overlength_examples": len(exclusions),
+    }
+    return source, findings, exclusions, inventory
+
+
 def _audit_markdown(tokenizer: Any, path: Path, role: str) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     path = _safe_training_file(path)
     summary = _source_summary(path, role)
@@ -538,6 +1036,8 @@ def build_report(tokenizer: Any | None = None) -> dict[str, Any]:
     tokenizer = _load_tokenizer() if tokenizer is None else tokenizer
     sources: list[dict[str, Any]] = []
     findings: list[dict[str, Any]] = []
+    exclusions: list[dict[str, Any]] = []
+    pending_inventory: list[dict[str, Any]] = []
     markdown_targets, declared_markdown = _markdown_inventory()
     for path, role, expected in markdown_targets:
         path = _safe_training_file(path)
@@ -602,12 +1102,48 @@ def build_report(tokenizer: Any | None = None) -> dict[str, Any]:
             sources.append(summary)
             findings.extend(found)
 
+    _require(
+        len(PENDING_STRUCTURAL_TARGETS) == 8
+        and {(item["lane"], item["gpu_shard"]) for item in PENDING_STRUCTURAL_TARGETS}
+        == {(lane, shard) for lane in ("primary", "fill") for shard in range(4)}
+        and all(".partial." not in Path(item["path"]).name for item in PENDING_STRUCTURAL_TARGETS),
+        "pending structural inventory must be exactly eight non-partial lane/shard files",
+    )
+    _, pending_contexts, pending_requests = structural.load_plan()
+    pending_lineage_artifacts = _pending_lineage_artifact_receipts()
+    for target in PENDING_STRUCTURAL_TARGETS:
+        summary, found, excluded, inventory = _audit_pending_structural_file(
+            tokenizer,
+            target,
+            contexts=pending_contexts,
+            requests=pending_requests,
+        )
+        sources.append(summary)
+        findings.extend(found)
+        exclusions.extend(excluded)
+        pending_inventory.append(inventory)
+
     sources.sort(key=lambda item: (item["path"], item["role"]))
     findings.sort(
         key=lambda item: (
             item["path"], str(item["record"]), item.get("field", ""),
             item["failure"], item.get("offset", -1),
         )
+    )
+    exclusions.sort(
+        key=lambda item: (
+            item["path"], item["record"], item["candidate_example_id"]
+        )
+    )
+    pending_inventory.sort(key=lambda item: (item["lane"], item["gpu_shard"]))
+    pending_candidates = sum(
+        item["pending_candidate_examples"] for item in pending_inventory
+    )
+    pending_excluded = len(exclusions)
+    pending_findings = sum(
+        item["findings"]
+        for item in sources
+        if item["role"].endswith("_pending_structural_training_candidates")
     )
     value = {
         "schema": SCHEMA,
@@ -616,12 +1152,21 @@ def build_report(tokenizer: Any | None = None) -> dict[str, Any]:
             "registered_markdown_inventory": _relative(REGISTRY),
             "declared_markdown_targets": declared_markdown,
             "generated_domain": generated_status,
+            "pending_structural_candidate_inventory": pending_inventory,
+            "pending_candidate_lineage_artifacts": pending_lineage_artifacts,
+            "pending_candidate_lineage_resolver": {
+                "path": _relative(Path(structural.__file__).resolve()),
+                "sha256": file_sha256(Path(structural.__file__).resolve()),
+            },
+            "pending_candidate_files_opened": len(pending_inventory),
+            "pending_candidate_files_are_non_partial": True,
             "active_semantic_judge_partials_opened": False,
             "protected_or_evaluation_sources_opened": False,
             "explicitly_never_opened_path_classes": [
                 "evaluation", "eval", "holdout", "heldout", "ood",
                 "terminal", "protected", "quarantine", "incident",
-                "manual_reviews", "active semantic-judge partial outputs",
+                "manual_review", "manual_reviews",
+                "active semantic-judge partial outputs",
             ],
         },
         "tokenizer": {
@@ -650,9 +1195,31 @@ def build_report(tokenizer: Any | None = None) -> dict[str, Any]:
             "tokens": sum(item["tokens"] for item in sources),
             "assistant_tokens": sum(item["assistant_tokens"] for item in sources),
             "findings": len(findings),
+            "exclusions": len(exclusions),
+            "pending_candidate_examples": pending_candidates,
+            "pending_candidate_examples_within_limit": (
+                pending_candidates - pending_excluded
+            ),
+            "pending_candidate_examples_excluded_overlength": pending_excluded,
+        },
+        "pending_candidate_length_gate": {
+            "schema": "qwen36-pending-chat-length-gate-accounting-v1",
+            "maximum_rendered_chat_tokens": MAX_CHAT_TOKENS,
+            "candidate_examples": pending_candidates,
+            "within_limit": pending_candidates - pending_excluded,
+            "excluded_overlength": pending_excluded,
+            "tokenization_findings": pending_findings,
+            "factual_text_rewritten_to_pass_length_gate": False,
+            "all_pending_candidates_clean_or_explicitly_excluded": (
+                pending_findings == 0
+                and pending_candidates
+                == (pending_candidates - pending_excluded) + pending_excluded
+            ),
+            "exclusion_lineage_commitment_sha256": canonical_sha256(exclusions),
         },
         "sources": sources,
         "findings": findings,
+        "exclusions": exclusions,
         "scanner": {
             "path": _relative(Path(__file__).resolve()),
             "sha256": file_sha256(Path(__file__).resolve()),
