@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import re
 
 import audit_qwen36_architecture_v1 as audit
 
@@ -38,9 +39,9 @@ def test_contract_is_data_free_and_records_exact_physical_host():
 
 def test_checkpoint_geometry_and_installed_package_state_are_pinned():
     value = load_contract()
-    assert value["repository"]["audit_base_commit"] == (
-        "e2b73d72b75b689b3a1b5e4a34d282a19306e603"
-    )
+    audit_commit = value["repository"]["audit_base_commit"]
+    assert re.fullmatch(r"[0-9a-f]{40}", audit_commit)
+    assert audit._command("git", "cat-file", "-t", audit_commit) == "commit"
     assert value["repository"]["submodules"] == [
         {
             "commit": "574a9d134da1ffce2a8bb812019899e5c96b588a",
@@ -81,9 +82,19 @@ def test_checkpoint_geometry_and_installed_package_state_are_pinned():
     assert packages["peft"]["version"] == "0.19.1"
     assert packages["accelerate"]["version"] == "1.14.0"
     assert packages["triton"]["version"] == "3.6.0"
-    for missing in ("trl", "unsloth", "flash-attn", "fla-core", "causal-conv1d"):
+    assert packages["fla-core"]["version"] == "0.5.1"
+    assert packages["flash-linear-attention"]["version"] == "0.5.1"
+    assert packages["causal-conv1d"]["version"] == "1.6.2.post1"
+    for missing in ("trl", "unsloth", "flash-attn"):
         assert packages[missing]["installed"] is False
         assert packages[missing]["version"] is None
+    optional = value["software"]["optional_training_packages"]
+    assert optional["fast_linear_attention"].startswith(
+        "installed_runtime_validation_delegated_to_"
+    )
+    assert optional["causal_conv1d"].startswith(
+        "installed_runtime_validation_delegated_to_"
+    )
 
 
 def test_auto_causal_loader_is_proven_text_only_with_exact_prefix_conversion():

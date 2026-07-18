@@ -721,8 +721,19 @@ def _software_contract() -> dict[str, Any]:
         "optional_training_packages": {
             "trl": "absent_not_required_for_initial_sft",
             "unsloth": "absent_not_used_by_authoritative_initial_sft_path",
-            "fast_linear_attention": "absent_transformers_uses_torch_fallback",
-            "causal_conv1d": "absent_transformers_uses_torch_fallback",
+            "fast_linear_attention": (
+                "installed_runtime_validation_delegated_to_"
+                "fast_linear_attention_contract_v1"
+                if package_pins["flash-linear-attention"]["installed"]
+                and package_pins["fla-core"]["installed"]
+                else "absent_transformers_uses_torch_fallback"
+            ),
+            "causal_conv1d": (
+                "installed_runtime_validation_delegated_to_"
+                "fast_linear_attention_contract_v1"
+                if package_pins["causal-conv1d"]["installed"]
+                else "absent_transformers_uses_torch_fallback"
+            ),
             "flash_attention": "absent_no_flash_attention_kernel_available",
         },
     }

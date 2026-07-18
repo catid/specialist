@@ -6358,7 +6358,7 @@
     "tensor_count": 1045,
     "weight_file_count": 26
   },
-  "content_sha256_before_self_field": "1dbf5e388a9d2e93c797175da3ec6bef5a71e30ef77dbccea61c7884884645a0",
+  "content_sha256_before_self_field": "4a4960ba80c4e6532f5225984310af35a2a79cd50ffb642ef1c5a54bbe5fba3c",
   "hardware": {
     "expected": {
       "compute_capability": "12.0",
@@ -6412,7 +6412,7 @@
     }
   },
   "repository": {
-    "audit_base_commit": "e2b73d72b75b689b3a1b5e4a34d282a19306e603",
+    "audit_base_commit": "5c6483baa46d015cefbd315ac042d8ba36f50323",
     "path": "/home/catid/specialist",
     "remote": "git@github.com:catid/specialist.git",
     "submodules": [
@@ -6432,8 +6432,8 @@
       "system": "Linux"
     },
     "optional_training_packages": {
-      "causal_conv1d": "absent_transformers_uses_torch_fallback",
-      "fast_linear_attention": "absent_transformers_uses_torch_fallback",
+      "causal_conv1d": "installed_runtime_validation_delegated_to_fast_linear_attention_contract_v1",
+      "fast_linear_attention": "installed_runtime_validation_delegated_to_fast_linear_attention_contract_v1",
       "flash_attention": "absent_no_flash_attention_kernel_available",
       "trl": "absent_not_required_for_initial_sft",
       "unsloth": "absent_not_used_by_authoritative_initial_sft_path"
@@ -6447,10 +6447,11 @@
         "version": "1.14.0"
       },
       "causal-conv1d": {
+        "canonical_name": "causal_conv1d",
         "direct_url": null,
-        "installed": false,
+        "installed": true,
         "vcs_commit": null,
-        "version": null
+        "version": "1.6.2.post1"
       },
       "datasets": {
         "canonical_name": "datasets",
@@ -6460,10 +6461,11 @@
         "version": "5.0.0"
       },
       "fla-core": {
+        "canonical_name": "fla-core",
         "direct_url": null,
-        "installed": false,
+        "installed": true,
         "vcs_commit": null,
-        "version": null
+        "version": "0.5.1"
       },
       "flash-attn": {
         "direct_url": null,
@@ -6472,10 +6474,11 @@
         "version": null
       },
       "flash-linear-attention": {
+        "canonical_name": "flash-linear-attention",
         "direct_url": null,
-        "installed": false,
+        "installed": true,
         "vcs_commit": null,
-        "version": null
+        "version": "0.5.1"
       },
       "huggingface_hub": {
         "canonical_name": "huggingface_hub",
