@@ -127,6 +127,66 @@ def candidate(
     return row
 
 
+def exact_base_selection(*selected: dict) -> dict:
+    selected_ids = sorted(row["selection_candidate_id"] for row in selected)
+    accounting = authority._axis_accounting(selected)
+    deficits = {
+        "assistant_tokens": 0,
+        **{
+            axis: {key: 0 for key in values}
+            for axis, values in accounting.items()
+            if axis != "assistant_tokens"
+        },
+    }
+    return {
+        "schema": "high-information-atomic-selection-result-v1",
+        "solver_status": "optimal",
+        "exact_solution": True,
+        "selected_candidate_ids": selected_ids,
+        "selected_candidate_commitment_sha256": (
+            authority.corpus.canonical_sha256(selected_ids)
+        ),
+        "accounting": accounting,
+        "deficits": deficits,
+        "padding_used": False,
+        "truncation_used": False,
+        "borrowing_used": False,
+        "overshoot_or_tolerance_reported_as_exact": False,
+    }
+
+
+def seed_replacement_contract(required_tokens: int) -> dict:
+    return {
+        "schema": authority.SEED_REPLACEMENT_CONTRACT_SCHEMA,
+        "seed_qa_semantic_authority_file_sha256": "a" * 64,
+        "seed_qa_semantic_authority_content_sha256": "b" * 64,
+        "replacement_assistant_tokens_required": required_tokens,
+        "base_generated_assistant_tokens": (
+            authority.BASE_GENERATED_ASSISTANT_TOKENS
+        ),
+        "total_generated_assistant_tokens_required": (
+            authority.BASE_GENERATED_ASSISTANT_TOKENS + required_tokens
+        ),
+    }
+
+
+def selection_contract(value: dict) -> dict:
+    return {
+        "token_accounting": {
+            "category_balanced_generated_assistant_tokens": value[
+                "assistant_tokens"
+            ],
+        },
+        "accepted_token_targets": {
+            "source_tokens": value["by_source"],
+            "category_tokens": value["by_category"],
+            "task_family_tokens": value["by_task_family"],
+            "task_subtype_tokens": value["by_task_subtype"],
+            "generation_mode_tokens": value["by_generation_mode"],
+        },
+    }
+
+
 def test_exact_key_uses_nfkc_casefold_and_whitespace():
     left = authority.exact_key("  FULLWIDTH Ａ test ", "Answer\nwith   spacing")
     right = authority.exact_key("fullwidth a TEST", "answer with spacing")
@@ -291,6 +351,369 @@ def test_solver_never_splits_atomic_rows_to_hide_a_deficit():
     assert result["truncation_used"] is False
 
 
+def test_seed_replacement_selector_is_exact_and_disjoint_from_base(monkeypatch):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    base = candidate(
+        "selection-base",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+        exact="a" * 64,
+        cluster="near-cluster-v1:" + "a" * 64,
+    )
+    collide = candidate(
+        "selection-collide",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+        exact="b" * 64,
+        cluster="near-cluster-v1:" + "a" * 64,
+    )
+    three = candidate(
+        "selection-three",
+        tokens=3,
+        source="source-a",
+        category="category-a",
+    )
+    two = candidate(
+        "selection-two",
+        tokens=2,
+        source="source-b",
+        category="category-b",
+    )
+    base_selection = exact_base_selection(base)
+    result = authority.solve_seed_replacement_selection(
+        [base, collide, three, two], base_selection, 5
+    )
+    assert result["exact_solution"] is True
+    assert result["accounting"]["assistant_tokens"] == 5
+    assert result["deficit_assistant_tokens"] == 0
+    assert set(result["selected_candidate_ids"]) == {
+        "selection-three", "selection-two"
+    }
+    assert "selection-collide" not in result["selected_candidate_ids"]
+    assert result["padding_used"] is False
+    assert result["truncation_used"] is False
+
+
+def test_seed_replacement_selector_reports_atomic_deficit(monkeypatch):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    base = candidate(
+        "selection-base",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+    )
+    four = candidate(
+        "selection-four",
+        tokens=4,
+        source="source-b",
+        category="category-b",
+    )
+    result = authority.solve_seed_replacement_selection(
+        [base, four],
+        exact_base_selection(base),
+        5,
+    )
+    assert result["exact_solution"] is False
+    assert result["accounting"]["assistant_tokens"] == 4
+    assert result["deficit_assistant_tokens"] == 1
+    assert result["truncation_used"] is False
+
+
+def test_combined_selection_binds_exact_base_and_replacement(monkeypatch):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    base = candidate(
+        "selection-base",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+    )
+    replacement = candidate(
+        "selection-replacement",
+        tokens=2,
+        source="source-b",
+        category="category-b",
+    )
+    base_selection = exact_base_selection(base)
+    replacement_selection = authority.solve_seed_replacement_selection(
+        [base, replacement], base_selection, 2
+    )
+    combined = authority.combine_base_and_seed_replacement_selection(
+        [base, replacement], base_selection, replacement_selection
+    )
+    assert combined["exact_solution"] is True
+    assert combined["accounting"]["assistant_tokens"] == 7
+    assert combined["selected_candidate_ids"] == [
+        "selection-base", "selection-replacement"
+    ]
+    assert combined["selected_candidate_commitment_sha256"] == (
+        authority.corpus.canonical_sha256(combined["selected_candidate_ids"])
+    )
+    assert combined["required_assistant_tokens"] == 7
+    assert combined["deficit_assistant_tokens"] == 0
+    assert sum(combined["accounting"]["by_source"].values()) == 7
+
+
+def test_seed_replacement_rejects_boolean_target(monkeypatch):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    base = candidate(
+        "selection-base-bool",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+    )
+    with pytest.raises(RuntimeError, match="prerequisites changed"):
+        authority.solve_seed_replacement_selection(
+            [base], exact_base_selection(base), True
+        )
+
+
+def test_seed_replacement_zero_target_is_exact_and_empty(monkeypatch):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    base = candidate(
+        "selection-base-zero",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+    )
+    replacement = candidate(
+        "selection-unused-zero",
+        tokens=2,
+        source="source-b",
+        category="category-b",
+    )
+    result = authority.solve_seed_replacement_selection(
+        [base, replacement], exact_base_selection(base), 0
+    )
+    assert result["solver_status"] == "exact_zero_target"
+    assert result["exact_solution"] is True
+    assert result["selected_candidate_ids"] == []
+    assert result["deficit_assistant_tokens"] == 0
+
+
+def test_combiner_rejects_shifted_component_tokens_that_preserve_total(monkeypatch):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    underfilled_base = candidate(
+        "selection-underfilled-base",
+        tokens=4,
+        source="source-a",
+        category="category-a",
+    )
+    replacement = candidate(
+        "selection-overfilled-replacement",
+        tokens=3,
+        source="source-b",
+        category="category-b",
+    )
+    forged_replacement = {
+        "schema": "high-information-seed-replacement-selection-v1",
+        "solver_status": "optimal",
+        "exact_solution": True,
+        "required_assistant_tokens": 2,
+        "selected_candidate_ids": [replacement["selection_candidate_id"]],
+        "selected_candidate_commitment_sha256": (
+            authority.corpus.canonical_sha256(
+                [replacement["selection_candidate_id"]]
+            )
+        ),
+        "accounting": authority._axis_accounting([replacement]),
+        "deficit_assistant_tokens": 0,
+        "padding_used": False,
+        "truncation_used": False,
+        "borrowing_used": False,
+        "overshoot_or_tolerance_reported_as_exact": False,
+    }
+    # The old combiner accepted 4 + 3 because it equaled the nominal 5 + 2
+    # total even though neither component met its own target.
+    with pytest.raises(RuntimeError, match="base atomic selection accounting"):
+        authority.combine_base_and_seed_replacement_selection(
+            [underfilled_base, replacement],
+            exact_base_selection(underfilled_base),
+            forged_replacement,
+        )
+
+
+def test_combiner_rechecks_base_axis_targets(monkeypatch):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    wrong_source_base = candidate(
+        "selection-wrong-source-base",
+        tokens=5,
+        source="source-b",
+        category="category-b",
+    )
+    replacement = candidate(
+        "selection-axis-replacement",
+        tokens=2,
+        source="source-a",
+        category="category-a",
+    )
+    base_selection = exact_base_selection(wrong_source_base)
+    replacement_selection = authority.solve_seed_replacement_selection(
+        [wrong_source_base, replacement], base_selection, 2
+    )
+    with pytest.raises(RuntimeError, match="by_source target changed"):
+        authority.combine_base_and_seed_replacement_selection(
+            [wrong_source_base, replacement],
+            base_selection,
+            replacement_selection,
+            base_targets=targets(source_a=5, source_b=0),
+        )
+
+
+@pytest.mark.parametrize(
+    "collision",
+    ["exact_key_sha256", "near_duplicate_cluster_id", "request_id"],
+)
+def test_combiner_rechecks_cross_component_dedupe_and_request_groups(
+    monkeypatch, collision
+):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    base = candidate(
+        f"selection-base-{collision}",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+    )
+    replacement = candidate(
+        f"selection-replacement-{collision}",
+        tokens=2,
+        source="source-b",
+        category="category-b",
+    )
+    pool = [base, replacement]
+    base_selection = exact_base_selection(base)
+    replacement_selection = authority.solve_seed_replacement_selection(
+        pool, base_selection, 2
+    )
+    if collision == "request_id":
+        replacement["request_id"] = base["request_id"]
+    else:
+        replacement["dedupe"][collision] = base["dedupe"][collision]
+    with pytest.raises(RuntimeError, match=f"duplicated {collision}"):
+        authority.combine_base_and_seed_replacement_selection(
+            pool, base_selection, replacement_selection
+        )
+
+
+def test_exact_and_deficit_seed_replacement_receipts_are_not_confused(monkeypatch):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    contract = seed_replacement_contract(2)
+    base = candidate(
+        "selection-receipt-base",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+    )
+    exact = candidate(
+        "selection-receipt-exact",
+        tokens=2,
+        source="source-b",
+        category="category-b",
+    )
+    base_selection = exact_base_selection(base)
+    exact_selection = authority.solve_seed_replacement_selection(
+        [base, exact], base_selection, 2
+    )
+    receipt = authority.build_seed_qa_replacement_receipt(
+        contract, [base, exact], exact_selection
+    )
+    assert set(receipt) == authority.SEED_REPLACEMENT_RECEIPT_KEYS
+    assert receipt["replacement_assistant_tokens_selected"] == 2
+    assert receipt["total_generated_assistant_tokens"] == 7
+    forged_receipt = {**receipt, "unreceipted_field": True}
+    with pytest.raises(RuntimeError, match="fields changed"):
+        authority.validate_seed_qa_replacement_receipt(forged_receipt)
+
+    short = candidate(
+        "selection-receipt-short",
+        tokens=1,
+        source="source-b",
+        category="category-b",
+    )
+    short_selection = authority.solve_seed_replacement_selection(
+        [base, short], base_selection, 2
+    )
+    with pytest.raises(RuntimeError, match="cannot issue an exact"):
+        authority.build_seed_qa_replacement_receipt(
+            contract, [base, short], short_selection
+        )
+    deficit = authority.build_seed_qa_replacement_deficit_receipt(
+        contract, [base, short], short_selection
+    )
+    assert deficit["replacement_assistant_tokens_selected"] == 1
+    assert deficit["replacement_assistant_tokens_deficit"] == 1
+    assert deficit["training_rows_emitted"] is False
+    assert deficit["content_sha256_before_self_field"] == (
+        authority._self_address(deficit)
+    )
+
+
+def test_coupled_fallback_repairs_false_sequential_replacement_deficit(monkeypatch):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    exact_collision = "c" * 64
+    high_quality_base = candidate(
+        "selection-coupled-high-base",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+        exact=exact_collision,
+    )
+    alternate_base = candidate(
+        "selection-coupled-alternate-base",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+    )
+    alternate_base["selection_eligibility_status"] = (
+        "passed_after_manual_resolution"
+    )
+    replacement = candidate(
+        "selection-coupled-replacement",
+        tokens=2,
+        source="source-a",
+        category="category-a",
+        exact=exact_collision,
+    )
+    replacement["selection_eligibility_status"] = "synthetic_low_quality"
+    pool = [high_quality_base, alternate_base, replacement]
+    base_targets = targets(source_a=5, source_b=0)
+
+    sequential_base = authority.solve_atomic_selection(pool, base_targets)
+    assert sequential_base["selected_candidate_ids"] == [
+        high_quality_base["selection_candidate_id"]
+    ]
+    sequential_replacement = authority.solve_seed_replacement_selection(
+        pool, sequential_base, 2
+    )
+    assert sequential_replacement["exact_solution"] is False
+    assert sequential_replacement["deficit_assistant_tokens"] == 2
+
+    coupled_base, coupled_replacement = (
+        authority.solve_coupled_seed_replacement_fallback(
+            pool,
+            base_targets,
+            sequential_base,
+            2,
+        )
+    )
+    assert coupled_base["selected_candidate_ids"] == [
+        alternate_base["selection_candidate_id"]
+    ]
+    assert coupled_replacement["selected_candidate_ids"] == [
+        replacement["selection_candidate_id"]
+    ]
+    combined = authority.combine_base_and_seed_replacement_selection(
+        pool,
+        coupled_base,
+        coupled_replacement,
+        base_targets=base_targets,
+    )
+    assert combined["exact_solution"] is True
+    assert combined["deficit_assistant_tokens"] == 0
+    assert combined["accounting"]["assistant_tokens"] == 7
+
+
 def test_nonconsensus_is_ineligible_until_exact_manual_resolution():
     source = candidate(
         "selection-review",
@@ -393,6 +816,73 @@ def test_training_row_matches_fixed_mixed_snapshot_interface():
     assert row["lineage"]["source_document_identity_sha256"] == "8" * 64
 
 
+def test_final_authority_reconstructs_components_and_preserves_by_source(
+    monkeypatch
+):
+    monkeypatch.setattr(authority, "BASE_GENERATED_ASSISTANT_TOKENS", 5)
+    monkeypatch.setattr(authority, "_implementation_receipts", lambda: [])
+    base = candidate(
+        "selection-final-base",
+        tokens=5,
+        source="source-a",
+        category="category-a",
+    )
+    replacement = candidate(
+        "selection-final-replacement",
+        tokens=2,
+        source="source-b",
+        category="category-b",
+    )
+    for row in (base, replacement):
+        row["lane"] = "fill"
+        row["rights_basis"] = {"status": "explicit_open_license"}
+        row["safety_transfer_flags"] = []
+        row["context"] = {
+            "text": f"Synthetic context for {row['selection_candidate_id']}.",
+            "artifact_id": row["artifact_id"],
+            "lineage": {
+                "source_document_identity_sha256": (
+                    authority.corpus.canonical_sha256(
+                        row["selection_candidate_id"]
+                    )
+                ),
+            },
+        }
+        row["request"] = {"task_family": row["task_family"]}
+    pool = [base, replacement]
+    base_targets = targets(source_a=5, source_b=0)
+    base_selection = exact_base_selection(base)
+    replacement_selection = authority.solve_seed_replacement_selection(
+        pool, base_selection, 2
+    )
+    combined = authority.combine_base_and_seed_replacement_selection(
+        pool,
+        base_selection,
+        replacement_selection,
+        base_targets=base_targets,
+    )
+    replacement_receipt = authority.build_seed_qa_replacement_receipt(
+        seed_replacement_contract(2), pool, replacement_selection
+    )
+    length_receipt = token_length_gate(pool)
+    payload, report, manifest = authority.build_final_authority(
+        pool=pool,
+        selection=combined,
+        input_receipt={"shards": []},
+        manual_receipt={"content_sha256_before_self_field": "d" * 64},
+        token_length_receipt=length_receipt,
+        selection_contract=selection_contract(base_targets),
+        seed_qa_replacement=replacement_receipt,
+    )
+    assert len(payload.decode("utf-8").splitlines()) == 2
+    assert report["accounting"] == manifest["accounting"] == (
+        combined["accounting"]
+    )
+    assert sum(report["accounting"]["by_source"].values()) == 7
+    assert report["seed_qa_replacement"] == replacement_receipt
+    assert manifest["seed_qa_replacement"] == replacement_receipt
+
+
 def test_blocked_scaffold_reads_no_semantic_rows_and_authorizes_nothing(monkeypatch):
     states = []
     for lane in ("primary", "fill"):
@@ -404,6 +894,16 @@ def test_blocked_scaffold_reads_no_semantic_rows_and_authorizes_nothing(monkeypa
                 "sealed_set_present": False,
             })
     monkeypatch.setattr(authority, "semantic_input_states", lambda: states)
+    monkeypatch.setattr(
+        authority.seed_authority,
+        "AUTHORITY",
+        authority.SELECTION_CONTRACT,
+    )
+    monkeypatch.setattr(
+        authority,
+        "load_seed_qa_replacement_contract",
+        lambda: seed_replacement_contract(2),
+    )
     scaffold = authority.build_scaffold()
     assert scaffold["status"] == "blocked_pending_primary_and_fill_semantic_judges"
     assert scaffold["selection_may_run"] is False
@@ -414,6 +914,9 @@ def test_blocked_scaffold_reads_no_semantic_rows_and_authorizes_nothing(monkeypa
     assert scaffold["selection"]["cross_source_borrowing_allowed"] is False
     assert scaffold["selection"]["maximum_total_rendered_chat_tokens"] == 2_048
     assert scaffold["selection"]["overlength_candidates_may_enter_selector"] is False
+    assert scaffold["seed_qa_replacement"]["contract"] == (
+        seed_replacement_contract(2)
+    )
     assert scaffold["final_interface"]["row_schema"] == authority.ROW_SCHEMA
     assert scaffold["content_sha256_before_self_field"] == authority._self_address(scaffold)
 
@@ -458,3 +961,12 @@ def test_mutating_build_refuses_stale_or_partial_canonical_authority_before_read
         RuntimeError, match="sealed generated-domain authority already exists"
     ):
         authority.build_global_authority(write=True)
+
+
+def test_immutable_authority_writer_never_replaces_existing_bytes(tmp_path):
+    output = tmp_path / "canonical-authority.json"
+    authority._write_immutable_authority_artifact(output, b"first\n")
+    assert output.read_bytes() == b"first\n"
+    with pytest.raises(RuntimeError, match="already exists"):
+        authority._write_immutable_authority_artifact(output, b"second\n")
+    assert output.read_bytes() == b"first\n"

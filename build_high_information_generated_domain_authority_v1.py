@@ -5,8 +5,9 @@ Primary and quality-fill semantic lanes remain separate until this builder has
 validated every structural, NLI, semantic-output, report, and receipt lineage.
 It then applies one global exact/near-duplicate policy and a deterministic
 atomic-token MILP under simultaneous source, category, family, subtype, and
-generation-mode caps.  If the exact 740,847-token solution does not exist, the
-builder emits exact per-axis deficits and no training rows.  It never pads,
+generation-mode caps.  A second atomic selection replaces every token removed
+by independent manual seed-QA review.  If either exact selection does not
+exist, the builder emits exact deficits and no training rows.  It never pads,
 truncates, borrows, or treats an unresolved manual-review row as eligible.
 """
 
@@ -17,13 +18,16 @@ from collections import Counter, defaultdict
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import re
+import tempfile
 import unicodedata
 from typing import Any, Iterable, Mapping, Sequence
 
 import build_category_balanced_selection_contract_v1 as balance
 import build_high_information_domain_corpus_v1 as corpus
+import build_seed_qa_semantic_authority_v1 as seed_authority
 import run_high_information_fill_nli_prefilter_v1 as fill_nli
 import run_high_information_fill_semantic_judge_v1 as fill_judge
 import run_high_information_nli_prefilter_v1 as primary_nli
@@ -102,6 +106,22 @@ TOKEN_LENGTH_GATE_SCHEMA = "high-information-rendered-chat-length-gate-v1"
 TOKEN_LENGTH_RECEIPT_SCHEMA = (
     "high-information-rendered-chat-length-candidate-receipt-v1"
 )
+SEED_REPLACEMENT_CONTRACT_SCHEMA = "seed-qa-generated-replacement-contract-v1"
+SEED_REPLACEMENT_SCHEMA = "seed-qa-generated-replacement-receipt-v1"
+SEED_REPLACEMENT_DEFICIT_SCHEMA = (
+    "seed-qa-generated-replacement-deficit-receipt-v1"
+)
+SEED_REPLACEMENT_RECEIPT_KEYS = {
+    "schema",
+    "seed_qa_semantic_authority_file_sha256",
+    "seed_qa_semantic_authority_content_sha256",
+    "replacement_assistant_tokens_required",
+    "replacement_assistant_tokens_selected",
+    "base_generated_assistant_tokens",
+    "total_generated_assistant_tokens",
+}
+BASE_GENERATED_ASSISTANT_TOKENS = 740_847
+DOMAIN_QA_ASSISTANT_TOKENS = 750_000
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 TOKEN_RE = re.compile(r"[\w]+", re.UNICODE)
 
@@ -178,6 +198,94 @@ def _sealed_receipt(value: Any) -> dict[str, Any]:
         "status": "sealed_passed",
         "content_sha256": corpus.canonical_sha256(value),
     }
+
+
+def load_seed_qa_replacement_contract() -> dict[str, Any]:
+    """Recompute and bind the complete independent seed-QA authority.
+
+    The generated selector may trust neither an authority's token counters nor
+    its self hash in isolation.  Rebuilding it from the pinned seed source,
+    exact assignments, and every independently authored decision makes the
+    replacement target a derived fact.
+    """
+
+    authority_path = seed_authority._secure_regular_file(
+        seed_authority.AUTHORITY, "seed-QA semantic authority"
+    )
+    authority_raw = authority_path.read_bytes()
+    observed = json.loads(authority_raw)
+    seed_authority._require(
+        isinstance(observed, dict), "seed-QA semantic authority is not an object"
+    )
+    rows = seed_authority.load_source()
+    assignments = seed_authority._load_assignments(rows)
+    decisions, file_receipts = seed_authority.load_decisions(rows, assignments)
+    bundle, expected = seed_authority.build_authority(
+        rows, assignments, decisions, file_receipts
+    )
+    seed_authority._require(
+        observed == expected, "seed-QA semantic authority is stale or forged"
+    )
+    bundle_path = seed_authority._secure_regular_file(
+        seed_authority.DECISION_BUNDLE, "seed-QA semantic decision bundle"
+    )
+    seed_authority._require(
+        bundle_path.read_bytes() == bundle,
+        "seed-QA semantic decision bundle is stale",
+    )
+    required = expected["replacement_generated_assistant_tokens_required"]
+    admitted = expected["assistant_qwen36_tokens"]
+    seed_authority._require(
+        admitted + BASE_GENERATED_ASSISTANT_TOKENS + required
+        == DOMAIN_QA_ASSISTANT_TOKENS,
+        "seed-QA replacement token accounting changed",
+    )
+    result = {
+        "schema": SEED_REPLACEMENT_CONTRACT_SCHEMA,
+        "seed_qa_semantic_authority_file_sha256": corpus.sha256_bytes(
+            authority_raw
+        ),
+        "seed_qa_semantic_authority_content_sha256": expected[
+            "content_sha256_before_self_field"
+        ],
+        "replacement_assistant_tokens_required": required,
+        "base_generated_assistant_tokens": BASE_GENERATED_ASSISTANT_TOKENS,
+        "total_generated_assistant_tokens_required": (
+            BASE_GENERATED_ASSISTANT_TOKENS + required
+        ),
+    }
+    return validate_seed_qa_replacement_contract(result)
+
+
+def validate_seed_qa_replacement_contract(value: Any) -> dict[str, Any]:
+    expected_keys = {
+        "schema",
+        "seed_qa_semantic_authority_file_sha256",
+        "seed_qa_semantic_authority_content_sha256",
+        "replacement_assistant_tokens_required",
+        "base_generated_assistant_tokens",
+        "total_generated_assistant_tokens_required",
+    }
+    if not isinstance(value, dict) or set(value) != expected_keys:
+        raise RuntimeError("seed-QA replacement contract fields changed")
+    required = value.get("replacement_assistant_tokens_required")
+    if (
+        value.get("schema") != SEED_REPLACEMENT_CONTRACT_SCHEMA
+        or not HEX64.fullmatch(
+            str(value.get("seed_qa_semantic_authority_file_sha256", ""))
+        )
+        or not HEX64.fullmatch(
+            str(value.get("seed_qa_semantic_authority_content_sha256", ""))
+        )
+        or type(required) is not int
+        or required < 0
+        or value.get("base_generated_assistant_tokens")
+        != BASE_GENERATED_ASSISTANT_TOKENS
+        or value.get("total_generated_assistant_tokens_required")
+        != BASE_GENERATED_ASSISTANT_TOKENS + required
+    ):
+        raise RuntimeError("seed-QA replacement contract changed")
+    return value
 
 
 def _implementation_receipts() -> list[dict[str, str]]:
@@ -312,6 +420,13 @@ def build_scaffold() -> dict:
         for state in states
         if not state["sealed_set_present"]
     ]
+    seed_replacement = None
+    if seed_authority.AUTHORITY.is_symlink():
+        raise RuntimeError("seed-QA semantic authority may not be a symlink")
+    if not seed_authority.AUTHORITY.is_file():
+        blockers.append("missing_sealed_seed_qa_semantic_authority")
+    else:
+        seed_replacement = load_seed_qa_replacement_contract()
     value = {
         "schema": SCAFFOLD_SCHEMA,
         "status": (
@@ -328,6 +443,12 @@ def build_scaffold() -> dict:
             "content_sha256": SELECTION_CONTRACT_SELF_SHA256,
         },
         "targets": targets,
+        "seed_qa_replacement": {
+            "required_authority_path": corpus.relative(seed_authority.AUTHORITY),
+            "required_authority_schema": seed_authority.AUTHORITY_SCHEMA,
+            "contract": seed_replacement,
+            "replacement_selection_is_atomic_and_disjoint_from_base": True,
+        },
         "deduplication": {
             "exact_key_algorithm": EXACT_KEY_ALGORITHM,
             "near_cluster_algorithm": NEAR_CLUSTER_ALGORITHM,
@@ -339,6 +460,18 @@ def build_scaffold() -> dict:
             "solver": "scipy.optimize.milp_highs_binary_two_stage_v1",
             "stage_1": "maximize_atomic_assistant_tokens_under_every_axis_cap",
             "stage_2": "hold_stage_1_total_and_maximize_deterministic_quality_priority",
+            "seed_replacement_strategy": (
+                "sequential_exact_atomic_selection_then_"
+                "coupled_2n_lexicographic_fallback_v1"
+            ),
+            "coupled_fallback_objectives": [
+                "maximize_exact_base_tokens",
+                "hold_base_and_maximize_replacement_tokens",
+                "hold_both_totals_and_maximize_total_quality",
+            ],
+            "coupled_fallback_dedupe_scope": (
+                "exact_near_and_request_groups_across_base_and_replacement"
+            ),
             "maximum_total_rendered_chat_tokens": MAX_RENDERED_CHAT_TOKENS,
             "rendered_chat_length_gate_receipt_schema": TOKEN_LENGTH_GATE_SCHEMA,
             "overlength_candidates_may_enter_selector": False,
@@ -1063,6 +1196,864 @@ def solve_atomic_selection(
     }
 
 
+SELECTION_GROUP_FIELDS = (
+    "exact_key_sha256",
+    "near_duplicate_cluster_id",
+    "request_id",
+)
+
+
+def _selection_candidate_index(
+    candidates: Sequence[dict],
+) -> dict[str, dict]:
+    result: dict[str, dict] = {}
+    for candidate in candidates:
+        candidate_id = candidate.get("selection_candidate_id")
+        if (
+            not isinstance(candidate_id, str)
+            or not candidate_id
+            or candidate_id in result
+        ):
+            raise RuntimeError("selection candidate identity coverage changed")
+        result[candidate_id] = candidate
+    return result
+
+
+def _selection_group_value(candidate: Mapping[str, Any], field: str) -> str:
+    if field == "request_id":
+        value = candidate.get("request_id")
+        if not isinstance(value, str) or not value:
+            raise RuntimeError("selection candidate request identity changed")
+        return value
+    dedupe = candidate.get("dedupe")
+    if not isinstance(dedupe, dict):
+        raise RuntimeError("selection candidate dedupe identity changed")
+    value = dedupe.get(field)
+    if (
+        not isinstance(value, str)
+        or not value
+        or (field == "exact_key_sha256" and not HEX64.fullmatch(value))
+    ):
+        raise RuntimeError(f"selection candidate {field} changed")
+    return value
+
+
+def _selection_ids(
+    selection: Mapping[str, Any], index: Mapping[str, dict], role: str
+) -> list[str]:
+    selected_ids = selection.get("selected_candidate_ids")
+    if (
+        not isinstance(selected_ids, list)
+        or any(not isinstance(value, str) or not value for value in selected_ids)
+        or selected_ids != sorted(selected_ids)
+        or len(selected_ids) != len(set(selected_ids))
+        or not set(selected_ids) <= set(index)
+    ):
+        raise RuntimeError(f"{role} selected-candidate identity changed")
+    if selection.get("selected_candidate_commitment_sha256") != (
+        corpus.canonical_sha256(selected_ids)
+    ):
+        raise RuntimeError(f"{role} selected-candidate commitment changed")
+    return selected_ids
+
+
+def _groups_are_unique(candidates: Sequence[dict], role: str) -> None:
+    for field in SELECTION_GROUP_FIELDS:
+        values = [_selection_group_value(candidate, field) for candidate in candidates]
+        if len(values) != len(set(values)):
+            raise RuntimeError(f"{role} duplicated {field}")
+
+
+def _all_deficits_zero(value: Any) -> bool:
+    if isinstance(value, dict):
+        return all(_all_deficits_zero(item) for item in value.values())
+    return type(value) is int and value == 0
+
+
+def _validate_accounting_against_targets(
+    accounting: Mapping[str, Any], targets: Mapping[str, Any]
+) -> None:
+    validate_targets(targets)
+    if (
+        targets["assistant_tokens"] != BASE_GENERATED_ASSISTANT_TOKENS
+        or accounting.get("assistant_tokens") != targets["assistant_tokens"]
+    ):
+        raise RuntimeError("base atomic selection total target changed")
+    for axis in (
+        "by_source",
+        "by_category",
+        "by_task_family",
+        "by_task_subtype",
+        "by_generation_mode",
+    ):
+        observed = accounting.get(axis)
+        expected = targets[axis]
+        if (
+            not isinstance(observed, dict)
+            or not set(observed) <= set(expected)
+            or any(observed.get(key, 0) != value for key, value in expected.items())
+        ):
+            raise RuntimeError(f"base atomic selection {axis} target changed")
+
+
+def _validate_base_selection_component(
+    candidates: Sequence[dict],
+    selection: Mapping[str, Any],
+    *,
+    base_targets: Mapping[str, Any] | None = None,
+) -> tuple[dict[str, dict], list[str], dict[str, Any]]:
+    index = _selection_candidate_index(candidates)
+    if (
+        not isinstance(selection, Mapping)
+        or selection.get("schema")
+        != "high-information-atomic-selection-result-v1"
+        or selection.get("solver_status") != "optimal"
+        or selection.get("exact_solution") is not True
+        or selection.get("padding_used") is not False
+        or selection.get("truncation_used") is not False
+        or selection.get("borrowing_used") is not False
+        or selection.get("overshoot_or_tolerance_reported_as_exact") is not False
+        or not _all_deficits_zero(selection.get("deficits"))
+    ):
+        raise RuntimeError("base atomic selection contract changed")
+    selected_ids = _selection_ids(selection, index, "base atomic selection")
+    selected = [index[candidate_id] for candidate_id in selected_ids]
+    if any(
+        candidate.get("selection_eligible") is not True
+        or type(candidate.get("assistant_qwen36_token_count")) is not int
+        or candidate["assistant_qwen36_token_count"] <= 0
+        for candidate in selected
+    ):
+        raise RuntimeError("base atomic selection contains an ineligible candidate")
+    accounting = _axis_accounting(selected)
+    if (
+        selection.get("accounting") != accounting
+        or accounting["assistant_tokens"] != BASE_GENERATED_ASSISTANT_TOKENS
+    ):
+        raise RuntimeError("base atomic selection accounting changed")
+    if base_targets is not None:
+        _validate_accounting_against_targets(accounting, base_targets)
+    _groups_are_unique(selected, "base atomic selection")
+    return index, selected_ids, accounting
+
+
+def _validate_replacement_selection_component(
+    candidates: Sequence[dict], selection: Mapping[str, Any]
+) -> tuple[dict[str, dict], list[str], dict[str, Any]]:
+    index = _selection_candidate_index(candidates)
+    if not isinstance(selection, Mapping):
+        raise RuntimeError("seed replacement selection contract changed")
+    required = selection.get("required_assistant_tokens")
+    if (
+        selection.get("schema")
+        != "high-information-seed-replacement-selection-v1"
+        or type(required) is not int
+        or required < 0
+        or selection.get("padding_used") is not False
+        or selection.get("truncation_used") is not False
+        or selection.get("borrowing_used") is not False
+        or selection.get("overshoot_or_tolerance_reported_as_exact") is not False
+    ):
+        raise RuntimeError("seed replacement selection contract changed")
+    selected_ids = _selection_ids(selection, index, "seed replacement selection")
+    selected = [index[candidate_id] for candidate_id in selected_ids]
+    if any(
+        candidate.get("selection_eligible") is not True
+        or type(candidate.get("assistant_qwen36_token_count")) is not int
+        or candidate["assistant_qwen36_token_count"] <= 0
+        for candidate in selected
+    ):
+        raise RuntimeError("seed replacement selection contains an ineligible candidate")
+    accounting = _axis_accounting(selected)
+    selected_tokens = accounting["assistant_tokens"]
+    expected_exact = selected_tokens == required
+    if (
+        selection.get("accounting") != accounting
+        or selected_tokens > required
+        or selection.get("deficit_assistant_tokens")
+        != required - selected_tokens
+        or selection.get("exact_solution") is not expected_exact
+    ):
+        raise RuntimeError("seed replacement selection accounting changed")
+    _groups_are_unique(selected, "seed replacement selection")
+    return index, selected_ids, accounting
+
+
+def solve_seed_replacement_selection(
+    candidates: Sequence[dict],
+    base_selection: Mapping[str, Any],
+    required_tokens: int,
+) -> dict[str, Any]:
+    """Select an exact, disjoint atomic replacement for excluded seed tokens."""
+
+    if type(required_tokens) is not int or required_tokens < 0:
+        raise RuntimeError("seed replacement prerequisites changed")
+    index, base_id_list, _ = _validate_base_selection_component(
+        candidates, base_selection
+    )
+    base_ids = set(base_id_list)
+
+    blocked = {
+        field: {
+            _selection_group_value(index[candidate_id], field)
+            for candidate_id in base_ids
+        }
+        for field in SELECTION_GROUP_FIELDS
+    }
+    eligible = []
+    for candidate in candidates:
+        candidate_id = candidate.get("selection_candidate_id")
+        tokens = candidate.get("assistant_qwen36_token_count")
+        if candidate_id in base_ids or candidate.get("selection_eligible") is not True:
+            continue
+        if type(tokens) is not int or tokens <= 0:
+            raise RuntimeError("seed replacement candidate token count changed")
+        if tokens > required_tokens:
+            continue
+        if any(
+            _selection_group_value(candidate, field) in blocked[field]
+            for field in SELECTION_GROUP_FIELDS
+        ):
+            continue
+        eligible.append(candidate)
+    eligible.sort(key=lambda value: value["selection_candidate_id"])
+
+    empty_accounting = _axis_accounting([])
+    if required_tokens == 0:
+        result = {
+            "schema": "high-information-seed-replacement-selection-v1",
+            "solver_status": "exact_zero_target",
+            "eligible_candidates": 0,
+            "exact_solution": True,
+            "required_assistant_tokens": 0,
+            "selected_candidate_ids": [],
+            "selected_candidate_commitment_sha256": corpus.canonical_sha256([]),
+            "accounting": empty_accounting,
+            "deficit_assistant_tokens": 0,
+            "padding_used": False,
+            "truncation_used": False,
+            "borrowing_used": False,
+            "overshoot_or_tolerance_reported_as_exact": False,
+        }
+        _validate_replacement_selection_component(candidates, result)
+        return result
+    if not eligible:
+        result = {
+            "schema": "high-information-seed-replacement-selection-v1",
+            "solver_status": "optimal_empty_pool",
+            "eligible_candidates": 0,
+            "exact_solution": False,
+            "required_assistant_tokens": required_tokens,
+            "selected_candidate_ids": [],
+            "selected_candidate_commitment_sha256": corpus.canonical_sha256([]),
+            "accounting": empty_accounting,
+            "deficit_assistant_tokens": required_tokens,
+            "padding_used": False,
+            "truncation_used": False,
+            "borrowing_used": False,
+            "overshoot_or_tolerance_reported_as_exact": False,
+        }
+        _validate_replacement_selection_component(candidates, result)
+        return result
+
+    import numpy as np
+    from scipy import __version__ as scipy_version
+    from scipy.optimize import Bounds, LinearConstraint, milp
+    from scipy.sparse import coo_matrix
+
+    constraint_rows: list[tuple[list[int], list[float], float]] = []
+    for field in SELECTION_GROUP_FIELDS:
+        grouped: dict[str, list[int]] = defaultdict(list)
+        for candidate_index, candidate in enumerate(eligible):
+            grouped[_selection_group_value(candidate, field)].append(candidate_index)
+        for _, indices in sorted(grouped.items()):
+            if len(indices) > 1:
+                constraint_rows.append((indices, [1.0] * len(indices), 1.0))
+
+    row_indices: list[int] = []
+    column_indices: list[int] = []
+    values: list[float] = []
+    upper: list[float] = []
+    for row_index, (indices, coefficients, cap) in enumerate(constraint_rows):
+        row_indices.extend([row_index] * len(indices))
+        column_indices.extend(indices)
+        values.extend(coefficients)
+        upper.append(cap)
+    matrix = coo_matrix(
+        (values, (row_indices, column_indices)),
+        shape=(len(constraint_rows), len(eligible)),
+    ).tocsr()
+    group_constraint = LinearConstraint(
+        matrix,
+        np.full(len(constraint_rows), -np.inf),
+        np.asarray(upper),
+    )
+    token_vector = np.asarray(
+        [candidate["assistant_qwen36_token_count"] for candidate in eligible],
+        dtype=float,
+    )
+    bounds = Bounds(np.zeros(len(eligible)), np.ones(len(eligible)))
+    integrality = np.ones(len(eligible), dtype=int)
+    options = {"presolve": True, "mip_rel_gap": 0.0}
+    total_cap = LinearConstraint(
+        coo_matrix(token_vector.reshape(1, -1)).tocsr(),
+        np.asarray([-np.inf]),
+        np.asarray([float(required_tokens)]),
+    )
+    stage_one = milp(
+        c=-token_vector,
+        integrality=integrality,
+        bounds=bounds,
+        constraints=(group_constraint, total_cap),
+        options=options,
+    )
+    if not stage_one.success or stage_one.x is None:
+        raise RuntimeError("seed replacement token maximization did not prove an optimum")
+    maximum_tokens = sum(
+        candidate["assistant_qwen36_token_count"]
+        for candidate, selected in zip(eligible, stage_one.x, strict=True)
+        if selected > 0.5
+    )
+    total_exact = LinearConstraint(
+        coo_matrix(token_vector.reshape(1, -1)).tocsr(),
+        np.asarray([float(maximum_tokens)]),
+        np.asarray([float(maximum_tokens)]),
+    )
+    supply = Counter()
+    for candidate in eligible:
+        supply[candidate["resource_id"]] += candidate["assistant_qwen36_token_count"]
+    quality = np.asarray(
+        [candidate_quality_score(candidate, supply) for candidate in eligible],
+        dtype=float,
+    )
+    stage_two = milp(
+        c=-quality,
+        integrality=integrality,
+        bounds=bounds,
+        constraints=(group_constraint, total_exact),
+        options=options,
+    )
+    if not stage_two.success or stage_two.x is None:
+        raise RuntimeError("seed replacement quality selection did not prove an optimum")
+    selected = [
+        candidate
+        for candidate, chosen in zip(eligible, stage_two.x, strict=True)
+        if chosen > 0.5
+    ]
+    accounting = _axis_accounting(selected)
+    if accounting["assistant_tokens"] != maximum_tokens:
+        raise RuntimeError("seed replacement token reconstruction changed")
+    for field in SELECTION_GROUP_FIELDS:
+        values_seen = [
+            _selection_group_value(candidate, field) for candidate in selected
+        ]
+        if len(values_seen) != len(set(values_seen)):
+            raise RuntimeError(f"seed replacement duplicated {field}")
+        if set(values_seen) & blocked[field]:
+            raise RuntimeError(f"seed replacement overlaps base {field}")
+    selected_ids = sorted(candidate["selection_candidate_id"] for candidate in selected)
+    result = {
+        "schema": "high-information-seed-replacement-selection-v1",
+        "solver_status": "optimal",
+        "solver": {"implementation": "scipy.optimize.milp", "scipy_version": scipy_version},
+        "eligible_candidates": len(eligible),
+        "exact_solution": maximum_tokens == required_tokens,
+        "required_assistant_tokens": required_tokens,
+        "selected_candidate_ids": selected_ids,
+        "selected_candidate_commitment_sha256": corpus.canonical_sha256(selected_ids),
+        "accounting": accounting,
+        "deficit_assistant_tokens": required_tokens - maximum_tokens,
+        "padding_used": False,
+        "truncation_used": False,
+        "borrowing_used": False,
+        "overshoot_or_tolerance_reported_as_exact": False,
+    }
+    _validate_replacement_selection_component(candidates, result)
+    return result
+
+
+def solve_coupled_seed_replacement_fallback(
+    candidates: Sequence[dict],
+    targets: Mapping[str, Any],
+    initial_base_selection: Mapping[str, Any],
+    required_tokens: int,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Jointly re-optimize base and replacement after a sequential deficit.
+
+    The lexicographic objectives are base target attainment, replacement target
+    attainment, and then total quality.  Exact/near/request constraints span
+    both variable banks, so changing the base cannot introduce a duplicate in
+    the replacement merely to recover token feasibility.
+    """
+
+    validate_targets(targets)
+    if type(required_tokens) is not int or required_tokens < 0:
+        raise RuntimeError("coupled seed replacement target changed")
+    _validate_base_selection_component(
+        candidates,
+        initial_base_selection,
+        base_targets=targets,
+    )
+    _selection_candidate_index(candidates)
+    allowed_axes = {
+        "resource_id": targets["by_source"],
+        "category": targets["by_category"],
+        "task_family": targets["by_task_family"],
+        "task_subtype": targets["by_task_subtype"],
+        "generation_mode": targets["by_generation_mode"],
+    }
+    eligible = sorted(
+        (
+            candidate
+            for candidate in candidates
+            if candidate.get("selection_eligible") is True
+        ),
+        key=lambda value: value["selection_candidate_id"],
+    )
+    if not eligible:
+        raise RuntimeError("coupled fallback lost the proven exact base pool")
+    for candidate in eligible:
+        tokens = candidate.get("assistant_qwen36_token_count")
+        receipt = candidate.get("token_length_gate_receipt")
+        if (
+            type(tokens) is not int
+            or tokens <= 0
+            or not isinstance(receipt, dict)
+            or receipt.get("status") != "passed"
+            or receipt.get("maximum_tokens") != MAX_RENDERED_CHAT_TOKENS
+            or receipt.get("factual_text_rewritten") is not False
+            or type(receipt.get("rendered_chat_token_count")) is not int
+            or receipt["rendered_chat_token_count"] <= 0
+            or receipt["rendered_chat_token_count"] > MAX_RENDERED_CHAT_TOKENS
+        ):
+            raise RuntimeError("coupled fallback candidate eligibility changed")
+        _require_self_address(
+            receipt, "coupled fallback candidate token-length gate receipt"
+        )
+        for field, allowed in allowed_axes.items():
+            if candidate.get(field) not in allowed:
+                raise RuntimeError(
+                    f"coupled fallback candidate has an unknown {field}"
+                )
+        for field in SELECTION_GROUP_FIELDS:
+            _selection_group_value(candidate, field)
+
+    import numpy as np
+    from scipy import __version__ as scipy_version
+    from scipy.optimize import Bounds, LinearConstraint, milp
+    from scipy.sparse import coo_matrix, vstack
+
+    count = len(eligible)
+    token_values = [
+        candidate["assistant_qwen36_token_count"] for candidate in eligible
+    ]
+    constraint_rows: list[
+        tuple[list[int], list[float], float, float]
+    ] = []
+
+    # Base variables occupy [0, count); replacement variables occupy
+    # [count, 2 * count).  Only base variables are subject to legacy axes.
+    for field, target_axis in allowed_axes.items():
+        grouped: dict[str, list[int]] = defaultdict(list)
+        for candidate_index, candidate in enumerate(eligible):
+            grouped[candidate[field]].append(candidate_index)
+        for key, cap in sorted(target_axis.items()):
+            indices = grouped.get(key, [])
+            constraint_rows.append((
+                indices,
+                [float(token_values[index]) for index in indices],
+                -np.inf,
+                float(cap),
+            ))
+
+    # One constraint per global dedupe/request group spans both banks.  This
+    # also prevents assigning one physical candidate to both components.
+    for field in SELECTION_GROUP_FIELDS:
+        grouped = defaultdict(list)
+        for candidate_index, candidate in enumerate(eligible):
+            grouped[_selection_group_value(candidate, field)].append(
+                candidate_index
+            )
+        for _, indices in sorted(grouped.items()):
+            # Exact-key rows are retained even for singleton groups because
+            # they enforce b_i + r_i <= 1.  For near/request singletons that
+            # same physical-candidate exclusion is already implied by exact.
+            if field != "exact_key_sha256" and len(indices) == 1:
+                continue
+            both_banks = [*indices, *(count + index for index in indices)]
+            constraint_rows.append((
+                both_banks,
+                [1.0] * len(both_banks),
+                -np.inf,
+                1.0,
+            ))
+
+    replacement_columns = [count + index for index in range(count)]
+    constraint_rows.append((
+        replacement_columns,
+        [float(value) for value in token_values],
+        -np.inf,
+        float(required_tokens),
+    ))
+
+    row_indices: list[int] = []
+    column_indices: list[int] = []
+    coefficients: list[float] = []
+    lower: list[float] = []
+    upper: list[float] = []
+    for row_index, (indices, values, minimum, maximum) in enumerate(
+        constraint_rows
+    ):
+        row_indices.extend([row_index] * len(indices))
+        column_indices.extend(indices)
+        coefficients.extend(values)
+        lower.append(minimum)
+        upper.append(maximum)
+    matrix = coo_matrix(
+        (coefficients, (row_indices, column_indices)),
+        shape=(len(constraint_rows), 2 * count),
+    ).tocsr()
+    constraint = LinearConstraint(
+        matrix, np.asarray(lower), np.asarray(upper)
+    )
+    bounds = Bounds(np.zeros(2 * count), np.ones(2 * count))
+    integrality = np.ones(2 * count, dtype=int)
+    options = {"presolve": True, "mip_rel_gap": 0.0}
+    base_vector = np.asarray(
+        [*token_values, *([0] * count)], dtype=float
+    )
+    replacement_vector = np.asarray(
+        [*([0] * count), *token_values], dtype=float
+    )
+
+    stage_one = milp(
+        c=-base_vector,
+        integrality=integrality,
+        bounds=bounds,
+        constraints=constraint,
+        options=options,
+    )
+    if not stage_one.success or stage_one.x is None:
+        raise RuntimeError("coupled base token maximization did not prove an optimum")
+    maximum_base = sum(
+        token_values[index]
+        for index in range(count)
+        if stage_one.x[index] > 0.5
+    )
+    if maximum_base != targets["assistant_tokens"]:
+        raise RuntimeError("coupled fallback contradicted the proven exact base")
+
+    base_total_row = coo_matrix(base_vector.reshape(1, -1)).tocsr()
+    stage_two_matrix = vstack([matrix, base_total_row], format="csr")
+    stage_two_constraint = LinearConstraint(
+        stage_two_matrix,
+        np.concatenate([np.asarray(lower), [float(maximum_base)]]),
+        np.concatenate([np.asarray(upper), [float(maximum_base)]]),
+    )
+    stage_two = milp(
+        c=-replacement_vector,
+        integrality=integrality,
+        bounds=bounds,
+        constraints=stage_two_constraint,
+        options=options,
+    )
+    if not stage_two.success or stage_two.x is None:
+        raise RuntimeError(
+            "coupled replacement token maximization did not prove an optimum"
+        )
+    maximum_replacement = sum(
+        token_values[index]
+        for index in range(count)
+        if stage_two.x[count + index] > 0.5
+    )
+
+    replacement_total_row = coo_matrix(
+        replacement_vector.reshape(1, -1)
+    ).tocsr()
+    stage_three_matrix = vstack(
+        [stage_two_matrix, replacement_total_row], format="csr"
+    )
+    stage_three_constraint = LinearConstraint(
+        stage_three_matrix,
+        np.concatenate([
+            np.asarray(lower),
+            [float(maximum_base), float(maximum_replacement)],
+        ]),
+        np.concatenate([
+            np.asarray(upper),
+            [float(maximum_base), float(maximum_replacement)],
+        ]),
+    )
+    supply = Counter()
+    for candidate in eligible:
+        supply[candidate["resource_id"]] += candidate[
+            "assistant_qwen36_token_count"
+        ]
+    quality_values = [
+        candidate_quality_score(candidate, supply) for candidate in eligible
+    ]
+    quality_vector = np.asarray(
+        [*quality_values, *quality_values], dtype=float
+    )
+    stage_three = milp(
+        c=-quality_vector,
+        integrality=integrality,
+        bounds=bounds,
+        constraints=stage_three_constraint,
+        options=options,
+    )
+    if not stage_three.success or stage_three.x is None:
+        raise RuntimeError("coupled quality selection did not prove an optimum")
+
+    base_selected = [
+        candidate
+        for index, candidate in enumerate(eligible)
+        if stage_three.x[index] > 0.5
+    ]
+    replacement_selected = [
+        candidate
+        for index, candidate in enumerate(eligible)
+        if stage_three.x[count + index] > 0.5
+    ]
+    base_accounting = _axis_accounting(base_selected)
+    replacement_accounting = _axis_accounting(replacement_selected)
+    if (
+        base_accounting["assistant_tokens"] != maximum_base
+        or replacement_accounting["assistant_tokens"]
+        != maximum_replacement
+    ):
+        raise RuntimeError("coupled solver token reconstruction changed")
+    base_ids = sorted(
+        candidate["selection_candidate_id"] for candidate in base_selected
+    )
+    replacement_ids = sorted(
+        candidate["selection_candidate_id"]
+        for candidate in replacement_selected
+    )
+    solver = {
+        "implementation": "scipy.optimize.milp",
+        "scipy_version": scipy_version,
+        "mode": "coupled_base_replacement_lexicographic_fallback_v1",
+    }
+    base_result = {
+        "schema": "high-information-atomic-selection-result-v1",
+        "solver_status": "optimal",
+        "solver": solver,
+        "eligible_candidates": count,
+        "exact_solution": True,
+        "selected_candidate_ids": base_ids,
+        "selected_candidate_commitment_sha256": corpus.canonical_sha256(
+            base_ids
+        ),
+        "accounting": base_accounting,
+        "deficits": _axis_deficits(targets, base_accounting),
+        "padding_used": False,
+        "truncation_used": False,
+        "borrowing_used": False,
+        "overshoot_or_tolerance_reported_as_exact": False,
+    }
+    replacement_result = {
+        "schema": "high-information-seed-replacement-selection-v1",
+        "solver_status": "optimal",
+        "solver": solver,
+        "eligible_candidates": count,
+        "exact_solution": maximum_replacement == required_tokens,
+        "required_assistant_tokens": required_tokens,
+        "selected_candidate_ids": replacement_ids,
+        "selected_candidate_commitment_sha256": corpus.canonical_sha256(
+            replacement_ids
+        ),
+        "accounting": replacement_accounting,
+        "deficit_assistant_tokens": required_tokens - maximum_replacement,
+        "padding_used": False,
+        "truncation_used": False,
+        "borrowing_used": False,
+        "overshoot_or_tolerance_reported_as_exact": False,
+    }
+    _validate_base_selection_component(
+        candidates, base_result, base_targets=targets
+    )
+    _validate_replacement_selection_component(
+        candidates, replacement_result
+    )
+    combine_base_and_seed_replacement_selection(
+        candidates,
+        base_result,
+        replacement_result,
+        base_targets=targets,
+    )
+    return base_result, replacement_result
+
+
+def combine_base_and_seed_replacement_selection(
+    candidates: Sequence[dict],
+    base_selection: Mapping[str, Any],
+    replacement_selection: Mapping[str, Any],
+    *,
+    base_targets: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Build the single immutable selection identity used by final rows."""
+
+    index, base_ids, _ = _validate_base_selection_component(
+        candidates, base_selection, base_targets=base_targets
+    )
+    replacement_index, replacement_ids, _ = (
+        _validate_replacement_selection_component(
+            candidates, replacement_selection
+        )
+    )
+    if set(index) != set(replacement_index):
+        raise RuntimeError("combined generated candidate identity changed")
+    selected_ids = sorted(
+        [*base_ids, *replacement_ids]
+    )
+    if len(selected_ids) != len(set(selected_ids)):
+        raise RuntimeError("combined generated selection duplicated candidate identity")
+    selected = [index[candidate_id] for candidate_id in selected_ids]
+    if base_targets is not None:
+        for candidate in selected:
+            for field, axis in (
+                ("resource_id", "by_source"),
+                ("category", "by_category"),
+                ("task_family", "by_task_family"),
+                ("task_subtype", "by_task_subtype"),
+                ("generation_mode", "by_generation_mode"),
+            ):
+                if candidate.get(field) not in base_targets[axis]:
+                    raise RuntimeError(
+                        f"combined generated selection has unknown {field}"
+                    )
+    _groups_are_unique(selected, "combined generated selection")
+    accounting = _axis_accounting(selected)
+    required_replacement = replacement_selection["required_assistant_tokens"]
+    expected_tokens = (
+        BASE_GENERATED_ASSISTANT_TOKENS + required_replacement
+    )
+    deficit = expected_tokens - accounting["assistant_tokens"]
+    if deficit < 0:
+        raise RuntimeError("combined generated selection exceeded its token target")
+    exact = (
+        replacement_selection.get("exact_solution") is True and deficit == 0
+    )
+    return {
+        "schema": "high-information-combined-atomic-selection-result-v1",
+        "solver_status": "optimal" if exact else "exact_component_unsolved",
+        "exact_solution": exact,
+        "required_assistant_tokens": expected_tokens,
+        "deficit_assistant_tokens": deficit,
+        "selected_candidate_ids": selected_ids,
+        "selected_candidate_commitment_sha256": corpus.canonical_sha256(selected_ids),
+        "accounting": accounting,
+        "base_selection": dict(base_selection),
+        "seed_qa_replacement_selection": dict(replacement_selection),
+        "padding_used": False,
+        "truncation_used": False,
+        "borrowing_used": False,
+        "overshoot_or_tolerance_reported_as_exact": False,
+    }
+
+
+def validate_seed_qa_replacement_receipt(value: Any) -> dict[str, Any]:
+    if not isinstance(value, dict) or set(value) != SEED_REPLACEMENT_RECEIPT_KEYS:
+        raise RuntimeError("final seed-QA replacement receipt fields changed")
+    required = value.get("replacement_assistant_tokens_required")
+    selected = value.get("replacement_assistant_tokens_selected")
+    if (
+        value.get("schema") != SEED_REPLACEMENT_SCHEMA
+        or not HEX64.fullmatch(
+            str(value.get("seed_qa_semantic_authority_file_sha256", ""))
+        )
+        or not HEX64.fullmatch(
+            str(value.get("seed_qa_semantic_authority_content_sha256", ""))
+        )
+        or type(required) is not int
+        or required < 0
+        or type(selected) is not int
+        or selected != required
+        or value.get("base_generated_assistant_tokens")
+        != BASE_GENERATED_ASSISTANT_TOKENS
+        or value.get("total_generated_assistant_tokens")
+        != BASE_GENERATED_ASSISTANT_TOKENS + selected
+    ):
+        raise RuntimeError("final seed-QA replacement receipt changed")
+    return value
+
+
+def build_seed_qa_replacement_receipt(
+    contract: Mapping[str, Any],
+    candidates: Sequence[dict],
+    replacement_selection: Mapping[str, Any],
+) -> dict[str, Any]:
+    contract = validate_seed_qa_replacement_contract(contract)
+    _, _, accounting = _validate_replacement_selection_component(
+        candidates, replacement_selection
+    )
+    required = contract["replacement_assistant_tokens_required"]
+    selected = accounting["assistant_tokens"]
+    if (
+        replacement_selection.get("exact_solution") is not True
+        or replacement_selection.get("required_assistant_tokens") != required
+        or selected != required
+    ):
+        raise RuntimeError("cannot issue an exact seed-QA replacement receipt")
+    return validate_seed_qa_replacement_receipt({
+        "schema": SEED_REPLACEMENT_SCHEMA,
+        "seed_qa_semantic_authority_file_sha256": contract[
+            "seed_qa_semantic_authority_file_sha256"
+        ],
+        "seed_qa_semantic_authority_content_sha256": contract[
+            "seed_qa_semantic_authority_content_sha256"
+        ],
+        "replacement_assistant_tokens_required": required,
+        "replacement_assistant_tokens_selected": selected,
+        "base_generated_assistant_tokens": BASE_GENERATED_ASSISTANT_TOKENS,
+        "total_generated_assistant_tokens": (
+            BASE_GENERATED_ASSISTANT_TOKENS + selected
+        ),
+    })
+
+
+def build_seed_qa_replacement_deficit_receipt(
+    contract: Mapping[str, Any],
+    candidates: Sequence[dict],
+    replacement_selection: Mapping[str, Any],
+) -> dict[str, Any]:
+    contract = validate_seed_qa_replacement_contract(contract)
+    _, _, accounting = _validate_replacement_selection_component(
+        candidates, replacement_selection
+    )
+    required = contract["replacement_assistant_tokens_required"]
+    selected = accounting["assistant_tokens"]
+    if (
+        replacement_selection.get("exact_solution") is not False
+        or replacement_selection.get("required_assistant_tokens") != required
+        or selected >= required
+        or replacement_selection.get("deficit_assistant_tokens")
+        != required - selected
+    ):
+        raise RuntimeError("seed-QA replacement deficit receipt changed")
+    body = {
+        "schema": SEED_REPLACEMENT_DEFICIT_SCHEMA,
+        "status": "exact_atomic_replacement_unsolved",
+        "seed_qa_semantic_authority_file_sha256": contract[
+            "seed_qa_semantic_authority_file_sha256"
+        ],
+        "seed_qa_semantic_authority_content_sha256": contract[
+            "seed_qa_semantic_authority_content_sha256"
+        ],
+        "replacement_assistant_tokens_required": required,
+        "replacement_assistant_tokens_selected": selected,
+        "replacement_assistant_tokens_deficit": required - selected,
+        "base_generated_assistant_tokens": BASE_GENERATED_ASSISTANT_TOKENS,
+        "total_generated_assistant_tokens_selected": (
+            BASE_GENERATED_ASSISTANT_TOKENS + selected
+        ),
+        "training_rows_emitted": False,
+    }
+    body["content_sha256_before_self_field"] = _self_address(body)
+    return body
+
+
 def _primary_semantic_shard(
     shard: int, contexts: Mapping[str, dict], requests: Mapping[str, dict]
 ) -> tuple[list[dict], dict]:
@@ -1509,10 +2500,38 @@ def build_final_authority(
     manual_receipt: dict,
     token_length_receipt: dict,
     selection_contract: dict,
+    seed_qa_replacement: dict,
 ) -> tuple[bytes, dict, dict]:
-    if selection.get("exact_solution") is not True:
+    if not isinstance(selection, dict):
+        raise RuntimeError("final authority selection changed")
+    base_component = selection.get("base_selection")
+    replacement_component = selection.get("seed_qa_replacement_selection")
+    if not isinstance(base_component, dict) or not isinstance(
+        replacement_component, dict
+    ):
+        raise RuntimeError("final authority selection components changed")
+    reconstructed = combine_base_and_seed_replacement_selection(
+        pool,
+        base_component,
+        replacement_component,
+        base_targets=selection_targets(selection_contract),
+    )
+    if selection != reconstructed or selection.get("exact_solution") is not True:
         raise RuntimeError("final authority requires an exact atomic selection")
-    index = {candidate["selection_candidate_id"]: candidate for candidate in pool}
+    seed_qa_replacement = validate_seed_qa_replacement_receipt(
+        seed_qa_replacement
+    )
+    replacement_accounting = replacement_component["accounting"]
+    if (
+        seed_qa_replacement["replacement_assistant_tokens_required"]
+        != replacement_component["required_assistant_tokens"]
+        or seed_qa_replacement["replacement_assistant_tokens_selected"]
+        != replacement_accounting["assistant_tokens"]
+        or seed_qa_replacement["total_generated_assistant_tokens"]
+        != selection["accounting"]["assistant_tokens"]
+    ):
+        raise RuntimeError("final seed-QA replacement receipt changed")
+    index = _selection_candidate_index(pool)
     selected = [index[candidate_id] for candidate_id in selection["selected_candidate_ids"]]
     selector_receipt = {
         "selection_contract_sha256": SELECTION_CONTRACT_SELF_SHA256,
@@ -1571,6 +2590,7 @@ def build_final_authority(
         "rows": len(rows),
         "accounting": accounting,
         "selection": selection,
+        "seed_qa_replacement": seed_qa_replacement,
         "rendered_chat_length_gate": token_length_receipt,
         "all_rows_eligible_for_training": True,
         "exact_atomic_selection_solved": True,
@@ -1605,6 +2625,7 @@ def build_final_authority(
             "content_sha256": report["content_sha256_before_self_field"],
         },
         "accounting": accounting,
+        "seed_qa_replacement": seed_qa_replacement,
         "rendered_chat_length_gate": {
             "content_sha256": token_length_receipt[
                 "content_sha256_before_self_field"
@@ -1637,6 +2658,39 @@ def _require_canonical_authority_absent() -> None:
         )
 
 
+def _write_immutable_authority_artifact(path: Path, payload: bytes) -> None:
+    """Atomically create one canonical artifact without replacement semantics."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        try:
+            # Linking a complete, fsynced inode is atomic and fails with
+            # EEXIST rather than replacing an authority created concurrently.
+            os.link(temporary, path)
+        except FileExistsError as error:
+            raise RuntimeError(
+                f"immutable generated-domain authority already exists: {path}"
+            ) from error
+        directory = os.open(
+            path.parent,
+            os.O_RDONLY | getattr(os, "O_DIRECTORY", 0),
+        )
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 def build_global_authority(*, write: bool) -> dict:
     # Canonical authority artifacts are immutable.  Refuse every mutating
     # invocation before inspecting current semantic inputs when any prior or
@@ -1658,7 +2712,53 @@ def build_global_authority(*, write: bool) -> dict:
         category_map=category_map,
         manual_resolution_rows=load_manual_resolution_rows(),
     )
-    selection = solve_atomic_selection(pool, targets)
+    seed_qa_replacement_contract = scaffold["seed_qa_replacement"]["contract"]
+    if not isinstance(seed_qa_replacement_contract, dict):
+        raise RuntimeError("seed-QA replacement contract disappeared")
+    validate_seed_qa_replacement_contract(seed_qa_replacement_contract)
+    base_selection = solve_atomic_selection(pool, targets)
+    if not base_selection["exact_solution"]:
+        report = build_deficit_report(
+            selection=base_selection,
+            pool=pool,
+            queue=queue,
+            input_receipt=input_receipt,
+            token_length_receipt=token_length_receipt,
+        )
+        report["seed_qa_replacement_contract"] = seed_qa_replacement_contract
+        report["seed_qa_replacement_status"] = (
+            "not_attempted_base_atomic_selection_unsolved"
+        )
+        report["content_sha256_before_self_field"] = _self_address(report)
+        if write:
+            corpus.atomic_write(SELECTION_SCAFFOLD, _json_payload(scaffold))
+            corpus.atomic_write(DEFICIT_OUTPUT, _json_payload(report))
+            corpus.atomic_write(MANUAL_QUEUE_OUTPUT, corpus.jsonl_payload(queue))
+        return report
+    replacement_selection = solve_seed_replacement_selection(
+        pool,
+        base_selection,
+        seed_qa_replacement_contract[
+            "replacement_assistant_tokens_required"
+        ],
+    )
+    if not replacement_selection["exact_solution"]:
+        base_selection, replacement_selection = (
+            solve_coupled_seed_replacement_fallback(
+                pool,
+                targets,
+                base_selection,
+                seed_qa_replacement_contract[
+                    "replacement_assistant_tokens_required"
+                ],
+            )
+        )
+    selection = combine_base_and_seed_replacement_selection(
+        pool,
+        base_selection,
+        replacement_selection,
+        base_targets=targets,
+    )
     if not selection["exact_solution"]:
         report = build_deficit_report(
             selection=selection,
@@ -1667,11 +2767,32 @@ def build_global_authority(*, write: bool) -> dict:
             input_receipt=input_receipt,
             token_length_receipt=token_length_receipt,
         )
+        report["seed_qa_replacement_contract"] = (
+            seed_qa_replacement_contract
+        )
+        report["seed_qa_replacement_deficit"] = (
+            build_seed_qa_replacement_deficit_receipt(
+                seed_qa_replacement_contract,
+                pool,
+                replacement_selection,
+            )
+        )
+        report["content_sha256_before_self_field"] = _self_address(report)
         if write:
             corpus.atomic_write(SELECTION_SCAFFOLD, _json_payload(scaffold))
             corpus.atomic_write(DEFICIT_OUTPUT, _json_payload(report))
             corpus.atomic_write(MANUAL_QUEUE_OUTPUT, corpus.jsonl_payload(queue))
         return report
+    # Recompute the independent seed authority after candidate loading and both
+    # solver stages.  A concurrent or accidental authority mutation must not be
+    # covered by a receipt captured earlier in this long-running build.
+    if load_seed_qa_replacement_contract() != seed_qa_replacement_contract:
+        raise RuntimeError("seed-QA replacement authority changed during selection")
+    seed_qa_replacement = build_seed_qa_replacement_receipt(
+        seed_qa_replacement_contract,
+        pool,
+        replacement_selection,
+    )
     payload, report, manifest = build_final_authority(
         pool=pool,
         selection=selection,
@@ -1679,11 +2800,12 @@ def build_global_authority(*, write: bool) -> dict:
         manual_receipt=manual_receipt,
         token_length_receipt=token_length_receipt,
         selection_contract=contract,
+        seed_qa_replacement=seed_qa_replacement,
     )
     if write:
-        corpus.atomic_write(TRAIN_OUTPUT, payload)
-        corpus.atomic_write(REPORT_OUTPUT, _json_payload(report))
-        corpus.atomic_write(MANIFEST_OUTPUT, _json_payload(manifest))
+        _write_immutable_authority_artifact(TRAIN_OUTPUT, payload)
+        _write_immutable_authority_artifact(REPORT_OUTPUT, _json_payload(report))
+        _write_immutable_authority_artifact(MANIFEST_OUTPUT, _json_payload(manifest))
         corpus.atomic_write(MANUAL_QUEUE_OUTPUT, corpus.jsonl_payload(queue))
     return manifest
 

@@ -1,0 +1,267 @@
+{
+  "accepted_token_targets": {
+    "all_axes_must_hold_simultaneously": true,
+    "category_tokens": {
+      "lineage_people_history": 148169,
+      "materials_inspection_care_equipment": 122678,
+      "rigging_hardpoints_uplines_mechanics": 200000,
+      "safety_anatomy_consent_risk": 150000,
+      "tying_knots_frictions_technique": 120000
+    },
+    "generation_mode_tokens": {
+      "calibrated_hard_negative": 56250,
+      "positive": 684597
+    },
+    "source_size_is_not_final_selection_weight": true,
+    "source_targets_are_exact_not_sampling_weights": true,
+    "source_tokens": {
+      "acta_loop_knot_efficiency_experiments_2020": 26000,
+      "crash_restraint": 70000,
+      "europepmc_bdsm_fatality_review": 32000,
+      "europepmc_entrapment_neuropathy_review": 30000,
+      "europepmc_icar_suspension_syndrome": 30000,
+      "europepmc_rope_neuropathy_study": 28000,
+      "gutenberg_brady_kedge_anchor_77729": 10000,
+      "hse_temporary_works_faqs": 15000,
+      "hse_treework_lifting_and_climbing": 20000,
+      "innotrac_camera_visual_rope_inspection_2020": 12000,
+      "kink_education_code_of_conduct": 30000,
+      "maib_throwbag_hidden_fused_joints_2019": 10000,
+      "maib_zarga_hmpe_inspection_failure_2017": 14000,
+      "mdpi_knot_efficiency_statistics_2022": 26000,
+      "mdpi_tree_climbing_friction_hitch_2021": 30000,
+      "nist_manila_rope_color_serviceability_1933": 8000,
+      "nist_manila_rope_statistics_1947": 10000,
+      "nist_manila_rope_tests_t198_1921": 13000,
+      "nistir_6096_post_installed_anchors_review": 20000,
+      "noaa_eight_strand_rope_structural_model_1989": 20000,
+      "noaa_synthetic_rope_deterioration_1990": 14000,
+      "nps_textile_fiber_aging_appendix_k_2002": 12000,
+      "phm_synthetic_fiber_rope_condition_monitoring_review_2017": 14000,
+      "rope365": 30000,
+      "rope_topia": 8000,
+      "sage_aramid_three_strand_contact_forces_2025": 15678,
+      "shibari_atlas": 148169,
+      "usbr_testing_verifying_rope_access_anchors": 20000,
+      "usfs_rigging_for_trail_work": 25000
+    },
+    "task_family_tokens": {
+      "closed_book_application": 540847,
+      "grounded_synthesis": 200000
+    },
+    "task_subtype_tokens": {
+      "application_scenario": 202540,
+      "calibrated_unanswerable": 18032,
+      "comparison_or_mechanism": 103854,
+      "conflict_or_scope_resolution": 29085,
+      "direct_explanation": 155487,
+      "evidence_grounded_answer": 90129,
+      "misconception_correction": 78966,
+      "multi_fact_synthesis": 62754
+    }
+  },
+  "anti_dominance_gates": {
+    "every_train_resource_has_an_explicit_target": true,
+    "lineage_people_history_may_not_borrow_technical_deficits": true,
+    "minimum_accepted_tokens_per_source": 2000,
+    "shibari_atlas_max_fraction_of_generated": 0.1999994600774519,
+    "shibari_atlas_max_tokens": 148169,
+    "technical_deficits_may_not_be_filled_with_lineage_or_identity_trivia": true
+  },
+  "builder": {
+    "file_sha256": "b6d14acfb80365fb2eef5eeeeb099952c8c97de4d9e0f78f26c08a6898e342a2",
+    "path": "build_category_balanced_selection_contract_v1.py"
+  },
+  "candidate_pool_contract": {
+    "candidate_example_id_is_the_merge_identity": true,
+    "candidate_structural_pass_is_not_semantic_acceptance": true,
+    "category_balanced_technical_deficit_pass_required": true,
+    "duplicate_request_ids_across_generation_passes_are_expected": true,
+    "generation_passes_remain_separate_until_candidate_content_addressing": true,
+    "primary_generation_path_pattern": "data/training_inventory/high_information_domain_corpus_v1/generation_candidates_gpu{0..3}.jsonl",
+    "quality_fill_path_pattern": "data/training_inventory/high_information_domain_corpus_v1/generation_fill_candidates_gpu{0..3}.jsonl"
+  },
+  "content_sha256_before_self_field": "fdfeedcd2fd46f02506a65e27bee50ab6e6995cb7f0233256af2a2913e23b07f",
+  "current_source_group_weighted_plan_audit": {
+    "generation_mode_tokens": {
+      "calibrated_hard_negative": 56250,
+      "positive": 684597
+    },
+    "largest_source": "shibari_atlas",
+    "largest_source_fraction": 0.8951497407696866,
+    "largest_source_tokens": 663169,
+    "planned_tokens_by_category": {
+      "lineage_people_history": 663169,
+      "materials_inspection_care_equipment": 12661,
+      "rigging_hardpoints_uplines_mechanics": 41773,
+      "safety_anatomy_consent_risk": 6646,
+      "tying_knots_frictions_technique": 16598
+    },
+    "planned_tokens_by_source": {
+      "acta_loop_knot_efficiency_experiments_2020": 1388,
+      "crash_restraint": 32399,
+      "europepmc_bdsm_fatality_review": 1394,
+      "europepmc_entrapment_neuropathy_review": 1401,
+      "europepmc_icar_suspension_syndrome": 1248,
+      "europepmc_rope_neuropathy_study": 1133,
+      "gutenberg_brady_kedge_anchor_77729": 1388,
+      "hse_temporary_works_faqs": 1155,
+      "hse_treework_lifting_and_climbing": 1430,
+      "innotrac_camera_visual_rope_inspection_2020": 1271,
+      "kink_education_code_of_conduct": 1470,
+      "maib_throwbag_hidden_fused_joints_2019": 1155,
+      "maib_zarga_hmpe_inspection_failure_2017": 1388,
+      "mdpi_knot_efficiency_statistics_2022": 1356,
+      "mdpi_tree_climbing_friction_hitch_2021": 1394,
+      "nist_manila_rope_color_serviceability_1933": 953,
+      "nist_manila_rope_statistics_1947": 1344,
+      "nist_manila_rope_tests_t198_1921": 1295,
+      "nistir_6096_post_installed_anchors_review": 1350,
+      "noaa_eight_strand_rope_structural_model_1989": 1382,
+      "noaa_synthetic_rope_deterioration_1990": 1378,
+      "nps_textile_fiber_aging_appendix_k_2002": 1378,
+      "phm_synthetic_fiber_rope_condition_monitoring_review_2017": 1321,
+      "rope365": 9394,
+      "rope_topia": 3066,
+      "sage_aramid_three_strand_contact_forces_2025": 1178,
+      "shibari_atlas": 663169,
+      "usbr_testing_verifying_rope_access_anchors": 1133,
+      "usfs_rigging_for_trail_work": 1536
+    },
+    "target_verified_assistant_tokens": 740847,
+    "task_family_tokens": {
+      "closed_book_application": 540847,
+      "grounded_synthesis": 200000
+    },
+    "task_subtype_tokens": {
+      "application_scenario": 202540,
+      "calibrated_unanswerable": 18032,
+      "comparison_or_mechanism": 103854,
+      "conflict_or_scope_resolution": 29085,
+      "direct_explanation": 155487,
+      "evidence_grounded_answer": 90129,
+      "misconception_correction": 78966,
+      "multi_fact_synthesis": 62754
+    }
+  },
+  "deduplication_and_selection": {
+    "URL_or_page_location_memorization_allowed": false,
+    "exact_duplicate_rows_allowed": false,
+    "exact_key": "NFKC_casefold_whitespace_question_plus_answer",
+    "near_duplicate_clustering_required": true,
+    "near_duplicate_preference_order": [
+      "complete over incomplete",
+      "technical/application/mechanistic over isolated trivia",
+      "higher independent entailment confidence",
+      "stronger two-pass evidence agreement",
+      "rarer source/category deficit",
+      "candidate_example_id lexical tie-break"
+    ],
+    "same_fact_multiple_views_allowed_only_when_task_and_information_differ": true
+  },
+  "eligibility_gates": {
+    "all_requested_facets_complete": true,
+    "eligible_before_all_gates": false,
+    "independent_nli": "pass_or_hard_negative_not_applicable",
+    "manual_review_if_selected": "resolved_pass",
+    "safety_and_attribution_scope": "preserved",
+    "structural_verification": "pass",
+    "training_value_and_nontriviality": "pass",
+    "two_pass_guided_semantic_consensus": "pass",
+    "unsupported_claims": "none"
+  },
+  "exact_budget_solver": {
+    "candidate_rows_are_atomic_and_may_not_be_truncated": true,
+    "overshoot_or_tolerance_may_not_be_reported_as_exact": true,
+    "selection_tie_break_is_deterministic": true,
+    "silent_cross_source_or_cross_category_reallocation_allowed": false,
+    "solve_source_category_and_task_constraints_jointly": true,
+    "unfilled_exact_tokens_create_content_addressed_deficit_requests": true
+  },
+  "input_boundary": {
+    "development_final_protected_holdout_ood_terminal_incident_or_manual_review_opened": false,
+    "mixed_source_lineage_paths_dereferenced": false,
+    "only_train_derived_high_information_plan_metadata_opened": true
+  },
+  "input_receipts": {
+    "generation_request_shards": [
+      {
+        "file_bytes": 830516,
+        "file_sha256": "50ce1f1fa33450bb35ddfda0424bf594a28e11a7d140dd41b6c9c30e6de33278",
+        "path": "data/training_inventory/high_information_domain_corpus_v1/generation_requests_gpu0.jsonl",
+        "rows": 973
+      },
+      {
+        "file_bytes": 830573,
+        "file_sha256": "7633ef245dbec55a97f6104b65187b237e79cd6d481e3d7c9c5aafb4454415d3",
+        "path": "data/training_inventory/high_information_domain_corpus_v1/generation_requests_gpu1.jsonl",
+        "rows": 973
+      },
+      {
+        "file_bytes": 831525,
+        "file_sha256": "76cea6bfb57fb0548a60816fb87fe9feb26f27361730728516835a5e19210129",
+        "path": "data/training_inventory/high_information_domain_corpus_v1/generation_requests_gpu2.jsonl",
+        "rows": 974
+      },
+      {
+        "file_bytes": 830626,
+        "file_sha256": "58f54eb0d28bf27512ae544a81337ea8e320cc8a25a05ecffba07a55e4c7c9d0",
+        "path": "data/training_inventory/high_information_domain_corpus_v1/generation_requests_gpu3.jsonl",
+        "rows": 973
+      }
+    ],
+    "plan_manifest_file_sha256": "76acbf6f037a8a6ce84ed59af6779f07a691b3752e80c357161156a40d785aea",
+    "plan_manifest_path": "data/training_inventory/high_information_domain_corpus_v1/manifest.json",
+    "plan_manifest_self_sha256": "21f07b3f8931768877df6380c054a8bada17dd62743c9f4b18c37ba07c3389ac",
+    "seed_qa": {
+      "all_input_source_groups_accounted_for": true,
+      "counts_toward_closed_book_target": true,
+      "excluded_fact_id_commitment_sha256": "e388f400ee3b03abe8fc3b70ca655727ffc3e7cf6c538b768648accefc93cfbb",
+      "excluded_only_source_group_commitment_sha256": "2405852099245c362f5db0a15d50a704797b66e1f4dd1c87e3f9c4a6a7a726a4",
+      "excluded_only_source_groups": 2,
+      "excluded_rows": 25,
+      "exclusion_counts": {
+        "resource_lookup_kind": 24,
+        "url_or_web_lookup_surface": 1
+      },
+      "hidden_reasoning_rows_excluded": true,
+      "included_assistant_qwen36_tokens": 9153,
+      "included_rows": 357,
+      "included_source_groups": 211,
+      "input_rows": 382,
+      "input_source_groups": 213,
+      "receipt": {
+        "file_bytes": 761492,
+        "file_sha256": "8775b94f57d73d1c0a6d86cbeae4c59a299b09ae3a80b50267fe4f7da1ec9b9a",
+        "path": "data/training_inventory/high_information_domain_corpus_v1/seed_qa_train.jsonl",
+        "rows": 357
+      },
+      "url_memorization_rows_excluded": true
+    },
+    "source_contexts": {
+      "all_train_site_source_groups_represented": true,
+      "mixed_source_paths_included": false,
+      "receipt": {
+        "file_bytes": 5440406,
+        "file_sha256": "187e7071c6e98c144c64751921389b1a0f7bfe4b840aacc6c48bac378a022ccd",
+        "path": "data/training_inventory/high_information_domain_corpus_v1/source_contexts.jsonl",
+        "rows": 1507
+      },
+      "rights_safety_and_lineage_preserved": true,
+      "source_groups": 1507
+    }
+  },
+  "manual_review_completed": false,
+  "purpose": "prevent source-group count and Shibari Atlas volume from dominating the accepted knowledge QA corpus",
+  "schema": "category-balanced-candidate-selection-contract-v1",
+  "selection_materialized": false,
+  "semantic_verification_completed": false,
+  "status": "contract_only_candidates_and_manual_review_pending",
+  "token_accounting": {
+    "category_balanced_generated_assistant_tokens": 740847,
+    "opaque_precurated_seed_qa_assistant_tokens": 9153,
+    "seed_qa_category_is_opaque_and_not_used_to_relax_generated_targets": true,
+    "total_domain_assistant_tokens": 750000
+  },
+  "training_launch_authorized": false
+}

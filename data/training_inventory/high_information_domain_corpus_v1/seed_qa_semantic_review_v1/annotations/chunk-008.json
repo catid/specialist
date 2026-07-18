@@ -1,0 +1,258 @@
+{
+  "schema": "seed-qa-manual-review-annotation-v1",
+  "chunk_id": "chunk-008",
+  "reviewer_id": "codex-manual-review/chunk-008",
+  "review_method": "manual_line_by_line_question_answer_evidence_v1",
+  "reviewed_question_answer_and_evidence": true,
+  "reviewer_independent_of_source_generator": true,
+  "records": [
+    {
+      "source_line_number": 241,
+      "record_id": "seed-qa-v1:a659226bfc49172cd0dbfa6a32e8f787fd7da39654eed5686e43cf5daf2af71f",
+      "decision": "exclude",
+      "failed_quality_flags": [
+        "semantic_correctness_verified",
+        "evidence_entails_entire_answer"
+      ],
+      "reason_code": "question_contains_unsupported_or_false_premise",
+      "notes": "The passage establishes Nureki's dislike and says Naka echoed it, but only supplies Naka's communication-and-limits rationale; it does not support attributing that full rationale to both men as the question and answer do."
+    },
+    {
+      "source_line_number": 242,
+      "record_id": "seed-qa-v1:a716ac082589f0614a24f09c4b5a0358f204ef868e29de50f29227a06d729ae2",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Both halves of Chiba's attributed contrast—heart expressed through technique in Japan and technique seeking heart in the West—are quoted directly and preserved without presenting them as objective cultural fact."
+    },
+    {
+      "source_line_number": 243,
+      "record_id": "seed-qa-v1:a8494cd2104291fe6027e964e48684ff2bc2e8efc7bd417446ca93ba4045047b",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The evidence advises looking to solid furniture such as chairs, tables, sofas, and desks for body-shape ideas; the answer stays at that design level and makes no unsupported suspension-load claim."
+    },
+    {
+      "source_line_number": 244,
+      "record_id": "seed-qa-v1:a89f339a5b53428b2942a594747fa1aee0f840543f3e19ee9fadf279d4f02561",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Manualized reproducibility, symmetry, and student standards are accurately contrasted with minimally standardized, asymmetric, improvisational classical forms that change on each tying."
+    },
+    {
+      "source_line_number": 245,
+      "record_id": "seed-qa-v1:aa88911735fd72693965a422c670801ffef0488d43dff242e24e92b5f0f676fe",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Understanding and managing rather than eliminating risk is the evidence's exact definition of safety, and applying that general principle to a new-partner context does not alter or overstate it."
+    },
+    {
+      "source_line_number": 246,
+      "record_id": "seed-qa-v1:ab309f749a9783a9b08c54d80aafbfac787c1d9962b0f12c3b041eae5fb244ed",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Yukimura's attributed comparison explicitly calls floor communication, expression, and connection unlimited while saying suspension constrains connection, fully supporting the response."
+    },
+    {
+      "source_line_number": 247,
+      "record_id": "seed-qa-v1:ab4c5957aa94164eadd6deb2bb77b3ffc07741e0e1612fa446ead73899df6932",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Dropping a ball and ringing a bell are the source's exact examples of safe symbols when speech is restricted; the question's safety-signal context keeps the brief answer appropriately scoped."
+    },
+    {
+      "source_line_number": 248,
+      "record_id": "seed-qa-v1:ab5e33843e3f9d2f263d135be2231d727c90ade7f7b1f842169feeeb21e953fb",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The page explicitly links fast tying and untying to avoiding full-rope pull-throughs, so the answer gives the supported functional advantage of a chain-stitch pattern."
+    },
+    {
+      "source_line_number": 249,
+      "record_id": "seed-qa-v1:ad32417563ec44e928554ceac59725ab213dbb2e087dc763053c72163ee63961",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Retwisting and massaging the pulled strand back into place are the exact corrective actions in the maintenance exercise, making this a concise and practical repair answer."
+    },
+    {
+      "source_line_number": 250,
+      "record_id": "seed-qa-v1:ada685ca1af43dbbe730a1fa7d80390f98e3c144c02b09997baa404aa944075b",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The source explicitly compares facial and bodily nonverbal expression in Kabuki with rope revealing private omoi; the answer accurately preserves both the mechanism and interpretation."
+    },
+    {
+      "source_line_number": 251,
+      "record_id": "seed-qa-v1:adb84735fc7823cadcf641bb270eb62f4ecdcb0d7481c81396acf62e2627e052",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Aotsuki directly calls Kotobazeme psychological kinbaku and an extension of rope through words, voice, and dialogue; the answer reports that attributed concept without teaching the coercive procedure."
+    },
+    {
+      "source_line_number": 252,
+      "record_id": "seed-qa-v1:add78302869c982d87e0bc70c42cdefc92db738e3c036d4d2e030f60b362bf80",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Complete disappearance without a residual tangle is the stated distinction, and the lapp-knot example explicitly supports detachment after continued tying with the working end."
+    },
+    {
+      "source_line_number": 253,
+      "record_id": "seed-qa-v1:ae23ee72f82b4145cea6c51262db8d32f9b1c8c822927ee0dc23b995c064b3cb",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "EMT shears and rescue hooks are explicitly named as reliable emergency rope-cutting means, so the response gives useful preparedness guidance supported in full."
+    },
+    {
+      "source_line_number": 254,
+      "record_id": "seed-qa-v1:ae3c4386f1671b21f9adfb6063a5a6f03d7c4901e6eeb0240598c4351866b35d",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The internal emotional origin of hazukashii and externally imposed origin of humiliation are the passage's exact distinction, reproduced directly and without embellishment."
+    },
+    {
+      "source_line_number": 255,
+      "record_id": "seed-qa-v1:af4d66d52d5616585cd88e568bc36591193eda7ef38be0ad1611ec926506b9be",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The author's statement that technique was always second to heart precisely supports the concise account of his teacher's priority."
+    },
+    {
+      "source_line_number": 256,
+      "record_id": "seed-qa-v1:b20f6dfcfa8918445a41a4d8fdc57ccf10f757a3ca89ac67312048af367a187b",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Passing through the inter-column gap to catch the opposite rope and thereby resist rotation or sliding is fully described, yielding a self-contained structural definition."
+    },
+    {
+      "source_line_number": 257,
+      "record_id": "seed-qa-v1:b2adbd9062aa48fb2c41c66dc08bdec27351aef55df80d7bd56239a40524f8b6",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The allowlist-over-blocklist principle, positive statement of wants, and probing of broad permission with concrete edge cases are all supported and form valuable consent-negotiation guidance."
+    },
+    {
+      "source_line_number": 258,
+      "record_id": "seed-qa-v1:b381dc29975c0a8685830ef9761bf62efe6228d12d8e3e8ab53d761608c1afb0",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Photoshoot, play, and performance are the exact examples offered for asking about an image's context, making this a useful historical-image analysis prompt rather than page metadata."
+    },
+    {
+      "source_line_number": 259,
+      "record_id": "seed-qa-v1:b3cae4d511cc1a2dec72e778edfc4ce765a459bb8c69f9a99ce6c0b7d007fdaf",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The evidence directly positions Hojōjutsu within gay male desire and self-bondage through Takeshi's quoted experience, so the historical interpretation is fully entailed."
+    },
+    {
+      "source_line_number": 260,
+      "record_id": "seed-qa-v1:b51fff1eb42a4ebaf24adfe0e5ad7da95e215016b7ecd3566520df38a9b9d582",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Both the common twist meaning and strict distance-per-full-twist measurement sense of lay are stated verbatim, providing a precise and durable rope-construction definition."
+    },
+    {
+      "source_line_number": 261,
+      "record_id": "seed-qa-v1:b529ed39bf7a5f9e27aede5a253a8a05b94ae8c3f2db1835bbc9c362dd2561eb",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The immediate nonverbal message and nearly simultaneous response are explicitly described as repeated cycles that dynamically develop play, exactly matching the answer's feedback-loop account."
+    },
+    {
+      "source_line_number": 262,
+      "record_id": "seed-qa-v1:b532faff2ecc1f6f50ab0905b6b18a178c0133922b1cb03df2ae774bf0736a35",
+      "decision": "exclude",
+      "failed_quality_flags": [
+        "evidence_entails_entire_answer"
+      ],
+      "reason_code": "answer_not_fully_supported",
+      "notes": "The passage presents moisture, agitation, wash conditions, and additives as guesses, suspicions, or likely influences, and treats construction mainly as governing treatment tolerance; the answer overstates all of them as established direct diameter-changing variables."
+    },
+    {
+      "source_line_number": 263,
+      "record_id": "seed-qa-v1:b5d162d880f76473955f4751294b8de45a5abdf34b56dad536f8ed09b5918ae4",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Ensuring house-rule compliance and respect for safewords are the two exact safety functions assigned to dungeon monitors, so this event-role answer is durable rather than event-specific logistics."
+    },
+    {
+      "source_line_number": 264,
+      "record_id": "seed-qa-v1:b5fbf22aa95e711cd04dd615734c13d9b2198f9b9c504b29780a3556109811d4",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Experimenting with seductive energy and building a personal mood-setting ritual are explicit goals, while the source also directly notes that intimacy differs between people."
+    },
+    {
+      "source_line_number": 265,
+      "record_id": "seed-qa-v1:b68a75d12bd1a2e4cd5a6603714f91f75c4c86829085b5fa28294f67875c1558",
+      "decision": "exclude",
+      "failed_quality_flags": [
+        "question_is_user_useful"
+      ],
+      "reason_code": "question_not_user_useful",
+      "notes": "The answer accurately transcribes a particular vendor SKU, but its current length, finish, and delivered condition are mutable commercial inventory details rather than durable rope-material or maintenance knowledge."
+    },
+    {
+      "source_line_number": 266,
+      "record_id": "seed-qa-v1:b7496357a876f6f8ac38194900db1e886325dd0057862903bd81e6d0487c93d7",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The round profile recommendation and warnings against sharp D-shapes and I-beam or skeletonized bodies are all explicit and preserve the safety rationale for sub-eight-millimeter bondage rope."
+    },
+    {
+      "source_line_number": 267,
+      "record_id": "seed-qa-v1:b7a2af656ffc70d53ae70bd2cc34abce7435cb4b2c927aa4ad70e3f1244a7034",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Progressive cleaning damage, fiber-specific vulnerability, and differing hygiene needs all appear in the source and fully support treating maintenance agreement as informed consent."
+    },
+    {
+      "source_line_number": 268,
+      "record_id": "seed-qa-v1:b859a5f890b0066b92d80a2b332949e2e31107a3412b82a574f433f6e37d1c0b",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The glossary explicitly defines agency limited to painful, difficult, or bad choices as a predicament tie, making the terminology response exact and self-contained."
+    },
+    {
+      "source_line_number": 269,
+      "record_id": "seed-qa-v1:b8848fc13ce1b096c3135702a7481e1583a3a67d323d82ab1f82483e88797938",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "The first tie's role in creating an initial impression and setting mood, plus the dominance, proficiency, and efficiency conveyed by smooth application, all come directly from the evidence."
+    },
+    {
+      "source_line_number": 270,
+      "record_id": "seed-qa-v1:bb79179d52601f147e362848fc129a3da30f91f773905f143e07085d6f3902a6",
+      "decision": "pass",
+      "failed_quality_flags": [],
+      "reason_code": "fully_supported_useful_seed_qa",
+      "notes": "Adding to structural function or to the partner's pleasure or experience are the exact two substantive tests Milla gives for retaining a rope in the tie."
+    }
+  ],
+  "content_sha256_before_self_field": "5502a9ecd6453b0866be421e2a8a144d968b95fa0eda311cd7aa25645f443d2d"
+}

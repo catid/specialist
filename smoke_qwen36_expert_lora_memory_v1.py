@@ -193,6 +193,8 @@ def main() -> None:
     parser.add_argument("--routed-rank", type=int, choices=(2, 4), default=4)
     parser.add_argument("--shared-only", action="store_true")
     parser.add_argument("--seed", type=int, default=19021)
+    parser.add_argument("--steps", type=int, default=3)
+    parser.add_argument("--minimum-headroom-gib", type=float, default=3.0)
     parser.add_argument("--output", type=Path)
     arguments = parser.parse_args()
 
@@ -206,6 +208,12 @@ def main() -> None:
     _require(torch.cuda.is_available(), "CUDA is required")
     _require(torch.cuda.device_count() == 1, "worker must see exactly one GPU")
     _require(16 <= arguments.sequence_length <= 2048, "invalid synthetic sequence length")
+    _require(3 <= arguments.steps <= 10, "memory smoke must run three to ten steps")
+    _require(
+        math.isfinite(arguments.minimum_headroom_gib)
+        and arguments.minimum_headroom_gib >= 3.0,
+        "minimum reliable headroom must be at least three GiB",
+    )
     torch.manual_seed(arguments.seed)
     torch.cuda.manual_seed_all(arguments.seed)
     torch.cuda.set_device(0)
@@ -223,10 +231,17 @@ def main() -> None:
         attn_implementation="sdpa",
     )
     model.config.use_cache = False
+    model.config.output_router_logits = False
+    model.config.router_aux_loss_coef = 0.0
     model.gradient_checkpointing_enable(
         gradient_checkpointing_kwargs={"use_reentrant": False}
     )
     _require(model.config.use_cache is False, "KV cache was not disabled")
+    _require(
+        model.config.output_router_logits is False
+        and model.config.router_aux_loss_coef == 0.0,
+        "router auxiliary output or loss was not disabled",
+    )
     _require(
         model.is_gradient_checkpointing is True,
         "gradient checkpointing was not enabled",
@@ -258,6 +273,11 @@ def main() -> None:
     scope = expert_lora.audit_postattach_scope(model, spec)
     model.train()
     trainable = [parameter for parameter in model.parameters() if parameter.requires_grad]
+    _require(trainable, "adapter has no trainable parameters")
+    _require(
+        all(parameter.dtype == torch.float32 for parameter in trainable),
+        "every trainable LoRA tensor must be FP32 before AdamW",
+    )
     optimizer = torch.optim.AdamW(
         trainable,
         lr=1e-4,
@@ -266,6 +286,7 @@ def main() -> None:
         weight_decay=0.01,
     )
     after_setup = memory(torch)
+    setup_seconds = time.perf_counter() - started
 
     generator = torch.Generator(device="cpu").manual_seed(arguments.seed + 1)
     input_ids = torch.randint(
@@ -277,25 +298,67 @@ def main() -> None:
     ).cuda()
     attention_mask = torch.ones_like(input_ids)
     labels = input_ids.clone()
-    torch.cuda.reset_peak_memory_stats()
-    step_started = time.perf_counter()
-    outputs = model(
-        input_ids=input_ids,
-        attention_mask=attention_mask,
-        labels=labels,
-        use_cache=False,
+    measurements = []
+    for step_index in range(arguments.steps):
+        torch.cuda.reset_peak_memory_stats()
+        step_started = time.perf_counter()
+        outputs = model(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            labels=labels,
+            use_cache=False,
+        )
+        loss = outputs.loss
+        _require(torch.isfinite(loss).item(), "synthetic loss is not finite")
+        loss.backward()
+        gradient_norm = torch.nn.utils.clip_grad_norm_(trainable, max_norm=1.0)
+        _require(torch.isfinite(gradient_norm).item(), "synthetic gradient norm is not finite")
+        after_backward = memory(torch)
+        loss_value = float(loss.detach().cpu())
+        gradient_norm_value = float(gradient_norm.detach().cpu())
+        del outputs, loss
+        optimizer.step()
+        optimizer.zero_grad(set_to_none=True)
+        torch.cuda.synchronize()
+        step_seconds = time.perf_counter() - step_started
+        after_step = memory(torch)
+        measurements.append({
+            "step": step_index + 1,
+            "loss": loss_value,
+            "gradient_norm_before_clip": gradient_norm_value,
+            "step_seconds": step_seconds,
+            "tokens_per_second": arguments.sequence_length / step_seconds,
+            "after_backward": after_backward,
+            "after_step": after_step,
+        })
+
+    total_memory_gib = gib(device_properties.total_memory)
+    peak_allocated_gib = max(
+        row[phase]["peak_allocated_gib"]
+        for row in measurements
+        for phase in ("after_backward", "after_step")
     )
-    loss = outputs.loss
-    _require(torch.isfinite(loss).item(), "synthetic loss is not finite")
-    loss.backward()
-    gradient_norm = torch.nn.utils.clip_grad_norm_(trainable, max_norm=1.0)
-    _require(torch.isfinite(gradient_norm).item(), "synthetic gradient norm is not finite")
-    after_backward = memory(torch)
-    optimizer.step()
-    optimizer.zero_grad(set_to_none=True)
-    torch.cuda.synchronize()
-    step_seconds = time.perf_counter() - step_started
-    after_step = memory(torch)
+    peak_reserved_gib = max(
+        row[phase]["peak_reserved_gib"]
+        for row in measurements
+        for phase in ("after_backward", "after_step")
+    )
+    allocated_headroom_gib = total_memory_gib - peak_allocated_gib
+    reserved_headroom_gib = total_memory_gib - peak_reserved_gib
+    _require(
+        min(allocated_headroom_gib, reserved_headroom_gib)
+        >= arguments.minimum_headroom_gib,
+        "BF16 LoRA memory smoke lacks the required reliable VRAM headroom",
+    )
+    adapter_parameter_bytes = sum(
+        parameter.numel() * parameter.element_size() for parameter in trainable
+    )
+    optimizer_tensor_bytes = sum(
+        value.numel() * value.element_size()
+        for state in optimizer.state.values()
+        for value in state.values()
+        if torch.is_tensor(value)
+    )
 
     result = {
         "schema": "qwen36-expert-lora-synthetic-memory-smoke-v1",
@@ -314,6 +377,8 @@ def main() -> None:
         },
         "configuration": {
             "sequence_length": arguments.sequence_length,
+            "steps": arguments.steps,
+            "minimum_headroom_gib": arguments.minimum_headroom_gib,
             "routed_rank": None if arguments.shared_only else arguments.routed_rank,
             "shared_rank": spec.shared_rank,
             "shared_only": arguments.shared_only,
@@ -335,16 +400,19 @@ def main() -> None:
             "vision_excluded_not_instantiated": True,
             "gradient_checkpointing_observed_enabled": True,
             "kv_cache_observed_disabled": True,
+            "router_auxiliary_loss_disabled": True,
         },
         "measurement": {
-            "loss": float(loss.detach().cpu()),
-            "gradient_norm_before_clip": float(gradient_norm.detach().cpu()),
-            "model_and_adapter_setup_seconds": step_started - started,
-            "step_seconds": step_seconds,
-            "tokens_per_second": arguments.sequence_length / step_seconds,
+            "model_and_adapter_setup_seconds": setup_seconds,
             "after_setup": after_setup,
-            "after_backward": after_backward,
-            "after_step": after_step,
+            "steps": measurements,
+            "adapter_parameter_bytes": adapter_parameter_bytes,
+            "optimizer_tensor_bytes": optimizer_tensor_bytes,
+            "peak_allocated_gib": peak_allocated_gib,
+            "peak_reserved_gib": peak_reserved_gib,
+            "allocated_headroom_gib": allocated_headroom_gib,
+            "reserved_headroom_gib": reserved_headroom_gib,
+            "reliable_headroom_gate_passed": True,
         },
     }
     payload = json.dumps(result, indent=2, sort_keys=True) + "\n"

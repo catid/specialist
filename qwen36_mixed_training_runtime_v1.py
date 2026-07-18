@@ -20,6 +20,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
 
+import mixed_training_source_disjoint_claim_v1 as source_disjoint_claim
+
 
 ROOT = Path(__file__).resolve().parent
 TOP_SCHEMA = "mixed-training-snapshot-authority-manifest-v1"
@@ -35,6 +37,26 @@ ALLOWED_FORMATS = {"chat_assistant_only", "causal_next_token"}
 QWEN36_VOCAB_SIZE = 248_320
 SEED_QA_ROWS = 357
 SEED_QA_ASSISTANT_TOKENS = 9_153
+BASE_GENERATED_ASSISTANT_TOKENS = 740_847
+DOMAIN_QA_ASSISTANT_TOKENS = 750_000
+SEED_QA_AUTHORITY_RELATIVE = Path(
+    "data/training_inventory/high_information_domain_corpus_v1/"
+    "seed_qa_semantic_authority_v1.json"
+)
+SEED_QA_SOURCE_RELATIVE = Path(
+    "data/training_inventory/high_information_domain_corpus_v1/seed_qa_train.jsonl"
+)
+SEED_QA_SOURCE_SHA256 = (
+    "8775b94f57d73d1c0a6d86cbeae4c59a299b09ae3a80b50267fe4f7da1ec9b9a"
+)
+SEED_QA_DECISION_BUNDLE_RELATIVE = Path(
+    "data/training_inventory/high_information_domain_corpus_v1/"
+    "seed_qa_semantic_review_v1/decisions.jsonl"
+)
+SEED_QA_AUTHORITY_SCHEMA = "seed-qa-semantic-authority-v1"
+SEED_QA_DECISION_SCHEMA = "seed-qa-manual-semantic-decision-v1"
+SEED_QA_REVIEW_METHOD = "manual_line_by_line_question_answer_evidence_v1"
+SEED_QA_REPLACEMENT_SCHEMA = "seed-qa-generated-replacement-receipt-v1"
 EXPECTED_BUDGETS = {
     "protocol_core_100k": {
         "domain_qa": 750_000,
@@ -109,6 +131,54 @@ CURSOR_FORMULA = (
     "cursor_commitment_sha256); first previous='0'*64"
 )
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
+FORBIDDEN_PATH_TOKENS = frozenset({
+    "benchmark", "benchmarks", "dev", "development", "developments",
+    "eval", "evaluation", "evaluations", "final", "finals", "heldout",
+    "holdout", "holdouts", "incident", "incidents", "manualreview",
+    "manualreviews", "ood", "protected", "terminal", "terminals",
+})
+SEED_QA_DECISION_KEYS = {
+    "schema", "source_line_number", "record_id", "source_record_sha256",
+    "reviewer_id", "review_method", "reviewed_question_answer_and_evidence",
+    "reviewer_independent_of_source_generator", "decision",
+    "semantic_correctness_verified", "evidence_entails_entire_answer",
+    "question_is_user_useful", "question_is_self_contained",
+    "answer_is_direct_and_well_formed", "safety_qualification_is_adequate",
+    "reason_code", "notes", "decision_content_sha256",
+}
+SEED_QA_PASS_FLAGS = (
+    "semantic_correctness_verified", "evidence_entails_entire_answer",
+    "question_is_user_useful", "question_is_self_contained",
+    "answer_is_direct_and_well_formed", "safety_qualification_is_adequate",
+)
+SEED_QA_EXCLUSION_REASONS = {
+    "answer_not_fully_supported", "answer_factually_incorrect",
+    "question_not_user_useful", "question_not_self_contained",
+    "question_contains_unsupported_or_false_premise",
+    "answer_not_direct_or_well_formed", "safety_qualification_inadequate",
+    "multiple_quality_failures",
+}
+SEED_QA_AUTHORITY_KEYS = {
+    "schema", "status", "semantic_correctness_verified",
+    "eligible_for_training", "source_rows", "reviewed_rows",
+    "training_rows_admitted", "excluded_rows",
+    "source_assistant_qwen36_tokens", "assistant_qwen36_tokens",
+    "excluded_assistant_qwen36_tokens",
+    "replacement_generated_assistant_tokens_required", "source_dataset",
+    "assignments", "decision_bundle", "decision_files",
+    "admitted_record_identity_commitment_sha256", "exclusion_ledger",
+    "review_contract", "content_sha256_before_self_field",
+}
+SEED_QA_RECEIPT_KEYS = {
+    "schema", "status", "semantic_correctness_verified",
+    "eligible_for_training", "path", "file_sha256", "content_sha256",
+    "source_rows", "reviewed_rows", "training_rows_admitted",
+    "excluded_rows", "source_assistant_qwen36_tokens",
+    "assistant_qwen36_tokens", "excluded_assistant_qwen36_tokens",
+    "replacement_generated_assistant_tokens_required", "source_dataset",
+    "decision_bundle", "admitted_record_identity_commitment_sha256",
+    "exclusion_ledger",
+}
 
 
 class SnapshotContractError(RuntimeError):
@@ -183,6 +253,21 @@ def _secure_regular_path(path: Path, *, label: str) -> Path:
     root = Path(os.path.abspath(os.fspath(ROOT)))
     lexical = Path(os.path.abspath(os.fspath(path)))
     _require(lexical.is_relative_to(root), f"{label} path escapes repository")
+    relative = lexical.relative_to(root)
+    path_tokens: set[str] = set()
+    for component in relative.parts:
+        collapsed = re.sub(r"[^a-z0-9]", "", component.casefold())
+        if collapsed:
+            path_tokens.add(collapsed)
+        path_tokens.update(
+            token
+            for token in re.split(r"[^a-z0-9]+", component.casefold())
+            if token
+        )
+    _require(
+        not (path_tokens & FORBIDDEN_PATH_TOKENS),
+        f"{label} uses a forbidden protected/evaluation path class",
+    )
     current = Path(lexical.anchor)
     metadata = None
     for component in lexical.parts[1:]:
@@ -241,7 +326,8 @@ def _validate_generated_receipt(receipt: Any) -> dict[str, Any]:
         "dataset_file_sha256",
     }
     _require(
-        set(receipt) == required_hashes | {"rows", "accounting"},
+        set(receipt)
+        == required_hashes | {"rows", "accounting", "seed_qa_replacement"},
         "generated-domain receipt fields changed",
     )
     _require(
@@ -254,10 +340,63 @@ def _validate_generated_receipt(receipt: Any) -> dict[str, Any]:
         and receipt["rows"] > 0,
         "generated-domain receipt row count is invalid",
     )
+    replacement = receipt.get("seed_qa_replacement")
+    replacement_keys = {
+        "schema", "seed_qa_semantic_authority_file_sha256",
+        "seed_qa_semantic_authority_content_sha256",
+        "replacement_assistant_tokens_required",
+        "replacement_assistant_tokens_selected",
+        "base_generated_assistant_tokens", "total_generated_assistant_tokens",
+    }
+    _require(
+        isinstance(replacement, dict)
+        and set(replacement) == replacement_keys
+        and replacement.get("schema") == SEED_QA_REPLACEMENT_SCHEMA
+        and _is_hex64(
+            replacement.get("seed_qa_semantic_authority_file_sha256")
+        )
+        and _is_hex64(
+            replacement.get("seed_qa_semantic_authority_content_sha256")
+        )
+        and isinstance(replacement.get("replacement_assistant_tokens_required"), int)
+        and not isinstance(
+            replacement.get("replacement_assistant_tokens_required"), bool
+        )
+        and replacement["replacement_assistant_tokens_required"] >= 0
+        and replacement.get("replacement_assistant_tokens_selected")
+        == replacement["replacement_assistant_tokens_required"]
+        and replacement.get("base_generated_assistant_tokens")
+        == BASE_GENERATED_ASSISTANT_TOKENS
+        and replacement.get("total_generated_assistant_tokens")
+        == BASE_GENERATED_ASSISTANT_TOKENS
+        + replacement["replacement_assistant_tokens_required"],
+        "generated-domain seed-QA replacement receipt changed",
+    )
     accounting = receipt.get("accounting")
+    accounting_axes = {
+        "by_source", "by_category", "by_task_family",
+        "by_task_subtype", "by_generation_mode",
+    }
     _require(
         isinstance(accounting, dict)
-        and accounting.get("assistant_tokens") == 740_847,
+        and set(accounting) == {"assistant_tokens", *accounting_axes}
+        and accounting.get("assistant_tokens")
+        == replacement["total_generated_assistant_tokens"]
+        and all(
+            isinstance(accounting.get(axis), dict)
+            and accounting[axis]
+            and all(
+                isinstance(key, str)
+                and key
+                and isinstance(value, int)
+                and not isinstance(value, bool)
+                and value >= 0
+                for key, value in accounting[axis].items()
+            )
+            and sum(accounting[axis].values())
+            == replacement["total_generated_assistant_tokens"]
+            for axis in accounting_axes
+        ),
         "generated-domain receipt token authority changed",
     )
     return receipt
@@ -267,41 +406,175 @@ def _validate_source_disjoint_receipt(
     receipt: Any,
     *,
     expected: Path,
-    generated_manifest_file_sha256: str,
+    generated_receipt: dict[str, Any],
+    seed_qa_semantic_receipt: dict[str, Any],
 ) -> dict[str, Any]:
-    _require(isinstance(receipt, dict), "opaque source-disjoint extension receipt is absent")
+    _require(
+        isinstance(receipt, dict),
+        "opaque source-disjoint extension receipt is absent",
+    )
     _require(
         set(receipt)
-        == {"path", "file_sha256", "content_sha256", "accepted", "opaque_receipt_sha256"},
+        == {
+            "schema",
+            "status",
+            "accepted",
+            "claim_request",
+            "claim_authorization",
+            "extension",
+            "opaque_receipt_sha256",
+            "static_input_set_commitment_sha256",
+            "candidate_sets_commitment_sha256",
+        },
         "opaque source-disjoint receipt fields changed",
     )
-    _require(receipt.get("accepted") is True, "opaque source-disjoint extension is not accepted")
-    for key in ("file_sha256", "content_sha256", "opaque_receipt_sha256"):
-        _require(_is_hex64(receipt.get(key)), f"source-disjoint {key} is invalid")
-    path = _repo_path(receipt.get("path"), label="source-disjoint extension", expected=expected)
-    _require(file_sha256(path) == receipt["file_sha256"], "source-disjoint file identity changed")
-    value = json.loads(path.read_text(encoding="utf-8"))
-    _require(isinstance(value, dict), "source-disjoint extension is not an object")
-    unsigned = copy.deepcopy(value)
-    claimed = unsigned.pop("content_sha256_before_self_field", None)
     _require(
-        claimed == receipt["content_sha256"]
-        and claimed in {canonical_sha256(unsigned), compact_ascii_sha256(unsigned)},
-        "source-disjoint content identity changed",
+        receipt.get("schema")
+        == "mixed-training-source-disjoint-extension-receipt-v1"
+        and receipt.get("status") == "accepted"
+        and receipt.get("accepted") is True,
+        "opaque source-disjoint extension is not accepted",
     )
-    opaque = value.get("opaque_collision_contract")
+    for key in (
+        "opaque_receipt_sha256",
+        "static_input_set_commitment_sha256",
+        "candidate_sets_commitment_sha256",
+    ):
+        _require(
+            _is_hex64(receipt.get(key)),
+            f"source-disjoint {key} is invalid",
+        )
+
+    def artifact_path(
+        value: Any, *, label: str, expected_path: Path
+    ) -> Path:
+        _require(
+            isinstance(value, dict)
+            and set(value) == {"path", "file_sha256", "content_sha256"},
+            f"{label} receipt fields changed",
+        )
+        _require(
+            _is_hex64(value.get("file_sha256"))
+            and _is_hex64(value.get("content_sha256")),
+            f"{label} identity is invalid",
+        )
+        path = _repo_path(
+            value.get("path"), label=label, expected=expected_path
+        )
+        _require(
+            file_sha256(path) == value["file_sha256"],
+            f"{label} file identity changed",
+        )
+        return path
+
+    request_receipt = receipt["claim_request"]
+    authorization_receipt = receipt["claim_authorization"]
+    extension_receipt = receipt["extension"]
+    request_path = artifact_path(
+        request_receipt,
+        label="source-disjoint claim request",
+        expected_path=expected.parent / "source_disjoint_claim_request_v1.json",
+    )
+    authorization_path = artifact_path(
+        authorization_receipt,
+        label="source-disjoint claim authorization",
+        expected_path=(
+            expected.parent / "source_disjoint_claim_authorization_v1.json"
+        ),
+    )
+    extension_path = artifact_path(
+        extension_receipt,
+        label="source-disjoint extension",
+        expected_path=expected,
+    )
+    try:
+        request = source_disjoint_claim.load_claim_request(
+            request_path,
+            expected_path=request_path,
+            expected_file_sha256=request_receipt["file_sha256"],
+        )
+        authorization = source_disjoint_claim.load_claim_authorization(
+            authorization_path,
+            expected_path=authorization_path,
+            expected_file_sha256=authorization_receipt["file_sha256"],
+        )
+        _require(
+            authorization["claim_request"]
+            == {
+                "file_sha256": request_receipt["file_sha256"],
+                "content_sha256": request_receipt["content_sha256"],
+            },
+            "source-disjoint authorization binds a different request",
+        )
+        extension = source_disjoint_claim.load_extension(
+            extension_path,
+            expected_path=extension_path,
+            expected_file_sha256=extension_receipt["file_sha256"],
+            expected_request_sha256=request_receipt["file_sha256"],
+            expected_authorization_sha256=authorization_receipt[
+                "file_sha256"
+            ],
+            request=request,
+            authorization=authorization,
+        )
+    except source_disjoint_claim.ContractError as exc:
+        raise SnapshotContractError(
+            f"source-disjoint exact contract validation failed: {exc}"
+        ) from exc
     _require(
-        value.get("schema") == "mixed-training-source-disjoint-extension-v1"
-        and value.get("status") == "accepted"
-        and value.get("accepted_for_training") is True
-        and value.get("generated_domain_manifest_file_sha256")
-        == generated_manifest_file_sha256
-        and isinstance(opaque, dict)
-        and opaque.get("status") == "passed"
-        and opaque.get("train_collision_count") == 0
-        and opaque.get("protected_source_content_opened") is False
-        and opaque.get("protected_identifiers_disclosed") is False
-        and opaque.get("opaque_receipt_sha256") == receipt["opaque_receipt_sha256"],
+        request["content_sha256_before_self_field"]
+        == request_receipt["content_sha256"]
+        and authorization["content_sha256_before_self_field"]
+        == authorization_receipt["content_sha256"]
+        and extension["content_sha256_before_self_field"]
+        == extension_receipt["content_sha256"],
+        "source-disjoint transitive content identity changed",
+    )
+    expected_generated = {
+        "manifest_file_sha256": generated_receipt[
+            "manifest_file_sha256"
+        ],
+        "manifest_content_sha256": generated_receipt[
+            "manifest_content_sha256"
+        ],
+        "report_file_sha256": generated_receipt["report_file_sha256"],
+        "report_content_sha256": generated_receipt[
+            "report_content_sha256"
+        ],
+        "dataset_file_sha256": generated_receipt["dataset_file_sha256"],
+        "seed_replacement_receipt_sha256": (
+            source_disjoint_claim.canonical_sha256(
+                generated_receipt["seed_qa_replacement"]
+            )
+        ),
+    }
+    expected_seed = {
+        "authority_file_sha256": seed_qa_semantic_receipt["file_sha256"],
+        "authority_content_sha256": seed_qa_semantic_receipt[
+            "content_sha256"
+        ],
+        "decision_bundle_file_sha256": seed_qa_semantic_receipt[
+            "decision_bundle"
+        ]["file_sha256"],
+        "admitted_record_identity_commitment_sha256": (
+            seed_qa_semantic_receipt[
+                "admitted_record_identity_commitment_sha256"
+            ]
+        ),
+    }
+    _require(
+        extension["generated_domain_authority"] == expected_generated
+        and extension["seed_qa_semantic_authority"] == expected_seed
+        and extension["opaque_collision_contract"][
+            "opaque_receipt_sha256"
+        ]
+        == receipt["opaque_receipt_sha256"]
+        and extension["static_inputs"]["bindings_commitment_sha256"]
+        == receipt["static_input_set_commitment_sha256"]
+        and source_disjoint_claim.canonical_sha256(
+            extension["candidate_sets"]
+        )
+        == receipt["candidate_sets_commitment_sha256"],
         "source-disjoint semantic gate changed",
     )
     return receipt
@@ -316,32 +589,311 @@ def _validate_tokenizer_receipt(receipt: Any) -> dict[str, Any]:
     return receipt
 
 
-def _validate_seed_qa_semantic_receipt(receipt: Any) -> dict[str, Any]:
-    expected_keys = {
-        "schema", "status", "semantic_correctness_verified",
-        "eligible_for_training", "rows", "assistant_qwen36_tokens",
-        "training_rows_admitted", "file_sha256", "content_sha256",
-        "source_dataset_file_sha256",
+def _compact_line(value: Any) -> bytes:
+    return (
+        json.dumps(
+            value,
+            ensure_ascii=True,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        )
+        + "\n"
+    ).encode("ascii")
+
+
+def _seed_authority_receipt_from_live(
+    authority: dict[str, Any], *, authority_path: Path
+) -> dict[str, Any]:
+    return {
+        "schema": authority["schema"],
+        "status": authority["status"],
+        "semantic_correctness_verified": authority[
+            "semantic_correctness_verified"
+        ],
+        "eligible_for_training": authority["eligible_for_training"],
+        "path": SEED_QA_AUTHORITY_RELATIVE.as_posix(),
+        "file_sha256": file_sha256(authority_path),
+        "content_sha256": authority["content_sha256_before_self_field"],
+        "source_rows": authority["source_rows"],
+        "reviewed_rows": authority["reviewed_rows"],
+        "training_rows_admitted": authority["training_rows_admitted"],
+        "excluded_rows": authority["excluded_rows"],
+        "source_assistant_qwen36_tokens": authority[
+            "source_assistant_qwen36_tokens"
+        ],
+        "assistant_qwen36_tokens": authority["assistant_qwen36_tokens"],
+        "excluded_assistant_qwen36_tokens": authority[
+            "excluded_assistant_qwen36_tokens"
+        ],
+        "replacement_generated_assistant_tokens_required": authority[
+            "replacement_generated_assistant_tokens_required"
+        ],
+        "source_dataset": authority["source_dataset"],
+        "decision_bundle": authority["decision_bundle"],
+        "admitted_record_identity_commitment_sha256": authority[
+            "admitted_record_identity_commitment_sha256"
+        ],
+        "exclusion_ledger": authority["exclusion_ledger"],
     }
+
+
+def _validate_seed_qa_semantic_receipt(receipt: Any) -> dict[str, Any]:
+    """Validate the embedded receipt and its live authority/bundle bytes."""
+
     _require(isinstance(receipt, dict), "seed QA semantic authority is absent")
-    _require(set(receipt) == expected_keys, "seed QA semantic receipt fields changed")
     _require(
-        receipt.get("schema") == "seed-qa-semantic-authority-v1"
-        and receipt.get("status") == "sealed_passed"
-        and receipt.get("semantic_correctness_verified") is True
-        and receipt.get("eligible_for_training") is True,
-        "seed QA semantic authority did not pass",
+        set(receipt) == SEED_QA_RECEIPT_KEYS,
+        "seed QA semantic receipt fields changed",
+    )
+    authority_path = _repo_path(
+        receipt.get("path"),
+        label="seed QA semantic authority",
+        expected=ROOT / SEED_QA_AUTHORITY_RELATIVE,
     )
     _require(
-        receipt.get("rows") == SEED_QA_ROWS
-        and receipt.get("training_rows_admitted") == SEED_QA_ROWS
-        and receipt.get("assistant_qwen36_tokens")
-        == SEED_QA_ASSISTANT_TOKENS,
+        _is_hex64(receipt.get("file_sha256"))
+        and file_sha256(authority_path) == receipt["file_sha256"],
+        "seed QA semantic authority file identity changed",
+    )
+    authority = json.loads(authority_path.read_text(encoding="utf-8"))
+    _require(
+        isinstance(authority, dict) and set(authority) == SEED_QA_AUTHORITY_KEYS,
+        "seed QA semantic authority fields changed",
+    )
+    unsigned = copy.deepcopy(authority)
+    claimed = unsigned.pop("content_sha256_before_self_field", None)
+    _require(
+        _is_hex64(claimed)
+        and claimed == receipt.get("content_sha256")
+        and claimed in {canonical_sha256(unsigned), compact_ascii_sha256(unsigned)},
+        "seed QA semantic authority content identity changed",
+    )
+    integer_fields = (
+        "source_rows", "reviewed_rows", "training_rows_admitted",
+        "excluded_rows", "source_assistant_qwen36_tokens",
+        "assistant_qwen36_tokens", "excluded_assistant_qwen36_tokens",
+        "replacement_generated_assistant_tokens_required",
+    )
+    _require(
+        authority.get("schema") == SEED_QA_AUTHORITY_SCHEMA
+        and authority.get("status") == "sealed_passed"
+        and authority.get("semantic_correctness_verified") is True
+        and authority.get("eligible_for_training") is True
+        and all(
+            isinstance(authority.get(key), int)
+            and not isinstance(authority.get(key), bool)
+            and authority[key] >= 0
+            for key in integer_fields
+        )
+        and authority["source_rows"] == SEED_QA_ROWS
+        and authority["reviewed_rows"] == SEED_QA_ROWS
+        and authority["training_rows_admitted"] > 0
+        and authority["training_rows_admitted"] + authority["excluded_rows"]
+        == SEED_QA_ROWS
+        and authority["source_assistant_qwen36_tokens"]
+        == SEED_QA_ASSISTANT_TOKENS
+        and authority["assistant_qwen36_tokens"]
+        + authority["excluded_assistant_qwen36_tokens"]
+        == SEED_QA_ASSISTANT_TOKENS
+        and authority["replacement_generated_assistant_tokens_required"]
+        == authority["excluded_assistant_qwen36_tokens"]
+        and authority.get("source_dataset")
+        == {
+            "path": SEED_QA_SOURCE_RELATIVE.as_posix(),
+            "file_sha256": SEED_QA_SOURCE_SHA256,
+        },
         "seed QA semantic authority accounting changed",
     )
-    for key in ("file_sha256", "content_sha256", "source_dataset_file_sha256"):
-        _require(_is_hex64(receipt.get(key)), f"seed QA semantic {key} is invalid")
+    bundle_receipt = authority.get("decision_bundle")
+    _require(
+        isinstance(bundle_receipt, dict)
+        and set(bundle_receipt) == {"path", "file_sha256", "bytes", "rows"}
+        and bundle_receipt.get("path")
+        == SEED_QA_DECISION_BUNDLE_RELATIVE.as_posix()
+        and _is_hex64(bundle_receipt.get("file_sha256"))
+        and isinstance(bundle_receipt.get("bytes"), int)
+        and not isinstance(bundle_receipt.get("bytes"), bool)
+        and bundle_receipt["bytes"] > 0
+        and bundle_receipt.get("rows") == SEED_QA_ROWS,
+        "seed QA decision-bundle receipt changed",
+    )
+    bundle_path = _repo_path(
+        bundle_receipt["path"],
+        label="seed QA semantic decision bundle",
+        expected=ROOT / SEED_QA_DECISION_BUNDLE_RELATIVE,
+    )
+    bundle_raw = bundle_path.read_bytes()
+    _require(
+        len(bundle_raw) == bundle_receipt["bytes"]
+        and hashlib.sha256(bundle_raw).hexdigest()
+        == bundle_receipt["file_sha256"],
+        "seed QA decision-bundle bytes changed",
+    )
+    decisions = []
+    for line_number, line in enumerate(bundle_raw.splitlines(keepends=True), 1):
+        _require(line.endswith(b"\n") and line.strip(), "seed QA decision JSONL changed")
+        decision = json.loads(line)
+        _require(
+            isinstance(decision, dict)
+            and set(decision) == SEED_QA_DECISION_KEYS
+            and _compact_line(decision) == line,
+            "seed QA decision row is not canonical",
+        )
+        body = {
+            key: value
+            for key, value in decision.items()
+            if key != "decision_content_sha256"
+        }
+        _require(
+            decision.get("schema") == SEED_QA_DECISION_SCHEMA
+            and decision.get("source_line_number") == line_number
+            and isinstance(decision.get("record_id"), str)
+            and decision["record_id"]
+            and _is_hex64(decision.get("source_record_sha256"))
+            and isinstance(decision.get("reviewer_id"), str)
+            and decision["reviewer_id"].startswith("codex-manual-review/")
+            and decision.get("review_method") == SEED_QA_REVIEW_METHOD
+            and decision.get("reviewed_question_answer_and_evidence") is True
+            and decision.get("reviewer_independent_of_source_generator") is True
+            and decision.get("decision") in {"pass", "exclude"}
+            and all(type(decision.get(flag)) is bool for flag in SEED_QA_PASS_FLAGS)
+            and isinstance(decision.get("notes"), str)
+            and decision["notes"].strip()
+            and decision.get("decision_content_sha256")
+            == compact_ascii_sha256(body),
+            "seed QA decision contract changed",
+        )
+        if decision["decision"] == "pass":
+            _require(
+                all(decision[flag] is True for flag in SEED_QA_PASS_FLAGS)
+                and decision.get("reason_code")
+                == "fully_supported_useful_seed_qa",
+                "seed QA passing decision is not fully proven",
+            )
+        else:
+            _require(
+                any(decision[flag] is False for flag in SEED_QA_PASS_FLAGS)
+                and decision.get("reason_code") in SEED_QA_EXCLUSION_REASONS,
+                "seed QA exclusion has no explicit quality failure",
+            )
+        decisions.append(decision)
+    _require(
+        len(decisions) == SEED_QA_ROWS
+        and len({item["record_id"] for item in decisions}) == SEED_QA_ROWS,
+        "seed QA decision coverage changed",
+    )
+    admitted = [item for item in decisions if item["decision"] == "pass"]
+    excluded = [item for item in decisions if item["decision"] == "exclude"]
+    ledger = authority.get("exclusion_ledger")
+    _require(
+        isinstance(ledger, list)
+        and len(admitted) == authority["training_rows_admitted"]
+        and len(excluded) == authority["excluded_rows"]
+        and len(ledger) == len(excluded),
+        "seed QA exclusion accounting changed",
+    )
+    for decision, item in zip(excluded, ledger, strict=True):
+        _require(
+            isinstance(item, dict)
+            and set(item)
+            == {
+                "record_id", "source_record_sha256",
+                "decision_content_sha256", "reason_code",
+                "assistant_qwen36_tokens",
+            }
+            and all(
+                item.get(key) == decision[key]
+                for key in (
+                    "record_id", "source_record_sha256",
+                    "decision_content_sha256", "reason_code",
+                )
+            )
+            and isinstance(item.get("assistant_qwen36_tokens"), int)
+            and not isinstance(item.get("assistant_qwen36_tokens"), bool)
+            and item["assistant_qwen36_tokens"] > 0,
+            "seed QA exclusion ledger changed",
+        )
+    _require(
+        sum(item["assistant_qwen36_tokens"] for item in ledger)
+        == authority["excluded_assistant_qwen36_tokens"],
+        "seed QA excluded-token ledger changed",
+    )
+    admitted_commitment = compact_ascii_sha256([
+        {
+            "record_id": item["record_id"],
+            "source_record_sha256": item["source_record_sha256"],
+            "decision_content_sha256": item["decision_content_sha256"],
+        }
+        for item in admitted
+    ])
+    _require(
+        authority.get("admitted_record_identity_commitment_sha256")
+        == admitted_commitment,
+        "seed QA admitted-record commitment changed",
+    )
+    review = authority.get("review_contract")
+    _require(
+        isinstance(review, dict)
+        and review.get("method") == SEED_QA_REVIEW_METHOD
+        and review.get("all_question_answer_evidence_triplets_manually_inspected")
+        is True
+        and review.get("lineage_treated_as_semantic_authority") is False
+        and review.get("automated_score_treated_as_semantic_authority") is False
+        and review.get("unresolved_rows") == 0
+        and review.get("protected_evaluation_content_opened") is False,
+        "seed QA manual review contract changed",
+    )
+    live_receipt = _seed_authority_receipt_from_live(
+        authority, authority_path=authority_path
+    )
+    _require(live_receipt == receipt, "seed QA embedded receipt differs from live authority")
     return receipt
+
+
+def _validate_domain_qa_accounting(
+    value: Any,
+    *,
+    seed_receipt: dict[str, Any],
+    generated_receipt: dict[str, Any],
+) -> dict[str, Any]:
+    replacement = generated_receipt["seed_qa_replacement"]
+    expected = {
+        "schema": "mixed-domain-qa-token-accounting-v1",
+        "base_generated_assistant_tokens": replacement[
+            "base_generated_assistant_tokens"
+        ],
+        "replacement_generated_assistant_tokens": replacement[
+            "replacement_assistant_tokens_selected"
+        ],
+        "generated_assistant_tokens": replacement[
+            "total_generated_assistant_tokens"
+        ],
+        "admitted_seed_assistant_tokens": seed_receipt[
+            "assistant_qwen36_tokens"
+        ],
+        "excluded_seed_assistant_tokens": seed_receipt[
+            "excluded_assistant_qwen36_tokens"
+        ],
+        "domain_qa_assistant_tokens": DOMAIN_QA_ASSISTANT_TOKENS,
+    }
+    _require(value == expected, "mixed domain-QA token accounting changed")
+    _require(
+        expected["admitted_seed_assistant_tokens"]
+        + expected["excluded_seed_assistant_tokens"]
+        == SEED_QA_ASSISTANT_TOKENS
+        and expected["generated_assistant_tokens"]
+        + expected["admitted_seed_assistant_tokens"]
+        == DOMAIN_QA_ASSISTANT_TOKENS
+        and replacement["replacement_assistant_tokens_required"]
+        == seed_receipt["replacement_generated_assistant_tokens_required"]
+        and replacement["seed_qa_semantic_authority_file_sha256"]
+        == seed_receipt["file_sha256"]
+        and replacement["seed_qa_semantic_authority_content_sha256"]
+        == seed_receipt["content_sha256"],
+        "seed/generated replacement token accounting changed",
+    )
+    return expected
 
 
 def _validate_rights_receipt(receipt: Any) -> None:
@@ -426,13 +978,17 @@ def validate_launch_manifests(
     seed_qa_semantic_receipt = _validate_seed_qa_semantic_receipt(
         top.get("seed_qa_semantic_authority")
     )
+    domain_qa_accounting = _validate_domain_qa_accounting(
+        top.get("domain_qa_accounting"),
+        seed_receipt=seed_qa_semantic_receipt,
+        generated_receipt=generated_receipt,
+    )
     tokenizer_receipt = _validate_tokenizer_receipt(top.get("tokenizer"))
     disjoint = _validate_source_disjoint_receipt(
         gates.get("source_disjoint_extension_receipt"),
         expected=top_path.parent / "source_disjoint_extension_v1.json",
-        generated_manifest_file_sha256=generated_receipt[
-            "manifest_file_sha256"
-        ],
+        generated_receipt=generated_receipt,
+        seed_qa_semantic_receipt=seed_qa_semantic_receipt,
     )
 
     reference = _variant_reference(top, variant)
@@ -478,6 +1034,12 @@ def validate_launch_manifests(
     expected_budgets = EXPECTED_BUDGETS[variant]
     _require(manifest.get("budget_tokens_by_stream") == expected_budgets, "variant stream budgets changed")
     _require(manifest.get("budget_tokens") == sum(expected_budgets.values()), "variant total budget changed")
+    _require(
+        manifest.get("domain_qa_accounting") == domain_qa_accounting
+        and expected_budgets["domain_qa"]
+        == domain_qa_accounting["domain_qa_assistant_tokens"],
+        "variant domain-QA token accounting differs",
+    )
     _require(_validate_tokenizer_receipt(manifest.get("tokenizer")) == tokenizer_receipt, "variant tokenizer differs from top authority")
     _require(
         manifest.get("resume", {}).get("cursor_commitment_algorithm") == CURSOR_ALGORITHM,

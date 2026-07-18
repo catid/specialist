@@ -88,3 +88,14 @@ def test_note_must_be_substantive() -> None:
     annotation["records"][0]["notes"] = "okay"
     with pytest.raises(RuntimeError, match="substantive"):
         recorder.build_chunk_decisions(rows, chunk, annotation)
+
+
+def test_unsupported_question_premise_can_be_explicitly_excluded() -> None:
+    rows = [_row("a")]
+    chunk = {"chunk_id": "chunk-000", "source_line_start": 1, "rows": 1}
+    record = _record(1, "a", decision="exclude")
+    record["failed_quality_flags"] = ["semantic_correctness_verified"]
+    record["reason_code"] = "question_contains_unsupported_or_false_premise"
+    decisions = recorder.build_chunk_decisions(rows, chunk, _annotation([record]))
+    assert decisions[0]["decision"] == "exclude"
+    assert decisions[0]["semantic_correctness_verified"] is False

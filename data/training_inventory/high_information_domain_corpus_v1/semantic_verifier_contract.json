@@ -1,0 +1,155 @@
+{
+  "content_sha256_before_self_field": "fe40a13bb6d471eadaeb680de846d7ac4abbbbf618b28a2387cc3117cec80c8b",
+  "current_gate": "no semantic decision may be accepted until an independent verifier authority is content-addressed and its SHA-256 is pinned in this contract",
+  "decision_schema": {
+    "allowed_verdicts": [
+      "pass",
+      "fail",
+      "not_applicable"
+    ],
+    "exact_fields": [
+      "schema",
+      "packet_id",
+      "candidate_example_id",
+      "verifier_authority_sha256",
+      "gate_results",
+      "evidence_quote_sha256s",
+      "content_sha256_before_self_field"
+    ],
+    "free_form_chain_of_thought_allowed": false,
+    "gate_result_exact_fields": [
+      "verdict",
+      "method",
+      "evidence_sha256s"
+    ]
+  },
+  "decision_validator": {
+    "file_sha256": "86ca7cc385af538dad0722c0924c8413bb96373824d7fdc5f9d05e06153cc4df",
+    "path": "verify_high_information_semantic_decisions_v1.py"
+  },
+  "generator_model_identity_sha256": "4a4960ba80c4e6532f5225984310af35a2a79cd50ffb642ef1c5a54bbe5fba3c",
+  "input_contract": {
+    "candidate_must_be_training_ineligible": true,
+    "candidate_status_required": "structurally_valid_semantic_verification_pending",
+    "context_must_match_manifest_receipt": true,
+    "mixed_source_lineage_paths_must_not_be_opened": true,
+    "structural_review_schema": "high-information-candidate-structural-review-v1"
+  },
+  "pinned_verifier_authority_sha256": null,
+  "post_verification_selection_gates": {
+    "exact_and_normalized_duplicate_control": {
+      "duplicate_training_rows_allowed": false,
+      "method": "deterministic Unicode-normalized question-answer hash over the entire candidate corpus",
+      "per_row_judge_may_not_self_certify": true
+    },
+    "manual_review": {
+      "all_high_risk_rows_required": true,
+      "all_uncertain_rows_required": true,
+      "stratified_sample_of_other_accepts_required": true,
+      "unresolved_rows_training_eligible": false
+    },
+    "near_duplicate_and_information_preference": {
+      "isolated_trivia_deprioritized": true,
+      "method": "source-group-aware lexical or embedding clustering followed by deterministic preference for complete higher-information examples",
+      "per_row_judge_may_not_self_certify": true
+    }
+  },
+  "receipt_schema": {
+    "exact_target_selection_occurs_after_semantic_verification": true,
+    "must_commit": [
+      "plan_manifest_sha256",
+      "structural_review_sha256",
+      "semantic_packet_sha256",
+      "decision_file_sha256",
+      "verifier_authority_sha256",
+      "accepted_candidate_id_commitment_sha256",
+      "rejected_candidate_id_commitment_sha256",
+      "per_gate_counts"
+    ],
+    "schema": "high-information-semantic-verification-receipt-v1",
+    "semantic_verification_completed_requires_all_packets_decided": true,
+    "structural_pass_alone_may_be_accepted": false,
+    "training_eligibility_requires_every_applicable_gate_pass": true
+  },
+  "required_gates": {
+    "application_correctness": {
+      "method": "scenario_constraints_and_domain_prerequisites",
+      "otherwise_required_verdict": "not_applicable",
+      "required_for_subtypes": [
+        "application_scenario"
+      ]
+    },
+    "attribution_and_scope_preservation": {
+      "method": "source_claim_consensus_and_scope_distinguished",
+      "not_applicable_allowed": false,
+      "required_verdict": "pass"
+    },
+    "citation_support_coverage": {
+      "method": "claim_to_exact_quote_coverage",
+      "not_applicable_allowed": false,
+      "required_verdict": "pass"
+    },
+    "exact_evidence_quote_match": {
+      "method": "deterministic_exact_substring_and_sha256",
+      "not_applicable_allowed": false,
+      "required_verdict": "pass"
+    },
+    "hard_negative_calibration": {
+      "method": "absence_false_premise_or_scope_check",
+      "otherwise_required_verdict": "not_applicable",
+      "required_for_generation_mode": "calibrated_hard_negative"
+    },
+    "question_answer_completeness": {
+      "coordination_examples": [
+        "when and where requires both time and place",
+        "compare A and B requires both sides and the requested contrast",
+        "how and why requires both procedure and rationale"
+      ],
+      "method": "every_requested_facet_answered_from_cited_evidence",
+      "not_applicable_allowed": false,
+      "partial_answers_fail": true,
+      "required_verdict": "pass"
+    },
+    "safety_transfer_preservation": {
+      "method": "all_context_safety_flags_and_omitted_steps_checked",
+      "not_applicable_allowed": false,
+      "required_verdict": "pass"
+    },
+    "source_entailment": {
+      "method": "independent_entailment_or_dual_human_consensus",
+      "not_applicable_allowed": false,
+      "required_verdict": "pass",
+      "unsupported_claims_fail": true
+    },
+    "training_value_and_nontriviality": {
+      "isolated_trivia_fails_when_higher_information_candidate_exists": true,
+      "low_value_examples": [
+        "URL or canonical-link recall",
+        "isolated date or venue recall without lineage significance",
+        "public-identity trivia without technique, history, or domain context"
+      ],
+      "method": "domain_knowledge_value_relative_to_same_source_group",
+      "not_applicable_allowed": false,
+      "required_verdict": "pass"
+    },
+    "unsupported_claim_absence": {
+      "method": "independent_claim_inventory_against_context",
+      "not_applicable_allowed": false,
+      "required_verdict": "pass"
+    }
+  },
+  "schema": "high-information-semantic-verifier-contract-v1",
+  "status": "pinned_independent_verifier_authority_pending",
+  "verifier_authority": {
+    "allowed_authority_kinds": [
+      "dual_human_consensus",
+      "pinned_independent_entailment_pipeline",
+      "deterministic_task_verifier_plus_independent_entailment"
+    ],
+    "generator_identity_may_not_verify_itself": true,
+    "must_be_content_addressed_and_pinned_before_use": true,
+    "must_be_independent_of_generator": true,
+    "opaque_single_llm_judge_is_sufficient": false,
+    "package_model_prompt_and_rule_versions_must_be_pinned": true
+  }
+}

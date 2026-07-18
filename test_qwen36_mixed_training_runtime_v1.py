@@ -8,12 +8,13 @@ from pathlib import Path
 
 import pytest
 
+import mixed_training_source_disjoint_claim_v1 as source_disjoint_claim
 import qwen36_mixed_training_runtime_v1 as runtime
 
 
 CORE = "protocol_core_100k"
 TINY_BUDGETS = {
-    "domain_qa": 2,
+    "domain_qa": 3,
     "raw_markdown": 3,
     "replay": 2,
 }
@@ -139,8 +140,8 @@ def _valid_sequences() -> list[dict]:
         _sequence(
             unit_id="domain",
             stream="domain_qa",
-            input_ids=[10, 11, 12],
-            labels=[-100, 11, 12],
+            input_ids=[10, 11, 12, 13],
+            labels=[-100, 11, 12, 13],
         ),
         _sequence(
             unit_id="markdown",
@@ -223,7 +224,20 @@ def _schedule(sequences: list[dict], *, variant: str = CORE) -> tuple[list[dict]
     }
 
 
-def _generated_receipt() -> dict:
+def _generated_receipt(seed_receipt: dict) -> dict:
+    replacement = {
+        "schema": runtime.SEED_QA_REPLACEMENT_SCHEMA,
+        "seed_qa_semantic_authority_file_sha256": seed_receipt[
+            "file_sha256"
+        ],
+        "seed_qa_semantic_authority_content_sha256": seed_receipt[
+            "content_sha256"
+        ],
+        "replacement_assistant_tokens_required": 1,
+        "replacement_assistant_tokens_selected": 1,
+        "base_generated_assistant_tokens": 1,
+        "total_generated_assistant_tokens": 2,
+    }
     return {
         "manifest_file_sha256": "1" * 64,
         "manifest_content_sha256": "2" * 64,
@@ -231,22 +245,342 @@ def _generated_receipt() -> dict:
         "report_content_sha256": "4" * 64,
         "dataset_file_sha256": "5" * 64,
         "rows": 3,
-        "accounting": {"assistant_tokens": 740_847},
+        "accounting": {
+            "assistant_tokens": 2,
+            "by_source": {"synthetic": 2},
+            "by_category": {"synthetic": 2},
+            "by_task_family": {"synthetic": 2},
+            "by_task_subtype": {"synthetic": 2},
+            "by_generation_mode": {"synthetic": 2},
+        },
+        "seed_qa_replacement": replacement,
     }
 
 
-def _seed_qa_semantic_receipt() -> dict:
+def _seed_decision(
+    *, line: int, decision: str, reason_code: str | None = None
+) -> dict:
+    passed = decision == "pass"
+    body = {
+        "schema": runtime.SEED_QA_DECISION_SCHEMA,
+        "source_line_number": line,
+        "record_id": f"seed-{line}",
+        "source_record_sha256": f"{line}" * 64,
+        "reviewer_id": "codex-manual-review/synthetic-runtime",
+        "review_method": runtime.SEED_QA_REVIEW_METHOD,
+        "reviewed_question_answer_and_evidence": True,
+        "reviewer_independent_of_source_generator": True,
+        "decision": decision,
+        "semantic_correctness_verified": passed,
+        "evidence_entails_entire_answer": passed,
+        "question_is_user_useful": True,
+        "question_is_self_contained": True,
+        "answer_is_direct_and_well_formed": True,
+        "safety_qualification_is_adequate": True,
+        "reason_code": reason_code or (
+            "fully_supported_useful_seed_qa"
+            if passed else "answer_not_fully_supported"
+        ),
+        "notes": "Synthetic runtime authority decision.",
+    }
     return {
-        "schema": "seed-qa-semantic-authority-v1",
+        **body,
+        "decision_content_sha256": runtime.compact_ascii_sha256(body),
+    }
+
+
+def _write_seed_authority(root: Path) -> dict:
+    decisions = [
+        _seed_decision(line=1, decision="pass"),
+        _seed_decision(
+            line=2,
+            decision="exclude",
+            reason_code="question_contains_unsupported_or_false_premise",
+        ),
+    ]
+    bundle_path = root / runtime.SEED_QA_DECISION_BUNDLE_RELATIVE
+    bundle_payload = b"".join(runtime._compact_line(item) for item in decisions)
+    bundle_path.parent.mkdir(parents=True, exist_ok=True)
+    bundle_path.write_bytes(bundle_payload)
+    authority = _seal({
+        "schema": runtime.SEED_QA_AUTHORITY_SCHEMA,
         "status": "sealed_passed",
         "semantic_correctness_verified": True,
         "eligible_for_training": True,
-        "rows": runtime.SEED_QA_ROWS,
-        "assistant_qwen36_tokens": runtime.SEED_QA_ASSISTANT_TOKENS,
-        "training_rows_admitted": runtime.SEED_QA_ROWS,
-        "file_sha256": "9" * 64,
-        "content_sha256": "a" * 64,
-        "source_dataset_file_sha256": "b" * 64,
+        "source_rows": 2,
+        "reviewed_rows": 2,
+        "training_rows_admitted": 1,
+        "excluded_rows": 1,
+        "source_assistant_qwen36_tokens": 2,
+        "assistant_qwen36_tokens": 1,
+        "excluded_assistant_qwen36_tokens": 1,
+        "replacement_generated_assistant_tokens_required": 1,
+        "source_dataset": {
+            "path": runtime.SEED_QA_SOURCE_RELATIVE.as_posix(),
+            "file_sha256": runtime.SEED_QA_SOURCE_SHA256,
+        },
+        "assignments": {
+            "path": "synthetic/assignments.json",
+            "content_sha256": "c" * 64,
+        },
+        "decision_bundle": {
+            "path": runtime.SEED_QA_DECISION_BUNDLE_RELATIVE.as_posix(),
+            "file_sha256": _sha256(bundle_payload),
+            "bytes": len(bundle_payload),
+            "rows": 2,
+        },
+        "decision_files": [],
+        "admitted_record_identity_commitment_sha256": (
+            runtime.compact_ascii_sha256([{
+                "record_id": decisions[0]["record_id"],
+                "source_record_sha256": decisions[0]["source_record_sha256"],
+                "decision_content_sha256": decisions[0][
+                    "decision_content_sha256"
+                ],
+            }])
+        ),
+        "exclusion_ledger": [{
+            "record_id": decisions[1]["record_id"],
+            "source_record_sha256": decisions[1]["source_record_sha256"],
+            "decision_content_sha256": decisions[1][
+                "decision_content_sha256"
+            ],
+            "reason_code": decisions[1]["reason_code"],
+            "assistant_qwen36_tokens": 1,
+        }],
+        "review_contract": {
+            "method": runtime.SEED_QA_REVIEW_METHOD,
+            "all_question_answer_evidence_triplets_manually_inspected": True,
+            "lineage_treated_as_semantic_authority": False,
+            "automated_score_treated_as_semantic_authority": False,
+            "unresolved_rows": 0,
+            "protected_evaluation_content_opened": False,
+        },
+    })
+    authority_path = root / runtime.SEED_QA_AUTHORITY_RELATIVE
+    authority_payload = _write_json(authority_path, authority)
+    return {
+        "schema": authority["schema"],
+        "status": authority["status"],
+        "semantic_correctness_verified": True,
+        "eligible_for_training": True,
+        "path": runtime.SEED_QA_AUTHORITY_RELATIVE.as_posix(),
+        "file_sha256": _sha256(authority_payload),
+        "content_sha256": authority["content_sha256_before_self_field"],
+        "source_rows": 2,
+        "reviewed_rows": 2,
+        "training_rows_admitted": 1,
+        "excluded_rows": 1,
+        "source_assistant_qwen36_tokens": 2,
+        "assistant_qwen36_tokens": 1,
+        "excluded_assistant_qwen36_tokens": 1,
+        "replacement_generated_assistant_tokens_required": 1,
+        "source_dataset": authority["source_dataset"],
+        "decision_bundle": authority["decision_bundle"],
+        "admitted_record_identity_commitment_sha256": authority[
+            "admitted_record_identity_commitment_sha256"
+        ],
+        "exclusion_ledger": authority["exclusion_ledger"],
+    }
+
+
+def _source_disjoint_candidate_set(salt: str) -> dict:
+    return {
+        "schema": source_disjoint_claim.CANDIDATE_SET_SCHEMA,
+        "unit_count": 4,
+        "source_group_count": 4,
+        "source_document_count": 4,
+        "component_unit_counts": {
+            component: 1 for component in source_disjoint_claim.COMPONENTS
+        },
+        "budget_tokens_by_stream": {
+            "domain_qa": 2,
+            "raw_markdown": 1,
+            "replay": 1,
+        },
+        "unit_identity_commitment_sha256": hashlib.sha256(
+            f"unit:{salt}".encode()
+        ).hexdigest(),
+        "source_group_membership_commitment_sha256": hashlib.sha256(
+            f"group:{salt}".encode()
+        ).hexdigest(),
+        "source_document_membership_commitment_sha256": hashlib.sha256(
+            f"document:{salt}".encode()
+        ).hexdigest(),
+    }
+
+
+def _write_source_disjoint_chain(
+    snapshot: Path, generated: dict, seed: dict
+) -> dict:
+    source_split = {
+        "path": source_disjoint_claim.SOURCE_SPLIT_DECLARED_PATH,
+        "file_sha256": "a" * 64,
+        "content_sha256": "b" * 64,
+        "train_source_group_membership_commitment_sha256": "c" * 64,
+        "final_source_group_membership_commitment_sha256": "d" * 64,
+        "final_records_redacted": True,
+    }
+    generated_authority = {
+        "manifest_file_sha256": generated["manifest_file_sha256"],
+        "manifest_content_sha256": generated["manifest_content_sha256"],
+        "report_file_sha256": generated["report_file_sha256"],
+        "report_content_sha256": generated["report_content_sha256"],
+        "dataset_file_sha256": generated["dataset_file_sha256"],
+        "seed_replacement_receipt_sha256": (
+            source_disjoint_claim.canonical_sha256(
+                generated["seed_qa_replacement"]
+            )
+        ),
+    }
+    seed_authority = {
+        "authority_file_sha256": seed["file_sha256"],
+        "authority_content_sha256": seed["content_sha256"],
+        "decision_bundle_file_sha256": seed["decision_bundle"][
+            "file_sha256"
+        ],
+        "admitted_record_identity_commitment_sha256": seed[
+            "admitted_record_identity_commitment_sha256"
+        ],
+    }
+    role_digests = {
+        role: hashlib.sha256(f"role:{role}".encode()).hexdigest()
+        for role in source_disjoint_claim.STATIC_INPUT_ROLES
+    }
+    role_digests.update({
+        "source_split_authority": source_split["file_sha256"],
+        "seed_qa_semantic_authority": seed_authority[
+            "authority_file_sha256"
+        ],
+        "seed_qa_decision_bundle": seed_authority[
+            "decision_bundle_file_sha256"
+        ],
+        "generated_manifest": generated_authority["manifest_file_sha256"],
+        "generated_report": generated_authority["report_file_sha256"],
+        "generated_data": generated_authority["dataset_file_sha256"],
+    })
+    bindings = [
+        {"index": index, "role": role, "file_sha256": role_digests[role]}
+        for index, role in enumerate(source_disjoint_claim.STATIC_INPUT_ROLES)
+    ]
+    static_inputs = {
+        "schema": source_disjoint_claim.STATIC_INPUT_SCHEMA,
+        "bindings": bindings,
+        "bindings_commitment_sha256": (
+            source_disjoint_claim.canonical_sha256(bindings)
+        ),
+    }
+    candidates = {
+        "protocol_core_100k": _source_disjoint_candidate_set("core"),
+        "full_authorized_markdown": _source_disjoint_candidate_set("full"),
+    }
+    memberships = {
+        "train_source_group_membership_commitment_sha256": source_split[
+            "train_source_group_membership_commitment_sha256"
+        ],
+        "train_source_document_membership_commitment_sha256": "e" * 64,
+        "replay_source_group_membership_commitment_sha256": "f" * 64,
+    }
+    runner = {
+        "path": source_disjoint_claim.RUNNER_DECLARED_PATH,
+        "file_sha256": "1" * 64,
+        "contract_module_path": (
+            source_disjoint_claim.CONTRACT_MODULE_DECLARED_PATH
+        ),
+        "contract_module_file_sha256": "0" * 64,
+        "command_contract_sha256": source_disjoint_claim.canonical_sha256(
+            source_disjoint_claim.COMMAND_CONTRACT
+        ),
+    }
+    request = source_disjoint_claim._seal({
+        "schema": source_disjoint_claim.REQUEST_SCHEMA,
+        "status": source_disjoint_claim.REQUEST_STATUS,
+        "identity_scheme": source_disjoint_claim.IDENTITY_SCHEME,
+        "claim_runner": runner,
+        "source_split_authority": source_split,
+        "static_inputs": static_inputs,
+        "generated_domain_authority": generated_authority,
+        "seed_qa_semantic_authority": seed_authority,
+        "candidate_sets": candidates,
+        "membership_commitments": memberships,
+        "required_claims": copy.deepcopy(source_disjoint_claim.ZERO_CLAIMS),
+        "output_boundary": copy.deepcopy(source_disjoint_claim.OUTPUT_BOUNDARY),
+    })
+    source_disjoint_claim.validate_claim_request(request)
+    request_path = snapshot / "source_disjoint_claim_request_v1.json"
+    request_payload = source_disjoint_claim.artifact_bytes(request)
+    request_path.parent.mkdir(parents=True, exist_ok=True)
+    request_path.write_bytes(request_payload)
+    request_file_sha256 = _sha256(request_payload)
+    authorization_unsigned = {
+        "schema": source_disjoint_claim.AUTHORIZATION_SCHEMA,
+        "status": source_disjoint_claim.AUTHORIZATION_STATUS,
+        "identity_scheme": source_disjoint_claim.IDENTITY_SCHEME,
+        "claim_request": {
+            "file_sha256": request_file_sha256,
+            "content_sha256": request["content_sha256_before_self_field"],
+        },
+        "claim_runner": runner,
+        "source_split_authority": source_split,
+        "static_input_set_commitment_sha256": static_inputs[
+            "bindings_commitment_sha256"
+        ],
+        "candidate_sets": candidates,
+        "membership_commitments": memberships,
+        "claims": copy.deepcopy(source_disjoint_claim.ZERO_CLAIMS),
+        "boundary": copy.deepcopy(source_disjoint_claim.OUTPUT_BOUNDARY),
+    }
+    authorization_unsigned["opaque_receipt_sha256"] = (
+        source_disjoint_claim.canonical_sha256(
+            source_disjoint_claim._opaque_payload(authorization_unsigned)
+        )
+    )
+    authorization = source_disjoint_claim._seal(authorization_unsigned)
+    source_disjoint_claim.validate_claim_authorization(authorization)
+    authorization_path = (
+        snapshot / "source_disjoint_claim_authorization_v1.json"
+    )
+    authorization_payload = source_disjoint_claim.artifact_bytes(authorization)
+    authorization_path.write_bytes(authorization_payload)
+    authorization_file_sha256 = _sha256(authorization_payload)
+    extension, extension_payload = source_disjoint_claim.build_extension_from_values(
+        request=request,
+        expected_request_sha256=request_file_sha256,
+        authorization=authorization,
+        expected_authorization_sha256=authorization_file_sha256,
+    )
+    extension_path = snapshot / "source_disjoint_extension_v1.json"
+    extension_path.write_bytes(extension_payload)
+    return {
+        "schema": "mixed-training-source-disjoint-extension-receipt-v1",
+        "status": "accepted",
+        "accepted": True,
+        "claim_request": {
+            "path": "snapshot/source_disjoint_claim_request_v1.json",
+            "file_sha256": request_file_sha256,
+            "content_sha256": request["content_sha256_before_self_field"],
+        },
+        "claim_authorization": {
+            "path": "snapshot/source_disjoint_claim_authorization_v1.json",
+            "file_sha256": authorization_file_sha256,
+            "content_sha256": authorization[
+                "content_sha256_before_self_field"
+            ],
+        },
+        "extension": {
+            "path": "snapshot/source_disjoint_extension_v1.json",
+            "file_sha256": _sha256(extension_payload),
+            "content_sha256": extension[
+                "content_sha256_before_self_field"
+            ],
+        },
+        "opaque_receipt_sha256": authorization["opaque_receipt_sha256"],
+        "static_input_set_commitment_sha256": static_inputs[
+            "bindings_commitment_sha256"
+        ],
+        "candidate_sets_commitment_sha256": (
+            source_disjoint_claim.canonical_sha256(candidates)
+        ),
     }
 
 
@@ -265,6 +599,12 @@ def _build_fixture(
             "full_authorized_markdown": copy.deepcopy(TINY_BUDGETS),
         },
     )
+    monkeypatch.setattr(runtime, "SEED_QA_ROWS", 2)
+    monkeypatch.setattr(runtime, "SEED_QA_ASSISTANT_TOKENS", 2)
+    monkeypatch.setattr(runtime, "BASE_GENERATED_ASSISTANT_TOKENS", 1)
+    monkeypatch.setattr(runtime, "DOMAIN_QA_ASSISTANT_TOKENS", 3)
+    monkeypatch.setattr(runtime, "SEED_QA_SOURCE_RELATIVE", Path("synthetic/seed.jsonl"))
+    monkeypatch.setattr(runtime, "SEED_QA_SOURCE_SHA256", "b" * 64)
     snapshot = root / "snapshot"
     variant_dir = snapshot / CORE
     sequences = _valid_sequences()
@@ -272,34 +612,20 @@ def _build_fixture(
     sequence_payload = _write_jsonl(variant_dir / "sequences.jsonl", sequences)
     schedule_payload = _write_jsonl(variant_dir / "schedule.jsonl", schedule)
 
-    extension = _seal(
-        {
-            "schema": "mixed-training-source-disjoint-extension-v1",
-            "status": "accepted",
-            "accepted_for_training": True,
-            "generated_domain_manifest_file_sha256": "1" * 64,
-            "static_inputs_sha256": {},
-            "opaque_collision_contract": {
-                "status": "passed",
-                "train_collision_count": 0,
-                "protected_source_content_opened": False,
-                "protected_identifiers_disclosed": False,
-                "opaque_receipt_sha256": "6" * 64,
-            },
-        }
-    )
-    extension_payload = _write_json(
-        snapshot / "source_disjoint_extension_v1.json", extension
-    )
-    disjoint_receipt = {
-        "path": "snapshot/source_disjoint_extension_v1.json",
-        "file_sha256": _sha256(extension_payload),
-        "content_sha256": extension["content_sha256_before_self_field"],
-        "accepted": True,
-        "opaque_receipt_sha256": "6" * 64,
+    seed_semantic = _write_seed_authority(root)
+    generated = _generated_receipt(seed_semantic)
+    domain_qa_accounting = {
+        "schema": "mixed-domain-qa-token-accounting-v1",
+        "base_generated_assistant_tokens": 1,
+        "replacement_generated_assistant_tokens": 1,
+        "generated_assistant_tokens": 2,
+        "admitted_seed_assistant_tokens": 1,
+        "excluded_seed_assistant_tokens": 1,
+        "domain_qa_assistant_tokens": 3,
     }
-    generated = _generated_receipt()
-    seed_semantic = _seed_qa_semantic_receipt()
+    disjoint_receipt = _write_source_disjoint_chain(
+        snapshot, generated, seed_semantic
+    )
     tokenizer = {
         "path": "/synthetic/tokenizer",
         "revision": "synthetic-revision",
@@ -322,6 +648,7 @@ def _build_fixture(
         "max_sequence_length": 2048,
         "budget_tokens_by_stream": copy.deepcopy(TINY_BUDGETS),
         "budget_tokens": sum(TINY_BUDGETS.values()),
+        "domain_qa_accounting": domain_qa_accounting,
         "sequences": {
             "path": f"snapshot/{CORE}/sequences.jsonl",
             "sha256": _sha256(sequence_payload),
@@ -399,6 +726,7 @@ def _build_fixture(
             "status": "complete_launchable",
             "generated_domain_authority": generated,
             "seed_qa_semantic_authority": seed_semantic,
+            "domain_qa_accounting": domain_qa_accounting,
             "variants": {
                 CORE: reference,
                 "full_authorized_markdown": unused_reference,
@@ -469,6 +797,30 @@ def test_provisional_manifest_fails_before_any_content_receipt(
         runtime.load_training_authority(path, variant=CORE)
 
 
+def test_forbidden_top_manifest_path_fails_before_file_open(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(runtime, "ROOT", tmp_path)
+    forbidden = tmp_path / "protected" / "manifest.json"
+    forbidden.parent.mkdir()
+    forbidden.write_text(
+        "synthetic bytes that must never be opened\n", encoding="utf-8"
+    )
+
+    def forbidden_loader(*_args, **_kwargs):
+        pytest.fail("forbidden manifest was opened")
+
+    monkeypatch.setattr(runtime, "_load_self_addressed", forbidden_loader)
+    with pytest.raises(
+        runtime.SnapshotContractError,
+        match="forbidden protected/evaluation path class",
+    ):
+        runtime.validate_launch_manifests(
+            forbidden,
+            variant=CORE,
+        )
+
+
 def test_variant_launch_gate_fails_before_sequence_or_schedule_open(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -516,6 +868,101 @@ def test_missing_seed_semantic_authority_fails_before_training_content_open(
     monkeypatch.setattr(runtime, "file_sha256", guarded_hash)
     with pytest.raises(runtime.SnapshotContractError, match="seed QA semantic gate"):
         runtime.load_training_authority(path, variant=CORE)
+    assert opened_content == []
+
+
+def test_live_seed_decision_bundle_tamper_fails_before_training_content_open(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    path = _build_fixture(tmp_path, monkeypatch)
+    bundle = tmp_path / runtime.SEED_QA_DECISION_BUNDLE_RELATIVE
+    bundle.write_bytes(bundle.read_bytes() + b"{}\n")
+    original = runtime.file_sha256
+    opened_content = []
+
+    def guarded_hash(candidate: Path) -> str:
+        if candidate.name in {"sequences.jsonl", "schedule.jsonl"}:
+            opened_content.append(candidate)
+            raise AssertionError("training content opened before live seed bundle")
+        return original(candidate)
+
+    monkeypatch.setattr(runtime, "file_sha256", guarded_hash)
+    with pytest.raises(
+        runtime.SnapshotContractError, match="decision-bundle bytes changed"
+    ):
+        runtime.load_training_authority(path, variant=CORE)
+    assert opened_content == []
+
+
+def test_top_replacement_accounting_tamper_fails_before_training_content_open(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    path = _build_fixture(tmp_path, monkeypatch)
+    top = json.loads(path.read_text(encoding="utf-8"))
+    top.pop("content_sha256_before_self_field")
+    top["domain_qa_accounting"]["generated_assistant_tokens"] += 1
+    _write_json(path, _seal(top))
+    original = runtime.file_sha256
+    opened_content = []
+
+    def guarded_hash(candidate: Path) -> str:
+        if candidate.name in {"sequences.jsonl", "schedule.jsonl"}:
+            opened_content.append(candidate)
+            raise AssertionError("content opened before replacement accounting")
+        return original(candidate)
+
+    monkeypatch.setattr(runtime, "file_sha256", guarded_hash)
+    with pytest.raises(
+        runtime.SnapshotContractError, match="mixed domain-QA token accounting"
+    ):
+        runtime.load_training_authority(path, variant=CORE)
+    assert opened_content == []
+
+
+def test_source_disjoint_extension_must_bind_live_seed_authority_identities(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    top_path = _build_fixture(tmp_path, monkeypatch)
+    top = json.loads(top_path.read_text(encoding="utf-8"))
+    receipt = top["gates"]["source_disjoint_extension_receipt"]
+    bad_seed = copy.deepcopy(top["seed_qa_semantic_authority"])
+    bad_seed["content_sha256"] = "0" * 64
+    with pytest.raises(
+        runtime.SnapshotContractError, match="source-disjoint semantic gate changed"
+    ):
+        runtime._validate_source_disjoint_receipt(
+            receipt,
+            expected=tmp_path / "snapshot/source_disjoint_extension_v1.json",
+            generated_receipt=top["generated_domain_authority"],
+            seed_qa_semantic_receipt=bad_seed,
+        )
+
+
+def test_source_disjoint_chain_tamper_fails_before_training_content_open(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    top_path = _build_fixture(tmp_path, monkeypatch)
+    authorization = (
+        tmp_path
+        / "snapshot"
+        / "source_disjoint_claim_authorization_v1.json"
+    )
+    authorization.write_bytes(authorization.read_bytes() + b" ")
+    original = runtime.file_sha256
+    opened_content = []
+
+    def guarded_hash(candidate: Path) -> str:
+        if candidate.name in {"sequences.jsonl", "schedule.jsonl"}:
+            opened_content.append(candidate)
+            raise AssertionError("training content opened before contract chain")
+        return original(candidate)
+
+    monkeypatch.setattr(runtime, "file_sha256", guarded_hash)
+    with pytest.raises(
+        runtime.SnapshotContractError,
+        match="claim authorization file identity changed",
+    ):
+        runtime.load_training_authority(top_path, variant=CORE)
     assert opened_content == []
 
 

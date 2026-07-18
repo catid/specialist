@@ -1,0 +1,942 @@
+{
+  "blockers": [],
+  "commands_released": true,
+  "content_sha256_before_self_field": "982735b26b30724fd1049329c6dbbf8bdea3d5fa0ec728c491305ef07e93597d",
+  "contract_builder_receipt": {
+    "file_sha256": "470a8c4f4d11a588385ebd354cab76cdd9d0009b6fc4a5b404c2abddf3630673",
+    "path": "build_high_information_fill_semantic_judge_contract_v1.py"
+  },
+  "eventual_exact_hash_binding": {
+    "fill_judge_receipt_schema": "high-information-pass-aware-fill-semantic-judge-output-receipt-v1",
+    "fill_judge_required_fields": [
+      "output_sha256",
+      "report_file_sha256",
+      "report_self_sha256",
+      "run_contract_sha256",
+      "content_sha256_before_self_field"
+    ],
+    "fill_nli_required_fields": [
+      "output_sha256",
+      "report_file_sha256",
+      "report_self_sha256",
+      "receipt_file_sha256",
+      "receipt_self_sha256",
+      "run_contract_sha256"
+    ],
+    "output_or_report_without_matching_receipt_is_valid": false
+  },
+  "exact_runtime": {
+    "dtype": "bfloat16",
+    "ld_library_path": "/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib",
+    "mistral_common_version": "1.11.5",
+    "python_executable": "/home/catid/specialist/es-at-scale/.venv/bin/python",
+    "torch_version": "2.11.0+cu130",
+    "transformers_version": "5.13.1",
+    "virtual_environment": "/home/catid/specialist/es-at-scale/.venv",
+    "vllm_version": "0.25.0"
+  },
+  "fill_judge_wrapper_receipt": {
+    "file_sha256": "cef5c00d55cfe153dc54a5a5209b83982a182b224a5d5b6001d29ebfd2469b2d",
+    "path": "run_high_information_fill_semantic_judge_v1.py"
+  },
+  "fill_nli_launch_contract": {
+    "content_sha256_before_self_field": "2def05349d30de388c791bdc74010bbeb83ac6730b104947c8c59aef29a55cb9",
+    "file_sha256": "0bf80a57ad23fbb0637794e013f946d2bdb0188573083ef24571ab83947d4a1b",
+    "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1.launch_contract.json"
+  },
+  "generation_pass_id": "quality-deficit-fill-v1",
+  "inference": {
+    "gpu_memory_utilization": 0.9,
+    "guided_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "results": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate_example_id": {
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "facet_mappings": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "answer_span": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "evidence_quote_indices": {
+                      "items": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "facet_id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "supported",
+                        "missing",
+                        "unsupported",
+                        "uncertain"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "facet_id",
+                    "status",
+                    "answer_span",
+                    "evidence_quote_indices"
+                  ],
+                  "type": "object"
+                },
+                "maxItems": 8,
+                "minItems": 1,
+                "type": "array"
+              },
+              "failure_codes": {
+                "items": {
+                  "enum": [
+                    "unsupported_claim",
+                    "missing_requested_facet",
+                    "facet_not_supported_by_citation",
+                    "citation_coverage_gap",
+                    "application_not_justified",
+                    "hard_negative_is_answerable",
+                    "hard_negative_invents_correction",
+                    "safety_scope_lost",
+                    "attribution_or_scope_lost",
+                    "low_value_trivia",
+                    "ambiguous_or_uncertain"
+                  ]
+                },
+                "type": "array"
+              },
+              "gate_evidence": {
+                "additionalProperties": false,
+                "properties": {
+                  "application_correctness": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "evidence_quote_indices": {
+                        "items": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      },
+                      "verdict": {
+                        "enum": [
+                          "pass",
+                          "fail",
+                          "uncertain",
+                          "not_applicable"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "verdict",
+                      "evidence_quote_indices"
+                    ],
+                    "type": "object"
+                  },
+                  "attribution_and_scope_preservation": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "evidence_quote_indices": {
+                        "items": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      },
+                      "verdict": {
+                        "enum": [
+                          "pass",
+                          "fail",
+                          "uncertain",
+                          "not_applicable"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "verdict",
+                      "evidence_quote_indices"
+                    ],
+                    "type": "object"
+                  },
+                  "citation_support_coverage": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "evidence_quote_indices": {
+                        "items": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      },
+                      "verdict": {
+                        "enum": [
+                          "pass",
+                          "fail",
+                          "uncertain",
+                          "not_applicable"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "verdict",
+                      "evidence_quote_indices"
+                    ],
+                    "type": "object"
+                  },
+                  "hard_negative_calibration": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "evidence_quote_indices": {
+                        "items": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      },
+                      "verdict": {
+                        "enum": [
+                          "pass",
+                          "fail",
+                          "uncertain",
+                          "not_applicable"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "verdict",
+                      "evidence_quote_indices"
+                    ],
+                    "type": "object"
+                  },
+                  "safety_transfer_preservation": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "evidence_quote_indices": {
+                        "items": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      },
+                      "verdict": {
+                        "enum": [
+                          "pass",
+                          "fail",
+                          "uncertain",
+                          "not_applicable"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "verdict",
+                      "evidence_quote_indices"
+                    ],
+                    "type": "object"
+                  },
+                  "source_entailment": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "evidence_quote_indices": {
+                        "items": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      },
+                      "verdict": {
+                        "enum": [
+                          "pass",
+                          "fail",
+                          "uncertain",
+                          "not_applicable"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "verdict",
+                      "evidence_quote_indices"
+                    ],
+                    "type": "object"
+                  },
+                  "training_value_and_nontriviality": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "evidence_quote_indices": {
+                        "items": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      },
+                      "verdict": {
+                        "enum": [
+                          "pass",
+                          "fail",
+                          "uncertain",
+                          "not_applicable"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "verdict",
+                      "evidence_quote_indices"
+                    ],
+                    "type": "object"
+                  },
+                  "unsupported_claim_absence": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "evidence_quote_indices": {
+                        "items": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      },
+                      "verdict": {
+                        "enum": [
+                          "pass",
+                          "fail",
+                          "uncertain",
+                          "not_applicable"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "verdict",
+                      "evidence_quote_indices"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "source_entailment",
+                  "citation_support_coverage",
+                  "application_correctness",
+                  "hard_negative_calibration",
+                  "safety_transfer_preservation",
+                  "attribution_and_scope_preservation",
+                  "unsupported_claim_absence",
+                  "training_value_and_nontriviality"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "candidate_example_id",
+              "facet_mappings",
+              "gate_evidence",
+              "confidence",
+              "failure_codes"
+            ],
+            "type": "object"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "results"
+      ],
+      "type": "object"
+    },
+    "guided_schema_sha256": "04565b2c63344d3c5e49db85b382a0fc8ec5b9045140ceabc157a28cf7ebdbc1",
+    "max_model_len": 16384,
+    "max_num_seqs": 32,
+    "max_tokens": 3072,
+    "passes": [
+      "facet_evidence_audit",
+      "adversarial_omission_audit"
+    ],
+    "request_batch_size": 16,
+    "temperature": 0.0,
+    "two_pass_sequences_per_full_batch": 32
+  },
+  "nli_artifact_states": [
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu0.jsonl",
+          "regular_non_symlink_file_present": true
+        },
+        "receipt": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu0.receipt.json",
+          "regular_non_symlink_file_present": true
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu0.report.json",
+          "regular_non_symlink_file_present": true
+        }
+      },
+      "gpu_shard": 0,
+      "sealed_trio_present": true
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu1.jsonl",
+          "regular_non_symlink_file_present": true
+        },
+        "receipt": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu1.receipt.json",
+          "regular_non_symlink_file_present": true
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu1.report.json",
+          "regular_non_symlink_file_present": true
+        }
+      },
+      "gpu_shard": 1,
+      "sealed_trio_present": true
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu2.jsonl",
+          "regular_non_symlink_file_present": true
+        },
+        "receipt": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu2.receipt.json",
+          "regular_non_symlink_file_present": true
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu2.report.json",
+          "regular_non_symlink_file_present": true
+        }
+      },
+      "gpu_shard": 2,
+      "sealed_trio_present": true
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu3.jsonl",
+          "regular_non_symlink_file_present": true
+        },
+        "receipt": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu3.receipt.json",
+          "regular_non_symlink_file_present": true
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu3.report.json",
+          "regular_non_symlink_file_present": true
+        }
+      },
+      "gpu_shard": 3,
+      "sealed_trio_present": true
+    }
+  ],
+  "pinned_mistral": {
+    "id": "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+    "revision": "95a6d26c4bfb886c58daf9d3f7332c857cb27b43",
+    "runtime_file_sha256": {
+      "config.json": "01ab910a5dda7995709cc355d094eabb8094b78d49240cd167188606c3ff5edb",
+      "consolidated.safetensors": "2cc4cc283a4bf3820f77ddb73bef3128b7159057c240b94a72b663d97af86f89",
+      "params.json": "23febf6d98a78f896149ab08733356d5b99e71b2e7e4c3caddfa4f48cda87885",
+      "tekken.json": "6e2501687ccd0e1f30f36319eaf2b46958b897811e246cd8eb5d385b9e3de7d1"
+    },
+    "snapshot_blob_receipts": {
+      "config.json": "786d10ba172eb033ce576f199e13cd65c3a8d905",
+      "consolidated.safetensors": "2cc4cc283a4bf3820f77ddb73bef3128b7159057c240b94a72b663d97af86f89",
+      "model-00001-of-00010.safetensors": "91831c2ce219df0ce63bc33c6249e5cb01db8d93816bcebf975f1c406286520e",
+      "model-00002-of-00010.safetensors": "8ffe80706a66b2f5ef1fb058806ccf09f124ec4ad38af7a377e44ab1ee2fd664",
+      "model-00003-of-00010.safetensors": "99ec66e891f9563f568734eadfc5b7701e04620e8e163d4d5755277a3b50cf2f",
+      "model-00004-of-00010.safetensors": "e1df1527b12b1eb5cbd9a50914f9e6eb24e885ec830a3c16b5eed6ad0b53a396",
+      "model-00005-of-00010.safetensors": "3556ac03f47c24eb8ad27c237e25baad639c651d9596fd72cb1523137bf56163",
+      "model-00006-of-00010.safetensors": "2c41e6f80f2b5ca384ce703eac048a13daf2aff689c3acca66a8943f45338aae",
+      "model-00007-of-00010.safetensors": "62a725f154f6ba942a36b5cc450db2b2df32f434e3224558c789bc04fa05fd36",
+      "model-00008-of-00010.safetensors": "3a1a6ac77e6434418bb7273b68a7b3534fed5217c990061c92a8f990dd6ab20e",
+      "model-00009-of-00010.safetensors": "e1fffc9bb2b77d4d2382c1bd9053e9d017741d67ca00cc6f77034a294f2f5cfd",
+      "model-00010-of-00010.safetensors": "116ef7ae6fa0fd46b478324e4aa6a49f448afed900ca9f71d4fbd3d02289bbd4",
+      "model.safetensors.index.json": "c8d12958a1c6d6de8f6539883802e6e1a7bcac6a",
+      "params.json": "ba80d5d1ebf33f2b8e7ad064f7a0c05057af7ab0",
+      "tekken.json": "6e2501687ccd0e1f30f36319eaf2b46958b897811e246cd8eb5d385b9e3de7d1"
+    }
+  },
+  "policy": {
+    "active_primary_nli_or_judge_outputs_modified": false,
+    "all_four_sealed_fill_nli_trios_required_before_any_command": true,
+    "gpu_job_launched_by_contract_builder": false,
+    "protected_development_final_holdout_ood_terminal_incident_sources_read": false,
+    "semantic_verification_completed": false,
+    "training_rows_emitted": false
+  },
+  "primary_judge_semantics": {
+    "guided_schema_sha256": "04565b2c63344d3c5e49db85b382a0fc8ec5b9045140ceabc157a28cf7ebdbc1",
+    "implementation_receipts": [
+      {
+        "file_sha256": "0104c58066a08ee5d9d1b05020dfe26cef8734e9a185c7f32b29972a26567935",
+        "path": "run_high_information_semantic_judge_shard_v1.py"
+      },
+      {
+        "file_sha256": "880727323764910736d2d86d917b8bcf1783c63ec226c990653c6be9a42f9140",
+        "path": "high_information_semantic_facets_v1.py"
+      },
+      {
+        "file_sha256": "b346f049e9d4520fa2c7c7a004574eb7132b6cbd1c843347320d587c66b3f0ea",
+        "path": "run_high_information_nli_prefilter_v1.py"
+      },
+      {
+        "file_sha256": "0cfcf91653e9b0b61e4728e5d91dbeccde0baaf609c4823743a18c3cf5397fa1",
+        "path": "run_high_information_fill_nli_prefilter_v1.py"
+      },
+      {
+        "file_sha256": "8700b28d6ef1edbe0ed1b6e5be4642ec1c5b3bdbe1b9267b4b874c0a4eb25dc4",
+        "path": "verify_high_information_semantic_decisions_v1.py"
+      },
+      {
+        "file_sha256": "c8e47c19c1a15c10cb7351f07c45f9e7d4d8efdd5ec7345b9c2d1f0ba6ad2bc5",
+        "path": "verify_high_information_generation_pass_v1.py"
+      }
+    ],
+    "protocol": {
+      "all_gates": [
+        "exact_evidence_quote_match",
+        "source_entailment",
+        "citation_support_coverage",
+        "question_answer_completeness",
+        "application_correctness",
+        "hard_negative_calibration",
+        "safety_transfer_preservation",
+        "attribution_and_scope_preservation",
+        "unsupported_claim_absence",
+        "training_value_and_nontriviality"
+      ],
+      "candidate_grouping": "singleton_sorted_within_request_v1",
+      "evidence_required_pass_gates": [
+        "application_correctness",
+        "citation_support_coverage",
+        "hard_negative_calibration",
+        "source_entailment"
+      ],
+      "failure_codes": [
+        "unsupported_claim",
+        "missing_requested_facet",
+        "facet_not_supported_by_citation",
+        "citation_coverage_gap",
+        "application_not_justified",
+        "hard_negative_is_answerable",
+        "hard_negative_invents_correction",
+        "safety_scope_lost",
+        "attribution_or_scope_lost",
+        "low_value_trivia",
+        "ambiguous_or_uncertain"
+      ],
+      "guided_schema_sha256": "04565b2c63344d3c5e49db85b382a0fc8ec5b9045140ceabc157a28cf7ebdbc1",
+      "model_gates": [
+        "source_entailment",
+        "citation_support_coverage",
+        "application_correctness",
+        "hard_negative_calibration",
+        "safety_transfer_preservation",
+        "attribution_and_scope_preservation",
+        "unsupported_claim_absence",
+        "training_value_and_nontriviality"
+      ],
+      "passes": [
+        "facet_evidence_audit",
+        "adversarial_omission_audit"
+      ]
+    },
+    "semantic_protocol_sha256": "6ae7b69e77bc64e294af1daa36786b05d867afb2ec8aee34eda76e9410eb9bfc"
+  },
+  "schema": "high-information-pass-aware-fill-semantic-judge-launch-contract-v1",
+  "shards": [
+    {
+      "generation_pass": {
+        "candidate_output_sha256": "88d94b78f934eb778b1731b7e00bda7844cb85f5fdbe06e532588f5b66441ed4",
+        "contract_sha256": "f9d8603fd7193559fb4b622c310aa40530032354a4a6c9ed07a73d4cef2ced7f",
+        "generation_report_file_sha256": "1c5eb6874a717e814521a817fd2973e6979759c860aca937ee46e79fc851e78d",
+        "generation_report_self_sha256": "86d06fc576a7533b78561378b268f84f957c785616a850af0fbca1452a7d1ba8",
+        "id": "quality-deficit-fill-v1",
+        "prompt_spec_sha256": "e6c626bbea9ef1e9d8f558150b0dd40dfae0c656396f3f870747c1c634308a5d",
+        "runtime_worker_receipts": [
+          {
+            "file_sha256": "0fdaced482d41db2d08bcab4c139da3949ae772c7e76e2d06c39680e16475ba9",
+            "path": "run_high_information_candidate_fill_shard_v1.py"
+          },
+          {
+            "file_sha256": "d12cc650578fc024c185f18905ad7beabd4375eff4273ffc00a9b2de4c74a4b6",
+            "path": "run_high_information_candidate_shard_v1.py"
+          }
+        ],
+        "seed_scheme": "sha256('quality-deficit-fill-v1:' + request_id) first 32 bits",
+        "temperature": 0.4,
+        "top_p": 0.9
+      },
+      "gpu_shard": 0,
+      "packets": 3026,
+      "planned_fill_judge_outputs": {
+        "output": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu0.jsonl",
+        "partial": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu0.partial.jsonl",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu0.receipt.json",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu0.report.json",
+        "telemetry": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu0.telemetry.json"
+      },
+      "post_run_output_check_command": "LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 0 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90 --check-output",
+      "post_run_receipt_required": true,
+      "preflight_command": "LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 0 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90 --check-plan",
+      "rendered_prompt_receipts": {
+        "candidate_grouping": "singleton_sorted_within_request_v1",
+        "every_rendered_system_and_user_message_bound": true,
+        "ordered_receipt_fields": [
+          "request_id",
+          "source_group_id",
+          "candidate_example_ids",
+          "pass_name",
+          "messages_sha256",
+          "system_message_sha256",
+          "system_message_bytes",
+          "user_message_sha256",
+          "user_message_bytes"
+        ],
+        "prompt_text_persisted": false,
+        "receipts_sha256": "983e5f7922930f2eea6ab4c8afc273148f17332098daf7e447feb17b1c328fbb",
+        "rendered_prompts": 6052,
+        "schema": "fill-semantic-judge-rendered-prompt-receipt-root-v1"
+      },
+      "request_groups": 3026,
+      "required_sealed_fill_nli": {
+        "output": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu0.jsonl",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu0.receipt.json",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu0.report.json"
+      },
+      "run_command": "CUDA_VISIBLE_DEVICES=0 LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 0 --gpu-index 0 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90",
+      "run_contract_sha256": "f36c775306c0b263460194834235f196abb241005f24d45c6d451242bff86f13",
+      "sealed_fill_nli": {
+        "generation_pass_contract_sha256": "f9d8603fd7193559fb4b622c310aa40530032354a4a6c9ed07a73d4cef2ced7f",
+        "launch_contract": {
+          "content_sha256_before_self_field": "2def05349d30de388c791bdc74010bbeb83ac6730b104947c8c59aef29a55cb9",
+          "file_sha256": "0bf80a57ad23fbb0637794e013f946d2bdb0188573083ef24571ab83947d4a1b",
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1.launch_contract.json"
+        },
+        "output": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu0.jsonl",
+        "output_sha256": "152e5e8b7621448e3914a61002afd662324b99fbdd358a0f3be04634fa61fe11",
+        "primary_nli_file_sha256": "b346f049e9d4520fa2c7c7a004574eb7132b6cbd1c843347320d587c66b3f0ea",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu0.receipt.json",
+        "receipt_file_sha256": "24b5af456248047ab7751cd78d595aebf30f62b547ab7a60fc75cd24cb4a8bf9",
+        "receipt_self_sha256": "36c240ecb6e593bcaded714c6d9213ddf8c3da6cbd21d48007561ea25f2f52ef",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu0.report.json",
+        "report_file_sha256": "9bb636b0b86cc587025491a7729875abf5fffde45da03ce84abb9dcea73b5acd",
+        "report_self_sha256": "e2b4098aadbef2e2c96d6c8207dd89034fc606a040119831bbeb99f88fee6e1b",
+        "result_schema": "high-information-pass-aware-fill-nli-result-v1",
+        "run_contract_sha256": "7b7a1c301c93404b2ac83c90511d492df65d034f3f348089c455915b834fd405",
+        "semantic_verification_completed": false,
+        "training_rows_emitted": false,
+        "worker_file_sha256": "0cfcf91653e9b0b61e4728e5d91dbeccde0baaf609c4823743a18c3cf5397fa1"
+      },
+      "semantic_verification_completed": false,
+      "structural_review": {
+        "review_file_sha256": "e0da30c2f94372f957634c926f781b095cd0b2fa7762a90f7fd3028bc14f8bcc",
+        "review_path": "data/training_inventory/high_information_domain_corpus_v1/candidate_structural_review_quality_deficit_fill_v1_gpu0.jsonl",
+        "structurally_valid_examples": 3026,
+        "summary_file_sha256": "e05eab0a02582e415acd69a07468408cf3b14df913c8dee6e0ad401a7be3051a",
+        "summary_path": "data/training_inventory/high_information_domain_corpus_v1/candidate_structural_review_quality_deficit_fill_v1_gpu0.summary.json",
+        "summary_self_sha256": "086b3af458b403cf298ad583159512dc5ee6a400b4c754a5cdad9235e45831dd"
+      },
+      "training_rows_emitted": false
+    },
+    {
+      "generation_pass": {
+        "candidate_output_sha256": "e3843fbbb18ed92180d950fd0656067801aefe0a948cbfbb75bc84d56d534f9c",
+        "contract_sha256": "1ffae900ff2bfb8bd0202a63ad818d246fa5247921907bed32fdf07125428a3f",
+        "generation_report_file_sha256": "e9ff25ebd83db0457f9229c0cd06d7c123a6eb377f6c474362d717cb02ccc6fb",
+        "generation_report_self_sha256": "0ef69fa46441b170b1fd5549f37078f4f5d16bf4ded4314553d52308e7413954",
+        "id": "quality-deficit-fill-v1",
+        "prompt_spec_sha256": "e6c626bbea9ef1e9d8f558150b0dd40dfae0c656396f3f870747c1c634308a5d",
+        "runtime_worker_receipts": [
+          {
+            "file_sha256": "0fdaced482d41db2d08bcab4c139da3949ae772c7e76e2d06c39680e16475ba9",
+            "path": "run_high_information_candidate_fill_shard_v1.py"
+          },
+          {
+            "file_sha256": "d12cc650578fc024c185f18905ad7beabd4375eff4273ffc00a9b2de4c74a4b6",
+            "path": "run_high_information_candidate_shard_v1.py"
+          }
+        ],
+        "seed_scheme": "sha256('quality-deficit-fill-v1:' + request_id) first 32 bits",
+        "temperature": 0.4,
+        "top_p": 0.9
+      },
+      "gpu_shard": 1,
+      "packets": 3016,
+      "planned_fill_judge_outputs": {
+        "output": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu1.jsonl",
+        "partial": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu1.partial.jsonl",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu1.receipt.json",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu1.report.json",
+        "telemetry": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu1.telemetry.json"
+      },
+      "post_run_output_check_command": "LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 1 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90 --check-output",
+      "post_run_receipt_required": true,
+      "preflight_command": "LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 1 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90 --check-plan",
+      "rendered_prompt_receipts": {
+        "candidate_grouping": "singleton_sorted_within_request_v1",
+        "every_rendered_system_and_user_message_bound": true,
+        "ordered_receipt_fields": [
+          "request_id",
+          "source_group_id",
+          "candidate_example_ids",
+          "pass_name",
+          "messages_sha256",
+          "system_message_sha256",
+          "system_message_bytes",
+          "user_message_sha256",
+          "user_message_bytes"
+        ],
+        "prompt_text_persisted": false,
+        "receipts_sha256": "4ea8133045a3fa60f9301d2aad0705fae90eee7c83be4b2c64223fbc42aadbd8",
+        "rendered_prompts": 6032,
+        "schema": "fill-semantic-judge-rendered-prompt-receipt-root-v1"
+      },
+      "request_groups": 3016,
+      "required_sealed_fill_nli": {
+        "output": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu1.jsonl",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu1.receipt.json",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu1.report.json"
+      },
+      "run_command": "CUDA_VISIBLE_DEVICES=1 LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 1 --gpu-index 1 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90",
+      "run_contract_sha256": "5e45a908046f190dba17af842cea57db8ba57afa3e26673d4c79fe995ddd78d3",
+      "sealed_fill_nli": {
+        "generation_pass_contract_sha256": "1ffae900ff2bfb8bd0202a63ad818d246fa5247921907bed32fdf07125428a3f",
+        "launch_contract": {
+          "content_sha256_before_self_field": "2def05349d30de388c791bdc74010bbeb83ac6730b104947c8c59aef29a55cb9",
+          "file_sha256": "0bf80a57ad23fbb0637794e013f946d2bdb0188573083ef24571ab83947d4a1b",
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1.launch_contract.json"
+        },
+        "output": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu1.jsonl",
+        "output_sha256": "443bd44a61f5bcff1ca5a6846e85077fd6ffad5e2ce6cc25123799ed52436e37",
+        "primary_nli_file_sha256": "b346f049e9d4520fa2c7c7a004574eb7132b6cbd1c843347320d587c66b3f0ea",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu1.receipt.json",
+        "receipt_file_sha256": "cd4c7e49166be90c1a547b5bb4fef6ee9b9b16ae06f0c7b4c327b56e61e2ada4",
+        "receipt_self_sha256": "64fb2a4d55f29b52f1bd667a05056cf5219eca31ba6b600387bbf59ce0f99c63",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu1.report.json",
+        "report_file_sha256": "2de9bacad3e8e74f7ecc831fdb001e79bd0ba98299bacb735e6ccfa8dc0cd7a5",
+        "report_self_sha256": "b2e8534c823f471d81058e9174cc44128d935e70b5781c67fbba35b470354c56",
+        "result_schema": "high-information-pass-aware-fill-nli-result-v1",
+        "run_contract_sha256": "7ec2416fe7f6ab35b8b0daa5372f8eb82da5755e6e2805f71c238ffc2a0a3e66",
+        "semantic_verification_completed": false,
+        "training_rows_emitted": false,
+        "worker_file_sha256": "0cfcf91653e9b0b61e4728e5d91dbeccde0baaf609c4823743a18c3cf5397fa1"
+      },
+      "semantic_verification_completed": false,
+      "structural_review": {
+        "review_file_sha256": "27c2443b017601db498f3e33aac82c52af7e2cca641791c534999fa06f422fa7",
+        "review_path": "data/training_inventory/high_information_domain_corpus_v1/candidate_structural_review_quality_deficit_fill_v1_gpu1.jsonl",
+        "structurally_valid_examples": 3016,
+        "summary_file_sha256": "c3bee3ee9a3784e6b55ccc2c3b49b8bbdd9b06561c329df0e72861b4b5b0c7ca",
+        "summary_path": "data/training_inventory/high_information_domain_corpus_v1/candidate_structural_review_quality_deficit_fill_v1_gpu1.summary.json",
+        "summary_self_sha256": "c2de8c688cfc24b190296ea3b85de46b31aec90cc28b54340a4923b7b4d7f8df"
+      },
+      "training_rows_emitted": false
+    },
+    {
+      "generation_pass": {
+        "candidate_output_sha256": "b66ca0fed4749a2a60e5ee8de3719c8adf6b2da854916c892d3ab19cb485563b",
+        "contract_sha256": "66749d129af020875c2414091764da8cd14933010c8bf6c49c6c534d698b8769",
+        "generation_report_file_sha256": "e0ab08dad780ef5dec2d27a4e2dcc3546f47d9a91528ba141cb8240143537447",
+        "generation_report_self_sha256": "632628174e7b523250367f62f7eac6b6446b61a342f6a221a1c53eb45e5de9d0",
+        "id": "quality-deficit-fill-v1",
+        "prompt_spec_sha256": "e6c626bbea9ef1e9d8f558150b0dd40dfae0c656396f3f870747c1c634308a5d",
+        "runtime_worker_receipts": [
+          {
+            "file_sha256": "0fdaced482d41db2d08bcab4c139da3949ae772c7e76e2d06c39680e16475ba9",
+            "path": "run_high_information_candidate_fill_shard_v1.py"
+          },
+          {
+            "file_sha256": "d12cc650578fc024c185f18905ad7beabd4375eff4273ffc00a9b2de4c74a4b6",
+            "path": "run_high_information_candidate_shard_v1.py"
+          }
+        ],
+        "seed_scheme": "sha256('quality-deficit-fill-v1:' + request_id) first 32 bits",
+        "temperature": 0.4,
+        "top_p": 0.9
+      },
+      "gpu_shard": 2,
+      "packets": 2990,
+      "planned_fill_judge_outputs": {
+        "output": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu2.jsonl",
+        "partial": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu2.partial.jsonl",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu2.receipt.json",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu2.report.json",
+        "telemetry": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu2.telemetry.json"
+      },
+      "post_run_output_check_command": "LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 2 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90 --check-output",
+      "post_run_receipt_required": true,
+      "preflight_command": "LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 2 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90 --check-plan",
+      "rendered_prompt_receipts": {
+        "candidate_grouping": "singleton_sorted_within_request_v1",
+        "every_rendered_system_and_user_message_bound": true,
+        "ordered_receipt_fields": [
+          "request_id",
+          "source_group_id",
+          "candidate_example_ids",
+          "pass_name",
+          "messages_sha256",
+          "system_message_sha256",
+          "system_message_bytes",
+          "user_message_sha256",
+          "user_message_bytes"
+        ],
+        "prompt_text_persisted": false,
+        "receipts_sha256": "cb08e32642b54623b54215abc5c5c5f26d4fcd1491c7bbd702bb015106cc9195",
+        "rendered_prompts": 5980,
+        "schema": "fill-semantic-judge-rendered-prompt-receipt-root-v1"
+      },
+      "request_groups": 2990,
+      "required_sealed_fill_nli": {
+        "output": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu2.jsonl",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu2.receipt.json",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu2.report.json"
+      },
+      "run_command": "CUDA_VISIBLE_DEVICES=2 LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 2 --gpu-index 2 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90",
+      "run_contract_sha256": "c7535c9d0bb2ff7d285a36c0293cbbf14b7e897c2941b319cee7e6b0ad5d5831",
+      "sealed_fill_nli": {
+        "generation_pass_contract_sha256": "66749d129af020875c2414091764da8cd14933010c8bf6c49c6c534d698b8769",
+        "launch_contract": {
+          "content_sha256_before_self_field": "2def05349d30de388c791bdc74010bbeb83ac6730b104947c8c59aef29a55cb9",
+          "file_sha256": "0bf80a57ad23fbb0637794e013f946d2bdb0188573083ef24571ab83947d4a1b",
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1.launch_contract.json"
+        },
+        "output": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu2.jsonl",
+        "output_sha256": "9c0b6c197a738019190df62bf084e77cd495c86951add33604f45d60782109eb",
+        "primary_nli_file_sha256": "b346f049e9d4520fa2c7c7a004574eb7132b6cbd1c843347320d587c66b3f0ea",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu2.receipt.json",
+        "receipt_file_sha256": "1789af761e30a08bf905d1d34e3fd9fd364b53aa5d8727d2b6bbf2c18ebf0cb3",
+        "receipt_self_sha256": "76262bb0a1ffd0ce34fac33a03a067813b16017c4ead83170954e81329a70e68",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu2.report.json",
+        "report_file_sha256": "0c22d0e423ff0aa65eb8c272cd2a7647672e8f4a5621c9e22d28c81490ab5930",
+        "report_self_sha256": "c466c5837f33a8e46f20e8aad019ed80116812d6b0a19bebb8aa8f0346273224",
+        "result_schema": "high-information-pass-aware-fill-nli-result-v1",
+        "run_contract_sha256": "0977fdb1e54e52792e8b5310cc92076682ab3dfa0a8db17769c83df97d200c04",
+        "semantic_verification_completed": false,
+        "training_rows_emitted": false,
+        "worker_file_sha256": "0cfcf91653e9b0b61e4728e5d91dbeccde0baaf609c4823743a18c3cf5397fa1"
+      },
+      "semantic_verification_completed": false,
+      "structural_review": {
+        "review_file_sha256": "b8a0d4f9f5687e90ae58a1b8f22c981c5728176ed3aaae80865f446a92fdb52b",
+        "review_path": "data/training_inventory/high_information_domain_corpus_v1/candidate_structural_review_quality_deficit_fill_v1_gpu2.jsonl",
+        "structurally_valid_examples": 2990,
+        "summary_file_sha256": "35241864f8b2a9c82a0e8ff5a0669b43d7227d4d908ae0093ef71aab24d4edf3",
+        "summary_path": "data/training_inventory/high_information_domain_corpus_v1/candidate_structural_review_quality_deficit_fill_v1_gpu2.summary.json",
+        "summary_self_sha256": "52197a73400a12e477a71600ff7f73e6f7f22122d76978d28abbc2259560fd16"
+      },
+      "training_rows_emitted": false
+    },
+    {
+      "generation_pass": {
+        "candidate_output_sha256": "d8a12d26b4f59f3c7368c86baa40d18d77bd92d76c88092f3e8cd327b68b0ca4",
+        "contract_sha256": "59b9fcea3e2f8c2ae808ab6e892d9a98715a918a21f50611afd3cec56e3a69bb",
+        "generation_report_file_sha256": "9b22e6f358a5ac79807d3ea8e4eb37043ee481f2da0e04b46c6c9efcb916ed89",
+        "generation_report_self_sha256": "e850c49cf6bc52e51ee6f5df4ca7ebbb2ea28d4b321fc1ad6dc4fbd1b4aae296",
+        "id": "quality-deficit-fill-v1",
+        "prompt_spec_sha256": "e6c626bbea9ef1e9d8f558150b0dd40dfae0c656396f3f870747c1c634308a5d",
+        "runtime_worker_receipts": [
+          {
+            "file_sha256": "0fdaced482d41db2d08bcab4c139da3949ae772c7e76e2d06c39680e16475ba9",
+            "path": "run_high_information_candidate_fill_shard_v1.py"
+          },
+          {
+            "file_sha256": "d12cc650578fc024c185f18905ad7beabd4375eff4273ffc00a9b2de4c74a4b6",
+            "path": "run_high_information_candidate_shard_v1.py"
+          }
+        ],
+        "seed_scheme": "sha256('quality-deficit-fill-v1:' + request_id) first 32 bits",
+        "temperature": 0.4,
+        "top_p": 0.9
+      },
+      "gpu_shard": 3,
+      "packets": 3070,
+      "planned_fill_judge_outputs": {
+        "output": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu3.jsonl",
+        "partial": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu3.partial.jsonl",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu3.receipt.json",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu3.report.json",
+        "telemetry": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu3.telemetry.json"
+      },
+      "post_run_output_check_command": "LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 3 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90 --check-output",
+      "post_run_receipt_required": true,
+      "preflight_command": "LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 3 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90 --check-plan",
+      "rendered_prompt_receipts": {
+        "candidate_grouping": "singleton_sorted_within_request_v1",
+        "every_rendered_system_and_user_message_bound": true,
+        "ordered_receipt_fields": [
+          "request_id",
+          "source_group_id",
+          "candidate_example_ids",
+          "pass_name",
+          "messages_sha256",
+          "system_message_sha256",
+          "system_message_bytes",
+          "user_message_sha256",
+          "user_message_bytes"
+        ],
+        "prompt_text_persisted": false,
+        "receipts_sha256": "a89cc631d96ecdf50c326c3f24b77727a1964428d2f734e9e86e4310be435295",
+        "rendered_prompts": 6140,
+        "schema": "fill-semantic-judge-rendered-prompt-receipt-root-v1"
+      },
+      "request_groups": 3070,
+      "required_sealed_fill_nli": {
+        "output": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu3.jsonl",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu3.receipt.json",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu3.report.json"
+      },
+      "run_command": "CUDA_VISIBLE_DEVICES=3 LD_LIBRARY_PATH=/home/catid/specialist/es-at-scale/.venv/lib/python3.12/site-packages/nvidia/cu13/lib es-at-scale/.venv/bin/python run_high_information_fill_semantic_judge_v1.py --shard-index 3 --gpu-index 3 --request-batch-size 16 --max-model-len 16384 --max-tokens 3072 --gpu-memory-utilization 0.90",
+      "run_contract_sha256": "426c38df8e3ecb4f6d5f18c3bb665d4162d5c0c3a2d693030fbe2f66182f2b30",
+      "sealed_fill_nli": {
+        "generation_pass_contract_sha256": "59b9fcea3e2f8c2ae808ab6e892d9a98715a918a21f50611afd3cec56e3a69bb",
+        "launch_contract": {
+          "content_sha256_before_self_field": "2def05349d30de388c791bdc74010bbeb83ac6730b104947c8c59aef29a55cb9",
+          "file_sha256": "0bf80a57ad23fbb0637794e013f946d2bdb0188573083ef24571ab83947d4a1b",
+          "path": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1.launch_contract.json"
+        },
+        "output": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu3.jsonl",
+        "output_sha256": "492e92a69350c157c2fdb3c050457c31a3a69e7d78d7035c3a1ab2524b81d64f",
+        "primary_nli_file_sha256": "b346f049e9d4520fa2c7c7a004574eb7132b6cbd1c843347320d587c66b3f0ea",
+        "receipt": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu3.receipt.json",
+        "receipt_file_sha256": "029f615ebbd5cd029392f40ec8e24393f6576bdd2607ceab3c946dd0670631e3",
+        "receipt_self_sha256": "9430f9a38372bb5ed5827421a847ad4414d77074b02a9488c015787aa8660525",
+        "report": "data/training_inventory/high_information_domain_corpus_v1/nli_prefilter_quality_deficit_fill_v1_gpu3.report.json",
+        "report_file_sha256": "2c395bec9dd510952be62fc192b84a3759baedf43ec04d8d64e8ceea2001dc4c",
+        "report_self_sha256": "0c398cef265fb1af4481d26f79dbff889d7c65b94341dd82040ccdb3940f8771",
+        "result_schema": "high-information-pass-aware-fill-nli-result-v1",
+        "run_contract_sha256": "1138c335c03748de9e6e1a3bfcdc38e248512e8d510ea7c7f41efb48d79ddb94",
+        "semantic_verification_completed": false,
+        "training_rows_emitted": false,
+        "worker_file_sha256": "0cfcf91653e9b0b61e4728e5d91dbeccde0baaf609c4823743a18c3cf5397fa1"
+      },
+      "semantic_verification_completed": false,
+      "structural_review": {
+        "review_file_sha256": "f712b40d1260816b649ef9962f424eca4bfb874b382268116ec1cc87106c1129",
+        "review_path": "data/training_inventory/high_information_domain_corpus_v1/candidate_structural_review_quality_deficit_fill_v1_gpu3.jsonl",
+        "structurally_valid_examples": 3070,
+        "summary_file_sha256": "106d80fc62500a6cd54fb37e196338179babbfbeaee654955f833dac80ca01df",
+        "summary_path": "data/training_inventory/high_information_domain_corpus_v1/candidate_structural_review_quality_deficit_fill_v1_gpu3.summary.json",
+        "summary_self_sha256": "9887d943cf662ef30bdab2e38ac69770a591b0b0d78ee2e6e05f1de237d6fb6d"
+      },
+      "training_rows_emitted": false
+    }
+  ],
+  "status": "ready_for_explicit_four_gpu_fill_semantic_judge_launch"
+}

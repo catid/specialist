@@ -1,0 +1,345 @@
+{
+  "blockers": [
+    "missing_primary_semantic_seal:gpu0",
+    "missing_primary_semantic_seal:gpu1",
+    "missing_primary_semantic_seal:gpu2",
+    "missing_primary_semantic_seal:gpu3",
+    "missing_fill_semantic_seal:gpu0",
+    "missing_fill_semantic_seal:gpu1",
+    "missing_fill_semantic_seal:gpu2",
+    "missing_fill_semantic_seal:gpu3"
+  ],
+  "content_sha256_before_self_field": "391267b63c147a37067756902b725c6c8d859a2cbc7a88af27f445a11da220e5",
+  "deduplication": {
+    "exact_key_algorithm": "sha256-nfkc-casefold-whitespace-question-nul-answer-v1",
+    "max_common_shingle_posting": 128,
+    "near_cluster_algorithm": "source-group-aware-three-token-shingle-jaccard-0.82-v1",
+    "near_jaccard_threshold": 0.82,
+    "same_fact_multiple_views_require_different_task_and_information": true
+  },
+  "eligible_for_training": false,
+  "final_authority_paths": {
+    "dataset": "data/training_inventory/high_information_domain_corpus_v1/generated_domain_authority_v1/train.jsonl",
+    "deficit_report": "data/training_inventory/high_information_domain_corpus_v1/generated_domain_authority_v1/deficit_report.json",
+    "manifest": "data/training_inventory/high_information_domain_corpus_v1/generated_domain_authority_v1/manifest.json",
+    "manual_review_queue": "data/training_inventory/high_information_domain_corpus_v1/generated_domain_authority_v1/manual_review_queue_v1.jsonl",
+    "report": "data/training_inventory/high_information_domain_corpus_v1/generated_domain_authority_v1/report.json"
+  },
+  "final_interface": {
+    "manifest_schema": "high-information-generated-domain-authority-manifest-v1",
+    "report_schema": "high-information-generated-domain-authority-report-v1",
+    "required_manifest_receipts": [
+      "fill_generation",
+      "manual_review",
+      "nli_verification",
+      "primary_generation",
+      "selector",
+      "structural_verification",
+      "tokenizer_chat_template",
+      "two_pass_semantic_judges"
+    ],
+    "required_row_fields": [
+      "answer",
+      "assistant_mask",
+      "assistant_qwen36_token_count",
+      "candidate_example_id",
+      "category",
+      "dedupe",
+      "eligible_for_training",
+      "evidence_quote_sha256s",
+      "generation_mode",
+      "generator",
+      "hard_negative",
+      "lineage",
+      "manual_review_receipt",
+      "messages",
+      "question",
+      "record_id",
+      "request_id",
+      "resource_id",
+      "rights_authorization",
+      "rights_basis",
+      "safety_transfer_flags",
+      "schema",
+      "source_context_id",
+      "source_group_id",
+      "split",
+      "task_family",
+      "task_subtype",
+      "tools",
+      "training_format",
+      "verification_receipts"
+    ],
+    "row_schema": "high-information-domain-training-row-v1"
+  },
+  "implementation_receipts": [
+    {
+      "file_sha256": "0104c58066a08ee5d9d1b05020dfe26cef8734e9a185c7f32b29972a26567935",
+      "path": "run_high_information_semantic_judge_shard_v1.py"
+    },
+    {
+      "file_sha256": "cef5c00d55cfe153dc54a5a5209b83982a182b224a5d5b6001d29ebfd2469b2d",
+      "path": "run_high_information_fill_semantic_judge_v1.py"
+    },
+    {
+      "file_sha256": "b346f049e9d4520fa2c7c7a004574eb7132b6cbd1c843347320d587c66b3f0ea",
+      "path": "run_high_information_nli_prefilter_v1.py"
+    },
+    {
+      "file_sha256": "0cfcf91653e9b0b61e4728e5d91dbeccde0baaf609c4823743a18c3cf5397fa1",
+      "path": "run_high_information_fill_nli_prefilter_v1.py"
+    },
+    {
+      "file_sha256": "30a85ebafcfca4cc9064d938e134c31948873ee2df90bbd38f6f88663ecac943",
+      "path": "verify_high_information_candidates_v1.py"
+    },
+    {
+      "file_sha256": "ee9d27f312669725465a8b76243f363b55bf5767660fb4b52a738cafdbec656e",
+      "path": "build_high_information_generated_domain_authority_v1.py"
+    }
+  ],
+  "manual_review": {
+    "deterministic_other_accept_sample_bucket": 0,
+    "deterministic_other_accept_sample_modulus": 100,
+    "judge_nonconsensus_may_be_selected_unresolved": false,
+    "judge_required_review_may_be_selected_unresolved": false,
+    "protocol": {
+      "allowed_resolutions": [
+        "resolved_pass",
+        "resolved_reject"
+      ],
+      "candidate_identity_fields": [
+        "selection_candidate_id",
+        "candidate_example_id",
+        "semantic_record_sha256",
+        "queue_row_sha256"
+      ],
+      "free_form_reasoning_persisted": false,
+      "judge_required_review_selected_unresolved": false,
+      "nonconsensus_selected_unresolved": false,
+      "reviewer_identity_required": true,
+      "schema": "high-information-selection-manual-review-protocol-v1"
+    },
+    "protocol_sha256": "6f844b610ee212b6411ebb3f398fd29fcdc4a66d9c1aaf66996699e38cf9448c",
+    "resolution_path": "data/training_inventory/high_information_domain_corpus_v1/generated_domain_authority_v1/manual_review_resolutions_v1.jsonl",
+    "resolution_schema": "high-information-selection-manual-review-resolution-v1"
+  },
+  "schema": "high-information-generated-domain-selection-scaffold-v1",
+  "selection": {
+    "cross_category_borrowing_allowed": false,
+    "cross_source_borrowing_allowed": false,
+    "exact_per_axis_deficits_required_when_unsolved": true,
+    "overshoot_or_tolerance_reported_as_exact": false,
+    "padding_allowed": false,
+    "solver": "scipy.optimize.milp_highs_binary_two_stage_v1",
+    "stage_1": "maximize_atomic_assistant_tokens_under_every_axis_cap",
+    "stage_2": "hold_stage_1_total_and_maximize_deterministic_quality_priority",
+    "truncation_allowed": false
+  },
+  "selection_contract": {
+    "content_sha256": "fdfeedcd2fd46f02506a65e27bee50ab6e6995cb7f0233256af2a2913e23b07f",
+    "file_sha256": "781580b2e968952cb55498ba5f609c473994fed5fbf5165688e3843dfc4e8784",
+    "path": "data/training_inventory/high_information_domain_corpus_v1/category_balanced_candidate_selection_contract.json"
+  },
+  "selection_materialized": false,
+  "selection_may_run": false,
+  "semantic_input_states": [
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_gpu0.jsonl",
+          "regular_non_symlink_file_present": false
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_gpu0.report.json",
+          "regular_non_symlink_file_present": false
+        }
+      },
+      "gpu_shard": 0,
+      "lane": "primary",
+      "sealed_set_present": false
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_gpu1.jsonl",
+          "regular_non_symlink_file_present": false
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_gpu1.report.json",
+          "regular_non_symlink_file_present": false
+        }
+      },
+      "gpu_shard": 1,
+      "lane": "primary",
+      "sealed_set_present": false
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_gpu2.jsonl",
+          "regular_non_symlink_file_present": false
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_gpu2.report.json",
+          "regular_non_symlink_file_present": false
+        }
+      },
+      "gpu_shard": 2,
+      "lane": "primary",
+      "sealed_set_present": false
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_gpu3.jsonl",
+          "regular_non_symlink_file_present": false
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_gpu3.report.json",
+          "regular_non_symlink_file_present": false
+        }
+      },
+      "gpu_shard": 3,
+      "lane": "primary",
+      "sealed_set_present": false
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu0.jsonl",
+          "regular_non_symlink_file_present": false
+        },
+        "receipt": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu0.receipt.json",
+          "regular_non_symlink_file_present": false
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu0.report.json",
+          "regular_non_symlink_file_present": false
+        }
+      },
+      "gpu_shard": 0,
+      "lane": "fill",
+      "sealed_set_present": false
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu1.jsonl",
+          "regular_non_symlink_file_present": false
+        },
+        "receipt": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu1.receipt.json",
+          "regular_non_symlink_file_present": false
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu1.report.json",
+          "regular_non_symlink_file_present": false
+        }
+      },
+      "gpu_shard": 1,
+      "lane": "fill",
+      "sealed_set_present": false
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu2.jsonl",
+          "regular_non_symlink_file_present": false
+        },
+        "receipt": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu2.receipt.json",
+          "regular_non_symlink_file_present": false
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu2.report.json",
+          "regular_non_symlink_file_present": false
+        }
+      },
+      "gpu_shard": 2,
+      "lane": "fill",
+      "sealed_set_present": false
+    },
+    {
+      "artifacts": {
+        "output": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu3.jsonl",
+          "regular_non_symlink_file_present": false
+        },
+        "receipt": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu3.receipt.json",
+          "regular_non_symlink_file_present": false
+        },
+        "report": {
+          "path": "data/training_inventory/high_information_domain_corpus_v1/semantic_judge_quality_deficit_fill_v1_gpu3.report.json",
+          "regular_non_symlink_file_present": false
+        }
+      },
+      "gpu_shard": 3,
+      "lane": "fill",
+      "sealed_set_present": false
+    }
+  ],
+  "status": "blocked_pending_primary_and_fill_semantic_judges",
+  "targets": {
+    "assistant_tokens": 740847,
+    "by_category": {
+      "lineage_people_history": 148169,
+      "materials_inspection_care_equipment": 122678,
+      "rigging_hardpoints_uplines_mechanics": 200000,
+      "safety_anatomy_consent_risk": 150000,
+      "tying_knots_frictions_technique": 120000
+    },
+    "by_generation_mode": {
+      "calibrated_hard_negative": 56250,
+      "positive": 684597
+    },
+    "by_source": {
+      "acta_loop_knot_efficiency_experiments_2020": 26000,
+      "crash_restraint": 70000,
+      "europepmc_bdsm_fatality_review": 32000,
+      "europepmc_entrapment_neuropathy_review": 30000,
+      "europepmc_icar_suspension_syndrome": 30000,
+      "europepmc_rope_neuropathy_study": 28000,
+      "gutenberg_brady_kedge_anchor_77729": 10000,
+      "hse_temporary_works_faqs": 15000,
+      "hse_treework_lifting_and_climbing": 20000,
+      "innotrac_camera_visual_rope_inspection_2020": 12000,
+      "kink_education_code_of_conduct": 30000,
+      "maib_throwbag_hidden_fused_joints_2019": 10000,
+      "maib_zarga_hmpe_inspection_failure_2017": 14000,
+      "mdpi_knot_efficiency_statistics_2022": 26000,
+      "mdpi_tree_climbing_friction_hitch_2021": 30000,
+      "nist_manila_rope_color_serviceability_1933": 8000,
+      "nist_manila_rope_statistics_1947": 10000,
+      "nist_manila_rope_tests_t198_1921": 13000,
+      "nistir_6096_post_installed_anchors_review": 20000,
+      "noaa_eight_strand_rope_structural_model_1989": 20000,
+      "noaa_synthetic_rope_deterioration_1990": 14000,
+      "nps_textile_fiber_aging_appendix_k_2002": 12000,
+      "phm_synthetic_fiber_rope_condition_monitoring_review_2017": 14000,
+      "rope365": 30000,
+      "rope_topia": 8000,
+      "sage_aramid_three_strand_contact_forces_2025": 15678,
+      "shibari_atlas": 148169,
+      "usbr_testing_verifying_rope_access_anchors": 20000,
+      "usfs_rigging_for_trail_work": 25000
+    },
+    "by_task_family": {
+      "closed_book_application": 540847,
+      "grounded_synthesis": 200000
+    },
+    "by_task_subtype": {
+      "application_scenario": 202540,
+      "calibrated_unanswerable": 18032,
+      "comparison_or_mechanism": 103854,
+      "conflict_or_scope_resolution": 29085,
+      "direct_explanation": 155487,
+      "evidence_grounded_answer": 90129,
+      "misconception_correction": 78966,
+      "multi_fact_synthesis": 62754
+    }
+  },
+  "training_launch_authorized": false
+}

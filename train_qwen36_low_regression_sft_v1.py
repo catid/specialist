@@ -572,7 +572,12 @@ def _group_ranges(end_cursor: int, accumulation: int) -> list[tuple[int, int]]:
     ]
 
 
-def _run_config(arguments: argparse.Namespace, authority: mixed.MixedTrainingAuthority, end_cursor: int) -> dict[str, Any]:
+def _run_config(
+    arguments: argparse.Namespace,
+    authority: mixed.MixedTrainingAuthority,
+    end_cursor: int,
+    hybrid_policy_receipt: dict[str, Any],
+) -> dict[str, Any]:
     selected_budget_tokens = authority.schedule[end_cursor - 1][
         "cumulative_budget_tokens"
     ]
@@ -619,6 +624,7 @@ def _run_config(arguments: argparse.Namespace, authority: mixed.MixedTrainingAut
             "warmup_ratio": 0.05,
             "schedule": "cosine_to_10_percent_peak",
             "optimizer": "AdamW",
+            "optimizer_state_precision": "float32_via_float32_trainable_lora",
             "betas": [0.9, 0.999],
             "epsilon": 1e-8,
             "weight_decay": 0.01,
@@ -635,6 +641,9 @@ def _run_config(arguments: argparse.Namespace, authority: mixed.MixedTrainingAut
             "one_visible_gpu_required": True,
             "attention_implementation": "sdpa",
             "hybrid_linear_attention_contract": FAST_CONTRACT.relative_to(ROOT).as_posix(),
+            "hybrid_linear_attention_policy_receipt": copy.deepcopy(
+                hybrid_policy_receipt
+            ),
             "routing_metric_interval_optimizer_steps": arguments.routing_every,
             "implementation_receipts": {
                 path.relative_to(ROOT).as_posix(): file_sha256(path)
@@ -997,6 +1006,56 @@ def _restore_checkpoint(
     return state
 
 
+def _validate_mutated_runtime_policy(
+    model: Any,
+    *,
+    hybrid: dict[str, Any],
+    expected_hybrid_bindings: dict[str, Any],
+) -> None:
+    """Fail before adapter attachment if any training-runtime mutation drifted."""
+
+    _require(hybrid.get("matched_module_count") == 30, "hybrid kernel did not cover 30 layers")
+    _require(
+        hybrid.get("bindings") == expected_hybrid_bindings,
+        "applied hybrid bindings differ from the sealed policy",
+    )
+    _require(model.config.use_cache is False, "KV cache was not disabled")
+    _require(
+        model.config.output_router_logits is False,
+        "router auxiliary output was not disabled",
+    )
+    _require(
+        model.config.router_aux_loss_coef == 0.0,
+        "router auxiliary loss was not disabled",
+    )
+    _require(
+        model.is_gradient_checkpointing is True,
+        "gradient checkpointing was not enabled",
+    )
+
+
+def _validate_fp32_lora_optimizer_scope(model: Any, *, float32_dtype: Any) -> None:
+    """Prove AdamW will create FP32 moments for only LoRA A/B tensors."""
+
+    trainable_parameters = [
+        (name, parameter)
+        for name, parameter in model.named_parameters()
+        if parameter.requires_grad
+    ]
+    _require(trainable_parameters, "adapter has no trainable parameters")
+    _require(
+        all(parameter.dtype == float32_dtype for _, parameter in trainable_parameters),
+        "every trainable LoRA tensor must be FP32 before AdamW",
+    )
+    _require(
+        all(
+            ".lora_A." in name or ".lora_B." in name
+            for name, _ in trainable_parameters
+        ),
+        "a non-LoRA tensor is trainable before AdamW",
+    )
+
+
 def _prepare_model(arguments: argparse.Namespace):
     import numpy
     import torch
@@ -1004,6 +1063,9 @@ def _prepare_model(arguments: argparse.Namespace):
     from transformers import AutoModelForCausalLM
 
     import build_fast_linear_attention_contract_v1 as fast
+    from smoke_qwen36_expert_lora_memory_v1 import (
+        validate_fast_kernel_training_policy,
+    )
 
     _require(torch.cuda.is_available(), "CUDA is required")
     _require(torch.cuda.device_count() == 1, "training worker must see exactly one GPU")
@@ -1035,16 +1097,7 @@ def _prepare_model(arguments: argparse.Namespace):
         torch.__version__ == architecture["software"]["torch_runtime"]["version"],
         "pinned torch CUDA runtime build changed",
     )
-    fast_value = _load_self_addressed(FAST_CONTRACT)
-    decision = fast_value.get("selected_fast_or_fallback", {})
-    _require(decision.get("selected") == "hybrid_training", "hybrid kernel contract is not selected")
-    _require(decision.get("hybrid_training_path_runtime_validated_on_all_four_gpus") is True, "hybrid path lacks four-GPU validation")
-    for receipt in fast_value["environment_integrity"]["source_receipts"].values():
-        source = Path(receipt["path"])
-        if not source.is_absolute():
-            source = ROOT / source
-        _require(source.is_file() and not source.is_symlink(), "hybrid runtime source disappeared")
-        _require(file_sha256(source) == receipt["sha256"], f"hybrid runtime source changed: {source}")
+    hybrid_policy_receipt = validate_fast_kernel_training_policy(fast)
 
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_ROOT,
@@ -1061,7 +1114,11 @@ def _prepare_model(arguments: argparse.Namespace):
     model.config.router_aux_loss_coef = 0.0
     model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
     hybrid = fast.apply_qwen35_moe_training_hybrid(model)
-    _require(hybrid["matched_module_count"] == 30, "hybrid kernel did not cover 30 layers")
+    _validate_mutated_runtime_policy(
+        model,
+        hybrid=hybrid,
+        expected_hybrid_bindings=fast.HYBRID_TRAINING_BINDINGS,
+    )
     spec = (
         expert_lora.shared_only_spec_from_contract(architecture, shared_rank=arguments.shared_rank)
         if arguments.shared_only
@@ -1075,6 +1132,10 @@ def _prepare_model(arguments: argparse.Namespace):
     lora_config = expert_lora.make_lora_config(spec)
     model = get_peft_model(model, lora_config)
     scope = expert_lora.audit_postattach_scope(model, spec)
+    _validate_fp32_lora_optimizer_scope(
+        model,
+        float32_dtype=torch.float32,
+    )
     model.train()
     gpu = {
         "name": properties.name,
@@ -1082,7 +1143,16 @@ def _prepare_model(arguments: argparse.Namespace):
         "compute_capability": f"{properties.major}.{properties.minor}",
         "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
     }
-    return torch, model, lora_config, scope, preattach, hybrid, gpu
+    return (
+        torch,
+        model,
+        lora_config,
+        scope,
+        preattach,
+        hybrid,
+        hybrid_policy_receipt,
+        gpu,
+    )
 
 
 def train(arguments: argparse.Namespace) -> dict[str, Any]:
@@ -1098,12 +1168,26 @@ def train(arguments: argparse.Namespace) -> dict[str, Any]:
     else:
         _require(output.is_dir() and not output.is_symlink(), "resume run directory is missing")
 
-    torch, model, lora_config, scope, preattach, hybrid, gpu = _prepare_model(arguments)
+    (
+        torch,
+        model,
+        lora_config,
+        scope,
+        preattach,
+        hybrid,
+        hybrid_policy_receipt,
+        gpu,
+    ) = _prepare_model(arguments)
     if arguments.resume is None:
         # Do not leave a misleading, non-resumable run directory when model
         # loading or exact adapter-scope validation fails.
         output.mkdir(parents=True)
-    run_config = _run_config(arguments, authority, end_cursor)
+    run_config = _run_config(
+        arguments,
+        authority,
+        end_cursor,
+        hybrid_policy_receipt,
+    )
     run_config_sha = run_config["content_sha256_before_self_field"]
     section19_builders = _section19_builder_receipts(authority)
     if arguments.resume is None:
@@ -1429,6 +1513,7 @@ def train(arguments: argparse.Namespace) -> dict[str, Any]:
         "scope_identity_sha256": scope["identity_sha256"],
         "preattach_identity_sha256": preattach["identity_sha256"],
         "hybrid_module_count": hybrid["matched_module_count"],
+        "hybrid_linear_attention_policy_receipt": hybrid_policy_receipt,
         "training_metrics": training_metrics_receipt,
         "routing_metrics": {
             "path": "routing_metrics.json",

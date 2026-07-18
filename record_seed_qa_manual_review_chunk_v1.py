@@ -45,6 +45,7 @@ EXCLUSION_REASONS = {
     "answer_factually_incorrect",
     "question_not_user_useful",
     "question_not_self_contained",
+    "question_contains_unsupported_or_false_premise",
     "answer_not_direct_or_well_formed",
     "safety_qualification_inadequate",
     "multiple_quality_failures",
