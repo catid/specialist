@@ -1,0 +1,169 @@
+{
+  "authority": {
+    "actual_checkpoint_weights_loaded": true,
+    "actual_expert_lora_adapters_attached": true,
+    "checkpoint_resume_validated": false,
+    "dataset_or_evaluation_source_opened": false,
+    "final_mixed_trainer_validated": false,
+    "one_optimizer_update_per_receipt": true,
+    "synthetic_token_ids_only": true,
+    "training_dataset_opened": false,
+    "training_launched": false
+  },
+  "content_sha256_before_self_field": "634a81b3248f979bd615144c65afe99734359068a7ad9d1b3a87be0a6cec8a39",
+  "receipts": [
+    {
+      "artifact": "training_protocol/qwen36_memory_smoke_pretrainer_v1/gpu0_shared_r16_seq2048.json",
+      "artifact_bytes": 1924,
+      "artifact_sha256": "f00e1d7271f1a12d87d9aab8bfbb17603acf5078388c84b5530ecef73af0079b",
+      "configuration": {
+        "dtype": "torch.bfloat16",
+        "gradient_checkpointing": true,
+        "gradient_checkpointing_use_reentrant": false,
+        "hybrid_module_count": 30,
+        "routed_rank": null,
+        "sequence_length": 2048,
+        "shared_only": true,
+        "shared_rank": 16,
+        "use_cache": false
+      },
+      "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+      "measurements": {
+        "gradient_norm_before_clip": 46.93428039550781,
+        "headroom_gib": 23.07843017578125,
+        "loss": 13.369302749633789,
+        "peak_allocated_gib": 71.54624652862549,
+        "peak_reserved_gib": 71.9296875,
+        "step_seconds": 1.636011910974048,
+        "tokens_per_second": 1251.82462686391
+      },
+      "physical_gpu_index": 0,
+      "scope": {
+        "postattach_identity_sha256": "b7a00e63ff6650c30c885b844a121e539ed3cc1d3040cfe9f74f8f4322143135",
+        "preattach_identity_sha256": "6d7f0e63723007d486ca8bfc32bf210df3f0f767cfa75369e0a05f0631d92cff",
+        "target_count": 120,
+        "trainable_elements": 4915200,
+        "trainable_tensor_count": 240
+      },
+      "total_memory_gib": 95.00811767578125
+    },
+    {
+      "artifact": "training_protocol/qwen36_memory_smoke_pretrainer_v1/gpu1_routed_r2_shared_r16_seq2048.json",
+      "artifact_bytes": 1931,
+      "artifact_sha256": "ac94c63656e6c48d6baad07fe684a2d5f02e106fa9d2cddd0ad0b202b79951db",
+      "configuration": {
+        "dtype": "torch.bfloat16",
+        "gradient_checkpointing": true,
+        "gradient_checkpointing_use_reentrant": false,
+        "hybrid_module_count": 30,
+        "routed_rank": 2,
+        "sequence_length": 2048,
+        "shared_only": false,
+        "shared_rank": 16,
+        "use_cache": false
+      },
+      "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+      "measurements": {
+        "gradient_norm_before_clip": 25.019268035888672,
+        "headroom_gib": 21.61163330078125,
+        "loss": 13.300788879394531,
+        "peak_allocated_gib": 71.97593402862549,
+        "peak_reserved_gib": 73.396484375,
+        "step_seconds": 3.3555753609980457,
+        "tokens_per_second": 610.3275235013244
+      },
+      "physical_gpu_index": 1,
+      "scope": {
+        "postattach_identity_sha256": "9910b3175f5f3091276b5f4727a0343816566c8ba7bb5f2caa1c2ded5f4395c4",
+        "preattach_identity_sha256": "4bbd2cd5ff95f27c21bf588a69b4af68002e7c142aedc50fc2fc0da540e1df17",
+        "target_count": 200,
+        "trainable_elements": 120258560,
+        "trainable_tensor_count": 400
+      },
+      "total_memory_gib": 95.00811767578125
+    },
+    {
+      "artifact": "training_protocol/qwen36_memory_smoke_pretrainer_v1/gpu2_routed_r4_shared_r16_seq2048.json",
+      "artifact_bytes": 1926,
+      "artifact_sha256": "3c93a39be56b802a04bcf41d71ca411c810552bcf31efbfef52a3ad90b7876e3",
+      "configuration": {
+        "dtype": "torch.bfloat16",
+        "gradient_checkpointing": true,
+        "gradient_checkpointing_use_reentrant": false,
+        "hybrid_module_count": 30,
+        "routed_rank": 4,
+        "sequence_length": 2048,
+        "shared_only": false,
+        "shared_rank": 16,
+        "use_cache": false
+      },
+      "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+      "measurements": {
+        "gradient_norm_before_clip": 42.48733139038086,
+        "headroom_gib": 19.33819580078125,
+        "loss": 13.277994155883789,
+        "peak_allocated_gib": 72.40562152862549,
+        "peak_reserved_gib": 75.669921875,
+        "step_seconds": 3.3481139829964377,
+        "tokens_per_second": 611.6876577084499
+      },
+      "physical_gpu_index": 2,
+      "scope": {
+        "postattach_identity_sha256": "b48b2eb00415213598a05b686ff8d2a3886a47121cc3f15a2c052174c631c45c",
+        "preattach_identity_sha256": "4bbd2cd5ff95f27c21bf588a69b4af68002e7c142aedc50fc2fc0da540e1df17",
+        "target_count": 200,
+        "trainable_elements": 235601920,
+        "trainable_tensor_count": 400
+      },
+      "total_memory_gib": 95.00811767578125
+    },
+    {
+      "artifact": "training_protocol/qwen36_memory_smoke_pretrainer_v1/gpu3_routed_r4_shared_r16_seq2048.json",
+      "artifact_bytes": 1927,
+      "artifact_sha256": "8365bc70f6332dd1edc2a06d6de0d5b7f8f552a555960e0b5d6729bdca07d68c",
+      "configuration": {
+        "dtype": "torch.bfloat16",
+        "gradient_checkpointing": true,
+        "gradient_checkpointing_use_reentrant": false,
+        "hybrid_module_count": 30,
+        "routed_rank": 4,
+        "sequence_length": 2048,
+        "shared_only": false,
+        "shared_rank": 16,
+        "use_cache": false
+      },
+      "gpu_name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+      "measurements": {
+        "gradient_norm_before_clip": 28.316295623779297,
+        "headroom_gib": 19.33819580078125,
+        "loss": 13.292476654052734,
+        "peak_allocated_gib": 72.40562152862549,
+        "peak_reserved_gib": 75.669921875,
+        "step_seconds": 3.28817994100973,
+        "tokens_per_second": 622.8369604891826
+      },
+      "physical_gpu_index": 3,
+      "scope": {
+        "postattach_identity_sha256": "b48b2eb00415213598a05b686ff8d2a3886a47121cc3f15a2c052174c631c45c",
+        "preattach_identity_sha256": "4bbd2cd5ff95f27c21bf588a69b4af68002e7c142aedc50fc2fc0da540e1df17",
+        "target_count": 200,
+        "trainable_elements": 235601920,
+        "trainable_tensor_count": 400
+      },
+      "total_memory_gib": 95.00811767578125
+    }
+  ],
+  "result": {
+    "all_four_physical_gpus_passed": true,
+    "final_trainer_memory_gate_pending": true,
+    "maximum_peak_reserved_gib": 75.669921875,
+    "minimum_headroom_gib": 19.33819580078125,
+    "minimum_operational_headroom_gate_gib": 8.0,
+    "operational_headroom_gate_passed": true,
+    "precision": "bfloat16",
+    "pretrainer_memory_smoke_passed": true,
+    "rank4_peak_reserved_span_gib_across_two_gpus": 0.0,
+    "sequence_length": 2048
+  },
+  "schema": "specialist-qwen36-memory-smoke-pretrainer-contract-v1"
+}

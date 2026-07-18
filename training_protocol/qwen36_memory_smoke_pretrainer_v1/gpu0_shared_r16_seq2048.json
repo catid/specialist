@@ -1,0 +1,59 @@
+{
+  "authority": {
+    "checkpoint_weights_loaded": true,
+    "dataset_or_evaluation_source_opened": false,
+    "optimizer_created": true,
+    "synthetic_adapter_update_performed": true,
+    "synthetic_token_ids_only": true
+  },
+  "configuration": {
+    "dtype": "torch.bfloat16",
+    "gradient_checkpointing": true,
+    "gradient_checkpointing_use_reentrant": false,
+    "hybrid_module_count": 30,
+    "routed_rank": null,
+    "sequence_length": 2048,
+    "shared_only": true,
+    "shared_rank": 16,
+    "use_cache": false
+  },
+  "gpu": {
+    "compute_capability": "12.0",
+    "cuda_visible_devices": "0",
+    "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+    "total_memory_gib": 95.00811767578125
+  },
+  "measurement": {
+    "after_backward": {
+      "allocated_gib": 65.57587909698486,
+      "peak_allocated_gib": 71.54624652862549,
+      "peak_reserved_gib": 71.87890625,
+      "reserved_gib": 71.87890625
+    },
+    "after_setup": {
+      "allocated_gib": 64.57876205444336,
+      "peak_allocated_gib": 64.57882308959961,
+      "peak_reserved_gib": 64.626953125,
+      "reserved_gib": 64.626953125
+    },
+    "after_step": {
+      "allocated_gib": 65.59418964385986,
+      "peak_allocated_gib": 71.54624652862549,
+      "peak_reserved_gib": 71.9296875,
+      "reserved_gib": 71.9296875
+    },
+    "gradient_norm_before_clip": 46.93428039550781,
+    "loss": 13.369302749633789,
+    "model_and_adapter_setup_seconds": 11.860309097042773,
+    "step_seconds": 1.636011910974048,
+    "tokens_per_second": 1251.82462686391
+  },
+  "schema": "qwen36-expert-lora-synthetic-memory-smoke-v1",
+  "scope": {
+    "postattach_identity_sha256": "b7a00e63ff6650c30c885b844a121e539ed3cc1d3040cfe9f74f8f4322143135",
+    "preattach_identity_sha256": "6d7f0e63723007d486ca8bfc32bf210df3f0f767cfa75369e0a05f0631d92cff",
+    "target_count": 120,
+    "trainable_elements": 4915200,
+    "trainable_tensor_count": 240
+  }
+}
