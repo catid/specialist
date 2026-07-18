@@ -1,0 +1,85 @@
+{
+  "active_qa": {
+    "authority_id": "qa-authority:v440-minus-url-index-logical-view",
+    "deterministic_check_command": ".venv/bin/python build_source_group_split_authority_v1.py --check",
+    "disjointness": {
+      "descendant_fact": true,
+      "exact_content": true,
+      "near_duplicate": true,
+      "source_group": true,
+      "source_url_identity": true
+    },
+    "final_records_emitted": false,
+    "materialized_safe_projections": [
+      {
+        "file_bytes": 7378172,
+        "file_sha256": "d91e5eb24f9dd445179a54e647d5262f53755a034973cdf2bba9b4aa45654aec",
+        "kind": "site_spans",
+        "partition": "train",
+        "path": "data/training_inventory/source_group_split_v1/train_site_spans.jsonl",
+        "qwen36_tokens": 970455,
+        "rows": 1554
+      },
+      {
+        "file_bytes": 1039402,
+        "file_sha256": "ad415c588c8ab2929ad7614d8f94803c1376c8c83bcf89822d20e66b4c8e58de",
+        "kind": "v440_qa",
+        "partition": "train",
+        "path": "data/training_inventory/source_group_split_v1/train_v440_qa.jsonl",
+        "qwen36_tokens": 29405,
+        "rows": 382
+      },
+      {
+        "file_bytes": 1013428,
+        "file_sha256": "6577120ff9d666af7b91640e28a8f03e59c32a83a14f701e3ba3b83a9fb7483e",
+        "kind": "site_spans",
+        "partition": "development",
+        "path": "data/training_inventory/source_group_split_v1/development_site_spans.jsonl",
+        "qwen36_tokens": 132936,
+        "rows": 210
+      },
+      {
+        "file_bytes": 197319,
+        "file_sha256": "08824320293bc57071f22d3736b18d5dd531113f4b18bf9a1835c526b7aec751",
+        "kind": "v440_qa",
+        "partition": "development",
+        "path": "data/training_inventory/source_group_split_v1/development_v440_qa.jsonl",
+        "qwen36_tokens": 5465,
+        "rows": 74
+      }
+    ],
+    "source_split_authority": "data/training_inventory/source_group_split_authority_v1.json",
+    "source_split_content_sha256": "812111f7713f3a0d4fada42ab72e761be5b2175ab9301513e21845a2e03b8d15",
+    "v440_rows_by_partition": {
+      "development": 74,
+      "final": 60,
+      "train": 382
+    },
+    "v440_rows_total": 516
+  },
+  "authority": {
+    "active_v440_train_projection_authorized_for_snapshot_construction": true,
+    "legacy_curated_qa_authorized_for_plan_training": false,
+    "protected_holdout_ood_terminal_or_manual_review_semantics_opened": false,
+    "quarantined_legacy_evaluation_paths_resolved_statted_hashed_counted_or_opened": false,
+    "training_launch_authorized": false
+  },
+  "content_sha256_before_self_field": "7299062ee33808f6ff86ffb0b5b3b369f882b91def9cdf721ffbc89daeb38ae8",
+  "legacy_curated_qa": {
+    "builder_fail_closed_interface_retained": "build_curated_qa.py",
+    "incident_content_sha256": "68b214cfad7326f15ad7f090130a14b60dab2e2ec478efbf32213e239d1097d4",
+    "incident_receipt": "experiments/eggroll_es_hpo/incidents/legacy_eval_collision_access_20260717_v2.json",
+    "production_rebuild_status": "intentionally_unavailable_without_new_independent_opaque_authorization",
+    "reason": "the former collision sources are under irreversible no-reopen quarantine",
+    "role": "retired_reproducibility_artifact_only"
+  },
+  "resolution": {
+    "current_training_qa_rebuild_is_deterministic": true,
+    "old_artifact_removed_from_active_training_authority": true,
+    "opaque_legacy_boundary_not_forged_or_reconstructed": true,
+    "original_cli_documentation_mismatch_repaired": true,
+    "synthetic_curated_builder_tests_required": true
+  },
+  "schema": "specialist-curated-qa-authority-resolution-v1",
+  "status": "legacy_curated_qa_retired_active_v440_split_authority_verified"
+}

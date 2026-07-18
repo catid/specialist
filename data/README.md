@@ -1,9 +1,34 @@
 # Dataset status
 
-## Current training artifact
+## Active low-regression training QA authority
 
-[`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) is the current curated
-training set. Its
+The `plan.md` Qwen3.6 low-regression program does **not** train from the legacy
+784-row curated artifact described below. Its immutable QA authority is the
+516-row V440 logical view after removal of the 15 URL-index rows, partitioned
+by source document before any derivation:
+
+- training: [`training_inventory/source_group_split_v1/train_v440_qa.jsonl`](training_inventory/source_group_split_v1/train_v440_qa.jsonl), 382 rows;
+- development: [`training_inventory/source_group_split_v1/development_v440_qa.jsonl`](training_inventory/source_group_split_v1/development_v440_qa.jsonl), 74 rows;
+- final: 60 rows represented only by aggregate counts and commitments, with no
+  semantic records emitted.
+
+[`training_inventory/source_group_split_authority_v1.json`](training_inventory/source_group_split_authority_v1.json)
+is the authority for those projections. It seals exact, near-duplicate,
+source-URL, source-group, and descendant-fact disjointness; the final partition
+stays redacted. Verify the already materialized safe projections byte-for-byte
+with:
+
+```bash
+.venv/bin/python build_source_group_split_authority_v1.py --check
+```
+
+This check does not reopen any quarantined legacy evaluation source or emit
+final records.
+
+## Retired legacy curated artifact
+
+[`train_qa_curated_v1.jsonl`](train_qa_curated_v1.jsonl) is retained for older
+trainer lineage reproduction; it is not an input to the `plan.md` protocol. Its
 [`deterministic build report`](train_qa_curated_v1.report.json) verifies 784
 unique questions and fact IDs:
 
@@ -94,12 +119,14 @@ boundaries and exclusions are in the
 come from independently reviewed packets under
 [`sources/manual_facts/`](../sources/manual_facts/).
 
-## Training defaults
+## Legacy training defaults
 
 [`sft_lora.py`](../sft_lora.py) defaults to
 `data/train_qa_curated_v1.jsonl`. [`es_train_acc.py`](../es_train_acc.py) keeps
 `data/train_qa_verified_leakfree_v2.jsonl` as its legacy default so recorded ES
-runs remain reproducible. Select curated v1 explicitly for a new ES run:
+runs remain reproducible. These defaults do not authorize either artifact for
+the `plan.md` program, and EGGROLL-ES is halted. The historical explicit
+selection was:
 
 ```bash
 python es_train_acc.py --data data/train_qa_curated_v1.jsonl [other options]
@@ -133,12 +160,20 @@ self-contained Q&A with source evidence.
   `qa_manual` records.
 
 Run the builders from the repository root. Refreshing the live corpus is
-optional. The curated-QA builder deliberately has no no-argument production
-mode: a rebuild must be authorized by the exact opaque collision manifest and
+optional. The retired curated-QA builder deliberately has no no-argument
+production mode: a rebuild would require the exact opaque collision manifest and
 its independently pinned SHA-256 from an approved collision-authority record.
 Do not calculate `OPAQUE_COLLISION_AUTHORIZATION_SHA256` from the manifest in
 the same command that consumes it, because that would not preserve the sealed
 content-addressed boundary.
+
+The two legacy evaluation inputs that once supplied that collision boundary
+are under an irreversible no-reopen quarantine after an earlier access. They
+must not be resolved, statted, hashed, counted, or reopened to mint a
+replacement authorization. Consequently the command below documents the
+fail-closed interface for a future independently authorized manifest; it is
+not the rebuild path for current training. Current training uses the
+source-split V440 projections above.
 
 Once the protected collision runner has published those two pinned values, the
 reproducible production command is:
