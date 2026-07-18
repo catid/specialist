@@ -1,0 +1,3146 @@
+{
+  "authority": {
+    "datasets_or_training_rows_opened": false,
+    "gpu_mutation_beyond_ephemeral_synthetic_allocations": false,
+    "model_or_adapter_weights_loaded": false,
+    "optimizer_created": false,
+    "protected_holdout_ood_terminal_incident_or_manual_review_opened": false,
+    "synthetic_tensors_only": true,
+    "training_launched": false
+  },
+  "baseline_architecture_contract": {
+    "content_sha256": "4a4960ba80c4e6532f5225984310af35a2a79cd50ffb642ef1c5a54bbe5fba3c",
+    "file_sha256": "10dff9322129a0ecf64bc6bad1bf984112f0cab8b38406cb26f1c08f2b5a00fa",
+    "path": "training_protocol/qwen36_architecture_contract_v1.json",
+    "schema": "qwen36-low-regression-architecture-contract-v1"
+  },
+  "content_sha256_before_self_field": "0d8ea6abc6d2625d48ec0ca6d288a2a09a36741061c06033640350fcbb304090",
+  "declared_bfloat16_tolerances": {
+    "causal_conv1d_forward": {
+      "atol": 0.03,
+      "rtol": 0.03
+    },
+    "causal_conv1d_gradients": {
+      "atol": 0.03,
+      "rtol": 0.03
+    },
+    "gated_delta_chunk_forward": {
+      "atol": 0.03,
+      "rtol": 0.03
+    },
+    "gated_delta_chunk_gradients": {
+      "atol": 0.03,
+      "rtol": 0.03
+    },
+    "gated_delta_recurrent_forward": {
+      "atol": 0.03,
+      "rtol": 0.03
+    },
+    "gated_delta_recurrent_gradients": {
+      "atol": 0.03,
+      "rtol": 0.03
+    },
+    "qwen35_moe_gated_delta_module_forward": {
+      "atol": 0.03,
+      "rtol": 0.03
+    },
+    "qwen35_moe_gated_delta_module_gradients": {
+      "atol": 0.03,
+      "rtol": 0.03
+    }
+  },
+  "environment_integrity": {
+    "all_core_distributions_preserved": true,
+    "all_fast_distribution_versions_exact": true,
+    "baseline_source_checks": {
+      "architecture:transformers_auto_factory": {
+        "expected_sha256": "7f971d65d1cbe7edebcb59a3759307ddaff4d81ad8c7908e4177ee19928eeddd",
+        "matches": true,
+        "observed_sha256": "7f971d65d1cbe7edebcb59a3759307ddaff4d81ad8c7908e4177ee19928eeddd",
+        "path": ".venv/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py"
+      },
+      "architecture:transformers_conversion_mapping": {
+        "expected_sha256": "f061182c90771d52014807801cc36bfa0bea1f19e0bbb5bbfc389d50b7a36226",
+        "matches": true,
+        "observed_sha256": "f061182c90771d52014807801cc36bfa0bea1f19e0bbb5bbfc389d50b7a36226",
+        "path": ".venv/lib/python3.12/site-packages/transformers/conversion_mapping.py"
+      },
+      "architecture:transformers_package": {
+        "expected_sha256": "135ddabaeed9a78e2a40f5fd5ec948361b59650c96ce9222cba011826ee17632",
+        "matches": true,
+        "observed_sha256": "135ddabaeed9a78e2a40f5fd5ec948361b59650c96ce9222cba011826ee17632",
+        "path": ".venv/lib/python3.12/site-packages/transformers/__init__.py"
+      },
+      "architecture:transformers_qwen_configuration": {
+        "expected_sha256": "515003d36dbced0c478f46da0d655ee96724343ee7d75e6e2474b10f9f203f8e",
+        "matches": true,
+        "observed_sha256": "515003d36dbced0c478f46da0d655ee96724343ee7d75e6e2474b10f9f203f8e",
+        "path": ".venv/lib/python3.12/site-packages/transformers/models/qwen3_5_moe/configuration_qwen3_5_moe.py"
+      },
+      "architecture:transformers_qwen_modeling": {
+        "expected_sha256": "f738a9eb46d1351a751f36a1cae5f7435d589e8c3218e7315182419c4c0230f1",
+        "matches": true,
+        "observed_sha256": "f738a9eb46d1351a751f36a1cae5f7435d589e8c3218e7315182419c4c0230f1",
+        "path": ".venv/lib/python3.12/site-packages/transformers/models/qwen3_5_moe/modeling_qwen3_5_moe.py"
+      },
+      "peft:lora_config": {
+        "expected_sha256": "a9f95e1a143b8320cf2e0a3139f29c807d937876591f5fc1ce24fc4fd7833b59",
+        "matches": true,
+        "observed_sha256": "a9f95e1a143b8320cf2e0a3139f29c807d937876591f5fc1ce24fc4fd7833b59",
+        "path": ".venv/lib/python3.12/site-packages/peft/tuners/lora/config.py"
+      },
+      "peft:lora_layer": {
+        "expected_sha256": "444bba0e5dbc5c55ed51a288a8366c18aa7ebe533d081312a19347eb48b215b6",
+        "matches": true,
+        "observed_sha256": "444bba0e5dbc5c55ed51a288a8366c18aa7ebe533d081312a19347eb48b215b6",
+        "path": ".venv/lib/python3.12/site-packages/peft/tuners/lora/layer.py"
+      },
+      "peft:lora_model": {
+        "expected_sha256": "630140471a623e42f13061e61215b60ea45ca511ee729ab5e3a19337281780fb",
+        "matches": true,
+        "observed_sha256": "630140471a623e42f13061e61215b60ea45ca511ee729ab5e3a19337281780fb",
+        "path": ".venv/lib/python3.12/site-packages/peft/tuners/lora/model.py"
+      },
+      "peft:tuner_utils": {
+        "expected_sha256": "d14719d5813e5409411f924a52d34f973d192ca000107bf4cccd5feae6417a1e",
+        "matches": true,
+        "observed_sha256": "d14719d5813e5409411f924a52d34f973d192ca000107bf4cccd5feae6417a1e",
+        "path": ".venv/lib/python3.12/site-packages/peft/tuners/tuners_utils.py"
+      }
+    },
+    "core_baseline_checks": {
+      "peft": {
+        "direct_url_matches": true,
+        "expected_direct_url": null,
+        "expected_vcs_commit": null,
+        "expected_version": "0.19.1",
+        "observed_direct_url": null,
+        "observed_vcs_commit": null,
+        "observed_version": "0.19.1",
+        "vcs_commit_matches": true,
+        "version_matches": true
+      },
+      "torch": {
+        "direct_url_matches": true,
+        "expected_direct_url": null,
+        "expected_vcs_commit": null,
+        "expected_version": "2.11.0",
+        "observed_direct_url": null,
+        "observed_vcs_commit": null,
+        "observed_version": "2.11.0",
+        "vcs_commit_matches": true,
+        "version_matches": true
+      },
+      "transformers": {
+        "direct_url_matches": true,
+        "expected_direct_url": null,
+        "expected_vcs_commit": null,
+        "expected_version": "5.12.1",
+        "observed_direct_url": null,
+        "observed_vcs_commit": null,
+        "observed_version": "5.12.1",
+        "vcs_commit_matches": true,
+        "version_matches": true
+      },
+      "triton": {
+        "direct_url_matches": true,
+        "expected_direct_url": null,
+        "expected_vcs_commit": null,
+        "expected_version": "3.6.0",
+        "observed_direct_url": null,
+        "observed_vcs_commit": null,
+        "observed_version": "3.6.0",
+        "vcs_commit_matches": true,
+        "version_matches": true
+      }
+    },
+    "distributions": {
+      "causal-conv1d": {
+        "canonical_name": "causal_conv1d",
+        "direct_url": null,
+        "dist_info_path": ".venv/lib/python3.12/site-packages/causal_conv1d-1.6.2.post1.dist-info",
+        "metadata_sha256": "84eda5bf85666688bd3b829da3dde458773ae7afcb2c8011869f753c56c9457d",
+        "record_sha256": "ad8b352d534b2b9f13543243c9ed4bec570c128b857e6aa038bbad91747b5405",
+        "requested_name": "causal-conv1d",
+        "vcs_commit": null,
+        "version": "1.6.2.post1"
+      },
+      "fla-core": {
+        "canonical_name": "fla-core",
+        "direct_url": null,
+        "dist_info_path": ".venv/lib/python3.12/site-packages/fla_core-0.5.1.dist-info",
+        "metadata_sha256": "a4c23fc6fc0353360d45f405f0aa682496ab8d51d94b4b2ca6da85f957f45789",
+        "record_sha256": "fe3c4c5d69a953d2912f2a48400a710492c6b31a062cec8c823228ef22d0943f",
+        "requested_name": "fla-core",
+        "vcs_commit": null,
+        "version": "0.5.1"
+      },
+      "flash-linear-attention": {
+        "canonical_name": "flash-linear-attention",
+        "direct_url": null,
+        "dist_info_path": ".venv/lib/python3.12/site-packages/flash_linear_attention-0.5.1.dist-info",
+        "metadata_sha256": "38d925fad5a6060ed1625932a9509e56c149491787bfd9fd5c42d5684f7557d2",
+        "record_sha256": "b48a0633f2c550787d32bcc0c29a901d6186b5e362bb1bfc232fbebabb2bc8c7",
+        "requested_name": "flash-linear-attention",
+        "vcs_commit": null,
+        "version": "0.5.1"
+      },
+      "peft": {
+        "canonical_name": "peft",
+        "direct_url": null,
+        "dist_info_path": ".venv/lib/python3.12/site-packages/peft-0.19.1.dist-info",
+        "metadata_sha256": "1f658b5ee840d285bdb7a0a10167f57009ad4da9118c2fbac3c223117d5c7c48",
+        "record_sha256": "da7f7bdcec42655bb9c17611ed06c2da090305b9f3a9e923b9aa84d89d73a2df",
+        "requested_name": "peft",
+        "vcs_commit": null,
+        "version": "0.19.1"
+      },
+      "tilelang": {
+        "canonical_name": "tilelang",
+        "direct_url": null,
+        "dist_info_path": ".venv/lib/python3.12/site-packages/tilelang-0.1.11.dist-info",
+        "metadata_sha256": "d2d03b6d107a1156c478c3b1dad421687da756226d6514ef84319b7d0e16b95c",
+        "record_sha256": "8430df7f4980ac02e582335f83188988b4964caba9501d5ade2088aed632c0f5",
+        "requested_name": "tilelang",
+        "vcs_commit": null,
+        "version": "0.1.11"
+      },
+      "torch": {
+        "canonical_name": "torch",
+        "direct_url": null,
+        "dist_info_path": ".venv/lib/python3.12/site-packages/torch-2.11.0.dist-info",
+        "metadata_sha256": "d65e0ab5a65ced0dce799a2f6f32bff57b3d3e9d050069f607ef71eb24dd9976",
+        "record_sha256": "7bec55b321ce6a395828943b5eb2b29b5a976bd235fb1ca2a7cc851d11217dc3",
+        "requested_name": "torch",
+        "vcs_commit": null,
+        "version": "2.11.0"
+      },
+      "transformers": {
+        "canonical_name": "transformers",
+        "direct_url": null,
+        "dist_info_path": ".venv/lib/python3.12/site-packages/transformers-5.12.1.dist-info",
+        "metadata_sha256": "944617c29bd61ef723abff2384b541bcf122edeb1a2d42a26bf878912c077747",
+        "record_sha256": "3b751cad6dd0665059244b5ef2ef19aa8d8ffb28649412750a2d7f1563253751",
+        "requested_name": "transformers",
+        "vcs_commit": null,
+        "version": "5.12.1"
+      },
+      "triton": {
+        "canonical_name": "triton",
+        "direct_url": null,
+        "dist_info_path": ".venv/lib/python3.12/site-packages/triton-3.6.0.dist-info",
+        "metadata_sha256": "5c9071db9b057bec89cd6d7f76f61e5f28a5e8d3717ff6c85420cf8015ee0321",
+        "record_sha256": "be1d3151570528075f70ccb4c9f75d9f8400a38ad0d349b067ca71fa2a284be7",
+        "requested_name": "triton",
+        "vcs_commit": null,
+        "version": "3.6.0"
+      }
+    },
+    "fast_distribution_version_checks": {
+      "causal-conv1d": {
+        "expected": "1.6.2.post1",
+        "matches": true,
+        "observed": "1.6.2.post1"
+      },
+      "fla-core": {
+        "expected": "0.5.1",
+        "matches": true,
+        "observed": "0.5.1"
+      },
+      "flash-linear-attention": {
+        "expected": "0.5.1",
+        "matches": true,
+        "observed": "0.5.1"
+      }
+    },
+    "source_receipts": {
+      "builder": {
+        "bytes": 64843,
+        "path": "build_fast_linear_attention_contract_v1.py",
+        "role": "builder",
+        "sha256": "f7f48881fef0a251fba36dc95108b82265f062e68dfd5654a2bcffb630874434"
+      },
+      "causal_conv1d_cpp_functions": {
+        "bytes": 4609,
+        "path": ".venv/lib/python3.12/site-packages/causal_conv1d/cpp_functions.py",
+        "role": "causal_conv1d_cpp_functions",
+        "sha256": "80e75c8f761c88ede2ff73d244b0e9c0d2a974a780e2d3d8befeec1bd8aac29e"
+      },
+      "causal_conv1d_cuda_extension": {
+        "bytes": 265295776,
+        "path": ".venv/lib/python3.12/site-packages/causal_conv1d_cuda.cpython-312-x86_64-linux-gnu.so",
+        "role": "causal_conv1d_cuda_extension",
+        "sha256": "a293c62794f923863c9141d2216836b4db23cce1fc3f88952bd9c783de72460f"
+      },
+      "causal_conv1d_init": {
+        "bytes": 118,
+        "path": ".venv/lib/python3.12/site-packages/causal_conv1d/__init__.py",
+        "role": "causal_conv1d_init",
+        "sha256": "af95401837aff56ae3749c2237eaff7df8c6a4328d7c5cc6a6731287ac27152c"
+      },
+      "causal_conv1d_interface": {
+        "bytes": 8850,
+        "path": ".venv/lib/python3.12/site-packages/causal_conv1d/causal_conv1d_interface.py",
+        "role": "causal_conv1d_interface",
+        "sha256": "221f41aa963a8f84683d9c6b2b4bf448692feb963fefcd778fa1b4ed2688c859"
+      },
+      "fla_gated_delta_chunk": {
+        "bytes": 19507,
+        "path": ".venv/lib/python3.12/site-packages/fla/ops/gated_delta_rule/chunk.py",
+        "role": "fla_gated_delta_chunk",
+        "sha256": "4f5ece54e49e843274396a709d98a604fdea5ec9820417b63544c9cf2d0d8052"
+      },
+      "fla_gated_delta_fused_recurrent": {
+        "bytes": 16959,
+        "path": ".venv/lib/python3.12/site-packages/fla/ops/gated_delta_rule/fused_recurrent.py",
+        "role": "fla_gated_delta_fused_recurrent",
+        "sha256": "9c15dc68d37a150da5317431a51fe7def362264ac92770e32261c8557cd5889b"
+      },
+      "fla_gated_delta_init": {
+        "bytes": 719,
+        "path": ".venv/lib/python3.12/site-packages/fla/ops/gated_delta_rule/__init__.py",
+        "role": "fla_gated_delta_init",
+        "sha256": "5edd21847af70840b26439812196a476e7e4ddbbef21afd5fe2066a64630a67c"
+      },
+      "fla_init": {
+        "bytes": 1497,
+        "path": ".venv/lib/python3.12/site-packages/fla/__init__.py",
+        "role": "fla_init",
+        "sha256": "ff023511c0d0c2b6a11a475229d92763f9dc41f39968f26bacd8b0d5d6e9d1c9"
+      },
+      "peft_init": {
+        "bytes": 7031,
+        "path": ".venv/lib/python3.12/site-packages/peft/__init__.py",
+        "role": "peft_init",
+        "sha256": "69de31a0c28be2a6e22d48a0cff469c8e98a67eece5a0bfccc37e52cee004751"
+      },
+      "tilelang_init": {
+        "bytes": 7053,
+        "path": ".venv/lib/python3.12/site-packages/tilelang/__init__.py",
+        "role": "tilelang_init",
+        "sha256": "216c868c8010f149974a8ac04ddfeb107b6edf82f9f6cf710ffd144b122ebd8b"
+      },
+      "torch_init": {
+        "bytes": 107845,
+        "path": ".venv/lib/python3.12/site-packages/torch/__init__.py",
+        "role": "torch_init",
+        "sha256": "0387d8b811b289287479c8bfdf4e1dac3a71b246f938d82da1331cf2dc8bf001"
+      },
+      "transformers_init": {
+        "bytes": 41198,
+        "path": ".venv/lib/python3.12/site-packages/transformers/__init__.py",
+        "role": "transformers_init",
+        "sha256": "135ddabaeed9a78e2a40f5fd5ec948361b59650c96ce9222cba011826ee17632"
+      },
+      "transformers_qwen35_moe": {
+        "bytes": 102544,
+        "path": ".venv/lib/python3.12/site-packages/transformers/models/qwen3_5_moe/modeling_qwen3_5_moe.py",
+        "role": "transformers_qwen35_moe",
+        "sha256": "f738a9eb46d1351a751f36a1cae5f7435d589e8c3218e7315182419c4c0230f1"
+      },
+      "transformers_qwen35_moe_configuration": {
+        "bytes": 8282,
+        "path": ".venv/lib/python3.12/site-packages/transformers/models/qwen3_5_moe/configuration_qwen3_5_moe.py",
+        "role": "transformers_qwen35_moe_configuration",
+        "sha256": "515003d36dbced0c478f46da0d655ee96724343ee7d75e6e2474b10f9f203f8e"
+      },
+      "triton_init": {
+        "bytes": 1661,
+        "path": ".venv/lib/python3.12/site-packages/triton/__init__.py",
+        "role": "triton_init",
+        "sha256": "96e68192cab5dd11fa30d5dc95d56c29ceecda53477fc3af8f37bee026b7a021"
+      }
+    },
+    "torch_runtime_checks": {
+      "compiled_cuda_matches": true,
+      "expected_compiled_cuda": "13.0",
+      "expected_git_version": "70d99e998b4955e0049d13a98d77ae1b14db1f45",
+      "expected_runtime_version": "2.11.0+cu130",
+      "git_version_matches": true,
+      "observed_compiled_cuda": "13.0",
+      "observed_git_version": "70d99e998b4955e0049d13a98d77ae1b14db1f45",
+      "observed_runtime_version": "2.11.0+cu130",
+      "runtime_version_matches": true
+    }
+  },
+  "gpu_execution": {
+    "benchmark_iterations": 12,
+    "full_module_benchmark_iterations": {
+      "128": 6,
+      "2048": 4
+    },
+    "gpu_baseline_checks": {
+      "all_match_architecture_contract": true,
+      "per_gpu": [
+        {
+          "all_match": true,
+          "compute_capability_matches": true,
+          "driver_matches": true,
+          "index": 0,
+          "memory_matches": true,
+          "name_matches": true
+        },
+        {
+          "all_match": true,
+          "compute_capability_matches": true,
+          "driver_matches": true,
+          "index": 1,
+          "memory_matches": true,
+          "name_matches": true
+        },
+        {
+          "all_match": true,
+          "compute_capability_matches": true,
+          "driver_matches": true,
+          "index": 2,
+          "memory_matches": true,
+          "name_matches": true
+        },
+        {
+          "all_match": true,
+          "compute_capability_matches": true,
+          "driver_matches": true,
+          "index": 3,
+          "memory_matches": true,
+          "name_matches": true
+        }
+      ]
+    },
+    "per_gpu_results": [
+      {
+        "gpu": {
+          "compute_capability": "12.0",
+          "driver_version": "610.43.02",
+          "index": 0,
+          "memory_total_mib": 97887,
+          "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+          "uuid": "GPU-4c394fc5-b18f-6622-ca94-f7fbd7112927"
+        },
+        "probes": {
+          "causal_fallback": {
+            "benchmark": {
+              "baseline_allocated_bytes": 100352,
+              "baseline_reserved_bytes": 2097152,
+              "measured_iterations": 12,
+              "milliseconds_per_iteration": 0.14016800125439963,
+              "mode": "forward_plus_backward",
+              "peak_allocated_bytes": 329728,
+              "peak_reserved_bytes": 2097152,
+              "tokens_per_iteration": 256,
+              "tokens_per_second": 1826379.7564992718,
+              "total_elapsed_ms": 1.6820160150527954,
+              "warmup_iterations": 2
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 0,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "probe": "causal_fallback",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "66bdac8954ed7684bb94106e3f94809f6fd25c16a5677f9e42a38db9b2bc8e20",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          },
+          "causal_fast": {
+            "error_tail": "",
+            "probe": "causal_fast",
+            "returncode": -11,
+            "status": "worker_process_error",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "termination_signal": 11,
+            "termination_signal_name": "SIGSEGV"
+          },
+          "gated_delta": {
+            "benchmarks": {
+              "fast": {
+                "baseline_allocated_bytes": 17188864,
+                "baseline_reserved_bytes": 23068672,
+                "measured_iterations": 12,
+                "milliseconds_per_iteration": 0.8871013323465983,
+                "mode": "forward_plus_backward",
+                "peak_allocated_bytes": 17298432,
+                "peak_reserved_bytes": 23068672,
+                "tokens_per_iteration": 64,
+                "tokens_per_second": 72145.08384369627,
+                "total_elapsed_ms": 10.64521598815918,
+                "warmup_iterations": 2
+              },
+              "torch_fallback": {
+                "baseline_allocated_bytes": 17188864,
+                "baseline_reserved_bytes": 23068672,
+                "measured_iterations": 12,
+                "milliseconds_per_iteration": 10.14688237508138,
+                "mode": "forward_plus_backward",
+                "peak_allocated_bytes": 18350592,
+                "peak_reserved_bytes": 23068672,
+                "tokens_per_iteration": 64,
+                "tokens_per_second": 6307.3560561981685,
+                "total_elapsed_ms": 121.76258850097656,
+                "warmup_iterations": 2
+              }
+            },
+            "chunk_training_kernel_parity": {
+              "all_passed": true,
+              "forward": {
+                "atol": 0.03,
+                "max_abs_error": 0.000244140625,
+                "max_symmetric_relative_error": 1.8695652484893799,
+                "mean_abs_error": 1.8916220142273232e-05,
+                "passed": true,
+                "rtol": 0.03,
+                "shape": [
+                  1,
+                  64,
+                  2,
+                  32
+                ]
+              },
+              "gradients": {
+                "beta": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000244140625,
+                  "max_symmetric_relative_error": 0.08154506236314774,
+                  "mean_abs_error": 5.173683166503906e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2
+                  ]
+                },
+                "g": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.022369384765625,
+                  "max_symmetric_relative_error": 1.9906542301177979,
+                  "mean_abs_error": 0.0033704896923154593,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2
+                  ]
+                },
+                "key": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.01849365234375,
+                  "max_symmetric_relative_error": 1.9932886362075806,
+                  "mean_abs_error": 0.0014876244822517037,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                },
+                "query": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.01696014404296875,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 0.0015689458232373,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                },
+                "value": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000244140625,
+                  "max_symmetric_relative_error": 1.4126300811767578,
+                  "mean_abs_error": 1.7495334759587422e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                }
+              }
+            },
+            "fused_recurrent_kernel_parity": {
+              "backward": {
+                "all_passed": false,
+                "error": {
+                  "message": "Backward pass is not implemented yet and we do not have plans to implement it because we haven't figured out how to compute dg without materializing the full hidden states for all time steps.",
+                  "type": "NotImplementedError"
+                },
+                "gradients": null,
+                "status": "fast_backward_unsupported"
+              },
+              "forward": {
+                "final_state": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.0002868138253688812,
+                  "max_symmetric_relative_error": 1.6835726499557495,
+                  "mean_abs_error": 4.86268472741358e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2,
+                    32,
+                    32
+                  ]
+                },
+                "output": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.0001220703125,
+                  "max_symmetric_relative_error": 0.44852495193481445,
+                  "mean_abs_error": 1.6293517546728253e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    8,
+                    2,
+                    32
+                  ]
+                }
+              },
+              "forward_all_passed": true
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 0,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "probe": "gated_delta",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "a116c54f93747121dfbd0239aa1fb473c896426bfee71919ad8083837d6cb128",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          },
+          "qwen35_moe_hybrid_module": {
+            "all_sequence_parity_passed": true,
+            "benchmarks": {
+              "128": {
+                "hybrid_peak_allocated_bytes_ratio": 1.2198611646741226,
+                "hybrid_throughput_speedup": 5.0897033624642685,
+                "hybrid_training": {
+                  "baseline_allocated_bytes": 288364544,
+                  "baseline_reserved_bytes": 320864256,
+                  "measured_iterations": 6,
+                  "milliseconds_per_iteration": 2.0222506523132324,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 291511296,
+                  "peak_reserved_bytes": 333447168,
+                  "tokens_per_iteration": 128,
+                  "tokens_per_second": 63295.813431229246,
+                  "total_elapsed_ms": 12.133503913879395,
+                  "warmup_iterations": 2
+                },
+                "torch_reference": {
+                  "baseline_allocated_bytes": 220926464,
+                  "baseline_reserved_bytes": 253755392,
+                  "measured_iterations": 6,
+                  "milliseconds_per_iteration": 10.292655944824219,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 238970880,
+                  "peak_reserved_bytes": 293601280,
+                  "tokens_per_iteration": 128,
+                  "tokens_per_second": 12436.05155813707,
+                  "total_elapsed_ms": 61.75593566894531,
+                  "warmup_iterations": 2
+                }
+              },
+              "2048": {
+                "hybrid_peak_allocated_bytes_ratio": 0.4365344834560593,
+                "hybrid_throughput_speedup": 6.697217385407258,
+                "hybrid_training": {
+                  "baseline_allocated_bytes": 311957504,
+                  "baseline_reserved_bytes": 343932928,
+                  "measured_iterations": 4,
+                  "milliseconds_per_iteration": 3.916424036026001,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 640932864,
+                  "peak_reserved_bytes": 666894336,
+                  "tokens_per_iteration": 2048,
+                  "tokens_per_second": 522926.01137187064,
+                  "total_elapsed_ms": 15.665696144104004,
+                  "warmup_iterations": 2
+                },
+                "torch_reference": {
+                  "baseline_allocated_bytes": 311957504,
+                  "baseline_reserved_bytes": 343932928,
+                  "measured_iterations": 4,
+                  "milliseconds_per_iteration": 26.229143142700195,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 1468229632,
+                  "peak_reserved_bytes": 1610612736,
+                  "tokens_per_iteration": 2048,
+                  "tokens_per_second": 78081.08670793452,
+                  "total_elapsed_ms": 104.91657257080078,
+                  "warmup_iterations": 2
+                }
+              }
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 0,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "module_contract": {
+              "config_class": "transformers.models.qwen3_5_moe.configuration_qwen3_5_moe.Qwen3_5MoeTextConfig",
+              "hybrid": {
+                "all_matched_modules_configured": true,
+                "bindings": {
+                  "causal_conv1d_fn": null,
+                  "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+                  "chunk_gated_delta_rule": "fla.ops.gated_delta_rule.chunk.chunk_gated_delta_rule",
+                  "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+                },
+                "matched_module_count": 1,
+                "normalization_binding_changed": false,
+                "policy": "hybrid_training"
+              },
+              "module_class": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.Qwen3_5MoeGatedDeltaNet",
+              "pretrained_or_adapter_weights_loaded": false,
+              "realized_geometry": {
+                "hidden_act": "silu",
+                "hidden_size": 2048,
+                "linear_conv_kernel_dim": 4,
+                "linear_key_head_dim": 128,
+                "linear_num_key_heads": 16,
+                "linear_num_value_heads": 32,
+                "linear_value_head_dim": 128,
+                "rms_norm_eps": 1e-06
+              },
+              "reference": {
+                "all_matched_modules_configured": true,
+                "bindings": {
+                  "causal_conv1d_fn": null,
+                  "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+                  "chunk_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_chunk_gated_delta_rule",
+                  "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+                },
+                "matched_module_count": 1,
+                "normalization_binding_changed": false,
+                "policy": "torch_reference"
+              },
+              "synthetic_parameter_state_copied_exactly": true
+            },
+            "parity": {
+              "128": {
+                "all_parameter_gradients_present": true,
+                "all_passed": true,
+                "forward": {
+                  "atol": 0.03,
+                  "max_abs_error": 1.52587890625e-05,
+                  "max_symmetric_relative_error": 0.7688999176025391,
+                  "mean_abs_error": 1.697728521321551e-06,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    128,
+                    2048
+                  ]
+                },
+                "input_gradient": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000583648681640625,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 6.89331500325352e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    128,
+                    2048
+                  ]
+                },
+                "parameter_gradients": {
+                  "A_log": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0016937255859375,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 0.00010381794709246606,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "conv1d.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.001171112060546875,
+                    "max_symmetric_relative_error": 1.9688888788223267,
+                    "mean_abs_error": 9.626235623727553e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      1,
+                      4
+                    ]
+                  },
+                  "dt_bias": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0009403228759765625,
+                    "max_symmetric_relative_error": 1.9959514141082764,
+                    "mean_abs_error": 5.78892941121012e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "in_proj_a.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00012636184692382812,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 2.0055445020261686e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_b.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.9073486328125e-06,
+                    "max_symmetric_relative_error": 0.1251697540283203,
+                    "mean_abs_error": 2.3131663340336672e-07,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_qkv.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0021066665649414062,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 9.644308192946482e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      2048
+                    ]
+                  },
+                  "in_proj_z.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 1.214444637298584,
+                    "mean_abs_error": 1.210694904330012e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      4096,
+                      2048
+                    ]
+                  },
+                  "norm.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 0.7831491827964783,
+                    "mean_abs_error": 4.3691834434866905e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      128
+                    ]
+                  },
+                  "out_proj.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 3.0517578125e-05,
+                    "max_symmetric_relative_error": 1.6264368295669556,
+                    "mean_abs_error": 1.7214390481967712e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      2048,
+                      4096
+                    ]
+                  }
+                },
+                "sequence_length": 128
+              },
+              "2048": {
+                "all_parameter_gradients_present": true,
+                "all_passed": true,
+                "forward": {
+                  "atol": 0.03,
+                  "max_abs_error": 2.288818359375e-05,
+                  "max_symmetric_relative_error": 1.0944766998291016,
+                  "mean_abs_error": 1.8009098994298256e-06,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2048,
+                    2048
+                  ]
+                },
+                "input_gradient": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.00106048583984375,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 7.06479258951731e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2048,
+                    2048
+                  ]
+                },
+                "parameter_gradients": {
+                  "A_log": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.004419386386871338,
+                    "max_symmetric_relative_error": 1.2510416507720947,
+                    "mean_abs_error": 0.0002358455676585436,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "conv1d.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00494384765625,
+                    "max_symmetric_relative_error": 1.9953488111495972,
+                    "mean_abs_error": 3.945110802305862e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      1,
+                      4
+                    ]
+                  },
+                  "dt_bias": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0024384260177612305,
+                    "max_symmetric_relative_error": 1.2425925731658936,
+                    "mean_abs_error": 0.0001314554683631286,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "in_proj_a.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00045490264892578125,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 8.024341696000192e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_b.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 0.6198883056640625,
+                    "mean_abs_error": 1.0768538913907832e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_qkv.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0080718994140625,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 3.930805542040616e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      2048
+                    ]
+                  },
+                  "in_proj_z.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 6.103515625e-05,
+                    "max_symmetric_relative_error": 1.9945652484893799,
+                    "mean_abs_error": 5.394062100094743e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      4096,
+                      2048
+                    ]
+                  },
+                  "norm.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 6.103515625e-05,
+                    "max_symmetric_relative_error": 0.27222222089767456,
+                    "mean_abs_error": 1.6322359442710876e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      128
+                    ]
+                  },
+                  "out_proj.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 9.1552734375e-05,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 7.617085429956205e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      2048,
+                      4096
+                    ]
+                  }
+                },
+                "sequence_length": 2048
+              }
+            },
+            "probe": "qwen35_moe_hybrid_module",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "0e3563b1d05d3d1e3eb58e2327b26e730af2f4cc8c50cae8e5bccb67db67f039",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          }
+        }
+      },
+      {
+        "gpu": {
+          "compute_capability": "12.0",
+          "driver_version": "610.43.02",
+          "index": 1,
+          "memory_total_mib": 97887,
+          "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+          "uuid": "GPU-f10c2baf-536b-1d40-cd4b-25b202ae0ded"
+        },
+        "probes": {
+          "causal_fallback": {
+            "benchmark": {
+              "baseline_allocated_bytes": 100352,
+              "baseline_reserved_bytes": 2097152,
+              "measured_iterations": 12,
+              "milliseconds_per_iteration": 0.13486666480700174,
+              "mode": "forward_plus_backward",
+              "peak_allocated_bytes": 329728,
+              "peak_reserved_bytes": 2097152,
+              "tokens_per_iteration": 256,
+              "tokens_per_second": 1898171.0592928482,
+              "total_elapsed_ms": 1.618399977684021,
+              "warmup_iterations": 2
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 1,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "probe": "causal_fallback",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "a5721ecb0b72f917fc90d13043230a63d28f174169a2a24ccc91d8babef8d751",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          },
+          "causal_fast": {
+            "error_tail": "",
+            "probe": "causal_fast",
+            "returncode": -11,
+            "status": "worker_process_error",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "termination_signal": 11,
+            "termination_signal_name": "SIGSEGV"
+          },
+          "gated_delta": {
+            "benchmarks": {
+              "fast": {
+                "baseline_allocated_bytes": 17188864,
+                "baseline_reserved_bytes": 23068672,
+                "measured_iterations": 12,
+                "milliseconds_per_iteration": 0.6334880193074545,
+                "mode": "forward_plus_backward",
+                "peak_allocated_bytes": 17298432,
+                "peak_reserved_bytes": 23068672,
+                "tokens_per_iteration": 64,
+                "tokens_per_second": 101027.95640865705,
+                "total_elapsed_ms": 7.601856231689453,
+                "warmup_iterations": 2
+              },
+              "torch_fallback": {
+                "baseline_allocated_bytes": 17188864,
+                "baseline_reserved_bytes": 23068672,
+                "measured_iterations": 12,
+                "milliseconds_per_iteration": 8.969573338826498,
+                "mode": "forward_plus_backward",
+                "peak_allocated_bytes": 18350592,
+                "peak_reserved_bytes": 23068672,
+                "tokens_per_iteration": 64,
+                "tokens_per_second": 7135.233481280974,
+                "total_elapsed_ms": 107.63488006591797,
+                "warmup_iterations": 2
+              }
+            },
+            "chunk_training_kernel_parity": {
+              "all_passed": true,
+              "forward": {
+                "atol": 0.03,
+                "max_abs_error": 0.000244140625,
+                "max_symmetric_relative_error": 1.8695652484893799,
+                "mean_abs_error": 1.8916220142273232e-05,
+                "passed": true,
+                "rtol": 0.03,
+                "shape": [
+                  1,
+                  64,
+                  2,
+                  32
+                ]
+              },
+              "gradients": {
+                "beta": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000244140625,
+                  "max_symmetric_relative_error": 0.08154506236314774,
+                  "mean_abs_error": 5.173683166503906e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2
+                  ]
+                },
+                "g": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.022369384765625,
+                  "max_symmetric_relative_error": 1.9906542301177979,
+                  "mean_abs_error": 0.0033704896923154593,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2
+                  ]
+                },
+                "key": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.01849365234375,
+                  "max_symmetric_relative_error": 1.9932886362075806,
+                  "mean_abs_error": 0.0014876244822517037,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                },
+                "query": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.01696014404296875,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 0.0015689458232373,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                },
+                "value": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000244140625,
+                  "max_symmetric_relative_error": 1.4126300811767578,
+                  "mean_abs_error": 1.7495334759587422e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                }
+              }
+            },
+            "fused_recurrent_kernel_parity": {
+              "backward": {
+                "all_passed": false,
+                "error": {
+                  "message": "Backward pass is not implemented yet and we do not have plans to implement it because we haven't figured out how to compute dg without materializing the full hidden states for all time steps.",
+                  "type": "NotImplementedError"
+                },
+                "gradients": null,
+                "status": "fast_backward_unsupported"
+              },
+              "forward": {
+                "final_state": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.0002868138253688812,
+                  "max_symmetric_relative_error": 1.6835726499557495,
+                  "mean_abs_error": 4.86268472741358e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2,
+                    32,
+                    32
+                  ]
+                },
+                "output": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.0001220703125,
+                  "max_symmetric_relative_error": 0.44852495193481445,
+                  "mean_abs_error": 1.6293517546728253e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    8,
+                    2,
+                    32
+                  ]
+                }
+              },
+              "forward_all_passed": true
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 1,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "probe": "gated_delta",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "2d7d91cc1489abca02ac2b715da39c4a25895e1f4d54c339d228b954e045cf2c",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          },
+          "qwen35_moe_hybrid_module": {
+            "all_sequence_parity_passed": true,
+            "benchmarks": {
+              "128": {
+                "hybrid_peak_allocated_bytes_ratio": 1.2198611646741226,
+                "hybrid_throughput_speedup": 5.291654954987259,
+                "hybrid_training": {
+                  "baseline_allocated_bytes": 288364544,
+                  "baseline_reserved_bytes": 320864256,
+                  "measured_iterations": 6,
+                  "milliseconds_per_iteration": 1.8926666577657063,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 291511296,
+                  "peak_reserved_bytes": 333447168,
+                  "tokens_per_iteration": 128,
+                  "tokens_per_second": 67629.4473064285,
+                  "total_elapsed_ms": 11.355999946594238,
+                  "warmup_iterations": 2
+                },
+                "torch_reference": {
+                  "baseline_allocated_bytes": 220926464,
+                  "baseline_reserved_bytes": 253755392,
+                  "measured_iterations": 6,
+                  "milliseconds_per_iteration": 10.015338897705078,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 238970880,
+                  "peak_reserved_bytes": 293601280,
+                  "tokens_per_iteration": 128,
+                  "tokens_per_second": 12780.39628088172,
+                  "total_elapsed_ms": 60.09203338623047,
+                  "warmup_iterations": 2
+                }
+              },
+              "2048": {
+                "hybrid_peak_allocated_bytes_ratio": 0.4365344834560593,
+                "hybrid_throughput_speedup": 6.887729739182513,
+                "hybrid_training": {
+                  "baseline_allocated_bytes": 311957504,
+                  "baseline_reserved_bytes": 343932928,
+                  "measured_iterations": 4,
+                  "milliseconds_per_iteration": 3.7914879322052,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 640932864,
+                  "peak_reserved_bytes": 666894336,
+                  "tokens_per_iteration": 2048,
+                  "tokens_per_second": 540157.3304781284,
+                  "total_elapsed_ms": 15.1659517288208,
+                  "warmup_iterations": 2
+                },
+                "torch_reference": {
+                  "baseline_allocated_bytes": 311957504,
+                  "baseline_reserved_bytes": 343932928,
+                  "measured_iterations": 4,
+                  "milliseconds_per_iteration": 26.114744186401367,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 1468229632,
+                  "peak_reserved_bytes": 1610612736,
+                  "tokens_per_iteration": 2048,
+                  "tokens_per_second": 78423.1308329816,
+                  "total_elapsed_ms": 104.45897674560547,
+                  "warmup_iterations": 2
+                }
+              }
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 1,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "module_contract": {
+              "config_class": "transformers.models.qwen3_5_moe.configuration_qwen3_5_moe.Qwen3_5MoeTextConfig",
+              "hybrid": {
+                "all_matched_modules_configured": true,
+                "bindings": {
+                  "causal_conv1d_fn": null,
+                  "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+                  "chunk_gated_delta_rule": "fla.ops.gated_delta_rule.chunk.chunk_gated_delta_rule",
+                  "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+                },
+                "matched_module_count": 1,
+                "normalization_binding_changed": false,
+                "policy": "hybrid_training"
+              },
+              "module_class": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.Qwen3_5MoeGatedDeltaNet",
+              "pretrained_or_adapter_weights_loaded": false,
+              "realized_geometry": {
+                "hidden_act": "silu",
+                "hidden_size": 2048,
+                "linear_conv_kernel_dim": 4,
+                "linear_key_head_dim": 128,
+                "linear_num_key_heads": 16,
+                "linear_num_value_heads": 32,
+                "linear_value_head_dim": 128,
+                "rms_norm_eps": 1e-06
+              },
+              "reference": {
+                "all_matched_modules_configured": true,
+                "bindings": {
+                  "causal_conv1d_fn": null,
+                  "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+                  "chunk_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_chunk_gated_delta_rule",
+                  "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+                },
+                "matched_module_count": 1,
+                "normalization_binding_changed": false,
+                "policy": "torch_reference"
+              },
+              "synthetic_parameter_state_copied_exactly": true
+            },
+            "parity": {
+              "128": {
+                "all_parameter_gradients_present": true,
+                "all_passed": true,
+                "forward": {
+                  "atol": 0.03,
+                  "max_abs_error": 1.52587890625e-05,
+                  "max_symmetric_relative_error": 0.7688999176025391,
+                  "mean_abs_error": 1.697728521321551e-06,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    128,
+                    2048
+                  ]
+                },
+                "input_gradient": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000583648681640625,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 6.89331500325352e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    128,
+                    2048
+                  ]
+                },
+                "parameter_gradients": {
+                  "A_log": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0016937255859375,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 0.00010381794709246606,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "conv1d.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.001171112060546875,
+                    "max_symmetric_relative_error": 1.9688888788223267,
+                    "mean_abs_error": 9.626235623727553e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      1,
+                      4
+                    ]
+                  },
+                  "dt_bias": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0009403228759765625,
+                    "max_symmetric_relative_error": 1.9959514141082764,
+                    "mean_abs_error": 5.78892941121012e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "in_proj_a.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00012636184692382812,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 2.0055445020261686e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_b.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.9073486328125e-06,
+                    "max_symmetric_relative_error": 0.1251697540283203,
+                    "mean_abs_error": 2.3131663340336672e-07,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_qkv.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0021066665649414062,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 9.644308192946482e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      2048
+                    ]
+                  },
+                  "in_proj_z.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 1.214444637298584,
+                    "mean_abs_error": 1.210694904330012e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      4096,
+                      2048
+                    ]
+                  },
+                  "norm.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 0.7831491827964783,
+                    "mean_abs_error": 4.3691834434866905e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      128
+                    ]
+                  },
+                  "out_proj.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 3.0517578125e-05,
+                    "max_symmetric_relative_error": 1.6264368295669556,
+                    "mean_abs_error": 1.7214390481967712e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      2048,
+                      4096
+                    ]
+                  }
+                },
+                "sequence_length": 128
+              },
+              "2048": {
+                "all_parameter_gradients_present": true,
+                "all_passed": true,
+                "forward": {
+                  "atol": 0.03,
+                  "max_abs_error": 2.288818359375e-05,
+                  "max_symmetric_relative_error": 1.0944766998291016,
+                  "mean_abs_error": 1.8009098994298256e-06,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2048,
+                    2048
+                  ]
+                },
+                "input_gradient": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.00106048583984375,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 7.06479258951731e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2048,
+                    2048
+                  ]
+                },
+                "parameter_gradients": {
+                  "A_log": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.004419386386871338,
+                    "max_symmetric_relative_error": 1.2510416507720947,
+                    "mean_abs_error": 0.0002358455676585436,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "conv1d.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00494384765625,
+                    "max_symmetric_relative_error": 1.9953488111495972,
+                    "mean_abs_error": 3.945110802305862e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      1,
+                      4
+                    ]
+                  },
+                  "dt_bias": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0024384260177612305,
+                    "max_symmetric_relative_error": 1.2425925731658936,
+                    "mean_abs_error": 0.0001314554683631286,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "in_proj_a.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00045490264892578125,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 8.024341696000192e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_b.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 0.6198883056640625,
+                    "mean_abs_error": 1.0768538913907832e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_qkv.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0080718994140625,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 3.930805542040616e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      2048
+                    ]
+                  },
+                  "in_proj_z.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 6.103515625e-05,
+                    "max_symmetric_relative_error": 1.9945652484893799,
+                    "mean_abs_error": 5.394062100094743e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      4096,
+                      2048
+                    ]
+                  },
+                  "norm.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 6.103515625e-05,
+                    "max_symmetric_relative_error": 0.27222222089767456,
+                    "mean_abs_error": 1.6322359442710876e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      128
+                    ]
+                  },
+                  "out_proj.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 9.1552734375e-05,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 7.617085429956205e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      2048,
+                      4096
+                    ]
+                  }
+                },
+                "sequence_length": 2048
+              }
+            },
+            "probe": "qwen35_moe_hybrid_module",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "d3b2b786293bbcd7cf0bce0b434963c63cf5ce36ab8652473e16f2e8af74b85c",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          }
+        }
+      },
+      {
+        "gpu": {
+          "compute_capability": "12.0",
+          "driver_version": "610.43.02",
+          "index": 2,
+          "memory_total_mib": 97887,
+          "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+          "uuid": "GPU-04cde663-7c53-2f18-3ec4-1699820e2640"
+        },
+        "probes": {
+          "causal_fallback": {
+            "benchmark": {
+              "baseline_allocated_bytes": 100352,
+              "baseline_reserved_bytes": 2097152,
+              "measured_iterations": 12,
+              "milliseconds_per_iteration": 0.13942399621009827,
+              "mode": "forward_plus_backward",
+              "peak_allocated_bytes": 329728,
+              "peak_reserved_bytes": 2097152,
+              "tokens_per_iteration": 256,
+              "tokens_per_second": 1836125.824526168,
+              "total_elapsed_ms": 1.6730879545211792,
+              "warmup_iterations": 2
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 2,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "probe": "causal_fallback",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "f82717167c11c2e6b75c2cbfa7526be16ba8d8fffc80eb812c96f4594d208462",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          },
+          "causal_fast": {
+            "error_tail": "",
+            "probe": "causal_fast",
+            "returncode": -11,
+            "status": "worker_process_error",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "termination_signal": 11,
+            "termination_signal_name": "SIGSEGV"
+          },
+          "gated_delta": {
+            "benchmarks": {
+              "fast": {
+                "baseline_allocated_bytes": 17188864,
+                "baseline_reserved_bytes": 23068672,
+                "measured_iterations": 12,
+                "milliseconds_per_iteration": 0.853986660639445,
+                "mode": "forward_plus_backward",
+                "peak_allocated_bytes": 17298432,
+                "peak_reserved_bytes": 23068672,
+                "tokens_per_iteration": 64,
+                "tokens_per_second": 74942.62258391522,
+                "total_elapsed_ms": 10.24783992767334,
+                "warmup_iterations": 2
+              },
+              "torch_fallback": {
+                "baseline_allocated_bytes": 17188864,
+                "baseline_reserved_bytes": 23068672,
+                "measured_iterations": 12,
+                "milliseconds_per_iteration": 9.84981600443522,
+                "mode": "forward_plus_backward",
+                "peak_allocated_bytes": 18350592,
+                "peak_reserved_bytes": 23068672,
+                "tokens_per_iteration": 64,
+                "tokens_per_second": 6497.583302183693,
+                "total_elapsed_ms": 118.19779205322266,
+                "warmup_iterations": 2
+              }
+            },
+            "chunk_training_kernel_parity": {
+              "all_passed": true,
+              "forward": {
+                "atol": 0.03,
+                "max_abs_error": 0.000244140625,
+                "max_symmetric_relative_error": 1.8695652484893799,
+                "mean_abs_error": 1.8916220142273232e-05,
+                "passed": true,
+                "rtol": 0.03,
+                "shape": [
+                  1,
+                  64,
+                  2,
+                  32
+                ]
+              },
+              "gradients": {
+                "beta": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000244140625,
+                  "max_symmetric_relative_error": 0.08154506236314774,
+                  "mean_abs_error": 5.173683166503906e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2
+                  ]
+                },
+                "g": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.022369384765625,
+                  "max_symmetric_relative_error": 1.9906542301177979,
+                  "mean_abs_error": 0.0033704896923154593,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2
+                  ]
+                },
+                "key": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.01849365234375,
+                  "max_symmetric_relative_error": 1.9932886362075806,
+                  "mean_abs_error": 0.0014876244822517037,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                },
+                "query": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.01696014404296875,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 0.0015689458232373,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                },
+                "value": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000244140625,
+                  "max_symmetric_relative_error": 1.4126300811767578,
+                  "mean_abs_error": 1.7495334759587422e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                }
+              }
+            },
+            "fused_recurrent_kernel_parity": {
+              "backward": {
+                "all_passed": false,
+                "error": {
+                  "message": "Backward pass is not implemented yet and we do not have plans to implement it because we haven't figured out how to compute dg without materializing the full hidden states for all time steps.",
+                  "type": "NotImplementedError"
+                },
+                "gradients": null,
+                "status": "fast_backward_unsupported"
+              },
+              "forward": {
+                "final_state": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.0002868138253688812,
+                  "max_symmetric_relative_error": 1.6835726499557495,
+                  "mean_abs_error": 4.86268472741358e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2,
+                    32,
+                    32
+                  ]
+                },
+                "output": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.0001220703125,
+                  "max_symmetric_relative_error": 0.44852495193481445,
+                  "mean_abs_error": 1.6293517546728253e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    8,
+                    2,
+                    32
+                  ]
+                }
+              },
+              "forward_all_passed": true
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 2,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "probe": "gated_delta",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "36f7bd58dabb9c98f7aed90daf12500f09593bedbd4da8619aea7ddeac350082",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          },
+          "qwen35_moe_hybrid_module": {
+            "all_sequence_parity_passed": true,
+            "benchmarks": {
+              "128": {
+                "hybrid_peak_allocated_bytes_ratio": 1.2198611646741226,
+                "hybrid_throughput_speedup": 5.869341494544564,
+                "hybrid_training": {
+                  "baseline_allocated_bytes": 288364544,
+                  "baseline_reserved_bytes": 320864256,
+                  "measured_iterations": 6,
+                  "milliseconds_per_iteration": 1.96725861231486,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 291511296,
+                  "peak_reserved_bytes": 333447168,
+                  "tokens_per_iteration": 128,
+                  "tokens_per_second": 65065.16184437147,
+                  "total_elapsed_ms": 11.80355167388916,
+                  "warmup_iterations": 2
+                },
+                "torch_reference": {
+                  "baseline_allocated_bytes": 220926464,
+                  "baseline_reserved_bytes": 253755392,
+                  "measured_iterations": 6,
+                  "milliseconds_per_iteration": 11.546512603759766,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 238970880,
+                  "peak_reserved_bytes": 293601280,
+                  "tokens_per_iteration": 128,
+                  "tokens_per_second": 11085.598257461803,
+                  "total_elapsed_ms": 69.2790756225586,
+                  "warmup_iterations": 2
+                }
+              },
+              "2048": {
+                "hybrid_peak_allocated_bytes_ratio": 0.4365344834560593,
+                "hybrid_throughput_speedup": 7.32137315364451,
+                "hybrid_training": {
+                  "baseline_allocated_bytes": 311957504,
+                  "baseline_reserved_bytes": 343932928,
+                  "measured_iterations": 4,
+                  "milliseconds_per_iteration": 3.8996400833129883,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 640932864,
+                  "peak_reserved_bytes": 666894336,
+                  "tokens_per_iteration": 2048,
+                  "tokens_per_second": 525176.6717558447,
+                  "total_elapsed_ms": 15.598560333251953,
+                  "warmup_iterations": 2
+                },
+                "torch_reference": {
+                  "baseline_allocated_bytes": 311957504,
+                  "baseline_reserved_bytes": 343932928,
+                  "measured_iterations": 4,
+                  "milliseconds_per_iteration": 28.55072021484375,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 1468229632,
+                  "peak_reserved_bytes": 1610612736,
+                  "tokens_per_iteration": 2048,
+                  "tokens_per_second": 71731.99080754636,
+                  "total_elapsed_ms": 114.202880859375,
+                  "warmup_iterations": 2
+                }
+              }
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 2,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "module_contract": {
+              "config_class": "transformers.models.qwen3_5_moe.configuration_qwen3_5_moe.Qwen3_5MoeTextConfig",
+              "hybrid": {
+                "all_matched_modules_configured": true,
+                "bindings": {
+                  "causal_conv1d_fn": null,
+                  "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+                  "chunk_gated_delta_rule": "fla.ops.gated_delta_rule.chunk.chunk_gated_delta_rule",
+                  "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+                },
+                "matched_module_count": 1,
+                "normalization_binding_changed": false,
+                "policy": "hybrid_training"
+              },
+              "module_class": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.Qwen3_5MoeGatedDeltaNet",
+              "pretrained_or_adapter_weights_loaded": false,
+              "realized_geometry": {
+                "hidden_act": "silu",
+                "hidden_size": 2048,
+                "linear_conv_kernel_dim": 4,
+                "linear_key_head_dim": 128,
+                "linear_num_key_heads": 16,
+                "linear_num_value_heads": 32,
+                "linear_value_head_dim": 128,
+                "rms_norm_eps": 1e-06
+              },
+              "reference": {
+                "all_matched_modules_configured": true,
+                "bindings": {
+                  "causal_conv1d_fn": null,
+                  "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+                  "chunk_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_chunk_gated_delta_rule",
+                  "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+                },
+                "matched_module_count": 1,
+                "normalization_binding_changed": false,
+                "policy": "torch_reference"
+              },
+              "synthetic_parameter_state_copied_exactly": true
+            },
+            "parity": {
+              "128": {
+                "all_parameter_gradients_present": true,
+                "all_passed": true,
+                "forward": {
+                  "atol": 0.03,
+                  "max_abs_error": 1.52587890625e-05,
+                  "max_symmetric_relative_error": 0.7688999176025391,
+                  "mean_abs_error": 1.697728521321551e-06,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    128,
+                    2048
+                  ]
+                },
+                "input_gradient": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000583648681640625,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 6.89331500325352e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    128,
+                    2048
+                  ]
+                },
+                "parameter_gradients": {
+                  "A_log": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0016937255859375,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 0.00010381794709246606,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "conv1d.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.001171112060546875,
+                    "max_symmetric_relative_error": 1.9688888788223267,
+                    "mean_abs_error": 9.626235623727553e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      1,
+                      4
+                    ]
+                  },
+                  "dt_bias": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0009403228759765625,
+                    "max_symmetric_relative_error": 1.9959514141082764,
+                    "mean_abs_error": 5.78892941121012e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "in_proj_a.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00012636184692382812,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 2.0055445020261686e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_b.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.9073486328125e-06,
+                    "max_symmetric_relative_error": 0.1251697540283203,
+                    "mean_abs_error": 2.3131663340336672e-07,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_qkv.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0021066665649414062,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 9.644308192946482e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      2048
+                    ]
+                  },
+                  "in_proj_z.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 1.214444637298584,
+                    "mean_abs_error": 1.210694904330012e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      4096,
+                      2048
+                    ]
+                  },
+                  "norm.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 0.7831491827964783,
+                    "mean_abs_error": 4.3691834434866905e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      128
+                    ]
+                  },
+                  "out_proj.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 3.0517578125e-05,
+                    "max_symmetric_relative_error": 1.6264368295669556,
+                    "mean_abs_error": 1.7214390481967712e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      2048,
+                      4096
+                    ]
+                  }
+                },
+                "sequence_length": 128
+              },
+              "2048": {
+                "all_parameter_gradients_present": true,
+                "all_passed": true,
+                "forward": {
+                  "atol": 0.03,
+                  "max_abs_error": 2.288818359375e-05,
+                  "max_symmetric_relative_error": 1.0944766998291016,
+                  "mean_abs_error": 1.8009098994298256e-06,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2048,
+                    2048
+                  ]
+                },
+                "input_gradient": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.00106048583984375,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 7.06479258951731e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2048,
+                    2048
+                  ]
+                },
+                "parameter_gradients": {
+                  "A_log": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.004419386386871338,
+                    "max_symmetric_relative_error": 1.2510416507720947,
+                    "mean_abs_error": 0.0002358455676585436,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "conv1d.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00494384765625,
+                    "max_symmetric_relative_error": 1.9953488111495972,
+                    "mean_abs_error": 3.945110802305862e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      1,
+                      4
+                    ]
+                  },
+                  "dt_bias": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0024384260177612305,
+                    "max_symmetric_relative_error": 1.2425925731658936,
+                    "mean_abs_error": 0.0001314554683631286,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "in_proj_a.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00045490264892578125,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 8.024341696000192e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_b.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 0.6198883056640625,
+                    "mean_abs_error": 1.0768538913907832e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_qkv.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0080718994140625,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 3.930805542040616e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      2048
+                    ]
+                  },
+                  "in_proj_z.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 6.103515625e-05,
+                    "max_symmetric_relative_error": 1.9945652484893799,
+                    "mean_abs_error": 5.394062100094743e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      4096,
+                      2048
+                    ]
+                  },
+                  "norm.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 6.103515625e-05,
+                    "max_symmetric_relative_error": 0.27222222089767456,
+                    "mean_abs_error": 1.6322359442710876e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      128
+                    ]
+                  },
+                  "out_proj.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 9.1552734375e-05,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 7.617085429956205e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      2048,
+                      4096
+                    ]
+                  }
+                },
+                "sequence_length": 2048
+              }
+            },
+            "probe": "qwen35_moe_hybrid_module",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "f018f8e2b5689a96465232a3a7cf27b78d9c4a7030aa13a68a254505e1b948ed",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          }
+        }
+      },
+      {
+        "gpu": {
+          "compute_capability": "12.0",
+          "driver_version": "610.43.02",
+          "index": 3,
+          "memory_total_mib": 97887,
+          "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+          "uuid": "GPU-972bf85d-1b32-2d1b-20f6-babc4c804999"
+        },
+        "probes": {
+          "causal_fallback": {
+            "benchmark": {
+              "baseline_allocated_bytes": 100352,
+              "baseline_reserved_bytes": 2097152,
+              "measured_iterations": 12,
+              "milliseconds_per_iteration": 0.13954666256904602,
+              "mode": "forward_plus_backward",
+              "peak_allocated_bytes": 329728,
+              "peak_reserved_bytes": 2097152,
+              "tokens_per_iteration": 256,
+              "tokens_per_second": 1834511.8062091542,
+              "total_elapsed_ms": 1.6745599508285522,
+              "warmup_iterations": 2
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 3,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "probe": "causal_fallback",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "62bd3ecf0e6e4a41de7c88a3f335c7560089015e62e684ad33031e5c6ce7a4af",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          },
+          "causal_fast": {
+            "error_tail": "",
+            "probe": "causal_fast",
+            "returncode": -11,
+            "status": "worker_process_error",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "termination_signal": 11,
+            "termination_signal_name": "SIGSEGV"
+          },
+          "gated_delta": {
+            "benchmarks": {
+              "fast": {
+                "baseline_allocated_bytes": 17188864,
+                "baseline_reserved_bytes": 23068672,
+                "measured_iterations": 12,
+                "milliseconds_per_iteration": 0.8465226491292318,
+                "mode": "forward_plus_backward",
+                "peak_allocated_bytes": 17298432,
+                "peak_reserved_bytes": 23068672,
+                "tokens_per_iteration": 64,
+                "tokens_per_second": 75603.41128005619,
+                "total_elapsed_ms": 10.158271789550781,
+                "warmup_iterations": 2
+              },
+              "torch_fallback": {
+                "baseline_allocated_bytes": 17188864,
+                "baseline_reserved_bytes": 23068672,
+                "measured_iterations": 12,
+                "milliseconds_per_iteration": 8.218720118204752,
+                "mode": "forward_plus_backward",
+                "peak_allocated_bytes": 18350592,
+                "peak_reserved_bytes": 23068672,
+                "tokens_per_iteration": 64,
+                "tokens_per_second": 7787.100555746844,
+                "total_elapsed_ms": 98.62464141845703,
+                "warmup_iterations": 2
+              }
+            },
+            "chunk_training_kernel_parity": {
+              "all_passed": true,
+              "forward": {
+                "atol": 0.03,
+                "max_abs_error": 0.000244140625,
+                "max_symmetric_relative_error": 1.8695652484893799,
+                "mean_abs_error": 1.8916220142273232e-05,
+                "passed": true,
+                "rtol": 0.03,
+                "shape": [
+                  1,
+                  64,
+                  2,
+                  32
+                ]
+              },
+              "gradients": {
+                "beta": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000244140625,
+                  "max_symmetric_relative_error": 0.08154506236314774,
+                  "mean_abs_error": 5.173683166503906e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2
+                  ]
+                },
+                "g": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.022369384765625,
+                  "max_symmetric_relative_error": 1.9906542301177979,
+                  "mean_abs_error": 0.0033704896923154593,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2
+                  ]
+                },
+                "key": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.01849365234375,
+                  "max_symmetric_relative_error": 1.9932886362075806,
+                  "mean_abs_error": 0.0014876244822517037,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                },
+                "query": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.01696014404296875,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 0.0015689458232373,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                },
+                "value": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000244140625,
+                  "max_symmetric_relative_error": 1.4126300811767578,
+                  "mean_abs_error": 1.7495334759587422e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    64,
+                    2,
+                    32
+                  ]
+                }
+              }
+            },
+            "fused_recurrent_kernel_parity": {
+              "backward": {
+                "all_passed": false,
+                "error": {
+                  "message": "Backward pass is not implemented yet and we do not have plans to implement it because we haven't figured out how to compute dg without materializing the full hidden states for all time steps.",
+                  "type": "NotImplementedError"
+                },
+                "gradients": null,
+                "status": "fast_backward_unsupported"
+              },
+              "forward": {
+                "final_state": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.0002868138253688812,
+                  "max_symmetric_relative_error": 1.6835726499557495,
+                  "mean_abs_error": 4.86268472741358e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2,
+                    32,
+                    32
+                  ]
+                },
+                "output": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.0001220703125,
+                  "max_symmetric_relative_error": 0.44852495193481445,
+                  "mean_abs_error": 1.6293517546728253e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    8,
+                    2,
+                    32
+                  ]
+                }
+              },
+              "forward_all_passed": true
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 3,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "probe": "gated_delta",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "66af3e778d2f4f127664e5e6bdbd883e96c83af96a0c759c3df27bde9f07149e",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          },
+          "qwen35_moe_hybrid_module": {
+            "all_sequence_parity_passed": true,
+            "benchmarks": {
+              "128": {
+                "hybrid_peak_allocated_bytes_ratio": 1.2198611646741226,
+                "hybrid_throughput_speedup": 5.5438465907225725,
+                "hybrid_training": {
+                  "baseline_allocated_bytes": 288364544,
+                  "baseline_reserved_bytes": 320864256,
+                  "measured_iterations": 6,
+                  "milliseconds_per_iteration": 1.7382346789042156,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 291511296,
+                  "peak_reserved_bytes": 333447168,
+                  "tokens_per_iteration": 128,
+                  "tokens_per_second": 73637.92792391607,
+                  "total_elapsed_ms": 10.429408073425293,
+                  "warmup_iterations": 2
+                },
+                "torch_reference": {
+                  "baseline_allocated_bytes": 220926464,
+                  "baseline_reserved_bytes": 253755392,
+                  "measured_iterations": 6,
+                  "milliseconds_per_iteration": 9.63650639851888,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 238970880,
+                  "peak_reserved_bytes": 293601280,
+                  "tokens_per_iteration": 128,
+                  "tokens_per_second": 13282.822083703846,
+                  "total_elapsed_ms": 57.81903839111328,
+                  "warmup_iterations": 2
+                }
+              },
+              "2048": {
+                "hybrid_peak_allocated_bytes_ratio": 0.4365344834560593,
+                "hybrid_throughput_speedup": 7.045248237370656,
+                "hybrid_training": {
+                  "baseline_allocated_bytes": 311957504,
+                  "baseline_reserved_bytes": 343932928,
+                  "measured_iterations": 4,
+                  "milliseconds_per_iteration": 3.6803040504455566,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 640932864,
+                  "peak_reserved_bytes": 666894336,
+                  "tokens_per_iteration": 2048,
+                  "tokens_per_second": 556475.7617654059,
+                  "total_elapsed_ms": 14.721216201782227,
+                  "warmup_iterations": 2
+                },
+                "torch_reference": {
+                  "baseline_allocated_bytes": 311957504,
+                  "baseline_reserved_bytes": 343932928,
+                  "measured_iterations": 4,
+                  "milliseconds_per_iteration": 25.92865562438965,
+                  "mode": "forward_plus_backward",
+                  "peak_allocated_bytes": 1468229632,
+                  "peak_reserved_bytes": 1610612736,
+                  "tokens_per_iteration": 2048,
+                  "tokens_per_second": 78985.96941036773,
+                  "total_elapsed_ms": 103.7146224975586,
+                  "warmup_iterations": 2
+                }
+              }
+            },
+            "gpu": {
+              "compute_capability": "12.0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+              "physical_index": 3,
+              "total_memory_bytes": 102014189568,
+              "worker_visible_index": 0
+            },
+            "module_contract": {
+              "config_class": "transformers.models.qwen3_5_moe.configuration_qwen3_5_moe.Qwen3_5MoeTextConfig",
+              "hybrid": {
+                "all_matched_modules_configured": true,
+                "bindings": {
+                  "causal_conv1d_fn": null,
+                  "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+                  "chunk_gated_delta_rule": "fla.ops.gated_delta_rule.chunk.chunk_gated_delta_rule",
+                  "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+                },
+                "matched_module_count": 1,
+                "normalization_binding_changed": false,
+                "policy": "hybrid_training"
+              },
+              "module_class": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.Qwen3_5MoeGatedDeltaNet",
+              "pretrained_or_adapter_weights_loaded": false,
+              "realized_geometry": {
+                "hidden_act": "silu",
+                "hidden_size": 2048,
+                "linear_conv_kernel_dim": 4,
+                "linear_key_head_dim": 128,
+                "linear_num_key_heads": 16,
+                "linear_num_value_heads": 32,
+                "linear_value_head_dim": 128,
+                "rms_norm_eps": 1e-06
+              },
+              "reference": {
+                "all_matched_modules_configured": true,
+                "bindings": {
+                  "causal_conv1d_fn": null,
+                  "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+                  "chunk_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_chunk_gated_delta_rule",
+                  "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+                },
+                "matched_module_count": 1,
+                "normalization_binding_changed": false,
+                "policy": "torch_reference"
+              },
+              "synthetic_parameter_state_copied_exactly": true
+            },
+            "parity": {
+              "128": {
+                "all_parameter_gradients_present": true,
+                "all_passed": true,
+                "forward": {
+                  "atol": 0.03,
+                  "max_abs_error": 1.52587890625e-05,
+                  "max_symmetric_relative_error": 0.7688999176025391,
+                  "mean_abs_error": 1.697728521321551e-06,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    128,
+                    2048
+                  ]
+                },
+                "input_gradient": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.000583648681640625,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 6.89331500325352e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    128,
+                    2048
+                  ]
+                },
+                "parameter_gradients": {
+                  "A_log": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0016937255859375,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 0.00010381794709246606,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "conv1d.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.001171112060546875,
+                    "max_symmetric_relative_error": 1.9688888788223267,
+                    "mean_abs_error": 9.626235623727553e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      1,
+                      4
+                    ]
+                  },
+                  "dt_bias": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0009403228759765625,
+                    "max_symmetric_relative_error": 1.9959514141082764,
+                    "mean_abs_error": 5.78892941121012e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "in_proj_a.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00012636184692382812,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 2.0055445020261686e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_b.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.9073486328125e-06,
+                    "max_symmetric_relative_error": 0.1251697540283203,
+                    "mean_abs_error": 2.3131663340336672e-07,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_qkv.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0021066665649414062,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 9.644308192946482e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      2048
+                    ]
+                  },
+                  "in_proj_z.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 1.214444637298584,
+                    "mean_abs_error": 1.210694904330012e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      4096,
+                      2048
+                    ]
+                  },
+                  "norm.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 0.7831491827964783,
+                    "mean_abs_error": 4.3691834434866905e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      128
+                    ]
+                  },
+                  "out_proj.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 3.0517578125e-05,
+                    "max_symmetric_relative_error": 1.6264368295669556,
+                    "mean_abs_error": 1.7214390481967712e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      2048,
+                      4096
+                    ]
+                  }
+                },
+                "sequence_length": 128
+              },
+              "2048": {
+                "all_parameter_gradients_present": true,
+                "all_passed": true,
+                "forward": {
+                  "atol": 0.03,
+                  "max_abs_error": 2.288818359375e-05,
+                  "max_symmetric_relative_error": 1.0944766998291016,
+                  "mean_abs_error": 1.8009098994298256e-06,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2048,
+                    2048
+                  ]
+                },
+                "input_gradient": {
+                  "atol": 0.03,
+                  "max_abs_error": 0.00106048583984375,
+                  "max_symmetric_relative_error": 2.0,
+                  "mean_abs_error": 7.06479258951731e-05,
+                  "passed": true,
+                  "rtol": 0.03,
+                  "shape": [
+                    1,
+                    2048,
+                    2048
+                  ]
+                },
+                "parameter_gradients": {
+                  "A_log": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.004419386386871338,
+                    "max_symmetric_relative_error": 1.2510416507720947,
+                    "mean_abs_error": 0.0002358455676585436,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "conv1d.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00494384765625,
+                    "max_symmetric_relative_error": 1.9953488111495972,
+                    "mean_abs_error": 3.945110802305862e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      1,
+                      4
+                    ]
+                  },
+                  "dt_bias": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0024384260177612305,
+                    "max_symmetric_relative_error": 1.2425925731658936,
+                    "mean_abs_error": 0.0001314554683631286,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32
+                    ]
+                  },
+                  "in_proj_a.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.00045490264892578125,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 8.024341696000192e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_b.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 1.52587890625e-05,
+                    "max_symmetric_relative_error": 0.6198883056640625,
+                    "mean_abs_error": 1.0768538913907832e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      32,
+                      2048
+                    ]
+                  },
+                  "in_proj_qkv.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 0.0080718994140625,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 3.930805542040616e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      8192,
+                      2048
+                    ]
+                  },
+                  "in_proj_z.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 6.103515625e-05,
+                    "max_symmetric_relative_error": 1.9945652484893799,
+                    "mean_abs_error": 5.394062100094743e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      4096,
+                      2048
+                    ]
+                  },
+                  "norm.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 6.103515625e-05,
+                    "max_symmetric_relative_error": 0.27222222089767456,
+                    "mean_abs_error": 1.6322359442710876e-05,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      128
+                    ]
+                  },
+                  "out_proj.weight": {
+                    "atol": 0.03,
+                    "max_abs_error": 9.1552734375e-05,
+                    "max_symmetric_relative_error": 2.0,
+                    "mean_abs_error": 7.617085429956205e-06,
+                    "passed": true,
+                    "rtol": 0.03,
+                    "shape": [
+                      2048,
+                      4096
+                    ]
+                  }
+                },
+                "sequence_length": 2048
+              }
+            },
+            "probe": "qwen35_moe_hybrid_module",
+            "process_receipt": {
+              "returncode": 0,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "stdout_sha256": "6a46ea179d9dcc4414c6b6dad09bb6df6cefc395b1bbd6b7cbe0244624171353",
+              "termination_signal": null,
+              "termination_signal_name": null
+            },
+            "status": "ok"
+          }
+        }
+      }
+    ],
+    "selection_mode": "parallel_one_isolated_worker_per_physical_gpu_with_sequential_probes",
+    "warmup_iterations": 2,
+    "worker_cuda_visible_device_count": 1
+  },
+  "hybrid_training_policy": {
+    "application_hook": "build_fast_linear_attention_contract_v1.apply_qwen35_moe_training_hybrid",
+    "bindings": {
+      "causal_conv1d_fn": null,
+      "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+      "chunk_gated_delta_rule": "fla.ops.gated_delta_rule.chunk.chunk_gated_delta_rule",
+      "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+    },
+    "geometry": {
+      "hidden_act": "silu",
+      "hidden_size": 2048,
+      "linear_conv_kernel_dim": 4,
+      "linear_key_head_dim": 128,
+      "linear_num_key_heads": 16,
+      "linear_num_value_heads": 32,
+      "linear_value_head_dim": 128,
+      "rms_norm_eps": 1e-06
+    },
+    "geometry_provenance": {
+      "hidden_size": "baseline_architecture_contract.checkpoint.geometry.hidden_size",
+      "linear_attention_fields": "installed_Qwen3_5MoeTextConfig_explicit_defaults_and_realized_Qwen3_5MoeGatedDeltaNet_attributes"
+    },
+    "normalization_binding_changed": false,
+    "scope": "every_Qwen3_5MoeGatedDeltaNet_below_model_root",
+    "sequence_lengths_validated": [
+      128,
+      2048
+    ],
+    "single_token_decode_not_selected_for_fast_recurrent": true,
+    "training_only_no_cache_parity_scope": true
+  },
+  "purpose": "synthetic-only Qwen3.5-MoE fast-kernel parity, integrity, and four-GPU throughput contract",
+  "schema": "specialist-fast-linear-attention-contract-v1",
+  "selected_fast_or_fallback": {
+    "all_fast_path_rejection_reasons": [
+      "gpu_0_causal_conv1d_fast_runtime_or_parity_failed",
+      "gpu_0_gated_delta_recurrent_backward_unavailable_or_failed",
+      "gpu_1_causal_conv1d_fast_runtime_or_parity_failed",
+      "gpu_1_gated_delta_recurrent_backward_unavailable_or_failed",
+      "gpu_2_causal_conv1d_fast_runtime_or_parity_failed",
+      "gpu_2_gated_delta_recurrent_backward_unavailable_or_failed",
+      "gpu_3_causal_conv1d_fast_runtime_or_parity_failed",
+      "gpu_3_gated_delta_recurrent_backward_unavailable_or_failed"
+    ],
+    "fallback_is_installed_transformers_torch_implementation": false,
+    "fast_components_selected": [
+      "chunk_gated_delta_rule"
+    ],
+    "fast_path_import_available": true,
+    "fast_path_runtime_validated_on_all_four_gpus": false,
+    "hybrid_path_validation_failures": [],
+    "hybrid_training_path_runtime_validated_on_all_four_gpus": true,
+    "material_improvement_gate": {
+      "minimum_throughput_speedup": 1.1,
+      "or_maximum_peak_allocated_bytes_ratio": 0.95,
+      "passed_on_all_four_gpus": true,
+      "sequence_length": 2048
+    },
+    "reasons": [
+      "gpu_0_causal_conv1d_fast_runtime_or_parity_failed",
+      "gpu_0_gated_delta_recurrent_backward_unavailable_or_failed",
+      "gpu_1_causal_conv1d_fast_runtime_or_parity_failed",
+      "gpu_1_gated_delta_recurrent_backward_unavailable_or_failed",
+      "gpu_2_causal_conv1d_fast_runtime_or_parity_failed",
+      "gpu_2_gated_delta_recurrent_backward_unavailable_or_failed",
+      "gpu_3_causal_conv1d_fast_runtime_or_parity_failed",
+      "gpu_3_gated_delta_recurrent_backward_unavailable_or_failed"
+    ],
+    "selected": "hybrid_training",
+    "selected_bindings": {
+      "causal_conv1d_fn": null,
+      "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+      "chunk_gated_delta_rule": "fla.ops.gated_delta_rule.chunk.chunk_gated_delta_rule",
+      "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+    },
+    "selected_training_path": "torch_causal_conv1d_plus_fla_chunk_gated_delta_plus_torch_recurrent",
+    "torch_fallback_components_selected": [
+      "causal_conv1d_fn",
+      "causal_conv1d_update",
+      "recurrent_gated_delta_rule"
+    ],
+    "training_launch_authorized": false
+  },
+  "status": "complete_hybrid_training_selected",
+  "synthetic_workloads": {
+    "causal_conv1d": {
+      "activation": "silu",
+      "distributions": {
+        "bias": "cpu_generator_uniform[-0.1,0.1]_then_bfloat16_cuda",
+        "upstream_gradient": "cpu_generator_uniform[-0.5,0.5]_then_bfloat16_cuda",
+        "weight": "cpu_generator_uniform[-0.25,0.25]_then_bfloat16_cuda",
+        "x": "cpu_generator_uniform[-0.5,0.5]_then_bfloat16_cuda"
+      },
+      "dtype": "torch.bfloat16",
+      "seed_base": 19019,
+      "shape": {
+        "batch": 2,
+        "channels": 64,
+        "sequence": 128,
+        "width": 4
+      }
+    },
+    "gated_delta_chunk": {
+      "distributions": {
+        "beta": "sigmoid(cpu_generator_uniform[-1,1])_then_bfloat16_cuda",
+        "g": "negative_softplus(cpu_generator_uniform[-1,1])_then_bfloat16_cuda",
+        "query_key_value": "cpu_generator_uniform[-0.5,0.5]_then_bfloat16_cuda",
+        "upstream_gradient": "cpu_generator_uniform[-0.5,0.5]_then_bfloat16_cuda"
+      },
+      "dtype": "torch.bfloat16",
+      "output_final_state": false,
+      "seed_base": 19119,
+      "shape": {
+        "batch": 1,
+        "heads": 2,
+        "key_head_dim": 32,
+        "sequence": 64,
+        "value_head_dim": 32
+      },
+      "use_qk_l2norm_in_kernel": true
+    },
+    "gated_delta_recurrent": {
+      "distributions": {
+        "beta": "sigmoid(cpu_generator_uniform[-1,1])_then_bfloat16_cuda",
+        "g": "negative_softplus(cpu_generator_uniform[-1,1])_then_bfloat16_cuda",
+        "query_key_value": "cpu_generator_uniform[-0.5,0.5]_then_bfloat16_cuda",
+        "upstream_gradient": "cpu_generator_uniform[-0.5,0.5]_then_bfloat16_cuda"
+      },
+      "dtype": "torch.bfloat16",
+      "output_final_state": true,
+      "seed_base": 19219,
+      "shape": {
+        "batch": 1,
+        "heads": 2,
+        "key_head_dim": 32,
+        "sequence": 8,
+        "value_head_dim": 32
+      },
+      "use_qk_l2norm_in_kernel": true
+    },
+    "qwen35_moe_gated_delta_module": {
+      "attention_mask": null,
+      "cache_params": null,
+      "distributions": {
+        "hidden_states": "cpu_generator_uniform[-0.1,0.1]_seed_(19319+sequence_length)_then_bfloat16_cuda",
+        "module_parameters": "installed_Qwen3_5MoeGatedDeltaNet_constructor_after_torch_manual_seed_19319_then_deepcopy",
+        "upstream_gradient": "same_cpu_generator_next_uniform[-0.1,0.1]_then_bfloat16_cuda"
+      },
+      "dtype": "torch.bfloat16",
+      "hybrid_bindings": {
+        "causal_conv1d_fn": null,
+        "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+        "chunk_gated_delta_rule": "fla.ops.gated_delta_rule.chunk.chunk_gated_delta_rule",
+        "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+      },
+      "layer_idx": 0,
+      "normalization_binding": "installed_module_binding_unchanged",
+      "reference_bindings": {
+        "causal_conv1d_fn": null,
+        "causal_conv1d_update": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_causal_conv1d_update",
+        "chunk_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_chunk_gated_delta_rule",
+        "recurrent_gated_delta_rule": "transformers.models.qwen3_5_moe.modeling_qwen3_5_moe.torch_recurrent_gated_delta_rule"
+      },
+      "seed_base": 19319,
+      "shape": {
+        "batch": 1,
+        "hidden_act": "silu",
+        "hidden_size": 2048,
+        "linear_conv_kernel_dim": 4,
+        "linear_key_head_dim": 128,
+        "linear_num_key_heads": 16,
+        "linear_num_value_heads": 32,
+        "linear_value_head_dim": 128,
+        "rms_norm_eps": 1e-06,
+        "sequence_lengths": [
+          128,
+          2048
+        ]
+      }
+    }
+  },
+  "transformers_qwen35_moe_fast_path": {
+    "all_required_bindings_imported": true,
+    "availability_is_import_only_not_runtime_validation": true,
+    "bindings": {
+      "FusedRMSNormGated": {
+        "available": true,
+        "module": "fla.modules.fused_norm_gate",
+        "qualname": "FusedRMSNormGated"
+      },
+      "causal_conv1d_fn": {
+        "available": true,
+        "module": "causal_conv1d.causal_conv1d_interface",
+        "qualname": "causal_conv1d_fn"
+      },
+      "causal_conv1d_update": {
+        "available": true,
+        "module": "causal_conv1d.causal_conv1d_interface",
+        "qualname": "causal_conv1d_update"
+      },
+      "chunk_gated_delta_rule": {
+        "available": true,
+        "module": "fla.ops.gated_delta_rule.chunk",
+        "qualname": "chunk_gated_delta_rule"
+      },
+      "fused_recurrent_gated_delta_rule": {
+        "available": true,
+        "module": "fla.ops.gated_delta_rule.fused_recurrent",
+        "qualname": "fused_recurrent_gated_delta_rule"
+      }
+    },
+    "qwen35_moe_module_is_fast_path_available": true,
+    "transformers_is_causal_conv1d_available": true,
+    "transformers_is_flash_linear_attention_available": true
+  }
+}
