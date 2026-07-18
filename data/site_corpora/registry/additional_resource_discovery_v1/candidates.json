@@ -1,0 +1,2505 @@
+{
+  "schema_version": "additional-resource-discovery-v1",
+  "created_at": "2026-07-18T00:00:00Z",
+  "status": "discovery_candidates_only",
+  "search_provider": "Exa MCP exclusively",
+  "baseline_registry": {
+    "path": "data/site_corpora/registry/site_corpus_registry_v1.json",
+    "sha256": "633b191178ee378dcd058b56d2a58b7a76d6e05daad154a4eb93c619fc8ee06f",
+    "resource_count": 33
+  },
+  "guardrails": {
+    "corpus_bytes_copied": false,
+    "registry_promoted": false,
+    "training_eligible": false,
+    "source_disjoint_contract_extended": false,
+    "note": "These are search-derived review candidates, including explicit rejects. A collect recommendation still requires rights, version, component, safety, provenance, and source-disjoint review before any corpus acquisition or training use."
+  },
+  "candidates": [
+    {
+      "candidate_id": "ardv1-usfs-tree-climbing-guide-2015",
+      "url": "https://www.fs.usda.gov/treeclimbing/media/NationalTreeClimbingGuide2015April.pdf",
+      "title": "National Tree Climbing Guide",
+      "publisher": "USDA Forest Service",
+      "authors": [
+        "Berdeen",
+        "Chamberlain",
+        "Grubb",
+        "Henderson",
+        "Mayo",
+        "Mielke",
+        "Purcell",
+        "Ringnes",
+        "Roberts",
+        "Stubbs",
+        "Thorning"
+      ],
+      "categories": [
+        "tree hardpoints",
+        "anchor assessment",
+        "rope inspection",
+        "friction hitches",
+        "rigging",
+        "equipment care"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Complements existing USFS tree-hazard and trail-rigging documents with climbing-specific anchor, friction-saver, rope-care, and system material."
+      },
+      "page_scope": "Approximately 80 pages; collect the full guide only after component review.",
+      "authority": {
+        "level": "high",
+        "type": "primary federal practice guide",
+        "note": "Agency-authored occupational tree-climbing guidance."
+      },
+      "recency_version_needs": "Published April 2015; check for a successor and retain edition/date metadata.",
+      "rights_signals": {
+        "license_or_status": "Likely United States federal public-domain text under 17 USC 105; separately credited figures, standards, and components require review.",
+        "visible_evidence": "Official fs.usda.gov PDF and federal publisher.",
+        "tos_robots_ai": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass."
+      },
+      "safety_caveats": [
+        "Professional tree climbing is not evidence that any tree or branch is suitable for human bondage suspension.",
+        "Species, decay, load direction, dynamic loading, local rules, equipment ratings, and qualified inspection remain controlling.",
+        "Do not transfer occupational system limits directly to shibari."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "high",
+        "rationale": "Unusually dense primary material for tree assessment, anchors, friction systems, inspection, and rope care; perform successor/component audit first."
+      },
+      "canonical_url": "https://www.fs.usda.gov/treeclimbing/media/NationalTreeClimbingGuide2015April.pdf",
+      "domain": "www.fs.usda.gov",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "tree hardpoints",
+          "anchor assessment",
+          "rope inspection",
+          "friction hitches",
+          "rigging",
+          "equipment care"
+        ],
+        "gap_or_overlap": "Complements existing USFS tree-hazard and trail-rigging documents with climbing-specific anchor, friction-saver, rope-care, and system material."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary federal practice guide",
+          "note": "Agency-authored occupational tree-climbing guidance."
+        },
+        "visible_source_evidence": "Official fs.usda.gov PDF and federal publisher."
+      },
+      "estimated_scope": "Approximately 80 pages; collect the full guide only after component review.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Complements existing USFS tree-hazard and trail-rigging documents with climbing-specific anchor, friction-saver, rope-care, and system material."
+      },
+      "robots_access_notes": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass.",
+      "recommended_collection_depth": "Approximately 80 pages; collect the full guide only after component review.",
+      "safety_transfer_flags": [
+        "Professional tree climbing is not evidence that any tree or branch is suitable for human bondage suspension.",
+        "Species, decay, load direction, dynamic loading, local rules, equipment ratings, and qualified inspection remain controlling.",
+        "Do not transfer occupational system limits directly to shibari."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-army-tm-3-34-86-rigging",
+      "url": "https://armypubs.army.mil/epubs/DR_pubs/DR_a/pdf/web/tm3_34x86.pdf",
+      "title": "TM 3-34.86: Rigging Techniques, Procedures, and Applications",
+      "publisher": "Headquarters, Department of the Army",
+      "authors": [
+        "Department of the Army"
+      ],
+      "categories": [
+        "rigging",
+        "rope inspection",
+        "knots and hitches",
+        "splicing",
+        "natural anchors",
+        "mechanical advantage"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Overlaps existing government rigging sources but adds systematic knots, splices, guying, tackle, and natural/man-made anchor coverage."
+      },
+      "page_scope": "Full manual, with extraction scoped to rope, knot, anchor, inspection, and mechanical-system chapters.",
+      "authority": {
+        "level": "high",
+        "type": "primary federal technical manual",
+        "note": "Official Army publication; includes older doctrine inherited from FM 5-125."
+      },
+      "recency_version_needs": "July 2012 manual based substantially on 1995 content; verify current status and mark legacy procedures explicitly.",
+      "rights_signals": {
+        "license_or_status": "States approved for public release and distribution unlimited; federal-work status is likely, but Marine Corps or third-party components require review.",
+        "visible_evidence": "Official armypubs.army.mil PDF and distribution statement.",
+        "tos_robots_ai": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass."
+      },
+      "safety_caveats": [
+        "Heavy-load and military rigging practices are not human-suspension instructions.",
+        "Old load tables and hardware practices require current-standard verification.",
+        "No knot or anchor should be represented as safe for a body merely because it appears in this manual."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "high",
+        "rationale": "Dense, inspectable primary source for rigging vocabulary and mechanics, subject to an explicit legacy/currentness audit."
+      },
+      "canonical_url": "https://armypubs.army.mil/epubs/DR_pubs/DR_a/pdf/web/tm3_34x86.pdf",
+      "domain": "armypubs.army.mil",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "rigging",
+          "rope inspection",
+          "knots and hitches",
+          "splicing",
+          "natural anchors",
+          "mechanical advantage"
+        ],
+        "gap_or_overlap": "Overlaps existing government rigging sources but adds systematic knots, splices, guying, tackle, and natural/man-made anchor coverage."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary federal technical manual",
+          "note": "Official Army publication; includes older doctrine inherited from FM 5-125."
+        },
+        "visible_source_evidence": "Official armypubs.army.mil PDF and distribution statement."
+      },
+      "estimated_scope": "Full manual, with extraction scoped to rope, knot, anchor, inspection, and mechanical-system chapters.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Overlaps existing government rigging sources but adds systematic knots, splices, guying, tackle, and natural/man-made anchor coverage."
+      },
+      "robots_access_notes": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass.",
+      "recommended_collection_depth": "Full manual, with extraction scoped to rope, knot, anchor, inspection, and mechanical-system chapters.",
+      "safety_transfer_flags": [
+        "Heavy-load and military rigging practices are not human-suspension instructions.",
+        "Old load tables and hardware practices require current-standard verification.",
+        "No knot or anchor should be represented as safe for a body merely because it appears in this manual."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-army-tc-21-24-rappelling",
+      "url": "https://www.benning.army.mil/tenant/wtc/content/pdf/20230511%20TC%2021-24%20(Rappeling).pdf",
+      "title": "TC 21-24: Rappelling",
+      "publisher": "Department of the Army / Fort Moore Warrior Training Center",
+      "authors": [
+        "Department of the Army"
+      ],
+      "categories": [
+        "anchors",
+        "equalization",
+        "rope inspection",
+        "knots",
+        "commands",
+        "redundancy"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Adds operational anchor, equalization, inspection, and communication material not fully covered by the existing registry."
+      },
+      "page_scope": "Full current edition after canonical-version verification.",
+      "authority": {
+        "level": "high",
+        "type": "primary federal training circular",
+        "note": "Military rappelling doctrine, not a shibari source."
+      },
+      "recency_version_needs": "Filename indicates a May 2023 copy; confirm publication number, edition, and whether a newer official edition exists.",
+      "rights_signals": {
+        "license_or_status": "Likely United States federal public-domain text; audit embedded illustrations and attributed material.",
+        "visible_evidence": "Official army.mil host.",
+        "tos_robots_ai": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass."
+      },
+      "safety_caveats": [
+        "Military rappelling assumptions, equipment, supervision, and loads differ from rope bondage.",
+        "Anchor redundancy concepts may transfer only at the principle level after expert review.",
+        "Preserve training and competency prerequisites."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "high",
+        "rationale": "Strong primary source for redundant/equalized anchors, care, inspection, and operational communication; verify exact edition first."
+      },
+      "canonical_url": "https://www.benning.army.mil/tenant/wtc/content/pdf/20230511%20TC%2021-24%20(Rappeling).pdf",
+      "domain": "www.benning.army.mil",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "anchors",
+          "equalization",
+          "rope inspection",
+          "knots",
+          "commands",
+          "redundancy"
+        ],
+        "gap_or_overlap": "Adds operational anchor, equalization, inspection, and communication material not fully covered by the existing registry."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary federal training circular",
+          "note": "Military rappelling doctrine, not a shibari source."
+        },
+        "visible_source_evidence": "Official army.mil host."
+      },
+      "estimated_scope": "Full current edition after canonical-version verification.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Adds operational anchor, equalization, inspection, and communication material not fully covered by the existing registry."
+      },
+      "robots_access_notes": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass.",
+      "recommended_collection_depth": "Full current edition after canonical-version verification.",
+      "safety_transfer_flags": [
+        "Military rappelling assumptions, equipment, supervision, and loads differ from rope bondage.",
+        "Anchor redundancy concepts may transfer only at the principle level after expert review.",
+        "Preserve training and competency prerequisites."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-army-mountain-warfare-knot-guide",
+      "url": "https://www.moore.army.mil/infantry/amws/content/pdf/Knot%20Guide.pdf?22JUN2018",
+      "title": "Army Mountain Warfare School Knot Guide",
+      "publisher": "Army Mountain Warfare School",
+      "authors": [
+        "Army Mountain Warfare School"
+      ],
+      "categories": [
+        "knots",
+        "bends",
+        "hitches",
+        "friction hitches",
+        "tying checkpoints"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Complements existing statistical and friction-hitch papers with concise operational tying and inspection checkpoints."
+      },
+      "page_scope": "Full guide after edition and illustration provenance review.",
+      "authority": {
+        "level": "high",
+        "type": "primary federal school guide",
+        "note": "Operational knot guide from a military mountain school."
+      },
+      "recency_version_needs": "URL query suggests 22 June 2018; resolve the canonical file and check for a successor.",
+      "rights_signals": {
+        "license_or_status": "Likely United States federal public-domain text; illustration/component audit required.",
+        "visible_evidence": "Official army.mil host.",
+        "tos_robots_ai": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass."
+      },
+      "safety_caveats": [
+        "Operational knot acceptance does not establish suitability on a human body.",
+        "Material, diameter, dressing, loading direction, cyclic behavior, and release requirements change performance."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "high",
+        "rationale": "Clear knot taxonomy and checkpoints can strengthen technical tying coverage when framed outside human-suspension claims."
+      },
+      "canonical_url": "https://www.moore.army.mil/infantry/amws/content/pdf/Knot%20Guide.pdf?22JUN2018",
+      "domain": "www.moore.army.mil",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "knots",
+          "bends",
+          "hitches",
+          "friction hitches",
+          "tying checkpoints"
+        ],
+        "gap_or_overlap": "Complements existing statistical and friction-hitch papers with concise operational tying and inspection checkpoints."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary federal school guide",
+          "note": "Operational knot guide from a military mountain school."
+        },
+        "visible_source_evidence": "Official army.mil host."
+      },
+      "estimated_scope": "Full guide after edition and illustration provenance review.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Complements existing statistical and friction-hitch papers with concise operational tying and inspection checkpoints."
+      },
+      "robots_access_notes": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass.",
+      "recommended_collection_depth": "Full guide after edition and illustration provenance review.",
+      "safety_transfer_flags": [
+        "Operational knot acceptance does not establish suitability on a human body.",
+        "Material, diameter, dressing, loading direction, cyclic behavior, and release requirements change performance."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-nps-technical-rescue-handbook-2023",
+      "url": "https://npshistory.com/publications/ranger/nps-technical-rescue-handbook-2023.pdf",
+      "title": "NPS Technical Rescue Handbook, 12th Edition",
+      "publisher": "National Park Service",
+      "authors": [
+        "National Park Service subject-matter contributors"
+      ],
+      "categories": [
+        "technical rescue",
+        "anchors",
+        "knots",
+        "rappelling",
+        "mechanical advantage",
+        "edge management",
+        "inspection"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Broad synthesis overlaps several registry sources but adds an integrated rescue-system and edge-management treatment."
+      },
+      "page_scope": "Approximately 135 pages; do not collect until an official NPS copy or provenance-equivalent canonical source is located.",
+      "authority": {
+        "level": "high",
+        "type": "primary federal handbook with mirror provenance caveat",
+        "note": "The discovered PDF is on npshistory.com rather than an official nps.gov asset."
+      },
+      "recency_version_needs": "12th edition, February 2023; confirm current edition and bit-identical official provenance.",
+      "rights_signals": {
+        "license_or_status": "Federal text is likely public domain, but the mirror, photographs, diagrams, and contributed components require provenance and rights review.",
+        "visible_evidence": "Title and publisher visible in the discovered PDF metadata/search result; no official asset was pinned in this pass.",
+        "tos_robots_ai": "Mirror terms, robots, and AI-reuse signals were not established in the Exa search-only pass."
+      },
+      "safety_caveats": [
+        "Technical rescue systems are not bondage suspension systems.",
+        "The handbook assumes trained teams, rated equipment, redundancy, and rescue context.",
+        "Do not flatten nuanced system-analysis material into universal load limits."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "high",
+        "rationale": "Excellent content, but canonical provenance and component rights must be resolved before collection."
+      },
+      "canonical_url": "https://npshistory.com/publications/ranger/nps-technical-rescue-handbook-2023.pdf",
+      "domain": "npshistory.com",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "technical rescue",
+          "anchors",
+          "knots",
+          "rappelling",
+          "mechanical advantage",
+          "edge management",
+          "inspection"
+        ],
+        "gap_or_overlap": "Broad synthesis overlaps several registry sources but adds an integrated rescue-system and edge-management treatment."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary federal handbook with mirror provenance caveat",
+          "note": "The discovered PDF is on npshistory.com rather than an official nps.gov asset."
+        },
+        "visible_source_evidence": "Title and publisher visible in the discovered PDF metadata/search result; no official asset was pinned in this pass."
+      },
+      "estimated_scope": "Approximately 135 pages; do not collect until an official NPS copy or provenance-equivalent canonical source is located.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Broad synthesis overlaps several registry sources but adds an integrated rescue-system and edge-management treatment."
+      },
+      "robots_access_notes": "Mirror terms, robots, and AI-reuse signals were not established in the Exa search-only pass.",
+      "recommended_collection_depth": "Approximately 135 pages; do not collect until an official NPS copy or provenance-equivalent canonical source is located.",
+      "safety_transfer_flags": [
+        "Technical rescue systems are not bondage suspension systems.",
+        "The handbook assumes trained teams, rated equipment, redundancy, and rescue context.",
+        "Do not flatten nuanced system-analysis material into universal load limits."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-fema-usr-module-4",
+      "url": "https://www.fema.gov/pdf/emergency/usr/module4.pdf",
+      "title": "National US&R Response System: Structural Collapse Technician, Module 4",
+      "publisher": "Federal Emergency Management Agency",
+      "authors": [
+        "FEMA National Urban Search and Rescue Response System"
+      ],
+      "categories": [
+        "heavy rigging",
+        "mechanical advantage",
+        "anchors",
+        "slings",
+        "center of gravity",
+        "failure modes"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Some overlap with existing government anchor/rigging sources; adds center-of-gravity and rescue-system treatment."
+      },
+      "page_scope": "Target rope, anchor, mechanical-advantage, and system-failure sections after version audit.",
+      "authority": {
+        "level": "high",
+        "type": "primary federal training module",
+        "note": "Structural-collapse rescue doctrine."
+      },
+      "recency_version_needs": "The visible file path does not establish a current edition; locate the latest FEMA curriculum before use.",
+      "rights_signals": {
+        "license_or_status": "Likely United States federal public-domain text; third-party standards and figures require component review.",
+        "visible_evidence": "Official fema.gov PDF.",
+        "tos_robots_ai": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass."
+      },
+      "safety_caveats": [
+        "Material-rescue rigging does not directly validate human suspension.",
+        "Hardware, sling, and anchor data may be edition-specific.",
+        "Extract principles with exact context, not isolated load numbers."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "medium",
+        "rationale": "Potentially valuable but needs current-edition resolution and redundancy pruning."
+      },
+      "canonical_url": "https://www.fema.gov/pdf/emergency/usr/module4.pdf",
+      "domain": "www.fema.gov",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "heavy rigging",
+          "mechanical advantage",
+          "anchors",
+          "slings",
+          "center of gravity",
+          "failure modes"
+        ],
+        "gap_or_overlap": "Some overlap with existing government anchor/rigging sources; adds center-of-gravity and rescue-system treatment."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary federal training module",
+          "note": "Structural-collapse rescue doctrine."
+        },
+        "visible_source_evidence": "Official fema.gov PDF."
+      },
+      "estimated_scope": "Target rope, anchor, mechanical-advantage, and system-failure sections after version audit.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Some overlap with existing government anchor/rigging sources; adds center-of-gravity and rescue-system treatment."
+      },
+      "robots_access_notes": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass.",
+      "recommended_collection_depth": "Target rope, anchor, mechanical-advantage, and system-failure sections after version audit.",
+      "safety_transfer_flags": [
+        "Material-rescue rigging does not directly validate human suspension.",
+        "Hardware, sling, and anchor data may be edition-specific.",
+        "Extract principles with exact context, not isolated load numbers."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-wikibooks-knots",
+      "url": "https://en.wikibooks.org/wiki/Knots",
+      "title": "Knots",
+      "publisher": "Wikibooks contributors / Wikimedia Foundation",
+      "authors": [
+        "Wikibooks contributors"
+      ],
+      "categories": [
+        "knot taxonomy",
+        "bends",
+        "hitches",
+        "friction knots",
+        "splicing",
+        "whipping"
+      ],
+      "information_density": "medium",
+      "redundancy": {
+        "level": "medium",
+        "note": "Broad taxonomy may fill gaps but overlaps the existing knot and friction sources."
+      },
+      "page_scope": "Pin a specific revision and collect only reviewed chapters with contributor attribution and revision metadata.",
+      "authority": {
+        "level": "medium",
+        "type": "collaborative secondary reference",
+        "note": "Breadth is useful; accuracy and consistency vary by chapter."
+      },
+      "recency_version_needs": "Use a fixed revision rather than a moving page; reconcile current page licensing with the older CC BY-SA 3.0 PDF.",
+      "rights_signals": {
+        "license_or_status": "The 2016 PDF is visibly CC BY-SA 3.0; exact current-revision license and contributor attribution must be captured.",
+        "visible_evidence": "Wikibooks and Wikimedia PDF metadata surfaced the CC BY-SA signal.",
+        "tos_robots_ai": "Wikimedia reuse terms apply; no separate AI-specific restriction surfaced in this pass."
+      },
+      "safety_caveats": [
+        "Collaborative knot claims require checking against primary sources.",
+        "Do not use this as authority for human suspension, circulation, nerve safety, or load ratings.",
+        "Preserve per-revision attribution and share-alike obligations."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "medium",
+        "rationale": "Useful openly licensed taxonomy if revision-pinned, attributed, and technically reviewed."
+      },
+      "canonical_url": "https://en.wikibooks.org/wiki/Knots",
+      "domain": "en.wikibooks.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "knot taxonomy",
+          "bends",
+          "hitches",
+          "friction knots",
+          "splicing",
+          "whipping"
+        ],
+        "gap_or_overlap": "Broad taxonomy may fill gaps but overlaps the existing knot and friction sources."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "medium",
+          "type": "collaborative secondary reference",
+          "note": "Breadth is useful; accuracy and consistency vary by chapter."
+        },
+        "visible_source_evidence": "Wikibooks and Wikimedia PDF metadata surfaced the CC BY-SA signal."
+      },
+      "estimated_scope": "Pin a specific revision and collect only reviewed chapters with contributor attribution and revision metadata.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Broad taxonomy may fill gaps but overlaps the existing knot and friction sources."
+      },
+      "robots_access_notes": "Wikimedia reuse terms apply; no separate AI-specific restriction surfaced in this pass.",
+      "recommended_collection_depth": "Pin a specific revision and collect only reviewed chapters with contributor attribution and revision metadata.",
+      "safety_transfer_flags": [
+        "Collaborative knot claims require checking against primary sources.",
+        "Do not use this as authority for human suspension, circulation, nerve safety, or load ratings.",
+        "Preserve per-revision attribution and share-alike obligations."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-frictional-mechanics-of-knots",
+      "url": "https://doi.org/10.21203/rs.3.rs-3035395/v1",
+      "title": "Frictional Mechanics of Knots",
+      "publisher": "Research Square",
+      "authors": [
+        "Ulrich Leuthäusser"
+      ],
+      "categories": [
+        "knot mechanics",
+        "capstan equation",
+        "self-locking",
+        "contact mechanics",
+        "friction"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Adds analytical mechanics beyond the existing empirical knot and friction-hitch papers."
+      },
+      "page_scope": "Full preprint plus metadata, with equations preserved accurately.",
+      "authority": {
+        "level": "medium",
+        "type": "primary preprint",
+        "note": "Technical original work, explicitly not peer reviewed at version 1."
+      },
+      "recency_version_needs": "Version 1 from 2023; check for revisions or a peer-reviewed publication.",
+      "rights_signals": {
+        "license_or_status": "CC BY 4.0 visibly attached to the preprint.",
+        "visible_evidence": "Research Square/DOI metadata surfaced the license.",
+        "tos_robots_ai": "No separate TOS, robots, or AI-reuse restriction surfaced in the Exa search-only pass."
+      },
+      "safety_caveats": [
+        "Idealized flexible, inextensible, Coulomb-friction models do not validate real rope/body use.",
+        "Model assumptions and boundary conditions must accompany any derived claim.",
+        "Not a tying or suspension safety guide."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "high",
+        "rationale": "Open, information-dense mechanics source that can improve explanations of friction and self-locking when its assumptions are preserved."
+      },
+      "canonical_url": "https://doi.org/10.21203/rs.3.rs-3035395/v1",
+      "domain": "doi.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "knot mechanics",
+          "capstan equation",
+          "self-locking",
+          "contact mechanics",
+          "friction"
+        ],
+        "gap_or_overlap": "Adds analytical mechanics beyond the existing empirical knot and friction-hitch papers."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "medium",
+          "type": "primary preprint",
+          "note": "Technical original work, explicitly not peer reviewed at version 1."
+        },
+        "visible_source_evidence": "Research Square/DOI metadata surfaced the license."
+      },
+      "estimated_scope": "Full preprint plus metadata, with equations preserved accurately.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Adds analytical mechanics beyond the existing empirical knot and friction-hitch papers."
+      },
+      "robots_access_notes": "No separate TOS, robots, or AI-reuse restriction surfaced in the Exa search-only pass.",
+      "recommended_collection_depth": "Full preprint plus metadata, with equations preserved accurately.",
+      "safety_transfer_flags": [
+        "Idealized flexible, inextensible, Coulomb-friction models do not validate real rope/body use.",
+        "Model assumptions and boundary conditions must accompany any derived claim.",
+        "Not a tying or suspension safety guide."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-clove-hitch-inner-workings",
+      "url": "https://doi.org/10.1016/j.eml.2022.101788",
+      "title": "Exploring the Inner Workings of the Clove Hitch Knot",
+      "publisher": "Extreme Mechanics Letters / Elsevier",
+      "authors": [
+        "Tomohiko Sano",
+        "Pierre Johanns",
+        "Paul Grandgeorge",
+        "Changyeob Baek",
+        "Pedro M. Reis"
+      ],
+      "categories": [
+        "clove hitch",
+        "friction",
+        "contact mechanics",
+        "finite-element modeling",
+        "nip regions"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Adds knot-specific experimental and finite-element evidence absent from the registry."
+      },
+      "page_scope": "Metadata and factual review; do not adapt the paper text pending rights resolution.",
+      "authority": {
+        "level": "high",
+        "type": "peer-reviewed primary research",
+        "note": "Experimental and numerical mechanics study."
+      },
+      "recency_version_needs": "Published 2022; check corrections and author manuscript identity.",
+      "rights_signals": {
+        "license_or_status": "Author PDF visibly states CC BY-NC-ND 4.0; no-derivatives makes adaptation into a transformed corpus rights-sensitive.",
+        "visible_evidence": "Author-hosted PDF at paulgrandgeorge.org surfaced the license.",
+        "tos_robots_ai": "Publisher and author-site reuse terms beyond the visible license were not established."
+      },
+      "safety_caveats": [
+        "Experiments concern rope around a rigid cylinder, not a body.",
+        "No-derivatives and noncommercial terms are not silently overridden by a research-use claim.",
+        "Mechanical findings do not establish safe tying practice."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "high",
+        "rationale": "Scientifically valuable, but CC BY-NC-ND requires a deliberate rights decision and favors citation/metadata over transformed copying."
+      },
+      "canonical_url": "https://doi.org/10.1016/j.eml.2022.101788",
+      "domain": "doi.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "clove hitch",
+          "friction",
+          "contact mechanics",
+          "finite-element modeling",
+          "nip regions"
+        ],
+        "gap_or_overlap": "Adds knot-specific experimental and finite-element evidence absent from the registry."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "peer-reviewed primary research",
+          "note": "Experimental and numerical mechanics study."
+        },
+        "visible_source_evidence": "Author-hosted PDF at paulgrandgeorge.org surfaced the license."
+      },
+      "estimated_scope": "Metadata and factual review; do not adapt the paper text pending rights resolution.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Adds knot-specific experimental and finite-element evidence absent from the registry."
+      },
+      "robots_access_notes": "Publisher and author-site reuse terms beyond the visible license were not established.",
+      "recommended_collection_depth": "Metadata and factual review; do not adapt the paper text pending rights resolution.",
+      "safety_transfer_flags": [
+        "Experiments concern rope around a rigid cylinder, not a body.",
+        "No-derivatives and noncommercial terms are not silently overridden by a research-use claim.",
+        "Mechanical findings do not establish safe tying practice."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-clove-hitch-capstan-2026",
+      "url": "https://arxiv.org/html/2604.06962v1",
+      "title": "The Clove Hitch and the Capstan: A Study of Frictional Sliding",
+      "publisher": "arXiv",
+      "authors": [
+        "Javier Sabater",
+        "Ji-Sung Park",
+        "Jérôme Crassous",
+        "Sébastien Neukirch",
+        "Pedro M. Reis"
+      ],
+      "categories": [
+        "clove hitch",
+        "capstan",
+        "frictional sliding",
+        "contact mechanics"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Related to the 2022 clove-hitch study but addresses axial sliding and capstan comparison."
+      },
+      "page_scope": "Exact arXiv version 1 only after license and journal-version reconciliation.",
+      "authority": {
+        "level": "medium",
+        "type": "recent primary preprint",
+        "note": "Technically strong authorship but recent and version-sensitive."
+      },
+      "recency_version_needs": "April 2026 version 1; check subsequent arXiv versions and the Journal of the Mechanics and Physics of Solids record DOI 10.1016/j.jmps.2026.106628.",
+      "rights_signals": {
+        "license_or_status": "Exact arXiv submission license was not established in the Exa result; arXiv availability alone is not an open-content license.",
+        "visible_evidence": "Versioned arXiv HTML and DOI metadata were visible.",
+        "tos_robots_ai": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass."
+      },
+      "safety_caveats": [
+        "Rigid-cylinder mechanics do not establish human-body safety.",
+        "Treat preprint and journal versions as distinct artifacts.",
+        "Do not infer general friction coefficients across rope materials."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "medium",
+        "rationale": "High-value mechanics, but exact license and rapidly changing version state need resolution."
+      },
+      "canonical_url": "https://arxiv.org/html/2604.06962v1",
+      "domain": "arxiv.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "clove hitch",
+          "capstan",
+          "frictional sliding",
+          "contact mechanics"
+        ],
+        "gap_or_overlap": "Related to the 2022 clove-hitch study but addresses axial sliding and capstan comparison."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "medium",
+          "type": "recent primary preprint",
+          "note": "Technically strong authorship but recent and version-sensitive."
+        },
+        "visible_source_evidence": "Versioned arXiv HTML and DOI metadata were visible."
+      },
+      "estimated_scope": "Exact arXiv version 1 only after license and journal-version reconciliation.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Related to the 2022 clove-hitch study but addresses axial sliding and capstan comparison."
+      },
+      "robots_access_notes": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa search-only pass.",
+      "recommended_collection_depth": "Exact arXiv version 1 only after license and journal-version reconciliation.",
+      "safety_transfer_flags": [
+        "Rigid-cylinder mechanics do not establish human-body safety.",
+        "Treat preprint and journal versions as distinct artifacts.",
+        "Do not infer general friction coefficients across rope materials."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-openstax-anatomy-physiology-1e",
+      "url": "https://openstax.org/books/anatomy-and-physiology/pages/13-4-the-peripheral-nervous-system",
+      "title": "Anatomy and Physiology, Section 13.4: The Peripheral Nervous System",
+      "publisher": "OpenStax, Rice University",
+      "authors": [
+        "OpenStax"
+      ],
+      "categories": [
+        "anatomy",
+        "peripheral nerves",
+        "nerve sheaths",
+        "nerve blood supply",
+        "brachial plexus",
+        "limb nerves"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Complements the existing entrapment and rope-neuropathy sources with openly licensed foundational anatomy."
+      },
+      "page_scope": "Pin first-edition Section 13.4 and selected first-edition circulation sections; exclude unrelated chapters and protected branding/components.",
+      "authority": {
+        "level": "high",
+        "type": "expert-reviewed open textbook",
+        "note": "Foundational anatomy rather than rope-specific clinical advice."
+      },
+      "recency_version_needs": "Pin the first edition published January 2022. Do not silently substitute Anatomy and Physiology 2e, whose visible license differs.",
+      "rights_signals": {
+        "license_or_status": "First edition visibly licensed CC BY 4.0; logos, covers, and separately credited components may be excluded.",
+        "visible_evidence": "OpenStax preface and page metadata surfaced the first-edition CC BY license.",
+        "tos_robots_ai": "OpenStax attribution requirements apply; no separate AI-specific restriction surfaced."
+      },
+      "safety_caveats": [
+        "Textbook anatomy cannot diagnose compression injury or define safe rope placement/duration.",
+        "Keep medical uncertainty, individual variation, and emergency escalation separate from anatomy facts.",
+        "Avoid converting named-nerve anatomy into confident body-placement prescriptions."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "high",
+        "rationale": "Open, authoritative foundation for anatomy and nerve terminology if the exact first edition and attribution are pinned."
+      },
+      "canonical_url": "https://openstax.org/books/anatomy-and-physiology/pages/13-4-the-peripheral-nervous-system",
+      "domain": "openstax.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "anatomy",
+          "peripheral nerves",
+          "nerve sheaths",
+          "nerve blood supply",
+          "brachial plexus",
+          "limb nerves"
+        ],
+        "gap_or_overlap": "Complements the existing entrapment and rope-neuropathy sources with openly licensed foundational anatomy."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "expert-reviewed open textbook",
+          "note": "Foundational anatomy rather than rope-specific clinical advice."
+        },
+        "visible_source_evidence": "OpenStax preface and page metadata surfaced the first-edition CC BY license."
+      },
+      "estimated_scope": "Pin first-edition Section 13.4 and selected first-edition circulation sections; exclude unrelated chapters and protected branding/components.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Complements the existing entrapment and rope-neuropathy sources with openly licensed foundational anatomy."
+      },
+      "robots_access_notes": "OpenStax attribution requirements apply; no separate AI-specific restriction surfaced.",
+      "recommended_collection_depth": "Pin first-edition Section 13.4 and selected first-edition circulation sections; exclude unrelated chapters and protected branding/components.",
+      "safety_transfer_flags": [
+        "Textbook anatomy cannot diagnose compression injury or define safe rope placement/duration.",
+        "Keep medical uncertainty, individual variation, and emergency escalation separate from anatomy facts.",
+        "Avoid converting named-nerve anatomy into confident body-placement prescriptions."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-wfsa-peripheral-nerve-positioning",
+      "url": "https://resources.wfsahq.org/wp-content/uploads/258_english.pdf",
+      "title": "Peripheral Nerve Injuries and Positioning for General Anaesthesia",
+      "publisher": "World Federation of Societies of Anaesthesiologists",
+      "authors": [
+        "Richard Hughes"
+      ],
+      "categories": [
+        "nerve compression",
+        "nerve stretch",
+        "ischemia",
+        "positioning",
+        "injury prevention"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Overlaps existing neuropathy sources but adds concrete positioning mechanisms and named nerve risks."
+      },
+      "page_scope": "Full tutorial only if reuse rights are established; otherwise retain citation and manually authored verified facts.",
+      "authority": {
+        "level": "high",
+        "type": "professional medical education",
+        "note": "Perioperative context differs substantially from conscious rope play."
+      },
+      "recency_version_needs": "Tutorial number 258; date/currentness and replacement guidance must be checked.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced in the Exa review; assume copyrighted pending permission or a documented exception.",
+        "visible_evidence": "Official WFSA educational resource host.",
+        "tos_robots_ai": "No TOS, robots, or AI-reuse permission surfaced in this pass."
+      },
+      "safety_caveats": [
+        "Anaesthetized-patient positioning evidence does not establish safe angles or durations for rope bondage.",
+        "Medical claims require current clinical review.",
+        "Do not diagnose or promise prevention from generic positioning rules."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "high",
+        "rationale": "Strong medical relevance, but rights and clinical transfer boundaries need specialist review."
+      },
+      "canonical_url": "https://resources.wfsahq.org/wp-content/uploads/258_english.pdf",
+      "domain": "resources.wfsahq.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "nerve compression",
+          "nerve stretch",
+          "ischemia",
+          "positioning",
+          "injury prevention"
+        ],
+        "gap_or_overlap": "Overlaps existing neuropathy sources but adds concrete positioning mechanisms and named nerve risks."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "professional medical education",
+          "note": "Perioperative context differs substantially from conscious rope play."
+        },
+        "visible_source_evidence": "Official WFSA educational resource host."
+      },
+      "estimated_scope": "Full tutorial only if reuse rights are established; otherwise retain citation and manually authored verified facts.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Overlaps existing neuropathy sources but adds concrete positioning mechanisms and named nerve risks."
+      },
+      "robots_access_notes": "No TOS, robots, or AI-reuse permission surfaced in this pass.",
+      "recommended_collection_depth": "Full tutorial only if reuse rights are established; otherwise retain citation and manually authored verified facts.",
+      "safety_transfer_flags": [
+        "Anaesthetized-patient positioning evidence does not establish safe angles or durations for rope bondage.",
+        "Medical claims require current clinical review.",
+        "Do not diagnose or promise prevention from generic positioning rules."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-mdpi-harness-body-effects",
+      "url": "https://www.mdpi.com/1660-4601/20/1/71",
+      "title": "Effects of Safety Harnesses Protecting against Falls from a Height on the User's Body in Suspension",
+      "publisher": "International Journal of Environmental Research and Public Health / MDPI",
+      "authors": [
+        "Krzysztof Baszczyński"
+      ],
+      "categories": [
+        "suspension physiology",
+        "strap pressure",
+        "body position",
+        "pain",
+        "harness design"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Complements the existing suspension-syndrome source with controlled harness/body measurements."
+      },
+      "page_scope": "Full article and supplements, preserving methods, population, and limitations.",
+      "authority": {
+        "level": "high",
+        "type": "peer-reviewed primary study",
+        "note": "Controlled occupational-harness research with limited direct transfer."
+      },
+      "recency_version_needs": "Published 2023; check corrections/retractions and retain exact article version.",
+      "rights_signals": {
+        "license_or_status": "CC BY 4.0 visibly attached to the article.",
+        "visible_evidence": "Publisher page license metadata.",
+        "tos_robots_ai": "No separate AI-specific reuse restriction surfaced beyond CC BY attribution."
+      },
+      "safety_caveats": [
+        "Industrial harness geometry and webbing differ materially from bondage rope.",
+        "Short controlled exposures and participant demographics do not define safe durations or placements.",
+        "Do not generalize pain or pressure thresholds beyond the study."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "high",
+        "rationale": "Open primary evidence for suspension effects, provided all limitations and non-transfer caveats remain attached."
+      },
+      "canonical_url": "https://www.mdpi.com/1660-4601/20/1/71",
+      "domain": "www.mdpi.com",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "suspension physiology",
+          "strap pressure",
+          "body position",
+          "pain",
+          "harness design"
+        ],
+        "gap_or_overlap": "Complements the existing suspension-syndrome source with controlled harness/body measurements."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "peer-reviewed primary study",
+          "note": "Controlled occupational-harness research with limited direct transfer."
+        },
+        "visible_source_evidence": "Publisher page license metadata."
+      },
+      "estimated_scope": "Full article and supplements, preserving methods, population, and limitations.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Complements the existing suspension-syndrome source with controlled harness/body measurements."
+      },
+      "robots_access_notes": "No separate AI-specific reuse restriction surfaced beyond CC BY attribution.",
+      "recommended_collection_depth": "Full article and supplements, preserving methods, population, and limitations.",
+      "safety_transfer_flags": [
+        "Industrial harness geometry and webbing differ materially from bondage rope.",
+        "Short controlled exposures and participant demographics do not define safe durations or placements.",
+        "Do not generalize pain or pressure thresholds beyond the study."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-ncsf-educational-outreach-cc-bundle",
+      "url": "https://ncsfreedom.org/educational-outreach-overview/",
+      "title": "NCSF Educational Outreach Overview and Creative Commons Presentations",
+      "publisher": "National Coalition for Sexual Freedom",
+      "authors": [
+        "National Coalition for Sexual Freedom",
+        "Susan Wright and named presentation contributors"
+      ],
+      "categories": [
+        "consent",
+        "negotiation",
+        "legal context",
+        "risk communication",
+        "kink community practice"
+      ],
+      "information_density": "medium",
+      "redundancy": {
+        "level": "low",
+        "note": "Complements the existing KECC ethics source with practical consent and communication material."
+      },
+      "page_scope": "Resolve exact asset URLs and collect only the individual presentations whose own pages/files visibly carry CC licenses.",
+      "authority": {
+        "level": "high",
+        "type": "primary community advocacy and education",
+        "note": "Authoritative for NCSF's practices, not a universal legal or medical authority."
+      },
+      "recency_version_needs": "The page lists changing presentations, including 2025 material; pin each asset and date and review legal claims for jurisdiction/currentness.",
+      "rights_signals": {
+        "license_or_status": "The landing page visibly describes Explicit Prior Permission for Consent to Kink slides as CC BY-SA 4.0 and a 2025 choking-law presentation as CC BY 4.0; this does not license every NCSF document.",
+        "visible_evidence": "License statements surfaced on the NCSF educational-outreach page.",
+        "tos_robots_ai": "Exact download assets and any separate TOS/robots/AI terms were not pinned in this pass."
+      },
+      "safety_caveats": [
+        "Separate consent education from legal advice and mark US/jurisdiction-specific claims.",
+        "Choking/strangulation material must remain risk-focused and must not become how-to instruction.",
+        "Do not extend a presentation-specific CC license to unrelated NCSF PDFs."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "high",
+        "rationale": "Promising primary consent resources, but exact CC asset URLs and per-document licenses must be resolved first."
+      },
+      "canonical_url": "https://ncsfreedom.org/educational-outreach-overview/",
+      "domain": "ncsfreedom.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "consent",
+          "negotiation",
+          "legal context",
+          "risk communication",
+          "kink community practice"
+        ],
+        "gap_or_overlap": "Complements the existing KECC ethics source with practical consent and communication material."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary community advocacy and education",
+          "note": "Authoritative for NCSF's practices, not a universal legal or medical authority."
+        },
+        "visible_source_evidence": "License statements surfaced on the NCSF educational-outreach page."
+      },
+      "estimated_scope": "Resolve exact asset URLs and collect only the individual presentations whose own pages/files visibly carry CC licenses.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Complements the existing KECC ethics source with practical consent and communication material."
+      },
+      "robots_access_notes": "Exact download assets and any separate TOS/robots/AI terms were not pinned in this pass.",
+      "recommended_collection_depth": "Resolve exact asset URLs and collect only the individual presentations whose own pages/files visibly carry CC licenses.",
+      "safety_transfer_flags": [
+        "Separate consent education from legal advice and mark US/jurisdiction-specific claims.",
+        "Choking/strangulation material must remain risk-focused and must not become how-to instruction.",
+        "Do not extend a presentation-specific CC license to unrelated NCSF PDFs."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-ncsf-negotiation-guide",
+      "url": "https://ncsfreedom.org/wp-content/uploads/2023/06/Negotiation-Guide.pdf",
+      "title": "Negotiation Guide",
+      "publisher": "National Coalition for Sexual Freedom",
+      "authors": [
+        "National Coalition for Sexual Freedom"
+      ],
+      "categories": [
+        "consent",
+        "negotiation",
+        "boundaries",
+        "risk disclosure",
+        "aftercare communication"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Practical negotiation structure is underrepresented in the current registry."
+      },
+      "page_scope": "Full guide only after exact rights and revision review.",
+      "authority": {
+        "level": "high",
+        "type": "primary community practice guide",
+        "note": "Represents NCSF guidance rather than universal consensus."
+      },
+      "recency_version_needs": "File path indicates June 2023 upload; inspect internal edition/date and check for updates.",
+      "rights_signals": {
+        "license_or_status": "No open license was established for this specific PDF; nearby NCSF CC licenses do not transfer automatically.",
+        "visible_evidence": "Official NCSF asset URL.",
+        "tos_robots_ai": "No TOS, robots, or AI-reuse permission for this asset surfaced in the Exa pass."
+      },
+      "safety_caveats": [
+        "Negotiation is necessary but does not remove physical risk.",
+        "Do not present checklists as proof of legal consent or negligence immunity.",
+        "Retain uncertainty and context around capacity and withdrawal."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "high",
+        "rationale": "High-value practical content with unresolved per-file reuse rights."
+      },
+      "canonical_url": "https://ncsfreedom.org/wp-content/uploads/2023/06/Negotiation-Guide.pdf",
+      "domain": "ncsfreedom.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "consent",
+          "negotiation",
+          "boundaries",
+          "risk disclosure",
+          "aftercare communication"
+        ],
+        "gap_or_overlap": "Practical negotiation structure is underrepresented in the current registry."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary community practice guide",
+          "note": "Represents NCSF guidance rather than universal consensus."
+        },
+        "visible_source_evidence": "Official NCSF asset URL."
+      },
+      "estimated_scope": "Full guide only after exact rights and revision review.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Practical negotiation structure is underrepresented in the current registry."
+      },
+      "robots_access_notes": "No TOS, robots, or AI-reuse permission for this asset surfaced in the Exa pass.",
+      "recommended_collection_depth": "Full guide only after exact rights and revision review.",
+      "safety_transfer_flags": [
+        "Negotiation is necessary but does not remove physical risk.",
+        "Do not present checklists as proof of legal consent or negligence immunity.",
+        "Retain uncertainty and context around capacity and withdrawal."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-kink-clinical-guidelines",
+      "url": "https://doi.org/10.1080/0092623X.2023.2232801",
+      "title": "Kink Clinical Practice Guidelines",
+      "publisher": "Journal of Sex & Marital Therapy / Taylor & Francis",
+      "authors": [
+        "Richard Sprott",
+        "Cara Herbitter",
+        "P. T. Grant",
+        "Charles Moser",
+        "Peggy Kleinplatz"
+      ],
+      "categories": [
+        "consent",
+        "clinical communication",
+        "nonpathologization",
+        "boundaries",
+        "intimate partner violence screening"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Adds clinician-oriented consent and nonpathologization guidance absent from the technical registry."
+      },
+      "page_scope": "Metadata/citation and reviewed principles; do not copy full article without a rights basis.",
+      "authority": {
+        "level": "high",
+        "type": "peer-reviewed expert consensus/guideline article",
+        "note": "Clinical scope, not a technical rope manual."
+      },
+      "recency_version_needs": "Published 2023; check corrigenda and future revisions.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced; publisher copyright is presumed.",
+        "visible_evidence": "DOI, PubMed record, and authors' guideline website surfaced without an explicit open-content license.",
+        "tos_robots_ai": "Publisher/website AI-reuse terms were not established in this search-only pass."
+      },
+      "safety_caveats": [
+        "Clinical recommendations require professional context and must not be turned into diagnosis.",
+        "Guidelines address care and communication, not physical tying safety.",
+        "Avoid treating consensus recommendations as universally settled law."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "medium",
+        "rationale": "Strong conceptual source; likely best used for citation-backed manually authored summaries rather than copied text."
+      },
+      "canonical_url": "https://doi.org/10.1080/0092623X.2023.2232801",
+      "domain": "doi.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "consent",
+          "clinical communication",
+          "nonpathologization",
+          "boundaries",
+          "intimate partner violence screening"
+        ],
+        "gap_or_overlap": "Adds clinician-oriented consent and nonpathologization guidance absent from the technical registry."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "peer-reviewed expert consensus/guideline article",
+          "note": "Clinical scope, not a technical rope manual."
+        },
+        "visible_source_evidence": "DOI, PubMed record, and authors' guideline website surfaced without an explicit open-content license."
+      },
+      "estimated_scope": "Metadata/citation and reviewed principles; do not copy full article without a rights basis.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Adds clinician-oriented consent and nonpathologization guidance absent from the technical registry."
+      },
+      "robots_access_notes": "Publisher/website AI-reuse terms were not established in this search-only pass.",
+      "recommended_collection_depth": "Metadata/citation and reviewed principles; do not copy full article without a rights basis.",
+      "safety_transfer_flags": [
+        "Clinical recommendations require professional context and must not be turned into diagnosis.",
+        "Guidelines address care and communication, not physical tying safety.",
+        "Avoid treating consensus recommendations as universally settled law."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-theduchy-adapting-ties",
+      "url": "https://www.theduchy.com/adapting/",
+      "title": "Adapting Ties for Various Bodies & Needs",
+      "publisher": "TheDuchy",
+      "authors": [
+        "TheDuchy contributors"
+      ],
+      "categories": [
+        "accessibility",
+        "body diversity",
+        "mobility",
+        "hypermobility",
+        "chronic pain",
+        "communication",
+        "rapid release"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Accessibility and adaptation are underrepresented; TheDuchy was user-recommended but is not one of the 33 registered corpora."
+      },
+      "page_scope": "Single information-dense page plus only directly linked adaptation references; no site-wide crawl.",
+      "authority": {
+        "level": "medium",
+        "type": "experienced practitioner education",
+        "note": "Practical expertise, not peer-reviewed medical guidance."
+      },
+      "recency_version_needs": "Visible date March 21, 2025; retain date and review later revisions.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced; assume site copyright and review terms/permission.",
+        "visible_evidence": "Publisher page and date surfaced in Exa.",
+        "tos_robots_ai": "No explicit robots or AI-reuse permission surfaced in this pass."
+      },
+      "safety_caveats": [
+        "Medical conditions and sensation vary; practitioner advice cannot replace individualized clinical input.",
+        "Hypermobility and reduced sensation can hide injury rather than merely require looser ties.",
+        "Any collected version should preserve rapid-release and communication caveats."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "high",
+        "rationale": "Unusually useful adaptation material, but rights and medical claim review are required."
+      },
+      "canonical_url": "https://www.theduchy.com/adapting/",
+      "domain": "www.theduchy.com",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "accessibility",
+          "body diversity",
+          "mobility",
+          "hypermobility",
+          "chronic pain",
+          "communication",
+          "rapid release"
+        ],
+        "gap_or_overlap": "Accessibility and adaptation are underrepresented; TheDuchy was user-recommended but is not one of the 33 registered corpora."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "medium",
+          "type": "experienced practitioner education",
+          "note": "Practical expertise, not peer-reviewed medical guidance."
+        },
+        "visible_source_evidence": "Publisher page and date surfaced in Exa."
+      },
+      "estimated_scope": "Single information-dense page plus only directly linked adaptation references; no site-wide crawl.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Accessibility and adaptation are underrepresented; TheDuchy was user-recommended but is not one of the 33 registered corpora."
+      },
+      "robots_access_notes": "No explicit robots or AI-reuse permission surfaced in this pass.",
+      "recommended_collection_depth": "Single information-dense page plus only directly linked adaptation references; no site-wide crawl.",
+      "safety_transfer_flags": [
+        "Medical conditions and sensation vary; practitioner advice cannot replace individualized clinical input.",
+        "Hypermobility and reduced sensation can hide injury rather than merely require looser ties.",
+        "Any collected version should preserve rapid-release and communication caveats."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-bdsm-disability-communication-study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9825129/",
+      "title": "A Preliminary Investigation into Intersections of Sexual Communication in BDSM and Disability",
+      "publisher": "Sexuality & Culture / Springer Nature",
+      "authors": [
+        "Jacqueline N. Gunning",
+        "Valerie Rubinsky",
+        "Ashley Aragón",
+        "Monica Roldán",
+        "Taylor McMahon",
+        "Angela Cooke-Jackson"
+      ],
+      "categories": [
+        "disability",
+        "sexual communication",
+        "renegotiation",
+        "symptom variability",
+        "accessibility"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Adds empirical disability/communication themes absent from current sources."
+      },
+      "page_scope": "Citation, metadata, and manually reviewed findings; no full-text copying under the current rights signal.",
+      "authority": {
+        "level": "high",
+        "type": "peer-reviewed primary qualitative research",
+        "note": "Preliminary study with population and generalizability limits."
+      },
+      "recency_version_needs": "Published 2022; retain study design and limitations and check corrections.",
+      "rights_signals": {
+        "license_or_status": "The PMC copy states copyright under an exclusive Springer license. A temporary COVID-era PMC reuse permission has ended; no current open license surfaced.",
+        "visible_evidence": "PMC rights statement and DOI 10.1007/s12119-022-10058-8.",
+        "tos_robots_ai": "No separate AI-reuse permission surfaced."
+      },
+      "safety_caveats": [
+        "Do not universalize qualitative themes to all disabled people.",
+        "Communication strategies do not establish physical safety.",
+        "Retain participant context and study limitations."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "medium",
+        "rationale": "Credible empirical source, but use should likely be limited to citation-backed original summaries due rights."
+      },
+      "canonical_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9825129/",
+      "domain": "pmc.ncbi.nlm.nih.gov",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "disability",
+          "sexual communication",
+          "renegotiation",
+          "symptom variability",
+          "accessibility"
+        ],
+        "gap_or_overlap": "Adds empirical disability/communication themes absent from current sources."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "peer-reviewed primary qualitative research",
+          "note": "Preliminary study with population and generalizability limits."
+        },
+        "visible_source_evidence": "PMC rights statement and DOI 10.1007/s12119-022-10058-8."
+      },
+      "estimated_scope": "Citation, metadata, and manually reviewed findings; no full-text copying under the current rights signal.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Adds empirical disability/communication themes absent from current sources."
+      },
+      "robots_access_notes": "No separate AI-reuse permission surfaced.",
+      "recommended_collection_depth": "Citation, metadata, and manually reviewed findings; no full-text copying under the current rights signal.",
+      "safety_transfer_flags": [
+        "Do not universalize qualitative themes to all disabled people.",
+        "Communication strategies do not establish physical safety.",
+        "Retain participant context and study limitations."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-enhance-uk-disability-bondage",
+      "url": "https://enhancetheuk.org/undressing-disability/disability-bondage-and-sexual-pleasure/",
+      "title": "Disability, Bondage and Sexual Pleasure",
+      "publisher": "Enhance the UK",
+      "authors": [
+        "Katherine Sellors"
+      ],
+      "categories": [
+        "disability",
+        "positioning",
+        "adaptive equipment",
+        "sensory differences",
+        "communication"
+      ],
+      "information_density": "medium",
+      "redundancy": {
+        "level": "low",
+        "note": "Addresses an underrepresented topic but overlaps the stronger TheDuchy adaptation candidate."
+      },
+      "page_scope": "Single article only; no adjacent shopping or general site crawl.",
+      "authority": {
+        "level": "medium",
+        "type": "charity educational article by an occupational therapist",
+        "note": "Mixed practical and health advice requires line-by-line safety review."
+      },
+      "recency_version_needs": "Published July 20, 2024; capture date and later corrections if any.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced; assume copyright pending permission or documented exception.",
+        "visible_evidence": "Publisher, author credential, and date surfaced on the page.",
+        "tos_robots_ai": "No explicit TOS, robots, or AI-reuse signal surfaced in the Exa pass."
+      },
+      "safety_caveats": [
+        "Some advice is broad or potentially risky, including solo/pulley scenarios; do not ingest uncritically.",
+        "Occupational-therapy authorship does not validate every bondage claim.",
+        "Require rope-safety and medical review and omit unsupported prescriptions."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "medium",
+        "rationale": "Potentially valuable accessibility perspective, but mixed safety quality prevents direct collection."
+      },
+      "canonical_url": "https://enhancetheuk.org/undressing-disability/disability-bondage-and-sexual-pleasure/",
+      "domain": "enhancetheuk.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "disability",
+          "positioning",
+          "adaptive equipment",
+          "sensory differences",
+          "communication"
+        ],
+        "gap_or_overlap": "Addresses an underrepresented topic but overlaps the stronger TheDuchy adaptation candidate."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "medium",
+          "type": "charity educational article by an occupational therapist",
+          "note": "Mixed practical and health advice requires line-by-line safety review."
+        },
+        "visible_source_evidence": "Publisher, author credential, and date surfaced on the page."
+      },
+      "estimated_scope": "Single article only; no adjacent shopping or general site crawl.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Addresses an underrepresented topic but overlaps the stronger TheDuchy adaptation candidate."
+      },
+      "robots_access_notes": "No explicit TOS, robots, or AI-reuse signal surfaced in the Exa pass.",
+      "recommended_collection_depth": "Single article only; no adjacent shopping or general site crawl.",
+      "safety_transfer_flags": [
+        "Some advice is broad or potentially risky, including solo/pulley scenarios; do not ingest uncritically.",
+        "Occupational-therapy authorship does not validate every bondage claim.",
+        "Require rope-safety and medical review and omit unsupported prescriptions."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-ndl-taihojutsu-manual",
+      "url": "https://dl.ndl.go.jp/pid/1078906/1/1",
+      "title": "逮捕術教範 (Taihojutsu Instruction Manual)",
+      "publisher": "National Diet Library, Japan (digital repository); original publisher recorded in NDL metadata",
+      "authors": [
+        "常山堂編輯部"
+      ],
+      "categories": [
+        "history",
+        "Japanese restraint arts",
+        "police practice",
+        "lineage context",
+        "primary source"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Adds a primary Japanese historical source rather than modern secondary lineage claims."
+      },
+      "page_scope": "Whole item metadata and only reviewed relevant pages, with Japanese transcription and expert translation; use the NDL item manifest rather than screenshots when available.",
+      "authority": {
+        "level": "high",
+        "type": "primary historical source",
+        "note": "Authoritative evidence of its own period, not proof of a simple continuous kinbaku lineage."
+      },
+      "recency_version_needs": "Historical item; pin NDL PID, edition, publication metadata, and image-manifest version.",
+      "rights_signals": {
+        "license_or_status": "NDL visibly labels the item internet-public because the protection period has expired; NDL reproduction/attribution and image-delivery policies still require review.",
+        "visible_evidence": "NDL item status: インターネット公開（保護期間満了）.",
+        "tos_robots_ai": "NDL terms, automated access policy, and AI-reuse conditions were not resolved in this search-only pass."
+      },
+      "safety_caveats": [
+        "Historical arrest/restraint techniques are coercive and may be physically dangerous.",
+        "Use for contextual history, not modern consensual tying instructions.",
+        "Do not claim direct lineage without corroborating scholarship.",
+        "Translation must be reviewed by a qualified Japanese reader familiar with historical terminology."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "high",
+        "rationale": "Rare primary historical evidence with expired protection; collection still needs NDL-policy and translation workflows."
+      },
+      "canonical_url": "https://dl.ndl.go.jp/pid/1078906/1/1",
+      "domain": "dl.ndl.go.jp",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "history",
+          "Japanese restraint arts",
+          "police practice",
+          "lineage context",
+          "primary source"
+        ],
+        "gap_or_overlap": "Adds a primary Japanese historical source rather than modern secondary lineage claims."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary historical source",
+          "note": "Authoritative evidence of its own period, not proof of a simple continuous kinbaku lineage."
+        },
+        "visible_source_evidence": "NDL item status: インターネット公開（保護期間満了）."
+      },
+      "estimated_scope": "Whole item metadata and only reviewed relevant pages, with Japanese transcription and expert translation; use the NDL item manifest rather than screenshots when available.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Adds a primary Japanese historical source rather than modern secondary lineage claims."
+      },
+      "robots_access_notes": "NDL terms, automated access policy, and AI-reuse conditions were not resolved in this search-only pass.",
+      "recommended_collection_depth": "Whole item metadata and only reviewed relevant pages, with Japanese transcription and expert translation; use the NDL item manifest rather than screenshots when available.",
+      "safety_transfer_flags": [
+        "Historical arrest/restraint techniques are coercive and may be physically dangerous.",
+        "Use for contextual history, not modern consensual tying instructions.",
+        "Do not claim direct lineage without corroborating scholarship.",
+        "Translation must be reviewed by a qualified Japanese reader familiar with historical terminology."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-ndl-jujutsu-hayanawa-manual",
+      "url": "https://dl.ndl.go.jp/pid/860053/1/62",
+      "title": "柔術練習図解 : 早縄活法 一名・警視拳法, 2nd Edition",
+      "publisher": "National Diet Library, Japan (digital repository); original publisher recorded in NDL metadata",
+      "authors": [
+        "井口松之助"
+      ],
+      "categories": [
+        "history",
+        "hayanawa",
+        "Japanese restraint arts",
+        "jujutsu",
+        "primary source"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Primary historical material is distinct from the current Atlas-heavy lineage corpus."
+      },
+      "page_scope": "Resolve the canonical item landing page from PID 860053 and review the whole edition; transcribe/translate only relevant pages with exact page lineage.",
+      "authority": {
+        "level": "high",
+        "type": "primary historical source",
+        "note": "Evidence of period practice and representation, not direct proof of modern lineage."
+      },
+      "recency_version_needs": "Historical second edition; pin bibliographic record, edition, PID, and page manifest.",
+      "rights_signals": {
+        "license_or_status": "NDL visibly labels the item internet-public because the protection period has expired; repository terms and component handling require review.",
+        "visible_evidence": "NDL item status: インターネット公開（保護期間満了）.",
+        "tos_robots_ai": "NDL automated-access and AI-reuse terms were not established in this pass."
+      },
+      "safety_caveats": [
+        "Coercive historical restraint should not be reframed as modern consent or safety guidance.",
+        "Techniques may be dangerous and should not become step-by-step operational instruction.",
+        "Require expert Japanese transcription and historiographic context."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "high",
+        "rationale": "High-value public-domain primary source, conditional on repository-policy, translation, and historical-context review."
+      },
+      "canonical_url": "https://dl.ndl.go.jp/pid/860053/1/62",
+      "domain": "dl.ndl.go.jp",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "history",
+          "hayanawa",
+          "Japanese restraint arts",
+          "jujutsu",
+          "primary source"
+        ],
+        "gap_or_overlap": "Primary historical material is distinct from the current Atlas-heavy lineage corpus."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary historical source",
+          "note": "Evidence of period practice and representation, not direct proof of modern lineage."
+        },
+        "visible_source_evidence": "NDL item status: インターネット公開（保護期間満了）."
+      },
+      "estimated_scope": "Resolve the canonical item landing page from PID 860053 and review the whole edition; transcribe/translate only relevant pages with exact page lineage.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Primary historical material is distinct from the current Atlas-heavy lineage corpus."
+      },
+      "robots_access_notes": "NDL automated-access and AI-reuse terms were not established in this pass.",
+      "recommended_collection_depth": "Resolve the canonical item landing page from PID 860053 and review the whole edition; transcribe/translate only relevant pages with exact page lineage.",
+      "safety_transfer_flags": [
+        "Coercive historical restraint should not be reframed as modern consent or safety guidance.",
+        "Techniques may be dangerous and should not become step-by-step operational instruction.",
+        "Require expert Japanese transcription and historiographic context."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-kinbaku-today-origins",
+      "url": "https://www.kinbakutoday.com/exploring-the-origins-of-kinbaku/",
+      "title": "Exploring the Origins of Kinbaku",
+      "publisher": "Kinbaku Today",
+      "authors": [
+        "Zetsu Nawa"
+      ],
+      "categories": [
+        "kinbaku history",
+        "lineage",
+        "hojojutsu",
+        "postwar culture",
+        "historiography"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Overlaps Shibari Atlas history but offers a useful challenge to simplistic continuous-lineage narratives."
+      },
+      "page_scope": "Single article and its cited primary/secondary sources; no site-wide crawl.",
+      "authority": {
+        "level": "medium",
+        "type": "community historical analysis",
+        "note": "Nuanced secondary argument requiring citation verification."
+      },
+      "recency_version_needs": "Published April 24, 2026; archive exact version and revisit if corrected.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced; assume copyright.",
+        "visible_evidence": "Publisher, author, and date surfaced in Exa.",
+        "tos_robots_ai": "No explicit TOS, robots, or AI-reuse permission surfaced."
+      },
+      "safety_caveats": [
+        "Treat the article as an argument, not settled historical fact.",
+        "Verify quotations and chronology against primary sources.",
+        "Avoid turning historical coercion into technique instruction."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "high",
+        "rationale": "Valuable historiographic counterweight, but copyright and source verification favor a cited digest over copied text."
+      },
+      "canonical_url": "https://www.kinbakutoday.com/exploring-the-origins-of-kinbaku/",
+      "domain": "www.kinbakutoday.com",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "kinbaku history",
+          "lineage",
+          "hojojutsu",
+          "postwar culture",
+          "historiography"
+        ],
+        "gap_or_overlap": "Overlaps Shibari Atlas history but offers a useful challenge to simplistic continuous-lineage narratives."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "medium",
+          "type": "community historical analysis",
+          "note": "Nuanced secondary argument requiring citation verification."
+        },
+        "visible_source_evidence": "Publisher, author, and date surfaced in Exa."
+      },
+      "estimated_scope": "Single article and its cited primary/secondary sources; no site-wide crawl.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Overlaps Shibari Atlas history but offers a useful challenge to simplistic continuous-lineage narratives."
+      },
+      "robots_access_notes": "No explicit TOS, robots, or AI-reuse permission surfaced.",
+      "recommended_collection_depth": "Single article and its cited primary/secondary sources; no site-wide crawl.",
+      "safety_transfer_flags": [
+        "Treat the article as an argument, not settled historical fact.",
+        "Verify quotations and chronology against primary sources.",
+        "Avoid turning historical coercion into technique instruction."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-bsee-2023-rope-access-incident",
+      "url": "https://www.bsee.gov/sites/bsee.gov/files/2024-08/31-MAY-2023_GC468_EV2010R-2.pdf",
+      "title": "BSEE Panel Investigation Report: May 31, 2023 Rope Access Uncontrolled Descent",
+      "publisher": "Bureau of Safety and Environmental Enforcement, U.S. Department of the Interior",
+      "authors": [
+        "BSEE investigation panel"
+      ],
+      "categories": [
+        "incident analysis",
+        "rope access",
+        "device threading",
+        "buddy checks",
+        "function checks",
+        "rescue planning"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Adds concrete human-factor and device-setup failure analysis beyond existing maritime incident reports."
+      },
+      "page_scope": "Do not ingest raw report wholesale; derive an anonymized fact-focused safety digest with causal findings and exact citation lineage.",
+      "authority": {
+        "level": "high",
+        "type": "primary federal incident investigation",
+        "note": "Findings are specific to the incident and named equipment."
+      },
+      "recency_version_needs": "Published in 2024 about a 2023 incident; check amendments and manufacturer response.",
+      "rights_signals": {
+        "license_or_status": "Federal report text is likely public domain; photographs, logos, manufacturer diagrams, and attachments require component review.",
+        "visible_evidence": "Official bsee.gov PDF.",
+        "tos_robots_ai": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa pass."
+      },
+      "safety_caveats": [
+        "Contains injury and organizational details; minimize personal and company identifiers not needed for learning.",
+        "Do not generalize failure modes beyond the exact device/configuration and investigation findings.",
+        "Rope-access equipment is not interchangeable with bondage rigging.",
+        "Preserve function-check, buddy-check, and rescue-plan context."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "high",
+        "rationale": "Excellent incident-learning source, but privacy, component, device-specificity, and causal-language review require an anonymized digest rather than raw ingestion."
+      },
+      "canonical_url": "https://www.bsee.gov/sites/bsee.gov/files/2024-08/31-MAY-2023_GC468_EV2010R-2.pdf",
+      "domain": "www.bsee.gov",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "incident analysis",
+          "rope access",
+          "device threading",
+          "buddy checks",
+          "function checks",
+          "rescue planning"
+        ],
+        "gap_or_overlap": "Adds concrete human-factor and device-setup failure analysis beyond existing maritime incident reports."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary federal incident investigation",
+          "note": "Findings are specific to the incident and named equipment."
+        },
+        "visible_source_evidence": "Official bsee.gov PDF."
+      },
+      "estimated_scope": "Do not ingest raw report wholesale; derive an anonymized fact-focused safety digest with causal findings and exact citation lineage.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Adds concrete human-factor and device-setup failure analysis beyond existing maritime incident reports."
+      },
+      "robots_access_notes": "No additional TOS, robots, or AI-reuse signal surfaced in the Exa pass.",
+      "recommended_collection_depth": "Do not ingest raw report wholesale; derive an anonymized fact-focused safety digest with causal findings and exact citation lineage.",
+      "safety_transfer_flags": [
+        "Contains injury and organizational details; minimize personal and company identifiers not needed for learning.",
+        "Do not generalize failure modes beyond the exact device/configuration and investigation findings.",
+        "Rope-access equipment is not interchangeable with bondage rigging.",
+        "Preserve function-check, buddy-check, and rescue-plan context."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-nps-dewey-peak-fatality",
+      "url": "https://www.nps.gov/aboutus/foia/upload/NP18136608_Kornbluth_DeweyPeak_fatality_2018.pdf",
+      "title": "National Park Service Dewey Peak Fatality Investigation",
+      "publisher": "National Park Service",
+      "authors": [
+        "National Park Service investigation team"
+      ],
+      "categories": [
+        "incident analysis",
+        "anchors",
+        "direction of pull",
+        "redundancy",
+        "anchor slippage",
+        "system change"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "low",
+        "note": "Adds a detailed anchor-system-change case study not present in the registry."
+      },
+      "page_scope": "Never ingest the raw report as ordinary corpus. Produce only an anonymized, minimized causal digest after incident/privacy review.",
+      "authority": {
+        "level": "high",
+        "type": "primary federal fatality investigation",
+        "note": "Reconstruction and findings are incident-specific."
+      },
+      "recency_version_needs": "2018 incident/report; check for final/addendum status and later agency lessons learned.",
+      "rights_signals": {
+        "license_or_status": "Federal report text is likely public domain; FOIA release can include copyrighted photographs, private records, and sensitive components.",
+        "visible_evidence": "Official nps.gov FOIA PDF.",
+        "tos_robots_ai": "No additional TOS, robots, or AI-reuse signal surfaced."
+      },
+      "safety_caveats": [
+        "Fatality report contains sensitive personal information and death narrative; minimize and anonymize.",
+        "Do not reproduce photographs or unnecessary identifying details.",
+        "Translate only substantiated causal findings, with uncertainty intact.",
+        "Mountaineering anchors are not bondage hardpoints."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "high",
+        "rationale": "Technically important anchor/redundancy lessons, but only a privacy-preserving incident digest is appropriate."
+      },
+      "canonical_url": "https://www.nps.gov/aboutus/foia/upload/NP18136608_Kornbluth_DeweyPeak_fatality_2018.pdf",
+      "domain": "www.nps.gov",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "incident analysis",
+          "anchors",
+          "direction of pull",
+          "redundancy",
+          "anchor slippage",
+          "system change"
+        ],
+        "gap_or_overlap": "Adds a detailed anchor-system-change case study not present in the registry."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary federal fatality investigation",
+          "note": "Reconstruction and findings are incident-specific."
+        },
+        "visible_source_evidence": "Official nps.gov FOIA PDF."
+      },
+      "estimated_scope": "Never ingest the raw report as ordinary corpus. Produce only an anonymized, minimized causal digest after incident/privacy review.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Adds a detailed anchor-system-change case study not present in the registry."
+      },
+      "robots_access_notes": "No additional TOS, robots, or AI-reuse signal surfaced.",
+      "recommended_collection_depth": "Never ingest the raw report as ordinary corpus. Produce only an anonymized, minimized causal digest after incident/privacy review.",
+      "safety_transfer_flags": [
+        "Fatality report contains sensitive personal information and death narrative; minimize and anonymize.",
+        "Do not reproduce photographs or unnecessary identifying details.",
+        "Translate only substantiated causal findings, with uncertainty intact.",
+        "Mountaineering anchors are not bondage hardpoints."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-doi-aviation-tb-18-01",
+      "url": "https://edit.doi.gov/sites/default/files/iatb-2018-01.pdf",
+      "title": "Interagency Aviation Technical Bulletin 18-01",
+      "publisher": "U.S. Department of the Interior / U.S. Forest Service Interagency Aviation",
+      "authors": [
+        "Interagency Aviation Technical Assistance Team"
+      ],
+      "categories": [
+        "incident analysis",
+        "hardware inspection",
+        "hydrogen embrittlement",
+        "component provenance",
+        "redundancy"
+      ],
+      "information_density": "medium",
+      "redundancy": {
+        "level": "low",
+        "note": "Narrow but distinctive component-failure case not covered by existing rope-inspection sources."
+      },
+      "page_scope": "Full short bulletin after canonical URL and supersession check.",
+      "authority": {
+        "level": "high",
+        "type": "primary federal safety bulletin",
+        "note": "Specific to a helicopter rappel tether component."
+      },
+      "recency_version_needs": "Bulletin 18-01 from 2018; check later corrective bulletins and current component policy.",
+      "rights_signals": {
+        "license_or_status": "Likely federal public-domain text; photographs and manufacturer materials need component review.",
+        "visible_evidence": "Official doi.gov asset and interagency publisher.",
+        "tos_robots_ai": "No additional TOS, robots, or AI-reuse signal surfaced."
+      },
+      "safety_caveats": [
+        "Do not generalize one metallurgical failure to all rings, studs, or connectors.",
+        "Keep material, manufacturing, and provenance specifics attached.",
+        "Helicopter rappel systems are not bondage systems."
+      ],
+      "recommended_action": {
+        "decision": "collect",
+        "priority": "medium",
+        "rationale": "Compact primary failure-analysis source useful for inspection/provenance lessons after supersession review."
+      },
+      "canonical_url": "https://edit.doi.gov/sites/default/files/iatb-2018-01.pdf",
+      "domain": "edit.doi.gov",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "incident analysis",
+          "hardware inspection",
+          "hydrogen embrittlement",
+          "component provenance",
+          "redundancy"
+        ],
+        "gap_or_overlap": "Narrow but distinctive component-failure case not covered by existing rope-inspection sources."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary federal safety bulletin",
+          "note": "Specific to a helicopter rappel tether component."
+        },
+        "visible_source_evidence": "Official doi.gov asset and interagency publisher."
+      },
+      "estimated_scope": "Full short bulletin after canonical URL and supersession check.",
+      "registry_duplication": {
+        "level": "low",
+        "note": "Narrow but distinctive component-failure case not covered by existing rope-inspection sources."
+      },
+      "robots_access_notes": "No additional TOS, robots, or AI-reuse signal surfaced.",
+      "recommended_collection_depth": "Full short bulletin after canonical URL and supersession check.",
+      "safety_transfer_flags": [
+        "Do not generalize one metallurgical failure to all rings, studs, or connectors.",
+        "Keep material, manufacturing, and provenance specifics attached.",
+        "Helicopter rappel systems are not bondage systems."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-usfa-progress-capture-study",
+      "url": "https://apps.usfa.fema.gov/pdf/efop/efo49199.pdf",
+      "title": "Breaking Strengths of Progress Capture Devices",
+      "publisher": "U.S. Fire Administration Executive Fire Officer Program repository",
+      "authors": [
+        "Russell McCullar"
+      ],
+      "categories": [
+        "progress capture",
+        "prusik",
+        "rope-device interface",
+        "failure testing",
+        "mechanical advantage"
+      ],
+      "information_density": "high",
+      "redundancy": {
+        "level": "medium",
+        "note": "Adds device/Prusik failure tests but overlaps broader rescue-mechanics sources."
+      },
+      "page_scope": "Review methodology and provenance before deciding whether any tables or conclusions qualify for collection.",
+      "authority": {
+        "level": "medium",
+        "type": "student research hosted by a federal program",
+        "note": "Repository hosting does not make the study an official FEMA standard or peer-reviewed result."
+      },
+      "recency_version_needs": "Date and equipment generations require audit; results may be obsolete for current cords and devices.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced; federal hosting does not establish federal authorship or public-domain status.",
+        "visible_evidence": "Official USFA/FEMA repository URL and named student author.",
+        "tos_robots_ai": "No separate reuse permission surfaced."
+      },
+      "safety_caveats": [
+        "Test results are rope-, cord-, device-, diameter-, and setup-specific.",
+        "Do not convert breaking tests into working-load recommendations.",
+        "Not an official standard and not human-suspension validation."
+      ],
+      "recommended_action": {
+        "decision": "manual-review",
+        "priority": "medium",
+        "rationale": "Potentially useful failure data, but authority, age, rights, and transfer limits need careful review."
+      },
+      "canonical_url": "https://apps.usfa.fema.gov/pdf/efop/efo49199.pdf",
+      "domain": "apps.usfa.fema.gov",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "progress capture",
+          "prusik",
+          "rope-device interface",
+          "failure testing",
+          "mechanical advantage"
+        ],
+        "gap_or_overlap": "Adds device/Prusik failure tests but overlaps broader rescue-mechanics sources."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "medium",
+          "type": "student research hosted by a federal program",
+          "note": "Repository hosting does not make the study an official FEMA standard or peer-reviewed result."
+        },
+        "visible_source_evidence": "Official USFA/FEMA repository URL and named student author."
+      },
+      "estimated_scope": "Review methodology and provenance before deciding whether any tables or conclusions qualify for collection.",
+      "registry_duplication": {
+        "level": "medium",
+        "note": "Adds device/Prusik failure tests but overlaps broader rescue-mechanics sources."
+      },
+      "robots_access_notes": "No separate reuse permission surfaced.",
+      "recommended_collection_depth": "Review methodology and provenance before deciding whether any tables or conclusions qualify for collection.",
+      "safety_transfer_flags": [
+        "Test results are rope-, cord-, device-, diameter-, and setup-specific.",
+        "Do not convert breaking tests into working-load recommendations.",
+        "Not an official standard and not human-suspension validation."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-reject-home-in-bold-hardpoint",
+      "url": "https://myhomeinbold.com/blogs/news/how-to-install-rigging-points-at-home",
+      "title": "How to Install Rigging Points at Home",
+      "publisher": "My Home in Bold",
+      "authors": [
+        "Unverified site contributor"
+      ],
+      "categories": [
+        "hardpoints",
+        "home installation"
+      ],
+      "information_density": "low",
+      "redundancy": {
+        "level": "high",
+        "note": "Inferior to existing FHWA, USBR, NIST, HSE, and Crash Restraint sources."
+      },
+      "page_scope": "No collection.",
+      "authority": {
+        "level": "low",
+        "type": "commercial blog",
+        "note": "No engineering authority or inspection methodology was established."
+      },
+      "recency_version_needs": "Currentness does not remedy the authority gap.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced; commercial copyright presumed.",
+        "visible_evidence": "Commercial blog/shop context.",
+        "tos_robots_ai": "No reuse permission surfaced; templated promotional presentation is an SEO-quality signal, not proof of AI authorship."
+      },
+      "safety_caveats": [
+        "Search result exposed unsupported universal load claims and simplified framing advice.",
+        "Following unverified structural advice can cause catastrophic injury.",
+        "No substitution for a qualified structural engineer or rated installer."
+      ],
+      "recommended_action": {
+        "decision": "reject",
+        "priority": "none",
+        "rationale": "Commercial, redundant, structurally under-supported, and unsafe as a knowledge source."
+      },
+      "canonical_url": "https://myhomeinbold.com/blogs/news/how-to-install-rigging-points-at-home",
+      "domain": "myhomeinbold.com",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "hardpoints",
+          "home installation"
+        ],
+        "gap_or_overlap": "Inferior to existing FHWA, USBR, NIST, HSE, and Crash Restraint sources."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "low",
+          "type": "commercial blog",
+          "note": "No engineering authority or inspection methodology was established."
+        },
+        "visible_source_evidence": "Commercial blog/shop context."
+      },
+      "estimated_scope": "No collection.",
+      "registry_duplication": {
+        "level": "high",
+        "note": "Inferior to existing FHWA, USBR, NIST, HSE, and Crash Restraint sources."
+      },
+      "robots_access_notes": "No reuse permission surfaced; templated promotional presentation is an SEO-quality signal, not proof of AI authorship.",
+      "recommended_collection_depth": "No collection.",
+      "safety_transfer_flags": [
+        "Search result exposed unsupported universal load claims and simplified framing advice.",
+        "Following unverified structural advice can cause catastrophic injury.",
+        "No substitution for a qualified structural engineer or rated installer."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-reject-shibari-safety-equipment-aggregator",
+      "url": "https://shibarisafety.com/equipment.html",
+      "title": "Shibari Safety: Equipment",
+      "publisher": "ShibariSafety.com",
+      "authors": [
+        "Unverified site contributor"
+      ],
+      "categories": [
+        "equipment",
+        "safety aggregation"
+      ],
+      "information_density": "low",
+      "redundancy": {
+        "level": "high",
+        "note": "Primarily aggregates or cites sources already in the registry, including Crash Restraint and technical papers."
+      },
+      "page_scope": "No collection; follow any useful citation to its primary source instead.",
+      "authority": {
+        "level": "low",
+        "type": "secondary aggregator",
+        "note": "Authorship and editorial review were not established."
+      },
+      "recency_version_needs": "No reliable version signal surfaced.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced.",
+        "visible_evidence": "Public web page only.",
+        "tos_robots_ai": "No explicit TOS, robots, or AI-reuse signal surfaced."
+      },
+      "safety_caveats": [
+        "Aggregation can strip methods and limitations from cited evidence.",
+        "Do not prefer an unattributed summary over the primary source for safety claims."
+      ],
+      "recommended_action": {
+        "decision": "reject",
+        "priority": "none",
+        "rationale": "Low-authority, highly redundant aggregator; primary sources are already available."
+      },
+      "canonical_url": "https://shibarisafety.com/equipment.html",
+      "domain": "shibarisafety.com",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "equipment",
+          "safety aggregation"
+        ],
+        "gap_or_overlap": "Primarily aggregates or cites sources already in the registry, including Crash Restraint and technical papers."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "low",
+          "type": "secondary aggregator",
+          "note": "Authorship and editorial review were not established."
+        },
+        "visible_source_evidence": "Public web page only."
+      },
+      "estimated_scope": "No collection; follow any useful citation to its primary source instead.",
+      "registry_duplication": {
+        "level": "high",
+        "note": "Primarily aggregates or cites sources already in the registry, including Crash Restraint and technical papers."
+      },
+      "robots_access_notes": "No explicit TOS, robots, or AI-reuse signal surfaced.",
+      "recommended_collection_depth": "No collection; follow any useful citation to its primary source instead.",
+      "safety_transfer_flags": [
+        "Aggregation can strip methods and limitations from cited evidence.",
+        "Do not prefer an unattributed summary over the primary source for safety claims."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-reject-enhance-uk-kink-beginners",
+      "url": "https://enhancetheuk.org/undressing-disability/disability-and-kink-for-beginners/",
+      "title": "Disability and Kink for Beginners",
+      "publisher": "Enhance the UK",
+      "authors": [
+        "Enhance the UK / Whipple Tickle contributors"
+      ],
+      "categories": [
+        "accessibility",
+        "beginner kink",
+        "products"
+      ],
+      "information_density": "low",
+      "redundancy": {
+        "level": "high",
+        "note": "Less substantive and more commercial than the stronger accessibility candidates."
+      },
+      "page_scope": "No collection.",
+      "authority": {
+        "level": "low",
+        "type": "partnered introductory/product article",
+        "note": "Product emphasis and health generalizations reduce evidentiary value."
+      },
+      "recency_version_needs": "Published November 26, 2025; recency does not cure sourcing problems.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced; commercial/charity site copyright presumed.",
+        "visible_evidence": "Partner and product context visible in the page result.",
+        "tos_robots_ai": "No reuse permission surfaced."
+      },
+      "safety_caveats": [
+        "Several health claims appear broad and insufficiently sourced.",
+        "Shopping recommendations are not evidence of accessibility or safety.",
+        "Prefer reviewed lived-experience and clinical communication sources."
+      ],
+      "recommended_action": {
+        "decision": "reject",
+        "priority": "none",
+        "rationale": "Thin, product-oriented, and medically under-sourced compared with other candidates."
+      },
+      "canonical_url": "https://enhancetheuk.org/undressing-disability/disability-and-kink-for-beginners/",
+      "domain": "enhancetheuk.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "accessibility",
+          "beginner kink",
+          "products"
+        ],
+        "gap_or_overlap": "Less substantive and more commercial than the stronger accessibility candidates."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "low",
+          "type": "partnered introductory/product article",
+          "note": "Product emphasis and health generalizations reduce evidentiary value."
+        },
+        "visible_source_evidence": "Partner and product context visible in the page result."
+      },
+      "estimated_scope": "No collection.",
+      "registry_duplication": {
+        "level": "high",
+        "note": "Less substantive and more commercial than the stronger accessibility candidates."
+      },
+      "robots_access_notes": "No reuse permission surfaced.",
+      "recommended_collection_depth": "No collection.",
+      "safety_transfer_flags": [
+        "Several health claims appear broad and insufficiently sourced.",
+        "Shopping recommendations are not evidence of accessibility or safety.",
+        "Prefer reviewed lived-experience and clinical communication sources."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-reject-jute-geotextile-moisture",
+      "url": "https://doi.org/10.9790/1684-1305067987",
+      "title": "Effect of Moisture Content on Tensile Strength of Jute Geotextile",
+      "publisher": "IOSR Journal of Mechanical and Civil Engineering",
+      "authors": [
+        "A. S. Abou Sayed",
+        "Md. Zilley Elahi Ibn Salam",
+        "Shuvashish Roy",
+        "Md. Towhidur Rahman"
+      ],
+      "categories": [
+        "jute",
+        "moisture",
+        "geotextile tensile testing"
+      ],
+      "information_density": "medium",
+      "redundancy": {
+        "level": "high",
+        "note": "Existing coir/NIST/rope-care sources are more directly relevant; this concerns geotextile specimens rather than finished bondage rope."
+      },
+      "page_scope": "No collection for the rope-bondage corpus.",
+      "authority": {
+        "level": "low",
+        "type": "indirect materials study",
+        "note": "Even if the measurements are sound, the tested product form is not transferable to rope care."
+      },
+      "recency_version_needs": "No version review can solve the specimen-transfer problem.",
+      "rights_signals": {
+        "license_or_status": "No reliable open license surfaced in this pass.",
+        "visible_evidence": "DOI metadata only.",
+        "tos_robots_ai": "No reuse or AI signal surfaced."
+      },
+      "safety_caveats": [
+        "Jute geotextile tensile behavior cannot be converted into bondage-rope strength, retirement, washing, or body-safety advice.",
+        "Construction, twist, treatment, diameter, knots, abrasion, and cyclic loading differ."
+      ],
+      "recommended_action": {
+        "decision": "reject",
+        "priority": "none",
+        "rationale": "Non-transferable specimen type makes this misleading despite topical keywords."
+      },
+      "canonical_url": "https://doi.org/10.9790/1684-1305067987",
+      "domain": "doi.org",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "jute",
+          "moisture",
+          "geotextile tensile testing"
+        ],
+        "gap_or_overlap": "Existing coir/NIST/rope-care sources are more directly relevant; this concerns geotextile specimens rather than finished bondage rope."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "low",
+          "type": "indirect materials study",
+          "note": "Even if the measurements are sound, the tested product form is not transferable to rope care."
+        },
+        "visible_source_evidence": "DOI metadata only."
+      },
+      "estimated_scope": "No collection for the rope-bondage corpus.",
+      "registry_duplication": {
+        "level": "high",
+        "note": "Existing coir/NIST/rope-care sources are more directly relevant; this concerns geotextile specimens rather than finished bondage rope."
+      },
+      "robots_access_notes": "No reuse or AI signal surfaced.",
+      "recommended_collection_depth": "No collection for the rope-bondage corpus.",
+      "safety_transfer_flags": [
+        "Jute geotextile tensile behavior cannot be converted into bondage-rope strength, retirement, washing, or body-safety advice.",
+        "Construction, twist, treatment, diameter, knots, abrasion, and cyclic loading differ."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-reject-shibari-news-history",
+      "url": "https://shibarinews.com/history-of-shibari/",
+      "title": "History of Shibari",
+      "publisher": "Shibari News",
+      "authors": [
+        "Unverified site contributor"
+      ],
+      "categories": [
+        "history",
+        "lineage"
+      ],
+      "information_density": "low",
+      "redundancy": {
+        "level": "high",
+        "note": "Duplicates lineage material already represented by Shibari Atlas and stronger primary/history candidates."
+      },
+      "page_scope": "No collection.",
+      "authority": {
+        "level": "low",
+        "type": "unsourced secondary web article",
+        "note": "Simplified lineage claims and weak source transparency."
+      },
+      "recency_version_needs": "No stable scholarly version signal surfaced.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced.",
+        "visible_evidence": "Public web page only.",
+        "tos_robots_ai": "Templated/SEO presentation is a quality signal; no claim of AI generation is made."
+      },
+      "safety_caveats": [
+        "Simplistic hojojutsu-to-shibari continuity claims can create false historical certainty.",
+        "Prefer primary Japanese sources and cited historiography."
+      ],
+      "recommended_action": {
+        "decision": "reject",
+        "priority": "none",
+        "rationale": "Low-density, unsourced, redundant history content."
+      },
+      "canonical_url": "https://shibarinews.com/history-of-shibari/",
+      "domain": "shibarinews.com",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "history",
+          "lineage"
+        ],
+        "gap_or_overlap": "Duplicates lineage material already represented by Shibari Atlas and stronger primary/history candidates."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "low",
+          "type": "unsourced secondary web article",
+          "note": "Simplified lineage claims and weak source transparency."
+        },
+        "visible_source_evidence": "Public web page only."
+      },
+      "estimated_scope": "No collection.",
+      "registry_duplication": {
+        "level": "high",
+        "note": "Duplicates lineage material already represented by Shibari Atlas and stronger primary/history candidates."
+      },
+      "robots_access_notes": "Templated/SEO presentation is a quality signal; no claim of AI generation is made.",
+      "recommended_collection_depth": "No collection.",
+      "safety_transfer_flags": [
+        "Simplistic hojojutsu-to-shibari continuity claims can create false historical certainty.",
+        "Prefer primary Japanese sources and cited historiography."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    },
+    {
+      "candidate_id": "ardv1-reject-samson-k100-inspection",
+      "url": "https://www.samsonrope.com/docs/default-source/technical-bulletins/k100%5Finspection%5Fretirement%5Fvertical%5Fformat%5Fhr.pdf?sfvrsn=2052082_2",
+      "title": "K-100 Inspection and Retirement Technical Bulletin",
+      "publisher": "Samson Rope Technologies",
+      "authors": [
+        "Samson Rope Technologies"
+      ],
+      "categories": [
+        "rope inspection",
+        "retirement",
+        "synthetic rope",
+        "manufacturer guidance"
+      ],
+      "information_density": "medium",
+      "redundancy": {
+        "level": "high",
+        "note": "Existing PHM, NIST, NOAA, MAIB, and inspection sources cover the general principles without this product-specific copyright burden."
+      },
+      "page_scope": "No corpus collection; retain as a product-specific external reference only if needed.",
+      "authority": {
+        "level": "high",
+        "type": "primary manufacturer bulletin",
+        "note": "Authoritative only for the named product and stated conditions."
+      },
+      "recency_version_needs": "Version query is opaque; always use the current manufacturer bulletin for the exact product.",
+      "rights_signals": {
+        "license_or_status": "No open license surfaced; manufacturer copyright presumed.",
+        "visible_evidence": "Official manufacturer PDF.",
+        "tos_robots_ai": "No reuse permission surfaced."
+      },
+      "safety_caveats": [
+        "K-100 inspection criteria do not transfer to jute, hemp, nylon bondage rope, or other constructions.",
+        "Manufacturer guidance must remain product- and version-specific."
+      ],
+      "recommended_action": {
+        "decision": "reject",
+        "priority": "none",
+        "rationale": "Good product documentation but too specific, copyrighted, and redundant for this general training corpus."
+      },
+      "canonical_url": "https://www.samsonrope.com/docs/default-source/technical-bulletins/k100%5Finspection%5Fretirement%5Fvertical%5Fformat%5Fhr.pdf?sfvrsn=2052082_2",
+      "domain": "www.samsonrope.com",
+      "canonical_url_status": "Exact search-discovered URL recorded; canonical publisher URL and version must be confirmed wherever recency_version_needs or page_scope says resolution is pending.",
+      "topical_value_gap": {
+        "topics": [
+          "rope inspection",
+          "retirement",
+          "synthetic rope",
+          "manufacturer guidance"
+        ],
+        "gap_or_overlap": "Existing PHM, NIST, NOAA, MAIB, and inspection sources cover the general principles without this product-specific copyright burden."
+      },
+      "authority_evidence": {
+        "assessment": {
+          "level": "high",
+          "type": "primary manufacturer bulletin",
+          "note": "Authoritative only for the named product and stated conditions."
+        },
+        "visible_source_evidence": "Official manufacturer PDF."
+      },
+      "estimated_scope": "No corpus collection; retain as a product-specific external reference only if needed.",
+      "registry_duplication": {
+        "level": "high",
+        "note": "Existing PHM, NIST, NOAA, MAIB, and inspection sources cover the general principles without this product-specific copyright burden."
+      },
+      "robots_access_notes": "No reuse permission surfaced.",
+      "recommended_collection_depth": "No corpus collection; retain as a product-specific external reference only if needed.",
+      "safety_transfer_flags": [
+        "K-100 inspection criteria do not transfer to jute, hemp, nylon bondage rope, or other constructions.",
+        "Manufacturer guidance must remain product- and version-specific."
+      ],
+      "promotion_state": "candidate_only_not_authorized_not_training_eligible"
+    }
+  ]
+}

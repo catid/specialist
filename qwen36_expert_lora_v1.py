@@ -205,6 +205,24 @@ def audit_postattach_scope(model: Any, spec: ExpertLoraSpec, *, adapter_name: st
         expected_alpha = spec.routed_alpha if target in spec.routed_targets else spec.shared_alpha
         _require(module.r[adapter_name] == expected_rank, f"wrong LoRA rank for {target}")
         _require(module.lora_alpha[adapter_name] == expected_alpha, f"wrong LoRA alpha for {target}")
+        dropout = module.lora_dropout[adapter_name]
+        _require(
+            type(dropout).__name__ == "Identity",
+            f"nonzero or unknown LoRA dropout for {target}",
+        )
+        _require(module.lora_bias[adapter_name] is False, f"LoRA bias enabled for {target}")
+        _require(module.use_rslora[adapter_name] is False, f"RSLoRA enabled for {target}")
+        _require(module.use_dora[adapter_name] is False, f"DoRA enabled for {target}")
+        _require(
+            module.scaling[adapter_name] == expected_alpha / expected_rank,
+            f"wrong classic LoRA scaling for {target}",
+        )
+        _require(not module.disable_adapters, f"LoRA adapters are disabled for {target}")
+        _require(
+            module.active_adapters == [adapter_name],
+            f"unexpected active LoRA adapters for {target}",
+        )
+        _require(not module.merged, f"LoRA adapter is already merged for {target}")
         a_parameters = list(module.lora_A[adapter_name].parameters())
         b_parameters = list(module.lora_B[adapter_name].parameters())
         _require(len(a_parameters) == 1 and len(b_parameters) == 1, f"unexpected LoRA tensor layout: {target}")
@@ -215,6 +233,12 @@ def audit_postattach_scope(model: Any, spec: ExpertLoraSpec, *, adapter_name: st
                 "kind": "routed_parameter" if target in spec.routed_targets else "shared_module",
                 "rank": module.r[adapter_name],
                 "alpha": module.lora_alpha[adapter_name],
+                "scaling": module.scaling[adapter_name],
+                "dropout": 0.0,
+                "bias": False,
+                "use_rslora": False,
+                "use_dora": False,
+                "active_and_unmerged": True,
                 "a_shape": list(a_parameters[0].shape),
                 "b_shape": list(b_parameters[0].shape),
                 "trainable_elements": a_parameters[0].numel() + b_parameters[0].numel(),

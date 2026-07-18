@@ -1,0 +1,916 @@
+{
+  "accounting": {
+    "assistant_tokens": 160452,
+    "characters": 21133045,
+    "files": 54,
+    "findings": 0,
+    "records": 69320,
+    "text_fields": 73679,
+    "tokens": 5268664
+  },
+  "checks": [
+    "strict_utf8",
+    "nonempty_text",
+    "no_replacement_control_or_noncharacter_codepoints",
+    "no_reserved_chat_control_tokens_in_content",
+    "qwen_encode_succeeds",
+    "emitted_ids_within_model_vocabulary",
+    "encode_decode_roundtrip_exact",
+    "official_chat_template_and_assistant_mask",
+    "declared_assistant_token_count",
+    "unsplittable_chat_at_most_2048_tokens"
+  ],
+  "content_sha256_before_self_field": "91eca2a725c8a12d8027e1d39042dbc9810b863f38212702adf32ec9f49bb5d7",
+  "findings": [],
+  "scanner": {
+    "path": "audit_training_tokenizability_v1.py",
+    "sha256": "9e79c0571f05f6bb01574da2995fbd04dbeaa3aba677434fbe263cdac31ab892"
+  },
+  "schema": "qwen36-training-tokenizability-audit-v1",
+  "scope": {
+    "active_semantic_judge_partials_opened": false,
+    "declared_markdown_targets": [
+      {
+        "expected_sha256": "26c11bf912b9783fc68d78986401fb83764519e6c3c53b39c6174ff42dc02722",
+        "path": "data/site_corpora/acta_loop_knot_efficiency_experiments_2020/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "3cc2a6007de29f2e8d8f6eda186fa75f4ce7a1064fb0a86c8e84b55ba89f7948",
+        "path": "data/site_corpora/coir_ropes_french_polynesia_2024/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "6d20498960cf7e38d17a1feb9074c10b779237df2308e99b448f9223c5342929",
+        "path": "data/site_corpora/crash_restraint/crash_restraint.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "3ac2cfe01a60802e61a6ef83d3d4f62c41b4bb06983e2a9c43c5d2bfdf61ae94",
+        "path": "data/site_corpora/europepmc_bdsm_fatality_review/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "142190b91f7999969aa38fc25c56992e9295bc836d6721bb582bbfaf3ebb0186",
+        "path": "data/site_corpora/europepmc_entrapment_neuropathy_review/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "ed7ee4b88fcde6fbed8860c38d123de41d7f5bb49faf85bb4aaff31ab9659ab3",
+        "path": "data/site_corpora/europepmc_icar_suspension_syndrome/europepmc_icar_suspension_syndrome.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "1507aa6cbb4025b8287bd9e1646de4b91855932f9ac6e3fae0e8393ebafe4260",
+        "path": "data/site_corpora/europepmc_rope_neuropathy_study/europepmc_rope_neuropathy_study.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "4f362ab6e1c87073d917dccf06b6423b3ba3823e728ca6787708e137022a482b",
+        "path": "data/site_corpora/fhwa_t5140_34_adhesive_anchors/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "580e3af2534aad5b0040f58c833bf7c443c1359d4d739e8527a0fa2d03e9834a",
+        "path": "data/site_corpora/gutenberg_brady_kedge_anchor_77729/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "b7b3004be7c29dded2ca82a0105f115534b2a36a493a47b63cf17a906c3227c8",
+        "path": "data/site_corpora/hse_temporary_works_faqs/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "f47bac571ece0c708af7e0d6401467f67dd3be5c7a028d859e6b791f34c9f4fa",
+        "path": "data/site_corpora/hse_treework_lifting_and_climbing/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "84fb8d18bb2fe1b1492dd7c96f5ffb04f6a134435a66f244064e3e9e13842f17",
+        "path": "data/site_corpora/innotrac_camera_visual_rope_inspection_2020/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "9d9909ddd3c40a65dd4ee99c1a88df8b938eaf65482f87842bb842ebe187b2d8",
+        "path": "data/site_corpora/kink_education_code_of_conduct/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "7e90461a555f90a1c7a9f4edc3373c47c15ac20b61c729bdbaf05c74d8972932",
+        "path": "data/site_corpora/maib_throwbag_hidden_fused_joints_2019/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "32cf266d64c1fdecef76d41c238d35ec7e82bcd9ee1a12f381f84e0a06d8479a",
+        "path": "data/site_corpora/maib_zarga_hmpe_inspection_failure_2017/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "8124b2268b48a40efab7ba0b8be83c3dc20d5751ee9410d6f4c4770167d33f18",
+        "path": "data/site_corpora/mdpi_knot_efficiency_statistics_2022/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "ec02c592bd21de3bf1c3ff812a3f486772e591193e457e83c394c111a8a26ce7",
+        "path": "data/site_corpora/mdpi_tree_climbing_friction_hitch_2021/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "f5eb955663f43a9a9d9ea25824386b8ba47d628e91af5ee4bc8dcbbb839a8b23",
+        "path": "data/site_corpora/nist_aramid_rope_sling_fatigue_1976/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "ebd170b0b0fddb4ac8e9042fadea7503865dda5df53738cf953b423c4a897ce3",
+        "path": "data/site_corpora/nist_manila_rope_color_serviceability_1933/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "8968c334cacf2c205a6ea1afa44ad29009b07207895162a3547e0d752b2910bf",
+        "path": "data/site_corpora/nist_manila_rope_statistics_1947/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "b58c0888460e5ceafb69f5ca7afe1790b2cf66512794977bceddac069f79fc55",
+        "path": "data/site_corpora/nist_manila_rope_tests_t198_1921/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "17a916f5b7c50f1577b6d93797797577c34f974023019a4882891875e3ed15d5",
+        "path": "data/site_corpora/nistir_6096_post_installed_anchors_review/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "4c5b2b1ad715b29cb3230cf6c6987b3b67dbdf1cd3d444041de0a6a76b080b37",
+        "path": "data/site_corpora/noaa_eight_strand_rope_structural_model_1989/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "9751de41e2775ea367c1cbaca1b7b05dbb471cb427f3d5d008b3830162226c09",
+        "path": "data/site_corpora/noaa_synthetic_rope_deterioration_1990/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "04949a4d3685ad91b052ba81224a770b39328c2715ebc5fc8284bebf34d33453",
+        "path": "data/site_corpora/nps_textile_fiber_aging_appendix_k_2002/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "8b709d07150e9f4d5e9c6bf0bb8f8e8af08c81f316581023f3f468371d5ae27e",
+        "path": "data/site_corpora/phm_synthetic_fiber_rope_condition_monitoring_review_2017/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "2ed4419e5a9b3267d618faaf5e9677cc08835749882efbff27b5f2b283c598ff",
+        "path": "data/site_corpora/rope365/rope365.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "526c8740b7845f2c91dc2a7b43d348891beeb9b5b00c0f80db20c6bd803576e5",
+        "path": "data/site_corpora/rope_topia/rope_topia.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "e69a9c89ba049129ffa32a1c1b6d5001230cf3ac7fdc5d31253109fc85ef88af",
+        "path": "data/site_corpora/sage_aramid_three_strand_contact_forces_2025/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "a7550a53ff259c12f696c03ce4131b83c2d01c773e43892de406e25bf22304e0",
+        "path": "data/site_corpora/shibari_atlas/shibari_atlas.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "f54652c875800b70adb64183a3288630507983d6df59be9d7f9a1be706b3c8bf",
+        "path": "data/site_corpora/usbr_testing_verifying_rope_access_anchors/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "17c8eca67538c64c8f624972ec1965aa7f764180412a3598108a1d00d34eae9e",
+        "path": "data/site_corpora/usfs_region5_hazard_tree_2022/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "4ba06a9c38b1270ce09de54f9e9d58eff016996ac14fe79d94a4519e1b28210a",
+        "path": "data/site_corpora/usfs_rigging_for_trail_work/CORPUS.md",
+        "role": "registered_markdown_training_pool"
+      },
+      {
+        "expected_sha256": "c400282142cfdd1cdee4d2450913e84a0298dc28c0ed98078fd139325a6efbc2",
+        "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/osha_subpart_m_appendix_c/CORPUS.md",
+        "role": "staged_markdown_candidate_not_training_eligible"
+      },
+      {
+        "expected_sha256": "896cc06e9794f41c3199baff4e7453be46f8b2a314661fcd0a41d725225b532e",
+        "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/mdpi_jute_yarn_uncertainty_2017/CORPUS.md",
+        "role": "staged_markdown_candidate_not_training_eligible"
+      },
+      {
+        "expected_sha256": "a8b9ddef2a16af26e8b845cf8a913c33be22d43f98fdc61f0a823532641f5024",
+        "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/postoperative_ulnar_neuropathy_review_2023/CORPUS.md",
+        "role": "staged_markdown_candidate_not_training_eligible"
+      },
+      {
+        "expected_sha256": "e8ac05e1e81cc0c16bd014d65505b319f478cd96a13a28e38ee051f36e0a7888",
+        "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/bdsm_chronic_pain_study_2025/CORPUS.md",
+        "role": "staged_markdown_candidate_not_training_eligible"
+      },
+      {
+        "expected_sha256": "fd8abf4c29ce4a2846b36b30bbcc3b9b8a49d00209ef16da3a1f1bfed2c0b539",
+        "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/sexual_consent_norms_2023/CORPUS.md",
+        "role": "staged_markdown_candidate_not_training_eligible"
+      },
+      {
+        "expected_sha256": null,
+        "path": "data/site_corpora/shibari_study/CORPUS.md",
+        "role": "unregistered_markdown_excluded_from_training"
+      },
+      {
+        "expected_sha256": null,
+        "path": "data/site_corpora/theduchy/CORPUS.md",
+        "role": "unregistered_markdown_excluded_from_training"
+      },
+      {
+        "expected_sha256": null,
+        "path": "data/site_corpora/tree_anchor_mechanics/CORPUS.md",
+        "role": "unregistered_markdown_excluded_from_training"
+      }
+    ],
+    "explicitly_never_opened_path_classes": [
+      "evaluation",
+      "eval",
+      "holdout",
+      "heldout",
+      "ood",
+      "terminal",
+      "protected",
+      "quarantine",
+      "incident",
+      "manual_reviews",
+      "active semantic-judge partial outputs"
+    ],
+    "generated_domain": "absent_pending_sealed_generated_domain_authority",
+    "protected_or_evaluation_sources_opened": false,
+    "registered_markdown_inventory": "data/site_corpora/registry/site_corpus_registry_v1.json"
+  },
+  "sources": [
+    {
+      "assistant_tokens": 150000,
+      "bytes": 5387578,
+      "characters": 1182411,
+      "findings": 0,
+      "path": "data/general_replay_v1/replay_authority_v1_150k/general_replay_authority_v1_150k.jsonl",
+      "records": 3900,
+      "role": "sealed_general_replay_training_input",
+      "sha256": "687b8801df8c6725787419c0db6073b243ed5785f250c5990d3f72cff67eb940",
+      "text_fields": 7800,
+      "tokens": 508057
+    },
+    {
+      "assistant_tokens": 51,
+      "bytes": 6811,
+      "characters": 889,
+      "findings": 0,
+      "path": "data/public_training_shards/ropeconnections_partial_suspension_v1/qa.jsonl",
+      "records": 6,
+      "role": "public_qa_candidate_not_direct_authority",
+      "sha256": "45258b4f043ba874ae341c5d0b9e7d9c1c0882719ac01d27cc58d97d99df0114",
+      "text_fields": 12,
+      "tokens": 247
+    },
+    {
+      "assistant_tokens": 63,
+      "bytes": 10050,
+      "characters": 1023,
+      "findings": 0,
+      "path": "data/public_training_shards/ropeconnections_rope_dyeing_v1/qa.jsonl",
+      "records": 9,
+      "role": "public_qa_candidate_not_direct_authority",
+      "sha256": "d563f8192a5694d4aa4930e313d338a1d6eac1b7b7e79fb33a31769bce1fcccf",
+      "text_fields": 18,
+      "tokens": 336
+    },
+    {
+      "assistant_tokens": 140,
+      "bytes": 13506,
+      "characters": 1569,
+      "findings": 0,
+      "path": "data/public_training_shards/ropeconnections_rope_ends_update_v1/qa.jsonl",
+      "records": 11,
+      "role": "public_qa_candidate_not_direct_authority",
+      "sha256": "e6ecdff921b9122be67b4a521bf0d4dee7e8cfff1164df748ed4eab834fe6292",
+      "text_fields": 22,
+      "tokens": 459
+    },
+    {
+      "assistant_tokens": 69,
+      "bytes": 11194,
+      "characters": 1160,
+      "findings": 0,
+      "path": "data/public_training_shards/ropeconnections_rope_kit_v1/qa.jsonl",
+      "records": 10,
+      "role": "public_qa_candidate_not_direct_authority",
+      "sha256": "2e9f084bb6d0f40267cad5825861bfeb61514ef7ce1595d04f40af7b72ccf67c",
+      "text_fields": 20,
+      "tokens": 378
+    },
+    {
+      "assistant_tokens": 98,
+      "bytes": 14700,
+      "characters": 1499,
+      "findings": 0,
+      "path": "data/public_training_shards/ropeconnections_secondary_column_v1/qa.jsonl",
+      "records": 13,
+      "role": "public_qa_candidate_not_direct_authority",
+      "sha256": "df9b7e8e79cb6e8f847b3d27e9e119acc2c87e458e7a6ed71a88ae1b22fcf52c",
+      "text_fields": 26,
+      "tokens": 477
+    },
+    {
+      "assistant_tokens": 555,
+      "bytes": 48974,
+      "characters": 5587,
+      "findings": 0,
+      "path": "data/rope_resource_factual_qa_v1.jsonl",
+      "records": 38,
+      "role": "legacy_qa_candidate_not_direct_authority",
+      "sha256": "52e5a08194ecd6f82128b420dafcbd04dea5a99cb7091a0b19ae82870d79b409",
+      "text_fields": 76,
+      "tokens": 1794
+    },
+    {
+      "assistant_tokens": 323,
+      "bytes": 26290,
+      "characters": 2204,
+      "findings": 0,
+      "path": "data/rope_topia_manual_v1.jsonl",
+      "records": 15,
+      "role": "legacy_qa_candidate_not_direct_authority",
+      "sha256": "308a85762cb7d68a4dd9d3b4fcbe9d40a558054166e7c080c7a5401d3c940bcd",
+      "text_fields": 30,
+      "tokens": 790
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 18098,
+      "characters": 17972,
+      "findings": 0,
+      "path": "data/site_corpora/acta_loop_knot_efficiency_experiments_2020/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "26c11bf912b9783fc68d78986401fb83764519e6c3c53b39c6174ff42dc02722",
+      "text_fields": 1,
+      "tokens": 4232
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 7296,
+      "characters": 7249,
+      "findings": 0,
+      "path": "data/site_corpora/coir_ropes_french_polynesia_2024/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "3cc2a6007de29f2e8d8f6eda186fa75f4ce7a1064fb0a86c8e84b55ba89f7948",
+      "text_fields": 1,
+      "tokens": 1808
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 115628,
+      "characters": 115489,
+      "findings": 0,
+      "path": "data/site_corpora/crash_restraint/crash_restraint.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "6d20498960cf7e38d17a1feb9074c10b779237df2308e99b448f9223c5342929",
+      "text_fields": 1,
+      "tokens": 24764
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 21214,
+      "characters": 21123,
+      "findings": 0,
+      "path": "data/site_corpora/europepmc_bdsm_fatality_review/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "3ac2cfe01a60802e61a6ef83d3d4f62c41b4bb06983e2a9c43c5d2bfdf61ae94",
+      "text_fields": 1,
+      "tokens": 4225
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 21809,
+      "characters": 21722,
+      "findings": 0,
+      "path": "data/site_corpora/europepmc_entrapment_neuropathy_review/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "142190b91f7999969aa38fc25c56992e9295bc836d6721bb582bbfaf3ebb0186",
+      "text_fields": 1,
+      "tokens": 4455
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 14806,
+      "characters": 14794,
+      "findings": 0,
+      "path": "data/site_corpora/europepmc_icar_suspension_syndrome/europepmc_icar_suspension_syndrome.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "ed7ee4b88fcde6fbed8860c38d123de41d7f5bb49faf85bb4aaff31ab9659ab3",
+      "text_fields": 1,
+      "tokens": 2847
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 11612,
+      "characters": 11605,
+      "findings": 0,
+      "path": "data/site_corpora/europepmc_rope_neuropathy_study/europepmc_rope_neuropathy_study.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "1507aa6cbb4025b8287bd9e1646de4b91855932f9ac6e3fae0e8393ebafe4260",
+      "text_fields": 1,
+      "tokens": 2282
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 10190,
+      "characters": 10166,
+      "findings": 0,
+      "path": "data/site_corpora/fhwa_t5140_34_adhesive_anchors/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "4f362ab6e1c87073d917dccf06b6423b3ba3823e728ca6787708e137022a482b",
+      "text_fields": 1,
+      "tokens": 2215
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 16174,
+      "characters": 15994,
+      "findings": 0,
+      "path": "data/site_corpora/gutenberg_brady_kedge_anchor_77729/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "580e3af2534aad5b0040f58c833bf7c443c1359d4d739e8527a0fa2d03e9834a",
+      "text_fields": 1,
+      "tokens": 4145
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 10173,
+      "characters": 10169,
+      "findings": 0,
+      "path": "data/site_corpora/hse_temporary_works_faqs/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "b7b3004be7c29dded2ca82a0105f115534b2a36a493a47b63cf17a906c3227c8",
+      "text_fields": 1,
+      "tokens": 2339
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 25061,
+      "characters": 25035,
+      "findings": 0,
+      "path": "data/site_corpora/hse_treework_lifting_and_climbing/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "f47bac571ece0c708af7e0d6401467f67dd3be5c7a028d859e6b791f34c9f4fa",
+      "text_fields": 1,
+      "tokens": 4904
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 13097,
+      "characters": 13051,
+      "findings": 0,
+      "path": "data/site_corpora/innotrac_camera_visual_rope_inspection_2020/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "84fb8d18bb2fe1b1492dd7c96f5ffb04f6a134435a66f244064e3e9e13842f17",
+      "text_fields": 1,
+      "tokens": 2822
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 30035,
+      "characters": 29937,
+      "findings": 0,
+      "path": "data/site_corpora/kink_education_code_of_conduct/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "9d9909ddd3c40a65dd4ee99c1a88df8b938eaf65482f87842bb842ebe187b2d8",
+      "text_fields": 1,
+      "tokens": 5544
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 10615,
+      "characters": 10569,
+      "findings": 0,
+      "path": "data/site_corpora/maib_throwbag_hidden_fused_joints_2019/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "7e90461a555f90a1c7a9f4edc3373c47c15ac20b61c729bdbaf05c74d8972932",
+      "text_fields": 1,
+      "tokens": 2315
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 16730,
+      "characters": 16582,
+      "findings": 0,
+      "path": "data/site_corpora/maib_zarga_hmpe_inspection_failure_2017/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "32cf266d64c1fdecef76d41c238d35ec7e82bcd9ee1a12f381f84e0a06d8479a",
+      "text_fields": 1,
+      "tokens": 4139
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 16083,
+      "characters": 15956,
+      "findings": 0,
+      "path": "data/site_corpora/mdpi_knot_efficiency_statistics_2022/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "8124b2268b48a40efab7ba0b8be83c3dc20d5751ee9410d6f4c4770167d33f18",
+      "text_fields": 1,
+      "tokens": 3471
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 20333,
+      "characters": 20233,
+      "findings": 0,
+      "path": "data/site_corpora/mdpi_tree_climbing_friction_hitch_2021/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "ec02c592bd21de3bf1c3ff812a3f486772e591193e457e83c394c111a8a26ce7",
+      "text_fields": 1,
+      "tokens": 4384
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 15633,
+      "characters": 15570,
+      "findings": 0,
+      "path": "data/site_corpora/nist_aramid_rope_sling_fatigue_1976/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "f5eb955663f43a9a9d9ea25824386b8ba47d628e91af5ee4bc8dcbbb839a8b23",
+      "text_fields": 1,
+      "tokens": 3395
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 6989,
+      "characters": 6957,
+      "findings": 0,
+      "path": "data/site_corpora/nist_manila_rope_color_serviceability_1933/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "ebd170b0b0fddb4ac8e9042fadea7503865dda5df53738cf953b423c4a897ce3",
+      "text_fields": 1,
+      "tokens": 1575
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 15165,
+      "characters": 15085,
+      "findings": 0,
+      "path": "data/site_corpora/nist_manila_rope_statistics_1947/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "8968c334cacf2c205a6ea1afa44ad29009b07207895162a3547e0d752b2910bf",
+      "text_fields": 1,
+      "tokens": 3291
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 13506,
+      "characters": 13476,
+      "findings": 0,
+      "path": "data/site_corpora/nist_manila_rope_tests_t198_1921/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "b58c0888460e5ceafb69f5ca7afe1790b2cf66512794977bceddac069f79fc55",
+      "text_fields": 1,
+      "tokens": 2937
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 13473,
+      "characters": 13397,
+      "findings": 0,
+      "path": "data/site_corpora/nistir_6096_post_installed_anchors_review/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "17a916f5b7c50f1577b6d93797797577c34f974023019a4882891875e3ed15d5",
+      "text_fields": 1,
+      "tokens": 3330
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 18158,
+      "characters": 18052,
+      "findings": 0,
+      "path": "data/site_corpora/noaa_eight_strand_rope_structural_model_1989/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "4c5b2b1ad715b29cb3230cf6c6987b3b67dbdf1cd3d444041de0a6a76b080b37",
+      "text_fields": 1,
+      "tokens": 4066
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 17887,
+      "characters": 17775,
+      "findings": 0,
+      "path": "data/site_corpora/noaa_synthetic_rope_deterioration_1990/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "9751de41e2775ea367c1cbaca1b7b05dbb471cb427f3d5d008b3830162226c09",
+      "text_fields": 1,
+      "tokens": 3875
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 16780,
+      "characters": 16674,
+      "findings": 0,
+      "path": "data/site_corpora/nps_textile_fiber_aging_appendix_k_2002/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "04949a4d3685ad91b052ba81224a770b39328c2715ebc5fc8284bebf34d33453",
+      "text_fields": 1,
+      "tokens": 3947
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 14173,
+      "characters": 14127,
+      "findings": 0,
+      "path": "data/site_corpora/phm_synthetic_fiber_rope_condition_monitoring_review_2017/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "8b709d07150e9f4d5e9c6bf0bb8f8e8af08c81f316581023f3f468371d5ae27e",
+      "text_fields": 1,
+      "tokens": 3052
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 90243,
+      "characters": 90006,
+      "findings": 0,
+      "path": "data/site_corpora/rope365/rope365.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "2ed4419e5a9b3267d618faaf5e9677cc08835749882efbff27b5f2b283c598ff",
+      "text_fields": 1,
+      "tokens": 19168
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 11859,
+      "characters": 11817,
+      "findings": 0,
+      "path": "data/site_corpora/rope_topia/rope_topia.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "526c8740b7845f2c91dc2a7b43d348891beeb9b5b00c0f80db20c6bd803576e5",
+      "text_fields": 1,
+      "tokens": 2552
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 11683,
+      "characters": 11649,
+      "findings": 0,
+      "path": "data/site_corpora/sage_aramid_three_strand_contact_forces_2025/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "e69a9c89ba049129ffa32a1c1b6d5001230cf3ac7fdc5d31253109fc85ef88af",
+      "text_fields": 1,
+      "tokens": 2469
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 3485840,
+      "characters": 3458938,
+      "findings": 0,
+      "path": "data/site_corpora/shibari_atlas/shibari_atlas.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "a7550a53ff259c12f696c03ce4131b83c2d01c773e43892de406e25bf22304e0",
+      "text_fields": 1,
+      "tokens": 1061134
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 1262,
+      "characters": 1262,
+      "findings": 0,
+      "path": "data/site_corpora/shibari_study/CORPUS.md",
+      "records": 1,
+      "role": "unregistered_markdown_excluded_from_training",
+      "sha256": "57a66ad9f4b2db8327a9338c73ab6efe3e4b401846b877fa31320dc5e3e9c015",
+      "text_fields": 1,
+      "tokens": 246
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 11977,
+      "characters": 11925,
+      "findings": 0,
+      "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/bdsm_chronic_pain_study_2025/CORPUS.md",
+      "records": 1,
+      "role": "staged_markdown_candidate_not_training_eligible",
+      "sha256": "e8ac05e1e81cc0c16bd014d65505b319f478cd96a13a28e38ee051f36e0a7888",
+      "text_fields": 1,
+      "tokens": 2347
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 11106,
+      "characters": 11066,
+      "findings": 0,
+      "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/mdpi_jute_yarn_uncertainty_2017/CORPUS.md",
+      "records": 1,
+      "role": "staged_markdown_candidate_not_training_eligible",
+      "sha256": "896cc06e9794f41c3199baff4e7453be46f8b2a314661fcd0a41d725225b532e",
+      "text_fields": 1,
+      "tokens": 2280
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 12869,
+      "characters": 12837,
+      "findings": 0,
+      "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/osha_subpart_m_appendix_c/CORPUS.md",
+      "records": 1,
+      "role": "staged_markdown_candidate_not_training_eligible",
+      "sha256": "c400282142cfdd1cdee4d2450913e84a0298dc28c0ed98078fd139325a6efbc2",
+      "text_fields": 1,
+      "tokens": 2622
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 11761,
+      "characters": 11744,
+      "findings": 0,
+      "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/postoperative_ulnar_neuropathy_review_2023/CORPUS.md",
+      "records": 1,
+      "role": "staged_markdown_candidate_not_training_eligible",
+      "sha256": "a8b9ddef2a16af26e8b845cf8a913c33be22d43f98fdc61f0a823532641f5024",
+      "text_fields": 1,
+      "tokens": 2334
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 14071,
+      "characters": 14031,
+      "findings": 0,
+      "path": "data/site_corpora/staging/additional_resource_acquisition_v2_batch1/sexual_consent_norms_2023/CORPUS.md",
+      "records": 1,
+      "role": "staged_markdown_candidate_not_training_eligible",
+      "sha256": "fd8abf4c29ce4a2846b36b30bbcc3b9b8a49d00209ef16da3a1f1bfed2c0b539",
+      "text_fields": 1,
+      "tokens": 2706
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 1252,
+      "characters": 1252,
+      "findings": 0,
+      "path": "data/site_corpora/theduchy/CORPUS.md",
+      "records": 1,
+      "role": "unregistered_markdown_excluded_from_training",
+      "sha256": "8634c20819200ea85faff1b9bf9e4fe9f1750edc62a11647976581d9a5efd6c7",
+      "text_fields": 1,
+      "tokens": 289
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 2401,
+      "characters": 2401,
+      "findings": 0,
+      "path": "data/site_corpora/tree_anchor_mechanics/CORPUS.md",
+      "records": 1,
+      "role": "unregistered_markdown_excluded_from_training",
+      "sha256": "ef1b3b02a1ed992e344d2b40962ca0b7eed24ebaec3baf164480354402fdf754",
+      "text_fields": 1,
+      "tokens": 492
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 10098,
+      "characters": 10080,
+      "findings": 0,
+      "path": "data/site_corpora/usbr_testing_verifying_rope_access_anchors/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "f54652c875800b70adb64183a3288630507983d6df59be9d7f9a1be706b3c8bf",
+      "text_fields": 1,
+      "tokens": 2223
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 28577,
+      "characters": 28489,
+      "findings": 0,
+      "path": "data/site_corpora/usfs_region5_hazard_tree_2022/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "17c8eca67538c64c8f624972ec1965aa7f764180412a3598108a1d00d34eae9e",
+      "text_fields": 1,
+      "tokens": 5864
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 40592,
+      "characters": 40301,
+      "findings": 0,
+      "path": "data/site_corpora/usfs_rigging_for_trail_work/CORPUS.md",
+      "records": 1,
+      "role": "registered_markdown_training_pool",
+      "sha256": "4ba06a9c38b1270ce09de54f9e9d58eff016996ac14fe79d94a4519e1b28210a",
+      "text_fields": 1,
+      "tokens": 9175
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 18799636,
+      "characters": 11471876,
+      "findings": 0,
+      "path": "data/train_qa_v3_clean.jsonl",
+      "records": 57792,
+      "role": "legacy_training_candidate_not_direct_authority",
+      "sha256": "055c574255955e6ad5adb01e4a868086256b8abb04a9ee2841c0c7c44b9c0243",
+      "text_fields": 57792,
+      "tokens": 2330121
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 916953,
+      "characters": 474154,
+      "findings": 0,
+      "path": "data/train_qa_verified.jsonl",
+      "records": 3510,
+      "role": "legacy_training_candidate_not_direct_authority",
+      "sha256": "4e2b8983a4fa532cae20cddd8fe50f80ac968615235079292792a97ba6e78bd0",
+      "text_fields": 3510,
+      "tokens": 108412
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 7462999,
+      "characters": 3328003,
+      "findings": 0,
+      "path": "data/training_inventory/full_train_markdown_cpt_v1/train.jsonl",
+      "records": 1554,
+      "role": "full_markdown_training_input",
+      "sha256": "d92c99c2694ba4d626eacfb41e58c62f60e93a8f0be9ba8103dcae380fae0ff6",
+      "text_fields": 1554,
+      "tokens": 970455
+    },
+    {
+      "assistant_tokens": 0,
+      "bytes": 4434809,
+      "characters": 362045,
+      "findings": 0,
+      "path": "data/training_inventory/high_information_domain_corpus_v1/raw_continuation_train.jsonl",
+      "records": 2064,
+      "role": "protocol_core_markdown_training_input",
+      "sha256": "c02ed51fa4329a0fa905eb17091550a714137eca3d54f03c50bdf393a45b9f79",
+      "text_fields": 2064,
+      "tokens": 100000
+    },
+    {
+      "assistant_tokens": 9153,
+      "bytes": 761492,
+      "characters": 74068,
+      "findings": 0,
+      "path": "data/training_inventory/high_information_domain_corpus_v1/seed_qa_train.jsonl",
+      "records": 357,
+      "role": "sealed_seed_qa_training_input",
+      "sha256": "8775b94f57d73d1c0a6d86cbeae4c59a299b09ae3a80b50267fe4f7da1ec9b9a",
+      "text_fields": 714,
+      "tokens": 20878
+    }
+  ],
+  "status": "clean",
+  "tokenizer": {
+    "chat_template_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "maximum_unsplittable_chat_tokens": 2048,
+    "model_embedding_vocabulary_size": 248320,
+    "path": "models/Qwen3.6-35B-A3B",
+    "tokenizer_config_sha256": "5186f0defcd7f232382c7f0aebcd2252d073bb921ab240e407b7ae8745d2b29b",
+    "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "tokenizer_length": 248077
+  }
+}

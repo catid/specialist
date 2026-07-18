@@ -1,0 +1,129 @@
+{
+  "schema": "qwen36-plan-compliance-pass-bundle-v1",
+  "pass": 1,
+  "sealed_at_utc": "2026-07-18",
+  "canonical_policy": {
+    "agents_path": "AGENTS.md",
+    "agents_sha256": "64f21e8f261cbedc51329fe67a3f9ee22ba115b577e732f06b48ffc148627e45",
+    "plan_path": "plan.md",
+    "plan_sha256": "e5914d04995f727320e52b6f9ffc4b0f144631584832b6ca95a13733aeb76498"
+  },
+  "artifacts": [
+    {
+      "bytes": 19042,
+      "path": "training_protocol/plan_compliance_pass1/requirement_matrix.md",
+      "sha256": "bb27ce2646826947574af305286cae851ff3916f9e5d6dd99c9b68cc89de91f0"
+    },
+    {
+      "bytes": 13428,
+      "path": "training_protocol/plan_compliance_pass1/findings.json",
+      "sha256": "ce3c61184e058727b63928c51c75b8ff187e115417a089b44fb1f63fe4a962b3"
+    }
+  ],
+  "coverage": {
+    "beads_epic": "specialist-j59",
+    "matrix_requirement_count": 21,
+    "matrix_requirement_ids": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09",
+      "P10",
+      "P11",
+      "P12",
+      "P13",
+      "P14",
+      "P15",
+      "P16",
+      "P17",
+      "P18",
+      "P19",
+      "P20",
+      "P21"
+    ],
+    "bugs_fixed_and_closed": [
+      "specialist-j59.24",
+      "specialist-j59.25",
+      "specialist-j59.27",
+      "specialist-j59.28",
+      "specialist-j59.30",
+      "specialist-j59.31",
+      "specialist-j59.32"
+    ],
+    "current_blocking_findings": [
+      "specialist-j59.29",
+      "specialist-j59.33",
+      "specialist-j59.34",
+      "specialist-j59.35"
+    ]
+  },
+  "implementation_receipts": {
+    "expert_lora_attachment_contract": {
+      "content_sha256": "d734cf70bd0b36f56b7ea5aec3f4aad9a714e0ef4f3b89d5c573e22d1926b9db",
+      "file_sha256": "f20ff4eeb40b8646785abc4c7a042ce9b6cb3c98a85ffd9afa561cf86c8a36c0",
+      "path": "training_protocol/qwen36_expert_lora_attachment_contract_v1.json"
+    },
+    "mixed_snapshot_builder": {
+      "path": "build_mixed_training_snapshot_v1.py",
+      "sha256": "35a0a2f9914da7e0b4b27752cfabac79db2e5a0bc8b694e8b61f617b5739add2"
+    },
+    "mixed_snapshot_builder_test": {
+      "path": "test_build_mixed_training_snapshot_v1.py",
+      "sha256": "ad2a852e8cb63e083145905432529ad041dc38a303da1811dfe9ab092fba2335"
+    },
+    "mixed_training_runtime": {
+      "path": "qwen36_mixed_training_runtime_v1.py",
+      "sha256": "ca2c23791c068a096ae2b0dcaf562bd0da7cb81989a4aa35d0f5b4892b8cfaeb"
+    },
+    "mixed_training_runtime_test": {
+      "path": "test_qwen36_mixed_training_runtime_v1.py",
+      "sha256": "5d339b8f196c71f3b83483cfcc7e5bd5cdd011cbf5aa8b4934963b42fd1cec14"
+    },
+    "trainer": {
+      "path": "train_qwen36_low_regression_sft_v1.py",
+      "sha256": "64b1793859959865d157e529890cadd80fb5678a758f6dd8b581d7c38022a929"
+    },
+    "trainer_test": {
+      "path": "test_train_qwen36_low_regression_sft_v1.py",
+      "sha256": "dbaf6fae616f044b9e8f6e1f15fa29204ea4d0fb9dbbe171227cd6bed688378f"
+    }
+  },
+  "validation": {
+    "broad_test_selection_run": false,
+    "contract_checks": {
+      "attachment": "pass",
+      "architecture": "owner-reported pass",
+      "fast_linear": "owner-reported pass with canonical selector still blocked by specialist-j59.29",
+      "memory_pretrainer": "owner-reported pass"
+    },
+    "independent_focused_tests": [
+      {
+        "command": ".venv/bin/python -m pytest -q test_qwen36_expert_lora_v1.py",
+        "result": "6 passed, 2 warnings in 3.14s"
+      },
+      {
+        "command": ".venv/bin/python -m pytest -q test_train_qwen36_low_regression_sft_v1.py",
+        "result": "11 passed, 2 warnings in 2.72s"
+      }
+    ],
+    "owner_reported_focused_tests": {
+      "command": ".venv/bin/python -m pytest -q test_high_information_train_projection_binding_v1.py test_site_markdown_input_firewall_v1.py test_build_mixed_training_snapshot_v1.py test_qwen36_mixed_training_runtime_v1.py test_full_train_markdown_cpt_v1.py test_build_general_replay_final_authority_v1.py test_general_replay_v1.py::test_candidate_request_validator_rejects_forged_or_ambiguous_lineage test_general_replay_v1.py::test_candidate_lineage_digest_verification_and_assistant_only_row test_general_replay_v1.py::test_exhaustive_verification_retains_alternatives_for_group_selection test_general_replay_v1.py::test_safe_input_firewall_rejects_lexical_alias_and_hardlink_paths test_training_data_authority_inventory_v1.py::test_postseal_build_check_refuses_before_any_legacy_input_read test_training_data_authority_inventory_v1.py::test_preseal_guard_is_synthetic_and_allows_absent_authority test_qwen_chat_masking_v1.py::test_template_prefix_mismatch_fails_closed",
+      "result": "64 passed, 2 warnings in 2.12s"
+    },
+    "protected_or_semantic_evaluation_item_opened": false,
+    "real_holdout_or_terminal_runner_invoked": false,
+    "synthetic_fixture_inspected_before_test": true
+  },
+  "negative_claims": {
+    "eggroll_resumed": false,
+    "gpu_used": false,
+    "live_training_launched": false,
+    "newly_staged_resource_promoted_to_training": false
+  },
+  "content_sha256_before_self_field": "073b47234e14870e9e0762ce93aab03d3f46be739c5df33493e1443444e221fa"
+}

@@ -15,6 +15,7 @@ import hashlib
 import json
 import os
 import re
+import stat
 import tempfile
 from collections import Counter
 from pathlib import Path
@@ -42,6 +43,29 @@ ALLOWED_RIGHTS = frozenset({
     "public_domain_in_usa_source_with_trademark_and_jurisdiction_limits",
 })
 SPECIAL_TOKENS = ("<|im_start|>", "<|im_end|>", "<|endoftext|>")
+FORBIDDEN_PATH_TOKENS = frozenset({
+    "benchmark",
+    "benchmarks",
+    "dev",
+    "development",
+    "developments",
+    "eval",
+    "evaluation",
+    "evaluations",
+    "final",
+    "finals",
+    "heldout",
+    "holdout",
+    "holdouts",
+    "incident",
+    "incidents",
+    "manualreview",
+    "manualreviews",
+    "ood",
+    "protected",
+    "terminal",
+    "terminals",
+})
 
 
 def file_sha256(path: Path) -> str:
@@ -83,6 +107,82 @@ def read_object(path: Path) -> dict:
     if not isinstance(value, dict):
         raise RuntimeError(f"expected JSON object: {path}")
     return value
+
+
+def _path_tokens(path: Path) -> set[str]:
+    values = set()
+    for component in path.parts:
+        collapsed = re.sub(r"[^a-z0-9]", "", component.casefold())
+        if collapsed:
+            values.add(collapsed)
+        values.update(
+            part
+            for part in re.split(r"[^a-z0-9]+", component.casefold())
+            if part
+        )
+    return values
+
+
+def secure_repo_regular(path: Path, role: str, *, root: Path = ROOT) -> Path:
+    """Reject escapes and aliases before opening any registered input."""
+
+    root_lexical = Path(os.path.abspath(os.fspath(root)))
+    lexical = Path(os.path.abspath(os.fspath(path)))
+    if not lexical.is_relative_to(root_lexical):
+        raise RuntimeError(f"{role} escapes the repository")
+    if _path_tokens(lexical) & FORBIDDEN_PATH_TOKENS:
+        raise RuntimeError(f"{role} uses a forbidden source path class")
+    current = Path(lexical.anchor)
+    metadata = None
+    for component in lexical.parts[1:]:
+        current /= component
+        try:
+            metadata = current.lstat()
+        except OSError as exc:
+            raise RuntimeError(f"{role} is missing") from exc
+        if stat.S_ISLNK(metadata.st_mode):
+            raise RuntimeError(f"{role} uses a symlink alias")
+    if metadata is None or not stat.S_ISREG(metadata.st_mode):
+        raise RuntimeError(f"{role} is not a regular file")
+    if metadata.st_nlink != 1:
+        raise RuntimeError(f"{role} uses a hard-link alias")
+    return lexical
+
+
+def registered_path(value: Any, role: str, *, root: Path = ROOT) -> Path:
+    if not isinstance(value, str) or not value:
+        raise RuntimeError(f"{role} path is missing")
+    declared = Path(value)
+    if declared.is_absolute():
+        raise RuntimeError(f"{role} path must be repository relative")
+    lexical = Path(os.path.abspath(os.fspath(root / declared)))
+    return secure_repo_regular(lexical, role, root=root)
+
+
+def validate_registered_artifact_inputs(
+    artifact: dict,
+    *,
+    root: Path = ROOT,
+) -> tuple[Path, Path]:
+    resource = artifact.get("resource_id", "unknown")
+    markdown_path = registered_path(
+        artifact.get("markdown_path"),
+        f"registered Markdown for {resource}",
+        root=root,
+    )
+    manifest_path = registered_path(
+        artifact.get("manifest_path"),
+        f"registered corpus manifest for {resource}",
+        root=root,
+    )
+    if (
+        not isinstance(artifact.get("markdown_sha256"), str)
+        or file_sha256(markdown_path) != artifact["markdown_sha256"]
+        or not isinstance(artifact.get("manifest_sha256"), str)
+        or file_sha256(manifest_path) != artifact["manifest_sha256"]
+    ):
+        raise RuntimeError(f"registered source receipts changed: {resource}")
+    return markdown_path, manifest_path
 
 
 def is_training_eligible(artifact: dict) -> bool:
@@ -211,8 +311,14 @@ def render_snapshot(
     tokenizer_path: Path = TOKENIZER,
     max_tokens: int = MAX_TOKENS,
 ) -> tuple[bytes, bytes, dict]:
-    registry_path = Path(registry_path).resolve()
-    tokenizer_path = Path(tokenizer_path).resolve()
+    registry_path = secure_repo_regular(
+        Path(os.path.abspath(os.fspath(registry_path))),
+        "site corpus registry",
+    )
+    tokenizer_path = secure_repo_regular(
+        Path(os.path.abspath(os.fspath(tokenizer_path))),
+        "training tokenizer",
+    )
     registry = read_object(registry_path)
     if registry.get("schema") != "site-corpus-registry-v1":
         raise RuntimeError("unsupported site corpus registry schema")
@@ -231,27 +337,56 @@ def render_snapshot(
     included = []
     blocked = []
     seen_resources = set()
+    seen_artifacts = set()
+    seen_documents = set()
+    seen_groups = set()
     for artifact in artifacts:
         resource = artifact.get("resource_id")
         if not isinstance(resource, str) or not resource or resource in seen_resources:
             raise RuntimeError("registry resource IDs must be unique nonempty strings")
+        artifact_id = artifact.get("artifact_id")
+        document_id = artifact.get("source_document_identity_sha256")
+        group = artifact.get("required_single_document_split_group")
+        group_id = group.get("group_id") if isinstance(group, dict) else None
+        if (
+            not isinstance(artifact_id, str)
+            or not artifact_id
+            or artifact_id in seen_artifacts
+            or not isinstance(document_id, str)
+            or not document_id
+            or document_id in seen_documents
+            or not isinstance(group_id, str)
+            or not group_id
+            or group_id in seen_groups
+        ):
+            raise RuntimeError(
+                "registry artifact, document, and split-group identities must be unique"
+            )
         seen_resources.add(resource)
+        seen_artifacts.add(artifact_id)
+        seen_documents.add(document_id)
+        seen_groups.add(group_id)
         if not is_training_eligible(artifact):
             blocked.append({
                 "resource_id": resource,
+                "artifact_id": artifact_id,
+                "source_document_identity_sha256": document_id,
+                "source_document_group_id": group_id,
                 "manifest_path": artifact.get("manifest_path"),
                 "markdown_path": artifact.get("markdown_path"),
                 "available_tokens": artifact.get("qwen36_token_count"),
                 "rights_status": artifact.get("rights_basis", {}).get("status"),
+                "rights_basis": artifact.get("rights_basis"),
                 "promotion_gate": artifact.get("rights_basis", {}).get(
                     "promotion_gate"
+                ),
+                "safety_transfer_flags": artifact.get(
+                    "safety_transfer_flags", []
                 ),
                 "reason": "rights_promotion_gate_not_ready",
             })
             continue
-        markdown_path = (ROOT / artifact["markdown_path"]).resolve()
-        if file_sha256(markdown_path) != artifact["markdown_sha256"]:
-            raise RuntimeError(f"registered Markdown bytes changed: {resource}")
+        markdown_path, _ = validate_registered_artifact_inputs(artifact)
         text = markdown_path.read_text(encoding="utf-8")
         full_ids = tokenizer.encode(text, add_special_tokens=False).ids
         if len(full_ids) != artifact["qwen36_token_count"]:
@@ -343,6 +478,10 @@ def render_snapshot(
             "all_eligible_artifacts_have_training_rows": True,
             "all_included_documents_exactly_reconstruct_from_chunks": True,
             "omission_is_a_build_error": True,
+        },
+        "builder": {
+            "path": os.path.relpath(Path(__file__).resolve(), ROOT),
+            "file_sha256": file_sha256(Path(__file__).resolve()),
         },
     }
     manifest["content_sha256_before_self_field"] = canonical_sha256(manifest)

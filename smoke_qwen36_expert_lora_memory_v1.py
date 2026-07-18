@@ -9,10 +9,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 from pathlib import Path
 import tempfile
 import time
+from typing import Any
 
 
 MODEL_ROOT = "/home/catid/specialist/models/Qwen3.6-35B-A3B"
@@ -36,9 +38,158 @@ def memory(torch) -> dict[str, float]:
     }
 
 
+def validate_fast_kernel_training_policy(fast_contract: Any) -> dict[str, Any]:
+    """Revalidate the sealed hybrid decision before mutating model bindings."""
+    value = fast_contract.build(check=True)
+    _require(
+        value.get("schema") == fast_contract.SCHEMA,
+        "fast linear-attention contract schema changed",
+    )
+    decision = value.get("selected_fast_or_fallback")
+    _require(isinstance(decision, dict), "fast-kernel selection decision is missing")
+    _require(
+        decision.get("selected") == "hybrid_training"
+        and decision.get("selected_bindings")
+        == fast_contract.HYBRID_TRAINING_BINDINGS
+        and decision.get("hybrid_training_path_runtime_validated_on_all_four_gpus")
+        is True
+        and decision.get("hybrid_path_validation_failures") == []
+        and decision.get("material_improvement_gate", {}).get(
+            "passed_on_all_four_gpus"
+        )
+        is True
+        and decision.get("training_launch_authorized") is False,
+        "sealed fast-kernel contract does not authorize the validated hybrid policy",
+    )
+    execution = value.get("gpu_execution")
+    _require(isinstance(execution, dict), "fast-kernel GPU execution receipt is missing")
+    baseline = execution.get("gpu_baseline_checks")
+    _require(
+        isinstance(baseline, dict)
+        and baseline.get("all_match_architecture_contract") is True
+        and len(baseline.get("per_gpu", [])) == 4
+        and all(item.get("all_match") is True for item in baseline["per_gpu"]),
+        "fast-kernel GPU baseline does not match the architecture contract",
+    )
+    results = execution.get("per_gpu_results")
+    _require(isinstance(results, list), "fast-kernel per-GPU results are missing")
+    _require(
+        [item.get("gpu", {}).get("index") for item in results] == [0, 1, 2, 3],
+        "fast-kernel physical GPU indices changed",
+    )
+    uuids = [item["gpu"].get("uuid") for item in results]
+    _require(
+        all(isinstance(value, str) and value for value in uuids)
+        and len(set(uuids)) == 4,
+        "fast-kernel physical GPU identities are not distinct",
+    )
+    for item in results:
+        physical_index = item["gpu"]["index"]
+        probes = item.get("probes")
+        _require(isinstance(probes, dict), "fast-kernel probe set is missing")
+        for probe_name in (
+            "causal_fallback",
+            "gated_delta",
+            "qwen35_moe_hybrid_module",
+        ):
+            probe = probes.get(probe_name)
+            _require(
+                isinstance(probe, dict)
+                and probe.get("status") == "ok"
+                and probe.get("gpu", {}).get("physical_index") == physical_index
+                and probe.get("gpu", {}).get("worker_visible_index") == 0,
+                f"fast-kernel {probe_name} did not run on physical GPU {physical_index}",
+            )
+        hybrid = probes["qwen35_moe_hybrid_module"]
+        for sequence_length in (128, 2048):
+            benchmark = hybrid.get("benchmarks", {}).get(str(sequence_length))
+            _require(
+                isinstance(benchmark, dict),
+                f"fast-kernel seq-{sequence_length} benchmark is missing",
+            )
+            modes = {}
+            for mode in ("hybrid_training", "torch_reference"):
+                measured = benchmark.get(mode)
+                _require(
+                    isinstance(measured, dict),
+                    f"fast-kernel seq-{sequence_length} {mode} benchmark is missing",
+                )
+                checked = {}
+                for field in (
+                    "tokens_per_second",
+                    "milliseconds_per_iteration",
+                    "peak_allocated_bytes",
+                    "baseline_allocated_bytes",
+                    "peak_reserved_bytes",
+                    "baseline_reserved_bytes",
+                ):
+                    observed = measured.get(field)
+                    _require(
+                        isinstance(observed, (int, float))
+                        and not isinstance(observed, bool)
+                        and math.isfinite(float(observed))
+                        and observed >= 0,
+                        f"invalid fast-kernel benchmark field: {mode}.{field}",
+                    )
+                    checked[field] = float(observed)
+                _require(
+                    checked["tokens_per_second"] > 0
+                    and checked["milliseconds_per_iteration"] > 0
+                    and checked["peak_allocated_bytes"] > 0
+                    and checked["peak_reserved_bytes"] > 0
+                    and checked["peak_allocated_bytes"]
+                    >= checked["baseline_allocated_bytes"]
+                    and checked["peak_reserved_bytes"]
+                    >= checked["baseline_reserved_bytes"],
+                    f"inconsistent fast-kernel seq-{sequence_length} {mode} benchmark",
+                )
+                modes[mode] = checked
+            speedup = benchmark.get("hybrid_throughput_speedup")
+            memory_ratio = benchmark.get("hybrid_peak_allocated_bytes_ratio")
+            _require(
+                isinstance(speedup, (int, float))
+                and not isinstance(speedup, bool)
+                and math.isfinite(float(speedup))
+                and speedup > 0
+                and isinstance(memory_ratio, (int, float))
+                and not isinstance(memory_ratio, bool)
+                and math.isfinite(float(memory_ratio))
+                and memory_ratio > 0,
+                f"invalid fast-kernel seq-{sequence_length} derived ratios",
+            )
+            expected_speedup = (
+                modes["hybrid_training"]["tokens_per_second"]
+                / modes["torch_reference"]["tokens_per_second"]
+            )
+            expected_memory_ratio = (
+                modes["hybrid_training"]["peak_allocated_bytes"]
+                / modes["torch_reference"]["peak_allocated_bytes"]
+            )
+            _require(
+                math.isclose(float(speedup), expected_speedup, rel_tol=1e-12)
+                and math.isclose(
+                    float(memory_ratio), expected_memory_ratio, rel_tol=1e-12
+                ),
+                f"fast-kernel seq-{sequence_length} derived ratios are inconsistent",
+            )
+            if sequence_length == 2048:
+                _require(
+                    speedup >= 1.10 or memory_ratio <= 0.95,
+                    "fast-kernel seq-2048 material-improvement gate failed",
+                )
+    return {
+        "path": fast_contract.OUTPUT.relative_to(fast_contract.ROOT).as_posix(),
+        "file_sha256": fast_contract.file_sha256(fast_contract.OUTPUT),
+        "content_sha256": value["content_sha256_before_self_field"],
+        "selected": decision["selected"],
+        "selected_bindings": decision["selected_bindings"],
+        "all_four_physical_gpus_revalidated": True,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--sequence-length", type=int, default=128)
+    parser.add_argument("--sequence-length", type=int, default=2048)
     parser.add_argument("--routed-rank", type=int, choices=(2, 4), default=4)
     parser.add_argument("--shared-only", action="store_true")
     parser.add_argument("--seed", type=int, default=19021)
@@ -60,6 +211,7 @@ def main() -> None:
     torch.cuda.set_device(0)
     device_properties = torch.cuda.get_device_properties(0)
     _require(device_properties.major == 12, "expected Blackwell compute capability 12.0")
+    fast_policy_receipt = validate_fast_kernel_training_policy(fast_contract)
 
     started = time.perf_counter()
     model = AutoModelForCausalLM.from_pretrained(
@@ -74,8 +226,24 @@ def main() -> None:
     model.gradient_checkpointing_enable(
         gradient_checkpointing_kwargs={"use_reentrant": False}
     )
+    _require(model.config.use_cache is False, "KV cache was not disabled")
+    _require(
+        model.is_gradient_checkpointing is True,
+        "gradient checkpointing was not enabled",
+    )
+    _require(
+        not any(
+            name == "visual" or name.startswith(("visual.", "model.visual."))
+            for name, _ in model.named_modules()
+        ),
+        "text-only memory smoke unexpectedly instantiated vision modules",
+    )
     hybrid = fast_contract.apply_qwen35_moe_training_hybrid(model)
     _require(hybrid["matched_module_count"] == 30, "hybrid did not cover 30 linear-attention layers")
+    _require(
+        hybrid["bindings"] == fast_contract.HYBRID_TRAINING_BINDINGS,
+        "applied hybrid bindings differ from the sealed policy",
+    )
 
     architecture = expert_lora.load_architecture_contract()
     spec = (
@@ -161,6 +329,12 @@ def main() -> None:
             "target_count": scope["target_count"],
             "trainable_tensor_count": scope["trainable_tensor_count"],
             "trainable_elements": scope["trainable_elements"],
+        },
+        "runtime_contracts": {
+            "fast_linear_attention": fast_policy_receipt,
+            "vision_excluded_not_instantiated": True,
+            "gradient_checkpointing_observed_enabled": True,
+            "kv_cache_observed_disabled": True,
         },
         "measurement": {
             "loss": float(loss.detach().cpu()),

@@ -104,6 +104,13 @@ def test_installed_peft_attaches_both_fused_parameters_and_audits_exact_scope():
     assert audit["shared_target_count"] == 120
     assert audit["routed_target_count"] == 80
     assert audit["trainable_tensor_count"] == 400
+    assert all(row["dropout"] == 0.0 for row in audit["wrappers"])
+    assert all(row["scaling"] == 1.0 for row in audit["wrappers"])
+    assert all(row["active_and_unmerged"] is True for row in audit["wrappers"])
+    assert all(
+        row["bias"] is row["use_rslora"] is row["use_dora"] is False
+        for row in audit["wrappers"]
+    )
     assert {row["rank"] for row in audit["wrappers"] if row["kind"] == "shared_module"} == {16}
     assert {row["rank"] for row in audit["wrappers"] if row["kind"] == "routed_parameter"} == {4}
     routed_names = {row["target"] for row in audit["wrappers"] if row["kind"] == "routed_parameter"}
@@ -122,6 +129,36 @@ def test_shared_only_ablation_and_scope_violation_fail_closed():
 
     adapted.base_model.model.model.layers[0].mlp.experts.gate_up_proj.requires_grad_(True)
     with pytest.raises(RuntimeError, match="non-LoRA tensor"):
+        expert_lora.audit_postattach_scope(adapted, spec)
+
+
+def test_runtime_dropout_and_scaling_mutations_fail_closed():
+    spec = expert_lora.shared_only_spec_from_contract(_contract())
+    adapted = get_peft_model(TinyCausalLM(TinyConfig()), expert_lora.make_lora_config(spec))
+    wrapper = adapted.base_model.model.model.layers[0].mlp.shared_expert.gate_proj
+
+    wrapper.lora_dropout[expert_lora.ADAPTER_NAME] = nn.Dropout(p=0.1)
+    with pytest.raises(RuntimeError, match="dropout"):
+        expert_lora.audit_postattach_scope(adapted, spec)
+
+    wrapper.lora_dropout[expert_lora.ADAPTER_NAME] = nn.Identity()
+    wrapper.scaling[expert_lora.ADAPTER_NAME] = 2.0
+    with pytest.raises(RuntimeError, match="scaling"):
+        expert_lora.audit_postattach_scope(adapted, spec)
+
+
+def test_disabled_or_merged_runtime_adapter_fails_closed():
+    spec = expert_lora.shared_only_spec_from_contract(_contract())
+    adapted = get_peft_model(TinyCausalLM(TinyConfig()), expert_lora.make_lora_config(spec))
+    wrapper = adapted.base_model.model.model.layers[0].mlp.shared_expert.gate_proj
+
+    wrapper._disable_adapters = True
+    with pytest.raises(RuntimeError, match="disabled"):
+        expert_lora.audit_postattach_scope(adapted, spec)
+
+    wrapper._disable_adapters = False
+    wrapper.merged_adapters.append(expert_lora.ADAPTER_NAME)
+    with pytest.raises(RuntimeError, match="already merged"):
         expert_lora.audit_postattach_scope(adapted, spec)
 
 

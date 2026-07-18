@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -33,6 +34,41 @@ INPUTS = (
     ("gpu2_routed_r4_shared_r16_seq2048.json", 2, False, 4, 16, 235_601_920),
     ("gpu3_routed_r4_shared_r16_seq2048.json", 3, False, 4, 16, 235_601_920),
 )
+EXPECTED_GPU_NAME = "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition"
+EXPECTED_SCOPE_IDENTITIES = {
+    "gpu0_shared_r16_seq2048.json": {
+        "preattach_identity_sha256": (
+            "6d7f0e63723007d486ca8bfc32bf210df3f0f767cfa75369e0a05f0631d92cff"
+        ),
+        "postattach_identity_sha256": (
+            "b7a00e63ff6650c30c885b844a121e539ed3cc1d3040cfe9f74f8f4322143135"
+        ),
+    },
+    "gpu1_routed_r2_shared_r16_seq2048.json": {
+        "preattach_identity_sha256": (
+            "4bbd2cd5ff95f27c21bf588a69b4af68002e7c142aedc50fc2fc0da540e1df17"
+        ),
+        "postattach_identity_sha256": (
+            "9910b3175f5f3091276b5f4727a0343816566c8ba7bb5f2caa1c2ded5f4395c4"
+        ),
+    },
+    "gpu2_routed_r4_shared_r16_seq2048.json": {
+        "preattach_identity_sha256": (
+            "4bbd2cd5ff95f27c21bf588a69b4af68002e7c142aedc50fc2fc0da540e1df17"
+        ),
+        "postattach_identity_sha256": (
+            "b48b2eb00415213598a05b686ff8d2a3886a47121cc3f15a2c052174c631c45c"
+        ),
+    },
+    "gpu3_routed_r4_shared_r16_seq2048.json": {
+        "preattach_identity_sha256": (
+            "4bbd2cd5ff95f27c21bf588a69b4af68002e7c142aedc50fc2fc0da540e1df17"
+        ),
+        "postattach_identity_sha256": (
+            "b48b2eb00415213598a05b686ff8d2a3886a47121cc3f15a2c052174c631c45c"
+        ),
+    },
+}
 
 
 def canonical_sha256(value: Any) -> str:
@@ -75,7 +111,17 @@ def _validate_receipt(
     trainable_elements: int,
 ) -> dict:
     _require(path.is_file() and not path.is_symlink(), f"unsafe receipt: {path}")
-    value = json.loads(path.read_text(encoding="utf-8"))
+    def reject_duplicates(pairs):
+        result = {}
+        for key, item in pairs:
+            _require(key not in result, f"duplicate JSON key in receipt: {key}")
+            result[key] = item
+        return result
+
+    value = json.loads(
+        path.read_text(encoding="utf-8"),
+        object_pairs_hook=reject_duplicates,
+    )
     _require(isinstance(value, dict), f"receipt is not an object: {path}")
     _require(
         value.get("schema") == "qwen36-expert-lora-synthetic-memory-smoke-v1",
@@ -90,6 +136,7 @@ def _validate_receipt(
     }, f"receipt authority changed: {path}")
     gpu = value.get("gpu")
     _require(isinstance(gpu, dict), f"missing GPU receipt: {path}")
+    _require(gpu.get("name") == EXPECTED_GPU_NAME, f"wrong GPU model: {path}")
     _require(
         gpu.get("cuda_visible_devices") == str(gpu_index),
         f"wrong physical GPU assignment: {path}",
@@ -119,11 +166,17 @@ def _validate_receipt(
              f"target count changed: {path}")
     _require(scope.get("trainable_tensor_count") == (240 if shared_only else 400),
              f"trainable tensor count changed: {path}")
+    expected_identities = EXPECTED_SCOPE_IDENTITIES.get(path.name)
+    _require(expected_identities is not None, f"unknown memory-smoke receipt: {path}")
     for identity_name in ("preattach_identity_sha256", "postattach_identity_sha256"):
         _require(
             isinstance(scope.get(identity_name), str)
             and re.fullmatch(r"[0-9a-f]{64}", scope[identity_name]) is not None,
             f"invalid {identity_name}: {path}",
+        )
+        _require(
+            scope[identity_name] == expected_identities[identity_name],
+            f"unexpected {identity_name}: {path}",
         )
 
     measurement = value.get("measurement")
@@ -141,6 +194,22 @@ def _validate_receipt(
     _require(_finite_nonnegative(measurement.get("tokens_per_second"),
                                  "invalid throughput") > 0.0,
              f"nonpositive throughput: {path}")
+    _require(
+        _finite_nonnegative(
+            measurement.get("model_and_adapter_setup_seconds"),
+            "invalid model and adapter setup duration",
+        ) > 0.0,
+        f"nonpositive model and adapter setup duration: {path}",
+    )
+    _require(
+        math.isclose(
+            float(measurement["tokens_per_second"]),
+            configuration["sequence_length"] / float(measurement["step_seconds"]),
+            rel_tol=1e-9,
+            abs_tol=1e-9,
+        ),
+        f"throughput does not match sequence length and step duration: {path}",
+    )
     stages = {}
     for stage_name in ("after_setup", "after_backward", "after_step"):
         stage = measurement.get(stage_name)
@@ -156,7 +225,18 @@ def _validate_receipt(
                  f"reserved below allocated: {path}")
         _require(checked["peak_reserved_gib"] + 1e-9 >= checked["peak_allocated_gib"],
                  f"peak reserved below peak allocated: {path}")
+        _require(checked["peak_allocated_gib"] + 1e-9 >= checked["allocated_gib"],
+                 f"peak allocated below current allocated: {path}")
+        _require(checked["peak_reserved_gib"] + 1e-9 >= checked["reserved_gib"],
+                 f"peak reserved below current reserved: {path}")
         stages[stage_name] = checked
+    _require(
+        stages["after_step"]["peak_allocated_gib"] + 1e-9
+        >= stages["after_backward"]["peak_allocated_gib"]
+        and stages["after_step"]["peak_reserved_gib"] + 1e-9
+        >= stages["after_backward"]["peak_reserved_gib"],
+        f"post-step peak counters regressed: {path}",
+    )
     peak_reserved = max(stage["peak_reserved_gib"] for stage in stages.values())
     headroom = total - peak_reserved
     _require(headroom >= 8.0, f"less than 8 GiB operational headroom: {path}")

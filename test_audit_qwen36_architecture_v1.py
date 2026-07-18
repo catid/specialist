@@ -1,7 +1,9 @@
 import json
 from pathlib import Path
 import re
+import struct
 
+import pytest
 import audit_qwen36_architecture_v1 as audit
 
 
@@ -184,3 +186,85 @@ def test_target_manifest_contains_only_literal_complete_runtime_names():
     assert not any(any(char in name for char in "*[]()?$^|\\") for name in names)
     assert target["require_pre_attach_exact_set_equality"] is True
     assert target["require_post_attach_observed_exact_set_equality"] is True
+
+
+def _write_synthetic_safetensor(path: Path, header: bytes, data: bytes) -> None:
+    path.write_bytes(struct.pack("<Q", len(header)) + header + data)
+
+
+def test_synthetic_safetensor_header_accepts_exact_bounded_tensor(monkeypatch, tmp_path):
+    monkeypatch.setattr(audit, "MODEL_ROOT", tmp_path)
+    header = json.dumps({
+        "tensor": {"dtype": "BF16", "shape": [2], "data_offsets": [0, 4]}
+    }).encode("utf-8")
+    _write_synthetic_safetensor(tmp_path / "synthetic.safetensors", header, b"\0" * 4)
+    tensors, physical_bytes = audit._read_safetensor_headers({
+        "metadata": {"total_size": 4},
+        "weight_map": {"tensor": "synthetic.safetensors"},
+    })
+    assert tensors["tensor"]["logical_bytes"] == 4
+    assert physical_bytes == 8 + len(header) + 4
+
+
+@pytest.mark.parametrize(
+    ("header", "data", "total_size", "message"),
+    [
+        (
+            b'{"tensor":{"dtype":"BF16","shape":[2],"data_offsets":[0,4]},'
+            b'"tensor":{"dtype":"BF16","shape":[2],"data_offsets":[0,4]}}',
+            b"\0" * 4,
+            4,
+            "duplicate safetensor header key",
+        ),
+        (
+            json.dumps({
+                "tensor": {
+                    "dtype": "BF16", "shape": [2], "data_offsets": [0, 6]
+                }
+            }).encode("utf-8"),
+            b"\0" * 4,
+            6,
+            "invalid tensor metadata",
+        ),
+        (
+            json.dumps({
+                "tensor": {
+                    "dtype": "BF16", "shape": [2], "data_offsets": [0, 2]
+                }
+            }).encode("utf-8"),
+            b"\0" * 2,
+            2,
+            "tensor byte span does not match shape and dtype",
+        ),
+        (
+            json.dumps({
+                "left": {"dtype": "BF16", "shape": [2], "data_offsets": [0, 4]},
+                "right": {"dtype": "BF16", "shape": [2], "data_offsets": [2, 6]},
+            }).encode("utf-8"),
+            b"\0" * 6,
+            8,
+            "noncontiguous safetensor data spans",
+        ),
+        (
+            json.dumps({
+                "left": {"dtype": "BF16", "shape": [1], "data_offsets": [0, 2]},
+                "right": {"dtype": "BF16", "shape": [1], "data_offsets": [4, 6]},
+            }).encode("utf-8"),
+            b"\0" * 6,
+            4,
+            "noncontiguous safetensor data spans",
+        ),
+    ],
+)
+def test_synthetic_safetensor_header_rejects_unsafe_layouts(
+    monkeypatch, tmp_path, header, data, total_size, message
+):
+    monkeypatch.setattr(audit, "MODEL_ROOT", tmp_path)
+    _write_synthetic_safetensor(tmp_path / "synthetic.safetensors", header, data)
+    names = ["left", "right"] if b'"left"' in header else ["tensor"]
+    index = {
+        "metadata": {"total_size": total_size},
+        "weight_map": {name: "synthetic.safetensors" for name in names},
+    }
+    with pytest.raises(RuntimeError, match=message):
+        audit._read_safetensor_headers(index)

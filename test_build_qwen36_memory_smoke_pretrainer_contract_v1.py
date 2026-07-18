@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import copy
 import json
 
+import pytest
 import build_qwen36_memory_smoke_pretrainer_contract_v1 as contract
 
 
@@ -51,3 +53,54 @@ def test_receipts_remain_content_addressed_and_check_rebuild_is_exact():
         assert path.stat().st_size == item["artifact_bytes"]
         assert contract.file_sha256(path) == item["artifact_sha256"]
     assert contract.build() == value
+
+
+def _synthetic_receipt_copy() -> dict:
+    path = (
+        contract.INPUT_DIRECTORY / "gpu2_routed_r4_shared_r16_seq2048.json"
+    )
+    return copy.deepcopy(json.loads(path.read_text(encoding="utf-8")))
+
+
+def _validate_synthetic_copy(monkeypatch, tmp_path, value: dict) -> dict:
+    path = tmp_path / "gpu2_routed_r4_shared_r16_seq2048.json"
+    path.write_text(json.dumps(value), encoding="utf-8")
+    monkeypatch.setattr(contract, "ROOT", tmp_path)
+    return contract._validate_receipt(
+        path,
+        gpu_index=2,
+        shared_only=False,
+        routed_rank=4,
+        shared_rank=16,
+        trainable_elements=235_601_920,
+    )
+
+
+def test_receipt_rejects_wrong_gpu_model(monkeypatch, tmp_path):
+    value = _synthetic_receipt_copy()
+    value["gpu"]["name"] = "Synthetic Lookalike GPU"
+    with pytest.raises(RuntimeError, match="wrong GPU model"):
+        _validate_synthetic_copy(monkeypatch, tmp_path, value)
+
+
+def test_receipt_rejects_peak_memory_below_current_memory(monkeypatch, tmp_path):
+    value = _synthetic_receipt_copy()
+    stage = value["measurement"]["after_step"]
+    stage["peak_allocated_gib"] = 50.0
+    stage["peak_reserved_gib"] = 51.0
+    with pytest.raises(RuntimeError, match="peak allocated below current allocated"):
+        _validate_synthetic_copy(monkeypatch, tmp_path, value)
+
+
+def test_receipt_rejects_unbound_adapter_scope_identity(monkeypatch, tmp_path):
+    value = _synthetic_receipt_copy()
+    value["scope"]["postattach_identity_sha256"] = "0" * 64
+    with pytest.raises(RuntimeError, match="unexpected postattach_identity_sha256"):
+        _validate_synthetic_copy(monkeypatch, tmp_path, value)
+
+
+def test_receipt_rejects_internally_inconsistent_throughput(monkeypatch, tmp_path):
+    value = _synthetic_receipt_copy()
+    value["measurement"]["tokens_per_second"] *= 2
+    with pytest.raises(RuntimeError, match="throughput does not match"):
+        _validate_synthetic_copy(monkeypatch, tmp_path, value)

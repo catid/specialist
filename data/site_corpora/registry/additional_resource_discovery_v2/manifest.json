@@ -1,0 +1,70 @@
+{
+  "schema_version": "additional-resource-discovery-manifest-v2",
+  "created_at": "2026-07-18T00:00:00Z",
+  "status": "candidate_only_not_training_authority",
+  "search_provider": "Exa MCP exclusively",
+  "baseline_registry": {
+    "path": "data/site_corpora/registry/site_corpus_registry_v1.json",
+    "sha256": "633b191178ee378dcd058b56d2a58b7a76d6e05daad154a4eb93c619fc8ee06f",
+    "resource_count": 33
+  },
+  "baseline_v1_inventory": {
+    "candidates_path": "data/site_corpora/registry/additional_resource_discovery_v1/candidates.json",
+    "candidates_sha256": "92ae9fac5498e35ee520978786a2f0adc1c86c1d53f548bb61dd6e308a0df1c5",
+    "candidate_count": 32,
+    "report_path": "data/site_corpora/registry/additional_resource_discovery_v1/report.md",
+    "report_sha256": "7998068a7cf1e09bed54c76c1fdbffdee4cdad446b40076c9e9374da57a8a1a7",
+    "manifest_path": "data/site_corpora/registry/additional_resource_discovery_v1/manifest.json",
+    "manifest_sha256": "a4be0913b7980c909b166ba122c43a1604ae532de622b61e66e22bba7c64a38a"
+  },
+  "artifacts": [
+    {
+      "path": "data/site_corpora/registry/additional_resource_discovery_v2/candidates.json",
+      "sha256": "b959ab9582c6f337abb8386a02825a6fe21da574ccd8df559c586c7541f79753",
+      "candidate_count": 35,
+      "decision_counts": {
+        "collect": 10,
+        "manual-review": 18,
+        "reject": 7
+      },
+      "required_field_validation": "passed",
+      "candidate_id_uniqueness": "passed",
+      "canonical_url_uniqueness": "passed"
+    },
+    {
+      "path": "data/site_corpora/registry/additional_resource_discovery_v2/report.md",
+      "sha256": "87aeae6702195dbea0d47ba5819dabf8ce81b73e432b82ae6c01f29c3f029a6e"
+    }
+  ],
+  "gap_coverage": {
+    "indoor_hardpoint_design_and_evaluation": true,
+    "joists_steel_masonry_and_tension_compression": true,
+    "upline_and_mechanical_advantage": true,
+    "rope_construction_splicing_inspection_and_material_failure": true,
+    "position_related_nerve_and_circulation_risk": true,
+    "accessibility_and_adaptation": true,
+    "consent_and_privacy_preserving_incident_learning": true,
+    "primary_Japanese_people_lineage_and_history": true
+  },
+  "deduplication": {
+    "authoritative_registry_checked": true,
+    "v1_candidate_inventory_checked": true,
+    "exact_url_checked": true,
+    "domain_overlap_recorded": true,
+    "semantic_overlap_recorded": true,
+    "bibliographic_identity_checked": true,
+    "bibliographic_duplicate_rejected": "ardv2-reject-ndl-duplicate-taihojutsu-scan"
+  },
+  "negative_assertions": {
+    "bulk_or_recursive_source_crawl_performed": false,
+    "source_content_copied_into_corpus": false,
+    "authoritative_registry_modified": false,
+    "v1_inventory_modified": false,
+    "source_promoted": false,
+    "training_snapshot_modified": false,
+    "protected_or_terminal_data_read": false,
+    "source_disjoint_contract_modified": false,
+    "candidate_implies_training_eligibility": false
+  },
+  "promotion_gate": "A future task must independently resolve exact version, rights/license, terms/robots, component ownership, safety review, document-identity deduplication, attribution, bounded collection depth, and a fresh opaque source-disjoint contract before any collection, registry promotion, or training use."
+}

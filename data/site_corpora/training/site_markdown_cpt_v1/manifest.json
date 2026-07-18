@@ -8,7 +8,11 @@
     "registry_artifacts_accounted_for": 33
   },
   "assistant_supervision": false,
-  "content_sha256_before_self_field": "9e18a1bcc5d9df9fb35b6d5fe36cf2a4ca41ad04e66b50a05e60cf87c6483cd2",
+  "builder": {
+    "file_sha256": "776804e6845d59481fa8c2240fe5a67d9a43deb3d231afbff8283dd5993c4bac",
+    "path": "build_site_markdown_training_dataset_v1.py"
+  },
+  "content_sha256_before_self_field": "c11ae9a1833b8a259138e8747833a54bd7ff5f22907e2f6870fb1e9157fa04ed",
   "cross_document_packing": false,
   "emitted_chunk_tokens": 105326,
   "full_eligible_document_content_retained": true,
@@ -504,40 +508,124 @@
   "registry_path": "data/site_corpora/registry/site_corpus_registry_v1.json",
   "rights_blocked_documents": [
     {
+      "artifact_id": "canonical-markdown:crash_restraint",
       "available_tokens": 24764,
       "manifest_path": "data/site_corpora/crash_restraint/manifest.json",
       "markdown_path": "data/site_corpora/crash_restraint/crash_restraint.md",
       "promotion_gate": "rights_review_required_before_new_snapshot",
       "reason": "rights_promotion_gate_not_ready",
       "resource_id": "crash_restraint",
-      "rights_status": "legacy_manifest_gap"
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "Publicly accessible pages were transformed into an original fact-focused digest, but the legacy corpus manifest records no explicit reuse license or permission basis.",
+        "license": "not_recorded",
+        "limitations": [
+          "Public accessibility is not a copyright license.",
+          "Do not redistribute source prose, images, PDFs, or visual-only instructions from this registry record.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ],
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "status": "legacy_manifest_gap"
+      },
+      "rights_status": "legacy_manifest_gap",
+      "safety_transfer_flags": [
+        "medical_and_engineering_uncertainty_must_be_preserved",
+        "no_hardpoint_or_human_suspension_certification",
+        "source_specific_claims_require_attribution",
+        "visual_only_instruction_must_not_be_reconstructed"
+      ],
+      "source_document_group_id": "source-document-v1:2ff54b0c6a618c9d368932677a110ed1f05a0d12b5c84d620bdc65f7b1aeba6c",
+      "source_document_identity_sha256": "2ff54b0c6a618c9d368932677a110ed1f05a0d12b5c84d620bdc65f7b1aeba6c"
     },
     {
+      "artifact_id": "canonical-markdown:rope365",
       "available_tokens": 19168,
       "manifest_path": "data/site_corpora/rope365/manifest.json",
       "markdown_path": "data/site_corpora/rope365/rope365.md",
       "promotion_gate": "rights_review_required_before_new_snapshot",
       "reason": "rights_promotion_gate_not_ready",
       "resource_id": "rope365",
-      "rights_status": "legacy_manifest_gap"
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "Publicly accessible pages were transformed into an original dense digest, but the legacy corpus manifest records no explicit reuse license or permission basis.",
+        "license": "not_recorded",
+        "limitations": [
+          "Public accessibility is not a copyright license.",
+          "Do not redistribute source prose, images, video, or visual-only instructions from this registry record.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ],
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "status": "legacy_manifest_gap"
+      },
+      "rights_status": "legacy_manifest_gap",
+      "safety_transfer_flags": [
+        "anatomy_and_safety_claims_require_independent_review",
+        "practitioner_source_not_medical_or_engineering_authority",
+        "source_specific_claims_require_attribution",
+        "visual_only_instruction_must_not_be_reconstructed"
+      ],
+      "source_document_group_id": "source-document-v1:4b4349dc2944a3c611bac38d9766f78e296fa3f506770a7cbef1796a2d5337fe",
+      "source_document_identity_sha256": "4b4349dc2944a3c611bac38d9766f78e296fa3f506770a7cbef1796a2d5337fe"
     },
     {
+      "artifact_id": "canonical-markdown:rope_topia",
       "available_tokens": 2552,
       "manifest_path": "data/site_corpora/rope_topia/manifest.json",
       "markdown_path": "data/site_corpora/rope_topia/rope_topia.md",
       "promotion_gate": "rights_review_required_before_new_snapshot",
       "reason": "rights_promotion_gate_not_ready",
       "resource_id": "rope_topia",
-      "rights_status": "legacy_manifest_gap"
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The artifact is an original dense paraphrase of manually reviewed archived pages and verified successor copies, but the legacy manifest records no explicit corpus reuse license.",
+        "license": "not_recorded",
+        "limitations": [
+          "Internet Archive availability does not grant copyright permission.",
+          "Successor-page access does not authorize redistribution of source prose or media.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ],
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "status": "legacy_manifest_gap"
+      },
+      "rights_status": "legacy_manifest_gap",
+      "safety_transfer_flags": [
+        "archive_and_successor_provenance_must_be_preserved",
+        "historical_and_practitioner_claims_require_attribution",
+        "nonmedical_safety_articles_are_not_clinical_guidance",
+        "visual_only_instruction_must_not_be_reconstructed"
+      ],
+      "source_document_group_id": "source-document-v1:0609a34c3ccdeda59a7974cb439d5370f011ad487919f12c79838d3ad6996f07",
+      "source_document_identity_sha256": "0609a34c3ccdeda59a7974cb439d5370f011ad487919f12c79838d3ad6996f07"
     },
     {
+      "artifact_id": "canonical-markdown:shibari_atlas",
       "available_tokens": 1061134,
       "manifest_path": "data/site_corpora/shibari_atlas/manifest.json",
       "markdown_path": "data/site_corpora/shibari_atlas/shibari_atlas.md",
       "promotion_gate": "rights_review_required_before_new_snapshot",
       "reason": "rights_promotion_gate_not_ready",
       "resource_id": "shibari_atlas",
-      "rights_status": "legacy_manifest_gap"
+      "rights_basis": {
+        "attribution_required": true,
+        "basis": "The artifact is an original compressed digest and states that external reference pages were not copied, but the legacy corpus manifest records no explicit reuse license for the site's own text.",
+        "license": "not_recorded",
+        "limitations": [
+          "External source-catalogue metadata does not license the referenced works.",
+          "Do not redistribute site prose, images, graph assets, or external reference bodies from this registry record.",
+          "The registry inventories the declared artifact role and does not provide a legal opinion."
+        ],
+        "promotion_gate": "rights_review_required_before_new_snapshot",
+        "status": "legacy_manifest_gap"
+      },
+      "rights_status": "legacy_manifest_gap",
+      "safety_transfer_flags": [
+        "contested_history_and_aliases_require_provenance",
+        "external_reference_pages_must_not_be_imputed_or_copied",
+        "historical_lineage_and_identity_claims_require_source_attribution",
+        "not_a_technical_medical_or_suspension_certification"
+      ],
+      "source_document_group_id": "source-document-v1:4b1d423a3758f1973b04d00e41f4a5a72b78d69f289c20d3b9398becc9b5ae8a",
+      "source_document_identity_sha256": "4b1d423a3758f1973b04d00e41f4a5a72b78d69f289c20d3b9398becc9b5ae8a"
     }
   ],
   "schema": "site-markdown-cpt-training-snapshot-v1",

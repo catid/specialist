@@ -29,6 +29,9 @@ ROOT = Path(__file__).resolve().parent
 OUTPUT = (
     ROOT / "data/training_inventory/training_data_authority_v1.json"
 ).resolve()
+SOURCE_SPLIT_AUTHORITY = (
+    ROOT / "data/training_inventory/source_group_split_authority_v1.json"
+).resolve()
 
 REGISTRY = (
     ROOT / "data/site_corpora/registry/site_corpus_registry_v1.json"
@@ -66,7 +69,7 @@ V440_RUNTIME_REPORT = (
 V440_PROJECTION = (
     ROOT
     / "experiments/sft_controls/v53a_train_refresh_v440_fold3/train_projection_v440.jsonl"
-).resolve()
+)
 V440_ENCODING_SOURCE = (ROOT / "run_sft_train_only_control_v36a.py").resolve()
 
 PENDING_QA_REPORTS = (
@@ -247,7 +250,9 @@ def canonical_sha256(value: Any) -> str:
 
 
 def _assert_allowlisted(path: Path, *, json_input: bool) -> Path:
-    resolved = Path(path).resolve()
+    # Lexical normalization is deliberate: resolving a now-mixed pre-seal
+    # projection would itself cross the post-seal no-stat boundary.
+    resolved = Path(os.path.abspath(os.fspath(path)))
     allowed = _SAFE_JSON_INPUTS if json_input else _SAFE_NON_JSON_INPUTS
     if resolved not in allowed:
         raise RuntimeError(f"inventory input is not explicitly allowlisted: {resolved}")
@@ -316,7 +321,7 @@ def _validate_v440_authority_manifest(
     projection_path = projection["path"]
     if (
         not isinstance(projection_path, str)
-        or Path(projection_path).resolve() != V440_PROJECTION
+        or Path(os.path.abspath(projection_path)) != V440_PROJECTION
     ):
         raise RuntimeError("V440 manifest projection path changed")
     declared_sha256 = projection.get("sha256")
@@ -612,6 +617,25 @@ def _audit_v440_nonsemantic_fields(expected_rows: int) -> dict:
     projection = _assert_allowlisted(V440_PROJECTION, json_input=False)
     with projection.open("r", encoding="utf-8") as handle:
         return aggregate_nonsemantic_qa_identity_rows(handle, expected_rows)
+
+
+def _assert_preseal_inventory_rebuild_allowed() -> None:
+    """Forbid reopening the mixed projection once split sealing has occurred.
+
+    ``V440_PROJECTION`` was a permitted one-time pre-seal input.  After the
+    source-disjoint authority exists it can contain final-partition rows and
+    must never be opened again, even for a nominally nonsemantic inventory
+    audit.  Consumers must use the sealed train/development projections and
+    authority receipts instead.
+    """
+
+    if SOURCE_SPLIT_AUTHORITY.exists():
+        raise RuntimeError(
+            "legacy training-data inventory rebuild is forbidden after the "
+            "source-disjoint authority was sealed; consume "
+            "source_group_split_authority_v1.json and its materialized TRAIN "
+            "projection receipts"
+        )
 
 
 def _multipage_coverage() -> dict[str, dict]:
@@ -1149,6 +1173,7 @@ def _replay_anchor_inventory() -> tuple[list[dict], dict]:
 
 
 def construct() -> dict:
+    _assert_preseal_inventory_rebuild_allowed()
     markdown, policy_exclusions, markdown_summary = _markdown_inventory()
     qa, qa_summary = _qa_inventory()
     pending_qa, pending_summary = _pending_qa_inventory()

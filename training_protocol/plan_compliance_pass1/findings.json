@@ -1,0 +1,205 @@
+{
+  "schema": "qwen36-plan-compliance-bugfix-pass-v1",
+  "pass": 1,
+  "observed_at_utc": "2026-07-18",
+  "canonical_policy": {
+    "agents_path": "AGENTS.md",
+    "agents_sha256": "64f21e8f261cbedc51329fe67a3f9ee22ba115b577e732f06b48ffc148627e45",
+    "plan_path": "plan.md",
+    "plan_sha256": "e5914d04995f727320e52b6f9ffc4b0f144631584832b6ca95a13733aeb76498"
+  },
+  "scope": {
+    "beads_epic": "specialist-j59",
+    "execution_authorized": false,
+    "training_launched": false,
+    "eggroll_resumed": false,
+    "protected_or_semantic_evaluation_item_opened": false,
+    "named_development_preregistration_manifest_read": true,
+    "excluded_edit_paths": [
+      "build_mixed_training_snapshot_v1.py",
+      "qwen36_mixed_training_runtime_v1.py",
+      "train_qwen36_low_regression_sft_v1.py",
+      "test_train_qwen36_low_regression_sft_v1.py",
+      "active semantic-judge sources and outputs",
+      "protected and evaluation content"
+    ]
+  },
+  "findings": [
+    {
+      "id": "specialist-j59.24",
+      "severity": "high",
+      "status": "fixed_and_closed",
+      "title": "Trainer programmatic CLI and routing-metric correctness",
+      "evidence": [
+        "Programmatic main previously depended on a script-local re import.",
+        "Routing entropy previously described selected top-k conditional entropy rather than the full 256-expert distribution.",
+        "Routing hooks previously remained enabled during gradient-checkpoint backward recomputation.",
+        "The repaired trainer imports re at module scope, records full 256-expert entropy separately from selected-top-k entropy, and pauses routing capture during checkpoint recomputation."
+      ],
+      "ownership": "Root repaired the concurrently owned trainer; pass 1 did not edit those files.",
+      "validation": {
+        "trainer_path": "train_qwen36_low_regression_sft_v1.py",
+        "trainer_sha256": "64b1793859959865d157e529890cadd80fb5678a758f6dd8b581d7c38022a929",
+        "test_path": "test_train_qwen36_low_regression_sft_v1.py",
+        "test_sha256": "dbaf6fae616f044b9e8f6e1f15fa29204ea4d0fb9dbbe171227cd6bed688378f",
+        "focused_test_command": ".venv/bin/python -m pytest -q test_train_qwen36_low_regression_sft_v1.py",
+        "focused_test_result": "11 passed"
+      }
+    },
+    {
+      "id": "specialist-j59.25",
+      "severity": "high",
+      "status": "fixed_and_closed",
+      "title": "Post-attach LoRA scope audit omitted runtime behavior",
+      "affected_files": [
+        "qwen36_expert_lora_v1.py",
+        "build_qwen36_expert_lora_attachment_contract_v1.py",
+        "test_qwen36_expert_lora_v1.py",
+        "training_protocol/qwen36_expert_lora_attachment_contract_v1.json"
+      ],
+      "before": "Exact targets, rank, alpha, and trainable IDs could pass while dropout/scaling/adapter enablement or merge state was mutated.",
+      "after": "Every wrapper must use zero/Identity dropout, bias false, RSLoRA false, DoRA false, exact classic alpha/rank scaling, requested adapter active and enabled, and unmerged state.",
+      "validation": {
+        "focused_test_command": ".venv/bin/python -m pytest -q test_qwen36_expert_lora_v1.py",
+        "focused_test_result": "6 passed",
+        "contract_check_command": ".venv/bin/python build_qwen36_expert_lora_attachment_contract_v1.py --check",
+        "contract_check_result": "pass",
+        "expected_intermediate_failure": "RuntimeError: attachment contract changed before regeneration",
+        "contract_file_sha256": "f20ff4eeb40b8646785abc4c7a042ce9b6cb3c98a85ffd9afa561cf86c8a36c0",
+        "contract_content_sha256": "d734cf70bd0b36f56b7ea5aec3f4aad9a714e0ef4f3b89d5c573e22d1926b9db"
+      }
+    },
+    {
+      "id": "specialist-j59.27",
+      "severity": "medium",
+      "status": "fixed_and_closed",
+      "title": "Aggregate routing-metrics run artifact",
+      "before": "The trainer streamed routing_metrics.jsonl without the plan-required content-addressed run summary/receipt.",
+      "after": "The trainer emits a self-addressed routing_metrics.json, binds its file/content hashes into run_result, and proves the JSONL hash, exact interval step/cursor coverage, exact 40-layer inventory, top-8 assignment accounting, finite entropy ranges, and deterministic token-weighted aggregates.",
+      "validation": "Covered by the 11-test synthetic trainer suite, including disabled routing, multiple intervals, malformed layer inventory, and wrong step coverage."
+    },
+    {
+      "id": "specialist-j59.28",
+      "severity": "high",
+      "status": "fixed_and_closed",
+      "title": "Valid PEFT adapter-only resume was rejected",
+      "before": "The trainer rejected normal frozen-base missing_keys returned while restoring an adapter-only PEFT checkpoint, so every valid resume failed before optimizer, scheduler, and RNG restoration.",
+      "after": "The restore permits normal frozen-base omissions, rejects unexpected or missing LoRA keys, requires the normalized adapter key inventory to match exactly, and compares every restored tensor's shape, dtype, and value.",
+      "validation": "Covered by the 11-test synthetic trainer suite with both a valid exact round trip and an incomplete-adapter rejection."
+    },
+    {
+      "id": "specialist-j59.29",
+      "discovery_pass": "later_independent_pass",
+      "severity": "blocking",
+      "status": "open",
+      "title": "Fast-linear selector does not fail closed on all sealed-evidence mutations",
+      "evidence": "The canonical selector can retain hybrid_training after GPU architecture-baseline drift, a successful worker probe is bound to the wrong physical GPU, or benchmark timings/ratios have invalid negative semantics.",
+      "required_fix": "Validate the exact four-GPU outer/inner identity binding and finite nonnegative benchmark inputs before applying material-improvement logic; reseal the content-addressed contract with adversarial synthetic tests."
+    },
+    {
+      "id": "specialist-j59.30",
+      "discovery_pass": "later_independent_pass",
+      "severity": "medium",
+      "status": "fixed_and_closed",
+      "title": "Out-of-vocabulary IDs were accepted until model execution",
+      "before": "The immutable mixed-snapshot reader enforced nonnegative token IDs but not the Qwen3.6 vocabulary upper bound.",
+      "after": "Every input ID must be in [0, 248320), so malformed rows fail before model loading; exact label rules remain unchanged.",
+      "validation": "A focused synthetic adversarial row covers the upper-bound failure."
+    },
+    {
+      "id": "specialist-j59.31",
+      "discovery_pass": "later_independent_pass",
+      "severity": "blocking",
+      "status": "fixed_and_closed",
+      "title": "Architecture audit accepts malformed safetensor header layouts",
+      "before": "The checkpoint audit lacked fail-closed duplicate-key/non-finite JSON parsing and exact dtype-width, shape-derived span, file-bound, contiguous nonoverlap, and index total-size validation.",
+      "after": "The architecture audit now enforces all of those invariants, rejects gaps/overlap/trailing bytes, writes atomically, and retains the exact sealed architecture contract.",
+      "validation": "Five adversarial synthetic header layouts and the real contract --check pass without reading tensor weight payloads."
+    },
+    {
+      "id": "specialist-j59.32",
+      "discovery_pass": "later_independent_pass",
+      "severity": "blocking",
+      "status": "fixed_and_closed",
+      "title": "Memory-smoke prerequisite receipts and hybrid binding are not fully fail closed",
+      "before": "Pretrainer receipt validation accepted arbitrary well-formed adapter identities and inconsistent peak/current counters, while the smoke path lacked complete binding to the current sealed hybrid contract.",
+      "after": "Receipts now bind exact GPU and adapter identities, enforce peak/current and throughput/time invariants and duplicate-key rejection, default to 2,048 tokens, and revalidate current sealed package/source/hardware/probe/benchmark/runtime prerequisites before hybrid mutation.",
+      "validation": "Architecture, attachment, memory, and fast contract checks pass; the later-pass focused combined suite reports 33 passed."
+    },
+    {
+      "id": "specialist-j59.33",
+      "discovery_pass": "later_independent_pass",
+      "severity": "blocking",
+      "status": "in_progress",
+      "title": "Training authorities need a complete Qwen3.6 tokenizability audit",
+      "evidence": "The current runtime upper-bound fix prevents out-of-vocabulary execution, but the complete eligible training pool still needs strict UTF-8/text, encoding, ID-bound, lossless round-trip, reserved-control-token, official chat-template/masking, and unsplittable 2,048-token validation.",
+      "required_fix": "Use an explicitly scoped nonprotected authority inventory, manually repair each finding with lineage receipts, rebuild affected authorities, and seal a deterministic zero-failure --check."
+    },
+    {
+      "id": "specialist-j59.34",
+      "discovery_pass": "later_independent_pass",
+      "severity": "blocking",
+      "status": "open",
+      "title": "357 seed-QA rows lack semantic correctness authority",
+      "evidence": "All 357 previously admitted seed rows, totaling 9,153 assistant tokens, explicitly state that semantic verification is required; source lineage, rights, hashes, and generated-domain receipts do not establish answer correctness. The assembler/runtime now fail closed and admit zero unresolved seed rows.",
+      "required_fix": "Seal per-row correctness decisions, repair or exclude bad/unresolved records, add verified source-disjoint replacements as needed, and bind the authority so the final domain-QA budget is exactly 750,000 tokens with zero unresolved seeds."
+    },
+    {
+      "id": "specialist-j59.35",
+      "discovery_pass": "later_independent_pass",
+      "severity": "blocking",
+      "status": "open",
+      "title": "Plan section 19 dataset and run-artifact contract is incomplete",
+      "evidence": "Typed segments preserve substantial metadata, but variant/top manifests and run results do not yet expose a single fail-closed contract covering every prescribed segment field and required content-addressed run artifact.",
+      "required_fix": "Seal exact per-segment metadata derivations and required run-artifact schemas/receipts; missing, duplicate, ambiguous, forged, or stale entries must block launch."
+    },
+    {
+      "id": "gate-generated-domain-authority",
+      "severity": "blocking",
+      "status": "known_blocker",
+      "beads_task": "specialist-j59.5",
+      "evidence": "The historical provisional manifest reported a 740,847-token generated shortfall; after fail-closing all 357 unresolved seed rows, the domain-QA authority must cover the full exact 750,000 assistant-token budget. No training sequence is launch-authorized."
+    },
+    {
+      "id": "gate-source-disjoint-extension",
+      "severity": "blocking",
+      "status": "known_blocker",
+      "beads_task": "specialist-j59.7",
+      "evidence": "A fresh opaque source-disjoint extension covering the final selected bytes is required before the mixed snapshot can authorize launch."
+    },
+    {
+      "id": "gate-base-development-baseline",
+      "severity": "blocking",
+      "status": "known_blocker",
+      "beads_task": "specialist-j59.8",
+      "evidence": "The preregistration is sealed, but the base-model baseline artifact remains response_generation_pending."
+    },
+    {
+      "id": "gate-final-trainer-smoke",
+      "severity": "blocking",
+      "status": "known_blocker",
+      "beads_task": "specialist-j59.10",
+      "evidence": "Pretrainer one-step memory receipts pass, but exact final mixed-trainer multi-step stability, fragmentation, checkpoint/resume, and vision-exclusion proof remain pending."
+    }
+  ],
+  "focused_validation_policy": {
+    "broad_test_selection_run": false,
+    "synthetic_fixture_inspected_before_test": true,
+    "real_holdout_or_terminal_runner_invoked": false,
+    "gpu_used": false,
+    "independently_rerun": [
+      {
+        "command": ".venv/bin/python -m pytest -q test_qwen36_expert_lora_v1.py",
+        "result": "6 passed"
+      },
+      {
+        "command": ".venv/bin/python -m pytest -q test_train_qwen36_low_regression_sft_v1.py",
+        "result": "11 passed"
+      }
+    ],
+    "owner_reported_combined_synthetic_validation": {
+      "command": ".venv/bin/python -m pytest -q test_high_information_train_projection_binding_v1.py test_site_markdown_input_firewall_v1.py test_build_mixed_training_snapshot_v1.py test_qwen36_mixed_training_runtime_v1.py test_full_train_markdown_cpt_v1.py test_build_general_replay_final_authority_v1.py test_general_replay_v1.py::test_candidate_request_validator_rejects_forged_or_ambiguous_lineage test_general_replay_v1.py::test_candidate_lineage_digest_verification_and_assistant_only_row test_general_replay_v1.py::test_exhaustive_verification_retains_alternatives_for_group_selection test_general_replay_v1.py::test_safe_input_firewall_rejects_lexical_alias_and_hardlink_paths test_training_data_authority_inventory_v1.py::test_postseal_build_check_refuses_before_any_legacy_input_read test_training_data_authority_inventory_v1.py::test_preseal_guard_is_synthetic_and_allows_absent_authority test_qwen_chat_masking_v1.py::test_template_prefix_mismatch_fails_closed",
+      "result": "64 passed, 2 warnings in 2.12s"
+    }
+  }
+}

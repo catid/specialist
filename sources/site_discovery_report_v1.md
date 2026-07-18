@@ -2,8 +2,8 @@
 
 Initial review at: 2026-07-16T06:04:06Z
 Initial batch: `discovery_batch_001`
-Latest review at: 2026-07-16T20:11:48Z
-Latest batch: `discovery_batch_031`
+Latest review at: 2026-07-16T20:36:42Z
+Latest batch: `discovery_batch_032`
 
 ## Outcome
 
@@ -476,6 +476,108 @@ benchmark, probe, unrelated corpus body or unrelated repository artifact was
 read. No login, purchase, robots rule, challenge, HTTP 403, archive, mirror,
 cache or snippet reconstruction was bypassed, and no source body entered a
 training artifact during discovery.
+
+## Discovery batch 032 outcome
+
+`discovery_batch_032` manually reviewed 20 exact-new source identities after
+canonical URL, title, creator, institution, work, document and source-identity
+deduplication. It records 0 `accept_high_priority`, 1
+`accept_targeted_scope`, 11 `defer`, and 8 `reject` decisions. The one
+rights-clear, fact-bounded source expands the canonical Markdown queue from
+186 to 187 resources; the discovery ledger grows from 380 to 400 records.
+
+This batch adds an open Japanese practitioner-publication metadata dossier and
+maps future permission work around consent-based performance, intimacy
+coordination, Black queer trans rope performance, contextual prerequisites,
+two-sided pedagogy, neurodivergent learning environments, adaptive Gote,
+oral history and non-photographic rope art. It also records strong negative
+controls for breath restriction, compression, medical timing, circulation
+rules, universal body fit, absolute safety, commercial origin stories and
+syllabus-to-instruction inference.
+
+### Newly accepted source
+
+| Source | Decision | Score | Exact useful scope and boundary |
+|---|---|---:|---|
+| [NDL practitioner-publication metadata set](https://ndlsearch.ndl.go.jp/books/R100000002-I025938237) | `accept_targeted_scope` | 25 | Four exact NDL-created records support one attributed bibliographic dossier for publications associated in their titles or catalog responsibility with Naka Akira, Yukimura Haruki and Norio Sugiura. The record must preserve that Junko Takahashi—not Yukimura—is cataloged as author of the 1998 Yukimura-titled work and distinguish Sugiura's photography responsibility from authorship. Books, DVDs, covers, images, contents, prices, commerce, third-party provider data and every inference about technique, safety, teaching, models, influence or lineage are excluded. ISBNs, call numbers, IDs and URLs remain provenance controls, never questions. |
+
+### Permission-, access-, component-, or expert-review-gated references
+
+| Source | Score | Why it remains reference-only |
+|---|---:|---|
+| [The Rope Collective Code of Ethics](https://www.theropecollective.com/codeofethics) | 21 | Its rope-specific negotiation, nonverbal-stop, vetting, aftercare and organizer-response practices are useful, but the footer explicitly says all rights reserved and unavailable for redistribution or reuse. Commercial derivative training permission is required, and venue practices must not become universal law or proof of safety. |
+| [Unbounded Shibari neurodivergent rope lab](https://heyplura.com/events/unbounded-shibari-a-rope-lab-for-neurodivergent-c) | 21 | The third-party listing offers unusually concrete quiet/social/practice zones, a regulation break, scent reduction, access-assistant and adaptive-feedback ideas. Author, organizer and platform rights are unclear; dates, prices, identities and unsafe synthetic-upline or suspension generalizations are excluded. |
+| [Oblige adaptive Gote workshop outline](https://www.obligerope.org/gote-workshop) | 15 | Split-cuff, hypermobility and bottom-roundtable leads merit a permission request, but the commercial syllabus is not the class. Complete text material and qualified anatomy/suspension review are required; “fit any body safely,” compression, placement, tension, extra-rope and under-load claims cannot be inferred. |
+| [Journal of Consent-Based Performance](https://journals.calstate.edu/jcbp/) | 37 | The specialist archive could improve consent, agency, pedagogy and performance-media coverage, but the official host returned HTTP 403 and was not bypassed. Reported CC BY-NC licensing does not allow commercial training; each article and component needs ordinary access, exact review and permission. |
+| [Consent work in intimacy coordination and adult content creation](https://escholarship.org/uc/item/0cg029hx) | 39 | Pennington's qualitative comparison of communication, negotiation and boundary setting is highly relevant, but CC BY-NC-ND forbids commercial derivatives. Permission and aggregate-only treatment are required; participant profiles, quotations, intimate production detail and universal-framework claims are excluded. |
+| [Sur Sanford: Running Ends](https://cdeconference.ucr.edu/presenters-performers/) | 31 | The UCR abstract adds a rare first-person Black queer trans practitioner-scholar performance perspective. Artist and university permission plus privacy minimization are required; one abstract cannot become generalized identity, history, technique, consent or safety evidence. |
+| [Daruma Berlin levels and prerequisites](https://www.daruma.berlin/levels) | 26 | Contextual levels, topic-specific prerequisites, floorwork as its own practice and paired tying/bottoming pedagogy are valuable. Ordinary copyright applies, and Daruma's labels, suspension pathway, access logistics and commerce must not become universal certification or readiness rules. |
+| [Graydancer's Ropecast](https://sites.libsyn.com/18155) | 27 | The long-running podcast may contain important oral history, but Libsyn returned HTTP 403 and was not bypassed. Creator, host, guest, recording, transcript, music and sponsor rights require episode-by-episode clearance; sensitive personal content and unreviewed technique stay excluded. |
+| [Luke George rope performance archive](https://www.lukegeorge.net/works/bunny) | 31 | Artist statements connect rope with desire, trust, consent, communion, tension and release, but the works combine many artist, participant, photographer, reviewer, presenter and commissioner rights. Images, video, quoted reviews, audience-participation reconstruction and suspension inference are excluded pending granular permission. |
+| [Emancipate Me Harder!](https://dalspaceb.library.dal.ca/server/api/core/bitstreams/5ce638f3-f9f3-4dff-9585-f9f6f7f8b3dd/content) | 28 | The 2025 MSW thesis contributes a small empirical view of contextual safety, consent practices and media representation, but is copyrighted and samples six positively selected Canadian professional practitioners. Author, participant and component permission plus claim-level review are required; interviews, therapeutic efficacy, legal advice and weak lineage transfer are excluded. |
+| [Maria Koshenkova: Folded Shapes](https://www.mariakoshenkova.com/folded-shapes) | 22 | A first-person translation of rope, restraint/release and modelling experience into glass sculpture is distinct, but copyright, collaborator and image rights require permission. Artist intention stays attributed; visual inference, reenactment, technique, safety and cultural generalization are excluded. |
+
+### Rejected sources
+
+| Source | Score | Why it was rejected |
+|---|---:|---|
+| [Natalie Rose class list](https://www.natalieroserope.com/courses) | 19 | Rare larger-body, mobility and gender-affirming themes are embedded in promotional syllabi, not lessons, beside breath restriction, compression, hair rope, extreme asymmetry, dynamic suspension, universal-fit and unsupported secure/safe/nerve-pressure claims. Permission would not cure the evidence and safety contamination. |
+| [Rope and Twine Information (1917)](https://www.loc.gov/item/17029161/) | 7 | The Library of Congress clearly marks the work public domain, but it is an obsolete vendor sales manual dominated by brand persuasion, industrial customers and highly duplicated historical cordage material. Public-domain status does not create current fact value. |
+| [Bondash beginner rope site](https://bondash.com/bondage-safety) | 11 | Anonymous provenance, weak or circular people/history sources and unsupported two-minute wake-up, thirty-minute circulation, two-finger, petechiae, symptom-binary and fainting rules make the site dangerous training contamination. |
+| [Fetish.com Japanese bondage history](https://www.fetish.com/magazine/bdsm/history-japanese-rope-bondage/) | 2 | Commercial lifestyle copy presents an essentialized East/West story, fixed Hojōjutsu rules, unsupported dates, an unsuspecting performance volunteer and context-free knot/tie lists. It is weaker than queued source-critical history and unsafe as instruction. |
+| [That Rope Place Singapore](https://www.thatropeplace.com/) | 3 | Its queer-focused, female-owned Singapore identity is a useful regional lead, but the homepage is almost entirely shop, ratings, prices, tickets and events with no durable instructional body or open license. |
+| [AASECT rope CE listing](https://www.aasect.org/when-clients-want-try-rope-what-therapists-and-educators-should-know-about-shibari-consent-and) | 12 | A professional association documents that a 2026 course occurred, but the page is only third-party event advertising: no slides, recording, citations, transcript or demonstration body. CE approval does not validate every advertised claim or make clinicians rope advisers. |
+| [Newcastle Shibari](https://www.newcastleshibari.com.au/) | 8 | The current page offers a consent-navigation synopsis and bottom perspective but is a volatile commercial syllabus, calendar, membership and shop surface. Class descriptions, internal levels and self-described lineage cannot become instruction, certification or verified history. |
+| [Laneway Learning Fundamental Rope Bondage](https://www.lanewaylearning.com/melbourne/classes/fundamental-rope-bondage/) | 1 | Terms prohibit adaptation, storage and derivatives; the page contains no class body and calls the workshop “totally safe,” while the platform states teachers are not necessarily professionally trained. Thin marketing and absolute safety framing independently fail. |
+
+### Batch 032 rights, privacy, safety, and fact-value controls
+
+NDL's unrestricted-purpose grant applies only to NDL-created bibliographic
+data, not the publications, DVDs, images, linked bookstores or provider data.
+Responsibility labels are preserved exactly: a title containing a
+practitioner's name does not make that practitioner the author, and a
+photography credit is not silently broadened into authorship or lineage.
+
+CC BY-NC and CC BY-NC-ND do not authorize commercial transformed training.
+Repository deposit, public event copy, a conference abstract, a podcast feed,
+an artist archive and a commercial syllabus likewise do not clear author,
+participant, guest, translator, image, recording, performance, reviewer or
+third-party rights. HTTP 403 responses at JCBP and Libsyn were honored without
+cache, mirror, alternate-agent or archive bypass.
+
+Public first-person identity and testimony were not converted into profile
+trivia. Black, queer, trans, nonbinary, disabled, neurodivergent, larger-body,
+professional sex-work and BDSM participant perspectives remain attributed,
+privacy-minimized and non-universal. Pseudonyms, demographics, relationship,
+health, contact, location and intimate detail are excluded unless essential,
+cleared and independently justified.
+
+A syllabus is not the class, a title is not a fact body, a venue policy is not
+law, CE approval is not claim validation and public-domain status does not cure
+obsolescence or vendor bias. The batch explicitly blocks universal safe fit,
+absolute safety, breath restriction, compression, fixed circulation duration,
+two-finger fit, symptom binaries, delayed emergency thresholds, unreviewed
+uplines, synthetic-rope generalizations and visual or performance
+reconstruction. No knot, tie, body placement, tension, load, medical or
+suspension instruction was derived from marketing, images, audio or video.
+
+Titles, dates, DOIs, record IDs, ISBNs, call numbers, dimensions, page counts,
+episode numbers, class levels, addresses and URLs are provenance controls, not
+question targets. Deferred records exist to manage access, permission,
+evidence and component rights; they do not seed QA or training facts.
+
+### Batch 032 access and clean-room statement
+
+The source worker read only the governing discovery ledger, queue, report,
+registry and tests plus exact public first-party, institutional, repository,
+publisher, journal, museum, library, artist, venue and event pages and their
+rights, access and robots notices. No QA, trainer, projection, evaluation,
+heldout, holdout, OOD, shadow, benchmark, probe, experiment, existing corpus
+body or unrelated repository artifact was read. No login, purchase,
+membership, paywall, challenge, certificate, cache, alternate user agent or
+archive-service bypass was used. Restricted media were not copied, visual or
+audio instructions were not reconstructed, and no source body, transcript,
+audio, video or image entered a training artifact during discovery.
 
 
 ## Discovery batch 006 outcome

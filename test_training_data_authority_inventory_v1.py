@@ -50,8 +50,22 @@ def test_checked_inventory_resolves_authorities_without_double_counting():
     assert value["invariants"]["legacy_and_v440_qa_concatenated"] is False
 
 
-def test_build_check_reconstructs_exact_inventory_and_all_input_receipts():
-    assert inventory.build(check=True) == _checked_inventory()
+def test_postseal_build_check_refuses_before_any_legacy_input_read(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    authority = tmp_path / "synthetic_source_split_authority.json"
+    authority.write_text("{}\n", encoding="utf-8")
+    monkeypatch.setattr(inventory, "SOURCE_SPLIT_AUTHORITY", authority)
+    monkeypatch.setattr(
+        inventory,
+        "_markdown_inventory",
+        lambda: (_ for _ in ()).throw(AssertionError("legacy input opened")),
+    )
+    with pytest.raises(RuntimeError, match="forbidden after.*sealed"):
+        inventory.build(check=True)
+
+
+def test_checked_legacy_receipts_remain_content_addressed_metadata():
     receipts = {
         item["path"]: item["file_sha256"]
         for item in _checked_inventory()["safe_input_receipts"]
@@ -61,9 +75,19 @@ def test_build_check_reconstructs_exact_inventory_and_all_input_receipts():
         path.relative_to(inventory.ROOT).as_posix() for path in all_safe_inputs
     }
     for path in inventory._SAFE_NON_JSON_INPUTS:
-        assert receipts[path.relative_to(inventory.ROOT).as_posix()] == (
-            inventory.file_sha256(path)
-        )
+        # The stored legacy receipt remains inspectable, but post-seal tests
+        # must never reopen or hash the mixed V440 projection it describes.
+        digest = receipts[path.relative_to(inventory.ROOT).as_posix()]
+        assert isinstance(digest, str) and len(digest) == 64
+        assert set(digest) <= set("0123456789abcdef")
+
+
+def test_preseal_guard_is_synthetic_and_allows_absent_authority(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    absent = tmp_path / "synthetic_source_split_authority.json"
+    monkeypatch.setattr(inventory, "SOURCE_SPLIT_AUTHORITY", absent)
+    inventory._assert_preseal_inventory_rebuild_allowed()
 
 
 @pytest.mark.parametrize(

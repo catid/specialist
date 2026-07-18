@@ -16,12 +16,14 @@ import hashlib
 import importlib
 import inspect
 import json
+import math
 import os
 import platform
 import re
 import struct
 import subprocess
 import sys
+import tempfile
 from collections import Counter
 from importlib import metadata
 from pathlib import Path
@@ -65,6 +67,24 @@ PACKAGE_PINS = (
     "ninja",
 )
 
+SAFETENSOR_DTYPE_BYTES = {
+    "BOOL": 1,
+    "U8": 1,
+    "I8": 1,
+    "F8_E4M3": 1,
+    "F8_E5M2": 1,
+    "I16": 2,
+    "U16": 2,
+    "F16": 2,
+    "BF16": 2,
+    "I32": 4,
+    "U32": 4,
+    "F32": 4,
+    "I64": 8,
+    "U64": 8,
+    "F64": 8,
+}
+
 
 def _require(condition: bool, message: str) -> None:
     if not condition:
@@ -89,6 +109,22 @@ def _file_sha256(path: Path) -> str:
         for chunk in iter(lambda: source.read(1 << 20), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _atomic_write(path: Path, payload: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", dir=path.parent
+    )
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary_name, path)
+    finally:
+        if os.path.exists(temporary_name):
+            os.unlink(temporary_name)
 
 
 def _canonical_sha256(value: Any) -> str:
@@ -241,6 +277,23 @@ def _read_safetensor_headers(
 ) -> tuple[dict[str, dict[str, Any]], int]:
     weight_map = index.get("weight_map")
     _require(isinstance(weight_map, dict) and weight_map, "checkpoint weight map missing")
+    _require(
+        all(isinstance(name, str) and name for name in weight_map)
+        and all(isinstance(name, str) and name for name in weight_map.values()),
+        "checkpoint weight map names must be nonempty strings",
+    )
+    metadata = index.get("metadata")
+    _require(isinstance(metadata, dict), "checkpoint index metadata missing")
+    raw_total_size = metadata.get("total_size")
+    _require(
+        isinstance(raw_total_size, (int, float))
+        and not isinstance(raw_total_size, bool)
+        and math.isfinite(float(raw_total_size))
+        and float(raw_total_size).is_integer()
+        and 0 <= raw_total_size <= 2**53,
+        "checkpoint total_size is invalid",
+    )
+    declared_total_size = int(raw_total_size)
     filenames = sorted(set(weight_map.values()))
     tensors: dict[str, dict[str, Any]] = {}
     physical_bytes = 0
@@ -261,32 +314,94 @@ def _read_safetensor_headers(
             _require(0 < header_length < (64 << 20), f"unsafe header length: {path}")
             payload = source.read(header_length)
             _require(len(payload) == header_length, f"truncated header: {path}")
-        header = json.loads(payload)
+        data_length = path.stat().st_size - 8 - header_length
+        _require(data_length >= 0, f"negative safetensor data length: {path}")
+
+        def reject_header_duplicates(pairs):
+            result = {}
+            for key, value in pairs:
+                _require(
+                    key not in result,
+                    f"duplicate safetensor header key in {path}: {key}",
+                )
+                result[key] = value
+            return result
+
+        try:
+            header = json.loads(
+                payload,
+                object_pairs_hook=reject_header_duplicates,
+                parse_constant=lambda value: (_ for _ in ()).throw(
+                    ValueError(f"non-finite JSON constant: {value}")
+                ),
+            )
+        except (UnicodeDecodeError, json.JSONDecodeError, ValueError) as error:
+            raise RuntimeError(f"invalid safetensor header JSON: {path}") from error
         _require(isinstance(header, dict), f"invalid safetensor header: {path}")
+        intervals = []
         for name, item in header.items():
             if name == "__metadata__":
+                _require(isinstance(item, dict), f"invalid safetensor metadata: {path}")
                 continue
             _require(name not in tensors, f"duplicate checkpoint tensor: {name}")
             _require(weight_map.get(name) == filename, f"index/header mismatch: {name}")
+            _require(isinstance(item, dict), f"invalid tensor metadata: {name}")
             shape = item.get("shape")
             offsets = item.get("data_offsets")
             dtype = item.get("dtype")
             _require(
                 isinstance(shape, list)
-                and all(isinstance(value, int) and value >= 0 for value in shape)
+                and all(
+                    isinstance(value, int)
+                    and not isinstance(value, bool)
+                    and value >= 0
+                    for value in shape
+                )
                 and isinstance(offsets, list)
                 and len(offsets) == 2
-                and offsets[1] >= offsets[0]
-                and isinstance(dtype, str),
+                and all(
+                    isinstance(value, int)
+                    and not isinstance(value, bool)
+                    for value in offsets
+                )
+                and 0 <= offsets[0] <= offsets[1] <= data_length
+                and isinstance(dtype, str)
+                and dtype in SAFETENSOR_DTYPE_BYTES,
                 f"invalid tensor metadata: {name}",
             )
+            logical_bytes = offsets[1] - offsets[0]
+            expected_bytes = math.prod(shape) * SAFETENSOR_DTYPE_BYTES[dtype]
+            _require(
+                logical_bytes == expected_bytes,
+                f"tensor byte span does not match shape and dtype: {name}",
+            )
+            intervals.append((offsets[0], offsets[1], name))
             tensors[name] = {
                 "shape": shape,
                 "dtype": dtype,
-                "logical_bytes": offsets[1] - offsets[0],
+                "logical_bytes": logical_bytes,
                 "file": filename,
             }
+        intervals.sort()
+        _require(
+            not intervals or intervals[0][0] == 0,
+            f"safetensor data region has an unclaimed prefix: {path}",
+        )
+        for left, right in zip(intervals, intervals[1:]):
+            _require(
+                left[1] == right[0],
+                f"noncontiguous safetensor data spans: {left[2]} and {right[2]}",
+            )
+        _require(
+            not intervals or intervals[-1][1] == data_length,
+            f"safetensor data region has unclaimed trailing bytes: {path}",
+        )
     _require(set(tensors) == set(weight_map), "checkpoint index/header key set changed")
+    _require(
+        sum(item["logical_bytes"] for item in tensors.values())
+        == declared_total_size,
+        "checkpoint index total_size does not match tensor byte spans",
+    )
     return tensors, physical_bytes
 
 
@@ -842,8 +957,10 @@ def main() -> None:
         return
 
     value = build_contract()
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    _atomic_write(
+        output,
+        (json.dumps(value, indent=2, sort_keys=True) + "\n").encode("utf-8"),
+    )
     print(f"wrote {output}")
 
 

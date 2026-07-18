@@ -8,14 +8,15 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import tempfile
 from typing import Any
-
-import qwen36_expert_lora_v1 as expert_lora
 
 
 ROOT = Path(__file__).resolve().parent
 MODEL_ROOT = ROOT / "models/Qwen3.6-35B-A3B"
-ARCHITECTURE_CONTRACT = ROOT / expert_lora.DEFAULT_ARCHITECTURE_CONTRACT
+ARCHITECTURE_CONTRACT = (
+    ROOT / "training_protocol/qwen36_architecture_contract_v1.json"
+)
 OUTPUT = ROOT / "training_protocol/qwen36_expert_lora_attachment_contract_v1.json"
 SCHEMA = "qwen36-expert-lora-attachment-contract-v1"
 
@@ -47,6 +48,7 @@ def construct() -> dict[str, Any]:
     # This must be set before importing torch/Transformers.  The audit is
     # deliberately incapable of initializing CUDA or loading checkpoint weights.
     os.environ["CUDA_VISIBLE_DEVICES"] = ""
+    import qwen36_expert_lora_v1 as expert_lora
     import peft
     import torch
     import transformers
@@ -122,6 +124,10 @@ def construct() -> dict[str, Any]:
             "trainable_tensor_count": postattach["trainable_tensor_count"],
             "trainable_elements": postattach["trainable_elements"],
             "only_lora_a_and_b_tensors_trainable": True,
+            "dropout_zero_for_every_wrapper": True,
+            "classic_alpha_over_rank_scaling_for_every_wrapper": True,
+            "bias_rslora_and_dora_disabled_for_every_wrapper": True,
+            "requested_adapter_active_enabled_and_unmerged": True,
             "router_attention_mixing_embedding_head_norm_vision_and_mtp_trainable": False,
             "adapter_parameters_created_in_fp32": True,
         },
@@ -138,6 +144,22 @@ def render() -> str:
     return json.dumps(construct(), ensure_ascii=False, indent=2, sort_keys=True) + "\n"
 
 
+def _atomic_write(path: Path, payload: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", dir=path.parent
+    )
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary_name, path)
+    finally:
+        if os.path.exists(temporary_name):
+            os.unlink(temporary_name)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
@@ -146,8 +168,7 @@ def main() -> None:
     if arguments.check:
         _require(OUTPUT.read_text(encoding="utf-8") == payload, "attachment contract changed")
     else:
-        OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-        OUTPUT.write_text(payload, encoding="utf-8")
+        _atomic_write(OUTPUT, payload.encode("utf-8"))
     value = json.loads(payload)
     print(
         json.dumps(
